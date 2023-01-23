@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Catharsis.Assertions.Core\Catharsis.Assertions.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Catharsis.Extensions">
+      <HintPath>..\..\Catharsis.Extensions\src\Catharsis.Extensions.Core\bin\Release\net7.0\Catharsis.Extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

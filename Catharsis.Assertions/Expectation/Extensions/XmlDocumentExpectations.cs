@@ -1,0 +1,18 @@
+﻿using System.Xml;
+
+namespace Catharsis.Assertions;
+
+/// <summary>
+///   <para></para>
+/// </summary>
+public static class XmlDocumentExpectations
+{
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <param name="name"></param>
+  /// <param name="uri"></param>
+  /// <returns></returns>
+  public static IExpectation<XmlDocument> Element(this IExpectation<XmlDocument> expectation, string name, string uri = null) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expect(document => (uri is not null ? document.GetElementsByTagName(name, uri) : document.GetElementsByTagName(name)).Count > 0);
+}
