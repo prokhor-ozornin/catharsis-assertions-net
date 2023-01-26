@@ -20,7 +20,13 @@ public sealed class StringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StringAssertions.Length(null, string.Empty, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => StringAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Length(string.Empty, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(string.Empty, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Length(string.Empty, string.Empty.Length).Should().NotBeNull().And.BeSameAs(Assert.To);
+
+    AssertionExtensions.Should(() => Assert.To.Length(RandomString, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(RandomString, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Length(RandomString, RandomString.Length).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -31,8 +37,9 @@ public sealed class StringAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => StringAssertions.Empty(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => StringAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
-
-    throw new NotImplementedException();
+    
+    Assert.To.Empty(string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Empty(RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -44,7 +51,9 @@ public sealed class StringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StringAssertions.UpperCased(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.UpperCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    throw new NotImplementedException();
+    Assert.To.UpperCased(string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.UpperCased(RandomString.ToUpperInvariant()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.UpperCased(RandomString.ToLowerInvariant(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -56,7 +65,9 @@ public sealed class StringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StringAssertions.LowerCased(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.LowerCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    throw new NotImplementedException();
+    Assert.To.LowerCased(string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.LowerCased(RandomString.ToLowerInvariant()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.LowerCased(RandomString.ToUpperInvariant(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>

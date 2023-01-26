@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="XmlElement"/>
 public static class XmlElementExpectations
 {
   /// <summary>

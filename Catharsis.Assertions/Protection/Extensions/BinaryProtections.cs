@@ -3,6 +3,8 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="BinaryReader"/>
+/// <seealso cref="BinaryWriter"/>
 public static class BinaryProtections
 {
   /// <summary>

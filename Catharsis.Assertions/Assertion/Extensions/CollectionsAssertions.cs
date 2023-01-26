@@ -5,6 +5,8 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="ICollection{T}"/>
+/// <seealso cref="NameValueCollection"/>
 public static class CollectionsAssertions
 {
   /// <summary>
@@ -18,7 +20,7 @@ public static class CollectionsAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  /// <see cref="Count(IAssertion, NameValueCollection, int, string)"/>
+  /// <seealso cref="Count(IAssertion, NameValueCollection, int, string)"/>
   public static IAssertion Count<T>(this IAssertion assertion, ICollection<T> collection, int count, string message = null) => collection is not null ? assertion.True(collection.Count == count, message) : throw new ArgumentNullException(nameof(collection));
 
   /// <summary>

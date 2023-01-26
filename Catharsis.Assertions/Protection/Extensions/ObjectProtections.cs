@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="object"/>
 public static class ObjectProtections
 {
   /// <summary>

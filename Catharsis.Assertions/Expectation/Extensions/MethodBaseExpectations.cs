@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="MethodBase"/>
 public static class MethodBaseExpectations
 {
   /// <summary>

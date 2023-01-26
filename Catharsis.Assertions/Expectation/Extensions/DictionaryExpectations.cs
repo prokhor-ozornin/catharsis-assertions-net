@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="IDictionary{TKey, TValue}"/>
 public static class DictionaryExpectations
 {
   /// <summary>

@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="string"/>
 public static class StringExpectations
 {
   /// <summary>
@@ -30,7 +31,7 @@ public static class StringExpectations
   /// <param name="expectation"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="LowerCased(IExpectation{string})"/>
+  /// <seealso cref="LowerCased(IExpectation{string})"/>
   public static IExpectation<string> UpperCased(this IExpectation<string> expectation) => expectation.HaveSubject().And().Expected(text => text.All(char.IsUpper));
 
   /// <summary>

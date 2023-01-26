@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="XmlNode"/>
 public static class XmlNodeAssertions
 {
   /// <summary>
@@ -62,7 +63,7 @@ public static class XmlNodeAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="OuterXml(IAssertion, XmlNode, string, string)"/>
+  /// <seealso cref="OuterXml(IAssertion, XmlNode, string, string)"/>
   public static IAssertion InnerXml(this IAssertion assertion, XmlNode node, string xml, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));

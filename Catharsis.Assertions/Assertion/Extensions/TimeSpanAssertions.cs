@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="TimeSpan"/>
 public static class TimeSpanAssertions
 {
   /// <summary>

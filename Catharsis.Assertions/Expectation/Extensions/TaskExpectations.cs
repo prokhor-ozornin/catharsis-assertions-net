@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="Task"/>
 public static class TaskExpectations
 {
   /// <summary>
@@ -59,7 +60,7 @@ public static class TaskExpectations
   /// <param name="exception"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="Exception(IExpectation{Task}, AggregateException)"/>
+  /// <seealso cref="Exception(IExpectation{Task}, AggregateException)"/>
   public static IExpectation<Task<T>> Exception<T>(this IExpectation<Task<T>> expectation, AggregateException exception) => expectation.HaveSubject().And().Expected(task => Equals(task.Exception, exception));
 
   /// <summary>

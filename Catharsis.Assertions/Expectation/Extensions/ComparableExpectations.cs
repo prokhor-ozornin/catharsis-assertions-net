@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="IComparable{T}"/>
 public static class ComparableExpectations
 {
   /// <summary>
@@ -12,7 +13,7 @@ public static class ComparableExpectations
   /// <param name="expectation"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="Negative{T}(IExpectation{T})"/>
+  /// <seealso cref="Negative{T}(IExpectation{T})"/>
   public static IExpectation<T> Positive<T>(this IExpectation<T> expectation) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(default) > 0);
 
   /// <summary>
@@ -99,6 +100,6 @@ public static class ComparableExpectations
   /// <param name="max"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="InRange{T}(IExpectation{T}, T, T)"/>
+  /// <seealso cref="InRange{T}(IExpectation{T}, T, T)"/>
   public static IExpectation<T> OutOfRange<T>(this IExpectation<T> expectation, T min, T max) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(min) < 0 || value.CompareTo(max) > 0);
 }

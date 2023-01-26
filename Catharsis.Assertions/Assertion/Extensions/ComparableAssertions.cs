@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="IComparable{T}"/>
 public static class ComparableAssertions
 {
   /// <summary>
@@ -82,7 +83,7 @@ public static class ComparableAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  /// <see cref="LesserOrEqual{T}(IAssertion, T, T, string)"/>
+  /// <seealso cref="LesserOrEqual{T}(IAssertion, T, T, string)"/>
   public static IAssertion Lesser<T>(this IAssertion assertion, T value, T other, string message = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(other) < 0, message);
 
   /// <summary>

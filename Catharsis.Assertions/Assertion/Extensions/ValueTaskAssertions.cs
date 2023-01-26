@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="ValueTask"/>
 public static class ValueTaskAssertions
 {
   /// <summary>

@@ -6,6 +6,11 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="string"/>
+/// <seealso cref="StringBuilder"/>
+/// <seealso cref="SecureString"/>
+/// <seealso cref="StringReader"/>
+/// <seealso cref="StringWriter"/>
 public static class TextProtections
 {
   /// <summary>

@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="IComparable{T}"/>
 public static class NumericProtections
 {
   /// <summary>

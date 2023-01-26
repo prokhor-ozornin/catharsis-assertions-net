@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="IEnumerable{T}"/>
 public static class EnumerableAssertions
 {
   /// <summary>
@@ -156,7 +157,7 @@ public static class EnumerableAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  /// <see cref="SupersetOf{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
+  /// <seealso cref="SupersetOf{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
   public static IAssertion SubsetOf<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> superset, IEqualityComparer<T> comparer = null, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));

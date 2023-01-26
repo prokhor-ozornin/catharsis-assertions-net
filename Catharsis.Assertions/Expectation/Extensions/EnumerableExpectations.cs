@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="IEnumerable{T}"/>
 public static class EnumerableExpectations
 {
   /// <summary>

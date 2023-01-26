@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="FileSystemInfo"/>
 public static class FileSystemInfoExpectations
 {
   /// <summary>

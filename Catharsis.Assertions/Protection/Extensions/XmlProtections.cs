@@ -6,6 +6,8 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="XmlDocument"/>
+/// <seealso cref="XDocument"/>
 public static class XmlProtections
 {
   /// <summary>

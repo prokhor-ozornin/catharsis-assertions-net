@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="MemberInfo"/>
 public static class MemberInfoExpectations
 {
   /// <summary>
@@ -24,7 +25,7 @@ public static class MemberInfoExpectations
   /// <param name="expectation"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="Attribute(IExpectation{MemberInfo}, System.Type)"/>
+  /// <seealso cref="Attribute(IExpectation{MemberInfo}, System.Type)"/>
   public static IExpectation<MemberInfo> Attribute<T>(this IExpectation<MemberInfo> expectation) where T : Attribute => expectation.Attribute(typeof(T));
 
   /// <summary>

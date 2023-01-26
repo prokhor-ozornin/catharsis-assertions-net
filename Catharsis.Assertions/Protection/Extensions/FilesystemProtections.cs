@@ -3,6 +3,8 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="FileInfo"/>
+/// <seealso cref="DirectoryInfo"/>
 public static class FilesystemProtections
 {
   /// <summary>

@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="Task"/>
 public static class TaskAssertions
 {
   /// <summary>
@@ -83,7 +84,7 @@ public static class TaskAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="Successful(IAssertion, Task, string)"/>
+  /// <seealso cref="Successful(IAssertion, Task, string)"/>
   public static IAssertion Successful<T>(this IAssertion assertion, Task<T> task, string message = null) => task is not null ? assertion.True(task.IsCompletedSuccessfully, message) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
@@ -95,7 +96,7 @@ public static class TaskAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="Unsuccessful(IAssertion, Task, string)"/>
+  /// <seealso cref="Unsuccessful(IAssertion, Task, string)"/>
   public static IAssertion Unsuccessful<T>(this IAssertion assertion, Task<T> task, string message = null) => task is not null ? assertion.True(task.IsFaulted, message) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>

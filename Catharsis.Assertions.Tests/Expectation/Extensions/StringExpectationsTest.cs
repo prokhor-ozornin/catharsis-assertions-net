@@ -23,8 +23,8 @@ public sealed class StringExpectationsTest : UnitTest
     string.Empty.Expect().Length(int.MaxValue).Result.Should().BeFalse();
     string.Empty.Expect().Length(string.Empty.Length).Result.Should().BeTrue();
 
-    string.Empty.Expect().Length(int.MinValue).Result.Should().BeFalse();
-    string.Empty.Expect().Length(int.MaxValue).Result.Should().BeFalse();
+    RandomString.Expect().Length(int.MinValue).Result.Should().BeFalse();
+    RandomString.Expect().Length(int.MaxValue).Result.Should().BeFalse();
     RandomString.Expect().Length(RandomString.Length).Result.Should().BeTrue();
   }
 

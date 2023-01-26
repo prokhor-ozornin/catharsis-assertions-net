@@ -4,6 +4,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="DateOnly"/>
 public static class DateOnlyExpectations
 {
   /// <summary>

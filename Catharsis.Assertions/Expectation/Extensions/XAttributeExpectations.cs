@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="XAttribute"/>
 public static class XAttributeExpectations
 {
   /// <summary>

@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="DateTime"/>
 public static class DateTimeExpectations
 {
   /// <summary>

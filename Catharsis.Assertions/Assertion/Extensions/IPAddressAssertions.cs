@@ -6,6 +6,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="IPAddress"/>
 public static class IPAddressAssertions
 {
   /// <summary>
@@ -16,7 +17,7 @@ public static class IPAddressAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="Ip6(IAssertion, IPAddress, string)"/>
+  /// <seealso cref="Ip6(IAssertion, IPAddress, string)"/>
   public static IAssertion Ip4(this IAssertion assertion, IPAddress address, string message = null) => address is not null ? assertion.True(address.AddressFamily == AddressFamily.InterNetwork, message) : throw new ArgumentNullException(nameof(address));
 
   /// <summary>

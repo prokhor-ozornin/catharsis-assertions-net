@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="Regex"/>
 public static class RegexExpectations
 {
   /// <summary>

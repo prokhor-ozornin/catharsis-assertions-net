@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="PropertyInfo"/>
 public static class PropertyInfoExpectations
 {
   /// <summary>

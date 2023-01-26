@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="Type"/>
 public static class TypeExpectations
 {
   /// <summary>
@@ -36,7 +37,7 @@ public static class TypeExpectations
   /// <param name="target"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="AssignableFrom{T}(IExpectation{Type})"/>
+  /// <seealso cref="AssignableFrom{T}(IExpectation{Type})"/>
   public static IExpectation<Type> AssignableFrom(this IExpectation<Type> expectation, Type target) => expectation.HaveSubject().And().ThrowIfNull(target, nameof(target)).And().Expected(type => type.IsAssignableFrom(target));
 
   /// <summary>
@@ -57,7 +58,7 @@ public static class TypeExpectations
   /// <param name="target"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="AssignableTo{T}(IExpectation{Type})"/>
+  /// <seealso cref="AssignableTo{T}(IExpectation{Type})"/>
   public static IExpectation<Type> AssignableTo(this IExpectation<Type> expectation, Type target) => expectation.HaveSubject().And().ThrowIfNull(target, nameof(target)).And().Expected(type => type.IsAssignableTo(target));
 
   /// <summary>

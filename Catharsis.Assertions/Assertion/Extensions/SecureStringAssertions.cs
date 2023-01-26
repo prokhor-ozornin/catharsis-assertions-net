@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="SecureString"/>
 public static class SecureStringAssertions
 {
   /// <summary>

@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="HttpContent"/>
 public static class HttpContentExpectations
 {
   /// <summary>

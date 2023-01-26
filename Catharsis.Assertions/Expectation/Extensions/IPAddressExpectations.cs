@@ -6,6 +6,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="IPAddress"/>
 public static class IPAddressExpectations
 {
   /// <summary>
@@ -23,6 +24,6 @@ public static class IPAddressExpectations
   /// <param name="expectation"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="Ip4(IExpectation{IPAddress})"/>
+  /// <seealso cref="Ip4(IExpectation{IPAddress})"/>
   public static IExpectation<IPAddress> Ip6(this IExpectation<IPAddress> expectation) => expectation.HaveSubject().And().Expected(address => address.AddressFamily == AddressFamily.InterNetworkV6);
 }

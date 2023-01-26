@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="DateTimeOffset"/>
 public static class DateTimeOffsetAssertions
 {
   /// <summary>

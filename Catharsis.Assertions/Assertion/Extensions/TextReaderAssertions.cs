@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="TextReader"/>
 public static class TextReaderAssertions
 {
   /// <summary>

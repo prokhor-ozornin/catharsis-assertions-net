@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="Type"/>
 public static class TypeAssertions
 {
   /// <summary>
@@ -45,7 +46,7 @@ public static class TypeAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  /// <see cref="AssignableFrom{T}(IAssertion, Type, string)"/>
+  /// <seealso cref="AssignableFrom{T}(IAssertion, Type, string)"/>
   public static IAssertion AssignableFrom(this IAssertion assertion, Type current, Type target, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -63,7 +64,7 @@ public static class TypeAssertions
   /// <param name="current"></param>
   /// <param name="message"></param>
   /// <returns></returns>
-  /// <see cref="AssignableFrom(IAssertion, Type, Type, string)"/>
+  /// <seealso cref="AssignableFrom(IAssertion, Type, Type, string)"/>
   public static IAssertion AssignableFrom<T>(this IAssertion assertion, Type current, string message = null) => assertion.AssignableFrom(current, typeof(T), message);
 
   #if NET7_0_OR_GREATER
@@ -77,7 +78,7 @@ public static class TypeAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  /// <see cref="AssignableTo{T}(IAssertion, Type, string)"/>
+  /// <seealso cref="AssignableTo{T}(IAssertion, Type, string)"/>
   public static IAssertion AssignableTo(this IAssertion assertion, Type current, Type target, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -95,7 +96,7 @@ public static class TypeAssertions
   /// <param name="current"></param>
   /// <param name="message"></param>
   /// <returns></returns>
-  /// <see cref="AssignableTo(IAssertion, Type, Type, string)"/>
+  /// <seealso cref="AssignableTo(IAssertion, Type, Type, string)"/>
   public static IAssertion AssignableTo<T>(this IAssertion assertion, Type current, string message = null) => assertion.AssignableTo(current, typeof(T), message);
   #endif
 }

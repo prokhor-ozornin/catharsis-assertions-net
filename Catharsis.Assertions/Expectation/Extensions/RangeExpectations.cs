@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="Range"/>
 public static class RangeExpectations
 {
   /// <summary>

@@ -4,6 +4,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="TimeOnly"/>
 public static class TimeOnlyAssertions
 {
   /// <summary>

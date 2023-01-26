@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="bool"/>
 public static class BooleanAssertions
 {
   /// <summary>

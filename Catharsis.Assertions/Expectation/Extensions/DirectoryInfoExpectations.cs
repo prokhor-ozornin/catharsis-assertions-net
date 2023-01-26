@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="DirectoryInfo"/>
 public static class DirectoryInfoExpectations
 {
   /// <summary>

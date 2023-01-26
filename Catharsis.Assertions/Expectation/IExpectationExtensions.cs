@@ -3,6 +3,7 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="IExpectation{T}"/>
 public static class IExpectationExtensions
 {
   /// <summary>
@@ -73,7 +74,7 @@ public static class IExpectationExtensions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <see cref="ThrowIfFalse{T}(IExpectation{T}, Exception)"/>
+  /// <seealso cref="ThrowIfFalse{T}(IExpectation{T}, Exception)"/>
   public static IExpectation<T> ThrowIfFalse<T>(this IExpectation<T> expectation, string message = null) => expectation.ThrowIfFalse(new InvalidOperationException(message));
 
   /// <summary>

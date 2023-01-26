@@ -16,6 +16,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => TimeSpanAssertions.Days(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
+    
+
     throw new NotImplementedException();
   }
 

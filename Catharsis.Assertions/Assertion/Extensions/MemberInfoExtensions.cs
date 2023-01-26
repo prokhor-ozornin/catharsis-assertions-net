@@ -5,6 +5,7 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="MemberInfo"/>
 public static class MemberInfoAssertions
 {
   /// <summary>

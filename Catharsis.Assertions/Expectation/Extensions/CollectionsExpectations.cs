@@ -5,6 +5,8 @@ namespace Catharsis.Assertions;
 /// <summary>
 ///   <para></para>
 /// </summary>
+/// <seealso cref="ICollection{T}"/>
+/// <seealso cref="NameValueCollection"/>
 public static class CollectionsExpectations
 {
   /// <summary>
