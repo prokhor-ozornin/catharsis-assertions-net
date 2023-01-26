@@ -12,7 +12,8 @@ public static class HttpResponseMessageExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<HttpResponseMessage> Successful(this IExpectation<HttpResponseMessage> expectation) => expectation.HaveSubject().And().Expect(response => response.IsSuccessStatusCode);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<HttpResponseMessage> Successful(this IExpectation<HttpResponseMessage> expectation) => expectation.HaveSubject().And().Expected(response => response.IsSuccessStatusCode);
 
   /// <summary>
   ///   <para></para>
@@ -20,7 +21,8 @@ public static class HttpResponseMessageExpectations
   /// <param name="expectation"></param>
   /// <param name="status"></param>
   /// <returns></returns>
-  public static IExpectation<HttpResponseMessage> Status(this IExpectation<HttpResponseMessage> expectation, HttpStatusCode status) => expectation.HaveSubject().And().Expect(response => response.StatusCode == status);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<HttpResponseMessage> Status(this IExpectation<HttpResponseMessage> expectation, HttpStatusCode status) => expectation.HaveSubject().And().Expected(response => response.StatusCode == status);
 
   /// <summary>
   ///   <para></para>
@@ -29,5 +31,6 @@ public static class HttpResponseMessageExpectations
   /// <param name="name"></param>
   /// <param name="value"></param>
   /// <returns></returns>
-  public static IExpectation<HttpResponseMessage> Header(this IExpectation<HttpResponseMessage> expectation, string name, string value) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expect(response => response.Headers.GetValues(name).Contains(value));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<HttpResponseMessage> Header(this IExpectation<HttpResponseMessage> expectation, string name, string value) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(response => response.Headers.GetValues(name).Contains(value));
 }

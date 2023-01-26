@@ -15,7 +15,8 @@ public static class CollectionsExpectations
   /// <param name="count"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<ICollection<T>> Count<T>(this IExpectation<ICollection<T>> expectation, int count) => expectation.HaveSubject().And().Expect(collection => collection.Count == count);
+  /// <seealso cref="Count(IExpectation{NameValueCollection}, int)"/>
+  public static IExpectation<ICollection<T>> Count<T>(this IExpectation<ICollection<T>> expectation, int count) => expectation.HaveSubject().And().Expected(collection => collection.Count == count);
 
   /// <summary>
   ///   <para></para>
@@ -23,6 +24,8 @@ public static class CollectionsExpectations
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation"></param>
   /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Empty(IExpectation{NameValueCollection})"/>
   public static IExpectation<ICollection<T>> Empty<T>(this IExpectation<ICollection<T>> expectation) => expectation.Count(0);
 
   /// <summary>
@@ -32,7 +35,7 @@ public static class CollectionsExpectations
   /// <param name="expectation"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<ICollection<T>> ReadOnly<T>(this IExpectation<ICollection<T>> expectation) => expectation.HaveSubject().And().Expect(collection => collection.IsReadOnly);
+  public static IExpectation<ICollection<T>> ReadOnly<T>(this IExpectation<ICollection<T>> expectation) => expectation.HaveSubject().And().Expected(collection => collection.IsReadOnly);
 
   /// <summary>
   ///   <para></para>
@@ -41,12 +44,15 @@ public static class CollectionsExpectations
   /// <param name="count"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<NameValueCollection> Count(this IExpectation<NameValueCollection> expectation, int count) => expectation.HaveSubject().And().Expect(collection => collection.Count == count);
+  /// <seealso cref="Count{T}(IExpectation{ICollection{T}}, int)"/>
+  public static IExpectation<NameValueCollection> Count(this IExpectation<NameValueCollection> expectation, int count) => expectation.HaveSubject().And().Expected(collection => collection.Count == count);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Empty{T}(IExpectation{ICollection{T}})"/>
   public static IExpectation<NameValueCollection> Empty(this IExpectation<NameValueCollection> expectation) => expectation.Count(0);
 }

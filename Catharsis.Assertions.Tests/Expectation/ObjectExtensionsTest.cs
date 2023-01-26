@@ -1,7 +1,8 @@
 ﻿using FluentAssertions;
 using Xunit;
+using Catharsis.Extensions;
 
-namespace Catharsis.Assertions.Tests.Expectation;
+namespace Catharsis.Assertions.Tests;
 
 /// <summary>
 ///   <para>Tests set for class <see cref="ObjectExtensions"/>.</para>
@@ -14,9 +15,9 @@ public sealed class ObjectExtensionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => EnumerableProtections.Empty(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((IEnumerable<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-
-    throw new NotImplementedException();
+    object subject = null;
+    var expectation = subject.Expect();
+    expectation.Should().NotBeNull().And.NotBeSameAs(subject.Expect()).And.BeOfType<Expectation<object>>();
+    expectation.GetFieldValue<object>("subject").Should().BeSameAs(subject);
   }
 }

@@ -13,7 +13,8 @@ public static class StreamWriterExpectations
   /// <param name="expectation"></param>
   /// <param name="encoding"></param>
   /// <returns></returns>
-  public static IExpectation<StreamWriter> Encoding(this IExpectation<StreamWriter> expectation, Encoding encoding) => expectation.HaveSubject().And().Expect(writer => writer.Encoding.Equals(encoding));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<StreamWriter> Encoding(this IExpectation<StreamWriter> expectation, Encoding encoding) => expectation.HaveSubject().And().Expected(writer => writer.Encoding.Equals(encoding));
 
   /// <summary>
   ///   <para></para>
@@ -21,5 +22,6 @@ public static class StreamWriterExpectations
   /// <param name="expectation"></param>
   /// <param name="format"></param>
   /// <returns></returns>
-  public static IExpectation<StreamWriter> Format(this IExpectation<StreamWriter> expectation, IFormatProvider format) => expectation.HaveSubject().And().Expect(writer => writer.FormatProvider.Equals(format));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<StreamWriter> Format(this IExpectation<StreamWriter> expectation, IFormatProvider format) => expectation.HaveSubject().And().Expected(writer => writer.FormatProvider.Equals(format));
 }

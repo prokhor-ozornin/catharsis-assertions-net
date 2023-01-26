@@ -12,7 +12,8 @@ public static class MatchExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<Match> Successful(this IExpectation<Match> expectation) => expectation.HaveSubject().And().Expect(match => match.Success);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<Match> Successful(this IExpectation<Match> expectation) => expectation.HaveSubject().And().Expected(match => match.Success);
 
   /// <summary>
   ///   <para></para>
@@ -21,5 +22,5 @@ public static class MatchExpectations
   /// <param name="value"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<Match> Value(this IExpectation<Match> expectation, string value) => expectation.HaveSubject().And().ThrowIfNull(value, nameof(value)).And().Expect(match => match.Value == value);
+  public static IExpectation<Match> Value(this IExpectation<Match> expectation, string value) => expectation.HaveSubject().And().ThrowIfNull(value, nameof(value)).And().Expected(match => match.Value == value);
 }

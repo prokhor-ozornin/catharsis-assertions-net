@@ -12,7 +12,8 @@ public static class XDocumentExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<XDocument> Empty(this IExpectation<XDocument> expectation) => expectation.HaveSubject().And().Expect(document => !document.Nodes().Any());
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<XDocument> Empty(this IExpectation<XDocument> expectation) => expectation.HaveSubject().And().Expected(document => !document.Nodes().Any());
 
   /// <summary>
   ///   <para></para>
@@ -20,5 +21,6 @@ public static class XDocumentExpectations
   /// <param name="expectation"></param>
   /// <param name="name"></param>
   /// <returns></returns>
-  public static IExpectation<XDocument> Name(this IExpectation<XDocument> expectation, XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expect(document => document.Root?.Name == name);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<XDocument> Name(this IExpectation<XDocument> expectation, XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(document => document.Root?.Name == name);
 }

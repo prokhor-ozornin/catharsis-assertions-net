@@ -2,7 +2,7 @@
 using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Assertions.Tests.Expectation.Extensions;
+namespace Catharsis.Assertions.Tests;
 
 /// <summary>
 ///   <para>Tests set for class <see cref="StringBuilderExpectations"/>.</para>
@@ -20,7 +20,9 @@ public sealed class StringBuilderExpectationsTest : UnitTest
     AssertionExtensions.Should(() => StringBuilderExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Builder.Expect().Length(int.MinValue).Result.Should().BeFalse();
+    Builder.Expect().Length(int.MaxValue).Result.Should().BeFalse();
+    Builder.Expect().Length(Builder.Length).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -32,6 +34,7 @@ public sealed class StringBuilderExpectationsTest : UnitTest
     AssertionExtensions.Should(() => StringBuilderExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Builder.Expect().Empty().Result.Should().BeTrue();
+    Builder.Append(char.MinValue).Expect().Empty().Result.Should().BeFalse();
   }
 }

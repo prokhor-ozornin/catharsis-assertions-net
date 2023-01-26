@@ -13,7 +13,8 @@ public static class SymmetricAlgorithmExpectations
   /// <param name="expectation"></param>
   /// <param name="size"></param>
   /// <returns></returns>
-  public static IExpectation<SymmetricAlgorithm> BlockSize(this IExpectation<SymmetricAlgorithm> expectation, int size) => expectation.HaveSubject().And().Expect(algorithm => algorithm.BlockSize == size);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<SymmetricAlgorithm> BlockSize(this IExpectation<SymmetricAlgorithm> expectation, int size) => expectation.HaveSubject().And().Expected(algorithm => algorithm.BlockSize == size);
 
   /// <summary>
   ///   <para></para>
@@ -21,5 +22,6 @@ public static class SymmetricAlgorithmExpectations
   /// <param name="expectation"></param>
   /// <param name="size"></param>
   /// <returns></returns>
-  public static IExpectation<SymmetricAlgorithm> KeySize(this IExpectation<SymmetricAlgorithm> expectation, int size) => expectation.HaveSubject().And().Expect(algorithm => algorithm.KeySize == size);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<SymmetricAlgorithm> KeySize(this IExpectation<SymmetricAlgorithm> expectation, int size) => expectation.HaveSubject().And().Expected(algorithm => algorithm.KeySize == size);
 }

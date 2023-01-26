@@ -18,6 +18,7 @@ public static class CollectionsAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <see cref="Count(IAssertion, NameValueCollection, int, string)"/>
   public static IAssertion Count<T>(this IAssertion assertion, ICollection<T> collection, int count, string message = null) => collection is not null ? assertion.True(collection.Count == count, message) : throw new ArgumentNullException(nameof(collection));
 
   /// <summary>
@@ -30,6 +31,7 @@ public static class CollectionsAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IAssertion, NameValueCollection, string)"/>
   public static IAssertion Empty<T>(this IAssertion assertion, ICollection<T> collection, string message = null) => assertion.Count(collection, 0, message);
 
   /// <summary>
@@ -53,6 +55,7 @@ public static class CollectionsAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Count{T}(IAssertion, ICollection{T}, int, string)"/>
   public static IAssertion Count(this IAssertion assertion, NameValueCollection collection, int count, string message = null) => collection is not null ? assertion.True(collection.Count == count, message) : throw new ArgumentNullException(nameof(collection));
 
   /// <summary>
@@ -64,5 +67,6 @@ public static class CollectionsAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty{T}(IAssertion, ICollection{T}, string)"/>
   public static IAssertion Empty(this IAssertion assertion, NameValueCollection collection, string message = null) => assertion.Count(collection, 0, message);
 }

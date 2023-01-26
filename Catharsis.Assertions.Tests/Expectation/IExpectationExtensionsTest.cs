@@ -1,4 +1,5 @@
-﻿using FluentAssertions.Execution;
+﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -8,12 +9,17 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class IExpectationExtensionsTest : UnitTest
 {
+  private IExpectation<object> Expectation { get; } = new Expectation<object>(null);
+
   /// <summary>
-  ///   <para>Performs testing of <see cref="IExpectationExtensions.To{T}(IExpectation{T})"/> method.</para>
+  ///   <para>Performs testing of <see cref="IExpectationExtensions.Expected{T}(IExpectation{T}, Predicate{T})"/> method.</para>
   /// </summary>
   [Fact]
-  public void To_Method()
+  public void Expected_Method()
   {
+    AssertionExtensions.Should(() => IExpectationExtensions.Expected<object>(null, _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => Expectation.Expected(null)).ThrowExactly<ArgumentNullException>().WithParameterName("predicate");
+
     throw new NotImplementedException();
   }
 
@@ -23,6 +29,8 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void HaveSubject_Method()
   {
+    AssertionExtensions.Should(() => IExpectationExtensions.HaveSubject<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+
     throw new NotImplementedException();
   }
 
@@ -38,11 +46,15 @@ public sealed class IExpectationExtensionsTest : UnitTest
   {
     using (new AssertionScope())
     {
+      AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfFalse<object>(null, new Exception())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => Expectation.ThrowIfFalse((Exception) null)).ThrowExactly<ArgumentNullException>().WithParameterName("exception");
 
     }
 
     using (new AssertionScope())
     {
+      AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfFalse<object>(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => Expectation.ThrowIfFalse("message")).ThrowExactly<InvalidOperationException>().WithMessage("message");
 
     }
 
@@ -55,7 +67,20 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void ThrowIfNull_Method()
   {
+    AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfNull<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => Expectation.ThrowIfNull(null)).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
+
     throw new NotImplementedException();
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="IExpectationExtensions.To{T}(IExpectation{T})"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void To_Method()
+  {
+    ((IExpectation<object>) null).To().Should().BeNull();
+    Expectation.To().Should().NotBeNull().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -64,7 +89,8 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void And_Method()
   {
-    throw new NotImplementedException();
+    ((IExpectation<object>) null).And().Should().BeNull();
+    Expectation.And().Should().NotBeNull().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -73,7 +99,8 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void Be_Method()
   {
-    throw new NotImplementedException();
+    ((IExpectation<object>) null).Be().Should().BeNull();
+    Expectation.Be().Should().NotBeNull().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -82,7 +109,8 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void Having_Method()
   {
-    throw new NotImplementedException();
+    ((IExpectation<object>) null).Having().Should().BeNull();
+    Expectation.Having().Should().NotBeNull().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -91,7 +119,8 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void With_Method()
   {
-    throw new NotImplementedException();
+    ((IExpectation<object>) null).With().Should().BeNull();
+    Expectation.With().Should().NotBeNull().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -100,7 +129,8 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void Of_Method()
   {
-    throw new NotImplementedException();
+    ((IExpectation<object>) null).Of().Should().BeNull();
+    Expectation.Of().Should().NotBeNull().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -109,7 +139,8 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void At_Method()
   {
-    throw new NotImplementedException();
+    ((IExpectation<object>) null).At().Should().BeNull();
+    Expectation.At().Should().NotBeNull().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -118,6 +149,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void On_Method()
   {
-    throw new NotImplementedException();
+    ((IExpectation<object>) null).On().Should().BeNull();
+    Expectation.On().Should().NotBeNull().And.BeSameAs(Expectation);
   }
 }

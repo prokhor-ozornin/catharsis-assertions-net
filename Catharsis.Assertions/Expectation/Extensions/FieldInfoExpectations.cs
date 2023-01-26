@@ -13,7 +13,9 @@ public static class FieldInfoExpectations
   /// <param name="expectation"></param>
   /// <param name="type"></param>
   /// <returns></returns>
-  public static IExpectation<FieldInfo> Type(this IExpectation<FieldInfo> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expect(field => field.FieldType == type);
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Type{T}(IExpectation{FieldInfo})"/>
+  public static IExpectation<FieldInfo> Type(this IExpectation<FieldInfo> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(field => field.FieldType == type);
 
   /// <summary>
   ///   <para></para>
@@ -21,6 +23,8 @@ public static class FieldInfoExpectations
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation"></param>
   /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Type(IExpectation{FieldInfo}, System.Type)"/>
   public static IExpectation<FieldInfo> Type<T>(this IExpectation<FieldInfo> expectation) => expectation.Type(typeof(T));
 
   /// <summary>
@@ -28,21 +32,24 @@ public static class FieldInfoExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<FieldInfo> Private(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expect(field => field.IsPrivate);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<FieldInfo> Private(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsPrivate);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<FieldInfo> Public(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expect(field => field.IsPublic);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<FieldInfo> Public(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsPublic);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<FieldInfo> Static(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expect(field => field.IsStatic);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<FieldInfo> Static(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsStatic);
 
   /// <summary>
   ///   <para></para>
@@ -51,5 +58,6 @@ public static class FieldInfoExpectations
   /// <param name="subject"></param>
   /// <param name="value"></param>
   /// <returns></returns>
-  public static IExpectation<FieldInfo> Value(this IExpectation<FieldInfo> expectation, object subject, object value) => expectation.HaveSubject().And().ThrowIfNull(subject, nameof(subject)).And().Expect(field => Equals(field.GetValue(subject), value));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<FieldInfo> Value(this IExpectation<FieldInfo> expectation, object subject, object value) => expectation.HaveSubject().And().ThrowIfNull(subject, nameof(subject)).And().Expected(field => Equals(field.GetValue(subject), value));
 }

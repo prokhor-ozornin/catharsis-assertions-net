@@ -12,7 +12,8 @@ public static class ProcessExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<Process> Exited(this IExpectation<Process> expectation) => expectation.HaveSubject().And().Expect(process => process.HasExited);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<Process> Exited(this IExpectation<Process> expectation) => expectation.HaveSubject().And().Expected(process => process.HasExited);
 
   /// <summary>
   ///   <para></para>
@@ -20,5 +21,6 @@ public static class ProcessExpectations
   /// <param name="expectation"></param>
   /// <param name="code"></param>
   /// <returns></returns>
-  public static IExpectation<Process> ExitCode(this IExpectation<Process> expectation, int code) => expectation.HaveSubject().And().Expect(process => process.ExitCode == code);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<Process> ExitCode(this IExpectation<Process> expectation, int code) => expectation.HaveSubject().And().Expected(process => process.ExitCode == code);
 }

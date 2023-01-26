@@ -1,6 +1,6 @@
 ﻿namespace Catharsis.Assertions;
 
-#if NET7_0
+#if NET7_0_OR_GREATER
 /// <summary>
 ///   <para></para>
 /// </summary>

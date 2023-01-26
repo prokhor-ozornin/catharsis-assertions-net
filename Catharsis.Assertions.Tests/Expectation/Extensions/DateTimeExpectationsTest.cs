@@ -1,7 +1,9 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Extensions;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
-namespace Catharsis.Assertions.Tests.Expectation.Extensions;
+namespace Catharsis.Assertions.Tests;
 
 /// <summary>
 ///   <para>Tests set for class <see cref="DateTimeExpectations"/>.</para>
@@ -69,9 +71,22 @@ public sealed class DateTimeExpectationsTest : UnitTest
   [Fact]
   public void Day_Method()
   {
-    AssertionExtensions.Should(() => DateTimeExpectations.Day(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    void Validate(DateTime date)
+    {
+      var expectation = date.Expect();
+      expectation.Day(0).Result.Should().BeFalse();
+      expectation.Day(date.Day).Result.Should().BeTrue();
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeExpectations.Day(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+
+      foreach (var date in new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.UtcNow })
+      {
+        Validate(date);
+      }
+    }
   }
 
   /// <summary>

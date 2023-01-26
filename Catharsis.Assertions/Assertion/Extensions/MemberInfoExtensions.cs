@@ -16,6 +16,7 @@ public static class MemberInfoAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Attribute{T}(IAssertion, MemberInfo, string)"/>
   public static IAssertion Attribute(this IAssertion assertion, MemberInfo member, Type type, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -33,6 +34,7 @@ public static class MemberInfoAssertions
   /// <param name="member"></param>
   /// <param name="message"></param>
   /// <returns></returns>
+  /// <seealso cref="Attribute(IAssertion, MemberInfo, System.Type, string)"/>
   public static IAssertion Attribute<T>(this IAssertion assertion, MemberInfo member, string message = null) where T : Attribute => assertion.Attribute(member, typeof(T), message);
 
   /// <summary>

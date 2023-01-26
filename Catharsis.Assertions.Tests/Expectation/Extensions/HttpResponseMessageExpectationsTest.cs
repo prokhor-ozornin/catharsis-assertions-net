@@ -2,7 +2,7 @@
 using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Assertions.Tests.Expectation.Extensions;
+namespace Catharsis.Assertions.Tests;
 
 /// <summary>
 ///   <para>Tests set for class <see cref="HttpResponseMessageExpectations"/>.</para>

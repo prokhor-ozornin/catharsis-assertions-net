@@ -11,13 +11,15 @@ public static class FileInfoExpectations
   /// <param name="expectation"></param>
   /// <param name="length"></param>
   /// <returns></returns>
-  public static IExpectation<FileInfo> Length(this IExpectation<FileInfo> expectation, long length) => expectation.HaveSubject().And().Expect(file => file.Length == length);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<FileInfo> Length(this IExpectation<FileInfo> expectation, long length) => expectation.HaveSubject().And().Expected(file => file.Length == length);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<FileInfo> Empty(this IExpectation<FileInfo> expectation) => expectation.Length(0);
 
   /// <summary>
@@ -25,7 +27,8 @@ public static class FileInfoExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<FileInfo> ReadOnly(this IExpectation<FileInfo> expectation) => expectation.HaveSubject().And().Expect(file => file.IsReadOnly);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<FileInfo> ReadOnly(this IExpectation<FileInfo> expectation) => expectation.HaveSubject().And().Expected(file => file.IsReadOnly);
 
   /// <summary>
   ///    <para></para>
@@ -33,5 +36,6 @@ public static class FileInfoExpectations
   /// <param name="expectation"></param>
   /// <param name="directory"></param>
   /// <returns></returns>
-  public static IExpectation<FileInfo> InDirectory(this IExpectation<FileInfo> expectation, DirectoryInfo directory) => expectation.HaveSubject().And().ThrowIfNull(directory, nameof(directory)).And().Expect(file => directory.EnumerateFiles("*", new EnumerationOptions { RecurseSubdirectories = true }).Contains(file));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<FileInfo> InDirectory(this IExpectation<FileInfo> expectation, DirectoryInfo directory) => expectation.HaveSubject().And().ThrowIfNull(directory, nameof(directory)).And().Expected(file => directory.EnumerateFiles("*", new EnumerationOptions { RecurseSubdirectories = true }).Any(directoryFile => directoryFile.Name == file.Name));
 }

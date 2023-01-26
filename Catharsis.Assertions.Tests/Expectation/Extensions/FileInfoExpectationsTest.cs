@@ -1,7 +1,8 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Extensions;
+using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Assertions.Tests.Expectation.Extensions;
+namespace Catharsis.Assertions.Tests;
 
 /// <summary>
 ///   <para>Tests set for class <see cref="FileInfoExpectations"/>.</para>
@@ -17,7 +18,10 @@ public sealed class FileInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => FileInfoExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((FileInfo) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    RandomFile.Expect().Length(int.MinValue).Result.Should().BeFalse();
+    RandomFile.Expect().Length(int.MaxValue).Result.Should().BeFalse();
+    RandomFile.Expect().Length(RandomFile.Length).Result.Should().BeTrue();
+    RandomFile.Empty().Expect().Length(0).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -29,7 +33,8 @@ public sealed class FileInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => FileInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((FileInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    RandomFile.Expect().Empty().Result.Should().BeFalse();
+    RandomFile.Empty().Expect().Empty().Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -41,7 +46,8 @@ public sealed class FileInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => FileInfoExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((FileInfo) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    RandomFile.Expect().ReadOnly().Result.Should().BeFalse();
+    RandomFile.AsReadOnly().Expect().ReadOnly().Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -54,6 +60,7 @@ public sealed class FileInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((FileInfo) null).Expect().InDirectory(RandomDirectory)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => RandomFile.Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-    throw new NotImplementedException();
+    RandomFile.Expect().InDirectory(Environment.SystemDirectory.ToDirectory()).Result.Should().BeFalse();
+    RandomFile.Expect().InDirectory(RandomFile.Directory).Result.Should().BeTrue();
   }
 }

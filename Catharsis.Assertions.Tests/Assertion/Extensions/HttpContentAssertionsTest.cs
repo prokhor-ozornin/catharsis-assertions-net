@@ -11,14 +11,14 @@ public sealed class HttpContentAssertionsTest : UnitTest
   private HttpContent Content { get; } = new StringContent(string.Empty);
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="HttpContentAssertions.Header(IAssertion, System.Net.Http.HttpContent, string, string, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="HttpContentAssertions.ContainHeader(IAssertion, HttpContent, string, string)"/> method.</para>
   /// </summary>
   [Fact]
-  public void Header_Method()
+  public void ContainHeader_Method()
   {
-    AssertionExtensions.Should(() => HttpContentAssertions.Header(null, Content, "name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => HttpContentAssertions.Header(Assert.To, null, "name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("content");
-    AssertionExtensions.Should(() => Assert.To.Header(Content, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+    AssertionExtensions.Should(() => HttpContentAssertions.ContainHeader(null, Content, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => Assert.To.ContainHeader(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("content");
+    AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
     throw new NotImplementedException();
   }

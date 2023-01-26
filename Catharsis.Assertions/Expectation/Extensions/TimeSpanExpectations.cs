@@ -11,7 +11,8 @@ public static class TimeSpanExpectations
   /// <param name="expectation"></param>
   /// <param name="days"></param>
   /// <returns></returns>
-  public static IExpectation<TimeSpan> Days(this IExpectation<TimeSpan> expectation, int days) => expectation.Expect(timeSpan => timeSpan.Days == days);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<TimeSpan> Days(this IExpectation<TimeSpan> expectation, int days) => expectation.Expected(timeSpan => timeSpan.Days == days);
 
   /// <summary>
   ///   <para></para>
@@ -19,7 +20,8 @@ public static class TimeSpanExpectations
   /// <param name="expectation"></param>
   /// <param name="hours"></param>
   /// <returns></returns>
-  public static IExpectation<TimeSpan> Hours(this IExpectation<TimeSpan> expectation, int hours) => expectation.Expect(timeSpan => timeSpan.Hours == hours);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<TimeSpan> Hours(this IExpectation<TimeSpan> expectation, int hours) => expectation.Expected(timeSpan => timeSpan.Hours == hours);
 
   /// <summary>
   ///   <para></para>
@@ -27,7 +29,8 @@ public static class TimeSpanExpectations
   /// <param name="expectation"></param>
   /// <param name="minutes"></param>
   /// <returns></returns>
-  public static IExpectation<TimeSpan> Minutes(this IExpectation<TimeSpan> expectation, int minutes) => expectation.Expect(timeSpan => timeSpan.Minutes == minutes);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<TimeSpan> Minutes(this IExpectation<TimeSpan> expectation, int minutes) => expectation.Expected(timeSpan => timeSpan.Minutes == minutes);
 
   /// <summary>
   ///   <para></para>
@@ -35,7 +38,8 @@ public static class TimeSpanExpectations
   /// <param name="expectation"></param>
   /// <param name="seconds"></param>
   /// <returns></returns>
-  public static IExpectation<TimeSpan> Seconds(this IExpectation<TimeSpan> expectation, int seconds) => expectation.Expect(timeSpan => timeSpan.Seconds == seconds);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<TimeSpan> Seconds(this IExpectation<TimeSpan> expectation, int seconds) => expectation.Expected(timeSpan => timeSpan.Seconds == seconds);
 
   /// <summary>
   ///   <para></para>
@@ -43,5 +47,6 @@ public static class TimeSpanExpectations
   /// <param name="expectation"></param>
   /// <param name="milliseconds"></param>
   /// <returns></returns>
-  public static IExpectation<TimeSpan> Milliseconds(this IExpectation<TimeSpan> expectation, int milliseconds) => expectation.Expect(timeSpan => timeSpan.Milliseconds == milliseconds);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<TimeSpan> Milliseconds(this IExpectation<TimeSpan> expectation, int milliseconds) => expectation.Expected(timeSpan => timeSpan.Milliseconds == milliseconds);
 }

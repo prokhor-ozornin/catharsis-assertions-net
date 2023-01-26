@@ -1,16 +1,15 @@
 ﻿using System.Text.RegularExpressions;
+using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Assertions.Tests.Expectation.Extensions;
+namespace Catharsis.Assertions.Tests;
 
 /// <summary>
 ///   <para>Tests set for class <see cref="StringExpectations"/>.</para>
 /// </summary>
 public sealed class StringExpectationsTest : UnitTest
 {
-  private Regex Regex { get; } = new(string.Empty);
-
   /// <summary>
   ///   <para>Performs testing of <see cref="StringExpectations.Length(IExpectation{string}, int)"/> method.</para>
   /// </summary>
@@ -20,7 +19,13 @@ public sealed class StringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => StringExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((string) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    string.Empty.Expect().Length(int.MinValue).Result.Should().BeFalse();
+    string.Empty.Expect().Length(int.MaxValue).Result.Should().BeFalse();
+    string.Empty.Expect().Length(string.Empty.Length).Result.Should().BeTrue();
+
+    string.Empty.Expect().Length(int.MinValue).Result.Should().BeFalse();
+    string.Empty.Expect().Length(int.MaxValue).Result.Should().BeFalse();
+    RandomString.Expect().Length(RandomString.Length).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -30,9 +35,10 @@ public sealed class StringExpectationsTest : UnitTest
   public void Empty_Method()
   {
     AssertionExtensions.Should(() => StringExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((string) null).Expect()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => ((string) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    string.Empty.Expect().Empty().Result.Should().BeTrue();
+    RandomString.Expect().Empty().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -44,7 +50,9 @@ public sealed class StringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => StringExpectations.UpperCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((string) null).Expect().UpperCased()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    string.Empty.Expect().UpperCased().Result.Should().BeTrue();
+    RandomString.ToUpperInvariant().Expect().UpperCased().Result.Should().BeTrue();
+    RandomString.ToLowerInvariant().Expect().UpperCased().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -56,7 +64,9 @@ public sealed class StringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => StringExpectations.LowerCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((string) null).Expect().LowerCased()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    string.Empty.Expect().LowerCased().Result.Should().BeTrue();
+    RandomString.ToLowerInvariant().Expect().LowerCased().Result.Should().BeTrue();
+    RandomString.ToUpperInvariant().Expect().LowerCased().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -69,7 +79,14 @@ public sealed class StringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((string) null).Expect().StartWith(string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => string.Empty.Expect().StartWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("prefix");
 
-    throw new NotImplementedException();
+    string.Empty.Expect().StartWith(string.Empty).Result.Should().BeTrue();
+    string.Empty.Expect().StartWith(char.MinValue.ToString()).Result.Should().BeTrue();
+    string.Empty.Expect().StartWith(char.MaxValue.ToString()).Result.Should().BeFalse();
+    
+    RandomString.Expect().StartWith(string.Empty).Result.Should().BeTrue();
+    RandomString.Expect().StartWith(RandomString).Result.Should().BeTrue();
+    RandomString.Expect().StartWith(RandomString.ToUpperInvariant()).Result.Should().BeFalse();
+    RandomString.Expect().StartWith(RandomString.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -82,7 +99,14 @@ public sealed class StringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((string) null).Expect().EndWith(string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => string.Empty.Expect().EndWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("postfix");
 
-    throw new NotImplementedException();
+    string.Empty.Expect().EndWith(string.Empty).Result.Should().BeTrue();
+    string.Empty.Expect().EndWith(char.MinValue.ToString()).Result.Should().BeTrue();
+    string.Empty.Expect().EndWith(char.MaxValue.ToString()).Result.Should().BeFalse();
+
+    RandomString.Expect().EndWith(string.Empty).Result.Should().BeTrue();
+    RandomString.Expect().EndWith(RandomString).Result.Should().BeTrue();
+    RandomString.Expect().EndWith(RandomString.ToUpperInvariant()).Result.Should().BeFalse();
+    RandomString.Expect().EndWith(RandomString.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -91,10 +115,13 @@ public sealed class StringExpectationsTest : UnitTest
   [Fact]
   public void Match_Method()
   {
-    AssertionExtensions.Should(() => StringExpectations.Match(null, Regex)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((string) null).Expect().Match(Regex)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => StringExpectations.Match(null, string.Empty.ToRegex())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((string) null).Expect().Match(string.Empty.ToRegex())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => string.Empty.Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
 
-    throw new NotImplementedException();
+    string.Empty.Expect().Match(string.Empty.ToRegex()).Result.Should().BeTrue();
+    string.Empty.Expect().Match("anything".ToRegex()).Result.Should().BeFalse();
+    "ab4Zg95kf".Expect().Match("[a-zA-z0-9]".ToRegex()).Result.Should().BeTrue();
+    "~#$%".Expect().Match("[a-zA-z0-9]".ToRegex()).Result.Should().BeFalse();
   }
 }

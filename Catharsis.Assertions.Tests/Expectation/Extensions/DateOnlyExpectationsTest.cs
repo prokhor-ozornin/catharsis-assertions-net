@@ -1,7 +1,9 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
+using Catharsis.Extensions;
 
-namespace Catharsis.Assertions.Tests.Expectation.Extensions;
+namespace Catharsis.Assertions.Tests;
 
 /// <summary>
 ///   <para>Tests set for class <see cref="DateOnlyExpectations"/>.</para>
@@ -14,9 +16,22 @@ public sealed class DateOnlyExpectationsTest : UnitTest
   [Fact]
   public void Day_Method()
   {
-    AssertionExtensions.Should(() => DateOnlyExpectations.Day(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    void Validate(DateOnly date)
+    {
+      var expectation = date.Expect();
+      expectation.Day(0).Result.Should().BeFalse();
+      expectation.Day(date.Day).Result.Should().BeTrue();
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateOnlyExpectations.Day(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+
+      foreach (var date in new[] {DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly(), DateTime.UtcNow.ToDateOnly()})
+      {
+        Validate(date);
+      }
+    }
   }
 
   /// <summary>

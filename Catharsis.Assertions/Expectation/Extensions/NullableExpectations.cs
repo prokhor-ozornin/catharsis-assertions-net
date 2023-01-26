@@ -11,7 +11,8 @@ public static class NullableExpectations
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<T?> HasValue<T>(this IExpectation<T?> expectation) where T : struct => expectation.Expect(instance => instance.HasValue);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<T?> HasValue<T>(this IExpectation<T?> expectation) where T : struct => expectation.Expected(instance => instance.HasValue);
 
   /// <summary>
   ///   <para></para>
@@ -20,5 +21,6 @@ public static class NullableExpectations
   /// <param name="expectation"></param>
   /// <param name="value"></param>
   /// <returns></returns>
-  public static IExpectation<T?> Value<T>(this IExpectation<T?> expectation, T value) where T : struct => expectation.Expect(instance => instance.GetValueOrDefault().Equals(value));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<T?> Value<T>(this IExpectation<T?> expectation, T value) where T : struct => expectation.Expected(instance => instance.GetValueOrDefault().Equals(value));
 }

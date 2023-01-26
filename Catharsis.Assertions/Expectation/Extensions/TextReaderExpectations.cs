@@ -10,5 +10,6 @@ public static class TextReaderExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<TextReader> End(this IExpectation<TextReader> expectation) => expectation.HaveSubject().And().Expect(reader => reader.Peek() < 0);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<TextReader> End(this IExpectation<TextReader> expectation) => expectation.HaveSubject().And().Expected(reader => reader.Peek() < 0);
 }

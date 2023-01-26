@@ -17,6 +17,7 @@ public static class AssemblyAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Define{T}(IAssertion, Assembly, string)"/>
   public static IAssertion Define(this IAssertion assertion, Assembly assembly, Type type, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -36,6 +37,7 @@ public static class AssemblyAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Define(IAssertion, Assembly, Type, string)"/>
   public static IAssertion Define<T>(this IAssertion assertion, Assembly assembly, string message = null) => assertion.Define(assembly, typeof(T), message);
 
   /// <summary>

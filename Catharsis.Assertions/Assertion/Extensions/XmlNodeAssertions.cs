@@ -62,6 +62,7 @@ public static class XmlNodeAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <see cref="OuterXml(IAssertion, XmlNode, string, string)"/>
   public static IAssertion InnerXml(this IAssertion assertion, XmlNode node, string xml, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -80,6 +81,7 @@ public static class XmlNodeAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="InnerXml(IAssertion, XmlNode, string, string)"/>
   public static IAssertion OuterXml(this IAssertion assertion, XmlNode node, string xml, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));

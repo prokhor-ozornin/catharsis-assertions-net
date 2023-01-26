@@ -22,5 +22,6 @@ public interface IExpectation<out T>
   /// </summary>
   /// <param name="predicate"></param>
   /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
   IExpectation<T> Expect(Predicate<T> predicate);
 }

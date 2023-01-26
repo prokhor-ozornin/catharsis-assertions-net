@@ -14,6 +14,7 @@ public static class DateTimeAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Future(IAssertion, DateTime, string)"/>
   public static IAssertion Past(this IAssertion assertion, DateTime date, string message = null) => assertion.True(date.ToUniversalTime() < DateTime.UtcNow, message);
 
   /// <summary>
@@ -25,6 +26,7 @@ public static class DateTimeAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Past(IAssertion, DateTime, string)"/>
   public static IAssertion Future(this IAssertion assertion, DateTime date, string message = null) => assertion.True(date.ToUniversalTime() > DateTime.UtcNow, message);
 
   /// <summary>
@@ -144,6 +146,7 @@ public static class DateTimeAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="UtcTime(IAssertion, DateTime, string)"/>
   public static IAssertion LocalTime(this IAssertion assertion, DateTime date, string message = null) => assertion.True(date.Kind == DateTimeKind.Local, message);
 
   /// <summary>
@@ -155,5 +158,6 @@ public static class DateTimeAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="LocalTime(IAssertion, DateTime, string)"/>
   public static IAssertion UtcTime(this IAssertion assertion, DateTime date, string message = null) => assertion.True(date.Kind == DateTimeKind.Utc, message);
 }

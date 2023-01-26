@@ -144,21 +144,6 @@ public static class EnumerableAssertions
   /// <exception cref="ArgumentNullException"></exception>
   public static IAssertion ElementAt<T>(this IAssertion assertion, IEnumerable<T> sequence, int index, T value, string message = null) => sequence is not null ? assertion.Equal(sequence.ElementAt(index), value, message) : throw new ArgumentNullException(nameof(sequence));
 
-#if NET7_0
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  /// <typeparam name="T"></typeparam>
-  /// <param name="assertion"></param>
-  /// <param name="sequence"></param>
-  /// <param name="index"></param>
-  /// <param name="value"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion ElementAt<T>(this IAssertion assertion, IEnumerable<T> sequence, Index index, T value, string message = null) => sequence is not null ? assertion.Equal(sequence.ElementAt(index), value, message) : throw new ArgumentNullException(nameof(sequence));
-#endif
-
   /// <summary>
   ///   <para></para>
   /// </summary>
@@ -171,6 +156,7 @@ public static class EnumerableAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <see cref="SupersetOf{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
   public static IAssertion SubsetOf<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> superset, IEqualityComparer<T> comparer = null, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -190,6 +176,7 @@ public static class EnumerableAssertions
   /// <param name="comparer"></param>
   /// <param name="message"></param>
   /// <returns></returns>
+  /// <seealso cref="SubsetOf{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
   public static IAssertion SupersetOf<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> subset, IEqualityComparer<T> comparer = null, string message = null) => assertion.SubsetOf(subset, sequence, comparer, message);
 
   /// <summary>
@@ -211,27 +198,6 @@ public static class EnumerableAssertions
     return assertion.EquivalentTo(sequence, reversed.Reverse(), comparer, message);
   }
 
-#if NET7_0
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  /// <typeparam name="T"></typeparam>
-  /// <param name="assertion"></param>
-  /// <param name="sequence"></param>
-  /// <param name="comparer"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  public static IAssertion Ordered<T>(this IAssertion assertion, IEnumerable<T> sequence, IComparer<T> comparer = null, string message = null)
-  {
-    if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (sequence is null) throw new ArgumentNullException(nameof(sequence));
-
-    return assertion.True(sequence.Order(comparer).SequenceEqual(sequence), message);
-  }
-#endif
-
   /// <summary>
   ///   <para></para>
   /// </summary>
@@ -244,6 +210,7 @@ public static class EnumerableAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="EndWith{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
   public static IAssertion StartWith<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -265,6 +232,7 @@ public static class EnumerableAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="StartWith{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
   public static IAssertion EndWith<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -293,4 +261,38 @@ public static class EnumerableAssertions
 
     return assertion.True(sequence.All(element => condition(element)), message);
   }
+
+  #if NET7_0_OR_GREATER
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  /// <param name="assertion"></param>
+  /// <param name="sequence"></param>
+  /// <param name="index"></param>
+  /// <param name="value"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion ElementAt<T>(this IAssertion assertion, IEnumerable<T> sequence, Index index, T value, string message = null) => sequence is not null ? assertion.Equal(sequence.ElementAt(index), value, message) : throw new ArgumentNullException(nameof(sequence));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  /// <param name="assertion"></param>
+  /// <param name="sequence"></param>
+  /// <param name="comparer"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentException"></exception>
+  public static IAssertion Ordered<T>(this IAssertion assertion, IEnumerable<T> sequence, IComparer<T> comparer = null, string message = null)
+  {
+    if (assertion is null) throw new ArgumentNullException(nameof(assertion));
+    if (sequence is null) throw new ArgumentNullException(nameof(sequence));
+
+    return assertion.True(sequence.Order(comparer).SequenceEqual(sequence), message);
+  }
+  #endif
 }

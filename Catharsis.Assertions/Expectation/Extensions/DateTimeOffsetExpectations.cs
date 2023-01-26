@@ -10,14 +10,18 @@ public static class DateTimeOffsetExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Past(this IExpectation<DateTimeOffset> expectation) => expectation.Expect(date => date < DateTime.UtcNow);
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Future(IExpectation{DateTimeOffset})"/>
+  public static IExpectation<DateTimeOffset> Past(this IExpectation<DateTimeOffset> expectation) => expectation.Expected(date => date < DateTime.UtcNow);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Future(this IExpectation<DateTimeOffset> expectation) => expectation.Expect(date => date > DateTime.UtcNow);
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Past(IExpectation{DateTimeOffset})"/>
+  public static IExpectation<DateTimeOffset> Future(this IExpectation<DateTimeOffset> expectation) => expectation.Expected(date => date > DateTime.UtcNow);
 
   /// <summary>
   ///   <para></para>
@@ -25,7 +29,8 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="day"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> DayOfYear(this IExpectation<DateTimeOffset> expectation, int day) => expectation.Expect(date => date.DayOfYear == day);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> DayOfYear(this IExpectation<DateTimeOffset> expectation, int day) => expectation.Expected(date => date.DayOfYear == day);
 
   /// <summary>
   ///   <para></para>
@@ -33,7 +38,8 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="year"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Year(this IExpectation<DateTimeOffset> expectation, int year) => expectation.Expect(date => date.Year == year);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> Year(this IExpectation<DateTimeOffset> expectation, int year) => expectation.Expected(date => date.Year == year);
 
   /// <summary>
   ///   <para></para>
@@ -41,7 +47,8 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="month"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Month(this IExpectation<DateTimeOffset> expectation, int month) => expectation.Expect(date => date.Month == month);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> Month(this IExpectation<DateTimeOffset> expectation, int month) => expectation.Expected(date => date.Month == month);
 
   /// <summary>
   ///   <para></para>
@@ -49,7 +56,8 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="day"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Day(this IExpectation<DateTimeOffset> expectation, int day) => expectation.Expect(date => date.Day == day);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> Day(this IExpectation<DateTimeOffset> expectation, int day) => expectation.Expected(date => date.Day == day);
 
   /// <summary>
   ///   <para></para>
@@ -57,7 +65,8 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="hour"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Hour(this IExpectation<DateTimeOffset> expectation, int hour) => expectation.Expect(date => date.Hour == hour);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> Hour(this IExpectation<DateTimeOffset> expectation, int hour) => expectation.Expected(date => date.Hour == hour);
 
   /// <summary>
   ///   <para></para>
@@ -65,7 +74,8 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="minute"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Minute(this IExpectation<DateTimeOffset> expectation, int minute) => expectation.Expect(date => date.Minute == minute);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> Minute(this IExpectation<DateTimeOffset> expectation, int minute) => expectation.Expected(date => date.Minute == minute);
 
   /// <summary>
   ///   <para></para>
@@ -73,7 +83,8 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="second"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Second(this IExpectation<DateTimeOffset> expectation, int second) => expectation.Expect(date => date.Second == second);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> Second(this IExpectation<DateTimeOffset> expectation, int second) => expectation.Expected(date => date.Second == second);
 
   /// <summary>
   ///   <para></para>
@@ -81,7 +92,8 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="millisecond"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Millisecond(this IExpectation<DateTimeOffset> expectation, int millisecond) => expectation.Expect(date => date.Millisecond == millisecond);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> Millisecond(this IExpectation<DateTimeOffset> expectation, int millisecond) => expectation.Expected(date => date.Millisecond == millisecond);
 
   /// <summary>
   ///   <para></para>
@@ -89,7 +101,8 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="day"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> DayOfWeek(this IExpectation<DateTimeOffset> expectation, DayOfWeek day) => expectation.Expect(date => date.DayOfWeek == day);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> DayOfWeek(this IExpectation<DateTimeOffset> expectation, DayOfWeek day) => expectation.Expected(date => date.DayOfWeek == day);
 
   /// <summary>
   ///   <para></para>
@@ -97,5 +110,6 @@ public static class DateTimeOffsetExpectations
   /// <param name="expectation"></param>
   /// <param name="offset"></param>
   /// <returns></returns>
-  public static IExpectation<DateTimeOffset> Offset(this IExpectation<DateTimeOffset> expectation, TimeSpan offset) => expectation.Expect(date => date.Offset == offset);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<DateTimeOffset> Offset(this IExpectation<DateTimeOffset> expectation, TimeSpan offset) => expectation.Expected(date => date.Offset == offset);
 }

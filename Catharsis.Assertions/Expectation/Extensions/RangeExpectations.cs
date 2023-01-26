@@ -11,7 +11,8 @@ public static class RangeExpectations
   /// <param name="expectation"></param>
   /// <param name="index"></param>
   /// <returns></returns>
-  public static IExpectation<Range> StartIndex(this IExpectation<Range> expectation, int index) => expectation.Expect(range => range.Start.Value == index);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<Range> StartIndex(this IExpectation<Range> expectation, int index) => expectation.Expected(range => range.Start.Value == index);
 
   /// <summary>
   ///   <para></para>
@@ -19,5 +20,6 @@ public static class RangeExpectations
   /// <param name="expectation"></param>
   /// <param name="index"></param>
   /// <returns></returns>
-  public static IExpectation<Range> EndIndex(this IExpectation<Range> expectation, int index) => expectation.Expect(range => range.End.Value == index);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<Range> EndIndex(this IExpectation<Range> expectation, int index) => expectation.Expected(range => range.End.Value == index);
 }

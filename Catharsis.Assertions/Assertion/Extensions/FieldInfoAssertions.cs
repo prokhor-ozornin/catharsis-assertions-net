@@ -16,6 +16,7 @@ public static class FieldInfoAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Type{T}(IAssertion, FieldInfo, string)"/>
   public static IAssertion Type(this IAssertion assertion, FieldInfo field, Type type, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -33,6 +34,7 @@ public static class FieldInfoAssertions
   /// <param name="field"></param>
   /// <param name="message"></param>
   /// <returns></returns>
+  /// <seealso cref="Type(IAssertion, FieldInfo, System.Type, string)"/>
   public static IAssertion Type<T>(this IAssertion assertion, FieldInfo field, string message = null) => assertion.Type(field, typeof(T), message);
 
   /// <summary>

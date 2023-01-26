@@ -14,5 +14,6 @@ public static class XmlElementExpectations
   /// <param name="name"></param>
   /// <param name="uri"></param>
   /// <returns></returns>
-  public static IExpectation<XmlElement> Attribute(this IExpectation<XmlElement> expectation, string name, string uri = null) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expect(element => element.HasAttribute(name, uri));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<XmlElement> Attribute(this IExpectation<XmlElement> expectation, string name, string uri = null) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(element => element.HasAttribute(name, uri));
 }

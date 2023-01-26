@@ -61,5 +61,7 @@ public static class EnumerableProtections
   /// <param name="message"></param>
   /// <param name="values"></param>
   /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentException"></exception>
   public static T AnyOf<T>(this IProtection protection, T value, string message = null, params T[] values) => protection.AnyOf(value, message, values as IEnumerable<T>);
 }

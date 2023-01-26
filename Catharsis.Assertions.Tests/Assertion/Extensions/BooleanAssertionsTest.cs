@@ -16,7 +16,9 @@ public sealed class BooleanAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => BooleanAssertions.True(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.True(null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.True(false, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.True(true, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -27,6 +29,8 @@ public sealed class BooleanAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => BooleanAssertions.False(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    Assert.To.False(null).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.False(false).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.False(true, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 }

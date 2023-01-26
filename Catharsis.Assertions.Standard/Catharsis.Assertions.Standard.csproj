@@ -125,7 +125,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="Catharsis.Guard.Tests" />
+    <InternalsVisibleTo Include="Catharsis.Assertions.Tests" />
   </ItemGroup>
 
   <ItemGroup>

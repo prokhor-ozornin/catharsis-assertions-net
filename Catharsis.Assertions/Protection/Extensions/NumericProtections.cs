@@ -103,5 +103,7 @@ public static class NumericProtections
   /// <param name="range"></param>
   /// <param name="message"></param>
   /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentOutOfRangeException"></exception>
   public static int OutOfRange(this IProtection protection, int value, Range range, string message = null) => protection.OutOfRange(value, range.Start.Value, range.End.Value, message);
 }

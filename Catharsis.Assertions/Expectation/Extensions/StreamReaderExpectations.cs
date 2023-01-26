@@ -13,12 +13,14 @@ public static class StreamReaderExpectations
   /// <param name="expectation"></param>
   /// <param name="encoding"></param>
   /// <returns></returns>
-  public static IExpectation<StreamReader> Encoding(this IExpectation<StreamReader> expectation, Encoding encoding) => expectation.HaveSubject().And().Expect(reader => reader.CurrentEncoding.Equals(encoding));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<StreamReader> Encoding(this IExpectation<StreamReader> expectation, Encoding encoding) => expectation.HaveSubject().And().Expected(reader => reader.CurrentEncoding.Equals(encoding));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<StreamReader> End(this IExpectation<StreamReader> expectation) => expectation.HaveSubject().And().Expect(reader => reader.EndOfStream);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<StreamReader> End(this IExpectation<StreamReader> expectation) => expectation.HaveSubject().And().Expected(reader => reader.EndOfStream);
 }

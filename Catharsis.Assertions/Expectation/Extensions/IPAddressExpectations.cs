@@ -13,12 +13,16 @@ public static class IPAddressExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<IPAddress> Ip4(this IExpectation<IPAddress> expectation) => expectation.HaveSubject().And().Expect(address => address.AddressFamily == AddressFamily.InterNetwork);
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Ip6(IExpectation{IPAddress})"/>
+  public static IExpectation<IPAddress> Ip4(this IExpectation<IPAddress> expectation) => expectation.HaveSubject().And().Expected(address => address.AddressFamily == AddressFamily.InterNetwork);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<IPAddress> Ip6(this IExpectation<IPAddress> expectation) => expectation.HaveSubject().And().Expect(address => address.AddressFamily == AddressFamily.InterNetworkV6);
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <see cref="Ip4(IExpectation{IPAddress})"/>
+  public static IExpectation<IPAddress> Ip6(this IExpectation<IPAddress> expectation) => expectation.HaveSubject().And().Expected(address => address.AddressFamily == AddressFamily.InterNetworkV6);
 }

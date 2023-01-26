@@ -36,7 +36,7 @@ public static class FilesystemProtections
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static System.IO.DirectoryInfo Empty(this IProtection protection, DirectoryInfo directory, string message = null)
+  public static DirectoryInfo Empty(this IProtection protection, DirectoryInfo directory, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
     if (directory is null) throw new ArgumentNullException(message);

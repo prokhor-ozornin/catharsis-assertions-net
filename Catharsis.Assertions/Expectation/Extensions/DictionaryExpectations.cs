@@ -13,7 +13,8 @@ public static class DictionaryExpectations
   /// <param name="expectation"></param>
   /// <param name="key"></param>
   /// <returns></returns>
-  public static IExpectation<IDictionary<TKey, TValue>> ContainKey<TKey, TValue>(this IExpectation<IDictionary<TKey, TValue>> expectation, TKey key) => expectation.HaveSubject().And().Expect(dictionary => dictionary.ContainsKey(key));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<IDictionary<TKey, TValue>> ContainKey<TKey, TValue>(this IExpectation<IDictionary<TKey, TValue>> expectation, TKey key) => expectation.HaveSubject().And().Expected(dictionary => dictionary.ContainsKey(key));
 
   /// <summary>
   ///   <para></para>
@@ -24,5 +25,6 @@ public static class DictionaryExpectations
   /// <param name="value"></param>
   /// <param name="comparer"></param>
   /// <returns></returns>
-  public static IExpectation<IDictionary<TKey, TValue>> ContainValue<TKey, TValue>(this IExpectation<IDictionary<TKey, TValue>> expectation, TValue value, IEqualityComparer<TValue> comparer = null) => expectation.HaveSubject().And().Expect(dictionary => dictionary.Values.Contains(value, comparer));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<IDictionary<TKey, TValue>> ContainValue<TKey, TValue>(this IExpectation<IDictionary<TKey, TValue>> expectation, TValue value, IEqualityComparer<TValue> comparer = null) => expectation.HaveSubject().And().Expected(dictionary => dictionary.Values.Contains(value, comparer));
 }

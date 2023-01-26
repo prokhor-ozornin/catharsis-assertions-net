@@ -39,6 +39,7 @@ public static class StringAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="LowerCased(IAssertion, string, string)"/>
   public static IAssertion UpperCased(this IAssertion assertion, string text, string message = null) => text is not null ? assertion.True(text.All(char.IsUpper), message) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
@@ -50,6 +51,7 @@ public static class StringAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="UpperCased(IAssertion, string, string)"/>
   public static IAssertion LowerCased(this IAssertion assertion, string text, string message = null) => text is not null ? assertion.True(text.All(char.IsLower), message) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
@@ -63,6 +65,7 @@ public static class StringAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="EndWith(IAssertion, string, string, StringComparison?, string)"/>
   public static IAssertion StartWith(this IAssertion assertion, string text, string prefix, StringComparison? comparison = null, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
@@ -83,6 +86,7 @@ public static class StringAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="StartWith(IAssertion, string, string, StringComparison?, string)"/>
   public static IAssertion EndWith(this IAssertion assertion, string text, string postfix, StringComparison? comparison = null, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));

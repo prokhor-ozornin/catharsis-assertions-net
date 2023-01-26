@@ -12,14 +12,18 @@ public static class PropertyInfoExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<PropertyInfo> Readable(this IExpectation<PropertyInfo> expectation) => expectation.HaveSubject().And().Expect(property => property.CanRead);
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Writable(IExpectation{PropertyInfo})"/>
+  public static IExpectation<PropertyInfo> Readable(this IExpectation<PropertyInfo> expectation) => expectation.HaveSubject().And().Expected(property => property.CanRead);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  public static IExpectation<PropertyInfo> Writable(this IExpectation<PropertyInfo> expectation) => expectation.HaveSubject().And().Expect(property => property.CanWrite);
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Readable(IExpectation{PropertyInfo})"/>
+  public static IExpectation<PropertyInfo> Writable(this IExpectation<PropertyInfo> expectation) => expectation.HaveSubject().And().Expected(property => property.CanWrite);
 
   /// <summary>
   ///   <para></para>
@@ -28,5 +32,6 @@ public static class PropertyInfoExpectations
   /// <param name="subject"></param>
   /// <param name="value"></param>
   /// <returns></returns>
-  public static IExpectation<PropertyInfo> Value(this IExpectation<PropertyInfo> expectation, object subject, object value) => expectation.HaveSubject().And().ThrowIfNull(subject, nameof(subject)).And().Expect(property => Equals(property.GetValue(subject), value));
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<PropertyInfo> Value(this IExpectation<PropertyInfo> expectation, object subject, object value) => expectation.HaveSubject().And().ThrowIfNull(subject, nameof(subject)).And().Expected(property => Equals(property.GetValue(subject), value));
 }

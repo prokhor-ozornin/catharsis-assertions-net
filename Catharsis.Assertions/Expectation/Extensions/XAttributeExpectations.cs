@@ -13,7 +13,8 @@ public static class XAttributeExpectations
   /// <param name="expectation"></param>
   /// <param name="name"></param>
   /// <returns></returns>
-  public static IExpectation<XAttribute> Name(this IExpectation<XAttribute> expectation, XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expect(attribute => attribute.Name == name);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<XAttribute> Name(this IExpectation<XAttribute> expectation, XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(attribute => attribute.Name == name);
 
   /// <summary>
   ///   <para></para>
@@ -21,5 +22,6 @@ public static class XAttributeExpectations
   /// <param name="expectation"></param>
   /// <param name="value"></param>
   /// <returns></returns>
-  public static IExpectation<XAttribute> Value(this IExpectation<XAttribute> expectation, string value) => expectation.HaveSubject().And().ThrowIfNull(value, nameof(value)).And().Expect(attribute => attribute.Value == value);
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<XAttribute> Value(this IExpectation<XAttribute> expectation, string value) => expectation.HaveSubject().And().ThrowIfNull(value, nameof(value)).And().Expected(attribute => attribute.Value == value);
 }
