@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -16,8 +17,12 @@ public sealed class FilesystemProtectionsTest : UnitTest
   {
     AssertionExtensions.Should(() => FilesystemProtections.Empty(null, RandomFile)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
     AssertionExtensions.Should(() => Protect.From.Empty((FileInfo) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
-    
-    throw new NotImplementedException();
+
+    RandomFile.TryFinallyDelete(file =>
+    {
+      Protect.From.Empty(file).Should().NotBeNull().And.BeSameAs(file);
+      AssertionExtensions.Should(() => Protect.From.Empty(file.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    });
   }
 
   /// <summary>
@@ -29,6 +34,11 @@ public sealed class FilesystemProtectionsTest : UnitTest
     AssertionExtensions.Should(() => FilesystemProtections.Empty(null, RandomDirectory)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
     AssertionExtensions.Should(() => Protect.From.Empty((DirectoryInfo) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-    throw new NotImplementedException();
+    RandomDirectory.TryFinallyDelete(directory =>
+    {
+      AssertionExtensions.Should(() => Protect.From.Empty(directory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      directory.CreateSubdirectory(Randomizer.DirectoryName()).TryFinallyDelete(_ => Protect.From.Empty(directory).Should().NotBeNull().And.BeSameAs(directory));
+      Randomizer.BinaryFile(0, null, null, directory).TryFinallyDelete(_ => Protect.From.Empty(directory).Should().NotBeNull().And.BeSameAs(directory));
+    });
   }
 }

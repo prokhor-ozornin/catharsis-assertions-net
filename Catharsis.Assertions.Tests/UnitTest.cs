@@ -53,8 +53,8 @@ public abstract class UnitTest : IDisposable
   /// </summary>
   public virtual void Dispose()
   {
-    RandomFile.With(file => file.IsReadOnly = false).Delete();
-    RandomDirectory.Delete();
+    RandomFile.TryFinallyDelete(file => file.IsReadOnly = false).Delete();
+    RandomDirectory.TryFinallyDelete(_ => {});
     RandomStream.Dispose();
     EmptySecureString.Dispose();
   }
