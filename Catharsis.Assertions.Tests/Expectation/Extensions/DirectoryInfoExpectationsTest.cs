@@ -17,6 +17,8 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => DirectoryInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
+
+
     throw new NotImplementedException();
   }
 

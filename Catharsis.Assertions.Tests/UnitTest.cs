@@ -1,4 +1,5 @@
-﻿using Catharsis.Extensions;
+﻿using System.Security;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -35,10 +36,26 @@ public abstract class UnitTest : IDisposable
   /// <summary>
   ///   <para></para>
   /// </summary>
+  protected IEnumerable<object> EmptySequence { get; } = Enumerable.Empty<object>();
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected IEnumerable<object> RandomSequence { get; } = Randomizer.ObjectSequence(short.MaxValue, typeof(object));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected SecureString EmptySecureString { get; } = new SecureString().AsReadOnly();
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   public virtual void Dispose()
   {
     RandomFile.With(file => file.IsReadOnly = false).Delete();
     RandomDirectory.Delete();
     RandomStream.Dispose();
+    EmptySecureString.Dispose();
   }
 }

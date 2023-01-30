@@ -43,6 +43,20 @@ public sealed class StringAssertionsTest : UnitTest
   }
 
   /// <summary>
+  ///   <para>Performs testing of <see cref="StringAssertions.WhiteSpace(IAssertion, string, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void WhiteSpace_Method()
+  {
+    AssertionExtensions.Should(() => StringAssertions.WhiteSpace(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => Assert.To.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+
+    Assert.To.WhiteSpace(string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.WhiteSpace("\r\n\t").Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.WhiteSpace(RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+  }
+
+  /// <summary>
   ///   <para>Performs testing of <see cref="StringAssertions.UpperCased(IAssertion, string, string)"/> method.</para>
   /// </summary>
   [Fact]

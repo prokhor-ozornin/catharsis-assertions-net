@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -16,15 +17,16 @@ public sealed class EnumerableProtectionsTest : UnitTest
   public void Empty_Method()
   {
     AssertionExtensions.Should(() => EnumerableProtections.Empty(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((IEnumerable<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+    AssertionExtensions.Should(() => Protect.From.Empty((IEnumerable<object>) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-    throw new NotImplementedException();
+    EmptySequence.With(sequence => AssertionExtensions.Should(() => Protect.From.Empty(sequence, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+    RandomSequence.With(sequence => Protect.From.Empty(sequence).Should().NotBeNull().And.BeSameAs(sequence));
   }
 
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
   ///   <list type="bullet">
-  ///     <item><description><see cref="EnumerableProtections.AnyOf{T}(IProtection, T, string, IEnumerable{T})"/></description></item>
+  ///     <item><description><see cref="EnumerableProtections.AnyOf{T}(IProtection,T, IEnumerable{T}, string)"/></description></item>
   ///     <item><description><see cref="EnumerableProtections.AnyOf{T}(IProtection, T, string, T[])"/></description></item>
   ///   </list>
   /// </summary>
@@ -34,15 +36,23 @@ public sealed class EnumerableProtectionsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => EnumerableProtections.AnyOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
+      AssertionExtensions.Should(() => Protect.From.AnyOf(null, new[] { string.Empty, null }, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+      EmptySequence.With(sequence => Protect.From.AnyOf(string.Empty, sequence).Should().NotBeNull().And.BeSameAs(string.Empty));
+      RandomSequence.With(sequence => Protect.From.AnyOf(string.Empty, sequence).Should().NotBeNull().And.BeSameAs(string.Empty));
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => EnumerableProtections.AnyOf(null, new object(), null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), "error", null)).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
+      AssertionExtensions.Should(() => Protect.From.AnyOf(null, "error", string.Empty, null)).ThrowExactly<ArgumentException>().WithMessage("error");
+
+      EmptySequence.With(sequence => Protect.From.AnyOf(string.Empty, sequence.AsArray()).Should().NotBeNull().And.BeSameAs(string.Empty));
+      RandomSequence.With(sequence => Protect.From.AnyOf(string.Empty, sequence.AsArray()).Should().NotBeNull().And.BeSameAs(string.Empty));
     }
-
-    throw new NotImplementedException();
   }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
 using FluentAssertions;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -16,9 +17,10 @@ public sealed class CollectionsProtectionsTest : UnitTest
   public void Empty_Collection_Method()
   {
     AssertionExtensions.Should(() => CollectionsProtections.Empty(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((ICollection<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+    AssertionExtensions.Should(() => Protect.From.Empty((ICollection<object>) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Protect.From.Empty(Array.Empty<object>(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    RandomSequence.ToList().With(collection => Protect.From.Empty(collection).Should().NotBeNull().And.BeSameAs(collection));
   }
 
   /// <summary>
@@ -28,8 +30,13 @@ public sealed class CollectionsProtectionsTest : UnitTest
   public void Empty_NameValueCollection_Method()
   {
     AssertionExtensions.Should(() => CollectionsProtections.Empty(null, new NameValueCollection())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((NameValueCollection) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+    AssertionExtensions.Should(() => Protect.From.Empty((NameValueCollection) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-    throw new NotImplementedException();
+    new NameValueCollection().With(collection => AssertionExtensions.Should(() => AssertionExtensions.Should(() => Protect.From.Empty(collection, "error")).ThrowExactly<ArgumentException>().WithMessage("error")));
+    new NameValueCollection().With(collection =>
+    {
+      collection.Add("name", "value");
+      AssertionExtensions.Should(() => Protect.From.Empty(collection, "error").Should().NotBeNull().And.BeSameAs(collection));
+    });
   }
 }

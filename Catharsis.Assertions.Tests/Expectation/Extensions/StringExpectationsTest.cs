@@ -42,6 +42,20 @@ public sealed class StringExpectationsTest : UnitTest
   }
 
   /// <summary>
+  ///   <para>Performs testing of <see cref="StringExpectations.WhiteSpace(IExpectation{string})"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void WhiteSpace_Method()
+  {
+    AssertionExtensions.Should(() => StringExpectations.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((string) null).Expect().WhiteSpace()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+    string.Empty.Expect().WhiteSpace().Result.Should().BeTrue();
+    "\r\n\t".Expect().WhiteSpace().Result.Should().BeTrue();
+    RandomString.Expect().WhiteSpace().Result.Should().BeFalse();
+  }
+
+  /// <summary>
   ///   <para>Performs testing of <see cref="StringExpectations.UpperCased(IExpectation{string})"/> method.</para>
   /// </summary>
   [Fact]

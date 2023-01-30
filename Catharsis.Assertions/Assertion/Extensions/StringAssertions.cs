@@ -39,6 +39,22 @@ public static class StringAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion WhiteSpace(this IAssertion assertion, string text, string message = null)
+  {
+    if (assertion is null) throw new ArgumentNullException(nameof(assertion));
+    if (text is null) throw new ArgumentNullException(nameof(text));
+
+    return assertion.True(string.IsNullOrWhiteSpace(text), message);
+  }
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
+  /// <param name="text"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
   /// <seealso cref="LowerCased(IAssertion, string, string)"/>
   public static IAssertion UpperCased(this IAssertion assertion, string text, string message = null) => text is not null ? assertion.True(text.All(char.IsUpper), message) : throw new ArgumentNullException(nameof(text));

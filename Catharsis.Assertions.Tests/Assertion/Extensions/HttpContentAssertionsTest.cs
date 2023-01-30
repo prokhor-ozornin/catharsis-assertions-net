@@ -20,9 +20,18 @@ public sealed class HttpContentAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.ContainHeader(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("content");
     AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Content.Headers.Add("header", Enumerable.Empty<string>());
+    AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Content.Headers.Add("header", new string[] { null });
+    Assert.To.ContainHeader(Content, "header").Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   public override void Dispose()
   {
     base.Dispose();

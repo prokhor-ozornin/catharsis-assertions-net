@@ -9,18 +9,26 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class EnumerableExpectationsTest : UnitTest
 {
-  private IEnumerable<object> Sequence { get; } = Enumerable.Empty<object>();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="EnumerableExpectations.Count{T}(IExpectation{IEnumerable{T}}, int)"/> method.</para>
   /// </summary>
   [Fact]
   public void Count_Method()
   {
-    AssertionExtensions.Should(() => EnumerableExpectations.Count<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    void Validate<T>(IEnumerable<T> sequence)
+    {
+      sequence.Expect().Count(int.MinValue).Result.Should().BeFalse();
+      sequence.Expect().Count(sequence.Count()).Result.Should().BeTrue();
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => EnumerableExpectations.Count<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      Validate(EmptySequence);
+      Validate(RandomSequence);
+    }
   }
 
   /// <summary>
@@ -32,7 +40,8 @@ public sealed class EnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => EnumerableExpectations.Empty<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    EmptySequence.Expect().Empty().Result.Should().BeTrue();
+    RandomSequence.Expect().Empty().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -41,9 +50,11 @@ public sealed class EnumerableExpectationsTest : UnitTest
   [Fact]
   public void EquivalentTo_Method()
   {
-    AssertionExtensions.Should(() => EnumerableExpectations.EquivalentTo(null, Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EquivalentTo(Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Sequence.Expect().EquivalentTo(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+    AssertionExtensions.Should(() => EnumerableExpectations.EquivalentTo(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EquivalentTo(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => EmptySequence.Expect().EquivalentTo(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+
+
 
     throw new NotImplementedException();
   }
@@ -66,9 +77,9 @@ public sealed class EnumerableExpectationsTest : UnitTest
   [Fact]
   public void ContainAll_Method()
   {
-    AssertionExtensions.Should(() => EnumerableExpectations.ContainAll(null, Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAll(Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Sequence.Expect().ContainAll(null)).ThrowExactly<ArgumentNullException>().WithParameterName("elements");
+    AssertionExtensions.Should(() => EnumerableExpectations.ContainAll(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAll(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => EmptySequence.Expect().ContainAll(null)).ThrowExactly<ArgumentNullException>().WithParameterName("elements");
 
     throw new NotImplementedException();
   }
@@ -79,9 +90,9 @@ public sealed class EnumerableExpectationsTest : UnitTest
   [Fact]
   public void ContainAnyOf_Method()
   {
-    AssertionExtensions.Should(() => EnumerableExpectations.ContainAnyOf(null, Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAnyOf(Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Sequence.Expect().ContainAnyOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("elements");
+    AssertionExtensions.Should(() => EnumerableExpectations.ContainAnyOf(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAnyOf(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => EmptySequence.Expect().ContainAnyOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("elements");
 
     throw new NotImplementedException();
   }
@@ -143,9 +154,9 @@ public sealed class EnumerableExpectationsTest : UnitTest
   [Fact]
   public void SubsetOf_Method()
   {
-    AssertionExtensions.Should(() => EnumerableExpectations.SubsetOf(null, Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().SubsetOf(Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Sequence.Expect().SubsetOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("superset");
+    AssertionExtensions.Should(() => EnumerableExpectations.SubsetOf(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().SubsetOf(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => EmptySequence.Expect().SubsetOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("superset");
 
     throw new NotImplementedException();
   }
@@ -156,9 +167,9 @@ public sealed class EnumerableExpectationsTest : UnitTest
   [Fact]
   public void SupersetOf_Method()
   {
-    AssertionExtensions.Should(() => EnumerableExpectations.SupersetOf(null, Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().SupersetOf(Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Sequence.Expect().SupersetOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subset");
+    AssertionExtensions.Should(() => EnumerableExpectations.SupersetOf(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().SupersetOf(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => EmptySequence.Expect().SupersetOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subset");
 
     throw new NotImplementedException();
   }
@@ -169,9 +180,9 @@ public sealed class EnumerableExpectationsTest : UnitTest
   [Fact]
   public void Reversed_Method()
   {
-    AssertionExtensions.Should(() => EnumerableExpectations.Reversed(null, Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Reversed(Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Sequence.Expect().Reversed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("reversed");
+    AssertionExtensions.Should(() => EnumerableExpectations.Reversed(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Reversed(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => EmptySequence.Expect().Reversed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("reversed");
 
     throw new NotImplementedException();
   }
@@ -194,9 +205,9 @@ public sealed class EnumerableExpectationsTest : UnitTest
   [Fact]
   public void StartWith_Method()
   {
-    AssertionExtensions.Should(() => EnumerableExpectations.StartWith(null, Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().StartWith(Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Sequence.Expect().StartWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+    AssertionExtensions.Should(() => EnumerableExpectations.StartWith(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().StartWith(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => EmptySequence.Expect().StartWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
     throw new NotImplementedException();
   }
@@ -207,9 +218,9 @@ public sealed class EnumerableExpectationsTest : UnitTest
   [Fact]
   public void EndWith_Method()
   {
-    AssertionExtensions.Should(() => EnumerableExpectations.EndWith(null, Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EndWith(Sequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Sequence.Expect().EndWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+    AssertionExtensions.Should(() => EnumerableExpectations.EndWith(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EndWith(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => EmptySequence.Expect().EndWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
     throw new NotImplementedException();
   }
@@ -222,7 +233,7 @@ public sealed class EnumerableExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => EnumerableExpectations.Match<object>(null, _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Match(_ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Sequence.Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("condition");
+    AssertionExtensions.Should(() => EmptySequence.Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("condition");
 
     throw new NotImplementedException();
   }

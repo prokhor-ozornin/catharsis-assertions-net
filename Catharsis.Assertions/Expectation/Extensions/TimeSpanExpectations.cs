@@ -50,4 +50,44 @@ public static class TimeSpanExpectations
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<TimeSpan> Milliseconds(this IExpectation<TimeSpan> expectation, int milliseconds) => expectation.Expected(timeSpan => timeSpan.Milliseconds == milliseconds);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <param name="days"></param>
+  /// <returns></returns>
+  public static IExpectation<TimeSpan> TotalDays(this IExpectation<TimeSpan> expectation, int days) => expectation.Expected(timeSpan => (int) timeSpan.TotalDays == days);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <param name="hours"></param>
+  /// <returns></returns>
+  public static IExpectation<TimeSpan> TotalHours(this IExpectation<TimeSpan> expectation, int hours) => expectation.Expected(timeSpan => (int) timeSpan.TotalHours == hours);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <param name="minutes"></param>
+  /// <returns></returns>
+  public static IExpectation<TimeSpan> TotalMinutes(this IExpectation<TimeSpan> expectation, int minutes) => expectation.Expected(timeSpan => (int) timeSpan.TotalMinutes == minutes);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <param name="seconds"></param>
+  /// <returns></returns>
+  public static IExpectation<TimeSpan> TotalSeconds(this IExpectation<TimeSpan> expectation, int seconds) => expectation.Expected(timeSpan => (int) timeSpan.TotalSeconds == seconds);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <param name="milliseconds"></param>
+  /// <returns></returns>
+  public static IExpectation<TimeSpan> TotalMilliseconds(this IExpectation<TimeSpan> expectation, int milliseconds) => expectation.Expected(timeSpan => (int) timeSpan.TotalMilliseconds == milliseconds);
 }

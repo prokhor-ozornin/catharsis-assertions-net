@@ -9,37 +9,29 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class BinaryProtectionsTest : UnitTest
 {
-  private BinaryReader BinaryReader { get; } = Stream.Null.ToBinaryReader();
-  private BinaryWriter BinaryWriter { get; } = Stream.Null.ToBinaryWriter();
-
   /// <summary>
-  ///   <para>Performs testing of <see cref="BinaryProtections.Empty(IProtection, System.IO.BinaryReader, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="BinaryProtections.Empty(IProtection, BinaryReader, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Empty_BinaryReader_Method()
   {
-    AssertionExtensions.Should(() => BinaryProtections.Empty(null, BinaryReader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((BinaryReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
+    Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => BinaryProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
+    AssertionExtensions.Should(() => Protect.From.Empty((BinaryReader) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-    throw new NotImplementedException();
+    Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => Protect.From.Empty(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+    RandomStream.ToBinaryReader().TryFinallyDispose(reader => Protect.From.Empty(reader).Should().NotBeNull().And.BeSameAs(reader));
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="BinaryProtections.Empty(IProtection, System.IO.BinaryWriter, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="BinaryProtections.Empty(IProtection, BinaryWriter, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Empty_BinaryWriter_Method()
   {
-    AssertionExtensions.Should(() => BinaryProtections.Empty(null, BinaryWriter)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((BinaryWriter) null)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
+    Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => BinaryProtections.Empty(null, writer)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
+    AssertionExtensions.Should(() => Protect.From.Empty((BinaryWriter) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-    throw new NotImplementedException();
-  }
-
-  public override void Dispose()
-  {
-    base.Dispose();
-    BinaryReader.Dispose();
-    BinaryWriter.Dispose();
+    Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => Protect.From.Empty(writer, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+    RandomStream.ToBinaryWriter().TryFinallyDispose(writer => Protect.From.Empty(writer).Should().NotBeNull().And.BeSameAs(writer));
   }
 }

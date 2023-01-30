@@ -35,15 +35,15 @@ public static class EnumerableProtections
   /// <typeparam name="T"></typeparam>
   /// <param name="protection"></param>
   /// <param name="value"></param>
-  /// <param name="message"></param>
   /// <param name="values"></param>
+  /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static T AnyOf<T>(this IProtection protection, T value, string message = null, IEnumerable<T> values = null)
+  public static T AnyOf<T>(this IProtection protection, T value, IEnumerable<T> values, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (values is null) return value;
+    if (values is null) throw new ArgumentNullException(message);
 
     if (values.Contains(value))
     {
@@ -64,5 +64,5 @@ public static class EnumerableProtections
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static T AnyOf<T>(this IProtection protection, T value, string message = null, params T[] values) => protection.AnyOf(value, message, values as IEnumerable<T>);
+  public static T AnyOf<T>(this IProtection protection, T value, string message = null, params T[] values) => protection.AnyOf(value, values, message);
 }

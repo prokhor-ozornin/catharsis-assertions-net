@@ -15,7 +15,7 @@ public sealed class StreamProtectionsTest : UnitTest
   public void Empty_Method()
   {
     AssertionExtensions.Should(() => StreamProtections.Empty(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+    AssertionExtensions.Should(() => Protect.From.Empty((Stream) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
     throw new NotImplementedException();
   }

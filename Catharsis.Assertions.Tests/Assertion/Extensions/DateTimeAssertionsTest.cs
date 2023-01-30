@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Extensions;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -14,9 +16,19 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void Past_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.Past(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTime date)
+    {
+      Assert.To.Past(date.AddSeconds(-1)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Past(date).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Past(date.AddSeconds(1), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.Past(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -25,9 +37,19 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void Future_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.Future(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTime date)
+    {
+      Assert.To.Future(date.AddSeconds(1)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Future(date.AddSeconds(-1), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Future(date, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.Future(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -36,9 +58,18 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void DayOfYear_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.DayOfYear(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTime date)
+    {
+      AssertionExtensions.Should(() => Assert.To.DayOfYear(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.DayOfYear(date, date.DayOfYear).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.DayOfYear(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -47,9 +78,18 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void Year_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.Year(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTime date)
+    {
+      AssertionExtensions.Should(() => Assert.To.Year(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Year(date, date.Year).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.Year(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -58,9 +98,18 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void Month_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.Month(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTime date)
+    {
+      AssertionExtensions.Should(() => Assert.To.Month(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Month(date, date.Month).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.Month(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -69,9 +118,18 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void Day_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.Day(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTime date)
+    {
+      AssertionExtensions.Should(() => Assert.To.Day(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Day(date, date.Day).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.Day(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -80,9 +138,18 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void Hour_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.Hour(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    
-    throw new NotImplementedException();
+    void Validate(DateTime date)
+    {
+      AssertionExtensions.Should(() => Assert.To.Hour(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Hour(date, date.Hour).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
+
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.Hour(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -91,9 +158,18 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void Minute_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.Minute(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTime date)
+    {
+      AssertionExtensions.Should(() => Assert.To.Minute(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Minute(date, date.Minute).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.Minute(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -102,9 +178,18 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void Second_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.Second(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTime date)
+    {
+      AssertionExtensions.Should(() => Assert.To.Second(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Second(date, date.Second).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.Second(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -113,9 +198,18 @@ public sealed class DateTimeAssertionsTest : UnitTest
   [Fact]
   public void Millisecond_Method()
   {
-    AssertionExtensions.Should(() => DateTimeAssertions.Millisecond(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTime date)
+    {
+      AssertionExtensions.Should(() => Assert.To.Millisecond(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Millisecond(date, date.Millisecond).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeAssertions.Millisecond(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.UtcNow }.ForEach(Validate);
+    }
   }
 
   /// <summary>
@@ -137,8 +231,12 @@ public sealed class DateTimeAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => DateTimeAssertions.LocalTime(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
-  }
+    AssertionExtensions.Should(() => Assert.To.LocalTime(DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.LocalTime(DateTime.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.LocalTime(DateTime.UtcNow, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.LocalTime(DateTime.Now).Should().NotBeNull().And.BeSameAs(Assert.To);
+ }
 
   /// <summary>
   ///   <para>Performs testing of <see cref="DateTimeAssertions.UtcTime(IAssertion, DateTime, string)"/> method.</para>
@@ -148,6 +246,10 @@ public sealed class DateTimeAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => DateTimeAssertions.UtcTime(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.UtcTime(DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.UtcTime(DateTime.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.UtcTime(DateTime.Now, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.UtcTime(DateTime.UtcNow).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

@@ -25,7 +25,6 @@ public static class TextProtections
   public static string Empty(this IProtection protection, string text, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (text is null) throw new ArgumentNullException(message);
 
     if (string.IsNullOrEmpty(text))
     {
@@ -121,5 +120,26 @@ public static class TextProtections
     }
 
     return writer;
+  }
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="protection"></param>
+  /// <param name="text"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentException"></exception>
+  public static string WhiteSpace(this IProtection protection, string text, string message = null)
+  {
+    if (protection is null) throw new ArgumentNullException(nameof(protection));
+
+    if (string.IsNullOrWhiteSpace(text))
+    {
+      throw new ArgumentException(message);
+    }
+
+    return text;
   }
 }

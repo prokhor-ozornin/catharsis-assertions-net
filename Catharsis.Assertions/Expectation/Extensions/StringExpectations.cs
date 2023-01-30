@@ -30,6 +30,13 @@ public static class StringExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
+  public static IExpectation<string> WhiteSpace(this IExpectation<string> expectation) => expectation.HaveSubject().And().Expected(string.IsNullOrWhiteSpace);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="LowerCased(IExpectation{string})"/>
   public static IExpectation<string> UpperCased(this IExpectation<string> expectation) => expectation.HaveSubject().And().Expected(text => text.All(char.IsUpper));

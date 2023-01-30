@@ -17,7 +17,7 @@ public sealed class XmlProtectionsTest : UnitTest
   public void Empty_XmlDocument_Method()
   {
     AssertionExtensions.Should(() => XmlProtections.Empty(null, new XmlDocument())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((XmlDocument) null)).ThrowExactly<ArgumentNullException>().WithParameterName("document");
+    AssertionExtensions.Should(() => Protect.From.Empty((XmlDocument) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
     throw new NotImplementedException();
   }
@@ -29,7 +29,7 @@ public sealed class XmlProtectionsTest : UnitTest
   public void Empty_XDocument_Method()
   {
     AssertionExtensions.Should(() => XmlProtections.Empty(null, new XDocument())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((XDocument) null)).ThrowExactly<ArgumentNullException>().WithParameterName("document");
+    AssertionExtensions.Should(() => Protect.From.Empty((XDocument) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
     throw new NotImplementedException();
   }
