@@ -14,6 +14,6 @@ public sealed class ProtectTest : UnitTest
   [Fact]
   public void From_Property()
   {
-    throw new NotImplementedException();
+    Protect.From.Should().NotBeNull().And.BeSameAs(Protect.From).And.BeOfType<Protection>();
   }
 }

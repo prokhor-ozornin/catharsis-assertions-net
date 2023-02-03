@@ -66,14 +66,8 @@ public sealed class TextProtectionsTest : UnitTest
     Stream.Null.ToStreamReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => TextProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
     AssertionExtensions.Should(() => Protect.From.Empty((StreamReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-    void Validate(StreamReader reader)
-    {
-      AssertionExtensions.Should(() => Protect.From.Empty(reader.BaseStream.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-
-      reader.BaseStream.WriteByte(byte.MinValue);
-    }
-
-    throw new NotImplementedException();
+    Stream.Null.ToStreamReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => Protect.From.Empty(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+    RandomStream.ToStreamReader().TryFinallyDispose(reader => Protect.From.Empty(reader).Should().NotBeNull().And.BeSameAs(reader));
   }
 
   /// <summary>
@@ -85,7 +79,8 @@ public sealed class TextProtectionsTest : UnitTest
     Stream.Null.ToStreamWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => TextProtections.Empty(null, writer)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
     AssertionExtensions.Should(() => Protect.From.Empty((StreamWriter) null)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
-    throw new NotImplementedException();
+    Stream.Null.ToStreamWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => Protect.From.Empty(writer, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+    RandomStream.ToStreamWriter().TryFinallyDispose(writer => Protect.From.Empty(writer).Should().NotBeNull().And.BeSameAs(writer));
   }
 
   /// <summary>
@@ -95,8 +90,8 @@ public sealed class TextProtectionsTest : UnitTest
   public void WhiteSpace_String_Method()
   {
     AssertionExtensions.Should(() => TextProtections.WhiteSpace(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    AssertionExtensions.Should(() => Protect.From.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    AssertionExtensions.Should(() => Protect.From.WhiteSpace(null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     AssertionExtensions.Should(() => Protect.From.WhiteSpace(string.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     AssertionExtensions.Should(() => Protect.From.WhiteSpace("\r\n\t", "error")).ThrowExactly<ArgumentException>().WithMessage("error");
 

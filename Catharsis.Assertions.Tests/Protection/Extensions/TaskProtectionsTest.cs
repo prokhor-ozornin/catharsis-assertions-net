@@ -22,11 +22,11 @@ public sealed class TaskProtectionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      //AssertionExtensions.Should(() => TaskProtections.Status(null, Task.CompletedTask, default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("protection").Await();
-      AssertionExtensions.Should(() => Protect.From.Status(null, default, "error")).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("error").Await();
+      AssertionExtensions.Should(() => TaskProtections.Status(null, Task.CompletedTask, default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("protection").Await();
+      AssertionExtensions.Should(() => Protect.From.Status(null, default, "error")).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("task").Await();
 
-      //AssertionExtensions.Should(() => Protect.From.Status(Task.CompletedTask, TaskStatus.RanToCompletion, "error")).ThrowExactlyAsync<ArgumentException>().WithMessage("error").Await();
-      //Task.CompletedTask.With(task => Protect.From.Status(task, TaskStatus.Canceled).Should().NotBeNull().And.BeSameAs(task));
+      AssertionExtensions.Should(() => Protect.From.Status(Task.CompletedTask, TaskStatus.RanToCompletion, "error")).ThrowExactlyAsync<ArgumentException>().WithMessage("error").Await();
+      Task.CompletedTask.With(task => Protect.From.Status(task, TaskStatus.Canceled).Should().NotBeNull().And.BeSameAs(task));
     }
 
     using (new AssertionScope())
