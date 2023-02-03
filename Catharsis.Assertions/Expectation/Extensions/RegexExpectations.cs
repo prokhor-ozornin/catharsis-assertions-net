@@ -15,5 +15,5 @@ public static class RegexExpectations
   /// <param name="text"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<Regex> Matches(this IExpectation<Regex> expectation, string text) => expectation.HaveSubject().And().ThrowIfNull(text, nameof(text)).And().Expected(regex => regex.IsMatch(text));
+  public static IExpectation<Regex> Match(this IExpectation<Regex> expectation, string text) => expectation.HaveSubject().And().ThrowIfNull(text, nameof(text)).And().Expected(regex => regex.IsMatch(text));
 }

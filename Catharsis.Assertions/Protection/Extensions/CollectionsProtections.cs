@@ -22,12 +22,9 @@ public static class CollectionsProtections
   public static ICollection<T> Empty<T>(this IProtection protection, ICollection<T> collection, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (collection is null) throw new ArgumentNullException(message);
+    if (collection is null) throw new ArgumentNullException(nameof(collection));
 
-    if (collection.Count == 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(collection.Count == 0, message);
 
     return collection;
   }
@@ -44,12 +41,9 @@ public static class CollectionsProtections
   public static NameValueCollection Empty(this IProtection protection, NameValueCollection collection, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (collection is null) throw new ArgumentNullException(message);
+    if (collection is null) throw new ArgumentNullException(nameof(collection));
 
-    if (collection.Count == 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(collection.Count == 0, message);
 
     return collection;
   }

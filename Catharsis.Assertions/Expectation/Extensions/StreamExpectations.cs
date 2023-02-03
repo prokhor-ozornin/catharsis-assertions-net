@@ -19,6 +19,14 @@ public static class StreamExpectations
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IExpectation<Stream> Empty(this IExpectation<Stream> expectation) => expectation.Length(0);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
   /// <param name="position"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
@@ -29,8 +37,7 @@ public static class StreamExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<Stream> Empty(this IExpectation<Stream> expectation) => expectation.Length(0);
+  public static IExpectation<Stream> End(this IExpectation<Stream> expectation) => expectation.HaveSubject().And().Expected(stream => stream.Position == stream.Length);
 
   /// <summary>
   ///   <para></para>

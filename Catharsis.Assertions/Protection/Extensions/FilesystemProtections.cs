@@ -19,12 +19,9 @@ public static class FilesystemProtections
   public static FileInfo Empty(this IProtection protection, FileInfo file, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (file is null) throw new ArgumentNullException(message);
+    if (file is null) throw new ArgumentNullException(nameof(file));
 
-    if (file.Length == 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(file.Length == 0, message);
 
     return file;
   }
@@ -41,12 +38,9 @@ public static class FilesystemProtections
   public static DirectoryInfo Empty(this IProtection protection, DirectoryInfo directory, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (directory is null) throw new ArgumentNullException(message);
+    if (directory is null) throw new ArgumentNullException(nameof(directory));
 
-    if (!directory.EnumerateFileSystemInfos().Any())
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(!directory.EnumerateFileSystemInfos().Any(), message);
 
     return directory;
   }

@@ -16,7 +16,7 @@ public sealed class FilesystemProtectionsTest : UnitTest
   public void Empty_FileInfo_Method()
   {
     AssertionExtensions.Should(() => FilesystemProtections.Empty(null, RandomFile)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((FileInfo) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((FileInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
     RandomFile.TryFinallyDelete(file =>
     {
@@ -32,7 +32,7 @@ public sealed class FilesystemProtectionsTest : UnitTest
   public void Empty_DirectoryInfo_Method()
   {
     AssertionExtensions.Should(() => FilesystemProtections.Empty(null, RandomDirectory)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((DirectoryInfo) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((DirectoryInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
     RandomDirectory.TryFinallyDelete(directory =>
     {

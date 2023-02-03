@@ -23,6 +23,17 @@ public static class StreamAssertions
   /// </summary>
   /// <param name="assertion"></param>
   /// <param name="stream"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentException"></exception>
+  public static IAssertion Empty(this IAssertion assertion, Stream stream, string message = null) => assertion.Length(stream, 0, message);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
+  /// <param name="stream"></param>
   /// <param name="position"></param>
   /// <param name="message"></param>
   /// <returns></returns>
@@ -38,8 +49,7 @@ public static class StreamAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  public static IAssertion Empty(this IAssertion assertion, Stream stream, string message = null) => assertion.Length(stream, 0, message);
+  public static IAssertion End(this IAssertion assertion, Stream stream, string message = null) => stream is not null ? assertion.True(stream.Position == stream.Length) : throw new ArgumentNullException(nameof(stream));
 
   /// <summary>
   ///   <para></para>

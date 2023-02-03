@@ -135,7 +135,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     string.Empty.Expect().Match(string.Empty.ToRegex()).Result.Should().BeTrue();
     string.Empty.Expect().Match("anything".ToRegex()).Result.Should().BeFalse();
-    "ab4Zg95kf".Expect().Match("[a-zA-z0-9]".ToRegex()).Result.Should().BeTrue();
-    "~#$%".Expect().Match("[a-zA-z0-9]".ToRegex()).Result.Should().BeFalse();
+    Randomizer.Digits(byte.MaxValue).Expect().Match("[0-9]".ToRegex()).Result.Should().BeTrue();
+    Randomizer.Letters(byte.MaxValue).Expect().Match("[0-9]".ToRegex()).Result.Should().BeFalse();
   }
 }

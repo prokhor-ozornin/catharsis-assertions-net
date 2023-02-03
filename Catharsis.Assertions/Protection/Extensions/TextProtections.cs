@@ -1,5 +1,6 @@
 ﻿using System.Security;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Catharsis.Assertions;
 
@@ -25,11 +26,9 @@ public static class TextProtections
   public static string Empty(this IProtection protection, string text, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
+    if (text is null) throw new ArgumentNullException(nameof(text));
 
-    if (string.IsNullOrEmpty(text))
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(string.IsNullOrEmpty(text), message);
 
     return text;
   }
@@ -46,12 +45,9 @@ public static class TextProtections
   public static StringBuilder Empty(this IProtection protection, StringBuilder builder, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (builder is null) throw new ArgumentNullException(message);
+    if (builder is null) throw new ArgumentNullException(nameof(builder));
 
-    if (builder.Length == 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(builder.Length == 0, message);
 
     return builder;
   }
@@ -68,12 +64,9 @@ public static class TextProtections
   public static SecureString Empty(this IProtection protection, SecureString secure, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (secure is null) throw new ArgumentNullException(message);
+    if (secure is null) throw new ArgumentNullException(nameof(secure));
 
-    if (secure.Length == 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(secure.Length == 0, message);
 
     return secure;
   }
@@ -90,12 +83,9 @@ public static class TextProtections
   public static StreamReader Empty(this IProtection protection, StreamReader reader, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (reader is null) throw new ArgumentNullException(message);
+    if (reader is null) throw new ArgumentNullException(nameof(reader));
 
-    if (reader.BaseStream.Length == 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(reader.BaseStream.Length == 0, message);
 
     return reader;
   }
@@ -112,12 +102,9 @@ public static class TextProtections
   public static StreamWriter Empty(this IProtection protection, StreamWriter writer, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (writer is null) throw new ArgumentNullException(message);
+    if (writer is null) throw new ArgumentNullException(nameof(writer));
 
-    if (writer.BaseStream.Length == 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(writer.BaseStream.Length == 0, message);
 
     return writer;
   }
@@ -134,11 +121,29 @@ public static class TextProtections
   public static string WhiteSpace(this IProtection protection, string text, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
+    if (text is null) throw new ArgumentNullException(nameof(text));
 
-    if (string.IsNullOrWhiteSpace(text))
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(string.IsNullOrWhiteSpace(text), message);
+
+    return text;
+  }
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="protection"></param>
+  /// <param name="text"></param>
+  /// <param name="regex"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  public static string Match(this IProtection protection, string text, Regex regex, string message = null)
+  {
+    if (protection is null) throw new ArgumentNullException(nameof(protection));
+    if (text is null) throw new ArgumentNullException(nameof(text));
+    if (regex is null) throw new ArgumentNullException(nameof(regex));
+
+    protection.Truth(regex.IsMatch(text), message);
 
     return text;
   }

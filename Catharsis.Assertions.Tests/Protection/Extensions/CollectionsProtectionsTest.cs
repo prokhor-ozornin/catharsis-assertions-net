@@ -17,7 +17,7 @@ public sealed class CollectionsProtectionsTest : UnitTest
   public void Empty_Collection_Method()
   {
     AssertionExtensions.Should(() => CollectionsProtections.Empty(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((ICollection<object>) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((ICollection<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
     AssertionExtensions.Should(() => Protect.From.Empty(Array.Empty<object>(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     RandomSequence.ToList().With(collection => Protect.From.Empty(collection).Should().NotBeNull().And.BeSameAs(collection));
@@ -30,13 +30,9 @@ public sealed class CollectionsProtectionsTest : UnitTest
   public void Empty_NameValueCollection_Method()
   {
     AssertionExtensions.Should(() => CollectionsProtections.Empty(null, new NameValueCollection())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((NameValueCollection) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((NameValueCollection) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
     new NameValueCollection().With(collection => AssertionExtensions.Should(() => AssertionExtensions.Should(() => Protect.From.Empty(collection, "error")).ThrowExactly<ArgumentException>().WithMessage("error")));
-    new NameValueCollection().With(collection =>
-    {
-      collection.Add("name", "value");
-      AssertionExtensions.Should(() => Protect.From.Empty(collection, "error").Should().NotBeNull().And.BeSameAs(collection));
-    });
+    new NameValueCollection().With(collection => Protect.From.Empty(collection.AddRange(("name", "value"))).Should().NotBeNull().And.BeSameAs(collection));
   }
 }

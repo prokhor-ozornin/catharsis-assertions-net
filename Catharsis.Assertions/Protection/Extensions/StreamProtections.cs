@@ -19,12 +19,9 @@ public static class StreamProtections
   public static TStream Empty<TStream>(this IProtection protection, TStream stream, string message = null) where TStream : Stream
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (stream is null) throw new ArgumentNullException(message);
+    if (stream is null) throw new ArgumentNullException(nameof(stream));
 
-    if (stream.Length == 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(stream.Length == 0, message);
 
     return stream;
   }

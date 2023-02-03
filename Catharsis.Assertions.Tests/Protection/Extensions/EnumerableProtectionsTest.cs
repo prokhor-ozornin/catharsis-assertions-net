@@ -17,7 +17,7 @@ public sealed class EnumerableProtectionsTest : UnitTest
   public void Empty_Method()
   {
     AssertionExtensions.Should(() => EnumerableProtections.Empty(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((IEnumerable<object>) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((IEnumerable<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
     EmptySequence.With(sequence => AssertionExtensions.Should(() => Protect.From.Empty(sequence, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
     RandomSequence.With(sequence => Protect.From.Empty(sequence).Should().NotBeNull().And.BeSameAs(sequence));
@@ -36,7 +36,7 @@ public sealed class EnumerableProtectionsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => EnumerableProtections.AnyOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-      AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+      AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("values");
 
       AssertionExtensions.Should(() => Protect.From.AnyOf(null, new[] { string.Empty, null }, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
 
@@ -47,7 +47,7 @@ public sealed class EnumerableProtectionsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => EnumerableProtections.AnyOf(null, new object(), null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-      AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), "error", null)).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+      AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), "error", null)).ThrowExactly<ArgumentNullException>().WithParameterName("values");
 
       AssertionExtensions.Should(() => Protect.From.AnyOf(null, "error", string.Empty, null)).ThrowExactly<ArgumentException>().WithMessage("error");
 

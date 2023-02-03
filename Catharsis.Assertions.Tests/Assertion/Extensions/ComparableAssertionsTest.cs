@@ -16,7 +16,16 @@ public sealed class ComparableAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableAssertions.Positive<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Positive(int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Positive(0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Positive(int.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+
+    AssertionExtensions.Should(() => Assert.To.Positive(DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Positive(DateTime.Today).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Positive(DateTime.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+
+    AssertionExtensions.Should(() => Assert.To.Positive(Guid.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Positive(Guid.NewGuid()).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -27,7 +36,16 @@ public sealed class ComparableAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableAssertions.Negative<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    Assert.To.Negative(int.MinValue, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Negative(0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Negative(int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    AssertionExtensions.Should(() => Assert.To.Negative(DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Negative(DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Negative(DateTime.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    AssertionExtensions.Should(() => Assert.To.Negative(Guid.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Negative(Guid.NewGuid(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -38,7 +56,16 @@ public sealed class ComparableAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableAssertions.Zero<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Zero(int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Zero(0).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Zero(int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.Zero(DateTime.MinValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Zero(DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Zero(DateTime.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.Zero(Guid.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Zero(Guid.NewGuid(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -49,7 +76,16 @@ public sealed class ComparableAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableAssertions.Greater<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    Assert.To.Greater(0, int.MinValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Greater(0, 0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Greater(0, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.Greater(DateTime.Today, DateTime.MinValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Greater(DateTime.Today, DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Greater(DateTime.Today, DateTime.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    AssertionExtensions.Should(() => Assert.To.Greater(Guid.Empty, Guid.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Greater(Guid.Empty, Guid.NewGuid(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -60,7 +96,16 @@ public sealed class ComparableAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableAssertions.GreaterOrEqual<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    Assert.To.GreaterOrEqual(0, int.MinValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.GreaterOrEqual(0, 0).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.GreaterOrEqual(0, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.GreaterOrEqual(DateTime.Today, DateTime.MinValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.GreaterOrEqual(DateTime.Today, DateTime.Today).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.GreaterOrEqual(DateTime.Today, DateTime.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.GreaterOrEqual(Guid.Empty, Guid.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.GreaterOrEqual(Guid.Empty, Guid.NewGuid(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -71,7 +116,16 @@ public sealed class ComparableAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableAssertions.Lesser<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Lesser(0, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Lesser(0, 0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Lesser(0, int.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+
+    AssertionExtensions.Should(() => Assert.To.Lesser(DateTime.Today, DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Lesser(DateTime.Today, DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Lesser(DateTime.Today, DateTime.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+
+    AssertionExtensions.Should(() => Assert.To.Lesser(Guid.Empty, Guid.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Lesser(Guid.Empty, Guid.NewGuid()).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -82,7 +136,16 @@ public sealed class ComparableAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableAssertions.Lesser<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.LesserOrEqual(0, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.LesserOrEqual(0, 0).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.LesserOrEqual(0, int.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+
+    AssertionExtensions.Should(() => Assert.To.LesserOrEqual(DateTime.Today, DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.LesserOrEqual(DateTime.Today, DateTime.Today).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.LesserOrEqual(DateTime.Today, DateTime.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+
+    Assert.To.LesserOrEqual(Guid.Empty, Guid.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.LesserOrEqual(Guid.Empty, Guid.NewGuid()).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using System.Collections.Specialized;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -18,7 +19,9 @@ public sealed class CollectionsExpectationsTest : UnitTest
     AssertionExtensions.Should(() => CollectionsExpectations.Count(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    RandomSequence.ToArray().Expect().Count(int.MinValue).Result.Should().BeFalse();
+    RandomSequence.ToArray().Expect().Count(int.MaxValue).Result.Should().BeFalse();
+    RandomSequence.ToArray().With(collection => collection.Expect().Count(collection.Length).Result.Should().BeTrue());
   }
 
   /// <summary>
@@ -30,7 +33,8 @@ public sealed class CollectionsExpectationsTest : UnitTest
     AssertionExtensions.Should(() => CollectionsExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    EmptySequence.ToArray().Expect().Empty().Result.Should().BeTrue();
+    RandomSequence.ToArray().Expect().Empty().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -42,7 +46,8 @@ public sealed class CollectionsExpectationsTest : UnitTest
     AssertionExtensions.Should(() => CollectionsExpectations.ReadOnly<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    RandomSequence.ToArray().Expect().ReadOnly().Result.Should().BeTrue();
+    RandomSequence.ToList().Expect().ReadOnly().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -54,7 +59,9 @@ public sealed class CollectionsExpectationsTest : UnitTest
     AssertionExtensions.Should(() => CollectionsExpectations.Count(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((NameValueCollection) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    new NameValueCollection().With(collection => collection.Expect().Count(int.MinValue).Result.Should().BeFalse());
+    new NameValueCollection().With(collection => collection.Expect().Count(int.MaxValue).Result.Should().BeFalse());
+    new NameValueCollection().With(collection => collection.Expect().Count(collection.Count).Result.Should().BeTrue());
   }
 
   /// <summary>
@@ -66,6 +73,7 @@ public sealed class CollectionsExpectationsTest : UnitTest
     AssertionExtensions.Should(() => CollectionsExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((NameValueCollection) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    new NameValueCollection().Expect().Empty().Result.Should().BeTrue();
+    new NameValueCollection().With(collection => collection.AddRange(("name", "value")).Expect().Empty().Result.Should().BeFalse());
   }
 }

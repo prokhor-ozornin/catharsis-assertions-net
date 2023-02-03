@@ -3,45 +3,44 @@
 /// <summary>
 ///   <para></para>
 /// </summary>
-/// <seealso cref="BinaryReader"/>
-/// <seealso cref="BinaryWriter"/>
-public static class BinaryProtections
+/// <seealso cref="bool"/>
+public static class BooleanProtections
 {
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="protection"></param>
-  /// <param name="reader"></param>
+  /// <param name="expression"></param>
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static BinaryReader Empty(this IProtection protection, BinaryReader reader, string message = null)
+  public static void Truth(this IProtection protection, bool expression, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (reader is null) throw new ArgumentNullException(nameof(reader));
 
-    protection.Truth(reader.BaseStream.Length == 0, message);
-    
-    return reader;
+    if (expression)
+    {
+      throw new ArgumentException(message);
+    }
   }
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="protection"></param>
-  /// <param name="writer"></param>
+  /// <param name="expression"></param>
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static BinaryWriter Empty(this IProtection protection, BinaryWriter writer, string message = null)
+  public static void Lie(this IProtection protection, bool expression, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (writer is null) throw new ArgumentNullException(nameof(writer));
 
-    protection.Truth(writer.BaseStream.Length == 0, message);
-
-    return writer;
+    if (!expression)
+    {
+      throw new ArgumentException(message);
+    }
   }
 }

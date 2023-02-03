@@ -17,17 +17,44 @@ public static class ObjectProtections
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static T Being<T>(this IProtection protection, T instance, object other, string message = null)
+  public static T Same<T>(this IProtection protection, T instance, object other, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
 
-    if (ReferenceEquals(instance, other))
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(ReferenceEquals(instance, other), message);
 
     return instance;
   }
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="protection"></param>
+  /// <param name="instance"></param>
+  /// <param name="type"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  public static object OfType(this IProtection protection, object instance, Type type, string message = null)
+  {
+    if (protection is null) throw new ArgumentNullException(nameof(protection));
+    if (instance is null) throw new ArgumentNullException(nameof(instance));
+    if (type is null) throw new ArgumentNullException(nameof(type));
+
+    protection.Truth(instance.GetType() == type, message);
+
+    return instance;
+  }
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  /// <param name="protection"></param>
+  /// <param name="instance"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  public static object OfType<T>(this IProtection protection, object instance, string message = null) => protection.OfType(instance, typeof(T), message);
 
   /// <summary>
   ///   <para></para>
@@ -44,10 +71,7 @@ public static class ObjectProtections
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
 
-    if (Equals(instance, other))
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(Equals(instance, other), message);
 
     return instance;
   }
@@ -66,10 +90,7 @@ public static class ObjectProtections
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
 
-    if (instance == default)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(instance == default, message);
 
     return instance;
   }

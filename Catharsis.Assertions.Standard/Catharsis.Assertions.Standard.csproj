@@ -111,15 +111,18 @@
     <Compile Include="..\Catharsis.Assertions\Expectation\IExpectationExtensions.cs" Link="Expectation\IExpectationExtensions.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\ObjectExtensions.cs" Link="Expectation\ObjectExtensions.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\BinaryProtections.cs" Link="Protection\Extensions\BinaryProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\BooleanProtections.cs" Link="Protection\Extensions\BooleanProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\CollectionsProtections.cs" Link="Protection\Extensions\CollectionsProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\ComparableProtections.cs" Link="Protection\Extensions\ComparableProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\EnumerableProtections.cs" Link="Protection\Extensions\EnumerableProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\FilesystemProtections.cs" Link="Protection\Extensions\FilesystemProtections.cs" />
-    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\NumericProtections.cs" Link="Protection\Extensions\NumericProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\ObjectProtections.cs" Link="Protection\Extensions\ObjectProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\StreamProtections.cs" Link="Protection\Extensions\StreamProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\TaskProtections.cs" Link="Protection\Extensions\TaskProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\TextProtections.cs" Link="Protection\Extensions\TextProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\XmlProtections.cs" Link="Protection\Extensions\XmlProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\IProtection.cs" Link="Protection\IProtection.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\IProtectionExtensions.cs" Link="Protection\IProtectionExtensions.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Protect.cs" Link="Protection\Protect.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Protection.cs" Link="Protection\Protection.cs" />
   </ItemGroup>

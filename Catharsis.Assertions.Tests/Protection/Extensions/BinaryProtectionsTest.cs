@@ -16,7 +16,7 @@ public sealed class BinaryProtectionsTest : UnitTest
   public void Empty_BinaryReader_Method()
   {
     Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => BinaryProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
-    AssertionExtensions.Should(() => Protect.From.Empty((BinaryReader) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((BinaryReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
     Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => Protect.From.Empty(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
     RandomStream.ToBinaryReader().TryFinallyDispose(reader => Protect.From.Empty(reader).Should().NotBeNull().And.BeSameAs(reader));
@@ -29,7 +29,7 @@ public sealed class BinaryProtectionsTest : UnitTest
   public void Empty_BinaryWriter_Method()
   {
     Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => BinaryProtections.Empty(null, writer)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
-    AssertionExtensions.Should(() => Protect.From.Empty((BinaryWriter) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((BinaryWriter) null)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
     Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => Protect.From.Empty(writer, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
     RandomStream.ToBinaryWriter().TryFinallyDispose(writer => Protect.From.Empty(writer).Should().NotBeNull().And.BeSameAs(writer));

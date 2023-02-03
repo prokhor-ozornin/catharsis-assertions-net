@@ -21,7 +21,7 @@ public sealed class StreamReaderExpectationsTest : UnitTest
     AssertionExtensions.Should(() => StreamReaderExpectations.Encoding(null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((StreamReader) null).Expect().Encoding(Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Reader.Expect().Encoding(null).Result.Should().BeFalse();
   }
 
   /// <summary>

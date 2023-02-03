@@ -19,12 +19,9 @@ public static class EnumerableProtections
   public static IEnumerable<T> Empty<T>(this IProtection protection, IEnumerable<T> sequence, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (sequence is null) throw new ArgumentNullException(message);
+    if (sequence is null) throw new ArgumentNullException(nameof(sequence));
 
-    if (!sequence.Any())
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(!sequence.Any(), message);
 
     return sequence;
   }
@@ -43,12 +40,9 @@ public static class EnumerableProtections
   public static T AnyOf<T>(this IProtection protection, T value, IEnumerable<T> values, string message = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-    if (values is null) throw new ArgumentNullException(message);
+    if (values is null) throw new ArgumentNullException(nameof(values));
 
-    if (values.Contains(value))
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(values.Contains(value), message);
 
     return value;
   }

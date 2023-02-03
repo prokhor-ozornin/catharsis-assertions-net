@@ -15,20 +15,12 @@ public sealed class EnumerableExpectationsTest : UnitTest
   [Fact]
   public void Count_Method()
   {
-    void Validate<T>(IEnumerable<T> sequence)
-    {
-      sequence.Expect().Count(int.MinValue).Result.Should().BeFalse();
-      sequence.Expect().Count(sequence.Count()).Result.Should().BeTrue();
-    }
+    AssertionExtensions.Should(() => EnumerableExpectations.Count<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    using (new AssertionScope())
-    {
-      AssertionExtensions.Should(() => EnumerableExpectations.Count<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-      Validate(EmptySequence);
-      Validate(RandomSequence);
-    }
+    RandomSequence.Expect().Count(int.MinValue).Result.Should().BeFalse();
+    RandomSequence.Expect().Count(int.MaxValue).Result.Should().BeFalse();
+    RandomSequence.Expect().Count(RandomSequence.Count()).Result.Should().BeTrue();
   }
 
   /// <summary>

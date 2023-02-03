@@ -4,7 +4,7 @@
 ///   <para></para>
 /// </summary>
 /// <seealso cref="IComparable{T}"/>
-public static class NumericProtections
+public static class ComparableProtections
 {
   /// <summary>
   ///   <para></para>
@@ -20,10 +20,7 @@ public static class NumericProtections
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
 
-    if (value.CompareTo(default) >= 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(value.CompareTo(default) > 0, message);
 
     return value;
   }
@@ -41,11 +38,8 @@ public static class NumericProtections
   public static T Negative<T>(this IProtection protection, T value, string message = null) where T : struct, IComparable<T>
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
-
-    if (value.CompareTo(default) <= 0)
-    {
-      throw new ArgumentException(message);
-    }
+    
+    protection.Truth(value.CompareTo(default) < 0, message);
 
     return value;
   }
@@ -64,10 +58,7 @@ public static class NumericProtections
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
 
-    if (value.CompareTo(default) == 0)
-    {
-      throw new ArgumentException(message);
-    }
+    protection.Truth(value.CompareTo(default) == 0, message);
 
     return value;
   }
@@ -88,10 +79,7 @@ public static class NumericProtections
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
 
-    if (value.CompareTo(min) < 0 || value.CompareTo(max) > 0)
-    {
-      throw new ArgumentOutOfRangeException(message);
-    }
+    protection.Truth(value.CompareTo(min) < 0 || value.CompareTo(max) > 0, message);
 
     return value;
   }

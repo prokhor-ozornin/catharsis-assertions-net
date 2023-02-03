@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using FluentAssertions;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -9,8 +10,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class StringAssertionsTest : UnitTest
 {
-  private Regex Regex { get; } = new(string.Empty);
-
   /// <summary>
   ///   <para>Performs testing of <see cref="StringAssertions.Length(IAssertion, string, int, string)"/> method.</para>
   /// </summary>
@@ -94,7 +93,14 @@ public sealed class StringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.StartWith(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
     AssertionExtensions.Should(() => Assert.To.StartWith(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("prefix");
 
-    throw new NotImplementedException();
+    Assert.To.StartWith(string.Empty, string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.StartWith(string.Empty, char.MinValue.ToString()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.StartWith(string.Empty, char.MaxValue.ToString(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.StartWith(RandomString, string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.StartWith(RandomString, RandomString).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.StartWith(RandomString, RandomString.ToUpperInvariant(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.StartWith(RandomString, RandomString.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -107,7 +113,14 @@ public sealed class StringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.EndWith(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
     AssertionExtensions.Should(() => Assert.To.EndWith(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("postfix");
 
-    throw new NotImplementedException();
+    Assert.To.EndWith(string.Empty, string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.EndWith(string.Empty, char.MinValue.ToString()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.EndWith(string.Empty, char.MaxValue.ToString(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.EndWith(RandomString, string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.EndWith(RandomString, RandomString).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.EndWith(RandomString, RandomString.ToUpperInvariant(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.EndWith(RandomString, RandomString.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -116,10 +129,13 @@ public sealed class StringAssertionsTest : UnitTest
   [Fact]
   public void Match_Method()
   {
-    AssertionExtensions.Should(() => StringAssertions.Match(null, string.Empty, Regex)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Match(null, Regex)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+    AssertionExtensions.Should(() => StringAssertions.Match(null, string.Empty, string.Empty.ToRegex())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => Assert.To.Match(null, string.Empty.ToRegex())).ThrowExactly<ArgumentNullException>().WithParameterName("text");
     AssertionExtensions.Should(() => Assert.To.Match(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
 
-    throw new NotImplementedException();
+    Assert.To.Match(string.Empty, string.Empty.ToRegex()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Match(string.Empty, "anything".ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Match(Randomizer.Digits(byte.MaxValue), "[0-9]".ToRegex()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Match(Randomizer.Letters(byte.MaxValue), "[0-9]".ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 }

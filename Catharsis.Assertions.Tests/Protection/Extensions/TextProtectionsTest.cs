@@ -1,5 +1,6 @@
 ﻿using System.Security;
 using System.Text;
+using System.Text.RegularExpressions;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -18,8 +19,8 @@ public sealed class TextProtectionsTest : UnitTest
   public void Empty_String_Method()
   {
     AssertionExtensions.Should(() => TextProtections.Empty(null, string.Empty)) .ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    AssertionExtensions.Should(() => Protect.From.Empty((string) null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    AssertionExtensions.Should(() => Protect.From.Empty((string) null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     AssertionExtensions.Should(() => Protect.From.Empty(string.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     
     RandomString.With(text => Protect.From.Empty(text).Should().NotBeNull().And.BeSameAs(text));
@@ -32,7 +33,7 @@ public sealed class TextProtectionsTest : UnitTest
   public void Empty_StringBuilder_Method()
   {
     AssertionExtensions.Should(() => TextProtections.Empty(null, new StringBuilder())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((StringBuilder) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((StringBuilder) null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
     new StringBuilder().With(builder => AssertionExtensions.Should(() => Protect.From.Empty(builder, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
     new StringBuilder(RandomString).With(builder => Protect.From.Empty(builder).Should().NotBeNull().And.BeSameAs(builder));
@@ -45,7 +46,7 @@ public sealed class TextProtectionsTest : UnitTest
   public void Empty_SecureString_Method()
   {
     AssertionExtensions.Should(() => TextProtections.Empty(null, EmptySecureString)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((SecureString) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((SecureString) null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
     new SecureString().TryFinallyDispose(secure => AssertionExtensions.Should(() => Protect.From.Empty(secure, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
     
@@ -64,17 +65,13 @@ public sealed class TextProtectionsTest : UnitTest
   {
     Stream.Null.ToStreamReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => TextProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
     AssertionExtensions.Should(() => Protect.From.Empty((StreamReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
-    
+
     void Validate(StreamReader reader)
     {
       AssertionExtensions.Should(() => Protect.From.Empty(reader.BaseStream.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      
+
       reader.BaseStream.WriteByte(byte.MinValue);
-      
     }
-
-
-
 
     throw new NotImplementedException();
   }
@@ -86,7 +83,7 @@ public sealed class TextProtectionsTest : UnitTest
   public void Empty_StreamWriter_Method()
   {
     Stream.Null.ToStreamWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => TextProtections.Empty(null, writer)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
-    AssertionExtensions.Should(() => Protect.From.Empty((StreamWriter) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    AssertionExtensions.Should(() => Protect.From.Empty((StreamWriter) null)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
     throw new NotImplementedException();
   }
@@ -104,5 +101,21 @@ public sealed class TextProtectionsTest : UnitTest
     AssertionExtensions.Should(() => Protect.From.WhiteSpace("\r\n\t", "error")).ThrowExactly<ArgumentException>().WithMessage("error");
 
     RandomString.With(text => Protect.From.Empty(text).Should().NotBeNull().And.BeSameAs(text));
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="TextProtections.Match(IProtection, string, Regex, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Match_String_Method()
+  {
+    AssertionExtensions.Should(() => TextProtections.Match(null, string.Empty, new Regex(string.Empty))).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    AssertionExtensions.Should(() => Protect.From.Match(null, new Regex(string.Empty))).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+    AssertionExtensions.Should(() => Protect.From.Match(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
+
+    AssertionExtensions.Should(() => Protect.From.Match(string.Empty, string.Empty.ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Protect.From.Match(string.Empty, "anything".ToRegex()).Should().NotBeNull().And.BeSameAs(string.Empty);
+    AssertionExtensions.Should(() => Protect.From.Match(Randomizer.Digits(byte.MaxValue), "[0-9]".ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Randomizer.Letters(byte.MaxValue).With(text => Protect.From.Match(text, "[0-9]".ToRegex()).Should().NotBeNull().And.BeSameAs(text));
   }
 }

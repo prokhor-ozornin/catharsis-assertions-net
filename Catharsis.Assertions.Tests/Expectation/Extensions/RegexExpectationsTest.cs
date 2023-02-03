@@ -12,14 +12,14 @@ public sealed class RegexExpectationsTest : UnitTest
   private Regex Expression { get; } = new(string.Empty);
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="RegexExpectations.Matches(IExpectation{Regex}, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="RegexExpectations.Match(IExpectation{Regex}, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Matches_Method()
   {
-    AssertionExtensions.Should(() => RegexExpectations.Matches(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Regex) null).Expect().Matches(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Expression.Expect().Matches(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+    AssertionExtensions.Should(() => RegexExpectations.Match(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((Regex) null).Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => Expression.Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
     throw new NotImplementedException();
   }
