@@ -3,6 +3,7 @@ using System.Text;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
+using TextWriterAssertions = Catharsis.Assertions.TextWriterAssertions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -26,12 +27,12 @@ public sealed class StreamWriterAssertionsTest : UnitTest
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="StreamWriterAssertions.Format(IAssertion, System.IO.StreamWriter, IFormatProvider, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="TextWriterAssertions.Format"/> method.</para>
   /// </summary>
   [Fact]
   public void Format_Method()
   {
-    AssertionExtensions.Should(() => StreamWriterAssertions.Format(null, Writer, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => TextWriterAssertions.Format(null, Writer, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Format(null, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
     throw new NotImplementedException();

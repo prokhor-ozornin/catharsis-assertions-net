@@ -1,6 +1,7 @@
 ﻿using System.Xml.Linq;
 using FluentAssertions;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -33,6 +34,12 @@ public sealed class XContainerExpectationsTest : UnitTest
     AssertionExtensions.Should(() => XContainerExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((XContainer) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Container.Expect().Empty().Result.Should().BeTrue();
+
+    Container.With(container =>
+    {
+      container.Add(new XElement("root"));
+      container.Expect().Empty().Result.Should().BeFalse();
+    });
   }
 }

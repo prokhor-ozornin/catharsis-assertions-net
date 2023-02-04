@@ -30,7 +30,6 @@ public static class XDocumentAssertions
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (document is null) throw new ArgumentNullException(nameof(document));
-    if (name is null) throw new ArgumentNullException(nameof(name));
 
     return assertion.True(document.Root?.Name == name, message);
   }

@@ -47,6 +47,7 @@
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\SymmetricAlgorithmAssertions.cs" Link="Assertion\Extensions\SymmetricAlgorithmAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\TaskAssertions.cs" Link="Assertion\Extensions\TaskAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\TextReaderAssertions.cs" Link="Assertion\Extensions\TextReaderAssertions.cs" />
+    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\TextWriterAssertions.cs" Link="Assertion\Extensions\TextWriterAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\ThreadAssertions.cs" Link="Assertion\Extensions\ThreadAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\TimeOnlyAssertions.cs" Link="Assertion\Extensions\TimeOnlyAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\TimeSpanAssertions.cs" Link="Assertion\Extensions\TimeSpanAssertions.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\SymmetricAlgorithmExpectations.cs" Link="Expectation\Extensions\SymmetricAlgorithmExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\TaskExpectations.cs" Link="Expectation\Extensions\TaskExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\TextReaderExpectations.cs" Link="Expectation\Extensions\TextReaderExpectations.cs" />
+    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\TextWriterExpectations.cs" Link="Expectation\Extensions\TextWriterExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\ThreadExpectations.cs" Link="Expectation\Extensions\ThreadExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\TimeOnlyExpectations.cs" Link="Expectation\Extensions\TimeOnlyExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\TimeSpanExpectations.cs" Link="Expectation\Extensions\TimeSpanExpectations.cs" />

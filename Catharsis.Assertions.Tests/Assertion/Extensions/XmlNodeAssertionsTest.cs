@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -12,7 +13,7 @@ public sealed class XmlNodeAssertionsTest : UnitTest
   private XmlNode Node { get; } = new XmlDocument().CreateElement("root");
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="XmlNodeAssertions.Empty(IAssertion, System.Xml.XmlNode, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="XmlNodeAssertions.Empty(IAssertion, XmlNode, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Empty_Method()
@@ -20,11 +21,17 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => XmlNodeAssertions.Empty(null, Node)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => XmlNodeAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("node");
 
-    throw new NotImplementedException();
+    Assert.To.Empty(Node, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+
+    Node.With(node =>
+    {
+      node.AppendChild(Node.OwnerDocument.CreateElement("element"));
+      AssertionExtensions.Should(() => Assert.To.Empty(Node, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    });
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="XmlNodeAssertions.Name(IAssertion, System.Xml.XmlNode, string, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="XmlNodeAssertions.Name(IAssertion, XmlNode, string, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Name_Method()
@@ -33,11 +40,12 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Name(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("node");
     AssertionExtensions.Should(() => Assert.To.Name(Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Name(Node, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Name(Node, Node.Name).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="XmlNodeAssertions.InnerText(IAssertion, System.Xml.XmlNode, string, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="XmlNodeAssertions.InnerText(IAssertion, XmlNode, string, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void InnerText_Method()
@@ -46,11 +54,12 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.InnerText(null, "text")).ThrowExactly<ArgumentNullException>().WithParameterName("node");
     AssertionExtensions.Should(() => Assert.To.InnerText(Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.InnerText(Node, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.InnerText(Node, Node.InnerText).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="XmlNodeAssertions.InnerXml(IAssertion, System.Xml.XmlNode, string, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="XmlNodeAssertions.InnerXml(IAssertion, XmlNode, string, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void InnerXml_Method()
@@ -59,11 +68,12 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.InnerXml(null, "xml")).ThrowExactly<ArgumentNullException>().WithParameterName("node");
     AssertionExtensions.Should(() => Assert.To.InnerXml(Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.InnerXml(Node, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.InnerXml(Node, Node.InnerXml).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="XmlNodeAssertions.OuterXml(IAssertion, System.Xml.XmlNode, string, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="XmlNodeAssertions.OuterXml(IAssertion, XmlNode, string, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void OuterXml_Method()
@@ -72,18 +82,20 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.OuterXml(null, "xml")).ThrowExactly<ArgumentNullException>().WithParameterName("node");
     AssertionExtensions.Should(() => Assert.To.OuterXml(Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.OuterXml(Node, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.OuterXml(Node, Node.OuterXml).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="XmlNodeAssertions.Value(IAssertion, System.Xml.XmlNode, string, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="XmlNodeAssertions.Value(IAssertion, XmlNode, string, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Value_Method()
   {
-    AssertionExtensions.Should(() => XmlNodeAssertions.Value(null, Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Value(Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("node");
+    AssertionExtensions.Should(() => XmlNodeAssertions.Value(null, Node, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => Assert.To.Value((XmlNode) null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("node");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Value(Node, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Value(Node, Node.Value).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

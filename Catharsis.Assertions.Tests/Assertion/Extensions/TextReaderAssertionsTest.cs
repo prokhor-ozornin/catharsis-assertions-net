@@ -11,7 +11,7 @@ public sealed class TextReaderAssertionsTest : UnitTest
   private TextReader Reader { get; } = new StringReader(string.Empty);
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="TextReaderAssertions.End(IAssertion, System.IO.TextReader, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="TextReaderAssertions.End(IAssertion, TextReader, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void End_Method()

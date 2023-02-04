@@ -20,6 +20,8 @@ public sealed class SecureStringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => SecureStringAssertions.Length(null, Secure, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => SecureStringAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
+
+
     throw new NotImplementedException();
   }
 

@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -20,7 +21,13 @@ public sealed class XDocumentExpectationsTest : UnitTest
     AssertionExtensions.Should(() => XDocumentExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((XDocument) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Document.Expect().Empty().Result.Should().BeTrue();
+
+    Document.With(document =>
+    {
+      document.Add(new XElement("root"));
+      document.Expect().Empty().Result.Should().BeFalse();
+    });
   }
 
   /// <summary>
@@ -31,8 +38,15 @@ public sealed class XDocumentExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => XDocumentExpectations.Name(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((XDocument) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Document.Expect().Name(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    throw new NotImplementedException();
+    Document.Expect().Name(null).Result.Should().BeTrue();
+    
+    Document.With(document =>
+    {
+      const string name = "root";
+      document.Add(new XElement(name));
+      document.Expect().Name(RandomString).Result.Should().BeFalse();
+      document.Expect().Name(name).Result.Should().BeTrue();
+    });
   }
 }

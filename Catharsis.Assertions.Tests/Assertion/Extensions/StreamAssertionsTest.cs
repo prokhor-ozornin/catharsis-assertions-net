@@ -59,8 +59,13 @@ public sealed class StreamAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StreamAssertions.End(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.End((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-    Assert.To.End(Stream.Null).Should().NotBeNull().And.BeSameAs(Stream.Null);
-    AssertionExtensions.Should(() => Assert.To.End(RandomStream, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.End(Stream.Null).Should().NotBeNull().And.BeSameAs(Assert.To);
+    
+    RandomStream.With(stream =>
+    {
+      AssertionExtensions.Should(() => Assert.To.End(stream, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.End(stream.MoveToEnd()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
   }
 
   /// <summary>

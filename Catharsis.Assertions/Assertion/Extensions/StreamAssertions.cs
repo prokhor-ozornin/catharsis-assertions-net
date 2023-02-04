@@ -49,7 +49,7 @@ public static class StreamAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion End(this IAssertion assertion, Stream stream, string message = null) => stream is not null ? assertion.True(stream.Position == stream.Length) : throw new ArgumentNullException(nameof(stream));
+  public static IAssertion End(this IAssertion assertion, Stream stream, string message = null) => stream is not null ? assertion.True(stream.Position == stream.Length, message) : throw new ArgumentNullException(nameof(stream));
 
   /// <summary>
   ///   <para></para>

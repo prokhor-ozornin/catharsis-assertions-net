@@ -12,7 +12,7 @@ public sealed class XAttributeAssertionsTest : UnitTest
   private XAttribute Attribute { get; } = new("name", "value");
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="XAttributeAssertions.Name(IAssertion, System.Xml.Linq.XAttribute, XName, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="XAttributeAssertions.Name(IAssertion, XAttribute, XName, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Name_Method()
@@ -21,11 +21,12 @@ public sealed class XAttributeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => XAttributeAssertions.Name(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
     AssertionExtensions.Should(() => Assert.To.Name(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Name(Attribute, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Name(Attribute, Attribute.Name).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="XAttributeAssertions.Value(IAssertion, System.Xml.Linq.XAttribute, string, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="XAttributeAssertions.Value(IAssertion, XAttribute, string, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Value_Method()
@@ -34,6 +35,7 @@ public sealed class XAttributeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => XAttributeAssertions.Value(Assert.To, null, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
     AssertionExtensions.Should(() => Assert.To.Value(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Name(Attribute, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Name(Attribute, Attribute.Name).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

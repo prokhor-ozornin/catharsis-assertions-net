@@ -19,7 +19,7 @@ public sealed class XmlDocumentExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => XmlDocumentExpectations.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((XmlDocument) null).Expect().Element("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Document.Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("naem");
+    AssertionExtensions.Should(() => Document.Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
     throw new NotImplementedException();
   }

@@ -21,9 +21,11 @@ public sealed class StreamReaderAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StreamReaderAssertions.Encoding(null, Reader, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => StreamReaderAssertions.Encoding(Assert.To, null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-
-
-    throw new NotImplementedException();
+    RandomStream.ToStreamReader().TryFinallyDispose(reader =>
+    {
+      AssertionExtensions.Should(() => Assert.To.Encoding(reader, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Encoding(reader, reader.CurrentEncoding).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
   }
 
   /// <summary>
@@ -33,11 +35,21 @@ public sealed class StreamReaderAssertionsTest : UnitTest
   public void End_Method()
   {
     AssertionExtensions.Should(() => StreamReaderAssertions.End(null, Reader)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    //AssertionExtensions.Should(() => Assert.To.End(null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
+    AssertionExtensions.Should(() => Assert.To.End((StreamReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
+    
+    Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To));
 
-    throw new NotImplementedException();
+    RandomStream.ToStreamReader().TryFinallyDispose(reader =>
+    {
+      AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      reader.ReadToEnd();
+      Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
   }
 
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   public override void Dispose()
   {
     base.Dispose();

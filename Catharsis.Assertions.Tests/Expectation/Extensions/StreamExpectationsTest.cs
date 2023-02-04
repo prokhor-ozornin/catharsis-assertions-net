@@ -60,7 +60,12 @@ public sealed class StreamExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((Stream) null).Expect().End()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
     Stream.Null.Expect().End().Result.Should().BeTrue();
-    RandomStream.Expect().End().Result.Should().BeFalse();
+    
+    RandomStream.With(stream =>
+    {
+      stream.Expect().End().Result.Should().BeFalse();
+      stream.MoveToEnd().Expect().Result.Should().BeTrue();
+    });
   }
   
   /// <summary>

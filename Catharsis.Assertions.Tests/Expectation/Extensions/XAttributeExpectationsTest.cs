@@ -21,7 +21,8 @@ public sealed class XAttributeExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XAttribute) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Attribute.Expect().Name(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    throw new NotImplementedException();
+    Attribute.Expect().Name(RandomString).Result.Should().BeFalse();
+    Attribute.Expect().Name(Attribute.Name).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -34,6 +35,7 @@ public sealed class XAttributeExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XAttribute) null).Expect().Value("value")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Attribute.Expect().Value(null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-    throw new NotImplementedException();
+    Attribute.Expect().Value(RandomString).Result.Should().BeFalse();
+    Attribute.Expect().Value(Attribute.Value).Result.Should().BeTrue();
   }
 }
