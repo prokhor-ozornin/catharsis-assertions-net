@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -9,8 +10,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class RegexExpectationsTest : UnitTest
 {
-  private Regex Expression { get; } = new(string.Empty);
-
   /// <summary>
   ///   <para>Performs testing of <see cref="RegexExpectations.Match(IExpectation{Regex}, string)"/> method.</para>
   /// </summary>
@@ -19,8 +18,11 @@ public sealed class RegexExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => RegexExpectations.Match(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((Regex) null).Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Expression.Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+    AssertionExtensions.Should(() => string.Empty.ToRegex().Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    throw new NotImplementedException();
+    string.Empty.ToRegex().Expect().Match(string.Empty).Expect().Result.Should().BeTrue();
+    "anything".ToRegex().Expect().Match(string.Empty).Result.Should().BeFalse();
+    "[0-9]".ToRegex().Expect().Match(Randomizer.Digits(byte.MaxValue)).Result.Should().BeTrue();
+    "[0-9]".ToRegex().Expect().Match(Randomizer.Letters(byte.MaxValue)).Result.Should().BeFalse();
   }
 }

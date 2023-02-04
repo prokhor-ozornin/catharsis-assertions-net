@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -9,18 +10,19 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class RegexAssertionsTest : UnitTest
 {
-  private Regex Expression { get; } = new(string.Empty);
-
   /// <summary>
-  ///   <para>Performs testing of <see cref="RegexAssertions.Matches(IAssertion, Regex, string, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="RegexAssertions.Match(IAssertion, Regex, string, string)"/> method.</para>
   /// </summary>
   [Fact]
-  public void Matches_Method()
+  public void Match_Method()
   {
-    AssertionExtensions.Should(() => RegexAssertions.Matches(null, Expression, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Matches(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
-    AssertionExtensions.Should(() => Assert.To.Matches(Expression, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
+    AssertionExtensions.Should(() => RegexAssertions.Match(null, string.Empty.ToRegex(), string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => Assert.To.Match(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
+    AssertionExtensions.Should(() => Assert.To.Match(string.Empty.ToRegex(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    throw new NotImplementedException();
+    Assert.To.Match(string.Empty.ToRegex(), string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Match("anything".ToRegex(), string.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Match("[0-9]".ToRegex(), Randomizer.Digits(byte.MaxValue)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Match("[0-9]".ToRegex(), Randomizer.Letters(byte.MaxValue), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 }

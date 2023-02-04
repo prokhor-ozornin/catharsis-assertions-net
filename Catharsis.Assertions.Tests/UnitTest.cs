@@ -51,6 +51,11 @@ public abstract class UnitTest : IDisposable
   /// <summary>
   ///   <para></para>
   /// </summary>
+  protected SecureString RandomSecureString { get; } = Randomizer.SecureString(byte.MaxValue);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   public virtual void Dispose()
   {
     RandomFile.TryFinallyDelete(file => file.IsReadOnly = false).Delete();

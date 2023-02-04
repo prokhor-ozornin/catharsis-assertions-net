@@ -81,6 +81,15 @@ public sealed class ObjectProtectionsTest : UnitTest
 
     AssertionExtensions.Should(() => Protect.From.Default<object>(null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     new object().With(instance => Protect.From.Default(instance).Should().NotBeNull().And.BeSameAs(instance));
+
+    AssertionExtensions.Should(() => Protect.From.Default(0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Protect.From.Default(int.MinValue).Should().Be(int.MinValue);
+
+    AssertionExtensions.Should(() => Protect.From.Default(DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Protect.From.Default(DateTime.Today).Should().Be(DateTime.Today);
+
+    AssertionExtensions.Should(() => Protect.From.Default(Guid.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Guid.NewGuid().With(guid => Protect.From.Default(guid).Should().Be(guid));
   }
 
   /// <summary>

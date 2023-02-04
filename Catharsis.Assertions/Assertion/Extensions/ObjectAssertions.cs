@@ -42,7 +42,7 @@ public static class ObjectAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static IAssertion Default<T>(this IAssertion assertion, T instance, string message = null) where T : class => assertion.True(instance == default, message);
+  public static IAssertion Default<T>(this IAssertion assertion, T instance, string message = null) => assertion.Equal(instance, default(T), message);
 
   /// <summary>
   ///   <para></para>

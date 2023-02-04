@@ -10,10 +10,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class SecureStringExpectationsTest : UnitTest
 {
-  private SecureString EmptySecureString { get; } = new();
-  
-  private SecureString RandomSecureString { get; } = Randomizer.SecureString(byte.MaxValue);
-
   /// <summary>
   ///   <para>Performs testing of <see cref="SecureStringExpectations.Length(IExpectation{SecureString}, int)"/> method.</para>
   /// </summary>
@@ -23,11 +19,8 @@ public sealed class SecureStringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => SecureStringExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((SecureString) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    EmptySecureString.Expect().Length(int.MinValue).Result.Should().BeFalse();
-    EmptySecureString.Expect().Length(int.MaxValue).Result.Should().BeFalse();
-    EmptySecureString.Expect().Length(EmptySecureString.Length).Result.Should().BeTrue();
-
-    RandomSecureString.Expect().Length(0).Result.Should().BeFalse();
+    RandomSecureString.Expect().Length(int.MinValue).Result.Should().BeFalse();
+    RandomSecureString.Expect().Length(int.MaxValue).Result.Should().BeFalse();
     RandomSecureString.Expect().Length(RandomSecureString.Length).Result.Should().BeTrue();
   }
 
@@ -53,15 +46,7 @@ public sealed class SecureStringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => SecureStringExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((SecureString) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    EmptySecureString.Expect().ReadOnly().Result.Should().BeFalse();
-    EmptySecureString.AsReadOnly().Expect().ReadOnly().Result.Should().BeTrue();
-  }
-
-  public override void Dispose()
-  {
-    base.Dispose();
-    
-    EmptySecureString.Dispose();
-    RandomSecureString.Dispose();
+    RandomSecureString.Expect().ReadOnly().Result.Should().BeFalse();
+    RandomSecureString.AsReadOnly().Expect().ReadOnly().Result.Should().BeTrue();
   }
 }

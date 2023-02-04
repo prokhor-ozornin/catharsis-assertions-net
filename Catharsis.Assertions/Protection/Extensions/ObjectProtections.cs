@@ -86,14 +86,7 @@ public static class ObjectProtections
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static T Default<T>(this IProtection protection, T instance, string message = null) where T : class
-  {
-    if (protection is null) throw new ArgumentNullException(nameof(protection));
-
-    protection.Truth(instance == default, message);
-
-    return instance;
-  }
+  public static T Default<T>(this IProtection protection, T instance, string message = null) => protection.Equality(instance, default(T), message);
 
   /// <summary>
   ///   <para></para>

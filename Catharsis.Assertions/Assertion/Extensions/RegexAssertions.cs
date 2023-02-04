@@ -17,7 +17,7 @@ public static class RegexAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Matches(this IAssertion assertion, Regex regex, string text, string message = null)
+  public static IAssertion Match(this IAssertion assertion, Regex regex, string text, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (regex is null) throw new ArgumentNullException(nameof(regex));
