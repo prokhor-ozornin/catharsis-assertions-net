@@ -17,7 +17,8 @@ public sealed class ThreadExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ThreadExpectations.State(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((Thread) null).Expect().State(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Thread.CurrentThread.Expect().State(ThreadState.Unstarted).Result.Should().BeFalse();
+    Thread.CurrentThread.Expect().State(Thread.CurrentThread.ThreadState).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -29,6 +30,7 @@ public sealed class ThreadExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ThreadExpectations.Priority(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((Thread) null).Expect().Priority(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Thread.CurrentThread.Expect().Priority(ThreadPriority.Highest).Result.Should().BeFalse();
+    Thread.CurrentThread.Expect().Priority(Thread.CurrentThread.Priority).Result.Should().BeTrue();
   }
 }

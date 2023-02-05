@@ -15,7 +15,7 @@ public static class DictionaryExpectations
   /// <param name="key"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<IDictionary<TKey, TValue>> ContainKey<TKey, TValue>(this IExpectation<IDictionary<TKey, TValue>> expectation, TKey key) => expectation.HaveSubject().And().Expected(dictionary => dictionary.ContainsKey(key));
+  public static IExpectation<IDictionary<TKey, TValue>> ContainKey<TKey, TValue>(this IExpectation<IDictionary<TKey, TValue>> expectation, TKey key) where TKey : notnull => expectation.HaveSubject().And().ThrowIfNull(key, nameof(key)).And().Expected(dictionary => dictionary.ContainsKey(key));
 
   /// <summary>
   ///   <para></para>

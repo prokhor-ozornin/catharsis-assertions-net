@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Extensions;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -17,9 +18,19 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => DirectoryInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
+    RandomDirectory.Expect().Empty().Result.Should().BeTrue();
+    
+    RandomDirectory.TryFinallyClear(directory =>
+    {
+      Randomizer.BinaryFile(0, null, null, directory);
+      directory.Expect().Empty().Result.Should().BeFalse();
+    });
 
-
-    throw new NotImplementedException();
+    RandomDirectory.TryFinallyClear(directory =>
+    {
+      Randomizer.Directory(directory);
+      directory.Expect().Empty().Result.Should().BeFalse();
+    });
   }
 
   /// <summary>
@@ -30,8 +41,9 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => DirectoryInfoExpectations.InDirectory(null, RandomDirectory)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().InDirectory(RandomDirectory)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => RandomDirectory.Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
+    AssertionExtensions.Should(() => RandomDirectory.Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
 
-    throw new NotImplementedException();
+    RandomDirectory.Expect().InDirectory(RandomDirectory).Result.Should().BeFalse();
+    RandomDirectory.Expect().InDirectory(RandomDirectory.Parent).Result.Should().BeTrue();
   }
 }

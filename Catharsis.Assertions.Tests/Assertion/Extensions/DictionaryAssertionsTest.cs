@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Extensions;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -19,7 +20,13 @@ public sealed class DictionaryAssertionsTest : UnitTest
     AssertionExtensions.Should(() => DictionaryAssertions.ContainKey(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.ContainKey<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.ContainKey(Dictionary, Guid.NewGuid(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Dictionary.With(dictionary =>
+    {
+      dictionary.Add(Guid.Empty, new object());
+      Assert.To.ContainKey(Dictionary, Guid.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
   }
 
   /// <summary>
@@ -31,6 +38,12 @@ public sealed class DictionaryAssertionsTest : UnitTest
     AssertionExtensions.Should(() => DictionaryAssertions.ContainValue(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.ContainValue<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.ContainValue(Dictionary, null, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Dictionary.With(dictionary =>
+    {
+      dictionary.Add(Guid.NewGuid(), null);
+      Assert.To.ContainValue(Dictionary, null).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
   }
 }

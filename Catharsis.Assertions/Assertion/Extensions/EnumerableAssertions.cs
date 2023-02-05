@@ -83,7 +83,7 @@ public static class EnumerableAssertions
     if (sequence is null) throw new ArgumentNullException(nameof(sequence));
     if (other is null) throw new ArgumentNullException(nameof(other));
 
-    return assertion.Empty(sequence.Except(other, comparer), message);
+    return assertion.Empty(other.Except(sequence, comparer), message);
   }
 
   /// <summary>

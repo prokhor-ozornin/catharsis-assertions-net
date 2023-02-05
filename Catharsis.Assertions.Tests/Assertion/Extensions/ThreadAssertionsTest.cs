@@ -17,7 +17,8 @@ public sealed class ThreadAssertionsTest : UnitTest
     AssertionExtensions.Should(() => ThreadAssertions.State(null, Thread.CurrentThread, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.State(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("thread");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.State(Thread.CurrentThread, ThreadState.Unstarted, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.State(Thread.CurrentThread, Thread.CurrentThread.ThreadState).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -29,6 +30,7 @@ public sealed class ThreadAssertionsTest : UnitTest
     AssertionExtensions.Should(() => ThreadAssertions.Priority(null, Thread.CurrentThread, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Priority(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("thread");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Priority(Thread.CurrentThread, ThreadPriority.Highest, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Priority(Thread.CurrentThread, Thread.CurrentThread.Priority).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

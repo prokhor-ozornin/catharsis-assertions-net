@@ -18,7 +18,13 @@ public static class DictionaryAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static IAssertion ContainKey<TKey, TValue>(this IAssertion assertion, IDictionary<TKey, TValue> dictionary, TKey key, string message = null) => dictionary is not null ? assertion.True(dictionary.ContainsKey(key), message) : throw new ArgumentNullException(nameof(dictionary));
+  public static IAssertion ContainKey<TKey, TValue>(this IAssertion assertion, IDictionary<TKey, TValue> dictionary, TKey key, string message = null) where TKey : notnull
+  {
+    if (dictionary is null) throw new ArgumentNullException(nameof(dictionary));
+    if (key is null) throw new ArgumentNullException(nameof(key));
+
+    return assertion.True(dictionary.ContainsKey(key), message);
+  }
 
   /// <summary>
   ///   <para></para>

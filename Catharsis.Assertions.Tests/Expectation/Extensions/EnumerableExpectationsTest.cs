@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -46,9 +47,12 @@ public sealed class EnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EquivalentTo(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => EmptySequence.Expect().EquivalentTo(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-
-
-    throw new NotImplementedException();
+    Enumerable.Empty<object>().Expect().EquivalentTo(Array.Empty<object>()).Result.Should().BeTrue();
+    
+    EmptySequence.Expect().EquivalentTo(EmptySequence).Result.Should().BeTrue();
+    
+    RandomSequence.ToArray().With(sequence => sequence.ToList().Expect().EquivalentTo(sequence.ToLinkedList()).Result.Should().BeTrue());
+    RandomSequence.Expect().EquivalentTo(EmptySequence).Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -60,7 +64,10 @@ public sealed class EnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => EnumerableExpectations.Contain(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Contain(new object())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    EmptySequence.Expect().Contain(new object()).Result.Should().BeFalse();
+    
+    RandomSequence.Expect().Contain(new object()).Result.Should().BeFalse();
+    RandomSequence.ToArray().With(sequence => sequence.Expect().Contain(sequence.Random()).Result.Should().BeTrue());
   }
 
   /// <summary>
@@ -71,9 +78,15 @@ public sealed class EnumerableExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => EnumerableExpectations.ContainAll(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAll(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => EmptySequence.Expect().ContainAll(null)).ThrowExactly<ArgumentNullException>().WithParameterName("elements");
+    AssertionExtensions.Should(() => EmptySequence.Expect().ContainAll(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    throw new NotImplementedException();
+    Enumerable.Empty<object>().Expect().ContainAll(Array.Empty<object>()).Result.Should().BeTrue();
+    
+    EmptySequence.Expect().ContainAll(EmptySequence).Result.Should().BeTrue();
+    EmptySequence.Expect().ContainAll(RandomSequence).Result.Should().BeFalse();
+
+    RandomSequence.ToArray().With(sequence => sequence.Expect().ContainAll(sequence.Reverse()).Result.Should().BeTrue());
+    RandomSequence.Expect().ContainAll(EmptySequence).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -86,7 +99,13 @@ public sealed class EnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAnyOf(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => EmptySequence.Expect().ContainAnyOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("elements");
 
-    throw new NotImplementedException();
+    EmptySequence.Expect().ContainAnyOf(new object[] { new() }).Result.Should().BeFalse();
+    EmptySequence.Expect().ContainAnyOf(EmptySequence).Result.Should().BeFalse();
+    EmptySequence.Expect().ContainAnyOf(RandomSequence).Result.Should().BeFalse();
+
+    RandomSequence.Expect().ContainAnyOf(new object[] { new() }).Result.Should().BeFalse();
+    RandomSequence.Expect().ContainAnyOf(EmptySequence).Result.Should().BeFalse();
+    RandomSequence.ToArray().With(sequence => sequence.Expect().ContainAnyOf(new[] { sequence.Random() }).Result.Should().BeTrue());
   }
 
   /// <summary>
@@ -97,6 +116,8 @@ public sealed class EnumerableExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => EnumerableExpectations.ContainNulls<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainNulls()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+
 
     throw new NotImplementedException();
   }

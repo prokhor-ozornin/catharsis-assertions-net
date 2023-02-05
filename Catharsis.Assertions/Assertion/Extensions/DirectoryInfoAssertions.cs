@@ -32,6 +32,6 @@ public static class DirectoryInfoAssertions
     if (directory is null) throw new ArgumentNullException(nameof(directory));
     if (parent is null) throw new ArgumentNullException(nameof(parent));
 
-    return assertion.Contain(parent.EnumerateDirectories("*", new EnumerationOptions { RecurseSubdirectories = true }), directory, null, message);
+    return assertion.Contain(parent.EnumerateDirectories("*", new EnumerationOptions { RecurseSubdirectories = true }).Select(directory => directory.FullName), directory.FullName, null, message);
   }
 }

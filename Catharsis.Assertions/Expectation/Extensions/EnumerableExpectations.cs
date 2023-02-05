@@ -56,7 +56,7 @@ public static class EnumerableExpectations
   /// <param name="comparer"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<IEnumerable<T>> ContainAll<T>(this IExpectation<IEnumerable<T>> expectation, IEnumerable<T> other, IEqualityComparer<T> comparer = null) => expectation.HaveSubject().And().ThrowIfNull(other, nameof(other)).And().Expected(sequence => !sequence.Except(other, comparer).Any());
+  public static IExpectation<IEnumerable<T>> ContainAll<T>(this IExpectation<IEnumerable<T>> expectation, IEnumerable<T> other, IEqualityComparer<T> comparer = null) => expectation.HaveSubject().And().ThrowIfNull(other, nameof(other)).And().Expected(sequence => !other.Except(sequence, comparer).Any());
 
   /// <summary>
   ///   <para></para>
