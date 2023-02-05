@@ -16,7 +16,10 @@ public sealed class RangeExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => RangeExpectations.StartIndex(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-    throw new NotImplementedException();
+    (..0).Expect().StartIndex(int.MinValue).Result.Should().BeFalse();
+    (..0).Expect().StartIndex(0).Result.Should().BeTrue();
+    (..).Expect().StartIndex(0).Result.Should().BeTrue();
+    (^0..0).Expect().StartIndex(0).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -27,6 +30,9 @@ public sealed class RangeExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => RangeExpectations.EndIndex(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-    throw new NotImplementedException();
+    (..0).Expect().EndIndex(int.MinValue).Result.Should().BeFalse();
+    (..0).Expect().EndIndex(0).Result.Should().BeTrue();
+    (..).Expect().EndIndex(0).Result.Should().BeTrue();
+    (..^int.MaxValue).Expect().EndIndex(int.MaxValue).Result.Should().BeTrue();
   }
 }

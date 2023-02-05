@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using FluentAssertions;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -9,6 +10,8 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class ProcessExpectationsTest : UnitTest
 {
+  private Process ShellProcess { get; } = "cmd.exe".ToProcess();
+
   /// <summary>
   ///   <para>Performs testing of <see cref="ProcessExpectations.Exited(IExpectation{Process})"/> method.</para>
   /// </summary>
@@ -18,7 +21,13 @@ public sealed class ProcessExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ProcessExpectations.Exited(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((Process) null).Expect().Exited()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Process.GetCurrentProcess().Expect().Exited().Result.Should().BeFalse();
+
+    ShellProcess.With(process =>
+    {
+      process.TryFinallyKill(process => process.Start());
+      process.Expect().Exited().Result.Should().BeTrue();
+    });
   }
 
   /// <summary>
@@ -30,6 +39,13 @@ public sealed class ProcessExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ProcessExpectations.ExitCode(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((Process) null).Expect().ExitCode(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Process.GetCurrentProcess().Expect().ExitCode(0)).ThrowExactly<InvalidOperationException>();
+
+    ShellProcess.With(process =>
+    {
+      process.TryFinallyKill(process => process.Start());
+      process.Expect().ExitCode(0).Result.Should().BeFalse();
+      process.Expect().ExitCode(process.ExitCode).Result.Should().BeTrue();
+    });
   }
 }
