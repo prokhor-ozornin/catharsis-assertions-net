@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Extensions;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -19,7 +20,21 @@ public sealed class TextReaderAssertionsTest : UnitTest
     AssertionExtensions.Should(() => TextReaderAssertions.End(null, Reader)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => TextReaderAssertions.End(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-    throw new NotImplementedException();
+    Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To));
+    RandomStream.ToStreamReader().TryFinallyDispose(reader =>
+    {
+      AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      reader.ReadToEnd();
+      Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
+
+    new StringReader(string.Empty).TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
+    new StringReader(RandomString).TryFinallyDispose(reader =>
+    {
+      AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      reader.ReadToEnd();
+      Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
   }
 
   public override void Dispose()
