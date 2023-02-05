@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using FluentAssertions;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -20,7 +21,19 @@ public sealed class HttpResponseMessageExpectationsTest : UnitTest
     AssertionExtensions.Should(() => HttpResponseMessageExpectations.Successful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((HttpResponseMessage) null).Expect().Successful()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Enum.GetValues<HttpStatusCode>().ForEach(status =>
+    {
+      var code = (int) status;
+
+      if (code is >= 200 and <= 299)
+      {
+        new HttpResponseMessage(status).TryFinallyDispose(message => message.Expect().Successful().Result.Should().BeTrue());
+      }
+      else
+      {
+        new HttpResponseMessage(status).TryFinallyDispose(message => message.Expect().Successful().Result.Should().BeFalse());
+      }
+    });
   }
 
   /// <summary>
@@ -32,7 +45,8 @@ public sealed class HttpResponseMessageExpectationsTest : UnitTest
     AssertionExtensions.Should(() => HttpResponseMessageExpectations.Status(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((HttpResponseMessage) null).Expect().Status(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Response.Expect().Status(HttpStatusCode.NotFound).Result.Should().BeFalse();
+    Response.Expect().Status(Response.StatusCode).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -45,9 +59,32 @@ public sealed class HttpResponseMessageExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((HttpResponseMessage) null).Expect().Header("name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Response.Expect().Header(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    throw new NotImplementedException();
+    Response.With(response =>
+    {
+      response.Headers.Add("connection", (string) null);
+      Response.Expect().Header("connection", null).Result.Should().BeFalse();
+      Response.Headers.Clear();
+
+      response.Headers.Add("connection", Enumerable.Empty<string>());
+      Response.Expect().Header("connection", null).Result.Should().BeFalse();
+      Response.Headers.Clear();
+
+      response.Headers.Add("connection", "open");
+      response.Headers.Add("connection", "close");
+      Response.Expect().Header("connection", "open").Result.Should().BeTrue();
+      Response.Expect().Header("connection", "close").Result.Should().BeTrue();
+      Response.Headers.Clear();
+
+      response.Headers.Add("connection", new[] { "open", "close" });
+      Response.Expect().Header("connection", "open").Result.Should().BeTrue();
+      Response.Expect().Header("connection", "close").Result.Should().BeTrue();
+      Response.Headers.Clear();
+    });
   }
 
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   public override void Dispose()
   {
     base.Dispose();

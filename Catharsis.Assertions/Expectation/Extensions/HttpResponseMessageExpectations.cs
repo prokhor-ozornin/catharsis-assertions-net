@@ -33,5 +33,5 @@ public static class HttpResponseMessageExpectations
   /// <param name="value"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<HttpResponseMessage> Header(this IExpectation<HttpResponseMessage> expectation, string name, string value) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(response => response.Headers.GetValues(name).Contains(value));
+  public static IExpectation<HttpResponseMessage> Header(this IExpectation<HttpResponseMessage> expectation, string name, string value) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(response => response.Headers.Contains(name) && response.Headers.GetValues(name).Contains(value));
 }

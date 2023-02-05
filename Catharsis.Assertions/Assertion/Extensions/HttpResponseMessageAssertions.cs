@@ -45,6 +45,6 @@ public static class HttpResponseMessageAssertions
     if (response is null) throw new ArgumentNullException(nameof(response));
     if (name is null) throw new ArgumentNullException(nameof(name));
 
-    return assertion.Contain(response.Headers.GetValues(name), value, null, message);
+    return assertion.Contain(response.Headers.Contains(name) ? response.Headers.GetValues(name) : Enumerable.Empty<string>(), value, null, message);
   }
 }

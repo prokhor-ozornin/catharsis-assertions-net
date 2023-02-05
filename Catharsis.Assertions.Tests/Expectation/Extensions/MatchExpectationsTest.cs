@@ -33,6 +33,7 @@ public sealed class MatchExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((Match) null).Expect().Value(string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Match.Empty.Expect().Value(null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-    throw new NotImplementedException();
+    Match.Empty.Expect().Value(RandomString).Result.Should().BeFalse();
+    Match.Empty.Expect().Value(Match.Empty.Value).Result.Should().BeTrue();
   }
 }
