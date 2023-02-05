@@ -10,16 +10,6 @@ public static class TaskExpectations
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
-  /// <param name="exception"></param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  /// <seealso cref="Exception{T}(IExpectation{Task{T}}, AggregateException)"/>
-  public static IExpectation<Task> Exception(this IExpectation<Task> expectation, AggregateException exception) => expectation.HaveSubject().And().Expected(task => Equals(task.Exception, exception));
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  /// <param name="expectation"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="Successful{T}(IExpectation{Task{T}})"/>

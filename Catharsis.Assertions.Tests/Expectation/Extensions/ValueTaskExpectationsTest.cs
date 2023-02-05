@@ -23,15 +23,19 @@ public sealed class ValueTaskExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Successful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
+      ValueTask.CompletedTask.Expect().Successful().Result.Should().BeTrue();
+      ValueTask.FromCanceled(new CancellationToken(true)).Expect().Successful().Result.Should().BeFalse();
+      ValueTask.FromException(new Exception()).Expect().Successful().Result.Should().BeFalse();
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Successful<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
+      ValueTask.FromResult<object>(null).Expect().Successful().Result.Should().BeTrue();
+      ValueTask.FromCanceled<object>(new CancellationToken(true)).Expect().Successful().Result.Should().BeFalse();
+      ValueTask.FromException<object>(new Exception()).Expect().Successful().Result.Should().BeFalse();
     }
-
-    throw new NotImplementedException();
   }
 
   /// <summary>
@@ -48,15 +52,19 @@ public sealed class ValueTaskExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Unsuccessful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
+      ValueTask.CompletedTask.Expect().Unsuccessful().Result.Should().BeFalse();
+      ValueTask.FromCanceled(new CancellationToken(true)).Expect().Unsuccessful().Result.Should().BeFalse();
+      ValueTask.FromException(new Exception()).Expect().Unsuccessful().Result.Should().BeTrue();
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Unsuccessful<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
+      ValueTask.FromResult<object>(null).Expect().Unsuccessful().Result.Should().BeFalse();
+      ValueTask.FromCanceled<object>(new CancellationToken(true)).Expect().Unsuccessful().Result.Should().BeFalse();
+      ValueTask.FromException<object>(new Exception()).Expect().Unsuccessful().Result.Should().BeTrue();
     }
-
-    throw new NotImplementedException();
   }
 
   /// <summary>
@@ -73,15 +81,19 @@ public sealed class ValueTaskExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Canceled(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
+      ValueTask.CompletedTask.Expect().Canceled().Result.Should().BeFalse();
+      ValueTask.FromCanceled(new CancellationToken(true)).Expect().Canceled().Result.Should().BeTrue();
+      ValueTask.FromException(new Exception()).Expect().Canceled().Result.Should().BeFalse();
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Canceled<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
+      ValueTask.FromResult<object>(null).Expect().Canceled().Result.Should().BeFalse();
+      ValueTask.FromCanceled<object>(new CancellationToken(true)).Expect().Canceled().Result.Should().BeTrue();
+      ValueTask.FromException<object>(new Exception()).Expect().Canceled().Result.Should().BeFalse();
     }
-
-    throw new NotImplementedException();
   }
 
   /// <summary>
@@ -98,14 +110,18 @@ public sealed class ValueTaskExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Completed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
+      ValueTask.CompletedTask.Expect().Completed().Result.Should().BeTrue();
+      ValueTask.FromCanceled(new CancellationToken(true)).Expect().Completed().Result.Should().BeTrue();
+      ValueTask.FromException(new Exception()).Expect().Completed().Result.Should().BeTrue();
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Completed<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
+      ValueTask.FromResult<object>(null).Expect().Completed().Result.Should().BeTrue();
+      ValueTask.FromCanceled<object>(new CancellationToken(true)).Expect().Completed().Result.Should().BeTrue();
+      ValueTask.FromException<object>(new Exception()).Expect().Completed().Result.Should().BeTrue();
     }
-
-    throw new NotImplementedException();
   }
 }

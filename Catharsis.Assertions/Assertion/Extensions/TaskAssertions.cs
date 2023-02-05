@@ -11,18 +11,6 @@ public static class TaskAssertions
   /// </summary>
   /// <param name="assertion"></param>
   /// <param name="task"></param>
-  /// <param name="exception"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  /// <seealso cref="Exception{T}(IAssertion, Task{T}, AggregateException, string)"/>
-  public static IAssertion Exception(this IAssertion assertion, Task task, AggregateException exception, string message = null) => task is not null ? assertion.Equal(task.Exception, exception, message) : throw new ArgumentNullException(nameof(task));
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  /// <param name="assertion"></param>
-  /// <param name="task"></param>
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
