@@ -22,7 +22,7 @@ public sealed class DirectoryInfoAssertionsTest : UnitTest
 
     RandomDirectory.TryFinallyClear(directory =>
     {
-      Randomizer.BinaryFile(0, null, null, directory);
+      Randomizer.File(directory);
       AssertionExtensions.Should(() => Assert.To.Empty(directory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     });
 

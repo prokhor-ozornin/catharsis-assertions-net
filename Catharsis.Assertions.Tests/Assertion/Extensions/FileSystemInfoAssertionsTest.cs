@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Extensions;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -17,7 +18,11 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => FileSystemInfoAssertions.Exist(null, RandomFile)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-    throw new NotImplementedException();
+    Assert.To.Exist(RandomFile).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeFile, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.Exist(RandomDirectory).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeDirectory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -29,6 +34,21 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => FileSystemInfoAssertions.Attribute(null, RandomFile, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Attribute(null, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-    throw new NotImplementedException();
+    RandomFile.With(file =>
+    {
+      Enum.GetValues<FileAttributes>().ForEach(attribute =>
+      {
+        if ((file.Attributes & attribute) == attribute)
+        {
+          Assert.To.Attribute(file, attribute).Should().NotBeNull().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Attribute(file, attribute, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        }
+      });
+
+      Assert.To.Attribute(file.AsReadOnly(), FileAttributes.ReadOnly).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
   }
 }

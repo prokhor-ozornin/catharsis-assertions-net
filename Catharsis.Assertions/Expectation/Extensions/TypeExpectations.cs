@@ -34,11 +34,27 @@ public static class TypeExpectations
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
-  /// <param name="target"></param>
+  /// <returns></returns>
+  public static IExpectation<Type> Public(this IExpectation<Type> expectation) => expectation.HaveSubject().And().Expected(type => type.IsPublic && type.IsVisible);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <returns></returns>
+  public static IExpectation<Type> Internal(this IExpectation<Type> expectation) => expectation.HaveSubject().And().Expected(type => type.IsNotPublic && !type.IsVisible);
+
+  public static IExpectation<Type> Subclass(this IExpectation<Type> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(it => it.IsSubclassOf(type));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <param name="type"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="AssignableFrom{T}(IExpectation{Type})"/>
-  public static IExpectation<Type> AssignableFrom(this IExpectation<Type> expectation, Type target) => expectation.HaveSubject().And().ThrowIfNull(target, nameof(target)).And().Expected(type => type.IsAssignableFrom(target));
+  public static IExpectation<Type> AssignableFrom(this IExpectation<Type> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(it => it.IsAssignableFrom(type));
 
   /// <summary>
   ///   <para></para>
@@ -55,11 +71,11 @@ public static class TypeExpectations
   ///   <para></para>
   /// </summary>
   /// <param name="expectation"></param>
-  /// <param name="target"></param>
+  /// <param name="type"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="AssignableTo{T}(IExpectation{Type})"/>
-  public static IExpectation<Type> AssignableTo(this IExpectation<Type> expectation, Type target) => expectation.HaveSubject().And().ThrowIfNull(target, nameof(target)).And().Expected(type => type.IsAssignableTo(target));
+  public static IExpectation<Type> AssignableTo(this IExpectation<Type> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(it => it.IsAssignableTo(type));
 
   /// <summary>
   ///   <para></para>

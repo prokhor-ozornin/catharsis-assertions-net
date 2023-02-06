@@ -31,7 +31,17 @@ public abstract class UnitTest : IDisposable
   /// <summary>
   ///   <para></para>
   /// </summary>
+  protected FileInfo RandomFakeFile { get; } = Randomizer.FilePath().ToFile();
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   protected DirectoryInfo RandomDirectory { get; } = Randomizer.Directory();
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected DirectoryInfo RandomFakeDirectory { get; } = Randomizer.DirectoryPath().ToDirectory();
 
   /// <summary>
   ///   <para></para>
