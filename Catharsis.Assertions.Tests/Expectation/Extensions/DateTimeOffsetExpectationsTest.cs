@@ -220,7 +220,11 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => DateTimeOffsetExpectations.DayOfWeek(null, DayOfWeek.Monday)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-    throw new NotImplementedException();
+    DateTimeOffset.MinValue.With(date =>
+    {
+      date.Expect().DayOfWeek(date.DayOfWeek).Result.Should().BeTrue();
+      date.Expect().DayOfWeek(date.DayOfWeek + 1).Result.Should().BeFalse();
+    });
   }
 
   /// <summary>
@@ -229,8 +233,17 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Offset_Method()
   {
-    AssertionExtensions.Should(() => DateTimeOffsetExpectations.Offset(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    void Validate(DateTimeOffset date)
+    {
+      date.Expect().Offset(TimeSpan.MinValue).Result.Should().BeFalse();
+      date.Expect().Offset(date.Offset).Result.Should().BeTrue();
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeOffsetExpectations.Offset(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
   }
 }

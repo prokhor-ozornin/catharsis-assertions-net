@@ -66,6 +66,16 @@ public static class FieldInfoAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion Internal(this IAssertion assertion, FieldInfo field, string message = null) => field is not null ? assertion.True(field.IsAssembly, message) : throw new ArgumentNullException(nameof(field));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
+  /// <param name="field"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
   public static IAssertion Static(this IAssertion assertion, FieldInfo field, string message = null) => field is not null ? assertion.True(field.IsStatic, message) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
@@ -82,7 +92,6 @@ public static class FieldInfoAssertions
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (field is null) throw new ArgumentNullException(nameof(field));
-    if (subject is null) throw new ArgumentNullException(nameof(subject));
     
     return assertion.Equal(field.GetValue(subject), value, message);
   }

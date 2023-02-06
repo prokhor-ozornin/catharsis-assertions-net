@@ -218,14 +218,13 @@ public sealed class DateTimeExpectationsTest : UnitTest
   [Fact]
   public void DayOfWeek_Method()
   {
-    void Validate(DateTime date)
-    {
-      //Enum.GetValues<DayOfWeek>().ForEach(day => )
-    }
-
     AssertionExtensions.Should(() => DateTimeExpectations.DayOfWeek(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-    DateTime.MinValue.Expect().DayOfWeek(DayOfWeek.Monday).Result.Should().BeTrue();
+    DateTime.MinValue.With(date =>
+    {
+      date.Expect().DayOfWeek(date.DayOfWeek).Result.Should().BeTrue();
+      date.Expect().DayOfWeek(date.DayOfWeek + 1).Result.Should().BeFalse();
+    });
   }
 
   /// <summary>

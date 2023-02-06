@@ -220,7 +220,11 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => DateTimeOffsetAssertions.DayOfWeek(null, default, DayOfWeek.Monday)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    DateTimeOffset.MinValue.With(date =>
+    {
+      Assert.To.DayOfWeek(date, date.DayOfWeek).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.DayOfWeek(date, date.DayOfWeek + 1, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    });
   }
 
   /// <summary>
@@ -229,8 +233,17 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
   [Fact]
   public void Offset_Method()
   {
-    AssertionExtensions.Should(() => DateTimeOffsetAssertions.Offset(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    void Validate(DateTimeOffset date)
+    {
+      AssertionExtensions.Should(() => Assert.To.Offset(date, TimeSpan.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Offset(date, date.Offset).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeOffsetAssertions.Offset(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
   }
 }

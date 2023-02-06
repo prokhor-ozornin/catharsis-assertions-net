@@ -49,6 +49,13 @@ public static class FieldInfoExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
+  public static IExpectation<FieldInfo> Internal(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsAssembly);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<FieldInfo> Static(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsStatic);
 
@@ -60,5 +67,5 @@ public static class FieldInfoExpectations
   /// <param name="value"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<FieldInfo> Value(this IExpectation<FieldInfo> expectation, object subject, object value) => expectation.HaveSubject().And().ThrowIfNull(subject, nameof(subject)).And().Expected(field => Equals(field.GetValue(subject), value));
+  public static IExpectation<FieldInfo> Value(this IExpectation<FieldInfo> expectation, object subject, object value) => expectation.HaveSubject().And().Expected(field => Equals(field.GetValue(subject), value));
 }

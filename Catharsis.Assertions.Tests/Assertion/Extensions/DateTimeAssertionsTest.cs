@@ -220,7 +220,11 @@ public sealed class DateTimeAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => DateTimeAssertions.DayOfWeek(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    DateTime.MinValue.With(date =>
+    {
+      Assert.To.DayOfWeek(date, date.DayOfWeek).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.DayOfWeek(date, date.DayOfWeek + 1, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    });
   }
 
   /// <summary>
