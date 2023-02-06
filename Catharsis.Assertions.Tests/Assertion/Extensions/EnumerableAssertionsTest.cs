@@ -99,13 +99,13 @@ public sealed class EnumerableAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.ContainAnyOf(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
     AssertionExtensions.Should(() => Assert.To.ContainAnyOf(EmptySequence, null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    AssertionExtensions.Should(() => Assert.To.ContainAnyOf(EmptySequence, new object[] { new() }).Should().NotBeNull().And.BeSameAs(Assert.To));
+    AssertionExtensions.Should(() => Assert.To.ContainAnyOf(EmptySequence, new object().ToSequence()).Should().NotBeNull().And.BeSameAs(Assert.To));
     AssertionExtensions.Should(() => Assert.To.ContainAnyOf(EmptySequence, EmptySequence).Should().NotBeNull().And.BeSameAs(Assert.To));
     AssertionExtensions.Should(() => Assert.To.ContainAnyOf(EmptySequence, RandomSequence).Should().NotBeNull().And.BeSameAs(Assert.To));
 
-    AssertionExtensions.Should(() => Assert.To.ContainAnyOf(RandomSequence, new object[] { new() }).Should().NotBeNull().And.BeSameAs(Assert.To));
+    AssertionExtensions.Should(() => Assert.To.ContainAnyOf(RandomSequence, new object().ToSequence()).Should().NotBeNull().And.BeSameAs(Assert.To));
     AssertionExtensions.Should(() => Assert.To.ContainAnyOf(RandomSequence, EmptySequence).Should().NotBeNull().And.BeSameAs(Assert.To));
-    RandomSequence.ToArray().With(sequence => Assert.To.ContainAnyOf(sequence, new[] { sequence.Random() }).Should().NotBeNull().And.BeSameAs(Assert.To));
+    RandomSequence.ToArray().With(sequence => Assert.To.ContainAnyOf(sequence, sequence.Random().ToSequence()).Should().NotBeNull().And.BeSameAs(Assert.To));
   }
 
   /// <summary>
@@ -117,7 +117,9 @@ public sealed class EnumerableAssertionsTest : UnitTest
     AssertionExtensions.Should(() => EnumerableAssertions.ContainNulls(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.ContainNulls<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.ContainNulls(EmptySequence, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.ContainNulls(RandomSequence, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.ContainNulls(1.Nulls()).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -129,7 +131,9 @@ public sealed class EnumerableAssertionsTest : UnitTest
     AssertionExtensions.Should(() => EnumerableAssertions.ContainUnique(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.ContainUnique<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-    throw new NotImplementedException();
+    Assert.To.ContainUnique(EmptySequence).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.ContainUnique(RandomSequence).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.ContainUnique(2.Nulls(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>

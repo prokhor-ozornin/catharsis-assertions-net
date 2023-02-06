@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using Catharsis.Extensions;
+using System.Reflection.Emit;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -25,6 +27,9 @@ public sealed class AssemblyAssertionsTest : UnitTest
       AssertionExtensions.Should(() => AssemblyAssertions.Define(null, Assembly.GetExecutingAssembly(), typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Define(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
       AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
+
+      Assert.To.Define(Assembly.GetAssembly(typeof(object)), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     }
 
     using (new AssertionScope())
@@ -32,9 +37,9 @@ public sealed class AssemblyAssertionsTest : UnitTest
       AssertionExtensions.Should(() => AssemblyAssertions.Define<object>(null, Assembly.GetExecutingAssembly())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Define<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
 
+      Assert.To.Define<object>(Assembly.GetAssembly(typeof(object))).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Define<object>(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     }
-
-    throw new NotImplementedException();
   }
 
   /// <summary>
@@ -46,6 +51,7 @@ public sealed class AssemblyAssertionsTest : UnitTest
     AssertionExtensions.Should(() => AssemblyAssertions.Dynamic(null, Assembly.GetExecutingAssembly())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Dynamic(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Dynamic(AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Randomizer.Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect)).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

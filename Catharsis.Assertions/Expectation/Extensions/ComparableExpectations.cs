@@ -89,7 +89,7 @@ public static class ComparableExpectations
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="OutOfRange{T}(IExpectation{T}, T, T)"/>
-  public static IExpectation<T> InRange<T>(this IExpectation<T> expectation, T min, T max) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(min) >= 0 || value.CompareTo(max) <= 0);
+  public static IExpectation<T> InRange<T>(this IExpectation<T> expectation, T min, T max) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(min) >= 0 && value.CompareTo(max) <= 0);
 
   /// <summary>
   ///   <para></para>

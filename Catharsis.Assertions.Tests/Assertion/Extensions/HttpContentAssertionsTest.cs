@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Extensions;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -25,7 +26,7 @@ public sealed class HttpContentAssertionsTest : UnitTest
     Content.Headers.Add("header", Enumerable.Empty<string>());
     AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<ArgumentException>().WithMessage("error");
 
-    Content.Headers.Add("header", new string[] { null });
+    Content.Headers.Add("header", ((string) null).ToSequence());
     Assert.To.ContainHeader(Content, "header").Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 

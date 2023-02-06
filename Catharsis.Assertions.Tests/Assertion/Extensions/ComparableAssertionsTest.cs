@@ -156,7 +156,17 @@ public sealed class ComparableAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableAssertions.InRange<int>(null, default, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    Assert.To.InRange(0, 0, 0).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.InRange(0, int.MinValue, 0).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.InRange(0, int.MinValue, int.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.InRange(0, int.MaxValue, 0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.InRange(0, int.MaxValue, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+    Assert.To.InRange(DateTime.Today, DateTime.Today, DateTime.Today).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.InRange(DateTime.Today, DateTime.MinValue, DateTime.Today).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.InRange(DateTime.Today, DateTime.MinValue, DateTime.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.InRange(DateTime.Today, DateTime.MaxValue, DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.InRange(DateTime.MaxValue, DateTime.MinValue, DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -167,6 +177,20 @@ public sealed class ComparableAssertionsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableAssertions.OutOfRange<int>(null, default, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.OutOfRange(0, 0, 0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.OutOfRange(0, int.MinValue, 0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.OutOfRange(0, int.MinValue, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.OutOfRange(0, int.MaxValue, 0).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.OutOfRange(0, int.MaxValue, int.MinValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.OutOfRange(0, 1, int.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.OutOfRange(0, int.MinValue, -1).Should().NotBeNull().And.BeSameAs(Assert.To);
+    
+    AssertionExtensions.Should(() => Assert.To.OutOfRange(DateTime.Today, DateTime.Today, DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.OutOfRange(DateTime.Today, DateTime.MinValue, DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.OutOfRange(DateTime.Today, DateTime.MinValue, DateTime.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.OutOfRange(DateTime.Today, DateTime.MaxValue, DateTime.Today).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.OutOfRange(DateTime.MaxValue, DateTime.MinValue, DateTime.Today).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.OutOfRange(DateTime.Today, DateTime.Today.AddDays(1), DateTime.MaxValue).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.OutOfRange(DateTime.Today, DateTime.MinValue, DateTime.Today.AddDays(-1)).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

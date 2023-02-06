@@ -113,7 +113,7 @@ public static class ComparableAssertions
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentOutOfRangeException"></exception>
   /// <seealso cref="OutOfRange{T}(IAssertion, T, T, T, string)"/>
-  public static IAssertion InRange<T>(this IAssertion assertion, T value, T min, T max, string message = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(min) >= 0 || value.CompareTo(max) <= 0, message);
+  public static IAssertion InRange<T>(this IAssertion assertion, T value, T min, T max, string message = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(min) >= 0 && value.CompareTo(max) <= 0, message);
 
   /// <summary>
   ///   <para></para>

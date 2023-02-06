@@ -155,10 +155,19 @@ public sealed class ComparableExpectationsTest : UnitTest
   public void InRange_Method()
   {
     AssertionExtensions.Should(() => ComparableExpectations.InRange<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ComparableExpectations.InRange<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
+    0.Expect().InRange(0, 0).Result.Should().BeTrue();
+    0.Expect().InRange(int.MinValue, 0).Result.Should().BeTrue();
+    0.Expect().InRange(int.MinValue, int.MaxValue).Result.Should().BeTrue();
+    0.Expect().InRange(int.MaxValue, 0).Result.Should().BeFalse();
+    0.Expect().InRange(int.MaxValue, int.MinValue).Result.Should().BeFalse();
 
-
-    throw new NotImplementedException();
+    DateTime.Today.Expect().InRange(DateTime.Today, DateTime.Today).Result.Should().BeTrue();
+    DateTime.Today.Expect().InRange(DateTime.MinValue, DateTime.Today).Result.Should().BeTrue();
+    DateTime.Today.Expect().InRange(DateTime.MinValue, DateTime.MaxValue).Result.Should().BeTrue();
+    DateTime.Today.Expect().InRange(DateTime.MaxValue, DateTime.Today).Result.Should().BeFalse();
+    DateTime.Today.Expect().InRange(DateTime.MaxValue, DateTime.MinValue).Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -169,6 +178,20 @@ public sealed class ComparableExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => ComparableExpectations.OutOfRange<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-    throw new NotImplementedException();
+    0.Expect().OutOfRange(0, 0).Result.Should().BeFalse();
+    0.Expect().OutOfRange(int.MinValue, 0).Result.Should().BeFalse();
+    0.Expect().OutOfRange(int.MinValue, int.MaxValue).Result.Should().BeFalse();
+    0.Expect().OutOfRange(int.MaxValue, 0).Result.Should().BeTrue();
+    0.Expect().OutOfRange(int.MaxValue, int.MinValue).Result.Should().BeTrue();
+    0.Expect().OutOfRange(1, int.MaxValue).Result.Should().BeTrue();
+    0.Expect().OutOfRange(int.MinValue, -1).Result.Should().BeTrue();
+
+    DateTime.Today.Expect().OutOfRange(DateTime.Today, DateTime.Today).Result.Should().BeFalse();
+    DateTime.Today.Expect().OutOfRange(DateTime.MinValue, DateTime.Today).Result.Should().BeFalse();
+    DateTime.Today.Expect().OutOfRange(DateTime.MinValue, DateTime.MaxValue).Result.Should().BeFalse();
+    DateTime.Today.Expect().OutOfRange(DateTime.MaxValue, DateTime.Today).Result.Should().BeTrue();
+    DateTime.Today.Expect().OutOfRange(DateTime.MaxValue, DateTime.MinValue).Result.Should().BeTrue();
+    DateTime.Today.Expect().OutOfRange(DateTime.Today.AddDays(1), DateTime.MaxValue).Result.Should().BeTrue();
+    DateTime.Today.Expect().OutOfRange(DateTime.MinValue, DateTime.Today.AddDays(-1)).Result.Should().BeTrue();
   }
 }

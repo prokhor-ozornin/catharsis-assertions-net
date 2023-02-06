@@ -114,8 +114,8 @@ public sealed class ObjectAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.OneOf(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
     AssertionExtensions.Should(() => Assert.To.OneOf(null, Enumerable.Empty<object>(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Assert.To.OneOf(null, new object[] { null, new(), null }).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.OneOf(new object(), new object[] { new() }, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Assert.To.OneOf(string.Empty, new object[] { string.Empty, Guid.Empty, new() }).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.OneOf(null, new object().ToSequence(null, null)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.OneOf(new object(), new object().ToSequence(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.OneOf(string.Empty, new object().ToSequence(string.Empty, Guid.Empty)).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

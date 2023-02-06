@@ -79,7 +79,10 @@ public static class ComparableProtections
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
 
-    protection.Truth(value.CompareTo(min) < 0 || value.CompareTo(max) > 0, message);
+    if (value.CompareTo(min) < 0 || value.CompareTo(max) > 0)
+    {
+      throw new ArgumentOutOfRangeException(message);
+    }
 
     return value;
   }

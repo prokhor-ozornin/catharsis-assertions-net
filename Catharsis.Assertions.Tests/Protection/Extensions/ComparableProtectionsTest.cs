@@ -87,12 +87,12 @@ public sealed class ComparableProtectionsTest : UnitTest
       Protect.From.OutOfRange(0, 0, 0).Should().Be(0);
       Protect.From.OutOfRange(0, int.MinValue, 0).Should().Be(0);
       Protect.From.OutOfRange(0, 0, int.MaxValue).Should().Be(0);
-      AssertionExtensions.Should(() => Protect.From.OutOfRange(int.MinValue, 0, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Protect.From.OutOfRange(int.MinValue, 0, int.MaxValue, "error")).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("error");
 
       Protect.From.OutOfRange(DateTime.Today, DateTime.Today, DateTime.Today).Should().Be(DateTime.Today);
       Protect.From.OutOfRange(DateTime.Today, DateTime.MinValue, DateTime.Today).Should().Be(DateTime.Today);
       Protect.From.OutOfRange(DateTime.Today, DateTime.Today, DateTime.MaxValue).Should().Be(DateTime.Today);
-      AssertionExtensions.Should(() => Protect.From.OutOfRange(DateTime.MinValue, DateTime.Today, DateTime.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Protect.From.OutOfRange(DateTime.MinValue, DateTime.Today, DateTime.MaxValue, "error")).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("error");
     }
 
     using (new AssertionScope())
@@ -101,7 +101,7 @@ public sealed class ComparableProtectionsTest : UnitTest
 
       Protect.From.OutOfRange(0, ..0).Should().Be(0);
       Protect.From.OutOfRange(0, ..int.MaxValue).Should().Be(0);
-      AssertionExtensions.Should(() => Protect.From.OutOfRange(int.MinValue, ..int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Protect.From.OutOfRange(int.MinValue, ..int.MaxValue, "error")).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("error");
     }
   }
 }
