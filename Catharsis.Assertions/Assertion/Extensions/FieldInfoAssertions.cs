@@ -56,6 +56,16 @@ public static class FieldInfoAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion Protected(this IAssertion assertion, FieldInfo field, string message = null) => field is not null ? assertion.True(field.IsFamily, message) : throw new ArgumentNullException(nameof(field));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
+  /// <param name="field"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
   public static IAssertion Public(this IAssertion assertion, FieldInfo field, string message = null) => field is not null ? assertion.True(field.IsPublic, message) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
@@ -67,6 +77,16 @@ public static class FieldInfoAssertions
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IAssertion Internal(this IAssertion assertion, FieldInfo field, string message = null) => field is not null ? assertion.True(field.IsAssembly, message) : throw new ArgumentNullException(nameof(field));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
+  /// <param name="field"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion ProtectedInternal(this IAssertion assertion, FieldInfo field, string message = null) => field is not null ? assertion.True(field.IsFamilyOrAssembly, message) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
   ///   <para></para>

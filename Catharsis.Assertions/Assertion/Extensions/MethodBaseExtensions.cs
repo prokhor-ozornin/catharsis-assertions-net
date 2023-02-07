@@ -36,7 +36,37 @@ public static class MethodBaseAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion Virtual(this IAssertion assertion, MethodBase method, string message = null) => method is not null ? assertion.True(method.IsVirtual, message) : throw new ArgumentNullException(nameof(method));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
+  /// <param name="method"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion Overridable(this IAssertion assertion, MethodBase method, string message = null) => method is not null ? assertion.True(method.IsVirtual && !method.IsFinal, message) : throw new ArgumentNullException(nameof(method));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
+  /// <param name="method"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
   public static IAssertion Private(this IAssertion assertion, MethodBase method, string message = null) => method is not null ? assertion.True(method.IsPrivate, message) : throw new ArgumentNullException(nameof(method));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
+  /// <param name="method"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion Protected(this IAssertion assertion, MethodBase method, string message = null) => method is not null ? assertion.True(method.IsFamily, message) : throw new ArgumentNullException(nameof(method));
 
   /// <summary>
   ///   <para></para>
@@ -56,7 +86,7 @@ public static class MethodBaseAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Static(this IAssertion assertion, MethodBase method, string message = null) => method is not null ? assertion.True(method.IsStatic, message) : throw new ArgumentNullException(nameof(method));
+  public static IAssertion Internal(this IAssertion assertion, MethodBase method, string message = null) => method is not null ? assertion.True(method.IsAssembly, message) : throw new ArgumentNullException(nameof(method));
 
   /// <summary>
   ///   <para></para>
@@ -66,5 +96,15 @@ public static class MethodBaseAssertions
   /// <param name="message"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Virtual(this IAssertion assertion, MethodBase method, string message = null) => method is not null ? assertion.True(method.IsVirtual, message) : throw new ArgumentNullException(nameof(method));
+  public static IAssertion ProtectedInternal(this IAssertion assertion, MethodBase method, string message = null) => method is not null ? assertion.True(method.IsFamilyOrAssembly, message) : throw new ArgumentNullException(nameof(method));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
+  /// <param name="method"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion Static(this IAssertion assertion, MethodBase method, string message = null) => method is not null ? assertion.True(method.IsStatic, message) : throw new ArgumentNullException(nameof(method));
 }
