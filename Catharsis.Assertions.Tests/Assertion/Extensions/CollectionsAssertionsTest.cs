@@ -19,8 +19,8 @@ public sealed class CollectionsAssertionsTest : UnitTest
     AssertionExtensions.Should(() => CollectionsAssertions.Count(null, Array.Empty<object>(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Count<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-    AssertionExtensions.Should(() => Assert.To.Count(RandomSequence.ToArray(), int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Count(RandomSequence.ToArray(), int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Count(RandomSequence, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Count(RandomSequence, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     RandomSequence.ToArray().With(collection => Assert.To.Count(collection, collection.Length).Should().NotBeNull().And.BeSameAs(Assert.To));
   }
 

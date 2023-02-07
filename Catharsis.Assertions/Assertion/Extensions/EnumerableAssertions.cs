@@ -150,7 +150,7 @@ public static class EnumerableAssertions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="assertion"></param>
-  /// <param name="sequence"></param>
+  /// <param name="subset"></param>
   /// <param name="superset"></param>
   /// <param name="comparer"></param>
   /// <param name="message"></param>
@@ -158,13 +158,13 @@ public static class EnumerableAssertions
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
   /// <seealso cref="SupersetOf{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
-  public static IAssertion SubsetOf<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> superset, IEqualityComparer<T> comparer = null, string message = null)
+  public static IAssertion SubsetOf<T>(this IAssertion assertion, IEnumerable<T> subset, IEnumerable<T> superset, IEqualityComparer<T> comparer = null, string message = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (sequence is null) throw new ArgumentNullException(nameof(sequence));
+    if (subset is null) throw new ArgumentNullException(nameof(subset));
     if (superset is null) throw new ArgumentNullException(nameof(superset));
 
-    return assertion.Empty(sequence.Except(superset, comparer), message);
+    return assertion.Empty(subset.Except(superset, comparer), message);
   }
 
   /// <summary>
@@ -172,13 +172,13 @@ public static class EnumerableAssertions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="assertion"></param>
-  /// <param name="sequence"></param>
+  /// <param name="superset"></param>
   /// <param name="subset"></param>
   /// <param name="comparer"></param>
   /// <param name="message"></param>
   /// <returns></returns>
   /// <seealso cref="SubsetOf{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
-  public static IAssertion SupersetOf<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> subset, IEqualityComparer<T> comparer = null, string message = null) => assertion.SubsetOf(subset, sequence, comparer, message);
+  public static IAssertion SupersetOf<T>(this IAssertion assertion, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null, string message = null) => assertion.SubsetOf(subset, superset, comparer, message);
 
   /// <summary>
   ///   <para></para>
@@ -293,7 +293,7 @@ public static class EnumerableAssertions
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (sequence is null) throw new ArgumentNullException(nameof(sequence));
 
-    return assertion.True(sequence.Order(comparer).SequenceEqual(sequence), message);
+    return assertion.True(sequence.SequenceEqual(sequence.Order(comparer)), message);
   }
   #endif
 }

@@ -9,6 +9,9 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class FileSystemInfoExpectationsTest : UnitTest
 {
+  private FileInfo RandomFakeFile { get; } = Randomizer.FilePath().ToFile();
+  private DirectoryInfo RandomFakeDirectory { get; } = Randomizer.DirectoryPath().ToDirectory();
+
   /// <summary>
   ///   <para>Performs testing of <see cref="FileSystemInfoExpectations.Exist(IExpectation{FileSystemInfo})"/> method.</para>
   /// </summary>

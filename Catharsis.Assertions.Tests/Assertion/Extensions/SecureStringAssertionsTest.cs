@@ -1,4 +1,5 @@
-﻿using Catharsis.Extensions;
+﻿using System.Security;
+using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -9,6 +10,9 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class SecureStringAssertionsTest : UnitTest
 {
+  private SecureString EmptySecureString { get; } = new SecureString().AsReadOnly();
+  private SecureString RandomSecureString { get; } = Randomizer.SecureString(byte.MaxValue);
+
   /// <summary>
   ///   <para>Performs testing of <see cref="SecureStringAssertions.Length(IAssertion, System.Security.SecureString, int, string)"/> method.</para>
   /// </summary>
@@ -47,5 +51,15 @@ public sealed class SecureStringAssertionsTest : UnitTest
 
     AssertionExtensions.Should(() => Assert.To.ReadOnly(RandomSecureString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     Assert.To.ReadOnly(RandomSecureString.AsReadOnly()).Should().NotBeNull().And.BeSameAs(Assert.To);
+  }
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  public override void Dispose()
+  {
+    base.Dispose();
+    EmptySecureString.Dispose();
+    RandomSecureString.Dispose();
   }
 }

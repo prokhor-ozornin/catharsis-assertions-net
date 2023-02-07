@@ -10,6 +10,9 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class SecureStringExpectationsTest : UnitTest
 {
+  private SecureString EmptySecureString { get; } = new SecureString().AsReadOnly();
+  private SecureString RandomSecureString { get; } = Randomizer.SecureString(byte.MaxValue);
+
   /// <summary>
   ///   <para>Performs testing of <see cref="SecureStringExpectations.Length(IExpectation{SecureString}, int)"/> method.</para>
   /// </summary>
@@ -48,5 +51,15 @@ public sealed class SecureStringExpectationsTest : UnitTest
 
     RandomSecureString.Expect().ReadOnly().Result.Should().BeFalse();
     RandomSecureString.AsReadOnly().Expect().ReadOnly().Result.Should().BeTrue();
+  }
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  public override void Dispose()
+  {
+    base.Dispose();
+    EmptySecureString.Dispose();
+    RandomSecureString.Dispose();
   }
 }

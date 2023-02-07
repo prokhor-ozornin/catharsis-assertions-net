@@ -45,13 +45,14 @@ public sealed class TextProtectionsTest : UnitTest
   [Fact]
   public void Empty_SecureString_Method()
   {
-    AssertionExtensions.Should(() => TextProtections.Empty(null, EmptySecureString)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
     AssertionExtensions.Should(() => Protect.From.Empty((SecureString) null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
     new SecureString().TryFinallyDispose(secure => AssertionExtensions.Should(() => Protect.From.Empty(secure, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
     
     new SecureString().TryFinallyDispose(secure =>
     {
+      AssertionExtensions.Should(() => TextProtections.Empty(null, secure)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+
       secure.AppendChar(char.MinValue);
       Protect.From.Empty(secure).Should().NotBeNull().And.BeSameAs(secure);
     }); 

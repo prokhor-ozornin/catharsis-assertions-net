@@ -1,5 +1,4 @@
-﻿using System.Security;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -12,6 +11,16 @@ public abstract class UnitTest : IDisposable
   ///   <para></para>
   /// </summary>
   protected static Random Randomizer { get; } = new();
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected IEnumerable<object> EmptySequence { get; } = Enumerable.Empty<object>();
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected IEnumerable<object> RandomSequence { get; } = Randomizer.ObjectSequence(byte.MaxValue, typeof(object)).ToArray();
 
   /// <summary>
   ///   <para></para>
@@ -31,46 +40,15 @@ public abstract class UnitTest : IDisposable
   /// <summary>
   ///   <para></para>
   /// </summary>
-  protected FileInfo RandomFakeFile { get; } = Randomizer.FilePath().ToFile();
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
   protected DirectoryInfo RandomDirectory { get; } = Randomizer.Directory();
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  protected DirectoryInfo RandomFakeDirectory { get; } = Randomizer.DirectoryPath().ToDirectory();
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  protected IEnumerable<object> EmptySequence { get; } = Enumerable.Empty<object>();
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  protected IEnumerable<object> RandomSequence { get; } = Randomizer.ObjectSequence(short.MaxValue, typeof(object));
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  protected SecureString EmptySecureString { get; } = new SecureString().AsReadOnly();
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  protected SecureString RandomSecureString { get; } = Randomizer.SecureString(byte.MaxValue);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   public virtual void Dispose()
   {
+    RandomStream.Dispose();
     RandomFile.TryFinallyDelete(file => file.IsReadOnly = false).Delete();
     RandomDirectory.TryFinallyDelete(_ => {});
-    RandomStream.Dispose();
-    EmptySecureString.Dispose();
   }
 }
