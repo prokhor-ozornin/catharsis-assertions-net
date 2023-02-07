@@ -1,6 +1,7 @@
 ﻿using System.Xml;
 using FluentAssertions;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -21,6 +22,18 @@ public sealed class XmlDocumentExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XmlDocument) null).Expect().Element("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Document.Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    throw new NotImplementedException();
+    Document.Expect().Element(RandomString).Result.Should().BeFalse();
+
+    Document.With(document =>
+    {
+      var parent = document.AppendChild(document.CreateElement("parent"));
+      var child = parent.AppendChild(document.CreateElement("child"));
+      
+      document.Expect().Element(parent.Name).Result.Should().BeTrue();
+      document.Expect().Element(parent.Name, parent.NamespaceURI).Result.Should().BeTrue();
+
+      document.Expect().Element(child.Name).Result.Should().BeTrue();
+      document.Expect().Element(child.Name, child.NamespaceURI).Result.Should().BeTrue();
+    });
   }
 }

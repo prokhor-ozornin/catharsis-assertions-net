@@ -1,6 +1,7 @@
 ﻿using System.Xml.Linq;
 using FluentAssertions;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -21,6 +22,14 @@ public sealed class XElementExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Element.Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    throw new NotImplementedException();
+    Element.Expect().Attribute(RandomString).Result.Should().BeFalse();
+
+    Element.With(element =>
+    {
+      element.SetAttributeValue("encoding", "utf-8");
+      element.Expect().Attribute("encoding").Result.Should().BeTrue();
+      element.Expect().Attribute("encoding", "utf-8").Result.Should().BeTrue();
+      element.Expect().Attribute("encoding", RandomString).Result.Should().BeFalse();
+    });
   }
 }

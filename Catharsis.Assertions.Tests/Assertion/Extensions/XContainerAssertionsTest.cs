@@ -22,9 +22,17 @@ public sealed class XContainerAssertionsTest : UnitTest
     AssertionExtensions.Should(() => XContainerAssertions.Element(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("container");
     AssertionExtensions.Should(() => Assert.To.Element(Container, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
+    AssertionExtensions.Should(() => Assert.To.Element(Container, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
 
+    Container.With(container =>
+    {
+      var root = new XElement("parent");
+      root.Add(new XElement("child"));
+      container.Add(root);
 
-    throw new NotImplementedException();
+      Assert.To.Element(container, "parent").Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Element(container, "child", "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    });
   }
 
   /// <summary>

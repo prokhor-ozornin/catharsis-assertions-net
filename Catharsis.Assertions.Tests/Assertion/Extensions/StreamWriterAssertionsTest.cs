@@ -1,9 +1,7 @@
-﻿using System.Globalization;
-using System.Text;
+﻿using System.Text;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
-using TextWriterAssertions = Catharsis.Assertions.TextWriterAssertions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -15,7 +13,7 @@ public sealed class StreamWriterAssertionsTest : UnitTest
   private StreamWriter Writer { get; } = Stream.Null.ToStreamWriter();
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="StreamWriterAssertions.Encoding(IAssertion, System.IO.StreamWriter, Encoding, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="StreamWriterAssertions.Encoding(IAssertion, StreamWriter, Encoding, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Encoding_Method()
@@ -23,21 +21,16 @@ public sealed class StreamWriterAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StreamWriterAssertions.Encoding(null, Writer, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => StreamWriterAssertions.Encoding(Assert.To, null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
-    throw new NotImplementedException();
+    RandomStream.ToStreamWriter().TryFinallyDispose(writer =>
+    {
+      AssertionExtensions.Should(() => Assert.To.Encoding(writer, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Encoding(writer, writer.Encoding).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="TextWriterAssertions.Format"/> method.</para>
+  ///   <para></para>
   /// </summary>
-  [Fact]
-  public void Format_Method()
-  {
-    AssertionExtensions.Should(() => TextWriterAssertions.Format(null, Writer, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Format(null, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
-
-    throw new NotImplementedException();
-  }
-
   public override void Dispose()
   {
     base.Dispose();

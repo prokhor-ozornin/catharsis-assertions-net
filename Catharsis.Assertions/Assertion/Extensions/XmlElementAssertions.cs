@@ -24,6 +24,6 @@ public static class XmlElementAssertions
     if (element is null) throw new ArgumentNullException(nameof(element));
     if (name is null) throw new ArgumentNullException(nameof(name));
 
-    return assertion.True(element.HasAttribute(name, uri), message);
+    return assertion.True(uri is not null ? element.HasAttribute(name, uri) : element.HasAttribute(name), message);
   }
 }
