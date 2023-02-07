@@ -34,5 +34,5 @@ public static class PropertyInfoExpectations
   /// <param name="value"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<PropertyInfo> Value(this IExpectation<PropertyInfo> expectation, object subject, object value) => expectation.HaveSubject().And().ThrowIfNull(subject, nameof(subject)).And().Expected(property => Equals(property.GetValue(subject), value));
+  public static IExpectation<PropertyInfo> Value(this IExpectation<PropertyInfo> expectation, object subject, object value) => expectation.HaveSubject().And().Expected(property => Equals(property.GetValue(subject), value));
 }

@@ -187,8 +187,8 @@ public sealed class FieldInfoAssertionsTest : UnitTest
   {
     void Validate(FieldInfo field, object instance)
     {
-      AssertionExtensions.Should(() => Assert.To.Value(field, instance, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Assert.To.Value(field, instance, field.Name).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Value(field, instance, new object(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Value(field, instance, field.GetValue(instance)).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
 
     using (new AssertionScope())

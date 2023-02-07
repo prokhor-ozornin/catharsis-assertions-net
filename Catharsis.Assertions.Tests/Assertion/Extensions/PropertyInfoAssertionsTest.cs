@@ -2,6 +2,7 @@
 using Xunit;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -10,42 +11,73 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class PropertyInfoAssertionsTest : UnitTest
 {
-  private PropertyInfo Property { get; } = typeof(string).AnyProperty(nameof(string.Length));
+  private string field;
+
+  private string WriteOnlyProperty
+  {
+    set => field = value;
+  }
+
+  private string ReadOnlyProperty => nameof(ReadOnlyProperty);
+
+  private string ReadWriteProperty { get; set; } = nameof(ReadWriteProperty);
+
+  private static string StaticProperty { get; set; } = nameof(StaticProperty);
+
+  private PropertyInfo WriteOnlyPropertyInfo => GetType().AnyProperty(nameof(WriteOnlyProperty));
+  private PropertyInfo ReadOnlyPropertyInfo => GetType().AnyProperty(nameof(ReadOnlyProperty));
+  private PropertyInfo ReadWritePropertyInfo => GetType().AnyProperty(nameof(ReadWriteProperty));
+  private PropertyInfo StaticPropertyInfo => GetType().AnyProperty(nameof(StaticProperty));
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="PropertyInfoAssertions.Readable(IAssertion, System.Reflection.PropertyInfo, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="PropertyInfoAssertions.Readable(IAssertion, PropertyInfo, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Readable_Method()
   {
-    AssertionExtensions.Should(() => PropertyInfoAssertions.Readable(null, Property)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => PropertyInfoAssertions.Readable(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => PropertyInfoAssertions.Readable(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
 
-    throw new NotImplementedException();
+    ReadOnlyPropertyInfo.Expect().Readable().Result.Should().BeTrue();
+    WriteOnlyPropertyInfo.Expect().Readable().Result.Should().BeFalse();
+    ReadWritePropertyInfo.Expect().Readable().Result.Should().BeTrue();
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="PropertyInfoAssertions.Writable(IAssertion, System.Reflection.PropertyInfo, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="PropertyInfoAssertions.Writable(IAssertion, PropertyInfo, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Writable_Method()
   {
-    AssertionExtensions.Should(() => PropertyInfoAssertions.Writable(null, Property)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => PropertyInfoAssertions.Writable(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => PropertyInfoAssertions.Writable(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
 
-    throw new NotImplementedException();
+    ReadOnlyPropertyInfo.Expect().Writable().Result.Should().BeFalse();
+    WriteOnlyPropertyInfo.Expect().Writable().Result.Should().BeTrue();
+    ReadWritePropertyInfo.Expect().Writable().Result.Should().BeTrue();
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="PropertyInfoAssertions.Value(IAssertion, System.Reflection.PropertyInfo, object, object, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="PropertyInfoAssertions.Value(IAssertion, PropertyInfo, object, object, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Value_Method()
   {
-    AssertionExtensions.Should(() => PropertyInfoAssertions.Value(null, Property, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => PropertyInfoAssertions.Value(Assert.To, null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
-    AssertionExtensions.Should(() => Assert.To.Value(Property, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    void Validate(PropertyInfo property, object instance)
+    {
+      property.Expect().Value(instance, new object()).Result.Should().BeFalse();
+      property.Expect().Value(instance, property.GetValue(instance)).Result.Should().BeTrue();
+    }
 
-    throw new NotImplementedException();
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => PropertyInfoAssertions.Value(null, ReadWritePropertyInfo, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => PropertyInfoAssertions.Value(Assert.To, null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
+      AssertionExtensions.Should(() => Assert.To.Value(WriteOnlyPropertyInfo, string.Empty, string.Empty)).ThrowExactly<ArgumentException>();
+
+      Validate(ReadOnlyPropertyInfo, this);
+      Validate(ReadWritePropertyInfo, this);
+      Validate(StaticPropertyInfo, null);
+    }
   }
 }

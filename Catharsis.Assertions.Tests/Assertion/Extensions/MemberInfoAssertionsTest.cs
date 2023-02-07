@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel;
+using System.Reflection;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -11,13 +12,16 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class MemberInfoAssertionsTest : UnitTest
 {
-  private MemberInfo Member { get; } = typeof(string).AnyProperty(nameof(string.Length));
+  [Description]
+  private string Property => nameof(Property);
+
+  private MemberInfo Member => GetType().AnyProperty(nameof(Property));
 
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
   ///   <list type="bullet">
-  ///     <item><description><see cref="MemberInfoAssertions.Attribute(IAssertion, System.Reflection.MemberInfo, Type, string)"/></description></item>
-  ///     <item><description><see cref="MemberInfoAssertions.Attribute{T}(IAssertion, System.Reflection.MemberInfo, string)"/></description></item>
+  ///     <item><description><see cref="MemberInfoAssertions.Attribute(IAssertion, MemberInfo, Type, string)"/></description></item>
+  ///     <item><description><see cref="MemberInfoAssertions.Attribute{T}(IAssertion, MemberInfo, string)"/></description></item>
   ///   </list>
   /// </summary>
   [Fact]
@@ -29,6 +33,10 @@ public sealed class MemberInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Attribute(null, typeof(Attribute))).ThrowExactly<ArgumentNullException>().WithParameterName("member");
       AssertionExtensions.Should(() => Assert.To.Attribute(Member, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
+      Assert.To.Attribute(Member, typeof(Attribute)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Attribute(Member, typeof(DescriptionAttribute)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Attribute(Member, typeof(ObsoleteAttribute), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Attribute(Member, typeof(object))).ThrowExactly<ArgumentException>();
     }
 
     using (new AssertionScope())
@@ -36,13 +44,14 @@ public sealed class MemberInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => MemberInfoAssertions.Attribute<Attribute>(null, Member)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Attribute<Attribute>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
 
+      Assert.To.Attribute<Attribute>(Member).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Attribute< DescriptionAttribute>(Member).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Attribute<ObsoleteAttribute>(Member, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     }
-
-    throw new NotImplementedException();
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="MemberInfoAssertions.Type(IAssertion, System.Reflection.MemberInfo, MemberTypes, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="MemberInfoAssertions.Type(IAssertion, MemberInfo, MemberTypes, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Type_Method()
@@ -50,6 +59,7 @@ public sealed class MemberInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => MemberInfoAssertions.Type(null, Member, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => MemberInfoAssertions.Type(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Type(Member, MemberTypes.All, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Type(Member, Member.MemberType).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

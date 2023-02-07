@@ -187,8 +187,8 @@ public sealed class FieldInfoExpectationsTest : UnitTest
   {
     void Validate(FieldInfo field, object instance)
     {
-      field.Expect().Value(instance, null).Result.Should().BeFalse();
-      field.Expect().Value(instance, field.Name).Result.Should().BeTrue();
+      field.Expect().Value(instance, new object()).Result.Should().BeFalse();
+      field.Expect().Value(instance, field.GetValue(instance)).Result.Should().BeTrue();
     }
 
     using (new AssertionScope())

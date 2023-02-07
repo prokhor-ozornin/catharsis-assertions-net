@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel;
+using System.Reflection;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -11,7 +12,10 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class MemberInfoExpectationsTest : UnitTest
 {
-  private MemberInfo Member { get; } = typeof(string).AnyProperty(nameof(string.Length));
+  [Description]
+  private string Property => nameof(Property);
+
+  private MemberInfo Member => GetType().AnyProperty(nameof(Property));
 
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
@@ -29,6 +33,11 @@ public sealed class MemberInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((MemberInfo) null).Expect().Attribute(typeof(Attribute))).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => Member.Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
+      Member.Expect().Attribute(typeof(Attribute)).Result.Should().BeTrue();
+      Member.Expect().Attribute(typeof(DescriptionAttribute)).Result.Should().BeTrue();
+      Member.Expect().Attribute(typeof(ObsoleteAttribute)).Result.Should().BeFalse();
+      
+      AssertionExtensions.Should(() => Member.Expect().Attribute(typeof(object))).ThrowExactly<ArgumentException>();
     }
 
     using (new AssertionScope())
@@ -36,9 +45,10 @@ public sealed class MemberInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => MemberInfoExpectations.Attribute<Attribute>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MemberInfo) null).Expect().Attribute<Attribute>()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
+      Member.Expect().Attribute<Attribute>().Result.Should().BeTrue();
+      Member.Expect().Attribute<DescriptionAttribute>().Result.Should().BeTrue();
+      Member.Expect().Attribute<ObsoleteAttribute>().Result.Should().BeFalse();
     }
-
-    throw new NotImplementedException();
   }
 
   /// <summary>
@@ -50,6 +60,7 @@ public sealed class MemberInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => MemberInfoExpectations.Type(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((MemberInfo) null).Expect().Type(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    throw new NotImplementedException();
+    Member.Expect().Type(MemberTypes.All).Result.Should().BeFalse();
+    Member.Expect().Type(Member.MemberType).Result.Should().BeTrue();
   }
 }

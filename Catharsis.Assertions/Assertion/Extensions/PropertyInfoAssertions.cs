@@ -44,7 +44,6 @@ public static class PropertyInfoAssertions
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (property is null) throw new ArgumentNullException(nameof(property));
-    if (subject is null) throw new ArgumentNullException(nameof(subject));
 
     return assertion.Equal(property.GetValue(subject), value, message);
   }
