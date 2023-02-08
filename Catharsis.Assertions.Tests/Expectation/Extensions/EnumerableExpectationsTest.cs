@@ -241,8 +241,15 @@ public sealed class EnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => EnumerableExpectations.Ordered<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Ordered()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    EmptySequence.Expect().Ordered().Result.Should().BeTrue();
     AssertionExtensions.Should(() => RandomSequence.Expect().Ordered()).ThrowExactly<InvalidOperationException>();
+
+    EmptySequence.Expect().Ordered().Result.Should().BeTrue();
+    
+    Randomizer.IntSequence(byte.MaxValue).ToArray().With(sequence =>
+    {
+      sequence.Expect().Ordered().Result.Should().BeFalse();
+      sequence.Order().Expect().Ordered().Result.Should().BeTrue();
+    });
   }
 
   /// <summary>
@@ -255,7 +262,13 @@ public sealed class EnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().StartWith(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => EmptySequence.Expect().StartWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    throw new NotImplementedException();
+    EmptySequence.Expect().StartWith(EmptySequence).Result.Should().BeTrue();
+    RandomSequence.Expect().StartWith(EmptySequence).Result.Should().BeTrue();
+    RandomSequence.Expect().StartWith(RandomSequence).Result.Should().BeTrue();
+    EmptySequence.Expect().StartWith(RandomSequence).Result.Should().BeFalse();
+    RandomSequence.Expect().StartWith(RandomSequence.Take(RandomSequence.Count() / 2)).Result.Should().BeTrue();
+    RandomSequence.Expect().StartWith(RandomSequence.Randomize()).Result.Should().BeFalse();
+    new object().ToSequence().Expect().StartWith(new object().ToSequence()).Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -268,7 +281,13 @@ public sealed class EnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EndWith(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => EmptySequence.Expect().EndWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    throw new NotImplementedException();
+    EmptySequence.Expect().EndWith(EmptySequence).Result.Should().BeTrue();
+    RandomSequence.Expect().EndWith(EmptySequence).Result.Should().BeTrue();
+    RandomSequence.Expect().EndWith(RandomSequence).Result.Should().BeTrue();
+    EmptySequence.Expect().EndWith(RandomSequence).Result.Should().BeFalse();
+    RandomSequence.Expect().EndWith(RandomSequence.TakeLast(RandomSequence.Count() / 2)).Result.Should().BeTrue();
+    RandomSequence.Expect().EndWith(RandomSequence.Randomize()).Result.Should().BeFalse();
+    new object().ToSequence().Expect().EndWith(new object().ToSequence()).Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -281,6 +300,12 @@ public sealed class EnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Match(_ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => EmptySequence.Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("condition");
 
-    throw new NotImplementedException();
+    EmptySequence.Expect().Match(_ => true).Result.Should().BeTrue();
+    EmptySequence.Expect().Match(_ => false).Result.Should().BeTrue();
+    RandomSequence.Expect().Match(_ => true).Result.Should().BeTrue();
+    RandomSequence.Expect().Match(_ => false).Result.Should().BeFalse();
+    RandomSequence.Expect().Match(element => element is not null).Result.Should().BeTrue();
+    1.Nulls().Expect().Match(element => element is null).Result.Should().BeTrue();
+    1.Nulls().Expect().Match(element => element is not null).Result.Should().BeFalse();
   }
 }

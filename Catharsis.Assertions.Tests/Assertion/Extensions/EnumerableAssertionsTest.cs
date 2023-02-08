@@ -239,7 +239,15 @@ public sealed class EnumerableAssertionsTest : UnitTest
     AssertionExtensions.Should(() => EnumerableAssertions.Ordered(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Ordered<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => Assert.To.Ordered(RandomSequence)).ThrowExactly<InvalidOperationException>();
+
+    Assert.To.Ordered(EmptySequence).Should().NotBeNull().And.BeSameAs(Assert.To);
+
+    Randomizer.IntSequence(byte.MaxValue).ToArray().With(sequence =>
+    {
+      AssertionExtensions.Should(() => Assert.To.Ordered(sequence, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Ordered(sequence.Order()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    });
   }
 
   /// <summary>
@@ -252,7 +260,13 @@ public sealed class EnumerableAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.StartWith(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
     AssertionExtensions.Should(() => Assert.To.StartWith(EmptySequence, null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    throw new NotImplementedException();
+    Assert.To.StartWith(EmptySequence, EmptySequence).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.StartWith(RandomSequence, EmptySequence).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.StartWith(RandomSequence, RandomSequence).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.StartWith(EmptySequence, RandomSequence, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.StartWith(RandomSequence, RandomSequence.Take(RandomSequence.Count() / 2)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.StartWith(RandomSequence, RandomSequence.Randomize(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.StartWith(new object().ToSequence(), new object().ToSequence(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -265,7 +279,13 @@ public sealed class EnumerableAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.EndWith(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
     AssertionExtensions.Should(() => Assert.To.EndWith(EmptySequence, null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    throw new NotImplementedException();
+    Assert.To.EndWith(EmptySequence, EmptySequence).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.EndWith(RandomSequence, EmptySequence).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.EndWith(RandomSequence, RandomSequence).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.EndWith(EmptySequence, RandomSequence, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.EndWith(RandomSequence, RandomSequence.TakeLast(RandomSequence.Count() / 2)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.EndWith(RandomSequence, RandomSequence.Randomize(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.EndWith(new object().ToSequence(), new object().ToSequence(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 
   /// <summary>
@@ -278,6 +298,12 @@ public sealed class EnumerableAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Match<object>(null, _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
     AssertionExtensions.Should(() => Assert.To.Match(EmptySequence, null)).ThrowExactly<ArgumentNullException>().WithParameterName("condition");
 
-    throw new NotImplementedException();
+    Assert.To.Match(EmptySequence, _ => true).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Match(EmptySequence, _ => false).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Match(RandomSequence, _ => true).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Match(RandomSequence, _ => false, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.Match(RandomSequence, element => element is not null).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Match(1.Nulls(), element => element is null).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Match(1.Nulls(), element => element is not null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
   }
 }
