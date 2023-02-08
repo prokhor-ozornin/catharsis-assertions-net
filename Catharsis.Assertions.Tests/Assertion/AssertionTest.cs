@@ -1,4 +1,6 @@
 ﻿using Xunit;
+using FluentAssertions;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -13,7 +15,8 @@ public sealed class AssertionTest : UnitTest
   [Fact]
   public void Constructors()
   {
-    throw new NotImplementedException();
+    new Assertion(true).With(assertion => assertion.GetFieldValue<bool>("flag").Should().BeTrue());
+    new Assertion(false).With(assertion => assertion.GetFieldValue<bool>("flag").Should().BeFalse());
   }
 
   /// <summary>
@@ -22,7 +25,17 @@ public sealed class AssertionTest : UnitTest
   [Fact]
   public void Confirmed_Method()
   {
-    throw new NotImplementedException();
+    new Assertion(true).With(assertion =>
+    {
+      assertion.Confirmed(true).Should().BeTrue();
+      assertion.Confirmed(false).Should().BeFalse();
+    });
+
+    new Assertion(false).With(assertion =>
+    {
+      assertion.Confirmed(true).Should().BeFalse();
+      assertion.Confirmed(false).Should().BeTrue();
+    });
   }
 
   /// <summary>
@@ -31,6 +44,16 @@ public sealed class AssertionTest : UnitTest
   [Fact]
   public void Unconfirmed_Method()
   {
-    throw new NotImplementedException();
+    new Assertion(true).With(assertion =>
+    {
+      assertion.Unconfirmed(true).Should().BeFalse();
+      assertion.Unconfirmed(false).Should().BeTrue();
+    });
+
+    new Assertion(false).With(assertion =>
+    {
+      assertion.Unconfirmed(true).Should().BeTrue();
+      assertion.Unconfirmed(false).Should().BeFalse();
+    });
   }
 }

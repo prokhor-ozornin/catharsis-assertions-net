@@ -14,7 +14,7 @@ public sealed class AssertTest : UnitTest
   [Fact]
   public void To_Property()
   {
-    throw new NotImplementedException();
+    Assert.To.Should().NotBeNull().And.BeSameAs(Assert.To).And.BeOfType<Assertion>();
   }
 
   /// <summary>
@@ -23,6 +23,6 @@ public sealed class AssertTest : UnitTest
   [Fact]
   public void NotTo_Property()
   {
-    throw new NotImplementedException();
+    Assert.NotTo.Should().NotBeNull().And.BeSameAs(Assert.NotTo).And.BeOfType<Assertion>();
   }
 }

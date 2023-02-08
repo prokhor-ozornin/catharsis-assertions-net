@@ -11,15 +11,15 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation"></param>
-  /// <param name="predicate"></param>
+  /// <param name="result"></param>
   /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<T> Expected<T>(this IExpectation<T> expectation, Predicate<T> predicate)
+  public static IExpectation<T> Expected<T>(this IExpectation<T> expectation, Predicate<T> result)
   {
     if (expectation is null) throw new ArgumentNullException(nameof(expectation));
-    if (predicate is null) throw new ArgumentNullException(nameof(predicate));
+    if (result is null) throw new ArgumentNullException(nameof(result));
 
-    return expectation.Expect(predicate);
+    return expectation.Expect(result);
   }
 
   /// <summary>

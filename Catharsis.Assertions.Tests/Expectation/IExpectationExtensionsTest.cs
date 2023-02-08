@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -18,9 +19,12 @@ public sealed class IExpectationExtensionsTest : UnitTest
   public void Expected_Method()
   {
     AssertionExtensions.Should(() => IExpectationExtensions.Expected<object>(null, _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => Expectation.Expected(null)).ThrowExactly<ArgumentNullException>().WithParameterName("predicate");
+    AssertionExtensions.Should(() => Expectation.Expected(null)).ThrowExactly<ArgumentNullException>().WithParameterName("result");
 
-    throw new NotImplementedException();
+    new Expectation<object>(null).Expected(_ => true).Result.Should().BeTrue();
+    new Expectation<object>(null).Expected(_ => false).Result.Should().BeFalse();
+    new Expectation<object>(null).Not().Expected(_ => true).Result.Should().BeFalse();
+    new Expectation<object>(null).Not().Expected(_ => false).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -31,7 +35,10 @@ public sealed class IExpectationExtensionsTest : UnitTest
   {
     AssertionExtensions.Should(() => IExpectationExtensions.HaveSubject<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => new Expectation<object>(null).HaveSubject()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+    new Expectation<object>(new object()).HaveSubject().Result.Should().BeTrue();
+    new Expectation<object>(new object()).Not().HaveSubject().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -49,16 +56,18 @@ public sealed class IExpectationExtensionsTest : UnitTest
       AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfFalse<object>(null, new Exception())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => Expectation.ThrowIfFalse((Exception) null)).ThrowExactly<ArgumentNullException>().WithParameterName("exception");
 
+      AssertionExtensions.Should(() => new Expectation<object>(null).Expect(_ => false).ThrowIfFalse(new Exception("error"))).ThrowExactly<Exception>().WithMessage("error");
+      new Expectation<object>(null).With(expectation => expectation.ThrowIfFalse(new Exception()).Should().NotBeNull().And.BeSameAs(expectation));
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfFalse<object>(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => Expectation.ThrowIfFalse("message")).ThrowExactly<InvalidOperationException>().WithMessage("message");
+      AssertionExtensions.Should(() => new Expectation<object>(null).Expect(_ => false).ThrowIfFalse("message")).ThrowExactly<InvalidOperationException>().WithMessage("message");
 
+      AssertionExtensions.Should(() => new Expectation<object>(null).Expect(_ => false).ThrowIfFalse("error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      new Expectation<object>(null).With(expectation => expectation.ThrowIfFalse("error").Should().NotBeNull().And.BeSameAs(expectation));
     }
-
-    throw new NotImplementedException();
   }
 
   /// <summary>
@@ -69,8 +78,9 @@ public sealed class IExpectationExtensionsTest : UnitTest
   {
     AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfNull<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => Expectation.ThrowIfNull(null)).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
+    AssertionExtensions.Should(() => Expectation.ThrowIfNull(null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-    throw new NotImplementedException();
+    new Expectation<object>(null).With(expectation => expectation.ThrowIfNull(new object()).Should().NotBeNull().And.BeSameAs(expectation));
   }
 
   /// <summary>

@@ -1,4 +1,6 @@
 ﻿using Xunit;
+using FluentAssertions;
+using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -13,7 +15,17 @@ public sealed class ExpectationTest : UnitTest
   [Fact]
   public void Constructors()
   {
-    throw new NotImplementedException();
+    new Expectation<object>(null).With(expectation =>
+    {
+      expectation.GetFieldValue<object>("subject").Should().BeNull();
+      expectation.GetFieldValue<bool>("flag").Should().BeTrue();
+    });
+
+    new Expectation<string>(string.Empty).With(expectation =>
+    {
+      expectation.GetFieldValue<string>("subject").Should().BeEmpty();
+      expectation.GetFieldValue<bool>("flag").Should().BeTrue();
+    });
   }
 
   /// <summary>
@@ -22,7 +34,13 @@ public sealed class ExpectationTest : UnitTest
   [Fact]
   public void Not_Method()
   {
-    throw new NotImplementedException();
+    var expectation = new Expectation<object>(null);
+
+    expectation.GetFieldValue<bool>("flag").Should().BeTrue();
+    expectation.Not().Should().NotBeNull().And.BeSameAs(expectation);
+    expectation.GetFieldValue<bool>("flag").Should().BeFalse();
+    expectation.Not().Should().NotBeNull().And.BeSameAs(expectation);
+    expectation.GetFieldValue<bool>("flag").Should().BeTrue();
   }
 
   /// <summary>
@@ -31,6 +49,11 @@ public sealed class ExpectationTest : UnitTest
   [Fact]
   public void Expect_Method()
   {
-    throw new NotImplementedException();
+    AssertionExtensions.Should(() => new Expectation<object>(null).Expect(null)).ThrowExactly<ArgumentNullException>().WithParameterName("result");
+
+    new Expectation<object>(null).Expect(subject => subject is null).Result.Should().BeTrue();
+    new Expectation<object>(null).Expect(subject => subject is not null).Result.Should().BeFalse();
+    new Expectation<object>(null).Not().Expect(subject => subject is null).Result.Should().BeFalse();
+    new Expectation<object>(null).Not().Expect(subject => subject is not null).Result.Should().BeTrue();
   }
 }

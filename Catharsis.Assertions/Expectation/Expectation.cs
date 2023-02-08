@@ -16,9 +16,14 @@ internal sealed class Expectation<T> : IExpectation<T>
     return this;
   }
 
-  public IExpectation<T> Expect(Predicate<T> predicate)
+  public IExpectation<T> Expect(Predicate<T> result)
   {
-    Result = Result && predicate(subject) && flag;
+    if (result is null) throw new ArgumentNullException(nameof(result));
+
+    var condition = result(subject);
+
+    Result = Result && (flag ? condition : !condition);
+    
     return this;
   }
 }
