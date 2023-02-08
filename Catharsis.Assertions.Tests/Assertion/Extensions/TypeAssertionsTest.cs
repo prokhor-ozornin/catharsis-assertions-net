@@ -118,7 +118,7 @@ public sealed class TypeAssertionsTest : UnitTest
   public void Internal_Method()
   {
     AssertionExtensions.Should(() => TypeAssertions.Internal(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Internal((FieldInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
+    AssertionExtensions.Should(() => Assert.To.Internal((Type) null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
     AssertionExtensions.Should(() => Assert.To.Internal(typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     Assert.To.Internal(typeof(Assertion)).Should().NotBeNull().And.BeSameAs(Assert.To);

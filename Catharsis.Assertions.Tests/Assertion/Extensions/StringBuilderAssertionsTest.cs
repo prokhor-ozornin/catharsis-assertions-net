@@ -26,7 +26,7 @@ public sealed class StringBuilderAssertionsTest : UnitTest
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="StringBuilderAssertions.Empty(IAssertion, System.Text.StringBuilder, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="StringBuilderAssertions.Empty(IAssertion, StringBuilder, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Empty_Method()
@@ -34,7 +34,7 @@ public sealed class StringBuilderAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StringBuilderAssertions.Empty(null, Builder)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => StringBuilderAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
+    Assert.To.Empty(Builder, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Empty(Builder.Append(char.MinValue), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Assert.To.Empty(Builder).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

@@ -66,6 +66,6 @@ public static class FileInfoAssertions
     if (file is null) throw new ArgumentNullException(nameof(file));
     if (directory is null) throw new ArgumentNullException(nameof(directory));
 
-    return assertion.Contain(directory.EnumerateFiles("*", new EnumerationOptions { RecurseSubdirectories = true }), file, null, message);
+    return assertion.True(directory.EnumerateFiles("*", new EnumerationOptions { RecurseSubdirectories = true }).Any(directoryFile => directoryFile.Name == file.Name), message);
   }
 }
