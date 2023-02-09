@@ -44,6 +44,20 @@ public sealed class PropertyInfoAssertionsTest : UnitTest
   }
 
   /// <summary>
+  ///   <para>Performs testing of <see cref="PropertyInfoAssertions.ReadOnly(IAssertion, PropertyInfo, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ReadOnly_Method()
+  {
+    AssertionExtensions.Should(() => PropertyInfoAssertions.ReadOnly(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => PropertyInfoAssertions.ReadOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
+
+    ReadOnlyPropertyInfo.Expect().ReadOnly().Result.Should().BeTrue();
+    WriteOnlyPropertyInfo.Expect().ReadOnly().Result.Should().BeFalse();
+    ReadWritePropertyInfo.Expect().ReadOnly().Result.Should().BeFalse();
+  }
+
+  /// <summary>
   ///   <para>Performs testing of <see cref="PropertyInfoAssertions.Writable(IAssertion, PropertyInfo, string)"/> method.</para>
   /// </summary>
   [Fact]
@@ -55,6 +69,20 @@ public sealed class PropertyInfoAssertionsTest : UnitTest
     ReadOnlyPropertyInfo.Expect().Writable().Result.Should().BeFalse();
     WriteOnlyPropertyInfo.Expect().Writable().Result.Should().BeTrue();
     ReadWritePropertyInfo.Expect().Writable().Result.Should().BeTrue();
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PropertyInfoAssertions.WriteOnly(IAssertion, PropertyInfo, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void WriteOnly_Method()
+  {
+    AssertionExtensions.Should(() => PropertyInfoAssertions.WriteOnly(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => PropertyInfoAssertions.WriteOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
+
+    ReadOnlyPropertyInfo.Expect().WriteOnly().Result.Should().BeFalse();
+    WriteOnlyPropertyInfo.Expect().WriteOnly().Result.Should().BeTrue();
+    ReadWritePropertyInfo.Expect().WriteOnly().Result.Should().BeFalse();
   }
 
   /// <summary>

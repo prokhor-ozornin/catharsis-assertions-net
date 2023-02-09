@@ -22,9 +22,23 @@ public static class PropertyInfoExpectations
   /// </summary>
   /// <param name="expectation"></param>
   /// <returns></returns>
+  public static IExpectation<PropertyInfo> ReadOnly(this IExpectation<PropertyInfo> expectation) => expectation.HaveSubject().And().Expected(property => property.CanRead && !property.CanWrite);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <returns></returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="Readable(IExpectation{PropertyInfo})"/>
   public static IExpectation<PropertyInfo> Writable(this IExpectation<PropertyInfo> expectation) => expectation.HaveSubject().And().Expected(property => property.CanWrite);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <returns></returns>
+  public static IExpectation<PropertyInfo> WriteOnly(this IExpectation<PropertyInfo> expectation) => expectation.HaveSubject().And().Expected(property => property.CanWrite && !property.CanRead);
 
   /// <summary>
   ///   <para></para>

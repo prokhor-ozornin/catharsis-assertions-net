@@ -131,7 +131,7 @@ public sealed class StreamAssertionsTest : UnitTest
   public void WriteOnly_Method()
   {
     AssertionExtensions.Should(() => StreamAssertions.WriteOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.WriteOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+    AssertionExtensions.Should(() => Assert.To.WriteOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
     AssertionExtensions.Should(() => Assert.To.WriteOnly(Stream.Null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     Assert.To.WriteOnly(Stream.Null.AsWriteOnly()).Should().NotBeNull().And.BeSameAs(Assert.To);

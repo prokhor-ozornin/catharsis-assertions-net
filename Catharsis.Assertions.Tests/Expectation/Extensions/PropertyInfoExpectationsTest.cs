@@ -44,6 +44,20 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
   }
 
   /// <summary>
+  ///   <para>Performs testing of <see cref="PropertyInfoExpectations.WriteOnly(IExpectation{PropertyInfo})"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void WriteOnly_Method()
+  {
+    AssertionExtensions.Should(() => PropertyInfoExpectations.WriteOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((PropertyInfo) null).Expect().WriteOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+    AssertionExtensions.Should(() => Assert.To.WriteOnly(ReadOnlyPropertyInfo, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Assert.To.WriteOnly(WriteOnlyPropertyInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.WriteOnly(ReadWritePropertyInfo, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+  }
+
+  /// <summary>
   ///   <para>Performs testing of <see cref="PropertyInfoExpectations.Writable(IExpectation{PropertyInfo})"/> method.</para>
   /// </summary>
   [Fact]
