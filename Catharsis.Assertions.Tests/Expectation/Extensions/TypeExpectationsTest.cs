@@ -89,6 +89,42 @@ public sealed class TypeExpectationsTest : UnitTest
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
   ///   <list type="bullet">
+  ///     <item><description><see cref="TypeExpectations.Subclass(IExpectation{Type}, Type)"/></description></item>
+  ///     <item><description><see cref="TypeExpectations.Subclass{T}(IExpectation{Type})"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void Subclass_Methods()
+  {
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeExpectations.Subclass(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Type) null).Expect().Subclass(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      typeof(object).Expect().Subclass(typeof(object)).Result.Should().BeFalse();
+      typeof(object).Expect().Subclass(typeof(string)).Result.Should().BeFalse();
+      typeof(string).Expect().Subclass(typeof(object)).Result.Should().BeTrue();
+      typeof(string).Expect().Subclass(typeof(IEnumerable<char>)).Result.Should().BeFalse();
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Subclass(typeof(object)).Result.Should().BeTrue());
+    }
+
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeExpectations.Subclass<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+
+      typeof(object).Expect().Subclass<object>().Result.Should().BeFalse();
+      typeof(object).Expect().Subclass<string>().Result.Should().BeFalse();
+      typeof(string).Expect().Subclass<object>().Result.Should().BeTrue();
+      typeof(string).Expect().Subclass<IEnumerable<char>>().Result.Should().BeFalse();
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Subclass<object>().Result.Should().BeTrue());
+    }
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
   ///     <item><description><see cref="TypeExpectations.AssignableTo(IExpectation{Type}, Type)"/></description></item>
   ///     <item><description><see cref="TypeExpectations.AssignableTo{T}(IExpectation{Type})"/></description></item>
   ///   </list>

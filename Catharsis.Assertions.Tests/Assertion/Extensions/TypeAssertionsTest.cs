@@ -139,6 +139,44 @@ public sealed class TypeAssertionsTest : UnitTest
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
   ///   <list type="bullet">
+  ///     <item><description><see cref="TypeExpectations.Subclass(IExpectation{Type}, Type)"/></description></item>
+  ///     <item><description><see cref="TypeExpectations.Subclass{T}(IExpectation{Type})"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void Subclass_Methods()
+  {
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeAssertions.Subclass(null, typeof(object), typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Subclass(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("subclass");
+      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(object), null)).ThrowExactly<ArgumentNullException>().WithParameterName("superclass");
+
+      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(object), typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(object), typeof(string), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Subclass(typeof(string), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(string), typeof(IEnumerable<char>), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Assert.To.Subclass(type, typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To));
+    }
+
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeAssertions.Subclass<object>(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Subclass<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subclass");
+
+      AssertionExtensions.Should(() => Assert.To.Subclass<object>(typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Subclass<string>(typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Assert.To.Subclass<object>(typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Subclass<IEnumerable<char>>(typeof(string), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Assert.To.Subclass<object>(type).Should().NotBeNull().And.BeSameAs(Assert.To));
+    }
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
   ///     <item><description><see cref="TypeAssertions.AssignableTo(IAssertion, Type, Type, string)"/></description></item>
   ///     <item><description><see cref="TypeAssertions.AssignableTo{T}(IAssertion, Type, string)"/></description></item>
   ///   </list>

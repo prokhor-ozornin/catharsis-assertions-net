@@ -60,6 +60,34 @@ public static class TypeAssertions
   ///   <para></para>
   /// </summary>
   /// <param name="assertion"></param>
+  /// <param name="subclass"></param>
+  /// <param name="superclass"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  public static IAssertion Subclass(this IAssertion assertion, Type subclass, Type superclass, string message = null)
+  {
+    if (assertion is null) throw new ArgumentNullException(nameof(assertion));
+    if (subclass is null) throw new ArgumentNullException(nameof(subclass));
+    if (superclass is null) throw new ArgumentNullException(nameof(superclass));
+
+    return assertion.True(subclass.IsSubclassOf(superclass), message);
+  }
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  /// <param name="assertion"></param>
+  /// <param name="subclass"></param>
+  /// <param name="message"></param>
+  /// <returns></returns>
+  public static IAssertion Subclass<T>(this IAssertion assertion, Type subclass, string message = null) => assertion.Subclass(subclass, typeof(T), message);
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="assertion"></param>
   /// <param name="from"></param>
   /// <param name="to"></param>
   /// <param name="message"></param>

@@ -44,7 +44,21 @@ public static class TypeExpectations
   /// <returns></returns>
   public static IExpectation<Type> Internal(this IExpectation<Type> expectation) => expectation.HaveSubject().And().Expected(type => type.IsNotPublic && !type.IsVisible);
 
-  public static IExpectation<Type> Subclass(this IExpectation<Type> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(it => it.IsSubclassOf(type));
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <param name="expectation"></param>
+  /// <param name="type"></param>
+  /// <returns></returns>
+  public static IExpectation<Type> Subclass(this IExpectation<Type> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(subclass => subclass.IsSubclassOf(type));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
+  /// <param name="expectation"></param>
+  /// <returns></returns>
+  public static IExpectation<Type> Subclass<T>(this IExpectation<Type> expectation) => expectation.Subclass(typeof(T));
 
   /// <summary>
   ///   <para></para>
