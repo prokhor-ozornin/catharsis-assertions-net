@@ -9,10 +9,11 @@ public static class TextReaderAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="reader"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion End(this IAssertion assertion, TextReader reader, string message = null) => reader is not null ? assertion.True(reader.Peek() < 0, message) : throw new ArgumentNullException(nameof(reader));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion End(this IAssertion assertion, TextReader reader, string error = null) => reader is not null ? assertion.True(reader.Peek() < 0, error) : throw new ArgumentNullException(nameof(reader));
 }

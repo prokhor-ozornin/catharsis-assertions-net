@@ -10,12 +10,12 @@ public interface IAssertion
   /// </summary>
   /// <param name="result"></param>
   /// <returns></returns>
-  bool Confirmed(bool result);
+  bool Valid(bool result);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <param name="result"></param>
   /// <returns></returns>
-  bool Unconfirmed(bool result);
+  bool Invalid(bool result);
 }

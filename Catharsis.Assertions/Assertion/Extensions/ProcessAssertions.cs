@@ -11,21 +11,23 @@ public static class ProcessAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="process"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Exited(this IAssertion assertion, Process process, string message = null) => process is not null ? assertion.True(process.HasExited, message) : throw new ArgumentNullException(nameof(process));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Exited(this IAssertion assertion, Process process, string error = null) => process is not null ? assertion.True(process.HasExited, error) : throw new ArgumentNullException(nameof(process));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="process"></param>
   /// <param name="code"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion ExitCode(this IAssertion assertion, Process process, int code, string message = null) => process is not null ? assertion.True(process.ExitCode == code, message) : throw new ArgumentNullException(nameof(process));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion ExitCode(this IAssertion assertion, Process process, int code, string error = null) => process is not null ? assertion.True(process.ExitCode == code, error) : throw new ArgumentNullException(nameof(process));
 }

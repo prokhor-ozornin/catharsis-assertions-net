@@ -11,10 +11,10 @@ public static class XElementExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="expectation"></param>
+  /// <param name="expectation">Expectation to be met.</param>
   /// <param name="name"></param>
   /// <param name="value"></param>
-  /// <returns></returns>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<XElement> Attribute(this IExpectation<XElement> expectation, XName name, string value = null) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(element => value is not null ? element.Attributes(name).Any(attribute => attribute.Name == name && attribute.Value == value) : element.Attributes(name).Any(attribute => attribute.Name == name));
 }

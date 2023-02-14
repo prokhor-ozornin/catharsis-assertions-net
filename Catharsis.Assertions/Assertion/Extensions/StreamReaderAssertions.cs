@@ -11,21 +11,23 @@ public static class StreamReaderAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="reader"></param>
   /// <param name="encoding"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Encoding(this IAssertion assertion, StreamReader reader, Encoding encoding, string message = null) => reader is not null ? assertion.Equal(reader.CurrentEncoding, encoding, message) : throw new ArgumentNullException(nameof(reader));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Encoding(this IAssertion assertion, StreamReader reader, Encoding encoding, string error = null) => reader is not null ? assertion.Equal(reader.CurrentEncoding, encoding, error) : throw new ArgumentNullException(nameof(reader));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="reader"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion End(this IAssertion assertion, StreamReader reader, string message = null) => reader is not null ? assertion.True(reader.EndOfStream, message) : throw new ArgumentNullException(nameof(reader));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion End(this IAssertion assertion, StreamReader reader, string error = null) => reader is not null ? assertion.True(reader.EndOfStream, error) : throw new ArgumentNullException(nameof(reader));
 }

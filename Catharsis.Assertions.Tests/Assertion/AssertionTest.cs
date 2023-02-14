@@ -15,45 +15,45 @@ public sealed class AssertionTest : UnitTest
   [Fact]
   public void Constructors()
   {
-    new Assertion(true).With(assertion => assertion.GetFieldValue<bool>("flag").Should().BeTrue());
-    new Assertion(false).With(assertion => assertion.GetFieldValue<bool>("flag").Should().BeFalse());
+    new Assertion(true).With(assertion => assertion.GetFieldValue<bool>("state").Should().BeTrue());
+    new Assertion(false).With(assertion => assertion.GetFieldValue<bool>("state").Should().BeFalse());
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="Assertion.Confirmed(bool)"/> method.</para>
+  ///   <para>Performs testing of <see cref="Assertion.Valid(bool)"/> method.</para>
   /// </summary>
   [Fact]
-  public void Confirmed_Method()
+  public void Valid_Method()
   {
     new Assertion(true).With(assertion =>
     {
-      assertion.Confirmed(true).Should().BeTrue();
-      assertion.Confirmed(false).Should().BeFalse();
+      assertion.Valid(true).Should().BeTrue();
+      assertion.Valid(false).Should().BeFalse();
     });
 
     new Assertion(false).With(assertion =>
     {
-      assertion.Confirmed(true).Should().BeFalse();
-      assertion.Confirmed(false).Should().BeTrue();
+      assertion.Valid(true).Should().BeFalse();
+      assertion.Valid(false).Should().BeTrue();
     });
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="Assertion.Unconfirmed(bool)"/> method.</para>
+  ///   <para>Performs testing of <see cref="Assertion.Invalid(bool)"/> method.</para>
   /// </summary>
   [Fact]
-  public void Unconfirmed_Method()
+  public void Invalid_Method()
   {
     new Assertion(true).With(assertion =>
     {
-      assertion.Unconfirmed(true).Should().BeFalse();
-      assertion.Unconfirmed(false).Should().BeTrue();
+      assertion.Invalid(true).Should().BeFalse();
+      assertion.Invalid(false).Should().BeTrue();
     });
 
     new Assertion(false).With(assertion =>
     {
-      assertion.Unconfirmed(true).Should().BeTrue();
-      assertion.Unconfirmed(false).Should().BeFalse();
+      assertion.Invalid(true).Should().BeTrue();
+      assertion.Invalid(false).Should().BeFalse();
     });
   }
 }

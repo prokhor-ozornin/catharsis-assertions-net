@@ -11,40 +11,43 @@ public static class HttpResponseMessageAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="response"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Successful(this IAssertion assertion, HttpResponseMessage response, string message = null) => response is not null ? assertion.True(response.IsSuccessStatusCode, message) : throw new ArgumentNullException(nameof(response));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Successful(this IAssertion assertion, HttpResponseMessage response, string error = null) => response is not null ? assertion.True(response.IsSuccessStatusCode, error) : throw new ArgumentNullException(nameof(response));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="response"></param>
   /// <param name="status"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Status(this IAssertion assertion, HttpResponseMessage response, HttpStatusCode status, string message = null) => response is not null ? assertion.True(response.StatusCode == status, message) : throw new ArgumentNullException(nameof(response));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Status(this IAssertion assertion, HttpResponseMessage response, HttpStatusCode status, string error = null) => response is not null ? assertion.True(response.StatusCode == status, error) : throw new ArgumentNullException(nameof(response));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="response"></param>
   /// <param name="name"></param>
   /// <param name="value"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Header(this IAssertion assertion, HttpResponseMessage response, string name, string value, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Header(this IAssertion assertion, HttpResponseMessage response, string name, string value, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (response is null) throw new ArgumentNullException(nameof(response));
     if (name is null) throw new ArgumentNullException(nameof(name));
 
-    return assertion.Contain(response.Headers.Contains(name) ? response.Headers.GetValues(name) : Enumerable.Empty<string>(), value, null, message);
+    return assertion.Contain(response.Headers.Contains(name) ? response.Headers.GetValues(name) : Enumerable.Empty<string>(), value, null, error);
   }
 }

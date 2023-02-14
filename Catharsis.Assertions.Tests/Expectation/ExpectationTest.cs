@@ -18,13 +18,13 @@ public sealed class ExpectationTest : UnitTest
     new Expectation<object>(null).With(expectation =>
     {
       expectation.GetFieldValue<object>("subject").Should().BeNull();
-      expectation.GetFieldValue<bool>("flag").Should().BeTrue();
+      expectation.GetFieldValue<bool>("state").Should().BeTrue();
     });
 
     new Expectation<string>(string.Empty).With(expectation =>
     {
       expectation.GetFieldValue<string>("subject").Should().BeEmpty();
-      expectation.GetFieldValue<bool>("flag").Should().BeTrue();
+      expectation.GetFieldValue<bool>("state").Should().BeTrue();
     });
   }
 
@@ -36,11 +36,11 @@ public sealed class ExpectationTest : UnitTest
   {
     var expectation = new Expectation<object>(null);
 
-    expectation.GetFieldValue<bool>("flag").Should().BeTrue();
+    expectation.GetFieldValue<bool>("state").Should().BeTrue();
     expectation.Not().Should().NotBeNull().And.BeSameAs(expectation);
-    expectation.GetFieldValue<bool>("flag").Should().BeFalse();
+    expectation.GetFieldValue<bool>("state").Should().BeFalse();
     expectation.Not().Should().NotBeNull().And.BeSameAs(expectation);
-    expectation.GetFieldValue<bool>("flag").Should().BeTrue();
+    expectation.GetFieldValue<bool>("state").Should().BeTrue();
   }
 
   /// <summary>

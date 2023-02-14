@@ -3,52 +3,52 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="Assembly"/> class.</para>
 /// </summary>
 /// <seealso cref="Assembly"/>
 public static class AssemblyAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given assembly contains a definition of the specified type.</para>
   /// </summary>
-  /// <param name="assertion"></param>
-  /// <param name="assembly"></param>
-  /// <param name="type"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  /// <seealso cref="Define{T}(IAssertion, Assembly, string)"/>
-  public static IAssertion Define(this IAssertion assertion, Assembly assembly, Type type, string message = null)
+  /// <param name="assertion">Assertion to validate.</param>
+  /// <param name="assembly">Assembly to search for a type definition.</param>
+  /// <param name="type">Type to look for.</param>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="assembly"/>, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  /// <seealso cref="Define{T}(IAssertion, Assembly, string)"/> 
+  public static IAssertion Define(this IAssertion assertion, Assembly assembly, Type type, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (assembly is null) throw new ArgumentNullException(nameof(assembly));
     if (type is null) throw new ArgumentNullException(nameof(type));
 
-    return assertion.Contain(assembly.DefinedTypes, type, null, message);
+    return assertion.Contain(assembly.DefinedTypes, type, null, error);
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given assembly contains a definition of the specified type.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
-  /// <param name="assertion"></param>
-  /// <param name="assembly"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <typeparam name="T">Type to look for.</typeparam>
+  /// <param name="assertion">Assertion to validate.</param>
+  /// <param name="assembly">Assembly to search for a type definition.</param>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="Define(IAssertion, Assembly, Type, string)"/>
-  public static IAssertion Define<T>(this IAssertion assertion, Assembly assembly, string message = null) => assertion.Define(assembly, typeof(T), message);
+  public static IAssertion Define<T>(this IAssertion assertion, Assembly assembly, string error = null) => assertion.Define(assembly, typeof(T), error);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="assembly"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  public static IAssertion Dynamic(this IAssertion assertion, Assembly assembly, string message = null) => assembly is not null ? assertion.True(assembly.IsDynamic, message) : throw new ArgumentNullException(nameof(assembly));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Dynamic(this IAssertion assertion, Assembly assembly, string error = null) => assembly is not null ? assertion.True(assembly.IsDynamic, error) : throw new ArgumentNullException(nameof(assembly));
 }

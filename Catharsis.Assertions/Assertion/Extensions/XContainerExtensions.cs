@@ -11,28 +11,30 @@ public static class XContainerAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="container"></param>
   /// <param name="name"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Element(this IAssertion assertion, XContainer container, XName name, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Element(this IAssertion assertion, XContainer container, XName name, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (container is null) throw new ArgumentNullException(nameof(container));
     if (name is null) throw new ArgumentNullException(nameof(name));
 
-    return assertion.True(container.Elements(name).Any(), message);
+    return assertion.True(container.Elements(name).Any(), error);
   }
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="container"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Empty(this IAssertion assertion, XContainer container, string message = null) => container is not null ? assertion.Empty(container.Nodes(), message) : throw new ArgumentNullException(nameof(container));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Empty(this IAssertion assertion, XContainer container, string error = null) => container is not null ? assertion.Empty(container.Nodes(), error) : throw new ArgumentNullException(nameof(container));
 }

@@ -13,18 +13,18 @@ public static class XmlProtections
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="protection"></param>
+  /// <param name="protection">Protection to perform.</param>
   /// <param name="document"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static XmlDocument Empty(this IProtection protection, XmlDocument document, string message = null)
+  public static XmlDocument Empty(this IProtection protection, XmlDocument document, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
     if (document is null) throw new ArgumentNullException(nameof(document));
 
-    protection.Truth(!document.HasChildNodes, message);
+    protection.Truth(!document.HasChildNodes, error);
 
     return document;
   }
@@ -32,17 +32,17 @@ public static class XmlProtections
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="protection"></param>
+  /// <param name="protection">Protection to perform.</param>
   /// <param name="node"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static XmlNode Empty(this IProtection protection, XmlNode node, string message = null)
+  public static XmlNode Empty(this IProtection protection, XmlNode node, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
     if (node is null) throw new ArgumentNullException(nameof(node));
 
-    protection.Truth(!node.HasChildNodes, message);
+    protection.Truth(!node.HasChildNodes, error);
 
     return node;
   }
@@ -50,18 +50,18 @@ public static class XmlProtections
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="protection"></param>
+  /// <param name="protection">Protection to perform.</param>
   /// <param name="document"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static XDocument Empty(this IProtection protection, XDocument document, string message = null)
+  public static XDocument Empty(this IProtection protection, XDocument document, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
     if (document is null) throw new ArgumentNullException(nameof(document));
 
-    protection.Truth(!document.Nodes().Any(), message);
+    protection.Truth(!document.Nodes().Any(), error);
 
     return document;
   }
@@ -69,17 +69,17 @@ public static class XmlProtections
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="protection"></param>
+  /// <param name="protection">Protection to perform.</param>
   /// <param name="container"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static XContainer Empty(this IProtection protection, XContainer container, string message = null)
+  public static XContainer Empty(this IProtection protection, XContainer container, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
     if (container is null) throw new ArgumentNullException(nameof(container));
 
-    protection.Truth(!container.Nodes().Any(), message);
+    protection.Truth(!container.Nodes().Any(), error);
 
     return container;
   }

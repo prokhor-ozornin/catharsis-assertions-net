@@ -11,9 +11,9 @@ public static class StreamWriterExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="expectation"></param>
+  /// <param name="expectation">Expectation to be met.</param>
   /// <param name="encoding"></param>
-  /// <returns></returns>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<StreamWriter> Encoding(this IExpectation<StreamWriter> expectation, Encoding encoding) => expectation.HaveSubject().And().Expected(writer => writer.Encoding.Equals(encoding));
 }

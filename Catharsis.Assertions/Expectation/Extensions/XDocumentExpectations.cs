@@ -11,17 +11,17 @@ public static class XDocumentExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="expectation"></param>
-  /// <returns></returns>
+  /// <param name="expectation">Expectation to be met.</param>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<XDocument> Empty(this IExpectation<XDocument> expectation) => expectation.HaveSubject().And().Expected(document => !document.Nodes().Any());
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="expectation"></param>
+  /// <param name="expectation">Expectation to be met.</param>
   /// <param name="name"></param>
-  /// <returns></returns>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<XDocument> Name(this IExpectation<XDocument> expectation, XName name) => expectation.HaveSubject().And().Expected(document => document.Root?.Name == name);
 }

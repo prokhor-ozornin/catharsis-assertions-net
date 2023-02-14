@@ -10,18 +10,18 @@ public static class EnumerableProtections
   ///   <para></para>
   /// </summary>
   /// <typeparam name="T"></typeparam>
-  /// <param name="protection"></param>
+  /// <param name="protection">Protection to perform.</param>
   /// <param name="sequence"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static IEnumerable<T> Empty<T>(this IProtection protection, IEnumerable<T> sequence, string message = null)
+  public static IEnumerable<T> Empty<T>(this IProtection protection, IEnumerable<T> sequence, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
     if (sequence is null) throw new ArgumentNullException(nameof(sequence));
 
-    protection.Truth(!sequence.Any(), message);
+    protection.Truth(!sequence.Any(), error);
 
     return sequence;
   }
@@ -30,19 +30,20 @@ public static class EnumerableProtections
   ///   <para></para>
   /// </summary>
   /// <typeparam name="T"></typeparam>
-  /// <param name="protection"></param>
+  /// <param name="protection">Protection to perform.</param>
   /// <param name="value"></param>
   /// <param name="values"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static T AnyOf<T>(this IProtection protection, T value, IEnumerable<T> values, string message = null)
+  /// <seealso cref="AnyOf{T}(IProtection, T, string, T[])"/>
+  public static T AnyOf<T>(this IProtection protection, T value, IEnumerable<T> values, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
     if (values is null) throw new ArgumentNullException(nameof(values));
 
-    protection.Truth(values.Contains(value), message);
+    protection.Truth(values.Contains(value), error);
 
     return value;
   }
@@ -51,12 +52,13 @@ public static class EnumerableProtections
   ///   <para></para>
   /// </summary>
   /// <typeparam name="T"></typeparam>
-  /// <param name="protection"></param>
+  /// <param name="protection">Protection to perform.</param>
   /// <param name="value"></param>
-  /// <param name="message"></param>
+  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <param name="values"></param>
-  /// <returns></returns>
+  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
-  public static T AnyOf<T>(this IProtection protection, T value, string message = null, params T[] values) => protection.AnyOf(value, values, message);
+  /// <seealso cref="AnyOf{T}(IProtection, T, IEnumerable{T}, string)"/>
+  public static T AnyOf<T>(this IProtection protection, T value, string error = null, params T[] values) => protection.AnyOf(value, values, error);
 }

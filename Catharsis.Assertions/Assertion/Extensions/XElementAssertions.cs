@@ -11,14 +11,15 @@ public static class XElementAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="element"></param>
   /// <param name="name"></param>
   /// <param name="value"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Attribute(this IAssertion assertion, XElement element, XName name, string value = null, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Attribute(this IAssertion assertion, XElement element, XName name, string value = null, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (element is null) throw new ArgumentNullException(nameof(element));
@@ -27,6 +28,6 @@ public static class XElementAssertions
     var attributes = element.Attributes(name);
     var result = value is not null ? attributes.Any(attribute => attribute.Name == name && attribute.Value == value) : attributes.Any(attribute => attribute.Name == name);
 
-    return assertion.True(result, message);
+    return assertion.True(result, error);
   }
 }

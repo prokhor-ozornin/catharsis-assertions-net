@@ -11,17 +11,17 @@ public static class StringBuilderExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="expectation"></param>
+  /// <param name="expectation">Expectation to be met.</param>
   /// <param name="length"></param>
-  /// <returns></returns>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<StringBuilder> Length(this IExpectation<StringBuilder> expectation, int length) => expectation.HaveSubject().And().Expected(builder => builder.Length == length);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="expectation"></param>
-  /// <returns></returns>
+  /// <param name="expectation">Expectation to be met.</param>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<StringBuilder> Empty(this IExpectation<StringBuilder> expectation) => expectation.Length(0);
 }

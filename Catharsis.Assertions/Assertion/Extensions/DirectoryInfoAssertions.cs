@@ -9,29 +9,30 @@ public static class DirectoryInfoAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="directory"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  public static IAssertion Empty(this IAssertion assertion, DirectoryInfo directory, string message = null) => directory is not null ? assertion.Empty(directory.EnumerateFileSystemInfos(), message) : throw new ArgumentNullException(nameof(directory));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Empty(this IAssertion assertion, DirectoryInfo directory, string error = null) => directory is not null ? assertion.Empty(directory.EnumerateFileSystemInfos(), error) : throw new ArgumentNullException(nameof(directory));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="directory"></param>
   /// <param name="parent"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion InDirectory(this IAssertion assertion, DirectoryInfo directory, DirectoryInfo parent, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion InDirectory(this IAssertion assertion, DirectoryInfo directory, DirectoryInfo parent, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (directory is null) throw new ArgumentNullException(nameof(directory));
     if (parent is null) throw new ArgumentNullException(nameof(parent));
 
-    return assertion.Contain(parent.EnumerateDirectories("*", new EnumerationOptions { RecurseSubdirectories = true }).Select(directory => directory.FullName), directory.FullName, null, message);
+    return assertion.Contain(parent.EnumerateDirectories("*", new EnumerationOptions { RecurseSubdirectories = true }).Select(directory => directory.FullName), directory.FullName, null, error);
   }
 }

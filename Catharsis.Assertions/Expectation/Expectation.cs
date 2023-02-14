@@ -4,7 +4,7 @@ internal sealed class Expectation<T> : IExpectation<T>
 {
   private readonly T subject;
   
-  private bool flag = true;
+  private bool state = true;
 
   public bool Result { get; private set; } = true;
 
@@ -12,7 +12,7 @@ internal sealed class Expectation<T> : IExpectation<T>
 
   public IExpectation<T> Not()
   {
-    flag = !flag;
+    state = !state;
     return this;
   }
 
@@ -22,7 +22,7 @@ internal sealed class Expectation<T> : IExpectation<T>
 
     var condition = result(subject);
 
-    Result = Result && (flag ? condition : !condition);
+    Result = Result && (state ? condition : !condition);
     
     return this;
   }

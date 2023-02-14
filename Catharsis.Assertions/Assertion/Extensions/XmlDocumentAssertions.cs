@@ -11,14 +11,15 @@ public static class XmlDocumentAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="document"></param>
   /// <param name="name"></param>
   /// <param name="uri"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Element(this IAssertion assertion, XmlDocument document, string name, string uri = null, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Element(this IAssertion assertion, XmlDocument document, string name, string uri = null, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (document is null) throw new ArgumentNullException(nameof(document));
@@ -26,6 +27,6 @@ public static class XmlDocumentAssertions
 
     var elements = uri is not null ? document.GetElementsByTagName(name, uri) : document.GetElementsByTagName(name);
 
-    return assertion.Greater(elements.Count, 0, message);
+    return assertion.Greater(elements.Count, 0, error);
   }
 }

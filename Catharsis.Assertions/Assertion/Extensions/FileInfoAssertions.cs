@@ -9,21 +9,21 @@ public static class FileInfoAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file"></param>
   /// <param name="length"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  public static IAssertion Length(this IAssertion assertion, FileInfo file, long length, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Length(this IAssertion assertion, FileInfo file, long length, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (file is null) throw new ArgumentNullException(nameof(file));
 
-    if (assertion.Unconfirmed(file.Length == length))
+    if (assertion.Invalid(file.Length == length))
     {
-      throw new ArgumentException(message);
+      throw new ArgumentException(error);
     }
 
     return assertion;
@@ -32,40 +32,41 @@ public static class FileInfoAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  public static IAssertion Empty(this IAssertion assertion, FileInfo file, string message = null) => assertion.Length(file, 0, message);
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Empty(this IAssertion assertion, FileInfo file, string error = null) => assertion.Length(file, 0, error);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  public static IAssertion ReadOnly(this IAssertion assertion, FileInfo file, string message = null) => file is not null ? assertion.True(file.IsReadOnly, message) : throw new ArgumentNullException(nameof(file));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion ReadOnly(this IAssertion assertion, FileInfo file, string error = null) => file is not null ? assertion.True(file.IsReadOnly, error) : throw new ArgumentNullException(nameof(file));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file"></param>
   /// <param name="directory"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion InDirectory(this IAssertion assertion, FileInfo file, DirectoryInfo directory, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion InDirectory(this IAssertion assertion, FileInfo file, DirectoryInfo directory, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (file is null) throw new ArgumentNullException(nameof(file));
     if (directory is null) throw new ArgumentNullException(nameof(directory));
 
-    return assertion.True(directory.EnumerateFiles("*", new EnumerationOptions { RecurseSubdirectories = true }).Any(directoryFile => directoryFile.Name == file.Name), message);
+    return assertion.True(directory.EnumerateFiles("*", new EnumerationOptions { RecurseSubdirectories = true }).Any(directoryFile => directoryFile.Name == file.Name), error);
   }
 }

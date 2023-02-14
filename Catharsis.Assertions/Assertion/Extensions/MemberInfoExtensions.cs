@@ -11,41 +11,45 @@ public static class MemberInfoAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member"></param>
   /// <param name="type"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="Attribute{T}(IAssertion, MemberInfo, string)"/>
-  public static IAssertion Attribute(this IAssertion assertion, MemberInfo member, Type type, string message = null)
+  public static IAssertion Attribute(this IAssertion assertion, MemberInfo member, Type type, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (member is null) throw new ArgumentNullException(nameof(member));
     if (type is null) throw new ArgumentNullException(nameof(type));
 
-    return assertion.True(member.GetCustomAttribute(type) is not null, message);
+    return assertion.True(member.GetCustomAttribute(type) is not null, error);
   }
 
   /// <summary>
   ///   <para></para>
   /// </summary>
   /// <typeparam name="T"></typeparam>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="Attribute(IAssertion, MemberInfo, System.Type, string)"/>
-  public static IAssertion Attribute<T>(this IAssertion assertion, MemberInfo member, string message = null) where T : Attribute => assertion.Attribute(member, typeof(T), message);
+  public static IAssertion Attribute<T>(this IAssertion assertion, MemberInfo member, string error = null) where T : Attribute => assertion.Attribute(member, typeof(T), error);
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member"></param>
   /// <param name="type"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Type(this IAssertion assertion, MemberInfo member, MemberTypes type, string message = null) => member is not null ? assertion.True(member.MemberType == type, message) : throw new ArgumentNullException(nameof(member));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Type(this IAssertion assertion, MemberInfo member, MemberTypes type, string error = null) => member is not null ? assertion.True(member.MemberType == type, error) : throw new ArgumentNullException(nameof(member));
 }

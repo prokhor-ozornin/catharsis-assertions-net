@@ -11,60 +11,65 @@ public static class PropertyInfoAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="Writable(IAssertion, PropertyInfo, string)"/>
-  public static IAssertion Readable(this IAssertion assertion, PropertyInfo property, string message = null) => property is not null ? assertion.True(property.CanRead, message) : throw new ArgumentNullException(nameof(property));
+  public static IAssertion Readable(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanRead, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion ReadOnly(this IAssertion assertion, PropertyInfo property, string message = null) => property is not null ? assertion.True(property.CanRead && !property.CanWrite, message) : throw new ArgumentNullException(nameof(property));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion ReadOnly(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanRead && !property.CanWrite, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="Readable(IAssertion, PropertyInfo, string)"/>
-  public static IAssertion Writable(this IAssertion assertion, PropertyInfo property, string message = null) => property is not null ? assertion.True(property.CanWrite, message) : throw new ArgumentNullException(nameof(property));
+  public static IAssertion Writable(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanWrite, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion WriteOnly(this IAssertion assertion, PropertyInfo property, string message = null) => property is not null ? assertion.True(property.CanWrite && !property.CanRead, message) : throw new ArgumentNullException(nameof(property));
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion WriteOnly(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanWrite && !property.CanRead, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property"></param>
   /// <param name="subject"></param>
   /// <param name="value"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IAssertion Value(this IAssertion assertion, PropertyInfo property, object subject, object value, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Value(this IAssertion assertion, PropertyInfo property, object subject, object value, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (property is null) throw new ArgumentNullException(nameof(property));
 
-    return assertion.Equal(property.GetValue(subject), value, message);
+    return assertion.Equal(property.GetValue(subject), value, error);
   }
 }

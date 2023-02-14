@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="bool"/> basic type.</para>
 /// </summary>
 /// <seealso cref="bool"/>
 public static class BooleanAssertions
@@ -9,19 +9,19 @@ public static class BooleanAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="expected"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  public static IAssertion True(this IAssertion assertion, bool? expected, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion True(this IAssertion assertion, bool? expected, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
 
-    if (assertion.Unconfirmed(expected.GetValueOrDefault()))
+    if (assertion.Invalid(expected.GetValueOrDefault()))
     {
-      throw new ArgumentException(message);
+      throw new InvalidOperationException(error);
     }
 
     return assertion;
@@ -30,19 +30,19 @@ public static class BooleanAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <param name="assertion"></param>
+  /// <param name="assertion">Assertion to validate.</param>
   /// <param name="expected"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
-  public static IAssertion False(this IAssertion assertion, bool? expected, string message = null)
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion False(this IAssertion assertion, bool? expected, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
 
-    if (assertion.Unconfirmed(!expected.GetValueOrDefault()))
+    if (assertion.Invalid(!expected.GetValueOrDefault()))
     {
-      throw new ArgumentException(message);
+      throw new InvalidOperationException(error);
     }
 
     return assertion;
