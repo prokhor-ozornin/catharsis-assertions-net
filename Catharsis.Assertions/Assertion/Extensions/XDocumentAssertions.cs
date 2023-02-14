@@ -15,7 +15,7 @@ public static class XDocumentAssertions
   /// <param name="document"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="document"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Empty(this IAssertion assertion, XDocument document, string error = null) => document is not null ? assertion.Empty(document.Nodes(), error) : throw new ArgumentNullException(nameof(document));
 
@@ -27,7 +27,7 @@ public static class XDocumentAssertions
   /// <param name="name"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="document"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Name(this IAssertion assertion, XDocument document, XName name, string error = null)
   {

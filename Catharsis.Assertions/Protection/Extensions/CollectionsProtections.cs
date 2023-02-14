@@ -19,6 +19,7 @@ public static class CollectionsProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, NameValueCollection, string)"/>
   public static ICollection<T> Empty<T>(this IProtection protection, ICollection<T> collection, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -38,6 +39,7 @@ public static class CollectionsProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty{T}(IProtection, ICollection{T}, string)"/>
   public static NameValueCollection Empty(this IProtection protection, NameValueCollection collection, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));

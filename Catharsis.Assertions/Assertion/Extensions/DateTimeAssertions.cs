@@ -13,7 +13,7 @@ public static class DateTimeAssertions
   /// <param name="date"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="Future(IAssertion, DateTime, string)"/>
   public static IAssertion Past(this IAssertion assertion, DateTime date, string error = null) => assertion.True(date.ToUniversalTime() < DateTime.UtcNow, error);
@@ -25,7 +25,7 @@ public static class DateTimeAssertions
   /// <param name="date"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="Past(IAssertion, DateTime, string)"/>
   public static IAssertion Future(this IAssertion assertion, DateTime date, string error = null) => assertion.True(date.ToUniversalTime() > DateTime.UtcNow, error);
@@ -38,7 +38,7 @@ public static class DateTimeAssertions
   /// <param name="day"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion DayOfYear(this IAssertion assertion, DateTime date, int day, string error = null) => assertion.True(date.DayOfYear == day, error);
 
@@ -50,7 +50,7 @@ public static class DateTimeAssertions
   /// <param name="year"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Year(this IAssertion assertion, DateTime date, int year, string error = null) => assertion.True(date.Year == year, error);
 
@@ -62,7 +62,7 @@ public static class DateTimeAssertions
   /// <param name="month"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Month(this IAssertion assertion, DateTime date, int month, string error = null) => assertion.True(date.Month == month, error);
 
@@ -74,7 +74,7 @@ public static class DateTimeAssertions
   /// <param name="day"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Day(this IAssertion assertion, DateTime date, int day, string error = null) => assertion.True(date.Day == day, error);
 
@@ -86,7 +86,7 @@ public static class DateTimeAssertions
   /// <param name="hour"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Hour(this IAssertion assertion, DateTime date, int hour, string error = null) => assertion.True(date.Hour == hour, error);
 
@@ -98,7 +98,7 @@ public static class DateTimeAssertions
   /// <param name="minute"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Minute(this IAssertion assertion, DateTime date, int minute, string error = null) => assertion.True(date.Minute == minute, error);
 
@@ -110,7 +110,7 @@ public static class DateTimeAssertions
   /// <param name="second"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Second(this IAssertion assertion, DateTime date, int second, string error = null) => assertion.True(date.Second == second, error);
 
@@ -122,7 +122,7 @@ public static class DateTimeAssertions
   /// <param name="millisecond"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Millisecond(this IAssertion assertion, DateTime date, int millisecond, string error = null) => assertion.True(date.Millisecond == millisecond, error);
 
@@ -134,7 +134,7 @@ public static class DateTimeAssertions
   /// <param name="day"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion DayOfWeek(this IAssertion assertion, DateTime date, DayOfWeek day, string error = null) => assertion.True(date.DayOfWeek == day, error);
 
@@ -145,7 +145,7 @@ public static class DateTimeAssertions
   /// <param name="date"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="UtcTime(IAssertion, DateTime, string)"/>
   public static IAssertion LocalTime(this IAssertion assertion, DateTime date, string error = null) => assertion.True(date.Kind == DateTimeKind.Local, error);
@@ -157,7 +157,7 @@ public static class DateTimeAssertions
   /// <param name="date"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="LocalTime(IAssertion, DateTime, string)"/>
   public static IAssertion UtcTime(this IAssertion assertion, DateTime date, string error = null) => assertion.True(date.Kind == DateTimeKind.Utc, error);

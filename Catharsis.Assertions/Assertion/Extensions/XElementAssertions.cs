@@ -17,7 +17,7 @@ public static class XElementAssertions
   /// <param name="value"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="element"/>, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Attribute(this IAssertion assertion, XElement element, XName name, string value = null, string error = null)
   {

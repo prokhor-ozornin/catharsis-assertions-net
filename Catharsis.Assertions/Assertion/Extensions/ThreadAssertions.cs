@@ -14,7 +14,7 @@ public static class ThreadAssertions
   /// <param name="state"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="thread"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion State(this IAssertion assertion, Thread thread, ThreadState state, string error = null) => thread is not null ? assertion.True(thread.ThreadState == state, error) : throw new ArgumentNullException(nameof(thread));
 
@@ -26,7 +26,7 @@ public static class ThreadAssertions
   /// <param name="priority"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="thread"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Priority(this IAssertion assertion, Thread thread, ThreadPriority priority, string error = null) => thread is not null ? assertion.True(thread.Priority == priority, error) : throw new ArgumentNullException(nameof(thread));
 }

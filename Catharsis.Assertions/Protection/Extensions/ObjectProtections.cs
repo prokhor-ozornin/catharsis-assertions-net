@@ -99,6 +99,7 @@ public static class ObjectProtections
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Null{T}(IProtection, Lazy{T}, string)"/>
   public static T Null<T>(this IProtection protection, T instance, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -120,6 +121,7 @@ public static class ObjectProtections
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Null{T}(IProtection, T, string)"/>
   public static Lazy<T> Null<T>(this IProtection protection, Lazy<T> instance, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));

@@ -16,7 +16,7 @@ public static class MemberInfoAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="member"/>, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="Attribute{T}(IAssertion, MemberInfo, string)"/>
   public static IAssertion Attribute(this IAssertion assertion, MemberInfo member, Type type, string error = null)
@@ -36,7 +36,7 @@ public static class MemberInfoAssertions
   /// <param name="member"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="member"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="Attribute(IAssertion, MemberInfo, System.Type, string)"/>
   public static IAssertion Attribute<T>(this IAssertion assertion, MemberInfo member, string error = null) where T : Attribute => assertion.Attribute(member, typeof(T), error);
@@ -49,7 +49,7 @@ public static class MemberInfoAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="member"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Type(this IAssertion assertion, MemberInfo member, MemberTypes type, string error = null) => member is not null ? assertion.True(member.MemberType == type, error) : throw new ArgumentNullException(nameof(member));
 }

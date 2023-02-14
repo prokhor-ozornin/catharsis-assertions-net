@@ -19,6 +19,9 @@ public static class XmlProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, XmlNode, string)"/>
+  /// <seealso cref="Empty(IProtection, XDocument, string)"/>
+  /// <seealso cref="Empty(IProtection, XContainer, string)"/>
   public static XmlDocument Empty(this IProtection protection, XmlDocument document, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -37,6 +40,9 @@ public static class XmlProtections
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Empty(IProtection, XmlDocument, string)"/>
+  /// <seealso cref="Empty(IProtection, XDocument, string)"/>
+  /// <seealso cref="Empty(IProtection, XContainer, string)"/>
   public static XmlNode Empty(this IProtection protection, XmlNode node, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -56,6 +62,9 @@ public static class XmlProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, XmlDocument, string)"/>
+  /// <seealso cref="Empty(IProtection, XmlNode, string)"/>
+  /// <seealso cref="Empty(IProtection, XContainer, string)"/>
   public static XDocument Empty(this IProtection protection, XDocument document, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -74,6 +83,9 @@ public static class XmlProtections
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
+  /// <seealso cref="Empty(IProtection, XmlDocument, string)"/>
+  /// <seealso cref="Empty(IProtection, XmlNode, string)"/>
+  /// <seealso cref="Empty(IProtection, XDocument, string)"/>
   public static XContainer Empty(this IProtection protection, XContainer container, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));

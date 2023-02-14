@@ -16,7 +16,7 @@ public static class RegexAssertions
   /// <param name="text"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="regex"/>, or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Match(this IAssertion assertion, Regex regex, string text, string error = null)
   {

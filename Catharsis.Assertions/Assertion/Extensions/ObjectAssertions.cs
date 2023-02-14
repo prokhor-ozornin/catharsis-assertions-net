@@ -15,7 +15,7 @@ public static class ObjectAssertions
   /// <param name="other"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Same<T>(this IAssertion assertion, T instance, object other, string error = null) => assertion.True(ReferenceEquals(instance, other), error);
 
@@ -28,7 +28,7 @@ public static class ObjectAssertions
   /// <param name="other"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Equal<T>(this IAssertion assertion, T instance, object other, string error = null) => assertion.True(Equals(instance, other), error);
 
@@ -40,7 +40,7 @@ public static class ObjectAssertions
   /// <param name="instance"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Default<T>(this IAssertion assertion, T instance, string error = null) => assertion.Equal(instance, default(T), error);
 
@@ -52,7 +52,7 @@ public static class ObjectAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="instance"/>, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion OfType(this IAssertion assertion, object instance, Type type, string error = null)
   {
@@ -71,6 +71,7 @@ public static class ObjectAssertions
   /// <param name="instance"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="instance"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion OfType<T>(this IAssertion assertion, object instance, string error = null) => assertion.OfType(instance, typeof(T), error);
 
@@ -82,6 +83,7 @@ public static class ObjectAssertions
   /// <param name="instance"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Null<T>(this IAssertion assertion, T instance, string error = null) => assertion.True(instance is null, error);
 
@@ -95,7 +97,7 @@ public static class ObjectAssertions
   /// <param name="comparer"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="values"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion OneOf<T>(this IAssertion assertion, T value, IEnumerable<T> values, IEqualityComparer<T> comparer = null, string error = null) => assertion.Contain(values, value, comparer, error);
 }

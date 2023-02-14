@@ -16,6 +16,7 @@ public static class BinaryProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, BinaryWriter, string)"/>
   public static BinaryReader Empty(this IProtection protection, BinaryReader reader, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -35,6 +36,7 @@ public static class BinaryProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, BinaryReader, string)"/>
   public static BinaryWriter Empty(this IProtection protection, BinaryWriter writer, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));

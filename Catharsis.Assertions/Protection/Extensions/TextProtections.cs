@@ -23,6 +23,10 @@ public static class TextProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, StringBuilder, string)"/>
+  /// <seealso cref="Empty(IProtection, SecureString, string)"/>
+  /// <seealso cref="Empty(IProtection, StreamReader, string)"/>
+  /// <seealso cref="Empty(IProtection, StreamWriter, string)"/>
   public static string Empty(this IProtection protection, string text, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -42,6 +46,10 @@ public static class TextProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, string, string)"/>
+  /// <seealso cref="Empty(IProtection, SecureString, string)"/>
+  /// <seealso cref="Empty(IProtection, StreamReader, string)"/>
+  /// <seealso cref="Empty(IProtection, StreamWriter, string)"/>
   public static StringBuilder Empty(this IProtection protection, StringBuilder builder, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -61,6 +69,10 @@ public static class TextProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, string, string)"/>
+  /// <seealso cref="Empty(IProtection, StringBuilder, string)"/>
+  /// <seealso cref="Empty(IProtection, StreamReader, string)"/>
+  /// <seealso cref="Empty(IProtection, StreamWriter, string)"/>
   public static SecureString Empty(this IProtection protection, SecureString secure, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -80,6 +92,10 @@ public static class TextProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, string, string)"/>
+  /// <seealso cref="Empty(IProtection, StringBuilder, string)"/>
+  /// <seealso cref="Empty(IProtection, SecureString, string)"/>
+  /// <seealso cref="Empty(IProtection, StreamWriter, string)"/>
   public static StreamReader Empty(this IProtection protection, StreamReader reader, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -99,6 +115,10 @@ public static class TextProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, string, string)"/>
+  /// <seealso cref="Empty(IProtection, StringBuilder, string)"/>
+  /// <seealso cref="Empty(IProtection, SecureString, string)"/>
+  /// <seealso cref="Empty(IProtection, StreamReader, string)"/>
   public static StreamWriter Empty(this IProtection protection, StreamWriter writer, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));

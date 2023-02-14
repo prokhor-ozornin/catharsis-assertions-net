@@ -13,7 +13,7 @@ public static class TypeAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Abstract(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsAbstract && !type.IsSealed, error) : throw new ArgumentNullException(nameof(type));
 
@@ -24,7 +24,7 @@ public static class TypeAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Sealed(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsSealed && !type.IsAbstract, error) : throw new ArgumentNullException(nameof(type));
 
@@ -35,7 +35,7 @@ public static class TypeAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Static(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsAbstract && type.IsSealed, error) : throw new ArgumentNullException(nameof(type));
 
@@ -46,7 +46,7 @@ public static class TypeAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Public(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsPublic && type.IsVisible, error) : throw new ArgumentNullException(nameof(type));
 
@@ -57,7 +57,7 @@ public static class TypeAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Internal(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsNotPublic && !type.IsVisible, error) : throw new ArgumentNullException(nameof(type));
 
@@ -69,7 +69,7 @@ public static class TypeAssertions
   /// <param name="superclass"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="subclass"/>, or <paramref name="superclass"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Subclass(this IAssertion assertion, Type subclass, Type superclass, string error = null)
   {
@@ -88,7 +88,7 @@ public static class TypeAssertions
   /// <param name="subclass"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="subclass"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Subclass<T>(this IAssertion assertion, Type subclass, string error = null) => assertion.Subclass(subclass, typeof(T), error);
 
@@ -100,7 +100,7 @@ public static class TypeAssertions
   /// <param name="to"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="from"/>, or <paramref name="to"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="AssignableFrom{T}(IAssertion, Type, string)"/>
   public static IAssertion AssignableFrom(this IAssertion assertion, Type from, Type to, string error = null)
@@ -120,7 +120,7 @@ public static class TypeAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="AssignableFrom(IAssertion, Type, Type, string)"/>
   public static IAssertion AssignableFrom<T>(this IAssertion assertion, Type type, string error = null) => assertion.AssignableFrom(type, typeof(T), error);
@@ -134,7 +134,7 @@ public static class TypeAssertions
   /// <param name="to"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="from"/>, or <paramref name="to"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="AssignableTo{T}(IAssertion, Type, string)"/>
   public static IAssertion AssignableTo(this IAssertion assertion, Type from, Type to, string error = null)
@@ -154,7 +154,7 @@ public static class TypeAssertions
   /// <param name="type"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="AssignableTo(IAssertion, Type, Type, string)"/>
   public static IAssertion AssignableTo<T>(this IAssertion assertion, Type type, string error = null) => assertion.AssignableTo(type, typeof(T), error);

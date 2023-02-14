@@ -17,7 +17,7 @@ public static class XmlDocumentAssertions
   /// <param name="uri"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="document"/>, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Element(this IAssertion assertion, XmlDocument document, string name, string uri = null, string error = null)
   {

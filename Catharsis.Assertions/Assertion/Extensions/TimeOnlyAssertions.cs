@@ -15,7 +15,7 @@ public static class TimeOnlyAssertions
   /// <param name="hour"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Hour(this IAssertion assertion, TimeOnly time, int hour, string error = null) => assertion.True(time.Hour == hour, error);
 
@@ -27,7 +27,7 @@ public static class TimeOnlyAssertions
   /// <param name="minute"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Minute(this IAssertion assertion, TimeOnly time, int minute, string error = null) => assertion.True(time.Minute == minute, error);
 
@@ -39,7 +39,7 @@ public static class TimeOnlyAssertions
   /// <param name="second"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Second(this IAssertion assertion, TimeOnly time, int second, string error = null) => assertion.True(time.Second == second, error);
 
@@ -51,7 +51,7 @@ public static class TimeOnlyAssertions
   /// <param name="millisecond"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Millisecond(this IAssertion assertion, TimeOnly time, int millisecond, string error = null) => assertion.True(time.Millisecond == millisecond, error);
 }

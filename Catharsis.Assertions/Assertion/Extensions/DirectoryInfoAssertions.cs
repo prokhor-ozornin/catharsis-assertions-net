@@ -13,7 +13,7 @@ public static class DirectoryInfoAssertions
   /// <param name="directory"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="directory"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Empty(this IAssertion assertion, DirectoryInfo directory, string error = null) => directory is not null ? assertion.Empty(directory.EnumerateFileSystemInfos(), error) : throw new ArgumentNullException(nameof(directory));
 
@@ -25,7 +25,7 @@ public static class DirectoryInfoAssertions
   /// <param name="parent"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="directory"/>, or <paramref name="parent"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion InDirectory(this IAssertion assertion, DirectoryInfo directory, DirectoryInfo parent, string error = null)
   {

@@ -16,6 +16,7 @@ public static class FilesystemProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, DirectoryInfo, string)"/>
   public static FileInfo Empty(this IProtection protection, FileInfo file, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -35,6 +36,7 @@ public static class FilesystemProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentException"></exception>
+  /// <seealso cref="Empty(IProtection, FileInfo, string)"/>
   public static DirectoryInfo Empty(this IProtection protection, DirectoryInfo directory, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
