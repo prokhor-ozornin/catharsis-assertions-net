@@ -12,6 +12,6 @@ public static class TextWriterExpectations
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="format"></param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<TextWriter> Format(this IExpectation<TextWriter> expectation, IFormatProvider format) => expectation.HaveSubject().And().Expected(writer => writer.FormatProvider.Equals(format));
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
+  public static IExpectation<TextWriter> Format(this IExpectation<TextWriter> expectation, IFormatProvider format) => expectation.HaveSubject().And().Expected(writer => Equals(writer.FormatProvider, format));
 }

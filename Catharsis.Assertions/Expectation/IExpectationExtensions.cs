@@ -12,7 +12,7 @@ public static class IExpectationExtensions
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="result"></param>
-  /// <returns></returns>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<T> Expected<T>(this IExpectation<T> expectation, Predicate<T> result)
   {
@@ -27,7 +27,7 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns></returns>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<T> HaveSubject<T>(this IExpectation<T> expectation)
   {
@@ -50,7 +50,7 @@ public static class IExpectationExtensions
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="exception"></param>
-  /// <returns></returns>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="ThrowIfFalse{T}(IExpectation{T}, string)"/>
   public static IExpectation<T> ThrowIfFalse<T>(this IExpectation<T> expectation, Exception exception)
@@ -71,11 +71,11 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error"></param>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="ThrowIfFalse{T}(IExpectation{T}, Exception)"/>
-  public static IExpectation<T> ThrowIfFalse<T>(this IExpectation<T> expectation, string message = null) => expectation.ThrowIfFalse(new InvalidOperationException(message));
+  public static IExpectation<T> ThrowIfFalse<T>(this IExpectation<T> expectation, string error = null) => expectation.ThrowIfFalse(new InvalidOperationException(error));
 
   /// <summary>
   ///   <para></para>
@@ -83,13 +83,13 @@ public static class IExpectationExtensions
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="instance"></param>
-  /// <param name="message"></param>
-  /// <returns></returns>
+  /// <param name="error"></param>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
-  public static IExpectation<T> ThrowIfNull<T>(this IExpectation<T> expectation, object instance, string message = null)
+  public static IExpectation<T> ThrowIfNull<T>(this IExpectation<T> expectation, object instance, string error = null)
   {
     if (expectation is null) throw new ArgumentNullException(nameof(expectation));
-    if (instance is null) throw new ArgumentNullException(message ?? nameof(instance));
+    if (instance is null) throw new ArgumentNullException(error ?? nameof(instance));
 
     return expectation;
   }
@@ -99,8 +99,7 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> To<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
@@ -108,8 +107,7 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> And<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
@@ -117,8 +115,7 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> Be<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
@@ -126,8 +123,7 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> Having<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
@@ -135,8 +131,7 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> With<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
@@ -144,8 +139,7 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> Of<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
@@ -153,8 +147,7 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> At<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
@@ -162,7 +155,6 @@ public static class IExpectationExtensions
   /// </summary>
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns></returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> On<T>(this IExpectation<T> expectation) => expectation;
 }

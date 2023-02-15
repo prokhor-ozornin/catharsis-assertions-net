@@ -17,8 +17,8 @@ public static class CollectionsProtections
   /// <param name="collection"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="collection"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   /// <seealso cref="Empty(IProtection, NameValueCollection, string)"/>
   public static ICollection<T> Empty<T>(this IProtection protection, ICollection<T> collection, string error = null)
   {
@@ -37,8 +37,8 @@ public static class CollectionsProtections
   /// <param name="collection"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  /// <exception cref="ArgumentException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="collection"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   /// <seealso cref="Empty{T}(IProtection, ICollection{T}, string)"/>
   public static NameValueCollection Empty(this IProtection protection, NameValueCollection collection, string error = null)
   {

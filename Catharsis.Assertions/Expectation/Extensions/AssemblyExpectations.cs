@@ -14,7 +14,7 @@ public static class AssemblyExpectations
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="type">Type to look for.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> has an undefined subject or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <seealso cref="Define{T}(IExpectation{Assembly})"/>
   public static IExpectation<Assembly> Define(this IExpectation<Assembly> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(assembly => assembly.DefinedTypes.Contains(type));
 
@@ -24,7 +24,7 @@ public static class AssemblyExpectations
   /// <typeparam name="T"></typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> has an undefined subject or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   /// <seealso cref="Define(IExpectation{Assembly}, Type)"/>
   public static IExpectation<Assembly> Define<T>(this IExpectation<Assembly> expectation) => expectation.Define(typeof(T));
 
@@ -33,6 +33,6 @@ public static class AssemblyExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Assembly> Dynamic(this IExpectation<Assembly> expectation) => expectation.HaveSubject().And().Expected(assembly => assembly.IsDynamic);
 }
