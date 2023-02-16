@@ -9,7 +9,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="count"></param>
@@ -22,7 +22,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
@@ -34,7 +34,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="other"></param>
@@ -55,7 +55,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="element"></param>
@@ -69,7 +69,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="other"></param>
@@ -90,7 +90,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="other"></param>
@@ -111,7 +111,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
@@ -123,7 +123,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="comparer"></param>
@@ -136,7 +136,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="index"></param>
@@ -150,7 +150,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="subset"></param>
   /// <param name="superset"></param>
@@ -172,7 +172,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="superset"></param>
   /// <param name="subset"></param>
@@ -187,7 +187,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="reversed"></param>
@@ -208,7 +208,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="other"></param>
@@ -230,7 +230,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="other"></param>
@@ -252,7 +252,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="condition"></param>
@@ -273,7 +273,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="index"></param>
@@ -287,7 +287,7 @@ public static class EnumerableAssertions
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence"></param>
   /// <param name="comparer"></param>

@@ -19,9 +19,9 @@ public static class AssemblyExpectations
   public static IExpectation<Assembly> Define(this IExpectation<Assembly> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(assembly => assembly.DefinedTypes.Contains(type));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given assembly contains a definition of the specified type.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type to look for.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
@@ -29,7 +29,7 @@ public static class AssemblyExpectations
   public static IExpectation<Assembly> Define<T>(this IExpectation<Assembly> expectation) => expectation.Define(typeof(T));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given assembly was generated dynamically in the current process with reflection.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>

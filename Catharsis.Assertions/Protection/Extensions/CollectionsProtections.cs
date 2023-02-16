@@ -12,7 +12,7 @@ public static class CollectionsProtections
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements inside the collection.</typeparam>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="collection"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>

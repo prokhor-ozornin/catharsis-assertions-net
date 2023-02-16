@@ -7,11 +7,11 @@
 public static class ComparableAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given comparable element is "positive" (higher than its default value).</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value"></param>
+  /// <param name="value">Element to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -20,11 +20,11 @@ public static class ComparableAssertions
   public static IAssertion Positive<T>(this IAssertion assertion, T value, string error = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(default) > 0, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given comparable element is "negative" (lower than its default value).</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value"></param>
+  /// <param name="value">Element to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -33,11 +33,11 @@ public static class ComparableAssertions
   public static IAssertion Negative<T>(this IAssertion assertion, T value, string error = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(default) < 0, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given comparable element is "zero" (equal to its default value).</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value"></param>
+  /// <param name="value">Element to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -45,12 +45,12 @@ public static class ComparableAssertions
   public static IAssertion Zero<T>(this IAssertion assertion, T value, string error = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(default) == 0, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given comparable element is greater than a specified value.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value"></param>
-  /// <param name="other"></param>
+  /// <param name="value">Element to inspect.</param>
+  /// <param name="other">Value to compare with.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
@@ -59,12 +59,12 @@ public static class ComparableAssertions
   public static IAssertion Greater<T>(this IAssertion assertion, T value, T other, string error = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(other) > 0, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given comparable element is greater than or equal to a specified value.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value"></param>
-  /// <param name="other"></param>
+  /// <param name="value">Element to inspect.</param>
+  /// <param name="other">Value to compare with.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -73,12 +73,12 @@ public static class ComparableAssertions
   public static IAssertion GreaterOrEqual<T>(this IAssertion assertion, T value, T other, string error = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(other) >= 0, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given comparable element is lesser than a specified value.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value"></param>
-  /// <param name="other"></param>
+  /// <param name="value">Element to inspect.</param>
+  /// <param name="other">Value to compare with.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -87,12 +87,12 @@ public static class ComparableAssertions
   public static IAssertion Lesser<T>(this IAssertion assertion, T value, T other, string error = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(other) < 0, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given comparable element is lesser than or equal to a specified value.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value"></param>
-  /// <param name="other"></param>
+  /// <param name="value">Element to inspect.</param>
+  /// <param name="other">Value to compare with.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -101,13 +101,13 @@ public static class ComparableAssertions
   public static IAssertion LesserOrEqual<T>(this IAssertion assertion, T value, T other, string error = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(other) <= 0, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given comparable element lies within a specified range of values.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value"></param>
-  /// <param name="min"></param>
-  /// <param name="max"></param>
+  /// <param name="value">Element to inspect.</param>
+  /// <param name="min">Lower bound of the range (inclusive).</param>
+  /// <param name="max">Upper bound of the range (inclusive).</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -116,13 +116,13 @@ public static class ComparableAssertions
   public static IAssertion InRange<T>(this IAssertion assertion, T value, T min, T max, string error = null) where T : struct, IComparable<T> => assertion.True(value.CompareTo(min) >= 0 && value.CompareTo(max) <= 0, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given comparable element lies out of a specified range of values.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value"></param>
-  /// <param name="min"></param>
-  /// <param name="max"></param>
+  /// <param name="value">Element to inspect.</param>
+  /// <param name="min">Lower bound of the range (inclusive).</param>
+  /// <param name="max">Upper bound of the range (inclusive).</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

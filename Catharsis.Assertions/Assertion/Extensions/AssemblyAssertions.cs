@@ -42,10 +42,10 @@ public static class AssemblyAssertions
   public static IAssertion Define<T>(this IAssertion assertion, Assembly assembly, string error = null) => assertion.Define(assembly, typeof(T), error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given assembly was generated dynamically in the current process with reflection.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="assembly"></param>
+  /// <param name="assembly">Assembly to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="assembly"/> is a <see langword="null"/> reference.</exception>

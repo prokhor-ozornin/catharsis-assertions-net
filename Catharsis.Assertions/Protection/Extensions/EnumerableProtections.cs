@@ -9,7 +9,7 @@ public static class EnumerableProtections
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="sequence"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
@@ -29,7 +29,7 @@ public static class EnumerableProtections
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="value"></param>
   /// <param name="values"></param>
@@ -51,7 +51,7 @@ public static class EnumerableProtections
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="value"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>

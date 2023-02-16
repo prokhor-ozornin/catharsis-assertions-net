@@ -9,7 +9,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="count"></param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
@@ -19,7 +19,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
@@ -28,7 +28,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="other"></param>
   /// <param name="comparer"></param>
@@ -39,7 +39,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="element"></param>
   /// <param name="comparer"></param>
@@ -50,7 +50,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="other"></param>
   /// <param name="comparer"></param>
@@ -61,7 +61,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="elements"></param>
   /// <param name="comparer"></param>
@@ -72,7 +72,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
@@ -81,7 +81,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="comparer"></param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
@@ -91,7 +91,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="index"></param>
   /// <param name="value"></param>
@@ -102,7 +102,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="superset"></param>
   /// <param name="comparer"></param>
@@ -114,7 +114,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="subset"></param>
   /// <param name="comparer"></param>
@@ -126,7 +126,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="reversed"></param>
   /// <param name="comparer"></param>
@@ -137,7 +137,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="other"></param>
   /// <param name="comparer"></param>
@@ -149,7 +149,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="other"></param>
   /// <param name="comparer"></param>
@@ -161,7 +161,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="condition"></param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
@@ -172,7 +172,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="index"></param>
   /// <param name="value"></param>
@@ -183,7 +183,7 @@ public static class EnumerableExpectations
   /// <summary>
   ///   <para></para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="comparer"></param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
