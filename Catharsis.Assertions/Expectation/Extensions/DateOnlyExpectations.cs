@@ -8,39 +8,39 @@
 public static class DateOnlyExpectations
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given date represents a specified day of the year.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="day"></param>
+  /// <param name="day">Day of the year value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
-  public static IExpectation<DateOnly> Day(this IExpectation<DateOnly> expectation, int day) => expectation.Expected(date => date.Day == day);
+  public static IExpectation<DateOnly> DayOfYear(this IExpectation<DateOnly> expectation, int day) => expectation.Expected(date => date.DayOfYear == day);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given date has a specified year component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="month"></param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
-  public static IExpectation<DateOnly> Month(this IExpectation<DateOnly> expectation, int month) => expectation.Expected(date => date.Month == month);
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="year"></param>
+  /// <param name="year">Year component value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<DateOnly> Year(this IExpectation<DateOnly> expectation, int year) => expectation.Expected(date => date.Year == year);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given date has a specified month component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="day"></param>
+  /// <param name="month">Month component value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
-  public static IExpectation<DateOnly> DayOfYear(this IExpectation<DateOnly> expectation, int day) => expectation.Expected(date => date.DayOfYear == day);
+  public static IExpectation<DateOnly> Month(this IExpectation<DateOnly> expectation, int month) => expectation.Expected(date => date.Month == month);
+
+  /// <summary>
+  ///   <para>Expects that a given date has a specified day component.</para>
+  /// </summary>
+  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="day">Day component value.</param>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
+  public static IExpectation<DateOnly> Day(this IExpectation<DateOnly> expectation, int day) => expectation.Expected(date => date.Day == day);
 }
 #endif

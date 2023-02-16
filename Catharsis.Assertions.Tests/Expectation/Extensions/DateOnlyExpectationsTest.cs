@@ -11,40 +11,20 @@ namespace Catharsis.Assertions.Tests;
 public sealed class DateOnlyExpectationsTest : UnitTest
 {
   /// <summary>
-  ///   <para>Performs testing of <see cref="DateOnlyExpectations.Day(IExpectation{DateOnly}, int)"/> method.</para>
+  ///   <para>Performs testing of <see cref="DateOnlyExpectations.DayOfYear(IExpectation{DateOnly}, int)"/> method.</para>
   /// </summary>
   [Fact]
-  public void Day_Method()
+  public void DayOfYear_Method()
   {
     void Validate(DateOnly date)
     {
-      date.Expect().Day(int.MinValue).Result.Should().BeFalse();
-      date.Expect().Day(date.Day).Result.Should().BeTrue();
+      date.Expect().DayOfYear(int.MinValue).Result.Should().BeFalse();
+      date.Expect().DayOfYear(date.DayOfYear).Result.Should().BeTrue();
     }
 
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateOnlyExpectations.Day(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-
-      new[] {DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly(), DateTime.UtcNow.ToDateOnly()}.ForEach(Validate);
-    }
-  }
-
-  /// <summary>
-  ///   <para>Performs testing of <see cref="DateOnlyExpectations.Month(IExpectation{DateOnly}, int)"/> method.</para>
-  /// </summary>
-  [Fact]
-  public void Month_Method()
-  {
-    void Validate(DateOnly date)
-    {
-      date.Expect().Month(int.MinValue).Result.Should().BeFalse();
-      date.Expect().Month(date.Month).Result.Should().BeTrue();
-    }
-
-    using (new AssertionScope())
-    {
-      AssertionExtensions.Should(() => DateOnlyExpectations.Month(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateOnlyExpectations.DayOfYear(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly(), DateTime.UtcNow.ToDateOnly() }.ForEach(Validate);
     }
@@ -71,22 +51,42 @@ public sealed class DateOnlyExpectationsTest : UnitTest
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="DateOnlyExpectations.DayOfYear(IExpectation{DateOnly}, int)"/> method.</para>
+  ///   <para>Performs testing of <see cref="DateOnlyExpectations.Month(IExpectation{DateOnly}, int)"/> method.</para>
   /// </summary>
   [Fact]
-  public void DayOfYear_Method()
+  public void Month_Method()
   {
     void Validate(DateOnly date)
     {
-      date.Expect().DayOfYear(int.MinValue).Result.Should().BeFalse();
-      date.Expect().DayOfYear(date.DayOfYear).Result.Should().BeTrue();
+      date.Expect().Month(int.MinValue).Result.Should().BeFalse();
+      date.Expect().Month(date.Month).Result.Should().BeTrue();
     }
 
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateOnlyExpectations.DayOfYear(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateOnlyExpectations.Month(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly(), DateTime.UtcNow.ToDateOnly() }.ForEach(Validate);
+    }
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="DateOnlyExpectations.Day(IExpectation{DateOnly}, int)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Day_Method()
+  {
+    void Validate(DateOnly date)
+    {
+      date.Expect().Day(int.MinValue).Result.Should().BeFalse();
+      date.Expect().Day(date.Day).Result.Should().BeTrue();
+    }
+
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateOnlyExpectations.Day(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+
+      new[] {DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly(), DateTime.UtcNow.ToDateOnly()}.ForEach(Validate);
     }
   }
 }
