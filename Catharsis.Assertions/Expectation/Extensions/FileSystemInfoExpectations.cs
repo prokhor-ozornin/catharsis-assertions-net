@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of expectations for <see cref="FileSystemInfo"/> type.</para>
 /// </summary>
 /// <seealso cref="FileSystemInfo"/>
 public static class FileSystemInfoExpectations

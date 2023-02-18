@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="object"/> type.</para>
 /// </summary>
 /// <seealso cref="object"/>
 public static class ObjectAssertions

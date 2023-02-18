@@ -15,23 +15,24 @@
     <Compile Include="..\Catharsis.Assertions\Assertion\Assertion.cs" Link="Assertion\Assertion.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\AssemblyAssertions.cs" Link="Assertion\Extensions\AssemblyAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\BooleanAssertions.cs" Link="Assertion\Extensions\BooleanAssertions.cs" />
-    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\CollectionsAssertions.cs" Link="Assertion\Extensions\CollectionsAssertions.cs" />
-    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\ComparableAssertions.cs" Link="Assertion\Extensions\ComparableAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\DateOnlyAssertions.cs" Link="Assertion\Extensions\DateOnlyAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\DateTimeAssertions.cs" Link="Assertion\Extensions\DateTimeAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\DateTimeOffsetAssertions.cs" Link="Assertion\Extensions\DateTimeOffsetAssertions.cs" />
-    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\DictionaryExtensions.cs" Link="Assertion\Extensions\DictionaryExtensions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\DirectoryInfoAssertions.cs" Link="Assertion\Extensions\DirectoryInfoAssertions.cs" />
-    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\EnumerableAssertions.cs" Link="Assertion\Extensions\EnumerableAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\FieldInfoAssertions.cs" Link="Assertion\Extensions\FieldInfoAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\FileInfoAssertions.cs" Link="Assertion\Extensions\FileInfoAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\FileSystemInfoAssertions.cs" Link="Assertion\Extensions\FileSystemInfoAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\HttpContentAssertions.cs" Link="Assertion\Extensions\HttpContentAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\HttpResponseMessageAssertions.cs" Link="Assertion\Extensions\HttpResponseMessageAssertions.cs" />
+    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\ICollectionAssertions.cs" Link="Assertion\Extensions\ICollectionAssertions.cs" />
+    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\IComparableAssertions.cs" Link="Assertion\Extensions\IComparableAssertions.cs" />
+    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\IDictionaryAssertions.cs" Link="Assertion\Extensions\IDictionaryAssertions.cs" />
+    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\IEnumerableAssertions.cs" Link="Assertion\Extensions\IEnumerableAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\IPAddressAssertions.cs" Link="Assertion\Extensions\IPAddressAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\MatchAssertions.cs" Link="Assertion\Extensions\MatchAssertions.cs" />
-    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\MemberInfoExtensions.cs" Link="Assertion\Extensions\MemberInfoExtensions.cs" />
-    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\MethodBaseExtensions.cs" Link="Assertion\Extensions\MethodBaseExtensions.cs" />
+    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\MemberInfoAssertions.cs" Link="Assertion\Extensions\MemberInfoAssertions.cs" />
+    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\MethodBaseAssertions.cs" Link="Assertion\Extensions\MethodBaseAssertions.cs" />
+    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\NameValueCollectionAssertions.cs" Link="Assertion\Extensions\NameValueCollectionAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\NullableAssertions.cs" Link="Assertion\Extensions\NullableAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\ObjectAssertions.cs" Link="Assertion\Extensions\ObjectAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\ProcessAssertions.cs" Link="Assertion\Extensions\ProcessAssertions.cs" />
@@ -54,7 +55,7 @@
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\TypeAssertions.cs" Link="Assertion\Extensions\TypeAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\ValueTaskAssertions.cs" Link="Assertion\Extensions\ValueTaskAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\XAttributeAssertions.cs" Link="Assertion\Extensions\XAttributeAssertions.cs" />
-    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\XContainerExtensions.cs" Link="Assertion\Extensions\XContainerExtensions.cs" />
+    <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\XContainerAssertions.cs" Link="Assertion\Extensions\XContainerAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\XDocumentAssertions.cs" Link="Assertion\Extensions\XDocumentAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\XElementAssertions.cs" Link="Assertion\Extensions\XElementAssertions.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\XmlDocumentAssertions.cs" Link="Assertion\Extensions\XmlDocumentAssertions.cs" />
@@ -64,23 +65,24 @@
     <Compile Include="..\Catharsis.Assertions\Assertion\IAssertionExtensions.cs" Link="Assertion\IAssertionExtensions.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Expectation.cs" Link="Expectation\Expectation.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\AssemblyExpectations.cs" Link="Expectation\Extensions\AssemblyExpectations.cs" />
-    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\CollectionsExpectations.cs" Link="Expectation\Extensions\CollectionsExpectations.cs" />
-    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\ComparableExpectations.cs" Link="Expectation\Extensions\ComparableExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\DateOnlyExpectations.cs" Link="Expectation\Extensions\DateOnlyExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\DateTimeExpectations.cs" Link="Expectation\Extensions\DateTimeExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\DateTimeOffsetExpectations.cs" Link="Expectation\Extensions\DateTimeOffsetExpectations.cs" />
-    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\DictionaryExpectations.cs" Link="Expectation\Extensions\DictionaryExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\DirectoryInfoExpectations.cs" Link="Expectation\Extensions\DirectoryInfoExpectations.cs" />
-    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\EnumerableExpectations.cs" Link="Expectation\Extensions\EnumerableExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\FieldInfoExpectations.cs" Link="Expectation\Extensions\FieldInfoExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\FileInfoExpectations.cs" Link="Expectation\Extensions\FileInfoExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\FileSystemInfoExpectations.cs" Link="Expectation\Extensions\FileSystemInfoExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\HttpContentExpectations.cs" Link="Expectation\Extensions\HttpContentExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\HttpResponseMessageExpectations.cs" Link="Expectation\Extensions\HttpResponseMessageExpectations.cs" />
+    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\ICollectionExpectations.cs" Link="Expectation\Extensions\ICollectionExpectations.cs" />
+    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\IComparableExpectations.cs" Link="Expectation\Extensions\IComparableExpectations.cs" />
+    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\IDictionaryExpectations.cs" Link="Expectation\Extensions\IDictionaryExpectations.cs" />
+    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\IEnumerableExpectations.cs" Link="Expectation\Extensions\IEnumerableExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\IPAddressExpectations.cs" Link="Expectation\Extensions\IPAddressExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\MatchExpectations.cs" Link="Expectation\Extensions\MatchExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\MemberInfoExpectations.cs" Link="Expectation\Extensions\MemberInfoExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\MethodBaseExpectations.cs" Link="Expectation\Extensions\MethodBaseExpectations.cs" />
+    <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\NameValueCollectionExpectations.cs" Link="Expectation\Extensions\NameValueCollectionExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\NullableExpectations.cs" Link="Expectation\Extensions\NullableExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\ObjectExpectations.cs" Link="Expectation\Extensions\ObjectExpectations.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\Extensions\ProcessExpectations.cs" Link="Expectation\Extensions\ProcessExpectations.cs" />
@@ -112,17 +114,28 @@
     <Compile Include="..\Catharsis.Assertions\Expectation\IExpectation.cs" Link="Expectation\IExpectation.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\IExpectationExtensions.cs" Link="Expectation\IExpectationExtensions.cs" />
     <Compile Include="..\Catharsis.Assertions\Expectation\ObjectExtensions.cs" Link="Expectation\ObjectExtensions.cs" />
-    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\BinaryProtections.cs" Link="Protection\Extensions\BinaryProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\BinaryReaderProtections.cs" Link="Protection\Extensions\BinaryReaderProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\BinaryWriterProtections.cs" Link="Protection\Extensions\BinaryWriterProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\BooleanProtections.cs" Link="Protection\Extensions\BooleanProtections.cs" />
-    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\CollectionsProtections.cs" Link="Protection\Extensions\CollectionsProtections.cs" />
-    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\ComparableProtections.cs" Link="Protection\Extensions\ComparableProtections.cs" />
-    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\EnumerableProtections.cs" Link="Protection\Extensions\EnumerableProtections.cs" />
-    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\FilesystemProtections.cs" Link="Protection\Extensions\FilesystemProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\DirectoryInfoProtections.cs" Link="Protection\Extensions\DirectoryInfoProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\FileInfoProtections.cs" Link="Protection\Extensions\FileInfoProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\ICollectionProtections.cs" Link="Protection\Extensions\ICollectionProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\IComparableProtections.cs" Link="Protection\Extensions\IComparableProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\IEnumerableProtections.cs" Link="Protection\Extensions\IEnumerableProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\LazyProtections.cs" Link="Protection\Extensions\LazyProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\NameValueCollectionProtections.cs" Link="Protection\Extensions\NameValueCollectionProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\ObjectProtections.cs" Link="Protection\Extensions\ObjectProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\SecureStringProtections.cs" Link="Protection\Extensions\SecureStringProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\StreamProtections.cs" Link="Protection\Extensions\StreamProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\StreamReaderProtections.cs" Link="Protection\Extensions\StreamReaderProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\StreamWriterProtections.cs" Link="Protection\Extensions\StreamWriterProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\StringBuilderProtections.cs" Link="Protection\Extensions\StringBuilderProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\StringProtections.cs" Link="Protection\Extensions\StringProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Extensions\TaskProtections.cs" Link="Protection\Extensions\TaskProtections.cs" />
-    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\TextProtections.cs" Link="Protection\Extensions\TextProtections.cs" />
-    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\XmlProtections.cs" Link="Protection\Extensions\XmlProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\XContainerProtections.cs" Link="Protection\Extensions\XContainerProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\XDocumentProtections.cs" Link="Protection\Extensions\XDocumentProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\XmlDocumentProtections.cs" Link="Protection\Extensions\XmlDocumentProtections.cs" />
+    <Compile Include="..\Catharsis.Assertions\Protection\Extensions\XmlNodeProtections.cs" Link="Protection\Extensions\XmlNodeProtections.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\IProtection.cs" Link="Protection\IProtection.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\IProtectionExtensions.cs" Link="Protection\IProtectionExtensions.cs" />
     <Compile Include="..\Catharsis.Assertions\Protection\Protect.cs" Link="Protection\Protect.cs" />

@@ -2,7 +2,7 @@
 
 #if NET7_0_OR_GREATER
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="DateOnly"/> type.</para>
 /// </summary>
 /// <seealso cref="DateOnly"/>
 public static class DateOnlyAssertions

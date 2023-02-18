@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="Regex"/> type.</para>
 /// </summary>
 /// <seealso cref="Regex"/>
 public static class RegexAssertions

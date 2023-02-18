@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="Match"/> type.</para>
 /// </summary>
 /// <seealso cref="Match"/>
 public static class MatchAssertions

@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for <see cref="Assembly"/> class.</para>
+///   <para>Set of assertions for <see cref="Assembly"/> type.</para>
 /// </summary>
 /// <seealso cref="Assembly"/>
 public static class AssemblyAssertions

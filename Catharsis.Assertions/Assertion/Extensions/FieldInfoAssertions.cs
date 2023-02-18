@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="FieldInfo"/> type.</para>
 /// </summary>
 /// <seealso cref="FieldInfo"/>
 public static class FieldInfoAssertions

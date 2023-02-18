@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="DirectoryInfo"/> type.</para>
 /// </summary>
 /// <seealso cref="DirectoryInfo"/>
 public static class DirectoryInfoAssertions

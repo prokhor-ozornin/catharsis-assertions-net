@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="HttpContent"/> type.</para>
 /// </summary>
 /// <seealso cref="HttpContent"/>
 public static class HttpContentAssertions

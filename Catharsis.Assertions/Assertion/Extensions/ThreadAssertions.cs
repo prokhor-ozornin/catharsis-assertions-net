@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="Thread"/> type.</para>
 /// </summary>
 /// <seealso cref="Thread"/>
 public static class ThreadAssertions

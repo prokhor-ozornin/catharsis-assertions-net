@@ -1,9 +1,10 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of expectations for <see cref="ValueTask"/> type.</para>
 /// </summary>
 /// <seealso cref="ValueTask"/>
+/// <seealso cref="ValueTask{TResult}"/>
 public static class ValueTaskExpectations
 {
   /// <summary>

@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of protections for <see cref="object"/> type.</para>
 /// </summary>
 /// <seealso cref="object"/>
 public static class ObjectProtections
@@ -102,7 +102,6 @@ public static class ObjectProtections
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="instance"/> is a <see langword="null"/> reference.</exception>
-  /// <seealso cref="Null{T}(IProtection, Lazy{T}, string)"/>
   public static T Null<T>(this IProtection protection, T instance, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));
@@ -112,28 +111,6 @@ public static class ObjectProtections
       throw new ArgumentNullException(error);
     }
 
-    return instance;
-  }
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  /// <typeparam name="T"></typeparam>
-  /// <param name="protection">Protection to perform.</param>
-  /// <param name="instance"></param>
-  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  /// <seealso cref="Null{T}(IProtection, T, string)"/>
-  public static Lazy<T> Null<T>(this IProtection protection, Lazy<T> instance, string error = null)
-  {
-    if (protection is null) throw new ArgumentNullException(nameof(protection));
-
-    if (instance is null || !instance.IsValueCreated || instance.Value is null)
-    {
-      throw new ArgumentNullException(error);
-    }
-    
     return instance;
   }
 }

@@ -1,10 +1,10 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of protections for <see cref="Task"/> types.</para>
 /// </summary>
 /// <seealso cref="Task"/>
-/// <seealso cref="ValueTask"/>
+/// <seealso cref="Task{TResult}"/>
 public static class TaskProtections
 {
   /// <summary>

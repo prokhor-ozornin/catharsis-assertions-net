@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of expectations for <see cref="DateTimeOffset"/> type.</para>
 /// </summary>
 /// <seealso cref="DateTimeOffset"/>
 public static class DateTimeOffsetExpectations

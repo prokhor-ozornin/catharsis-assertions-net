@@ -93,30 +93,14 @@ public sealed class ObjectProtectionsTest : UnitTest
   }
 
   /// <summary>
-  ///   <para>Performs testing of following methods :</para>
-  ///   <list type="bullet">
-  ///     <item><description><see cref="ObjectProtections.Null{T}(IProtection, T, string)"/></description></item>
-  ///     <item><description><see cref="ObjectProtections.Null{T}(IProtection, Lazy{T}, string)"/></description></item>
-  ///   </list>
+  ///   <para>Performs testing of <see cref="ObjectProtections.Null{T}(IProtection, T, string)"/> method.</para>
   /// </summary>
   [Fact]
-  public void Null_Methods()
+  public void Null_Method()
   {
-    using (new AssertionScope())
-    {
-      AssertionExtensions.Should(() => ObjectProtections.Null(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    AssertionExtensions.Should(() => ObjectProtections.Null(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      AssertionExtensions.Should(() => Protect.From.Null((object) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
-      new object().With(instance => Protect.From.Null(instance).Should().NotBeNull().And.BeSameAs(instance));
-    }
-
-    using (new AssertionScope())
-    {
-      AssertionExtensions.Should(() => ObjectProtections.Null(null, new Lazy<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-
-      AssertionExtensions.Should(() => Protect.From.Null(new Lazy<object>((object) null), "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
-      AssertionExtensions.Should(() => Protect.From.Null(new Lazy<object>(), "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
-      new Lazy<object>(new object()).With(lazy => Protect.From.Null(lazy).Should().NotBeNull().And.BeSameAs(lazy));
-    }
+    AssertionExtensions.Should(() => Protect.From.Null((object) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    new object().With(instance => Protect.From.Null(instance).Should().NotBeNull().And.BeSameAs(instance));
   }
 }

@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="PropertyInfo"/> type.</para>
 /// </summary>
 /// <seealso cref="PropertyInfo"/>
 public static class PropertyInfoAssertions

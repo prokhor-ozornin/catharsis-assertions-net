@@ -1,9 +1,10 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for tasks types.</para>
 /// </summary>
 /// <seealso cref="Task"/>
+/// <seealso cref="Task{TResult}"/>
 public static class TaskAssertions
 {
   /// <summary>

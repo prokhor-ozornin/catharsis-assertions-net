@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of expectations for <see cref="string"/> type.</para>
 /// </summary>
 /// <seealso cref="string"/>
 public static class StringExpectations

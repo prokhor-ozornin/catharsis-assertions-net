@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="XDocument"/> type.</para>
 /// </summary>
 /// <seealso cref="XDocument"/>
 public static class XDocumentAssertions

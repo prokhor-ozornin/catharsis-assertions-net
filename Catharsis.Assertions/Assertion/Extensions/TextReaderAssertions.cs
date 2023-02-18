@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for <see cref="TextReader"/> type.</para>
 /// </summary>
 /// <seealso cref="TextReader"/>
 public static class TextReaderAssertions

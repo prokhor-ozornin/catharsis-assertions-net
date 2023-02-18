@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of expectations for <see cref="Stream"/> type.</para>
 /// </summary>
 /// <seealso cref="Stream"/>
 public static class StreamExpectations

@@ -18,7 +18,7 @@ public sealed class TaskProtectionsTest : UnitTest
   ///   </list>
   /// </summary>
   [Fact]
-  public void Status_Method()
+  public void Status_Methods()
   {
     using (new AssertionScope())
     {

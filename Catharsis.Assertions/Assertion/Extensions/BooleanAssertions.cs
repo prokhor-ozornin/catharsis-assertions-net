@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for <see cref="bool"/> basic type.</para>
+///   <para>Set of assertions for <see cref="bool"/> type.</para>
 /// </summary>
 /// <seealso cref="bool"/>
 public static class BooleanAssertions

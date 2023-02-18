@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of assertions for nullable types.</para>
 /// </summary>
 /// <seealso cref="Nullable{T}"/>
 public static class NullableAssertions
