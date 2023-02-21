@@ -7,7 +7,7 @@
 public static class TextReaderExpectations
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given text reader has no more available characters to read.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>

@@ -7,11 +7,11 @@
 public static class ThreadAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given thread is in a specified state.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="thread"></param>
-  /// <param name="state"></param>
+  /// <param name="thread">Thread to inspect.</param>
+  /// <param name="state">Thread state.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="thread"/> is a <see langword="null"/> reference.</exception>
@@ -19,11 +19,11 @@ public static class ThreadAssertions
   public static IAssertion State(this IAssertion assertion, Thread thread, ThreadState state, string error = null) => thread is not null ? assertion.True(thread.ThreadState == state, error) : throw new ArgumentNullException(nameof(thread));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given thread has a specified scheduling priority.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="thread"></param>
-  /// <param name="priority"></param>
+  /// <param name="thread">Thread to inspect.</param>
+  /// <param name="priority">Thread scheduling priority.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="thread"/> is a <see langword="null"/> reference.</exception>

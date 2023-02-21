@@ -7,10 +7,10 @@
 public static class DirectoryInfoAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given directory is empty (contains no files and/or subdirectories).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="directory"></param>
+  /// <param name="directory">Directory to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="directory"/> is a <see langword="null"/> reference.</exception>
@@ -18,11 +18,11 @@ public static class DirectoryInfoAssertions
   public static IAssertion Empty(this IAssertion assertion, DirectoryInfo directory, string error = null) => directory is not null ? assertion.Empty(directory.EnumerateFileSystemInfos(), error) : throw new ArgumentNullException(nameof(directory));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given directory is located in a specified parent directory.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="directory"></param>
-  /// <param name="parent"></param>
+  /// <param name="directory">Directory to inspect.</param>
+  /// <param name="parent">Parent directory.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="directory"/>, or <paramref name="parent"/> is a <see langword="null"/> reference.</exception>

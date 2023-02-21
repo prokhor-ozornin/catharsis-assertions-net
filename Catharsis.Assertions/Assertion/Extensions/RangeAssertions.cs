@@ -7,11 +7,11 @@
 public static class RangeAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given range's start index has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="range"></param>
-  /// <param name="index"></param>
+  /// <param name="range">Range to inspect.</param>
+  /// <param name="index">Index value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -19,11 +19,11 @@ public static class RangeAssertions
   public static IAssertion StartIndex(this IAssertion assertion, Range range, int index, string error = null) => assertion.True(range.Start.Value == index, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given range's end index has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="range"></param>
-  /// <param name="index"></param>
+  /// <param name="range">Range to inspect.</param>
+  /// <param name="index">Index value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

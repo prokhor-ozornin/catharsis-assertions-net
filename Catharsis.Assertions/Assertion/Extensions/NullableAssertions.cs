@@ -7,11 +7,11 @@
 public static class NullableAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given nullable object has a valid value of its underlying type.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Underlying type of the nullable object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="instance"></param>
+  /// <param name="instance">Nullable object instance to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -19,12 +19,12 @@ public static class NullableAssertions
   public static IAssertion HasValue<T>(this IAssertion assertion, T? instance, string error = null) where T : struct => assertion.True(instance.HasValue, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given nullable object has a specified value, either default or not.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Underlying type of the nullable object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="instance"></param>
-  /// <param name="value"></param>
+  /// <param name="instance">Nullable object instance to inspect.</param>
+  /// <param name="value">Value to look for.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

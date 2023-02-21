@@ -7,10 +7,10 @@
 public static class FileSystemInfoAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given filesystem object (file/directory) exists.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="info"></param>
+  /// <param name="info">Filesystem object to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="info"/> is a <see langword="null"/> reference.</exception>
@@ -18,11 +18,11 @@ public static class FileSystemInfoAssertions
   public static IAssertion Exist(this IAssertion assertion, FileSystemInfo info, string error = null) => info is not null ? assertion.True(info.Exists, error) : throw new ArgumentNullException(nameof(info));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given filesystem object (file/directory) possess a specified attribute.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="info"></param>
-  /// <param name="attribute"></param>
+  /// <param name="info">Filesystem object to inspect.</param>
+  /// <param name="attribute">Attribute to look for.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="info"/> is a <see langword="null"/> reference.</exception>

@@ -46,6 +46,25 @@ public class MethodBaseExpectationsTest : UnitTest
   }
 
   /// <summary>
+  ///   <para>Performs testing of <see cref="MethodBaseExpectations.Static(IExpectation{MethodBase})"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Static_Method()
+  {
+    AssertionExtensions.Should(() => MethodBaseExpectations.Static(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((MethodBase) null).Expect().Static()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+    PublicAbstractMethodInfo.Expect().Static().Result.Should().BeFalse();
+    PublicFinalMethodInfo.Expect().Static().Result.Should().BeFalse();
+    PublicMethodInfo.Expect().Static().Result.Should().BeFalse();
+    PrivateMethodInfo.Expect().Static().Result.Should().BeFalse();
+    ProtectedVirtualMethodInfo.Expect().Static().Result.Should().BeFalse();
+    PublicStaticMethodInfo.Expect().Static().Result.Should().BeTrue();
+    InternalVirtualMethodInfo.Expect().Static().Result.Should().BeFalse();
+    ProtectedInternalMethodInfo.Expect().Static().Result.Should().BeFalse();
+  }
+
+  /// <summary>
   ///   <para>Performs testing of <see cref="MethodBaseExpectations.Final(IExpectation{MethodBase})"/> method.</para>
   /// </summary>
   [Fact]
@@ -195,25 +214,6 @@ public class MethodBaseExpectationsTest : UnitTest
     PublicStaticMethodInfo.Expect().ProtectedInternal().Result.Should().BeFalse();
     InternalVirtualMethodInfo.Expect().ProtectedInternal().Result.Should().BeFalse();
     ProtectedInternalMethodInfo.Expect().ProtectedInternal().Result.Should().BeTrue();
-  }
-
-  /// <summary>
-  ///   <para>Performs testing of <see cref="MethodBaseExpectations.Static(IExpectation{MethodBase})"/> method.</para>
-  /// </summary>
-  [Fact]
-  public void Static_Method()
-  {
-    AssertionExtensions.Should(() => MethodBaseExpectations.Static(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((MethodBase) null).Expect().Static()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-    PublicAbstractMethodInfo.Expect().Static().Result.Should().BeFalse();
-    PublicFinalMethodInfo.Expect().Static().Result.Should().BeFalse();
-    PublicMethodInfo.Expect().Static().Result.Should().BeFalse();
-    PrivateMethodInfo.Expect().Static().Result.Should().BeFalse();
-    ProtectedVirtualMethodInfo.Expect().Static().Result.Should().BeFalse();
-    PublicStaticMethodInfo.Expect().Static().Result.Should().BeTrue();
-    InternalVirtualMethodInfo.Expect().Static().Result.Should().BeFalse();
-    ProtectedInternalMethodInfo.Expect().Static().Result.Should().BeFalse();
   }
 
   /// <summary>

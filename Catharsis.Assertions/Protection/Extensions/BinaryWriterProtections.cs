@@ -15,7 +15,6 @@ public static class BinaryWriterProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="writer"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
-  /// <seealso cref="Empty(IProtection, BinaryReader, string)"/>
   public static BinaryWriter Empty(this IProtection protection, BinaryWriter writer, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));

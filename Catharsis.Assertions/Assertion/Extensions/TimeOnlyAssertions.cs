@@ -8,11 +8,11 @@
 public static class TimeOnlyAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given time has a specified hour component.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="time"></param>
-  /// <param name="hour"></param>
+  /// <param name="time">Time to inspect.</param>
+  /// <param name="hour">Hour component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -20,11 +20,11 @@ public static class TimeOnlyAssertions
   public static IAssertion Hour(this IAssertion assertion, TimeOnly time, int hour, string error = null) => assertion.True(time.Hour == hour, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given time has a specified minute component.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="time"></param>
-  /// <param name="minute"></param>
+  /// <param name="time">Time to inspect.</param>
+  /// <param name="minute">Minute component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -32,11 +32,11 @@ public static class TimeOnlyAssertions
   public static IAssertion Minute(this IAssertion assertion, TimeOnly time, int minute, string error = null) => assertion.True(time.Minute == minute, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given time has a specified second component.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="time"></param>
-  /// <param name="second"></param>
+  /// <param name="time">Time to inspect.</param>
+  /// <param name="second">Second component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -44,11 +44,11 @@ public static class TimeOnlyAssertions
   public static IAssertion Second(this IAssertion assertion, TimeOnly time, int second, string error = null) => assertion.True(time.Second == second, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given time has a specified millisecond component.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="time"></param>
-  /// <param name="millisecond"></param>
+  /// <param name="time">Time to inspect.</param>
+  /// <param name="millisecond">Millisecond component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

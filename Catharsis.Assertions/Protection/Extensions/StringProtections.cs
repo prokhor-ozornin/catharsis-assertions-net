@@ -1,6 +1,4 @@
-﻿using System.Security;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace Catharsis.Assertions;
 
@@ -19,10 +17,6 @@ public static class StringProtections
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
-  /// <seealso cref="Empty(IProtection, StringBuilder, string)"/>
-  /// <seealso cref="Empty(IProtection, SecureString, string)"/>
-  /// <seealso cref="Empty(IProtection, StreamReader, string)"/>
-  /// <seealso cref="Empty(IProtection, StreamWriter, string)"/>
   public static string Empty(this IProtection protection, string text, string error = null)
   {
     if (protection is null) throw new ArgumentNullException(nameof(protection));

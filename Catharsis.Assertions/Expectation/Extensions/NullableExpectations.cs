@@ -7,7 +7,7 @@
 public static class NullableExpectations
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given nullable object has a valid value of its underlying type.</para>
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
@@ -16,7 +16,7 @@ public static class NullableExpectations
   public static IExpectation<T?> HasValue<T>(this IExpectation<T?> expectation) where T : struct => expectation.Expected(instance => instance.HasValue);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given nullable object has a specified value, either default or not.</para>
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>

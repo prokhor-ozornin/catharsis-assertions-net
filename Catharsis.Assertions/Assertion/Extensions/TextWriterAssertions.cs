@@ -7,11 +7,11 @@
 public static class TextWriterAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given text writer has a specified format provider that controls formatting.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="writer"></param>
-  /// <param name="format"></param>
+  /// <param name="writer">Text writer to inspect.</param>
+  /// <param name="format">Object that controls formatting.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="writer"/> is a <see langword="null"/> reference.</exception>

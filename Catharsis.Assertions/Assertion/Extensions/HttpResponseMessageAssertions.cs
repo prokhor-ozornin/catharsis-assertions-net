@@ -9,10 +9,10 @@ namespace Catharsis.Assertions;
 public static class HttpResponseMessageAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given HTTP response was successful.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="response"></param>
+  /// <param name="response">HTTP response message to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="response"/> is a <see langword="null"/> reference.</exception>
@@ -20,11 +20,11 @@ public static class HttpResponseMessageAssertions
   public static IAssertion Successful(this IAssertion assertion, HttpResponseMessage response, string error = null) => response is not null ? assertion.True(response.IsSuccessStatusCode, error) : throw new ArgumentNullException(nameof(response));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given HTTP response has a specified result status code.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="response"></param>
-  /// <param name="status"></param>
+  /// <param name="response">HTTP response message to inspect.</param>
+  /// <param name="status">HTTP status code.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="response"/> is a <see langword="null"/> reference.</exception>
@@ -32,12 +32,12 @@ public static class HttpResponseMessageAssertions
   public static IAssertion Status(this IAssertion assertion, HttpResponseMessage response, HttpStatusCode status, string error = null) => response is not null ? assertion.True(response.StatusCode == status, error) : throw new ArgumentNullException(nameof(response));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given HTTP response contains a header with specified name and value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="response"></param>
-  /// <param name="name"></param>
-  /// <param name="value"></param>
+  /// <param name="response">HTTP response message to inspect.</param>
+  /// <param name="name">HTTP header name.</param>
+  /// <param name="value">HTTP header value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="response"/>, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>

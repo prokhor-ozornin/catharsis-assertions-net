@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class FieldInfoAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object field is of specified type.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="field"></param>
-  /// <param name="type"></param>
+  /// <param name="field">Object field to inspect.</param>
+  /// <param name="type">Type of field to check for.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="field"/>, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
@@ -29,11 +29,11 @@ public static class FieldInfoAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object field is of specified type.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of field to check for.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="field"></param>
+  /// <param name="field">Object field to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="field"/> is a <see langword="null"/> reference.</exception>
@@ -42,10 +42,10 @@ public static class FieldInfoAssertions
   public static IAssertion Type<T>(this IAssertion assertion, FieldInfo field, string error = null) => assertion.Type(field, typeof(T), error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object field is of <see langword="private"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="field"></param>
+  /// <param name="field">Object field to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="field"/> is a <see langword="null"/> reference.</exception>
@@ -53,10 +53,10 @@ public static class FieldInfoAssertions
   public static IAssertion Private(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsPrivate, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object field is of <see langword="protected"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="field"></param>
+  /// <param name="field">Object field to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="field"/> is a <see langword="null"/> reference.</exception>
@@ -64,10 +64,10 @@ public static class FieldInfoAssertions
   public static IAssertion Protected(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsFamily, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object field is of <see langword="public"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="field"></param>
+  /// <param name="field">Object field to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="field"/> is a <see langword="null"/> reference.</exception>
@@ -75,10 +75,10 @@ public static class FieldInfoAssertions
   public static IAssertion Public(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsPublic, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object field is of <see langword="internal"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="field"></param>
+  /// <param name="field">Object field to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="field"/> is a <see langword="null"/> reference.</exception>
@@ -86,10 +86,10 @@ public static class FieldInfoAssertions
   public static IAssertion Internal(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsAssembly, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object field is of <see langword="protected internal"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="field"></param>
+  /// <param name="field">Object field to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="field"/> is a <see langword="null"/> reference.</exception>
@@ -97,10 +97,10 @@ public static class FieldInfoAssertions
   public static IAssertion ProtectedInternal(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsFamilyOrAssembly, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object field is <see langword="static"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="field"></param>
+  /// <param name="field">Object field to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="field"/> is a <see langword="null"/> reference.</exception>
@@ -108,12 +108,12 @@ public static class FieldInfoAssertions
   public static IAssertion Static(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsStatic, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object field has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="field"></param>
-  /// <param name="subject"></param>
-  /// <param name="value"></param>
+  /// <param name="field">Object field to inspect.</param>
+  /// <param name="subject">Target object.</param>
+  /// <param name="value">Field value to check for.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="field"/> is a <see langword="null"/> reference.</exception>
