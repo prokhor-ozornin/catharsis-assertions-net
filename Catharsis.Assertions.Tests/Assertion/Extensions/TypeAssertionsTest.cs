@@ -20,7 +20,7 @@ public sealed class TypeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => TypeAssertions.Abstract(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => TypeAssertions.Abstract(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-    AssertionExtensions.Should(() => Assert.To.Abstract(typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Abstract(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Abstract(typeof(Stream)).Should().NotBeNull().And.BeSameAs(Assert.To);
 
     Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
@@ -31,7 +31,7 @@ public sealed class TypeAssertionsTest : UnitTest
       }
       else
       {
-        AssertionExtensions.Should(() => Assert.To.Abstract(type, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        AssertionExtensions.Should(() => Assert.To.Abstract(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     });
   }
@@ -45,7 +45,7 @@ public sealed class TypeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => TypeAssertions.Sealed(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Sealed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-    AssertionExtensions.Should(() => Assert.To.Sealed(typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Sealed(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Sealed(typeof(FileInfo)).Should().NotBeNull().And.BeSameAs(Assert.To);
 
     Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
@@ -56,7 +56,7 @@ public sealed class TypeAssertionsTest : UnitTest
       }
       else
       {
-        AssertionExtensions.Should(() => Assert.To.Sealed(type, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        AssertionExtensions.Should(() => Assert.To.Sealed(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     });
   }
@@ -70,7 +70,7 @@ public sealed class TypeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => TypeAssertions.Static(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => TypeAssertions.Static(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-    AssertionExtensions.Should(() => Assert.To.Static(typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Static(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Static(typeof(Enumerable)).Should().NotBeNull().And.BeSameAs(Assert.To);
 
     Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
@@ -81,7 +81,7 @@ public sealed class TypeAssertionsTest : UnitTest
       }
       else
       {
-        AssertionExtensions.Should(() => Assert.To.Static(type, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        AssertionExtensions.Should(() => Assert.To.Static(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     });
   }
@@ -96,7 +96,7 @@ public sealed class TypeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => TypeAssertions.Public(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
     Assert.To.Public(typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Public(typeof(Assertion), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Public(typeof(Assertion), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
     {
@@ -106,7 +106,7 @@ public sealed class TypeAssertionsTest : UnitTest
       }
       else
       {
-        AssertionExtensions.Should(() => Assert.To.Public(type, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        AssertionExtensions.Should(() => Assert.To.Public(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     });
   }
@@ -120,7 +120,7 @@ public sealed class TypeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => TypeAssertions.Internal(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Internal((Type) null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-    AssertionExtensions.Should(() => Assert.To.Internal(typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Internal(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Internal(typeof(Assertion)).Should().NotBeNull().And.BeSameAs(Assert.To);
 
     Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
@@ -131,7 +131,7 @@ public sealed class TypeAssertionsTest : UnitTest
       }
       else
       {
-        AssertionExtensions.Should(() => Assert.To.Internal(type, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        AssertionExtensions.Should(() => Assert.To.Internal(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     });
   }
@@ -152,10 +152,10 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Subclass(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("subclass");
       AssertionExtensions.Should(() => Assert.To.Subclass(typeof(object), null)).ThrowExactly<ArgumentNullException>().WithParameterName("superclass");
 
-      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(object), typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(object), typeof(string), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(object), typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(object), typeof(string), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Subclass(typeof(string), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(string), typeof(IEnumerable<char>), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Subclass(typeof(string), typeof(IEnumerable<char>), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Assert.To.Subclass(type, typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To));
     }
@@ -165,10 +165,10 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TypeAssertions.Subclass<object>(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Subclass<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subclass");
 
-      AssertionExtensions.Should(() => Assert.To.Subclass<object>(typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Subclass<string>(typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Subclass<object>(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Subclass<string>(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Subclass<object>(typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Subclass<IEnumerable<char>>(typeof(string), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Subclass<IEnumerable<char>>(typeof(string), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Assert.To.Subclass<object>(type).Should().NotBeNull().And.BeSameAs(Assert.To));
     }
@@ -191,7 +191,7 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.AssignableTo(typeof(object), null)).ThrowExactly<ArgumentNullException>().WithParameterName("to");
 
       Assert.To.AssignableTo(typeof(object), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.AssignableTo(typeof(object), typeof(string), "error")).ThrowExactly<ArgumentException>();
+      AssertionExtensions.Should(() => Assert.To.AssignableTo(typeof(object), typeof(string), "error")).ThrowExactly<InvalidOperationException>();
       Assert.To.AssignableTo(typeof(string), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
       Assert.To.AssignableTo(typeof(string), typeof(IEnumerable<char>)).Should().NotBeNull().And.BeSameAs(Assert.To);
 
@@ -208,7 +208,7 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.AssignableTo<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("from");
 
       Assert.To.AssignableTo<object>(typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.AssignableTo<string>(typeof(object), "error").Should().NotBeNull().And.BeSameAs(Assert.To)).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.AssignableTo<string>(typeof(object), "error").Should().NotBeNull().And.BeSameAs(Assert.To)).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.AssignableTo<object>(typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
       Assert.To.AssignableTo<IEnumerable<char>>(typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
 
@@ -236,7 +236,7 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.AssignableFrom(typeof(object), null)).ThrowExactly<ArgumentNullException>().WithParameterName("to");
 
       Assert.To.AssignableFrom(typeof(object), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.AssignableFrom(typeof(string), typeof(object), "error")).ThrowExactly<ArgumentException>();
+      AssertionExtensions.Should(() => Assert.To.AssignableFrom(typeof(string), typeof(object), "error")).ThrowExactly<InvalidOperationException>();
       Assert.To.AssignableFrom(typeof(object), typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
       Assert.To.AssignableFrom(typeof(IEnumerable<char>), typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
 
@@ -253,7 +253,7 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.AssignableFrom<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("from");
 
       Assert.To.AssignableFrom<object>(typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.AssignableFrom<object>(typeof(string), "error").Should().NotBeNull().And.BeSameAs(Assert.To)).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.AssignableFrom<object>(typeof(string), "error").Should().NotBeNull().And.BeSameAs(Assert.To)).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.AssignableFrom<string>(typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
       Assert.To.AssignableFrom<string>(typeof(IEnumerable<char>)).Should().NotBeNull().And.BeSameAs(Assert.To);
     }

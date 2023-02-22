@@ -18,7 +18,7 @@ public sealed class DateOnlyAssertionsTest : UnitTest
   {
     void Validate(DateOnly date)
     {
-      AssertionExtensions.Should(() => Assert.To.DayOfYear(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.DayOfYear(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.DayOfYear(date, date.DayOfYear).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
 
@@ -38,7 +38,7 @@ public sealed class DateOnlyAssertionsTest : UnitTest
   {
     void Validate(DateOnly date)
     {
-      AssertionExtensions.Should(() => Assert.To.Year(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Year(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Year(date, date.Year).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
 
@@ -58,7 +58,7 @@ public sealed class DateOnlyAssertionsTest : UnitTest
   {
     void Validate(DateOnly date)
     {
-      AssertionExtensions.Should(() => Assert.To.Month(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Month(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Month(date, date.Month).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
 
@@ -78,7 +78,7 @@ public sealed class DateOnlyAssertionsTest : UnitTest
   {
     void Validate(DateOnly date)
     {
-      AssertionExtensions.Should(() => Assert.To.Day(date, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Day(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Day(date, date.Day).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
 

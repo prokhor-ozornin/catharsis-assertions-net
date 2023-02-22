@@ -26,7 +26,7 @@ public sealed class XDocumentAssertionsTest : UnitTest
     Document.With(document =>
     {
       document.Add(new XElement("root"));
-      AssertionExtensions.Should(() => Assert.To.Empty(document, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Empty(document, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });
   }
 
@@ -46,7 +46,7 @@ public sealed class XDocumentAssertionsTest : UnitTest
       const string name = "root";
       document.Add(new XElement(name));
 
-      AssertionExtensions.Should(() => Assert.To.Name(document, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Name(document, RandomString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Name(document, name).Should().NotBeNull().And.BeSameAs(Assert.To);
     });
   }

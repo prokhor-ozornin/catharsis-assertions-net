@@ -19,7 +19,7 @@ public sealed class MatchAssertionsTest : UnitTest
     AssertionExtensions.Should(() => MatchAssertions.Successful(null, Match.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => MatchAssertions.Successful(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("match");
 
-    AssertionExtensions.Should(() => Assert.To.Successful(Match.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Successful(Match.Empty, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Successful(string.Empty.ToRegex().Match(string.Empty)).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
@@ -33,7 +33,7 @@ public sealed class MatchAssertionsTest : UnitTest
     AssertionExtensions.Should(() => MatchAssertions.Value(Assert.To, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("match");
     AssertionExtensions.Should(() => Assert.To.Value(Match.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-    AssertionExtensions.Should(() => Assert.To.Value(Match.Empty, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Value(Match.Empty, RandomString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Value(Match.Empty, Match.Empty.Value).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

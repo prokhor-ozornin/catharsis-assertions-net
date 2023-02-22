@@ -22,10 +22,10 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
     Assert.To.Exist(RandomFile).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeFile, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeFile, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Assert.To.Exist(RandomDirectory).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeDirectory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeDirectory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -47,7 +47,7 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
         }
         else
         {
-          AssertionExtensions.Should(() => Assert.To.Attribute(file, attribute, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+          AssertionExtensions.Should(() => Assert.To.Attribute(file, attribute, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
         }
       });
 

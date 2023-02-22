@@ -29,7 +29,7 @@ public sealed class AssemblyAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
       Assert.To.Define(Assembly.GetAssembly(typeof(object)), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
 
     using (new AssertionScope())
@@ -38,7 +38,7 @@ public sealed class AssemblyAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Define<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
 
       Assert.To.Define<object>(Assembly.GetAssembly(typeof(object))).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Define<object>(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Define<object>(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
   }
 
@@ -51,7 +51,7 @@ public sealed class AssemblyAssertionsTest : UnitTest
     AssertionExtensions.Should(() => AssemblyAssertions.Dynamic(null, Assembly.GetExecutingAssembly())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
 
-    AssertionExtensions.Should(() => Assert.To.Dynamic(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Dynamic(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Dynamic(AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Randomizer.Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect)).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

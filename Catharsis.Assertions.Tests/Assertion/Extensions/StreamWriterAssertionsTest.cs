@@ -23,7 +23,7 @@ public sealed class StreamWriterAssertionsTest : UnitTest
 
     RandomStream.ToStreamWriter().TryFinallyDispose(writer =>
     {
-      AssertionExtensions.Should(() => Assert.To.Encoding(writer, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Encoding(writer, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Encoding(writer, writer.Encoding).Should().NotBeNull().And.BeSameAs(Assert.To);
     });
   }

@@ -39,7 +39,7 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((PropertyInfo) null).Expect().Readable()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
     Assert.To.Readable(ReadOnlyPropertyInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Readable(WriteOnlyPropertyInfo, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Readable(WriteOnlyPropertyInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Readable(ReadWritePropertyInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
@@ -52,9 +52,9 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => PropertyInfoExpectations.WriteOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((PropertyInfo) null).Expect().WriteOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    AssertionExtensions.Should(() => Assert.To.WriteOnly(ReadOnlyPropertyInfo, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.WriteOnly(ReadOnlyPropertyInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.WriteOnly(WriteOnlyPropertyInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.WriteOnly(ReadWritePropertyInfo, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.WriteOnly(ReadWritePropertyInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -66,7 +66,7 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => PropertyInfoExpectations.Writable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((PropertyInfo) null).Expect().Writable()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    AssertionExtensions.Should(() => Assert.To.Writable(ReadOnlyPropertyInfo, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Writable(ReadOnlyPropertyInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Writable(WriteOnlyPropertyInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.Writable(ReadWritePropertyInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
@@ -79,7 +79,7 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
   {
     void Validate(PropertyInfo property, object instance)
     {
-      AssertionExtensions.Should(() => Assert.To.Value(property, instance, new object(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Value(property, instance, new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Value(property, instance, property.GetValue(instance)).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
 

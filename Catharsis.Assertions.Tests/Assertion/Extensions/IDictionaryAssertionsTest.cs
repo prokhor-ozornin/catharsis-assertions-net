@@ -20,7 +20,7 @@ public sealed class IDictionaryAssertionsTest : UnitTest
     AssertionExtensions.Should(() => IDictionaryAssertions.ContainKey(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.ContainKey<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
 
-    AssertionExtensions.Should(() => Assert.To.ContainKey(Dictionary, Guid.NewGuid(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.ContainKey(Dictionary, Guid.NewGuid(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Dictionary.With(dictionary =>
     {
@@ -38,7 +38,7 @@ public sealed class IDictionaryAssertionsTest : UnitTest
     AssertionExtensions.Should(() => IDictionaryAssertions.ContainValue(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.ContainValue<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
 
-    AssertionExtensions.Should(() => Assert.To.ContainValue(Dictionary, null, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.ContainValue(Dictionary, null, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Dictionary.With(dictionary =>
     {

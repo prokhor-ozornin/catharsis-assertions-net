@@ -19,8 +19,8 @@ public sealed class ObjectAssertionsTest : UnitTest
     AssertionExtensions.Should(() => ObjectAssertions.Same(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
     Assert.To.Same<object>(null, null).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Same(new object(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Same<object>(null, new object(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Same(new object(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Same<object>(null, new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     new object().With(instance => Assert.To.Same(instance, instance).Should().NotBeNull().And.BeSameAs(Assert.To));
   }
 
@@ -34,11 +34,11 @@ public sealed class ObjectAssertionsTest : UnitTest
 
     Assert.To.Equal<object>(null, null).Should().NotBeNull().And.BeSameAs(Assert.To);
     new object().With(instance => Assert.To.Equal(instance, instance).Should().NotBeNull().And.BeSameAs(Assert.To));
-    AssertionExtensions.Should(() => Assert.To.Equal(new object(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Equal<object>(null, new object(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Equal(new object(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Equal<object>(null, new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Equal(0, 0).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.Equal(DateTime.Today, DateTime.Today).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Equal(Guid.NewGuid(), Guid.NewGuid(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Equal(Guid.NewGuid(), Guid.NewGuid(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -50,16 +50,16 @@ public sealed class ObjectAssertionsTest : UnitTest
     AssertionExtensions.Should(() => ObjectAssertions.Default(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
     Assert.To.Default<object>(null).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Default(new object(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Default(new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Assert.To.Default(0).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Default(int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Default(int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Assert.To.Default(DateTime.MinValue).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Default(DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Default(DateTime.Today, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Assert.To.Default(Guid.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Default(Guid.NewGuid(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Default(Guid.NewGuid(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -79,7 +79,7 @@ public sealed class ObjectAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.OfType(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
       Assert.To.OfType(new object(), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.OfType(new object(), typeof(string), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.OfType(new object(), typeof(string), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
 
     using (new AssertionScope())
@@ -88,7 +88,7 @@ public sealed class ObjectAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.OfType<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
 
       Assert.To.OfType<object>(new object()).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.OfType<string>(new object(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.OfType<string>(new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
   }
 
@@ -101,7 +101,7 @@ public sealed class ObjectAssertionsTest : UnitTest
     AssertionExtensions.Should(() => ObjectAssertions.Null(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
     Assert.To.Null<object>(null).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Null(new object(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Null(new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -113,9 +113,9 @@ public sealed class ObjectAssertionsTest : UnitTest
     AssertionExtensions.Should(() => ObjectAssertions.OneOf(null, new object(), Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.OneOf(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-    AssertionExtensions.Should(() => Assert.To.OneOf(null, Enumerable.Empty<object>(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.OneOf(null, Enumerable.Empty<object>(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.OneOf(null, new object().ToSequence(null, null)).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.OneOf(new object(), new object().ToSequence(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.OneOf(new object(), new object().ToSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.OneOf(string.Empty, new object().ToSequence(string.Empty, Guid.Empty)).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

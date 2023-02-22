@@ -21,7 +21,7 @@ public sealed class ProcessAssertionsTest : UnitTest
     AssertionExtensions.Should(() => ProcessAssertions.Exited(null, Process.GetCurrentProcess())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Exited(null)).ThrowExactly<ArgumentNullException>().WithParameterName("process");
 
-    AssertionExtensions.Should(() => Assert.To.Exited(Process.GetCurrentProcess(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Exited(Process.GetCurrentProcess(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     ShellProcess.With(process =>
     {
@@ -45,7 +45,7 @@ public sealed class ProcessAssertionsTest : UnitTest
       process.TryFinallyKill(process => process.Start());
 
       AssertionExtensions.Should(() => ProcessAssertions.ExitCode(null, process, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.ExitCode(process, 0, "error")).ThrowExactly<ArgumentException>();
+      AssertionExtensions.Should(() => Assert.To.ExitCode(process, 0, "error")).ThrowExactly<InvalidOperationException>();
       Assert.To.ExitCode(process, process.ExitCode).Should().NotBeNull().And.BeSameAs(Assert.To);
     });
   }

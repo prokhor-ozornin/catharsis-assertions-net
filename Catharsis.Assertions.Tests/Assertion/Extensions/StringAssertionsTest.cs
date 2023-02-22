@@ -19,12 +19,12 @@ public sealed class StringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StringAssertions.Length(null, string.Empty, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => StringAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    AssertionExtensions.Should(() => Assert.To.Length(string.Empty, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Length(string.Empty, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(string.Empty, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(string.Empty, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Length(string.Empty, string.Empty.Length).Should().NotBeNull().And.BeSameAs(Assert.To);
 
-    AssertionExtensions.Should(() => Assert.To.Length(RandomString, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Length(RandomString, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(RandomString, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(RandomString, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Length(RandomString, RandomString.Length).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
@@ -38,7 +38,7 @@ public sealed class StringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StringAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
     
     Assert.To.Empty(string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Empty(RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Empty(RandomString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -52,7 +52,7 @@ public sealed class StringAssertionsTest : UnitTest
 
     Assert.To.WhiteSpace(string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.WhiteSpace("\r\n\t").Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.WhiteSpace(RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.WhiteSpace(RandomString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -66,7 +66,7 @@ public sealed class StringAssertionsTest : UnitTest
 
     Assert.To.UpperCased(string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.UpperCased(RandomString.ToUpperInvariant()).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.UpperCased(RandomString.ToLowerInvariant(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.UpperCased(RandomString.ToLowerInvariant(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -80,7 +80,7 @@ public sealed class StringAssertionsTest : UnitTest
 
     Assert.To.LowerCased(string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.LowerCased(RandomString.ToLowerInvariant()).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.LowerCased(RandomString.ToUpperInvariant(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.LowerCased(RandomString.ToUpperInvariant(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -95,11 +95,11 @@ public sealed class StringAssertionsTest : UnitTest
 
     Assert.To.StartWith(string.Empty, string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.StartWith(string.Empty, char.MinValue.ToString()).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.StartWith(string.Empty, char.MaxValue.ToString(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.StartWith(string.Empty, char.MaxValue.ToString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Assert.To.StartWith(RandomString, string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.StartWith(RandomString, RandomString).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.StartWith(RandomString, RandomString.ToUpperInvariant(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.StartWith(RandomString, RandomString.ToUpperInvariant(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.StartWith(RandomString, RandomString.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
@@ -115,11 +115,11 @@ public sealed class StringAssertionsTest : UnitTest
 
     Assert.To.EndWith(string.Empty, string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.EndWith(string.Empty, char.MinValue.ToString()).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.EndWith(string.Empty, char.MaxValue.ToString(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.EndWith(string.Empty, char.MaxValue.ToString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Assert.To.EndWith(RandomString, string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.EndWith(RandomString, RandomString).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.EndWith(RandomString, RandomString.ToUpperInvariant(), null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.EndWith(RandomString, RandomString.ToUpperInvariant(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.EndWith(RandomString, RandomString.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
@@ -134,8 +134,8 @@ public sealed class StringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Match(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
 
     Assert.To.Match(string.Empty, string.Empty.ToRegex()).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Match(string.Empty, "anything".ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Match(string.Empty, "anything".ToRegex(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Match(Randomizer.Digits(byte.MaxValue), "[0-9]".ToRegex()).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Match(Randomizer.Letters(byte.MaxValue), "[0-9]".ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Match(Randomizer.Letters(byte.MaxValue), "[0-9]".ToRegex(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 }

@@ -22,7 +22,7 @@ public sealed class XContainerAssertionsTest : UnitTest
     AssertionExtensions.Should(() => XContainerAssertions.Element(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("container");
     AssertionExtensions.Should(() => Assert.To.Element(Container, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    AssertionExtensions.Should(() => Assert.To.Element(Container, RandomString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Element(Container, RandomString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Container.With(container =>
     {
@@ -31,7 +31,7 @@ public sealed class XContainerAssertionsTest : UnitTest
       container.Add(root);
 
       Assert.To.Element(container, "parent").Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Element(container, "child", "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Element(container, "child", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });
   }
 
@@ -49,7 +49,7 @@ public sealed class XContainerAssertionsTest : UnitTest
     Container.With(container =>
     {
       container.Add(new XElement("root"));
-      AssertionExtensions.Should(() => Assert.To.Empty(container, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Empty(container, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });
   }
 }

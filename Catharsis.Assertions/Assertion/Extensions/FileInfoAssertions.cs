@@ -21,12 +21,7 @@ public static class FileInfoAssertions
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
     if (file is null) throw new ArgumentNullException(nameof(file));
 
-    if (assertion.Invalid(file.Length == length))
-    {
-      throw new ArgumentException(error);
-    }
-
-    return assertion;
+    return assertion.True(file.Length == length, error);
   }
 
   /// <summary>

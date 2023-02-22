@@ -22,8 +22,8 @@ public sealed class SecureStringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => SecureStringAssertions.Length(null, EmptySecureString, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => SecureStringAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-    AssertionExtensions.Should(() => Assert.To.Length(RandomSecureString, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Length(RandomSecureString, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(RandomSecureString, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(RandomSecureString, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Length(RandomSecureString, RandomSecureString.Length).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
@@ -37,7 +37,7 @@ public sealed class SecureStringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => SecureStringAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
     Assert.To.Empty(EmptySecureString).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Empty(RandomSecureString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Empty(RandomSecureString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -49,7 +49,7 @@ public sealed class SecureStringAssertionsTest : UnitTest
     AssertionExtensions.Should(() => SecureStringAssertions.ReadOnly(null, EmptySecureString)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => SecureStringAssertions.ReadOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-    AssertionExtensions.Should(() => Assert.To.ReadOnly(RandomSecureString, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.ReadOnly(RandomSecureString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.ReadOnly(RandomSecureString.AsReadOnly()).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 

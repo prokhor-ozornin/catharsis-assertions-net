@@ -22,7 +22,7 @@ public sealed class XmlDocumentAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("document");
     AssertionExtensions.Should(() => Assert.To.Element(Document, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    AssertionExtensions.Should(() => Assert.To.Element(Document, RandomString, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Element(Document, RandomString, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Document.With(document =>
     {

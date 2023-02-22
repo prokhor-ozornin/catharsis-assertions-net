@@ -23,7 +23,7 @@ public sealed class TextReaderAssertionsTest : UnitTest
     Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To));
     RandomStream.ToStreamReader().TryFinallyDispose(reader =>
     {
-      AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       reader.ReadToEnd();
       Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To);
     });
@@ -31,7 +31,7 @@ public sealed class TextReaderAssertionsTest : UnitTest
     new StringReader(string.Empty).TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
     new StringReader(RandomString).TryFinallyDispose(reader =>
     {
-      AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       reader.ReadToEnd();
       Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To);
     });

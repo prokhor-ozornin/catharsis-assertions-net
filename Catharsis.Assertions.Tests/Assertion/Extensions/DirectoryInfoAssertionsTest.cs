@@ -23,13 +23,13 @@ public sealed class DirectoryInfoAssertionsTest : UnitTest
     RandomDirectory.TryFinallyClear(directory =>
     {
       Randomizer.File(directory);
-      AssertionExtensions.Should(() => Assert.To.Empty(directory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Empty(directory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });
 
     RandomDirectory.TryFinallyClear(directory =>
     {
       Randomizer.Directory(directory);
-      AssertionExtensions.Should(() => Assert.To.Empty(directory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Empty(directory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });
   }
 
@@ -43,7 +43,7 @@ public sealed class DirectoryInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => DirectoryInfoAssertions.InDirectory(Assert.To, null, RandomDirectory)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
     AssertionExtensions.Should(() => Assert.To.InDirectory(RandomDirectory, null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
 
-    AssertionExtensions.Should(() => Assert.To.InDirectory(RandomDirectory, RandomDirectory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.InDirectory(RandomDirectory, RandomDirectory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.InDirectory(RandomDirectory, RandomDirectory.Parent).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

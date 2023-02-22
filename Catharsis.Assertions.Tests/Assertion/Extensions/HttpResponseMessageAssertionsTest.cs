@@ -31,7 +31,7 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
       }
       else
       {
-        new HttpResponseMessage(status).TryFinallyDispose(message => AssertionExtensions.Should(() => Assert.To.Successful(message, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+        new HttpResponseMessage(status).TryFinallyDispose(message => AssertionExtensions.Should(() => Assert.To.Successful(message, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error"));
       }
     });
   }
@@ -45,7 +45,7 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
     AssertionExtensions.Should(() => HttpResponseMessageAssertions.Status(null, Response, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Status(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
 
-    AssertionExtensions.Should(() => Assert.To.Status(Response, HttpStatusCode.NotFound, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Status(Response, HttpStatusCode.NotFound, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Status(Response, Response.StatusCode).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
@@ -62,11 +62,11 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
     Response.With(response =>
     {
       response.Headers.Add("connection", (string) null);
-      AssertionExtensions.Should(() => Assert.To.Header(Response, "connection", null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Header(Response, "connection", null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Response.Headers.Clear();
 
       response.Headers.Add("connection", Enumerable.Empty<string>());
-      AssertionExtensions.Should(() => Assert.To.Header(Response, "connection", null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Header(Response, "connection", null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Response.Headers.Clear();
 
       response.Headers.Add("connection", "open");

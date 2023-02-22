@@ -18,8 +18,8 @@ public sealed class FileInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => FileInfoAssertions.Length(null, RandomFile, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => FileInfoAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-    AssertionExtensions.Should(() => Assert.To.Length(RandomFile, int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Length(RandomFile, int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(RandomFile, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Length(RandomFile, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Assert.To.Length(RandomFile, RandomFile.Length).Should().NotBeNull().And.BeSameAs(Assert.To);
     Assert.To.Length(RandomFile.Empty(), 0).Should().NotBeNull().And.BeSameAs(Assert.To);
@@ -34,7 +34,7 @@ public sealed class FileInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => FileInfoAssertions.Empty(null, RandomFile)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => FileInfoAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-    AssertionExtensions.Should(() => Assert.To.Empty(RandomFile, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Empty(RandomFile, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Empty(RandomFile.Empty()).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
@@ -47,7 +47,7 @@ public sealed class FileInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => FileInfoAssertions.ReadOnly(null, RandomFile)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => FileInfoAssertions.ReadOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-    AssertionExtensions.Should(() => Assert.To.ReadOnly(RandomFile, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.ReadOnly(RandomFile, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.ReadOnly(RandomFile.AsReadOnly()).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 
@@ -61,7 +61,7 @@ public sealed class FileInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => FileInfoAssertions.InDirectory(Assert.To, null, RandomDirectory)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
     AssertionExtensions.Should(() => Assert.To.InDirectory(RandomFile, null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-    AssertionExtensions.Should(() => Assert.To.InDirectory(RandomFile, Environment.SystemDirectory.ToDirectory(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.InDirectory(RandomFile, Environment.SystemDirectory.ToDirectory(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.InDirectory(RandomFile, RandomFile.Directory).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }

@@ -20,10 +20,10 @@ public sealed class IPAddressAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Ip4(null)).ThrowExactly<ArgumentNullException>().WithParameterName("address");
 
     new[] { IPAddress.Any, IPAddress.Broadcast, IPAddress.Loopback, IPAddress.None }.ForEach(address => Assert.To.Ip4(address).Should().NotBeNull().And.BeSameAs(Assert.To));
-    new[] { IPAddress.IPv6Any, IPAddress.IPv6Loopback, IPAddress.IPv6None }.ForEach(address => AssertionExtensions.Should(() => Assert.To.Ip4(address, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+    new[] { IPAddress.IPv6Any, IPAddress.IPv6Loopback, IPAddress.IPv6None }.ForEach(address => AssertionExtensions.Should(() => Assert.To.Ip4(address, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error"));
 
     Assert.To.Ip4(Randomizer.IpAddress()).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Ip4(Randomizer.IpV6Address(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Ip4(Randomizer.IpV6Address(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -35,11 +35,11 @@ public sealed class IPAddressAssertionsTest : UnitTest
     AssertionExtensions.Should(() => IPAddressAssertions.Ip6(null, IPAddress.Loopback)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Ip6(null)).ThrowExactly<ArgumentNullException>().WithParameterName("address");
 
-    new[] { IPAddress.Any, IPAddress.Broadcast, IPAddress.Loopback, IPAddress.None }.ForEach(address => AssertionExtensions.Should(() => Assert.To.Ip6(address, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+    new[] { IPAddress.Any, IPAddress.Broadcast, IPAddress.Loopback, IPAddress.None }.ForEach(address => AssertionExtensions.Should(() => Assert.To.Ip6(address, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error"));
     new[] { IPAddress.IPv6Any, IPAddress.IPv6Loopback, IPAddress.IPv6None }.ForEach(address => Assert.To.Ip6(address, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
 
     Assert.To.Ip6(Randomizer.IpV6Address()).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Ip6(Randomizer.IpAddress(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Ip6(Randomizer.IpAddress(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
   }
 }
