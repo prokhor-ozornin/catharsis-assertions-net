@@ -24,7 +24,7 @@ public static class MatchAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="match">Text match to inspect.</param>
-  /// <param name="value">Captured substring of the match.</param>
+  /// <param name="value">Asserted match captured substring.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="match"/>, or <paramref name="value"/> is a <see langword="null"/> reference.</exception>

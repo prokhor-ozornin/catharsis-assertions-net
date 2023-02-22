@@ -18,7 +18,7 @@ public static class DirectoryInfoExpectations
   ///   <para>Expects that a given directory is located in a specified parent directory.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="parent">Parent directory.</param>
+  /// <param name="parent">Expected parent directory.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="parent"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<DirectoryInfo> InDirectory(this IExpectation<DirectoryInfo> expectation, DirectoryInfo parent) => expectation.HaveSubject().And().ThrowIfNull(parent, nameof(parent)).And().Expected(directory => parent.EnumerateDirectories("*", new EnumerationOptions { RecurseSubdirectories = true }).Select(directory => directory.FullName).Contains(directory.FullName));

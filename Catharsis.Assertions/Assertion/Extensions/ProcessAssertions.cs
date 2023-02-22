@@ -24,7 +24,7 @@ public static class ProcessAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="process">Local or remote process to inspect.</param>
-  /// <param name="code">Process exit code.</param>
+  /// <param name="code">Asserted process exit code.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="process"/> is a <see langword="null"/> reference.</exception>

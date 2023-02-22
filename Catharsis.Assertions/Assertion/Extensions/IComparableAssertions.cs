@@ -50,7 +50,7 @@ public static class IComparableAssertions
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="value">Element to inspect.</param>
-  /// <param name="other">Value to compare with.</param>
+  /// <param name="other">Asserted element value for comparison.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
@@ -64,7 +64,7 @@ public static class IComparableAssertions
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="value">Element to inspect.</param>
-  /// <param name="other">Value to compare with.</param>
+  /// <param name="other">Asserted element value for comparison.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -78,7 +78,7 @@ public static class IComparableAssertions
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="value">Element to inspect.</param>
-  /// <param name="other">Value to compare with.</param>
+  /// <param name="other">Asserted element value for comparison.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -92,7 +92,7 @@ public static class IComparableAssertions
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="value">Element to inspect.</param>
-  /// <param name="other">Value to compare with.</param>
+  /// <param name="other">Asserted element value for comparison.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -106,8 +106,8 @@ public static class IComparableAssertions
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="value">Element to inspect.</param>
-  /// <param name="min">Lower bound of the range (inclusive).</param>
-  /// <param name="max">Upper bound of the range (inclusive).</param>
+  /// <param name="min">Asserted range lower bound (inclusive).</param>
+  /// <param name="max">Asserted range upper bound (inclusive).</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -121,8 +121,8 @@ public static class IComparableAssertions
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="value">Element to inspect.</param>
-  /// <param name="min">Lower bound of the range (inclusive).</param>
-  /// <param name="max">Upper bound of the range (inclusive).</param>
+  /// <param name="min">Asserted range lower bound (inclusive).</param>
+  /// <param name="max">Asserted range upper bound (inclusive).</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

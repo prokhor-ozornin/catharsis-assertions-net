@@ -11,7 +11,7 @@ public static class ICollectionExpectations
   /// </summary>
   /// <typeparam name="T">Type of elements inside the collection.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="count">Expected amount of elements.</param>
+  /// <param name="count">Expected elements count.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<ICollection<T>> Count<T>(this IExpectation<ICollection<T>> expectation, int count) => expectation.HaveSubject().And().Expected(collection => collection.Count == count);

@@ -97,7 +97,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
   {
     AssertionExtensions.Should(() => IEnumerableExpectations.ContainAnyOf(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAnyOf(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => EmptySequence.Expect().ContainAnyOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("elements");
+    AssertionExtensions.Should(() => EmptySequence.Expect().ContainAnyOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
     EmptySequence.Expect().ContainAnyOf(new object().ToSequence()).Result.Should().BeFalse();
     EmptySequence.Expect().ContainAnyOf(EmptySequence).Result.Should().BeFalse();

@@ -12,7 +12,7 @@ public static class ObjectAssertions
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Typed object to inspect.</param>
-  /// <param name="other">Object to compare with for reference equality.</param>
+  /// <param name="other">Asserted object for reference equality comparison.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -25,7 +25,7 @@ public static class ObjectAssertions
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Typed object to inspect.</param>
-  /// <param name="other">Object to compare with for equality.</param>
+  /// <param name="other">Asserted object for equality comparison.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -49,7 +49,7 @@ public static class ObjectAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Object to inspect.</param>
-  /// <param name="type">Type of object instance.</param>
+  /// <param name="type">Asserted type of object instance.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="instance"/>, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
@@ -80,7 +80,7 @@ public static class ObjectAssertions
   /// </summary>
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="instance"></param>
+  /// <param name="instance">Object to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -90,10 +90,10 @@ public static class ObjectAssertions
   /// <summary>
   ///   <para>Asserts that a given object is considered equal to at least one in a specified sequence.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">Asserted type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="value">Typed object to inspect.</param>
-  /// <param name="sequence">Sequence of possible object values.</param>
+  /// <param name="sequence">Asserted sequence of possible object values.</param>
   /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>

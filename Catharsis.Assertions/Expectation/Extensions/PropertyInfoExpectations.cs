@@ -49,7 +49,7 @@ public static class PropertyInfoExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="subject">Target object.</param>
-  /// <param name="value">Property value to check for.</param>
+  /// <param name="value">Expected property value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<PropertyInfo> Value(this IExpectation<PropertyInfo> expectation, object subject, object value) => expectation.HaveSubject().And().Expected(property => Equals(property.GetValue(subject), value));

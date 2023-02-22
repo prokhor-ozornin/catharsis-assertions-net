@@ -12,7 +12,7 @@ public static class DateOnlyAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="day">Day of the year value.</param>
+  /// <param name="day">Asserted day of the year value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -24,7 +24,7 @@ public static class DateOnlyAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="year">Year component value.</param>
+  /// <param name="year">Asserted year component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -36,7 +36,7 @@ public static class DateOnlyAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="month">Month component value.</param>
+  /// <param name="month">Asserted month component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -48,7 +48,7 @@ public static class DateOnlyAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="day">Day component value.</param>
+  /// <param name="day">Asserted day component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

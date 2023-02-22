@@ -7,7 +7,7 @@
 public static class IEnumerableExpectations
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given sequence contains a specified number of elements.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
@@ -17,7 +17,7 @@ public static class IEnumerableExpectations
   public static IExpectation<IEnumerable<T>> Count<T>(this IExpectation<IEnumerable<T>> expectation, int count) => expectation.HaveSubject().And().Expected(sequence => sequence.Count() == count);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given sequence is empty (contains no elements).</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
@@ -26,51 +26,51 @@ public static class IEnumerableExpectations
   public static IExpectation<IEnumerable<T>> Empty<T>(this IExpectation<IEnumerable<T>> expectation) => expectation.HaveSubject().And().Expected(sequence => !sequence.Any());
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given sequence is equal to a specified one.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="other"></param>
-  /// <param name="comparer"></param>
+  /// <param name="other">Expected sequence to compare for equality.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<IEnumerable<T>> EquivalentTo<T>(this IExpectation<IEnumerable<T>> expectation, IEnumerable<T> other, IEqualityComparer<T> comparer = null) => expectation.HaveSubject().And().ThrowIfNull(other, nameof(other)).And().Expected(sequence => sequence.SequenceEqual(other, comparer));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given sequence contains a specified element.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="element"></param>
-  /// <param name="comparer"></param>
+  /// <param name="element">Expected sequence element.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<IEnumerable<T>> Contain<T>(this IExpectation<IEnumerable<T>> expectation, T element, IEqualityComparer<T> comparer = null) => expectation.HaveSubject().And().Expected(sequence => sequence.Contains(element, comparer));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given sequence contains all of the specified elements at least once.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="other"></param>
-  /// <param name="comparer"></param>
+  /// <param name="other">Set of elements all of which are asserted to be contained in the sequence.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<IEnumerable<T>> ContainAll<T>(this IExpectation<IEnumerable<T>> expectation, IEnumerable<T> other, IEqualityComparer<T> comparer = null) => expectation.HaveSubject().And().ThrowIfNull(other, nameof(other)).And().Expected(sequence => !other.Except(sequence, comparer).Any());
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given sequence contains any of the specified elements at least once.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="elements"></param>
-  /// <param name="comparer"></param>
+  /// <param name="other">Set of elements one or more of which is asserted to be contained in the sequence.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="elements"/> is a <see langword="null"/> reference.</exception>
-  public static IExpectation<IEnumerable<T>> ContainAnyOf<T>(this IExpectation<IEnumerable<T>> expectation, IEnumerable<T> elements, IEqualityComparer<T> comparer = null) => expectation.HaveSubject().And().ThrowIfNull(elements, nameof(elements)).Expected(sequence => sequence.Intersect(elements, comparer).Any());
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
+  public static IExpectation<IEnumerable<T>> ContainAnyOf<T>(this IExpectation<IEnumerable<T>> expectation, IEnumerable<T> other, IEqualityComparer<T> comparer = null) => expectation.HaveSubject().And().ThrowIfNull(other, nameof(other)).Expected(sequence => sequence.Intersect(other, comparer).Any());
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given sequence contains at least one <see langword="null"/> reference.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
@@ -79,22 +79,22 @@ public static class IEnumerableExpectations
   public static IExpectation<IEnumerable<T>> ContainNulls<T>(this IExpectation<IEnumerable<T>> expectation) => expectation.HaveSubject().And().Expected(sequence => sequence.Any(element => element is null));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given sequence contains only unique elements.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="comparer"></param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<IEnumerable<T>> ContainUnique<T>(this IExpectation<IEnumerable<T>> expectation, IEqualityComparer<T> comparer = null) => expectation.HaveSubject().And().Expected(sequence => !sequence.GroupBy(sequence => sequence, comparer).Where(group => group.Count() > 1).Select(group => group.Key).Any());
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given sequence contains a specified element at a specified index.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="index"></param>
-  /// <param name="value"></param>
+  /// <param name="index">Expected element index.</param>
+  /// <param name="value">Expected element value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<IEnumerable<T>> ElementAt<T>(this IExpectation<IEnumerable<T>> expectation, int index, T value) => expectation.HaveSubject().And().Expected(sequence => Equals(sequence.ElementAt(index), value));

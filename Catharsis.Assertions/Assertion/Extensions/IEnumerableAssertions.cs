@@ -7,12 +7,12 @@
 public static class IEnumerableAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence contains a specified number of elements.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
-  /// <param name="count"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
+  /// <param name="count">Asserted elements count.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="sequence"/> is a <see langword="null"/> reference.</exception>
@@ -20,11 +20,11 @@ public static class IEnumerableAssertions
   public static IAssertion Count<T>(this IAssertion assertion, IEnumerable<T> sequence, int count, string error = null) => sequence is not null ? assertion.True(sequence.Count() == count, error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence is empty (contains no elements).</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="sequence"/> is a <see langword="null"/> reference.</exception>
@@ -32,13 +32,13 @@ public static class IEnumerableAssertions
   public static IAssertion Empty<T>(this IAssertion assertion, IEnumerable<T> sequence, string error = null) => sequence is not null ? assertion.True(!sequence.Any(), error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence is equal to a specified one.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
-  /// <param name="other"></param>
-  /// <param name="comparer"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
+  /// <param name="other">Asserted sequence to compare for equality.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
@@ -53,13 +53,13 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence contains a specified element.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
-  /// <param name="element"></param>
-  /// <param name="comparer"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
+  /// <param name="element">Asserted sequence element.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="sequence"/> is a <see langword="null"/> reference.</exception>
@@ -67,13 +67,13 @@ public static class IEnumerableAssertions
   public static IAssertion Contain<T>(this IAssertion assertion, IEnumerable<T> sequence, T element, IEqualityComparer<T> comparer = null, string error = null) => sequence is not null ? assertion.True(sequence.Contains(element, comparer), error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence contains all of the specified elements at least once.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
-  /// <param name="other"></param>
-  /// <param name="comparer"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
+  /// <param name="other">Set of elements all of which are asserted to be contained in the sequence.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
@@ -88,13 +88,13 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence contains any of the specified elements at least once.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
-  /// <param name="other"></param>
-  /// <param name="comparer"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
+  /// <param name="other">Set of elements one or more of which is asserted to be contained in the sequence.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
@@ -109,11 +109,11 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence contains at least one <see langword="null"/> reference.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="sequence"/> is a <see langword="null"/> reference.</exception>
@@ -121,12 +121,12 @@ public static class IEnumerableAssertions
   public static IAssertion ContainNulls<T>(this IAssertion assertion, IEnumerable<T> sequence, string error = null) => sequence is not null ? assertion.True(sequence.Any(element => element is null), error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence contains only unique elements.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
-  /// <param name="comparer"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="sequence"/> is a <see langword="null"/> reference.</exception>
@@ -134,13 +134,13 @@ public static class IEnumerableAssertions
   public static IAssertion ContainUnique<T>(this IAssertion assertion, IEnumerable<T> sequence, IEqualityComparer<T> comparer = null, string error = null) => sequence is not null ? assertion.True(!sequence.GroupBy(sequence => sequence, comparer).Where(group => group.Count() > 1).Select(group => group.Key).Any(), error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence contains a specified element at a specified index.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
-  /// <param name="index"></param>
-  /// <param name="value"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
+  /// <param name="index">Asserted element index.</param>
+  /// <param name="value">Asserted element value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="sequence"/> is a <see langword="null"/> reference.</exception>
@@ -210,7 +210,7 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
   /// <param name="other"></param>
   /// <param name="comparer"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
@@ -232,7 +232,7 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
   /// <param name="other"></param>
   /// <param name="comparer"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
@@ -254,7 +254,7 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
   /// <param name="condition"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
@@ -275,7 +275,7 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
   /// <param name="index"></param>
   /// <param name="value"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
@@ -289,7 +289,7 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
   /// <param name="comparer"></param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>

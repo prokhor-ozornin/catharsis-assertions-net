@@ -81,7 +81,7 @@ public static class FieldInfoExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="subject">Target object.</param>
-  /// <param name="value">Field value to check for.</param>
+  /// <param name="value">Expected field value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<FieldInfo> Value(this IExpectation<FieldInfo> expectation, object subject, object value) => expectation.HaveSubject().And().Expected(field => Equals(field.GetValue(subject), value));

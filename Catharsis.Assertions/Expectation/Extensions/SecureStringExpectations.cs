@@ -12,7 +12,7 @@ public static class SecureStringExpectations
   ///   <para>Expects that a given secure string is of specified length.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="length">String length.</param>
+  /// <param name="length">Expected string length.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<SecureString> Length(this IExpectation<SecureString> expectation, int length) => expectation.HaveSubject().And().Expected(secure => secure.Length == length);

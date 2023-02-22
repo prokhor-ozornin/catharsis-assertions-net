@@ -61,7 +61,7 @@ public static class TaskAssertions
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
-  /// <param name="exception">Exception that caused the task to be aborted, or <see langword="null"/> if the task completed successfully or has not yet thrown exceptions.</param>
+  /// <param name="exception">Asserted exception that caused the task to be aborted, or <see langword="null"/> if the task completed successfully or has not yet thrown exceptions.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="task"/> is a <see langword="null"/> reference.</exception>

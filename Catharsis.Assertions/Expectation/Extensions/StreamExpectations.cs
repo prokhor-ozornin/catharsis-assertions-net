@@ -10,7 +10,7 @@ public static class StreamExpectations
   ///   <para>Expects that a given stream has a specified length in bytes.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="length">Stream length.</param>
+  /// <param name="length">Expected stream length.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> Length(this IExpectation<Stream> expectation, long length) => expectation.HaveSubject().And().Expected(stream => stream.Length == length);
@@ -27,7 +27,7 @@ public static class StreamExpectations
   ///   <para>Expects that a given stream is at specified position/offset.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="position">Position within the stream.</param>
+  /// <param name="position">Expected position within the stream.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> Position(this IExpectation<Stream> expectation, long position) => expectation.HaveSubject().And().Expected(stream => stream.Position == position);

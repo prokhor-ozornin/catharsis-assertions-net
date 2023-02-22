@@ -12,7 +12,7 @@ public static class StringBuilderExpectations
   ///   <para>Expects that a given string builder contains a specified number of characters.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="length">String builder length.</param>
+  /// <param name="length">Expected string builder length.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<StringBuilder> Length(this IExpectation<StringBuilder> expectation, int length) => expectation.HaveSubject().And().Expected(builder => builder.Length == length);

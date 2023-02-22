@@ -60,7 +60,7 @@ public static class PropertyInfoAssertions
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property">Object property to inspect.</param>
   /// <param name="subject">Target object.</param>
-  /// <param name="value">Property value to check for.</param>
+  /// <param name="value">Asserted property value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="property"/> is a <see langword="null"/> reference.</exception>

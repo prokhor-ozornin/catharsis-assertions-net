@@ -24,7 +24,7 @@ public static class HttpResponseMessageAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="response">HTTP response message to inspect.</param>
-  /// <param name="status">HTTP status code.</param>
+  /// <param name="status">Asserted HTTP status code.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="response"/> is a <see langword="null"/> reference.</exception>
@@ -36,8 +36,8 @@ public static class HttpResponseMessageAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="response">HTTP response message to inspect.</param>
-  /// <param name="name">HTTP header name.</param>
-  /// <param name="value">HTTP header value.</param>
+  /// <param name="name">Asserted HTTP header name.</param>
+  /// <param name="value">Asserted HTTP header value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="response"/>, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>

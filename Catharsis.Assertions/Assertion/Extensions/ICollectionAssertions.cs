@@ -12,7 +12,7 @@ public static class ICollectionAssertions
   /// <typeparam name="T">Type of elements inside the collection.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="collection">Collection to inspect.</param>
-  /// <param name="count">Expected amount of elements.</param>
+  /// <param name="count">Asserted elements count.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="collection"/> is a <see langword="null"/> reference.</exception>

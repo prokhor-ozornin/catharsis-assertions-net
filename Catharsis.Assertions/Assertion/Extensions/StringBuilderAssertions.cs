@@ -13,7 +13,7 @@ public static class StringBuilderAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="builder">String builder to inspect.</param>
-  /// <param name="length">String builder length.</param>
+  /// <param name="length">Asserted string builder length.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="builder"/> is a <see langword="null"/> reference.</exception>

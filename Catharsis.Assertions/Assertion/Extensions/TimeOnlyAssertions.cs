@@ -12,7 +12,7 @@ public static class TimeOnlyAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="time">Time to inspect.</param>
-  /// <param name="hour">Hour component value.</param>
+  /// <param name="hour">Asserted hour component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -24,7 +24,7 @@ public static class TimeOnlyAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="time">Time to inspect.</param>
-  /// <param name="minute">Minute component value.</param>
+  /// <param name="minute">Asserted minute component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -36,7 +36,7 @@ public static class TimeOnlyAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="time">Time to inspect.</param>
-  /// <param name="second">Second component value.</param>
+  /// <param name="second">Asserted second component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -48,7 +48,7 @@ public static class TimeOnlyAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="time">Time to inspect.</param>
-  /// <param name="millisecond">Millisecond component value.</param>
+  /// <param name="millisecond">Asserted millisecond component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

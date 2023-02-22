@@ -113,7 +113,7 @@ public static class FieldInfoAssertions
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="field">Object field to inspect.</param>
   /// <param name="subject">Target object.</param>
-  /// <param name="value">Field value to check for.</param>
+  /// <param name="value">Asserted field value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="field"/> is a <see langword="null"/> reference.</exception>

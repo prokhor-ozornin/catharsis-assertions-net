@@ -13,7 +13,7 @@ public static class MemberInfoAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member">Type's member to inspect.</param>
-  /// <param name="type">Type of the custom attribute.</param>
+  /// <param name="type">Asserted custom attribute type.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="member"/>, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
@@ -31,7 +31,7 @@ public static class MemberInfoAssertions
   /// <summary>
   ///   <para>Asserts that a given type's member is decorated with a custom attribute of specified type.</para>
   /// </summary>
-  /// <typeparam name="T">Type of the custom attribute.</typeparam>
+  /// <typeparam name="T">Asserted custom attribute type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member">Type's member to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
@@ -46,7 +46,7 @@ public static class MemberInfoAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member">Type's member to inspect.</param>
-  /// <param name="type">Type of the member.</param>
+  /// <param name="type">Asserted member type.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="member"/> is a <see langword="null"/> reference.</exception>

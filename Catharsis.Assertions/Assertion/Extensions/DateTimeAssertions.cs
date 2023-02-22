@@ -35,7 +35,7 @@ public static class DateTimeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="day">Day of the year value.</param>
+  /// <param name="day">Asserted day of the year.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -47,7 +47,7 @@ public static class DateTimeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="year">Year component value.</param>
+  /// <param name="year">Asserted year component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -59,7 +59,7 @@ public static class DateTimeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="month">Month component value.</param>
+  /// <param name="month">Asserted month component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -71,7 +71,7 @@ public static class DateTimeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="day">Day component value.</param>
+  /// <param name="day">Asserted day component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -83,7 +83,7 @@ public static class DateTimeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="hour">Hour component value.</param>
+  /// <param name="hour">Asserted hour component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -95,7 +95,7 @@ public static class DateTimeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="minute">Minute component value.</param>
+  /// <param name="minute">Asserted minute component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -107,7 +107,7 @@ public static class DateTimeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="second">Second component value.</param>
+  /// <param name="second">Asserted second component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -119,7 +119,7 @@ public static class DateTimeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="millisecond">Millisecond component value.</param>
+  /// <param name="millisecond">Asserted millisecond component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -131,7 +131,7 @@ public static class DateTimeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
-  /// <param name="day">Day of the week value.</param>
+  /// <param name="day">Asserted day of the week.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

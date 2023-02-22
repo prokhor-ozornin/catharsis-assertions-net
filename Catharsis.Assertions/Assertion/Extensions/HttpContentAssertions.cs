@@ -11,7 +11,7 @@ public static class HttpContentAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="content">Content instance to inspect.</param>
-  /// <param name="name">HTTP header name.</param>
+  /// <param name="name">Asserted HTTP header name.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="content"/>, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>

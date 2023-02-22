@@ -12,7 +12,7 @@ public static class AssemblyExpectations
   ///   <para>Expects that a given assembly contains a definition of the specified type.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="type">Type to look for.</param>
+  /// <param name="type">Expected type.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   /// <seealso cref="Define{T}(IExpectation{Assembly})"/>
@@ -21,7 +21,7 @@ public static class AssemblyExpectations
   /// <summary>
   ///   <para>Expects that a given assembly contains a definition of the specified type.</para>
   /// </summary>
-  /// <typeparam name="T">Type to look for.</typeparam>
+  /// <typeparam name="T">Expected type.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>

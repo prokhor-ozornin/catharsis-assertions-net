@@ -12,7 +12,7 @@ public static class IDictionaryExpectations
   /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="key">Key to look for.</param>
+  /// <param name="key">Expected key value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="key"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<IDictionary<TKey, TValue>> ContainKey<TKey, TValue>(this IExpectation<IDictionary<TKey, TValue>> expectation, TKey key) where TKey : notnull => expectation.HaveSubject().And().ThrowIfNull(key, nameof(key)).And().Expected(dictionary => dictionary.ContainsKey(key));
@@ -23,7 +23,7 @@ public static class IDictionaryExpectations
   /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="value">Value to search for.</param>
+  /// <param name="value">Expected element value.</param>
   /// <param name="comparer">Equality comparer for dictionary values.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference or has an undefined subject.</exception>

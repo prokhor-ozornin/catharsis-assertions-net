@@ -12,8 +12,8 @@ public static class AssemblyAssertions
   ///   <para>Asserts that a given assembly contains a definition of the specified type.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="assembly">Assembly to search for a type definition.</param>
-  /// <param name="type">Type to look for.</param>
+  /// <param name="assembly">Assembly to inspect.</param>
+  /// <param name="type">Asserted type.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="assembly"/>, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
@@ -31,9 +31,9 @@ public static class AssemblyAssertions
   /// <summary>
   ///   <para>Asserts that a given assembly contains a definition of the specified type.</para>
   /// </summary>
-  /// <typeparam name="T">Type to look for.</typeparam>
+  /// <typeparam name="T">Asserted type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="assembly">Assembly to search for a type definition.</param>
+  /// <param name="assembly">Assembly to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="assembly"/> is a <see langword="null"/> reference.</exception>

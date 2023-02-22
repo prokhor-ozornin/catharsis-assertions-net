@@ -20,7 +20,7 @@ public static class MatchExpectations
   ///   <para>Expects that a result of a given regular expression match is equal to a specified value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="value">Captured substring of the match.</param>
+  /// <param name="value">Expected match captured substring.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="value"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<Match> Value(this IExpectation<Match> expectation, string value) => expectation.HaveSubject().And().ThrowIfNull(value, nameof(value)).And().Expected(match => match.Value == value);

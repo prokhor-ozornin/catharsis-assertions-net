@@ -11,7 +11,7 @@ public static class FileInfoAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file">File to inspect.</param>
-  /// <param name="length">Size of file in bytes.</param>
+  /// <param name="length">Asserted size of file in bytes.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="file"/> is a <see langword="null"/> reference.</exception>
@@ -51,7 +51,7 @@ public static class FileInfoAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file">File to inspect.</param>
-  /// <param name="directory">File location directory.</param>
+  /// <param name="directory">Asserted file location directory.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="file"/>, or <paramref name="directory"/> is a <see langword="null"/> reference.</exception>

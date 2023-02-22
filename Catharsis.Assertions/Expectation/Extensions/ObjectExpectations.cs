@@ -11,7 +11,7 @@ public static class ObjectExpectations
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="other">Object to compare with for reference equality.</param>
+  /// <param name="other">Expected object for reference equality comparison.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<T> Same<T>(this IExpectation<T> expectation, object other) => expectation.Expected(instance => ReferenceEquals(instance, other));
@@ -21,7 +21,7 @@ public static class ObjectExpectations
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="other">Object to compare with for equality.</param>
+  /// <param name="other">Expected object for equality comparison.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<T> Equal<T>(this IExpectation<T> expectation, object other) => expectation.Expected(instance => Equals(instance, other));
@@ -40,7 +40,7 @@ public static class ObjectExpectations
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="type">Type of object instance.</param>
+  /// <param name="type">Expected type of object instance.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<T> OfType<T>(this IExpectation<T> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(instance => instance.GetType() == type);
@@ -59,7 +59,7 @@ public static class ObjectExpectations
   /// </summary>
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="sequence">Sequence of possible object values.</param>
+  /// <param name="sequence">Expected sequence of possible object values.</param>
   /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or <paramref name="sequence"/> is a <see langword="null"/> reference.</exception>

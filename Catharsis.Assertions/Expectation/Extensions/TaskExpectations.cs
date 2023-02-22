@@ -48,7 +48,7 @@ public static class TaskExpectations
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="exception">Exception that caused the task to be aborted, or <see langword="null"/> if the task completed successfully or has not yet thrown exceptions.</param>
+  /// <param name="exception">Expected exception that caused the task to be aborted, or <see langword="null"/> if the task completed successfully or has not yet thrown exceptions.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Task<T>> Exception<T>(this IExpectation<Task<T>> expectation, AggregateException exception) => expectation.HaveSubject().And().Expected(task => Equals(task.Exception, exception));

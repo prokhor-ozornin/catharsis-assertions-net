@@ -11,7 +11,7 @@ public static class RangeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="range">Range to inspect.</param>
-  /// <param name="index">Index value.</param>
+  /// <param name="index">Asserted index value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -23,7 +23,7 @@ public static class RangeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="range">Range to inspect.</param>
-  /// <param name="index">Index value.</param>
+  /// <param name="index">Asserted index value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

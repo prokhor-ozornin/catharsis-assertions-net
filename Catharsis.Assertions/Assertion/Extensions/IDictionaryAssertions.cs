@@ -13,7 +13,7 @@ public static class IDictionaryAssertions
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="dictionary">Dictionary to inspect.</param>
-  /// <param name="key">Key to search for.</param>
+  /// <param name="key">Asserted key value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="dictionary"/>, or <paramref name="key"/> is a <see langword="null"/> reference.</exception>
@@ -34,7 +34,7 @@ public static class IDictionaryAssertions
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="dictionary">Dictionary to inspect.</param>
-  /// <param name="value">Value to search for.</param>
+  /// <param name="value">Asserted element value.</param>
   /// <param name="comparer">Equality comparer for dictionary values.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>

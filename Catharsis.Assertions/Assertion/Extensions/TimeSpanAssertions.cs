@@ -11,7 +11,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="days">Days component value.</param>
+  /// <param name="days">Asserted days component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -23,7 +23,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="hours">Hours component value.</param>
+  /// <param name="hours">Asserted hours component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -35,7 +35,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="minutes">Minutes component value.</param>
+  /// <param name="minutes">Asserted minutes component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -47,7 +47,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="seconds">Seconds component value.</param>
+  /// <param name="seconds">Asserted seconds component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -59,7 +59,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="milliseconds">Milliseconds component value.</param>
+  /// <param name="milliseconds">Asserted milliseconds component value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -71,7 +71,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="days">Days count.</param>
+  /// <param name="days">Asserted days count.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -83,7 +83,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="hours">Hours count.</param>
+  /// <param name="hours">Asserted hours count.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -95,7 +95,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="minutes">Minutes count.</param>
+  /// <param name="minutes">Asserted minutes count.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -107,7 +107,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="seconds">Seconds count.</param>
+  /// <param name="seconds">Asserted seconds count.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -119,7 +119,7 @@ public static class TimeSpanAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="timeSpan">Time interval to inspect.</param>
-  /// <param name="milliseconds">Milliseconds count.</param>
+  /// <param name="milliseconds">Asserted milliseconds count.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

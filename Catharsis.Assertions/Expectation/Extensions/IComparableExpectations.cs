@@ -40,7 +40,7 @@ public static class IComparableExpectations
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="other"></param>
+  /// <param name="other">Expected element value for comparison.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   /// <seealso cref="GreaterOrEqual{T}(IExpectation{T}, T)"/>
@@ -51,7 +51,7 @@ public static class IComparableExpectations
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="other"></param>
+  /// <param name="other">Expected element value for comparison.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   /// <seealso cref="Greater{T}(IExpectation{T}, T)"/>
@@ -62,7 +62,7 @@ public static class IComparableExpectations
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="other"></param>
+  /// <param name="other">Expected element value for comparison.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   /// <seealso cref="LesserOrEqual{T}(IExpectation{T}, T)"/>
@@ -73,7 +73,7 @@ public static class IComparableExpectations
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="other"></param>
+  /// <param name="other">Expected element value for comparison.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   /// <seealso cref="Lesser{T}(IExpectation{T}, T)"/>
@@ -84,8 +84,8 @@ public static class IComparableExpectations
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="min"></param>
-  /// <param name="max"></param>
+  /// <param name="min">Expected range lower bound (inclusive).</param>
+  /// <param name="max">Expected range upper bound (inclusive).</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   /// <seealso cref="OutOfRange{T}(IExpectation{T}, T, T)"/>
@@ -96,8 +96,8 @@ public static class IComparableExpectations
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="min">Lower bound of the range (inclusive).</param>
-  /// <param name="max">Upper bound of the range (inclusive).</param>
+  /// <param name="min">Expected range lower bound (inclusive).</param>
+  /// <param name="max">Expected range upper bound (inclusive).</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   /// <seealso cref="InRange{T}(IExpectation{T}, T, T)"/>
