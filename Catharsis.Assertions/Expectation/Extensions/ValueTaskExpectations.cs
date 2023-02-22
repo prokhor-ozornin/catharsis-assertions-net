@@ -8,7 +8,7 @@
 public static class ValueTaskExpectations
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given task completed successfully.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
@@ -17,7 +17,7 @@ public static class ValueTaskExpectations
   public static IExpectation<ValueTask> Successful(this IExpectation<ValueTask> expectation) => expectation.Expected(task => task.IsCompletedSuccessfully);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given task completed unsuccessfully due to unhandled exception.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
@@ -26,7 +26,7 @@ public static class ValueTaskExpectations
   public static IExpectation<ValueTask> Unsuccessful(this IExpectation<ValueTask> expectation) => expectation.Expected(task => task.IsFaulted);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given task failed to complete due to being cancelled.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
@@ -35,7 +35,7 @@ public static class ValueTaskExpectations
   public static IExpectation<ValueTask> Canceled(this IExpectation<ValueTask> expectation) => expectation.Expected(task => task.IsCanceled);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given task completed, whether successfully or not.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
@@ -44,9 +44,9 @@ public static class ValueTaskExpectations
   public static IExpectation<ValueTask> Completed(this IExpectation<ValueTask> expectation) => expectation.Expected(task => task.IsCompleted);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given task completed successfully.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
@@ -54,9 +54,9 @@ public static class ValueTaskExpectations
   public static IExpectation<ValueTask<T>> Successful<T>(this IExpectation<ValueTask<T>> expectation) => expectation.Expected(task => task.IsCompletedSuccessfully);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given task completed unsuccessfully due to unhandled exception.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
@@ -64,9 +64,9 @@ public static class ValueTaskExpectations
   public static IExpectation<ValueTask<T>> Unsuccessful<T>(this IExpectation<ValueTask<T>> expectation) => expectation.Expected(task => task.IsFaulted);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given task failed to complete due to being cancelled.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
@@ -74,9 +74,9 @@ public static class ValueTaskExpectations
   public static IExpectation<ValueTask<T>> Canceled<T>(this IExpectation<ValueTask<T>> expectation) => expectation.Expected(task => task.IsCanceled);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given task completed, whether successfully or not.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>

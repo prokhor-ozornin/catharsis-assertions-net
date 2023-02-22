@@ -8,10 +8,10 @@
 public static class ValueTaskAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given task completed successfully.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="task"></param>
+  /// <param name="task">Task to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -20,10 +20,10 @@ public static class ValueTaskAssertions
   public static IAssertion Successful(this IAssertion assertion, ValueTask task, string error = null) => assertion.True(task.IsCompletedSuccessfully, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given task completed unsuccessfully due to unhandled exception.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="task"></param>
+  /// <param name="task">Task to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -32,10 +32,10 @@ public static class ValueTaskAssertions
   public static IAssertion Unsuccessful(this IAssertion assertion, ValueTask task, string error = null) => assertion.True(task.IsFaulted, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given task failed to complete due to being cancelled.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="task"></param>
+  /// <param name="task">Task to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -44,10 +44,10 @@ public static class ValueTaskAssertions
   public static IAssertion Canceled(this IAssertion assertion, ValueTask task, string error = null) => assertion.True(task.IsCanceled, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given task completed, whether successfully or not.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="task"></param>
+  /// <param name="task">Task to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -56,11 +56,11 @@ public static class ValueTaskAssertions
   public static IAssertion Completed(this IAssertion assertion, ValueTask task, string error = null) => assertion.True(task.IsCompleted, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given task completed successfully.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="task"></param>
+  /// <param name="task">Task to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -69,11 +69,11 @@ public static class ValueTaskAssertions
   public static IAssertion Successful<T>(this IAssertion assertion, ValueTask<T> task, string error = null) => assertion.True(task.IsCompletedSuccessfully, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given task completed unsuccessfully due to unhandled exception.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="task"></param>
+  /// <param name="task">Task to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -82,11 +82,11 @@ public static class ValueTaskAssertions
   public static IAssertion Unsuccessful<T>(this IAssertion assertion, ValueTask<T> task, string error = null) => assertion.True(task.IsFaulted, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given task failed to complete due to being cancelled.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="task"></param>
+  /// <param name="task">Task to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
@@ -95,11 +95,11 @@ public static class ValueTaskAssertions
   public static IAssertion Canceled<T>(this IAssertion assertion, ValueTask<T> task, string error = null) => assertion.True(task.IsCanceled, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given task completed, whether successfully or not.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="task"></param>
+  /// <param name="task">Task to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>

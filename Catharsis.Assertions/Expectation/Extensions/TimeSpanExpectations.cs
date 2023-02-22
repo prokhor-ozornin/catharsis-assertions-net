@@ -7,91 +7,91 @@
 public static class TimeSpanExpectations
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval has a specified days component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="days"></param>
+  /// <param name="days">Days component value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> Days(this IExpectation<TimeSpan> expectation, int days) => expectation.Expected(timeSpan => timeSpan.Days == days);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval has a specified hours component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="hours"></param>
+  /// <param name="hours">Hours component value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> Hours(this IExpectation<TimeSpan> expectation, int hours) => expectation.Expected(timeSpan => timeSpan.Hours == hours);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval has a specified minutes component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="minutes"></param>
+  /// <param name="minutes">Minutes component value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> Minutes(this IExpectation<TimeSpan> expectation, int minutes) => expectation.Expected(timeSpan => timeSpan.Minutes == minutes);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval has a specified seconds component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="seconds"></param>
+  /// <param name="seconds">Seconds component value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> Seconds(this IExpectation<TimeSpan> expectation, int seconds) => expectation.Expected(timeSpan => timeSpan.Seconds == seconds);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval has a specified milliseconds component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="milliseconds"></param>
+  /// <param name="milliseconds">Milliseconds component value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> Milliseconds(this IExpectation<TimeSpan> expectation, int milliseconds) => expectation.Expected(timeSpan => timeSpan.Milliseconds == milliseconds);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval represents a specified total number of whole days.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="days"></param>
+  /// <param name="days">Days count.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> TotalDays(this IExpectation<TimeSpan> expectation, int days) => expectation.Expected(timeSpan => (int) timeSpan.TotalDays == days);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval represents a specified total number of whole hours.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="hours"></param>
+  /// <param name="hours">Hours count.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> TotalHours(this IExpectation<TimeSpan> expectation, int hours) => expectation.Expected(timeSpan => (int) timeSpan.TotalHours == hours);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval represents a specified total number of whole minutes.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="minutes"></param>
+  /// <param name="minutes">Minutes count.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> TotalMinutes(this IExpectation<TimeSpan> expectation, int minutes) => expectation.Expected(timeSpan => (int) timeSpan.TotalMinutes == minutes);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval represents a specified total number of whole seconds.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="seconds"></param>
+  /// <param name="seconds">Seconds count.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> TotalSeconds(this IExpectation<TimeSpan> expectation, int seconds) => expectation.Expected(timeSpan => (int) timeSpan.TotalSeconds == seconds);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given time interval represents a specified total number of whole milliseconds.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="milliseconds"></param>
+  /// <param name="milliseconds">Milliseconds count.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<TimeSpan> TotalMilliseconds(this IExpectation<TimeSpan> expectation, int milliseconds) => expectation.Expected(timeSpan => (int) timeSpan.TotalMilliseconds == milliseconds);
