@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class StringAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given string is of specified length.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="text"></param>
-  /// <param name="length"></param>
+  /// <param name="text">String to inspect.</param>
+  /// <param name="length">String length.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
@@ -21,10 +21,10 @@ public static class StringAssertions
   public static IAssertion Length(this IAssertion assertion, string text, int length, string error = null) => text is not null ? assertion.True(text.Length == length, error) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given string is empty (contains no characters).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="text"></param>
+  /// <param name="text">String to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
@@ -32,10 +32,10 @@ public static class StringAssertions
   public static IAssertion Empty(this IAssertion assertion, string text, string error = null) => assertion.Length(text, 0, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given string is either <see langword="null"/>, empty, or consists only of white-space characters.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="text"></param>
+  /// <param name="text">String to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
@@ -49,10 +49,10 @@ public static class StringAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given string consists only of upper-cased characters.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="text"></param>
+  /// <param name="text">String to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
@@ -61,10 +61,10 @@ public static class StringAssertions
   public static IAssertion UpperCased(this IAssertion assertion, string text, string error = null) => text is not null ? assertion.True(text.All(char.IsUpper), error) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given string consists only of lower-cased characters.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="text"></param>
+  /// <param name="text">String to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
@@ -73,12 +73,12 @@ public static class StringAssertions
   public static IAssertion LowerCased(this IAssertion assertion, string text, string error = null) => text is not null ? assertion.True(text.All(char.IsLower), error) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that the beginning of a given string matches the specified prefix string.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="text"></param>
-  /// <param name="prefix"></param>
-  /// <param name="comparison"></param>
+  /// <param name="text">String to inspect.</param>
+  /// <param name="prefix">Starting string prefix.</param>
+  /// <param name="comparison">Strings comparison options.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="text"/>, or <paramref name="prefix"/> is a <see langword="null"/> reference.</exception>
@@ -94,12 +94,12 @@ public static class StringAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that the end of a given string matches the specified postfix string.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="text"></param>
-  /// <param name="postfix"></param>
-  /// <param name="comparison"></param>
+  /// <param name="text">String to inspect.</param>
+  /// <param name="postfix">Ending string postfix.</param>
+  /// <param name="comparison">Strings comparison options.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="text"/>, or <paramref name="postfix"/> is a <see langword="null"/> reference.</exception>
@@ -115,11 +115,11 @@ public static class StringAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given string matches a specified regular expression.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="text"></param>
-  /// <param name="regex"></param>
+  /// <param name="text">String to inspect.</param>
+  /// <param name="regex">Regular expression to match against.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="text"/>, or <paramref name="regex"/> is a <see langword="null"/> reference.</exception>

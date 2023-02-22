@@ -9,10 +9,10 @@ namespace Catharsis.Assertions;
 public static class PropertyInfoAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object property can be read.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="property"></param>
+  /// <param name="property">Object property to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="property"/> is a <see langword="null"/> reference.</exception>
@@ -21,10 +21,10 @@ public static class PropertyInfoAssertions
   public static IAssertion Readable(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanRead, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object property is read-only (cannot be written to).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="property"></param>
+  /// <param name="property">Object property to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="property"/> is a <see langword="null"/> reference.</exception>
@@ -32,10 +32,10 @@ public static class PropertyInfoAssertions
   public static IAssertion ReadOnly(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanRead && !property.CanWrite, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object property can be written to.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="property"></param>
+  /// <param name="property">Object property to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="property"/> is a <see langword="null"/> reference.</exception>
@@ -44,10 +44,10 @@ public static class PropertyInfoAssertions
   public static IAssertion Writable(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanWrite, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object property is write-only (cannot be read).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="property"></param>
+  /// <param name="property">Object property to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="property"/> is a <see langword="null"/> reference.</exception>
@@ -55,12 +55,12 @@ public static class PropertyInfoAssertions
   public static IAssertion WriteOnly(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanWrite && !property.CanRead, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given object property has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="property"></param>
-  /// <param name="subject"></param>
-  /// <param name="value"></param>
+  /// <param name="property">Object property to inspect.</param>
+  /// <param name="subject">Target object.</param>
+  /// <param name="value">Property value to check for.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="property"/> is a <see langword="null"/> reference.</exception>
