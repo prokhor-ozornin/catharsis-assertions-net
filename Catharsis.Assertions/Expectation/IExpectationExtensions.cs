@@ -1,17 +1,17 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Set of extension methods for <see cref="IExpectation{T}"/> interface.</para>
 /// </summary>
 /// <seealso cref="IExpectation{T}"/>
 public static class IExpectationExtensions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects a specified result, expressed as a predicate.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="result"></param>
+  /// <param name="result">Expected result.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<T> Expected<T>(this IExpectation<T> expectation, Predicate<T> result)
@@ -23,9 +23,9 @@ public static class IExpectationExtensions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given <paramref name="expectation"/> has a subject instance which is not a <see langword="null"/> reference.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
@@ -45,11 +45,11 @@ public static class IExpectationExtensions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Checks whether a specified <paramref name="expectation"/> is proven to be <see langword="false"/> and throws a specified <paramref name="exception"/> if it is.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="exception"></param>
+  /// <param name="exception">Exception to be thrown in case of a failed expectation.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="ThrowIfFalse{T}(IExpectation{T}, string)"/>
@@ -67,23 +67,23 @@ public static class IExpectationExtensions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Checks whether a specified <paramref name="expectation"/> is proven to be <see langword="false"/> and throws <see cref="InvalidOperationException"/> if it is.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="error"></param>
+  /// <param name="error">Text message of a potentially thrown exception.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   /// <seealso cref="ThrowIfFalse{T}(IExpectation{T}, Exception)"/>
   public static IExpectation<T> ThrowIfFalse<T>(this IExpectation<T> expectation, string error = null) => expectation.ThrowIfFalse(new InvalidOperationException(error));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Checks whether a specified object is a <see langword="null"/> reference and throws <see cref="ArgumentNullException"/> if it is.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="instance"></param>
-  /// <param name="error"></param>
+  /// <param name="instance">Object to check for a <see langword="null"/> value.</param>
+  /// <param name="error">Text message of a potentially thrown exception.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>
   public static IExpectation<T> ThrowIfNull<T>(this IExpectation<T> expectation, object instance, string error = null)
@@ -95,65 +95,65 @@ public static class IExpectationExtensions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject instance.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> To<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject instance.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> And<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject instance.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> Be<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject instance.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> Having<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject instance.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> With<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject instance.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> Of<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
-  ///    <para></para>
+  ///   <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject instance.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> At<T>(this IExpectation<T> expectation) => expectation;
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of expectation's subject instance.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   public static IExpectation<T> On<T>(this IExpectation<T> expectation) => expectation;

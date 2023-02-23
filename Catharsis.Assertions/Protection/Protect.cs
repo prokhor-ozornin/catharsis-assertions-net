@@ -1,12 +1,12 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para></para>
+///   <para>Protection factory class for the creation of protections.</para>
 /// </summary>
 public static class Protect
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Instance of protection object.</para>
   /// </summary>
   public static IProtection From { get; } = new Protection();
 }
