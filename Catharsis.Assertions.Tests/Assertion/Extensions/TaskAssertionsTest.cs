@@ -12,6 +12,37 @@ public sealed class TaskAssertionsTest : UnitTest
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
   ///   <list type="bullet">
+  ///     <item><description><see cref="TaskAssertions.Status(IAssertion, Task, TaskStatus, string)"/></description></item>
+  ///     <item><description><see cref="TaskAssertions.Status{T}(IAssertion, Task{T}, TaskStatus, string)"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void Status_Methods()
+  {
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TaskAssertions.Status(null, Task.CompletedTask, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TaskAssertions.Status(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
+
+      Assert.To.Status(Task.CompletedTask, TaskStatus.RanToCompletion).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Status(Task.FromCanceled(new CancellationToken(true)), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Status(Task.FromException(new Exception()), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    }
+
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TaskAssertions.Status(null, Task.FromResult<object>(null), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Status<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
+
+      Assert.To.Status(Task.FromResult<object>(null), TaskStatus.RanToCompletion).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Status(Task.FromCanceled<object>(new CancellationToken(true)), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Status(Task.FromException<object>(new Exception()), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    }
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
   ///     <item><description><see cref="TaskAssertions.Successful(IAssertion, Task, string)"/></description></item>
   ///     <item><description><see cref="TaskAssertions.Successful{T}(IAssertion, Task{T}, string)"/></description></item>
   ///   </list>

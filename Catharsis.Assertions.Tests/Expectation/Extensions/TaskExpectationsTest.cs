@@ -12,6 +12,37 @@ public sealed class TaskExpectationsTest : UnitTest
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
   ///   <list type="bullet">
+  ///     <item><description><see cref="TaskExpectations.Status(IExpectation{Task}, TaskStatus)"/></description></item>
+  ///     <item><description><see cref="TaskExpectations.Status{T}(IExpectation{Task{T}}, TaskStatus)"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void Status_Methods()
+  {
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TaskExpectations.Status(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Task) null).Expect().Status(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      Task.CompletedTask.Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeTrue();
+      Task.FromCanceled(new CancellationToken(true)).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeFalse();
+      Task.FromException(new Exception()).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeFalse();
+    }
+
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TaskExpectations.Status<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Task<object>) null).Expect().Status(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      Task.FromResult<object>(null).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeTrue();
+      Task.FromCanceled<object>(new CancellationToken(true)).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeFalse();
+      Task.FromException<object>(new Exception()).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeFalse();
+    }
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
   ///     <item><description><see cref="TaskExpectations.Successful(IExpectation{Task})"/></description></item>
   ///     <item><description><see cref="TaskExpectations.Successful{T}(IExpectation{Task{T}})"/></description></item>
   ///   </list>

@@ -37,13 +37,13 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="HttpResponseMessageAssertions.Status(IAssertion, System.Net.Http.HttpResponseMessage, HttpStatusCode, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="HttpResponseMessageAssertions.Status(IAssertion, HttpResponseMessage, HttpStatusCode, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Status_Method()
   {
     AssertionExtensions.Should(() => HttpResponseMessageAssertions.Status(null, Response, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Status(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
+    AssertionExtensions.Should(() => Assert.To.Status((HttpResponseMessage) null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
 
     AssertionExtensions.Should(() => Assert.To.Status(Response, HttpStatusCode.NotFound, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     Assert.To.Status(Response, Response.StatusCode).Should().NotBeNull().And.BeSameAs(Assert.To);

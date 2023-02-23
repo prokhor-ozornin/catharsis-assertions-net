@@ -7,11 +7,11 @@
 public static class LazyProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given lazily instantiated object from either being <see langword="null"/> or having no value.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of lazily instantiated instance.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="instance"></param>
+  /// <param name="instance">Object to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException"></exception>

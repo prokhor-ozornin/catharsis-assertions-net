@@ -9,10 +9,10 @@ namespace Catharsis.Assertions;
 public static class StringProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given string from being empty (containing no characters).</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="text"></param>
+  /// <param name="text">String to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
@@ -28,10 +28,10 @@ public static class StringProtections
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given string from being either <see langword="null"/>, empty, or consisting only of white-space characters.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="text"></param>
+  /// <param name="text">String to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
@@ -47,11 +47,11 @@ public static class StringProtections
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given string from matching a specified regular expression.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="text"></param>
-  /// <param name="regex"></param>
+  /// <param name="text">String to protect.</param>
+  /// <param name="regex">Regular expression to match against.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/>, <paramref name="text"/>, or <paramref name="regex"/> is a <see langword="null"/> reference.</exception>

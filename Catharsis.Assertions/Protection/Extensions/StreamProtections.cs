@@ -7,11 +7,11 @@
 public static class StreamProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given stream from being empty (zero-length).</para>
   /// </summary>
-  /// <typeparam name="TStream"></typeparam>
+  /// <typeparam name="TStream">Type of stream.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="stream"></param>
+  /// <param name="stream">Stream to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="stream"/> is a <see langword="null"/> reference.</exception>

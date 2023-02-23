@@ -7,10 +7,10 @@
 public static class StreamReaderProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given stream reader from having an empty underlying stream.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="reader"></param>
+  /// <param name="reader">Stream reader to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="reader"/> is a <see langword="null"/> reference.</exception>

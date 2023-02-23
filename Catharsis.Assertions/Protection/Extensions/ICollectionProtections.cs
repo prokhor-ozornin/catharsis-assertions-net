@@ -7,11 +7,11 @@
 public static class ICollectionProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given collection from being empty (containing no elements).</para>
   /// </summary>
   /// <typeparam name="T">Type of elements inside the collection.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="collection"></param>
+  /// <param name="collection">Collection to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="collection"/> is a <see langword="null"/> reference.</exception>

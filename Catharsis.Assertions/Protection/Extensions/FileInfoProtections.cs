@@ -7,10 +7,10 @@
 public static class FileInfoProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given file from being empty (zero-sized).</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="file"></param>
+  /// <param name="file">File to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="file"/> is a <see langword="null"/> reference.</exception>

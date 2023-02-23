@@ -9,10 +9,10 @@ namespace Catharsis.Assertions;
 public static class StringBuilderProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given string builder from being empty (containing no characters).</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="builder"></param>
+  /// <param name="builder">String builder to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="builder"/> is a <see langword="null"/> reference.</exception>

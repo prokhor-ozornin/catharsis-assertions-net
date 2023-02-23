@@ -103,4 +103,37 @@ public sealed class ObjectProtectionsTest : UnitTest
     AssertionExtensions.Should(() => Protect.From.Null((object) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
     new object().With(instance => Protect.From.Null(instance).Should().NotBeNull().And.BeSameAs(instance));
   }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
+  ///     <item><description><see cref="ObjectProtections.AnyOf{T}(IProtection,T, IEnumerable{T}, string)"/></description></item>
+  ///     <item><description><see cref="ObjectProtections.AnyOf{T}(IProtection, T, string, T[])"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void AnyOf_Methods()
+  {
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ObjectProtections.AnyOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("values");
+
+      AssertionExtensions.Should(() => Protect.From.AnyOf(null, new[] { string.Empty, null }, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+      EmptySequence.With(sequence => Protect.From.AnyOf(string.Empty, sequence).Should().NotBeNull().And.BeSameAs(string.Empty));
+      RandomSequence.With(sequence => Protect.From.AnyOf(string.Empty, sequence).Should().NotBeNull().And.BeSameAs(string.Empty));
+    }
+
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ObjectProtections.AnyOf(null, new object(), null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), "error", null)).ThrowExactly<ArgumentNullException>().WithParameterName("values");
+
+      AssertionExtensions.Should(() => Protect.From.AnyOf(null, "error", string.Empty, null)).ThrowExactly<ArgumentException>().WithMessage("error");
+
+      EmptySequence.With(sequence => Protect.From.AnyOf(string.Empty, sequence.AsArray()).Should().NotBeNull().And.BeSameAs(string.Empty));
+      RandomSequence.With(sequence => Protect.From.AnyOf(string.Empty, sequence.AsArray()).Should().NotBeNull().And.BeSameAs(string.Empty));
+    }
+  }
 }

@@ -8,11 +8,11 @@
 public static class TaskProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given task from having a specified status.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="task"></param>
-  /// <param name="status"></param>
+  /// <param name="task">Task to protect.</param>
+  /// <param name="status">Task status.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="task"/> is a <see langword="null"/> reference.</exception>
@@ -29,12 +29,12 @@ public static class TaskProtections
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given task from having a specified status.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="task"></param>
-  /// <param name="status"></param>
+  /// <param name="task">Task to protect.</param>
+  /// <param name="status">Task status.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="task"/> is a <see langword="null"/> reference.</exception>

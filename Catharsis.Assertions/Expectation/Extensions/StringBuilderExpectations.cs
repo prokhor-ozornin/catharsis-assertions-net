@@ -18,7 +18,7 @@ public static class StringBuilderExpectations
   public static IExpectation<StringBuilder> Length(this IExpectation<StringBuilder> expectation, int length) => expectation.HaveSubject().And().Expected(builder => builder.Length == length);
 
   /// <summary>
-  ///   <para>Expects that a given string builder is empty (contains to characters).</para>
+  ///   <para>Expects that a given string builder is empty (contains no characters).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>

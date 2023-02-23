@@ -7,11 +7,11 @@
 public static class IComparableProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given comparable element from being "positive" (higher than its default value).</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="value"></param>
+  /// <param name="value">Element to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is a <see langword="null"/> reference.</exception>
@@ -27,11 +27,11 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given comparable element from being "negative" (lower than its default value).</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="value"></param>
+  /// <param name="value">Element to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is a <see langword="null"/> reference.</exception>
@@ -47,11 +47,11 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given comparable element from being "zero" (equal to its default value).</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="value"></param>
+  /// <param name="value">Element to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is a <see langword="null"/> reference.</exception>
@@ -66,13 +66,13 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given comparable element from lying out of a specified range of values.</para>
   /// </summary>
-  /// <typeparam name="T"></typeparam>
+  /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="value"></param>
-  /// <param name="min"></param>
-  /// <param name="max"></param>
+  /// <param name="value">Element to inspect.</param>
+  /// <param name="min">Range lower bound (inclusive).</param>
+  /// <param name="max">Range upper bound (inclusive).</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is a <see langword="null"/> reference.</exception>
@@ -91,11 +91,11 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given comparable element from lying out of a specified range of values.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="value"></param>
-  /// <param name="range"></param>
+  /// <param name="value">Element to inspect.</param>
+  /// <param name="range">Range of possible values.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is a <see langword="null"/> reference.</exception>

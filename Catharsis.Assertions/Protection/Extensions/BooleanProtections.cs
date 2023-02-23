@@ -7,10 +7,10 @@
 public static class BooleanProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given boolean expression from being <see langword="true"/>.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="expression"></param>
+  /// <param name="expression">Protected boolean expression.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is a <see langword="null"/> reference.</exception>
@@ -27,10 +27,10 @@ public static class BooleanProtections
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given boolean expression from being <see langword="false"/>.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="expression"></param>
+  /// <param name="expression">Protected boolean expression.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is a <see langword="null"/> reference.</exception>

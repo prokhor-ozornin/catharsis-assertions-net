@@ -8,6 +8,18 @@
 public static class TaskAssertions
 {
   /// <summary>
+  ///   <para>Asserts that a given task has a specified status.</para>
+  /// </summary>
+  /// <param name="assertion">Assertion to validate.</param>
+  /// <param name="task">Task to inspect.</param>
+  /// <param name="status">Asserted task status.</param>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="task"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Status(this IAssertion assertion, Task task, TaskStatus status, string error = null) => task is not null ? assertion.True(task.Status == status, error) : throw new ArgumentNullException(nameof(task));
+
+  /// <summary>
   ///   <para>Asserts that a given task completed successfully.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
@@ -67,6 +79,19 @@ public static class TaskAssertions
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="task"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Exception<T>(this IAssertion assertion, Task<T> task, AggregateException exception, string error = null) => task is not null ? assertion.Equal(task.Exception, exception, error) : throw new ArgumentNullException(nameof(task));
+
+  /// <summary>
+  ///   <para>Asserts that a given task has a specified status.</para>
+  /// </summary>
+  /// <typeparam name="T">Type of task result.</typeparam>
+  /// <param name="assertion">Assertion to validate.</param>
+  /// <param name="task">Task to inspect.</param>
+  /// <param name="status">Asserted task status.</param>
+  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="task"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+  public static IAssertion Status<T>(this IAssertion assertion, Task<T> task, TaskStatus status, string error = null) => task is not null ? assertion.True(task.Status == status, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
   ///   <para>Asserts that a given task completed successfully.</para>

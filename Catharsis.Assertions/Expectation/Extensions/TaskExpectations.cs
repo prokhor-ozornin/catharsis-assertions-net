@@ -8,6 +8,16 @@
 public static class TaskExpectations
 {
   /// <summary>
+  ///   <para>Expects that a given task has a specified status.</para>
+  /// </summary>
+  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="status">Expected task status.</param>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
+  /// <seealso cref="Successful{T}(IExpectation{Task{T}})"/>
+  public static IExpectation<Task> Status(this IExpectation<Task> expectation, TaskStatus status) => expectation.HaveSubject().And().Expected(task => task.Status == status);
+
+  /// <summary>
   ///   <para>Expects that a given task completed successfully.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
@@ -52,6 +62,17 @@ public static class TaskExpectations
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Task<T>> Exception<T>(this IExpectation<Task<T>> expectation, AggregateException exception) => expectation.HaveSubject().And().Expected(task => Equals(task.Exception, exception));
+
+  /// <summary>
+  ///   <para>Expects that a given task has a specified status.</para>
+  /// </summary>
+  /// <typeparam name="T">Type of task result.</typeparam>
+  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="status">Expected task status.</param>
+  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
+  /// <seealso cref="Successful{T}(IExpectation{Task{T}})"/>
+  public static IExpectation<Task<T>> Status<T>(this IExpectation<Task<T>> expectation, TaskStatus status) => expectation.HaveSubject().And().Expected(task => task.Status == status);
 
   /// <summary>
   ///   <para>Expects that a given task completed successfully.</para>

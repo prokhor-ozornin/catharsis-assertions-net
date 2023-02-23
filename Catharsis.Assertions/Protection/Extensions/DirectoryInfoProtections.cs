@@ -7,10 +7,10 @@
 public static class DirectoryInfoProtections
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Protects given directory from being empty (containing no files and/or subdirectories).</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="directory"></param>
+  /// <param name="directory">Directory to protect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
   /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="directory"/> is a <see langword="null"/> reference.</exception>
