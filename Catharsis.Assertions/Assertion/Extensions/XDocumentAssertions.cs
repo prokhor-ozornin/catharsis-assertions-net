@@ -9,10 +9,10 @@ namespace Catharsis.Assertions;
 public static class XDocumentAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given XML document is empty (contains no child nodes).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="document"></param>
+  /// <param name="document">XML document to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="document"/> is a <see langword="null"/> reference.</exception>
@@ -20,11 +20,11 @@ public static class XDocumentAssertions
   public static IAssertion Empty(this IAssertion assertion, XDocument document, string error = null) => document is not null ? assertion.Empty(document.Nodes(), error) : throw new ArgumentNullException(nameof(document));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given XML document has a root element with a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="document"></param>
-  /// <param name="name"></param>
+  /// <param name="document">XML document to inspect.</param>
+  /// <param name="name">Asserted expanded element name.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="document"/> is a <see langword="null"/> reference.</exception>

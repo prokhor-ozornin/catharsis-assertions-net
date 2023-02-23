@@ -9,19 +9,19 @@ namespace Catharsis.Assertions;
 public static class XAttributeExpectations
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given XML attribute has a specified name.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="name"></param>
+  /// <param name="name">Expected expanded attribute name.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<XAttribute> Name(this IExpectation<XAttribute> expectation, XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(attribute => attribute.Name == name);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given XML attribute has a specified value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="value"></param>
+  /// <param name="value">Expected attribute value.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="value"/> is a <see langword="null"/> reference.</exception>
   public static IExpectation<XAttribute> Value(this IExpectation<XAttribute> expectation, string value) => expectation.HaveSubject().And().ThrowIfNull(value, nameof(value)).And().Expected(attribute => attribute.Value == value);

@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class XContainerAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given XML container contains a child element with a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="container"></param>
-  /// <param name="name"></param>
+  /// <param name="container">XML container to inspect.</param>
+  /// <param name="name">Asserted expanded element name.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="container"/>, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>
@@ -28,10 +28,10 @@ public static class XContainerAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given XML container is empty (contains no child nodes).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="container"></param>
+  /// <param name="container">XML container to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="container"/> is a <see langword="null"/> reference.</exception>

@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class XAttributeAssertions
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given XML attribute has a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="attribute"></param>
-  /// <param name="name"></param>
+  /// <param name="attribute">Attribute to inspect.</param>
+  /// <param name="name">Asserted expanded attribute name.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="attribute"/>, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>
@@ -28,11 +28,11 @@ public static class XAttributeAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given XML attribute has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="attribute"></param>
-  /// <param name="value"></param>
+  /// <param name="attribute">Attribute to inspect.</param>
+  /// <param name="value">Asserted attribute value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="attribute"/>, or <paramref name="value"/> is a <see langword="null"/> reference.</exception>

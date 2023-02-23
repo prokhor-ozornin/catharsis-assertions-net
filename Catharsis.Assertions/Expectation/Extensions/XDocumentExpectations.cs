@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XDocumentExpectations
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given XML document is empty (contains no child nodes).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
@@ -17,10 +17,10 @@ public static class XDocumentExpectations
   public static IExpectation<XDocument> Empty(this IExpectation<XDocument> expectation) => expectation.HaveSubject().And().Expected(document => !document.Nodes().Any());
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Expects that a given XML document has a root element with a specified name.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <param name="name"></param>
+  /// <param name="name">Asserted expanded element name.</param>
   /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<XDocument> Name(this IExpectation<XDocument> expectation, XName name) => expectation.HaveSubject().And().Expected(document => document.Root?.Name == name);
