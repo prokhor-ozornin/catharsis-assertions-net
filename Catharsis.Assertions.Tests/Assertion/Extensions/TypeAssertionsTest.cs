@@ -177,6 +177,46 @@ public sealed class TypeAssertionsTest : UnitTest
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
   ///   <list type="bullet">
+  ///     <item><description><see cref="TypeAssertions.AssignableFrom(IAssertion, Type, Type, string)"/></description></item>
+  ///     <item><description><see cref="TypeAssertions.AssignableFrom{T}(IAssertion, Type, string)"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void AssignableFrom_Methods()
+  {
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeAssertions.AssignableFrom(null, typeof(object), typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.AssignableFrom(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("to");
+      AssertionExtensions.Should(() => Assert.To.AssignableFrom(typeof(object), null)).ThrowExactly<ArgumentNullException>().WithParameterName("from");
+
+      Assert.To.AssignableFrom(typeof(object), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.AssignableFrom(typeof(string), typeof(object), "error")).ThrowExactly<InvalidOperationException>();
+      Assert.To.AssignableFrom(typeof(object), typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.AssignableFrom(typeof(IEnumerable<char>), typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
+      {
+        Assert.To.AssignableFrom(type, type).Should().NotBeNull().And.BeSameAs(Assert.To);
+        Assert.To.AssignableFrom(typeof(object), type).Should().NotBeNull().And.BeSameAs(Assert.To);
+      });
+    }
+
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeAssertions.AssignableFrom<object>(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.AssignableFrom<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("to");
+
+      Assert.To.AssignableFrom<object>(typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.AssignableFrom<object>(typeof(string), "error").Should().NotBeNull().And.BeSameAs(Assert.To)).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.AssignableFrom<string>(typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.AssignableFrom<string>(typeof(IEnumerable<char>)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    }
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
   ///     <item><description><see cref="TypeAssertions.AssignableTo(IAssertion, Type, Type, string)"/></description></item>
   ///     <item><description><see cref="TypeAssertions.AssignableTo{T}(IAssertion, Type, string)"/></description></item>
   ///   </list>
@@ -216,46 +256,6 @@ public sealed class TypeAssertionsTest : UnitTest
       {
         Assert.To.AssignableTo<object>(type).Should().NotBeNull().And.BeSameAs(Assert.To);
       });
-    }
-  }
-
-  /// <summary>
-  ///   <para>Performs testing of following methods :</para>
-  ///   <list type="bullet">
-  ///     <item><description><see cref="TypeAssertions.AssignableFrom(IAssertion, Type, Type, string)"/></description></item>
-  ///     <item><description><see cref="TypeAssertions.AssignableFrom{T}(IAssertion, Type, string)"/></description></item>
-  ///   </list>
-  /// </summary>
-  [Fact]
-  public void AssignableFrom_Methods()
-  {
-    using (new AssertionScope())
-    {
-      AssertionExtensions.Should(() => TypeAssertions.AssignableFrom(null, typeof(object), typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.AssignableFrom(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("from");
-      AssertionExtensions.Should(() => Assert.To.AssignableFrom(typeof(object), null)).ThrowExactly<ArgumentNullException>().WithParameterName("to");
-
-      Assert.To.AssignableFrom(typeof(object), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.AssignableFrom(typeof(string), typeof(object), "error")).ThrowExactly<InvalidOperationException>();
-      Assert.To.AssignableFrom(typeof(object), typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.AssignableFrom(typeof(IEnumerable<char>), typeof(string)).Should().NotBeNull().And.BeSameAs(Assert.To);
-
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
-      {
-        Assert.To.AssignableFrom(type, type).Should().NotBeNull().And.BeSameAs(Assert.To);
-        Assert.To.AssignableFrom(typeof(object), type).Should().NotBeNull().And.BeSameAs(Assert.To);
-      });
-    }
-
-    using (new AssertionScope())
-    {
-      AssertionExtensions.Should(() => TypeAssertions.AssignableFrom<object>(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.AssignableFrom<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("from");
-
-      Assert.To.AssignableFrom<object>(typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.AssignableFrom<object>(typeof(string), "error").Should().NotBeNull().And.BeSameAs(Assert.To)).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.AssignableFrom<string>(typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.AssignableFrom<string>(typeof(IEnumerable<char>)).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
   }
 }

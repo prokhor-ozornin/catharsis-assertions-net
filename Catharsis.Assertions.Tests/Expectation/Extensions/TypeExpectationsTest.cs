@@ -125,6 +125,45 @@ public sealed class TypeExpectationsTest : UnitTest
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
   ///   <list type="bullet">
+  ///     <item><description><see cref="TypeExpectations.AssignableFrom(IExpectation{Type}, Type)"/></description></item>
+  ///     <item><description><see cref="TypeExpectations.AssignableFrom{T}(IExpectation{Type})"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void AssignableFrom_Methods()
+  {
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeExpectations.AssignableFrom(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Type) null).Expect().AssignableFrom(typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      typeof(object).Expect().AssignableFrom(typeof(object)).Result.Should().BeTrue();
+      typeof(string).Expect().AssignableFrom(typeof(object)).Result.Should().BeFalse();
+      typeof(object).Expect().AssignableFrom(typeof(string)).Result.Should().BeTrue();
+      typeof(IEnumerable<char>).Expect().AssignableFrom(typeof(string)).Result.Should().BeTrue();
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
+      {
+        type.Expect().AssignableFrom(type).Result.Should().BeTrue();
+        typeof(object).Expect().AssignableFrom(type).Result.Should().BeTrue();
+      });
+    }
+
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeExpectations.AssignableFrom<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Type) null).Expect().AssignableFrom<object>()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      typeof(object).Expect().AssignableFrom<object>().Result.Should().BeTrue();
+      typeof(string).Expect().AssignableFrom<object>().Result.Should().BeFalse();
+      typeof(object).Expect().AssignableFrom<string>().Result.Should().BeTrue();
+      typeof(IEnumerable<char>).Expect().AssignableFrom<string>().Result.Should().BeTrue();
+    }
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
   ///     <item><description><see cref="TypeExpectations.AssignableTo(IExpectation{Type}, Type)"/></description></item>
   ///     <item><description><see cref="TypeExpectations.AssignableTo{T}(IExpectation{Type})"/></description></item>
   ///   </list>
@@ -163,45 +202,6 @@ public sealed class TypeExpectationsTest : UnitTest
       {
         type.Expect().AssignableTo<object>().Result.Should().BeTrue();
       });
-    }
-  }
-
-  /// <summary>
-  ///   <para>Performs testing of following methods :</para>
-  ///   <list type="bullet">
-  ///     <item><description><see cref="TypeExpectations.AssignableFrom(IExpectation{Type}, Type)"/></description></item>
-  ///     <item><description><see cref="TypeExpectations.AssignableFrom{T}(IExpectation{Type})"/></description></item>
-  ///   </list>
-  /// </summary>
-  [Fact]
-  public void AssignableFrom_Methods()
-  {
-    using (new AssertionScope())
-    {
-      AssertionExtensions.Should(() => TypeExpectations.AssignableFrom(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((Type) null).Expect().AssignableFrom(typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-      typeof(object).Expect().AssignableFrom(typeof(object)).Result.Should().BeTrue();
-      typeof(string).Expect().AssignableFrom(typeof(object)).Result.Should().BeFalse();
-      typeof(object).Expect().AssignableFrom(typeof(string)).Result.Should().BeTrue();
-      typeof(IEnumerable<char>).Expect().AssignableFrom(typeof(string)).Result.Should().BeTrue();
-
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
-      {
-        type.Expect().AssignableFrom(type).Result.Should().BeTrue();
-        typeof(object).Expect().AssignableFrom(type).Result.Should().BeTrue();
-      });
-    }
-
-    using (new AssertionScope())
-    {
-      AssertionExtensions.Should(() => TypeExpectations.AssignableFrom<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((Type) null).Expect().AssignableFrom<object>()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-      typeof(object).Expect().AssignableFrom<object>().Result.Should().BeTrue();
-      typeof(string).Expect().AssignableFrom<object>().Result.Should().BeFalse();
-      typeof(object).Expect().AssignableFrom<string>().Result.Should().BeTrue();
-      typeof(IEnumerable<char>).Expect().AssignableFrom<string>().Result.Should().BeTrue();
     }
   }
 }

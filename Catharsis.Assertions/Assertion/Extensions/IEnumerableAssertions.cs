@@ -148,13 +148,13 @@ public static class IEnumerableAssertions
   public static IAssertion ElementAt<T>(this IAssertion assertion, IEnumerable<T> sequence, int index, T value, string error = null) => sequence is not null ? assertion.Equal(sequence.ElementAt(index), value, error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence represents a subset of a specified superset.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="subset"></param>
-  /// <param name="superset"></param>
-  /// <param name="comparer"></param>
+  /// <param name="subset">Asserted subset sequence.</param>
+  /// <param name="superset">Asserted superset sequence.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="subset"/>, or <paramref name="superset"/> is a <see langword="null"/> reference.</exception>
@@ -170,13 +170,13 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence represents a superset for a specified subset.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="superset"></param>
-  /// <param name="subset"></param>
-  /// <param name="comparer"></param>
+  /// <param name="superset">Asserted superset sequence.</param>
+  /// <param name="subset">Asserted subset sequence.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="superset"/>, or <paramref name="subset"/> is a <see langword="null"/> reference.</exception>
@@ -185,13 +185,13 @@ public static class IEnumerableAssertions
   public static IAssertion SupersetOf<T>(this IAssertion assertion, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null, string error = null) => assertion.SubsetOf(subset, superset, comparer, error);
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence represents an inverted version of the specified one.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence"></param>
-  /// <param name="reversed"></param>
-  /// <param name="comparer"></param>
+  /// <param name="sequence">Sequence of elements to inspect.</param>
+  /// <param name="reversed">Asserted sequence with inverted order of elements.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="reversed"/> is a <see langword="null"/> reference.</exception>
@@ -206,13 +206,13 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence starts with the same elements as in a specified sequence.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="other"></param>
-  /// <param name="comparer"></param>
+  /// <param name="other">Asserted starting sequence.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
@@ -228,13 +228,13 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence ends with the same elements as in a specified sequence.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="other"></param>
-  /// <param name="comparer"></param>
+  /// <param name="other">Asserted ending sequence.</param>
+  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
@@ -250,12 +250,12 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that all elements of a given sequence satisfy a specified condition.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="condition"></param>
+  /// <param name="condition">Asserted condition to be satisfied.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="condition"/> is a <see langword="null"/> reference.</exception>
@@ -271,13 +271,13 @@ public static class IEnumerableAssertions
 
 #if NET7_0_OR_GREATER
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence contains a specified element at a specified index.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="index"></param>
-  /// <param name="value"></param>
+  /// <param name="index">Asserted element index.</param>
+  /// <param name="value">Asserted element value.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="sequence"/> is a <see langword="null"/> reference.</exception>
@@ -285,12 +285,12 @@ public static class IEnumerableAssertions
   public static IAssertion ElementAt<T>(this IAssertion assertion, IEnumerable<T> sequence, Index index, T value, string error = null) => sequence is not null ? assertion.Equal(sequence.ElementAt(index), value, error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para></para>
+  ///   <para>Asserts that a given sequence is ordered.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="comparer"></param>
+  /// <param name="comparer">Comparer to perform comparison of objects.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="sequence"/> is a <see langword="null"/> reference.</exception>
