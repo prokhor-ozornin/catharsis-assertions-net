@@ -75,7 +75,7 @@ public sealed class HttpResponseMessageExpectationsTest : UnitTest
       Response.Expect().Header("connection", "close").Result.Should().BeTrue();
       Response.Headers.Clear();
 
-      response.Headers.Add("connection", new[] { "open", "close" });
+      response.Headers.Add("connection", ["open", "close"]);
       Response.Expect().Header("connection", "open").Result.Should().BeTrue();
       Response.Expect().Header("connection", "close").Result.Should().BeTrue();
       Response.Headers.Clear();

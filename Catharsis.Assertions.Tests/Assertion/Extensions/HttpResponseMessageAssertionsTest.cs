@@ -75,7 +75,7 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
       Assert.To.Header(Response, "connection", "close").Should().NotBeNull().And.BeSameAs(Assert.To);
       Response.Headers.Clear();
 
-      response.Headers.Add("connection", new[] { "open", "close" });
+      response.Headers.Add("connection", ["open", "close"]);
       Assert.To.Header(Response, "connection", "open").Should().NotBeNull().And.BeSameAs(Assert.To);
       Assert.To.Header(Response, "connection", "close").Should().NotBeNull().And.BeSameAs(Assert.To);
       Response.Headers.Clear();
