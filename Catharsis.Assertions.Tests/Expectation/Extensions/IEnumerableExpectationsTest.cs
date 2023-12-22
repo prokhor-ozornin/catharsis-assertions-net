@@ -47,7 +47,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EquivalentTo(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => EmptySequence.Expect().EquivalentTo(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    Enumerable.Empty<object>().Expect().EquivalentTo(Array.Empty<object>()).Result.Should().BeTrue();
+    Enumerable.Empty<object>().Expect().EquivalentTo([]).Result.Should().BeTrue();
     
     EmptySequence.Expect().EquivalentTo(EmptySequence).Result.Should().BeTrue();
     
@@ -80,7 +80,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAll(EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => EmptySequence.Expect().ContainAll(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    Enumerable.Empty<object>().Expect().ContainAll(Array.Empty<object>()).Result.Should().BeTrue();
+    Enumerable.Empty<object>().Expect().ContainAll([]).Result.Should().BeTrue();
     
     EmptySequence.Expect().ContainAll(EmptySequence).Result.Should().BeTrue();
     EmptySequence.Expect().ContainAll(RandomSequence).Result.Should().BeFalse();

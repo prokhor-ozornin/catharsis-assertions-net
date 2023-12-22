@@ -47,7 +47,7 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.EquivalentTo(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
     AssertionExtensions.Should(() => Assert.To.EquivalentTo(EmptySequence, null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    Assert.To.EquivalentTo(Enumerable.Empty<object>(), Array.Empty<object>()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.EquivalentTo(Enumerable.Empty<object>(), []).Should().NotBeNull().And.BeSameAs(Assert.To);
     
     Assert.To.EquivalentTo(EmptySequence, EmptySequence).Should().NotBeNull().And.BeSameAs(Assert.To);
     
@@ -80,7 +80,7 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.ContainAll(null, EmptySequence)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
     AssertionExtensions.Should(() => Assert.To.ContainAll(EmptySequence, null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    Assert.To.ContainAll(Enumerable.Empty<object>(), Array.Empty<object>()).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.ContainAll(Enumerable.Empty<object>(), []).Should().NotBeNull().And.BeSameAs(Assert.To);
     
     Assert.To.ContainAll(EmptySequence, EmptySequence, null, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.ContainAll(EmptySequence, RandomSequence, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
