@@ -16,17 +16,19 @@ public sealed class TimeOnlyAssertionsTest : UnitTest
   [Fact]
   public void Hour_Method()
   {
-    void Validate(TimeOnly time)
-    {
-      AssertionExtensions.Should(() => Assert.To.Hour(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Hour(time, time.Hour).Should().NotBeNull().And.BeSameAs(Assert.To);
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeOnlyAssertions.Hour(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeOnly time)
+    {
+      AssertionExtensions.Should(() => Assert.To.Hour(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Hour(time, time.Hour).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
   }
 
@@ -36,17 +38,19 @@ public sealed class TimeOnlyAssertionsTest : UnitTest
   [Fact]
   public void Minute_Method()
   {
-    void Validate(TimeOnly time)
-    {
-      AssertionExtensions.Should(() => Assert.To.Minute(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Minute(time, time.Minute).Should().NotBeNull().And.BeSameAs(Assert.To);
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeOnlyAssertions.Minute(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeOnly time)
+    {
+      AssertionExtensions.Should(() => Assert.To.Minute(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Minute(time, time.Minute).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
   }
 
@@ -56,17 +60,19 @@ public sealed class TimeOnlyAssertionsTest : UnitTest
   [Fact]
   public void Second_Method()
   {
-    void Validate(TimeOnly time)
-    {
-      AssertionExtensions.Should(() => Assert.To.Second(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Second(time, time.Second).Should().NotBeNull().And.BeSameAs(Assert.To);
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeOnlyAssertions.Second(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeOnly time)
+    {
+      AssertionExtensions.Should(() => Assert.To.Second(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Second(time, time.Second).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
   }
 
@@ -76,17 +82,19 @@ public sealed class TimeOnlyAssertionsTest : UnitTest
   [Fact]
   public void Millisecond_Method()
   {
-    void Validate(TimeOnly time)
-    {
-      AssertionExtensions.Should(() => Assert.To.Millisecond(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Millisecond(time, time.Millisecond).Should().NotBeNull().And.BeSameAs(Assert.To);
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeOnlyAssertions.Millisecond(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeOnly time)
+    {
+      AssertionExtensions.Should(() => Assert.To.Millisecond(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Millisecond(time, time.Millisecond).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
   }
 }

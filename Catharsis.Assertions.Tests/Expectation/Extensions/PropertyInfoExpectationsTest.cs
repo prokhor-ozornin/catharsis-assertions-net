@@ -77,12 +77,6 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
   [Fact]
   public void Value_Method()
   {
-    void Validate(PropertyInfo property, object instance)
-    {
-      AssertionExtensions.Should(() => Assert.To.Value(property, instance, new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Value(property, instance, property.GetValue(instance)).Should().NotBeNull().And.BeSameAs(Assert.To);
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => PropertyInfoExpectations.Value(null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
@@ -91,6 +85,14 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
       Validate(ReadOnlyPropertyInfo, this);
       Validate(ReadWritePropertyInfo, this);
       Validate(StaticPropertyInfo, null);
+    }
+
+    return;
+
+    static void Validate(PropertyInfo property, object instance)
+    {
+      AssertionExtensions.Should(() => Assert.To.Value(property, instance, new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Value(property, instance, property.GetValue(instance)).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
   }
 }

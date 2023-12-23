@@ -16,18 +16,20 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Past_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.AddSeconds(-1).Expect().Past().Result.Should().BeTrue();
-      date.Expect().Past().Result.Should().BeTrue();
-      date.AddSeconds(1).Expect().Past().Result.Should().BeFalse();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Past(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.AddSeconds(-1).Expect().Past().Result.Should().BeTrue();
+      date.Expect().Past().Result.Should().BeTrue();
+      date.AddSeconds(1).Expect().Past().Result.Should().BeFalse();
     }
   }
 
@@ -37,18 +39,20 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Future_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.AddSeconds(1).Expect().Future().Result.Should().BeTrue();
-      date.AddSeconds(-1).Expect().Future().Result.Should().BeFalse();
-      date.Expect().Future().Result.Should().BeFalse();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Future(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.AddSeconds(1).Expect().Future().Result.Should().BeTrue();
+      date.AddSeconds(-1).Expect().Future().Result.Should().BeFalse();
+      date.Expect().Future().Result.Should().BeFalse();
     }
   }
 
@@ -58,17 +62,19 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void DayOfYear_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.Expect().DayOfYear(int.MinValue).Result.Should().BeFalse();
-      date.Expect().DayOfYear(date.DayOfYear).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.DayOfYear(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.Expect().DayOfYear(int.MinValue).Result.Should().BeFalse();
+      date.Expect().DayOfYear(date.DayOfYear).Result.Should().BeTrue();
     }
   }
 
@@ -78,17 +84,19 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Year_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.Expect().Year(int.MinValue).Result.Should().BeFalse();
-      date.Expect().Year(date.Year).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Year(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.Expect().Year(int.MinValue).Result.Should().BeFalse();
+      date.Expect().Year(date.Year).Result.Should().BeTrue();
     }
   }
 
@@ -98,17 +106,19 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Month_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.Expect().Month(int.MinValue).Result.Should().BeFalse();
-      date.Expect().Month(date.Month).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Month(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.Expect().Month(int.MinValue).Result.Should().BeFalse();
+      date.Expect().Month(date.Month).Result.Should().BeTrue();
     }
   }
 
@@ -118,17 +128,19 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Day_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.Expect().DayOfYear(int.MinValue).Result.Should().BeFalse();
-      date.Expect().DayOfYear(date.DayOfYear).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Day(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.Expect().DayOfYear(int.MinValue).Result.Should().BeFalse();
+      date.Expect().DayOfYear(date.DayOfYear).Result.Should().BeTrue();
     }
   }
 
@@ -138,17 +150,19 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Hour_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.Expect().Hour(int.MinValue).Result.Should().BeFalse();
-      date.Expect().Hour(date.Hour).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Hour(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.Expect().Hour(int.MinValue).Result.Should().BeFalse();
+      date.Expect().Hour(date.Hour).Result.Should().BeTrue();
     }
   }
 
@@ -158,17 +172,19 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Minute_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.Expect().Minute(int.MinValue).Result.Should().BeFalse();
-      date.Expect().Minute(date.Minute).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Minute(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.Expect().Minute(int.MinValue).Result.Should().BeFalse();
+      date.Expect().Minute(date.Minute).Result.Should().BeTrue();
     }
   }
 
@@ -178,17 +194,19 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Second_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.Expect().Second(int.MinValue).Result.Should().BeFalse();
-      date.Expect().Second(date.Second).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Second(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.Expect().Second(int.MinValue).Result.Should().BeFalse();
+      date.Expect().Second(date.Second).Result.Should().BeTrue();
     }
   }
 
@@ -198,17 +216,19 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Millisecond_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.Expect().Millisecond(int.MinValue).Result.Should().BeFalse();
-      date.Expect().Millisecond(date.Millisecond).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Millisecond(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+    
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.Expect().Millisecond(int.MinValue).Result.Should().BeFalse();
+      date.Expect().Millisecond(date.Millisecond).Result.Should().BeTrue();
     }
   }
 
@@ -233,17 +253,19 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   [Fact]
   public void Offset_Method()
   {
-    void Validate(DateTimeOffset date)
-    {
-      date.Expect().Offset(TimeSpan.MinValue).Result.Should().BeFalse();
-      date.Expect().Offset(date.Offset).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => DateTimeOffsetExpectations.Offset(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(DateTimeOffset date)
+    {
+      date.Expect().Offset(TimeSpan.MinValue).Result.Should().BeFalse();
+      date.Expect().Offset(date.Offset).Result.Should().BeTrue();
     }
   }
 }

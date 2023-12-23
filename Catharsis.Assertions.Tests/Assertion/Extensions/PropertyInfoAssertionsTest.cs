@@ -91,12 +91,6 @@ public sealed class PropertyInfoAssertionsTest : UnitTest
   [Fact]
   public void Value_Method()
   {
-    void Validate(PropertyInfo property, object instance)
-    {
-      property.Expect().Value(instance, new object()).Result.Should().BeFalse();
-      property.Expect().Value(instance, property.GetValue(instance)).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => PropertyInfoAssertions.Value(null, ReadWritePropertyInfo, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
@@ -106,6 +100,14 @@ public sealed class PropertyInfoAssertionsTest : UnitTest
       Validate(ReadOnlyPropertyInfo, this);
       Validate(ReadWritePropertyInfo, this);
       Validate(StaticPropertyInfo, null);
+    }
+
+    return;
+
+    static void Validate(PropertyInfo property, object instance)
+    {
+      property.Expect().Value(instance, new object()).Result.Should().BeFalse();
+      property.Expect().Value(instance, property.GetValue(instance)).Result.Should().BeTrue();
     }
   }
 }

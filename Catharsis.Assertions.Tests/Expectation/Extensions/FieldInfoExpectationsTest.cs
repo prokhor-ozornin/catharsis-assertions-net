@@ -39,12 +39,6 @@ public sealed class FieldInfoExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      void Validate(FieldInfo field)
-      {
-        field.Expect().Type(field.FieldType).Result.Should().BeTrue();
-        field.Expect().Type(GetType()).Result.Should().BeFalse();
-      }
-
       AssertionExtensions.Should(() => FieldInfoExpectations.Type(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FieldInfo) null).Expect().Type(typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => Field.Expect().Type(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
@@ -55,16 +49,16 @@ public sealed class FieldInfoExpectationsTest : UnitTest
       Validate(InternalFieldInfo);
       Validate(ProtectedInternalFieldInfo);
       Validate(StaticFieldInfo);
+
+      void Validate(FieldInfo field)
+      {
+        field.Expect().Type(field.FieldType).Result.Should().BeTrue();
+        field.Expect().Type(GetType()).Result.Should().BeFalse();
+      }
     }
 
     using (new AssertionScope())
     {
-      void Validate(FieldInfo field)
-      {
-        field.Expect().Type<string>().Result.Should().BeTrue();
-        field.Expect().Type<object>().Result.Should().BeFalse();
-      }
-
       AssertionExtensions.Should(() => FieldInfoExpectations.Type<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FieldInfo) null).Expect().Type<object>()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
@@ -74,6 +68,12 @@ public sealed class FieldInfoExpectationsTest : UnitTest
       Validate(InternalFieldInfo);
       Validate(ProtectedInternalFieldInfo);
       Validate(StaticFieldInfo);
+
+      void Validate(FieldInfo field)
+      {
+        field.Expect().Type<string>().Result.Should().BeTrue();
+        field.Expect().Type<object>().Result.Should().BeFalse();
+      }
     }
   }
 
@@ -185,12 +185,6 @@ public sealed class FieldInfoExpectationsTest : UnitTest
   [Fact]
   public void Value_Method()
   {
-    void Validate(FieldInfo field, object instance)
-    {
-      field.Expect().Value(instance, new object()).Result.Should().BeFalse();
-      field.Expect().Value(instance, field.GetValue(instance)).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => FieldInfoExpectations.Value(null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
@@ -202,6 +196,14 @@ public sealed class FieldInfoExpectationsTest : UnitTest
       Validate(InternalFieldInfo, this);
       Validate(ProtectedInternalFieldInfo, this);
       Validate(StaticFieldInfo, null);
+    }
+
+    return;
+
+    static void Validate(FieldInfo field, object instance)
+    {
+      field.Expect().Value(instance, new object()).Result.Should().BeFalse();
+      field.Expect().Value(instance, field.GetValue(instance)).Result.Should().BeTrue();
     }
   }
 }

@@ -16,17 +16,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void Days_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().Days(int.MinValue).Result.Should().BeFalse();
-      timespan.Expect().Days(timespan.Days).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Days(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+    }
+    
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().Days(int.MinValue).Result.Should().BeFalse();
+      timespan.Expect().Days(timespan.Days).Result.Should().BeTrue();
     }
   }
 
@@ -36,17 +38,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void Hours_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().Hours(int.MinValue).Result.Should().BeFalse();
-      timespan.Expect().Hours(timespan.Hours).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Hours(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+    }
+    
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().Hours(int.MinValue).Result.Should().BeFalse();
+      timespan.Expect().Hours(timespan.Hours).Result.Should().BeTrue();
     }
   }
 
@@ -56,17 +60,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void Minutes_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().Minutes(int.MinValue).Result.Should().BeFalse();
-      timespan.Expect().Minutes(timespan.Minutes).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Minutes(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().Minutes(int.MinValue).Result.Should().BeFalse();
+      timespan.Expect().Minutes(timespan.Minutes).Result.Should().BeTrue();
     }
   }
 
@@ -76,17 +82,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void Seconds_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().Seconds(int.MinValue).Result.Should().BeFalse();
-      timespan.Expect().Seconds(timespan.Seconds).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Seconds(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().Seconds(int.MinValue).Result.Should().BeFalse();
+      timespan.Expect().Seconds(timespan.Seconds).Result.Should().BeTrue();
     }
   }
 
@@ -96,17 +104,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void Milliseconds_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().Milliseconds(int.MinValue).Result.Should().BeFalse();
-      timespan.Expect().Milliseconds(timespan.Milliseconds).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Milliseconds(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().Milliseconds(int.MinValue).Result.Should().BeFalse();
+      timespan.Expect().Milliseconds(timespan.Milliseconds).Result.Should().BeTrue();
     }
   }
 
@@ -116,17 +126,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void TotalDays_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().TotalDays(-1).Result.Should().BeFalse();
-      timespan.Expect().TotalDays((int) timespan.TotalDays).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalDays(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().TotalDays(-1).Result.Should().BeFalse();
+      timespan.Expect().TotalDays((int) timespan.TotalDays).Result.Should().BeTrue();
     }
   }
 
@@ -136,17 +148,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void TotalHours_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().TotalHours(-1).Result.Should().BeFalse();
-      timespan.Expect().TotalHours((int) timespan.TotalHours).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalHours(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] {TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero}.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().TotalHours(-1).Result.Should().BeFalse();
+      timespan.Expect().TotalHours((int) timespan.TotalHours).Result.Should().BeTrue();
     }
   }
 
@@ -156,17 +170,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void TotalMinutes_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().TotalMinutes(-1).Result.Should().BeFalse();
-      timespan.Expect().TotalMinutes((int) timespan.TotalMinutes).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalMinutes(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().TotalMinutes(-1).Result.Should().BeFalse();
+      timespan.Expect().TotalMinutes((int) timespan.TotalMinutes).Result.Should().BeTrue();
     }
   }
 
@@ -176,17 +192,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void TotalSeconds_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().TotalSeconds(-1).Result.Should().BeFalse();
-      timespan.Expect().TotalSeconds((int) timespan.TotalSeconds).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalSeconds(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().TotalSeconds(-1).Result.Should().BeFalse();
+      timespan.Expect().TotalSeconds((int) timespan.TotalSeconds).Result.Should().BeTrue();
     }
   }
 
@@ -196,17 +214,19 @@ public sealed class TimeSpanExpectationsTest : UnitTest
   [Fact]
   public void TotalMilliseconds_Method()
   {
-    void Validate(TimeSpan timespan)
-    {
-      timespan.Expect().TotalMilliseconds(-1).Result.Should().BeFalse();
-      timespan.Expect().TotalMilliseconds((int) timespan.TotalMilliseconds).Result.Should().BeTrue();
-    }
-
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalMilliseconds(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+    }
+
+    return;
+
+    static void Validate(TimeSpan timespan)
+    {
+      timespan.Expect().TotalMilliseconds(-1).Result.Should().BeFalse();
+      timespan.Expect().TotalMilliseconds((int) timespan.TotalMilliseconds).Result.Should().BeTrue();
     }
   }
 }
