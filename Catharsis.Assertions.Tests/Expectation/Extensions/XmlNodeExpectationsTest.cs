@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
@@ -40,7 +41,7 @@ public sealed class XmlNodeExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XmlNode) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Node.Expect().Name(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    Node.Expect().Name(RandomString).Result.Should().BeFalse();
+    Node.Expect().Name(Attributes.RandomString()).Result.Should().BeFalse();
     Node.Expect().Name(Node.Name).Result.Should().BeTrue();
   }
 
@@ -54,7 +55,7 @@ public sealed class XmlNodeExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XmlNode) null).Expect().InnerText("text")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Node.Expect().InnerText(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    Node.Expect().InnerText(RandomString).Result.Should().BeFalse();
+    Node.Expect().InnerText(Attributes.RandomString()).Result.Should().BeFalse();
     Node.Expect().InnerText(Node.InnerText).Result.Should().BeTrue();
   }
 
@@ -68,7 +69,7 @@ public sealed class XmlNodeExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XmlNode) null).Expect().InnerXml("text")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Node.Expect().InnerXml(null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
-    Node.Expect().InnerXml(RandomString).Result.Should().BeFalse();
+    Node.Expect().InnerXml(Attributes.RandomString()).Result.Should().BeFalse();
     Node.Expect().InnerXml(Node.InnerXml).Result.Should().BeTrue();
   }
 
@@ -82,7 +83,7 @@ public sealed class XmlNodeExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XmlNode) null).Expect().OuterXml("text")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Node.Expect().OuterXml(null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
-    Node.Expect().OuterXml(RandomString).Result.Should().BeFalse();
+    Node.Expect().OuterXml(Attributes.RandomString()).Result.Should().BeFalse();
     Node.Expect().OuterXml(Node.OuterXml).Result.Should().BeTrue();
   }
 
@@ -95,7 +96,7 @@ public sealed class XmlNodeExpectationsTest : UnitTest
     AssertionExtensions.Should(() => XmlNodeExpectations.Value(null, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((XmlNode) null).Expect().Value("value")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    Node.Expect().Value(RandomString).Result.Should().BeFalse();
+    Node.Expect().Value(Attributes.RandomString()).Result.Should().BeFalse();
     Node.Expect().Value(Node.Value).Result.Should().BeTrue();
   }
 }

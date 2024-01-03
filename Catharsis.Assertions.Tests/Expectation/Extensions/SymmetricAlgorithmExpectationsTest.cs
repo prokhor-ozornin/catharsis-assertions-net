@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 

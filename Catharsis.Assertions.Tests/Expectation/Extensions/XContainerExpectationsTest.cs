@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
@@ -22,7 +23,7 @@ public sealed class XContainerExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XContainer) null).Expect().Element("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Container.Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    Container.Expect().Element(RandomString).Result.Should().BeFalse();
+    Container.Expect().Element(Attributes.RandomString()).Result.Should().BeFalse();
 
     Container.With(container =>
     {

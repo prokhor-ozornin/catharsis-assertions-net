@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
 
@@ -33,7 +34,7 @@ public sealed class StreamAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Empty((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
     Assert.To.Empty(Stream.Null).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Empty(RandomStream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Empty(Attributes.RandomStream(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
   /// <summary>
@@ -61,7 +62,7 @@ public sealed class StreamAssertionsTest : UnitTest
 
     Assert.To.End(Stream.Null).Should().NotBeNull().And.BeSameAs(Assert.To);
     
-    RandomStream.With(stream =>
+    Attributes.RandomStream().With(stream =>
     {
       AssertionExtensions.Should(() => Assert.To.End(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.End(stream.MoveToEnd()).Should().NotBeNull().And.BeSameAs(Assert.To);

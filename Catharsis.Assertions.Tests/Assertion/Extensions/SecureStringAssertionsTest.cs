@@ -1,4 +1,5 @@
 ﻿using System.Security;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -10,8 +11,14 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class SecureStringAssertionsTest : UnitTest
 {
-  private SecureString EmptySecureString { get; } = new SecureString().AsReadOnly();
-  private SecureString RandomSecureString { get; } = Randomizer.SecureString(byte.MaxValue);
+  private SecureString EmptySecureString { get; }
+  private SecureString RandomSecureString { get; }
+
+  public SecureStringAssertionsTest()
+  {
+    EmptySecureString = new SecureString().AsReadOnly();
+    RandomSecureString = Attributes.Random().SecureString(byte.MaxValue);
+  }
 
   /// <summary>
   ///   <para>Performs testing of <see cref="SecureStringAssertions.Length(IAssertion, System.Security.SecureString, int, string)"/> method.</para>

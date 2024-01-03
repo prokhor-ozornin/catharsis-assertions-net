@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -22,7 +23,7 @@ public sealed class XmlElementAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Attribute(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("element");
     AssertionExtensions.Should(() => Assert.To.Attribute(Element, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    AssertionExtensions.Should(() => Assert.To.Attribute(Element, RandomString, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Attribute(Element, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Element.With(element =>
     {
@@ -34,7 +35,7 @@ public sealed class XmlElementAssertionsTest : UnitTest
       Assert.To.Attribute(element, "encoding").Should().NotBeNull().And.BeSameAs(Assert.To);
       Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().NotBeNull().And.BeSameAs(Assert.To);
 
-      AssertionExtensions.Should(() => Assert.To.Attribute(element, RandomString, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Attribute(element, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });
   }
 }

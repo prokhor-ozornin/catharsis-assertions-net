@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
@@ -22,7 +23,7 @@ public sealed class XmlElementExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XmlElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Element.Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    Element.Expect().Attribute(RandomString).Result.Should().BeFalse();
+    Element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
 
     Element.With(element =>
     {
@@ -34,7 +35,7 @@ public sealed class XmlElementExpectationsTest : UnitTest
       element.Expect().Attribute("encoding").Result.Should().BeTrue();
       element.Expect().Attribute("encoding", element.NamespaceURI).Result.Should().BeTrue();
 
-      element.Expect().Attribute(RandomString).Result.Should().BeFalse();
+      element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
     });
   }
 }

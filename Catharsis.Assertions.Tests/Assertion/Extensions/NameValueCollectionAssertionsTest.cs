@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;

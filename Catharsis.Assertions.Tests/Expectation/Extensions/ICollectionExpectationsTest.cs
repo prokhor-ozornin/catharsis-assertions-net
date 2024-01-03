@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
 
@@ -18,9 +19,9 @@ public sealed class ICollectionExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    RandomSequence.ToArray().Expect().Count(int.MinValue).Result.Should().BeFalse();
-    RandomSequence.ToArray().Expect().Count(int.MaxValue).Result.Should().BeFalse();
-    RandomSequence.ToArray().With(collection => collection.Expect().Count(collection.Length).Result.Should().BeTrue());
+    Attributes.RandomSequence().ToArray().Expect().Count(int.MinValue).Result.Should().BeFalse();
+    Attributes.RandomSequence().ToArray().Expect().Count(int.MaxValue).Result.Should().BeFalse();
+    Attributes.RandomSequence().ToArray().With(collection => collection.Expect().Count(collection.Length).Result.Should().BeTrue());
   }
 
   /// <summary>
@@ -32,8 +33,8 @@ public sealed class ICollectionExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    EmptySequence.ToArray().Expect().Empty().Result.Should().BeTrue();
-    RandomSequence.ToArray().Expect().Empty().Result.Should().BeFalse();
+    Attributes.EmptySequence().ToArray().Expect().Empty().Result.Should().BeTrue();
+    Attributes.RandomSequence().ToArray().Expect().Empty().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -45,7 +46,7 @@ public sealed class ICollectionExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ICollectionExpectations.ReadOnly<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    RandomSequence.ToArray().Expect().ReadOnly().Result.Should().BeTrue();
-    RandomSequence.ToList().Expect().ReadOnly().Result.Should().BeFalse();
+    Attributes.RandomSequence().ToArray().Expect().ReadOnly().Result.Should().BeTrue();
+    Attributes.RandomSequence().ToList().Expect().ReadOnly().Result.Should().BeFalse();
   }
 }

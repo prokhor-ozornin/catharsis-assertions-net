@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 
@@ -21,7 +22,7 @@ public sealed class XAttributeExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XAttribute) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Attribute.Expect().Name(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    Attribute.Expect().Name(RandomString).Result.Should().BeFalse();
+    Attribute.Expect().Name(Attributes.RandomString()).Result.Should().BeFalse();
     Attribute.Expect().Name(Attribute.Name).Result.Should().BeTrue();
   }
 
@@ -35,7 +36,7 @@ public sealed class XAttributeExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XAttribute) null).Expect().Value("value")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Attribute.Expect().Value(null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-    Attribute.Expect().Value(RandomString).Result.Should().BeFalse();
+    Attribute.Expect().Value(Attributes.RandomString()).Result.Should().BeFalse();
     Attribute.Expect().Value(Attribute.Value).Result.Should().BeTrue();
   }
 }

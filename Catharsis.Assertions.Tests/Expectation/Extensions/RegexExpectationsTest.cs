@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -22,7 +23,7 @@ public sealed class RegexExpectationsTest : UnitTest
 
     string.Empty.ToRegex().Expect().Match(string.Empty).Expect().Result.Should().BeTrue();
     "anything".ToRegex().Expect().Match(string.Empty).Result.Should().BeFalse();
-    "[0-9]".ToRegex().Expect().Match(Randomizer.Digits(byte.MaxValue)).Result.Should().BeTrue();
-    "[0-9]".ToRegex().Expect().Match(Randomizer.Letters(byte.MaxValue)).Result.Should().BeFalse();
+    "[0-9]".ToRegex().Expect().Match(Attributes.Random().Digits(byte.MaxValue)).Result.Should().BeTrue();
+    "[0-9]".ToRegex().Expect().Match(Attributes.Random().Letters(byte.MaxValue)).Result.Should().BeFalse();
   }
 }

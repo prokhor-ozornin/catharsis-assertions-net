@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
@@ -22,7 +23,7 @@ public sealed class XmlDocumentExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((XmlDocument) null).Expect().Element("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Document.Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    Document.Expect().Element(RandomString).Result.Should().BeFalse();
+    Document.Expect().Element(Attributes.RandomString()).Result.Should().BeFalse();
 
     Document.With(document =>
     {

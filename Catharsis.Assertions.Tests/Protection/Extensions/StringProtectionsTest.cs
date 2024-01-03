@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -21,7 +22,7 @@ public sealed class StringProtectionsTest : UnitTest
 
     AssertionExtensions.Should(() => Protect.From.Empty(string.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     
-    RandomString.With(text => Protect.From.Empty(text).Should().NotBeNull().And.BeSameAs(text));
+    Attributes.RandomString().With(text => Protect.From.Empty(text).Should().NotBeNull().And.BeSameAs(text));
   }
 
   /// <summary>
@@ -36,7 +37,7 @@ public sealed class StringProtectionsTest : UnitTest
     AssertionExtensions.Should(() => Protect.From.WhiteSpace(string.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     AssertionExtensions.Should(() => Protect.From.WhiteSpace("\r\n\t", "error")).ThrowExactly<ArgumentException>().WithMessage("error");
 
-    RandomString.With(text => Protect.From.Empty(text).Should().NotBeNull().And.BeSameAs(text));
+    Attributes.RandomString().With(text => Protect.From.Empty(text).Should().NotBeNull().And.BeSameAs(text));
   }
 
   /// <summary>
@@ -51,7 +52,7 @@ public sealed class StringProtectionsTest : UnitTest
 
     AssertionExtensions.Should(() => Protect.From.Match(string.Empty, string.Empty.ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     Protect.From.Match(string.Empty, "anything".ToRegex()).Should().NotBeNull().And.BeSameAs(string.Empty);
-    AssertionExtensions.Should(() => Protect.From.Match(Randomizer.Digits(byte.MaxValue), "[0-9]".ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Randomizer.Letters(byte.MaxValue).With(text => Protect.From.Match(text, "[0-9]".ToRegex()).Should().NotBeNull().And.BeSameAs(text));
+    AssertionExtensions.Should(() => Protect.From.Match(Attributes.Random().Digits(byte.MaxValue), "[0-9]".ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+    Attributes.Random().Letters(byte.MaxValue).With(text => Protect.From.Match(text, "[0-9]".ToRegex()).Should().NotBeNull().And.BeSameAs(text));
   }
 }

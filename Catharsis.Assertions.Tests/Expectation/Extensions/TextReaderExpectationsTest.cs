@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
 
@@ -19,7 +20,7 @@ public sealed class TextReaderExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((TextReader) null).Expect().End()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
     Stream.Null.ToStreamReader().TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
-    RandomStream.ToStreamReader().TryFinallyDispose(reader =>
+    Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
     {
       reader.Expect().End().Result.Should().BeFalse();
       reader.ReadToEnd();
@@ -27,7 +28,7 @@ public sealed class TextReaderExpectationsTest : UnitTest
     });
     
     new StringReader(string.Empty).TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
-    new StringReader(RandomString).TryFinallyDispose(reader =>
+    new StringReader(Attributes.RandomString()).TryFinallyDispose(reader =>
     {
       reader.Expect().End().Result.Should().BeFalse();
       reader.ReadToEnd();

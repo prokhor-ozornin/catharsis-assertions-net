@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -45,7 +46,7 @@ public sealed class XDocumentExpectationsTest : UnitTest
     {
       const string name = "root";
       document.Add(new XElement(name));
-      document.Expect().Name(RandomString).Result.Should().BeFalse();
+      document.Expect().Name(Attributes.RandomString()).Result.Should().BeFalse();
       document.Expect().Name(name).Result.Should().BeTrue();
     });
   }

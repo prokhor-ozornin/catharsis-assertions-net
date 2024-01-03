@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -21,7 +22,7 @@ public sealed class StreamReaderAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StreamReaderAssertions.Encoding(null, Reader, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => StreamReaderAssertions.Encoding(Assert.To, null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-    RandomStream.ToStreamReader().TryFinallyDispose(reader =>
+    Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
     {
       AssertionExtensions.Should(() => Assert.To.Encoding(reader, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Encoding(reader, reader.CurrentEncoding).Should().NotBeNull().And.BeSameAs(Assert.To);
@@ -39,7 +40,7 @@ public sealed class StreamReaderAssertionsTest : UnitTest
     
     Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To));
 
-    RandomStream.ToStreamReader().TryFinallyDispose(reader =>
+    Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
     {
       AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       reader.ReadToEnd();

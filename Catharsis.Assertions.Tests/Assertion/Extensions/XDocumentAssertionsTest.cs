@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -46,7 +47,7 @@ public sealed class XDocumentAssertionsTest : UnitTest
       const string name = "root";
       document.Add(new XElement(name));
 
-      AssertionExtensions.Should(() => Assert.To.Name(document, RandomString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Name(document, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Name(document, name).Should().NotBeNull().And.BeSameAs(Assert.To);
     });
   }

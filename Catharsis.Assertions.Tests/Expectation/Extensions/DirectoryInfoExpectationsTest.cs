@@ -1,4 +1,5 @@
-﻿using Catharsis.Extensions;
+﻿using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -18,17 +19,17 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
     AssertionExtensions.Should(() => DirectoryInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    RandomDirectory.Expect().Empty().Result.Should().BeTrue();
+    Attributes.TempDirectory().Directory.Expect().Empty().Result.Should().BeTrue();
     
-    RandomDirectory.TryFinallyClear(directory =>
+    Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
     {
-      Randomizer.File(directory);
+      Attributes.Random().File(directory);
       directory.Expect().Empty().Result.Should().BeFalse();
     });
 
-    RandomDirectory.TryFinallyClear(directory =>
+    Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
     {
-      Randomizer.Directory(directory);
+      Attributes.Random().Directory(directory);
       directory.Expect().Empty().Result.Should().BeFalse();
     });
   }
@@ -39,11 +40,11 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
   [Fact]
   public void InDirectory_Method()
   {
-    AssertionExtensions.Should(() => DirectoryInfoExpectations.InDirectory(null, RandomDirectory)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().InDirectory(RandomDirectory)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => RandomDirectory.Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
+    AssertionExtensions.Should(() => DirectoryInfoExpectations.InDirectory(null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().InDirectory(Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    AssertionExtensions.Should(() => Attributes.TempDirectory().Directory.Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
 
-    RandomDirectory.Expect().InDirectory(RandomDirectory).Result.Should().BeFalse();
-    RandomDirectory.Expect().InDirectory(RandomDirectory.Parent).Result.Should().BeTrue();
+    Attributes.TempDirectory().Directory.Expect().InDirectory(Attributes.TempDirectory().Directory).Result.Should().BeFalse();
+    Attributes.TempDirectory().Directory.Expect().InDirectory(Attributes.TempDirectory().Directory.Parent).Result.Should().BeTrue();
   }
 }

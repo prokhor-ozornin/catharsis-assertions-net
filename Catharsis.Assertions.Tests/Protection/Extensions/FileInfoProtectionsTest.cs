@@ -1,6 +1,7 @@
-﻿using FluentAssertions;
-using Xunit;
+﻿using Catharsis.Commons;
 using Catharsis.Extensions;
+using FluentAssertions;
+using Xunit;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -15,10 +16,10 @@ public sealed class FileInfoProtectionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => FileInfoProtections.Empty(null, RandomFile)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    AssertionExtensions.Should(() => FileInfoProtections.Empty(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
     AssertionExtensions.Should(() => Protect.From.Empty((FileInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-    RandomFile.TryFinallyDelete(file =>
+    Attributes.TempFile().File.TryFinallyDelete(file =>
     {
       Protect.From.Empty(file).Should().NotBeNull().And.BeSameAs(file);
       AssertionExtensions.Should(() => Protect.From.Empty(file.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");

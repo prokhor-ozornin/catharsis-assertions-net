@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
@@ -22,8 +23,8 @@ public sealed class IPAddressExpectationsTest : UnitTest
     new[] { IPAddress.Any, IPAddress.Broadcast, IPAddress.Loopback, IPAddress.None }.ForEach(address => address.Expect().Ip4().Result.Should().BeTrue());
     new[] { IPAddress.IPv6Any, IPAddress.IPv6Loopback, IPAddress.IPv6None }.ForEach(address => address.Expect().Ip4().Result.Should().BeFalse());
     
-    Randomizer.IpAddress().Expect().Ip4().Result.Should().BeTrue();
-    Randomizer.IpV6Address().Expect().Ip4().Result.Should().BeFalse();
+    Attributes.Random().IpAddress().Expect().Ip4().Result.Should().BeTrue();
+    Attributes.Random().IpV6Address().Expect().Ip4().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -38,7 +39,7 @@ public sealed class IPAddressExpectationsTest : UnitTest
     new[] { IPAddress.IPv6Any, IPAddress.IPv6Loopback, IPAddress.IPv6None }.ForEach(address => address.Expect().Ip6().Result.Should().BeTrue());
     new[] { IPAddress.Any, IPAddress.Broadcast, IPAddress.Loopback, IPAddress.None }.ForEach(address => address.Expect().Ip6().Result.Should().BeFalse());
 
-    Randomizer.IpV6Address().Expect().Ip6().Result.Should().BeTrue();
-    Randomizer.IpAddress().Expect().Ip6().Result.Should().BeFalse();
+    Attributes.Random().IpV6Address().Expect().Ip6().Result.Should().BeTrue();
+    Attributes.Random().IpAddress().Expect().Ip6().Result.Should().BeFalse();
   }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -19,7 +20,7 @@ public sealed class StreamWriterExpectationsTest : UnitTest
     AssertionExtensions.Should(() => StreamWriterExpectations.Encoding(null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((StreamWriter) null).Expect().Encoding(Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    RandomStream.ToStreamWriter().TryFinallyDispose(writer =>
+    Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
     {
       writer.Expect().Encoding(null).Result.Should().BeFalse();
       writer.Expect().Encoding(writer.Encoding).Result.Should().BeTrue();

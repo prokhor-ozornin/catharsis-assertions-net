@@ -1,4 +1,5 @@
-﻿using Catharsis.Extensions;
+﻿using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -21,7 +22,7 @@ public sealed class TextReaderAssertionsTest : UnitTest
     AssertionExtensions.Should(() => TextReaderAssertions.End(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
     Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To));
-    RandomStream.ToStreamReader().TryFinallyDispose(reader =>
+    Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
     {
       AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       reader.ReadToEnd();
@@ -29,7 +30,7 @@ public sealed class TextReaderAssertionsTest : UnitTest
     });
 
     new StringReader(string.Empty).TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
-    new StringReader(RandomString).TryFinallyDispose(reader =>
+    new StringReader(Attributes.RandomString()).TryFinallyDispose(reader =>
     {
       AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       reader.ReadToEnd();

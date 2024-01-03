@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
 
@@ -33,7 +34,7 @@ public sealed class StreamExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((Stream) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
     Stream.Null.Expect().Empty().Result.Should().BeTrue();
-    RandomStream.Expect().Empty().Result.Should().BeFalse();
+    Attributes.RandomStream().Expect().Empty().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -61,7 +62,7 @@ public sealed class StreamExpectationsTest : UnitTest
 
     Stream.Null.Expect().End().Result.Should().BeTrue();
     
-    RandomStream.With(stream =>
+    Attributes.RandomStream().With(stream =>
     {
       stream.Expect().End().Result.Should().BeFalse();
       stream.MoveToEnd().Expect().Result.Should().BeTrue();

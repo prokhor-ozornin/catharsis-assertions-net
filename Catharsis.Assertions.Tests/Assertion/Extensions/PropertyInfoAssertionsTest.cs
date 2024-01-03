@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Catharsis.Commons;
 using Xunit;
 using Catharsis.Extensions;
 using FluentAssertions;

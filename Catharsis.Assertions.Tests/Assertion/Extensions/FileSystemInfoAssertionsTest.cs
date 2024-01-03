@@ -1,4 +1,5 @@
-﻿using Catharsis.Extensions;
+﻿using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -9,8 +10,14 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class FileSystemInfoAssertionsTest : UnitTest
 {
-  private FileInfo RandomFakeFile { get; } = Randomizer.FilePath().ToFile();
-  private DirectoryInfo RandomFakeDirectory { get; } = Randomizer.DirectoryPath().ToDirectory();
+  private FileInfo RandomFakeFile { get; }
+  private DirectoryInfo RandomFakeDirectory { get; }
+
+  public FileSystemInfoAssertionsTest()
+  {
+    RandomFakeFile = Attributes.Random().FilePath().ToFile();
+    RandomFakeDirectory = Attributes.Random().DirectoryPath().ToDirectory();
+  }
 
   /// <summary>
   ///   <para>Performs testing of <see cref="FileSystemInfoAssertions.Exist(IAssertion, FileSystemInfo, string)"/> method.</para>
@@ -18,13 +25,13 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
   [Fact]
   public void Exist_Method()
   {
-    AssertionExtensions.Should(() => FileSystemInfoAssertions.Exist(null, RandomFile)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => FileSystemInfoAssertions.Exist(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-    Assert.To.Exist(RandomFile).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Exist(Attributes.TempFile().File).Should().NotBeNull().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeFile, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-    Assert.To.Exist(RandomDirectory).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Exist(Attributes.TempDirectory().Directory).Should().NotBeNull().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeDirectory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
@@ -34,10 +41,10 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
   [Fact]
   public void Attribute_Method()
   {
-    AssertionExtensions.Should(() => FileSystemInfoAssertions.Attribute(null, RandomFile, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => FileSystemInfoAssertions.Attribute(null, Attributes.TempFile().File, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Attribute(null, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-    RandomFile.With(file =>
+    Attributes.TempFile().File.With(file =>
     {
       Enum.GetValues<FileAttributes>().ForEach(attribute =>
       {

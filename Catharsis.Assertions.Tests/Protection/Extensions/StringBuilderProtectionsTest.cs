@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -20,6 +21,6 @@ public sealed class StringBuilderProtectionsTest : UnitTest
     AssertionExtensions.Should(() => Protect.From.Empty((StringBuilder) null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
     new StringBuilder().With(builder => AssertionExtensions.Should(() => Protect.From.Empty(builder, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-    new StringBuilder(RandomString).With(builder => Protect.From.Empty(builder).Should().NotBeNull().And.BeSameAs(builder));
+    new StringBuilder(Attributes.RandomString()).With(builder => Protect.From.Empty(builder).Should().NotBeNull().And.BeSameAs(builder));
   }
 }

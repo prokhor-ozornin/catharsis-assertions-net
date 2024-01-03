@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;

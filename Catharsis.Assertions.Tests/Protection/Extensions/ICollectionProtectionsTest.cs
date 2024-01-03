@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
 
@@ -19,6 +20,6 @@ public sealed class ICollectionsProtectionsTest : UnitTest
     AssertionExtensions.Should(() => Protect.From.Empty((ICollection<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
     AssertionExtensions.Should(() => Protect.From.Empty(Array.Empty<object>(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    RandomSequence.ToArray().With(collection => Protect.From.Empty(collection).Should().NotBeNull().And.BeSameAs(collection));
+    Attributes.RandomSequence().ToArray().With(collection => Protect.From.Empty(collection).Should().NotBeNull().And.BeSameAs(collection));
   }
 }

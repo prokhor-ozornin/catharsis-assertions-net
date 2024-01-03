@@ -1,5 +1,6 @@
 ﻿using Catharsis.Extensions;
 using System.Globalization;
+using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 
@@ -21,7 +22,7 @@ public sealed class TextWriterAssertionsTest : UnitTest
     AssertionExtensions.Should(() => TextWriterAssertions.Format(null, Writer, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => ((TextWriter) null).Expect().Format(CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     
-    RandomStream.ToStreamWriter().TryFinallyDispose(writer =>
+    Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
     {
       AssertionExtensions.Should(() => Assert.To.Format(writer, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Format(writer, writer.FormatProvider).Should().NotBeNull().And.BeSameAs(Assert.To);

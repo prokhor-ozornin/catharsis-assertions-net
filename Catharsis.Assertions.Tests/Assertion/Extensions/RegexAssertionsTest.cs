@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -22,7 +23,7 @@ public sealed class RegexAssertionsTest : UnitTest
 
     Assert.To.Match(string.Empty.ToRegex(), string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Match("anything".ToRegex(), string.Empty, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Match("[0-9]".ToRegex(), Randomizer.Digits(byte.MaxValue)).Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Match("[0-9]".ToRegex(), Randomizer.Letters(byte.MaxValue), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    Assert.To.Match("[0-9]".ToRegex(), Attributes.Random().Digits(byte.MaxValue)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Match("[0-9]".ToRegex(), Attributes.Random().Letters(byte.MaxValue), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -23,9 +24,9 @@ public sealed class StringExpectationsTest : UnitTest
     string.Empty.Expect().Length(int.MaxValue).Result.Should().BeFalse();
     string.Empty.Expect().Length(string.Empty.Length).Result.Should().BeTrue();
 
-    RandomString.Expect().Length(int.MinValue).Result.Should().BeFalse();
-    RandomString.Expect().Length(int.MaxValue).Result.Should().BeFalse();
-    RandomString.Expect().Length(RandomString.Length).Result.Should().BeTrue();
+    Attributes.RandomString().Expect().Length(int.MinValue).Result.Should().BeFalse();
+    Attributes.RandomString().Expect().Length(int.MaxValue).Result.Should().BeFalse();
+    Attributes.RandomString().Expect().Length(Attributes.RandomString().Length).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -38,7 +39,7 @@ public sealed class StringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((string) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
     string.Empty.Expect().Empty().Result.Should().BeTrue();
-    RandomString.Expect().Empty().Result.Should().BeFalse();
+    Attributes.RandomString().Expect().Empty().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -52,7 +53,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     string.Empty.Expect().WhiteSpace().Result.Should().BeTrue();
     "\r\n\t".Expect().WhiteSpace().Result.Should().BeTrue();
-    RandomString.Expect().WhiteSpace().Result.Should().BeFalse();
+    Attributes.RandomString().Expect().WhiteSpace().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -65,8 +66,8 @@ public sealed class StringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((string) null).Expect().UpperCased()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
     string.Empty.Expect().UpperCased().Result.Should().BeTrue();
-    RandomString.ToUpperInvariant().Expect().UpperCased().Result.Should().BeTrue();
-    RandomString.ToLowerInvariant().Expect().UpperCased().Result.Should().BeFalse();
+    Attributes.RandomString().ToUpperInvariant().Expect().UpperCased().Result.Should().BeTrue();
+    Attributes.RandomString().ToLowerInvariant().Expect().UpperCased().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -79,8 +80,8 @@ public sealed class StringExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((string) null).Expect().LowerCased()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
     string.Empty.Expect().LowerCased().Result.Should().BeTrue();
-    RandomString.ToLowerInvariant().Expect().LowerCased().Result.Should().BeTrue();
-    RandomString.ToUpperInvariant().Expect().LowerCased().Result.Should().BeFalse();
+    Attributes.RandomString().ToLowerInvariant().Expect().LowerCased().Result.Should().BeTrue();
+    Attributes.RandomString().ToUpperInvariant().Expect().LowerCased().Result.Should().BeFalse();
   }
 
   /// <summary>
@@ -97,10 +98,10 @@ public sealed class StringExpectationsTest : UnitTest
     string.Empty.Expect().StartWith(char.MinValue.ToString()).Result.Should().BeTrue();
     string.Empty.Expect().StartWith(char.MaxValue.ToString()).Result.Should().BeFalse();
     
-    RandomString.Expect().StartWith(string.Empty).Result.Should().BeTrue();
-    RandomString.Expect().StartWith(RandomString).Result.Should().BeTrue();
-    RandomString.Expect().StartWith(RandomString.ToUpperInvariant()).Result.Should().BeFalse();
-    RandomString.Expect().StartWith(RandomString.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Result.Should().BeTrue();
+    Attributes.RandomString().Expect().StartWith(string.Empty).Result.Should().BeTrue();
+    Attributes.RandomString().Expect().StartWith(Attributes.RandomString()).Result.Should().BeTrue();
+    Attributes.RandomString().Expect().StartWith(Attributes.RandomString().ToUpperInvariant()).Result.Should().BeFalse();
+    Attributes.RandomString().Expect().StartWith(Attributes.RandomString().ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -117,10 +118,10 @@ public sealed class StringExpectationsTest : UnitTest
     string.Empty.Expect().EndWith(char.MinValue.ToString()).Result.Should().BeTrue();
     string.Empty.Expect().EndWith(char.MaxValue.ToString()).Result.Should().BeFalse();
 
-    RandomString.Expect().EndWith(string.Empty).Result.Should().BeTrue();
-    RandomString.Expect().EndWith(RandomString).Result.Should().BeTrue();
-    RandomString.Expect().EndWith(RandomString.ToUpperInvariant()).Result.Should().BeFalse();
-    RandomString.Expect().EndWith(RandomString.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Result.Should().BeTrue();
+    Attributes.RandomString().Expect().EndWith(string.Empty).Result.Should().BeTrue();
+    Attributes.RandomString().Expect().EndWith(Attributes.RandomString()).Result.Should().BeTrue();
+    Attributes.RandomString().Expect().EndWith(Attributes.RandomString().ToUpperInvariant()).Result.Should().BeFalse();
+    Attributes.RandomString().Expect().EndWith(Attributes.RandomString().ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Result.Should().BeTrue();
   }
 
   /// <summary>
@@ -135,7 +136,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     string.Empty.Expect().Match(string.Empty.ToRegex()).Result.Should().BeTrue();
     string.Empty.Expect().Match("anything".ToRegex()).Result.Should().BeFalse();
-    Randomizer.Digits(byte.MaxValue).Expect().Match("[0-9]".ToRegex()).Result.Should().BeTrue();
-    Randomizer.Letters(byte.MaxValue).Expect().Match("[0-9]".ToRegex()).Result.Should().BeFalse();
+    Attributes.Random().Digits(byte.MaxValue).Expect().Match("[0-9]".ToRegex()).Result.Should().BeTrue();
+    Attributes.Random().Letters(byte.MaxValue).Expect().Match("[0-9]".ToRegex()).Result.Should().BeFalse();
   }
 }

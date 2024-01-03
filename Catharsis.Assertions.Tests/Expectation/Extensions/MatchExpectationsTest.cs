@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -33,7 +34,7 @@ public sealed class MatchExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((Match) null).Expect().Value(string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Match.Empty.Expect().Value(null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-    Match.Empty.Expect().Value(RandomString).Result.Should().BeFalse();
+    Match.Empty.Expect().Value(Attributes.RandomString()).Result.Should().BeFalse();
     Match.Empty.Expect().Value(Match.Empty.Value).Result.Should().BeTrue();
   }
 }

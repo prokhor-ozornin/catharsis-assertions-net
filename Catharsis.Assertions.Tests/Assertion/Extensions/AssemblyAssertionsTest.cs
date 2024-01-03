@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
-using Catharsis.Extensions;
 using System.Reflection.Emit;
+using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -52,6 +53,6 @@ public sealed class AssemblyAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
 
     AssertionExtensions.Should(() => Assert.To.Dynamic(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Dynamic(AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Randomizer.Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Dynamic(AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect)).Should().NotBeNull().And.BeSameAs(Assert.To);
   }
 }
