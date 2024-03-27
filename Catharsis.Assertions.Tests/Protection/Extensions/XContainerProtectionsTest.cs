@@ -25,7 +25,7 @@ public sealed class XContainerProtectionsTest : UnitTest
     new XDocument().With(document =>
     {
       document.Add(new XElement("root"));
-      Protect.From.Empty((XContainer) document).Should().NotBeNull().And.BeSameAs(document);
+      Protect.From.Empty((XContainer) document).Should().BeOfType<XDocument>().And.BeSameAs(document);
     });
   }
 }

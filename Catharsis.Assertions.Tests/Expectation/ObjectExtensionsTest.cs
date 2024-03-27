@@ -18,7 +18,7 @@ public sealed class ObjectExtensionsTest : UnitTest
   {
     object subject = null;
     var expectation = subject.Expect();
-    expectation.Should().NotBeNull().And.NotBeSameAs(subject.Expect()).And.BeOfType<Expectation<object>>();
-    expectation.GetFieldValue<object>("subject").Should().BeSameAs(subject);
+    expectation.Should().NotBeNull().Should().BeOfType<Expectation<object>>().And.NotBeSameAs(subject.Expect());
+    expectation.GetFieldValue<object>("subject").Should().BeOfType<object>().And.BeSameAs(subject);
   }
 }

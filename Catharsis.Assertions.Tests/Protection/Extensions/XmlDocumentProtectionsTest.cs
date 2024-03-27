@@ -25,7 +25,7 @@ public sealed class XmlDocumentProtectionsTest : UnitTest
     new XmlDocument().With(document =>
     {
       document.AppendChild(document.CreateElement("root"));
-      Protect.From.Empty(document).Should().NotBeNull().And.BeSameAs(document);
+      Protect.From.Empty(document).Should().BeOfType<XmlDocument>().And.BeSameAs(document);
     });
   }
 }

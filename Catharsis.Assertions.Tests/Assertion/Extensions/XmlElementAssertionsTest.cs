@@ -28,12 +28,12 @@ public sealed class XmlElementAssertionsTest : UnitTest
     Element.With(element =>
     {
       element.SetAttribute("encoding", null);
-      Assert.To.Attribute(element, "encoding").Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
 
       element.SetAttribute("encoding", "utf-8");
-      Assert.To.Attribute(element, "encoding").Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
 
       AssertionExtensions.Should(() => Assert.To.Attribute(element, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });

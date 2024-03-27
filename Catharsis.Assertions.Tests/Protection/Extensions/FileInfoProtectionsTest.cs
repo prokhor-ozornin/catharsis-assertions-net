@@ -21,7 +21,7 @@ public sealed class FileInfoProtectionsTest : UnitTest
 
     Attributes.TempFile().File.TryFinallyDelete(file =>
     {
-      Protect.From.Empty(file).Should().NotBeNull().And.BeSameAs(file);
+      Protect.From.Empty(file).Should().BeOfType<FileInfo>().And.BeSameAs(file);
       AssertionExtensions.Should(() => Protect.From.Empty(file.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
     });
   }

@@ -28,7 +28,7 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
 
       if (code is >= 200 and <= 299)
       {
-        new HttpResponseMessage(status).TryFinallyDispose(message => Assert.To.Successful(message).Should().NotBeNull().And.BeSameAs(Assert.To));
+        new HttpResponseMessage(status).TryFinallyDispose(message => Assert.To.Successful(message).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
       }
       else
       {
@@ -47,7 +47,7 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Status((HttpResponseMessage) null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
 
     AssertionExtensions.Should(() => Assert.To.Status(Response, HttpStatusCode.NotFound, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Status(Response, Response.StatusCode).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Status(Response, Response.StatusCode).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -72,13 +72,13 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
 
       response.Headers.Add("connection", "open");
       response.Headers.Add("connection", "close");
-      Assert.To.Header(Response, "connection", "open").Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.Header(Response, "connection", "close").Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Header(Response, "connection", "open").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Header(Response, "connection", "close").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       Response.Headers.Clear();
 
       response.Headers.Add("connection", ["open", "close"]);
-      Assert.To.Header(Response, "connection", "open").Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.Header(Response, "connection", "close").Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Header(Response, "connection", "open").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Header(Response, "connection", "close").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       Response.Headers.Clear();
     });
   }

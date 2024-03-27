@@ -26,7 +26,7 @@ public sealed class IDictionaryAssertionsTest : UnitTest
     Dictionary.With(dictionary =>
     {
       dictionary.Add(Guid.Empty, new object());
-      Assert.To.ContainKey(Dictionary, Guid.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.ContainKey(Dictionary, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     });
   }
 
@@ -44,7 +44,7 @@ public sealed class IDictionaryAssertionsTest : UnitTest
     Dictionary.With(dictionary =>
     {
       dictionary.Add(Guid.NewGuid(), null);
-      Assert.To.ContainValue(Dictionary, null).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.ContainValue(Dictionary, null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     });
   }
 }

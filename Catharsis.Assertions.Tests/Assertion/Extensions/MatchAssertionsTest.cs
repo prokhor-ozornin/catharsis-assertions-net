@@ -21,7 +21,7 @@ public sealed class MatchAssertionsTest : UnitTest
     AssertionExtensions.Should(() => MatchAssertions.Successful(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("match");
 
     AssertionExtensions.Should(() => Assert.To.Successful(Match.Empty, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Successful(string.Empty.ToRegex().Match(string.Empty)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Successful(string.Empty.ToRegex().Match(string.Empty)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -35,6 +35,6 @@ public sealed class MatchAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Value(Match.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
     AssertionExtensions.Should(() => Assert.To.Value(Match.Empty, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Value(Match.Empty, Match.Empty.Value).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Value(Match.Empty, Match.Empty.Value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 }

@@ -15,7 +15,7 @@ public sealed class AssertTest : UnitTest
   [Fact]
   public void To_Property()
   {
-    Assert.To.Should().NotBeNull().And.BeSameAs(Assert.To).And.BeOfType<Assertion>();
+    Assert.To.Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -24,6 +24,6 @@ public sealed class AssertTest : UnitTest
   [Fact]
   public void NotTo_Property()
   {
-    Assert.NotTo.Should().NotBeNull().And.BeSameAs(Assert.NotTo).And.BeOfType<Assertion>();
+    Assert.NotTo.Should().BeOfType<Assertion>().And.BeSameAs(Assert.NotTo);
   }
 }

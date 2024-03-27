@@ -21,9 +21,9 @@ public sealed class RegexAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Match(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
     AssertionExtensions.Should(() => Assert.To.Match(string.Empty.ToRegex(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    Assert.To.Match(string.Empty.ToRegex(), string.Empty).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Match(string.Empty.ToRegex(), string.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Match("anything".ToRegex(), string.Empty, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Match("[0-9]".ToRegex(), Attributes.Random().Digits(byte.MaxValue)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Match("[0-9]".ToRegex(), Attributes.Random().Digits(byte.MaxValue)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Match("[0-9]".ToRegex(), Attributes.Random().Letters(byte.MaxValue), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 }

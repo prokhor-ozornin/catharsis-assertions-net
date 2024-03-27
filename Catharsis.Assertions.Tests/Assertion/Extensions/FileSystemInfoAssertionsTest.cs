@@ -28,10 +28,10 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => FileSystemInfoAssertions.Exist(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-    Assert.To.Exist(Attributes.TempFile().File).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Exist(Attributes.TempFile().File).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeFile, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-    Assert.To.Exist(Attributes.TempDirectory().Directory).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Exist(Attributes.TempDirectory().Directory).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeDirectory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
@@ -50,7 +50,7 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
       {
         if ((file.Attributes & attribute) == attribute)
         {
-          Assert.To.Attribute(file, attribute).Should().NotBeNull().And.BeSameAs(Assert.To);
+          Assert.To.Attribute(file, attribute).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
         }
         else
         {
@@ -58,7 +58,7 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
         }
       });
 
-      Assert.To.Attribute(file.AsReadOnly(), FileAttributes.ReadOnly).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Attribute(file.AsReadOnly(), FileAttributes.ReadOnly).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     });
   }
 }

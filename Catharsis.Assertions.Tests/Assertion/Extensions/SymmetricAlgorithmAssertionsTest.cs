@@ -23,7 +23,7 @@ public sealed class SymmetricAlgorithmAssertionsTest : UnitTest
 
     AssertionExtensions.Should(() => Assert.To.BlockSize(Algorithm, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.BlockSize(Algorithm, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.BlockSize(Algorithm, Algorithm.BlockSize).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.BlockSize(Algorithm, Algorithm.BlockSize).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -37,7 +37,7 @@ public sealed class SymmetricAlgorithmAssertionsTest : UnitTest
 
     AssertionExtensions.Should(() => Assert.To.KeySize(Algorithm, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.KeySize(Algorithm, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.KeySize(Algorithm, Algorithm.KeySize).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.KeySize(Algorithm, Algorithm.KeySize).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>

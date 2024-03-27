@@ -31,7 +31,7 @@ public sealed class XContainerAssertionsTest : UnitTest
       root.Add(new XElement("child"));
       container.Add(root);
 
-      Assert.To.Element(container, "parent").Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Element(container, "parent").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Element(container, "child", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });
   }
@@ -45,7 +45,7 @@ public sealed class XContainerAssertionsTest : UnitTest
     AssertionExtensions.Should(() => XContainerAssertions.Empty(null, Container)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => XContainerAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("container");
 
-    Assert.To.Empty(Container).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Empty(Container).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
 
     Container.With(container =>
     {

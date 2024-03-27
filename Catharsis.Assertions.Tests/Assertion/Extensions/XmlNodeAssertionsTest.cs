@@ -22,7 +22,7 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => XmlNodeAssertions.Empty(null, Node)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => XmlNodeAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("node");
 
-    Assert.To.Empty(Node, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Empty(Node, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
 
     Node.With(node =>
     {
@@ -42,7 +42,7 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Name(Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
     AssertionExtensions.Should(() => Assert.To.Name(Node, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Name(Node, Node.Name).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Name(Node, Node.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -56,7 +56,7 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.InnerText(Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
     AssertionExtensions.Should(() => Assert.To.InnerText(Node, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.InnerText(Node, Node.InnerText).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.InnerText(Node, Node.InnerText).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -70,7 +70,7 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.InnerXml(Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
     AssertionExtensions.Should(() => Assert.To.InnerXml(Node, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.InnerXml(Node, Node.InnerXml).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.InnerXml(Node, Node.InnerXml).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -84,7 +84,7 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.OuterXml(Node, null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
     AssertionExtensions.Should(() => Assert.To.OuterXml(Node, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.OuterXml(Node, Node.OuterXml).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.OuterXml(Node, Node.OuterXml).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -97,6 +97,6 @@ public sealed class XmlNodeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Value((XmlNode) null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("node");
 
     AssertionExtensions.Should(() => Assert.To.Value(Node, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Value(Node, Node.Value).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Value(Node, Node.Value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 }

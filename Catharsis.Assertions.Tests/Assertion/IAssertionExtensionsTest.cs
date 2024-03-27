@@ -18,7 +18,7 @@ public sealed class IAssertionExtensionsTest : UnitTest
   public void And_Method()
   {
     ((IAssertion) null).And().Should().BeNull();
-    Assertion.And().Should().NotBeNull().And.BeSameAs(Assertion);
+    Assertion.And().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
   }
 
   /// <summary>
@@ -28,7 +28,7 @@ public sealed class IAssertionExtensionsTest : UnitTest
   public void Be_Method()
   {
     ((IAssertion) null).Be().Should().BeNull();
-    Assertion.Be().Should().NotBeNull().And.BeSameAs(Assertion);
+    Assertion.Be().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
   }
 
   /// <summary>
@@ -38,7 +38,7 @@ public sealed class IAssertionExtensionsTest : UnitTest
   public void Having_Method()
   {
     ((IAssertion) null).Having().Should().BeNull();
-    Assertion.Having().Should().NotBeNull().And.BeSameAs(Assertion);
+    Assertion.Having().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
   }
 
   /// <summary>
@@ -48,7 +48,7 @@ public sealed class IAssertionExtensionsTest : UnitTest
   public void With_Method()
   {
     ((IAssertion) null).With().Should().BeNull();
-    Assertion.With().Should().NotBeNull().And.BeSameAs(Assertion);
+    Assertion.With().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
   }
 
   /// <summary>
@@ -58,7 +58,7 @@ public sealed class IAssertionExtensionsTest : UnitTest
   public void Of_Method()
   {
     ((IAssertion) null).Of().Should().BeNull();
-    Assertion.Of().Should().NotBeNull().And.BeSameAs(Assertion);
+    Assertion.Of().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
   }
 
   /// <summary>
@@ -68,7 +68,7 @@ public sealed class IAssertionExtensionsTest : UnitTest
   public void At_Method()
   {
     ((IAssertion) null).At().Should().BeNull();
-    Assertion.At().Should().NotBeNull().And.BeSameAs(Assertion);
+    Assertion.At().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
   }
 
   /// <summary>
@@ -78,6 +78,6 @@ public sealed class IAssertionExtensionsTest : UnitTest
   public void On_Method()
   {
     ((IAssertion) null).On().Should().BeNull();
-    Assertion.On().Should().NotBeNull().And.BeSameAs(Assertion);
+    Assertion.On().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
   }
 }

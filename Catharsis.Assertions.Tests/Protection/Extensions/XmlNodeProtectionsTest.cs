@@ -27,7 +27,7 @@ public sealed class XmlNodeProtectionsTest : UnitTest
     document.CreateElement("root").With(node =>
     {
       node.AppendChild(document.CreateElement("element"));
-      Protect.From.Empty(node).Should().NotBeNull().And.BeSameAs(node);
+      Protect.From.Empty(node).Should().BeOfType<XmlElement>().And.BeSameAs(node);
     });
   }
 }

@@ -29,7 +29,7 @@ public sealed class AssemblyAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Define(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
       AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Assert.To.Define(Assembly.GetAssembly(typeof(object)), typeof(object)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Define(Assembly.GetAssembly(typeof(object)), typeof(object)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
 
@@ -38,7 +38,7 @@ public sealed class AssemblyAssertionsTest : UnitTest
       AssertionExtensions.Should(() => AssemblyAssertions.Define<object>(null, Assembly.GetExecutingAssembly())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Define<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
 
-      Assert.To.Define<object>(Assembly.GetAssembly(typeof(object))).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Define<object>(Assembly.GetAssembly(typeof(object))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Define<object>(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
   }
@@ -53,6 +53,6 @@ public sealed class AssemblyAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
 
     AssertionExtensions.Should(() => Assert.To.Dynamic(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Dynamic(AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Dynamic(AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 }

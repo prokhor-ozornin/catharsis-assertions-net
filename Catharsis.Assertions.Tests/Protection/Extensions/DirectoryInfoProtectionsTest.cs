@@ -23,7 +23,7 @@ public sealed class DirectoryInfoProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => Protect.From.Empty(directory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
       directory.CreateSubdirectory(Attributes.Random().DirectoryName()).TryFinallyDelete(_ => Protect.From.Empty(directory).Should().NotBeNull().And.BeSameAs(directory));
-      Attributes.Random().BinaryFile(0, null, null, directory).TryFinallyDelete(_ => Protect.From.Empty(directory).Should().NotBeNull().And.BeSameAs(directory));
+      Attributes.Random().BinaryFile(0, null, null, directory).TryFinallyDelete(_ => Protect.From.Empty(directory).Should().BeOfType<DirectoryInfo>().And.BeSameAs(directory));
     });
   }
 }

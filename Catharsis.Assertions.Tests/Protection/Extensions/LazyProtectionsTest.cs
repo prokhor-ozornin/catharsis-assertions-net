@@ -20,6 +20,6 @@ public sealed class LazyProtectionsTest : UnitTest
 
     AssertionExtensions.Should(() => Protect.From.Null(new Lazy<object>((object) null), "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
     AssertionExtensions.Should(() => Protect.From.Null(new Lazy<object>(), "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
-    new Lazy<object>(new object()).With(lazy => Protect.From.Null(lazy).Should().NotBeNull().And.BeSameAs(lazy));
+    new Lazy<object>(new object()).With(lazy => Protect.From.Null(lazy).Should().BeOfType<Lazy<object>>().And.BeSameAs(lazy));
   }
 }

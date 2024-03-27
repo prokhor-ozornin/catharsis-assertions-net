@@ -20,6 +20,6 @@ public sealed class IEnumerableProtectionsTest : UnitTest
     AssertionExtensions.Should(() => Protect.From.Empty((IEnumerable<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
     Attributes.EmptySequence().With(sequence => AssertionExtensions.Should(() => Protect.From.Empty(sequence, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-    Attributes.RandomSequence().With(sequence => Protect.From.Empty(sequence).Should().NotBeNull().And.BeSameAs(sequence));
+    Attributes.RandomSequence().With(sequence => Protect.From.Empty(sequence).Should().BeOfType<IEnumerable<object>>().And.BeSameAs(sequence));
   }
 }

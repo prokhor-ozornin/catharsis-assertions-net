@@ -28,8 +28,8 @@ public sealed class DateTimeAssertionsTest : UnitTest
 
     static void Validate(DateTime date)
     {
-      Assert.To.Past(date.AddSeconds(-1)).Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.Past(date).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Past(date.AddSeconds(-1)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Past(date).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Past(date.AddSeconds(1), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
   }
@@ -51,7 +51,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
 
     static void Validate(DateTime date)
     {
-      Assert.To.Future(date.AddSeconds(1)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Future(date.AddSeconds(1)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Future(date.AddSeconds(-1), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Future(date, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
@@ -75,7 +75,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     static void Validate(DateTime date)
     {
       AssertionExtensions.Should(() => Assert.To.DayOfYear(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.DayOfYear(date, date.DayOfYear).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.DayOfYear(date, date.DayOfYear).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
   }
 
@@ -97,7 +97,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     static void Validate(DateTime date)
     {
       AssertionExtensions.Should(() => Assert.To.Year(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Year(date, date.Year).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Year(date, date.Year).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
   }
 
@@ -119,7 +119,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     static void Validate(DateTime date)
     {
       AssertionExtensions.Should(() => Assert.To.Month(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Month(date, date.Month).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Month(date, date.Month).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
   }
 
@@ -141,7 +141,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     static void Validate(DateTime date)
     {
       AssertionExtensions.Should(() => Assert.To.Day(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Day(date, date.Day).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Day(date, date.Day).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
   }
 
@@ -163,7 +163,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     static void Validate(DateTime date)
     {
       AssertionExtensions.Should(() => Assert.To.Hour(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Hour(date, date.Hour).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Hour(date, date.Hour).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
   }
 
@@ -185,7 +185,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     static void Validate(DateTime date)
     {
       AssertionExtensions.Should(() => Assert.To.Minute(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Minute(date, date.Minute).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Minute(date, date.Minute).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
   }
 
@@ -207,7 +207,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     static void Validate(DateTime date)
     {
       AssertionExtensions.Should(() => Assert.To.Second(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Second(date, date.Second).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Second(date, date.Second).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
   }
 
@@ -229,7 +229,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     static void Validate(DateTime date)
     {
       AssertionExtensions.Should(() => Assert.To.Millisecond(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Millisecond(date, date.Millisecond).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Millisecond(date, date.Millisecond).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
   }
 
@@ -243,7 +243,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
 
     DateTime.MinValue.With(date =>
     {
-      Assert.To.DayOfWeek(date, date.DayOfWeek).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.DayOfWeek(date, date.DayOfWeek).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.DayOfWeek(date, date.DayOfWeek + 1, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });
   }
@@ -260,7 +260,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.LocalTime(DateTime.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.LocalTime(DateTime.UtcNow, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-    Assert.To.LocalTime(DateTime.Now).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.LocalTime(DateTime.Now).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
  }
 
   /// <summary>
@@ -275,6 +275,6 @@ public sealed class DateTimeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.UtcTime(DateTime.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.UtcTime(DateTime.Now, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-    Assert.To.UtcTime(DateTime.UtcNow).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.UtcTime(DateTime.UtcNow).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 }

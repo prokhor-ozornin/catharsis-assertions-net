@@ -38,9 +38,9 @@ public sealed class ExpectationTest : UnitTest
     var expectation = new Expectation<object>(null);
 
     expectation.GetFieldValue<bool>("state").Should().BeTrue();
-    expectation.Not().Should().NotBeNull().And.BeSameAs(expectation);
+    expectation.Not().Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation);
     expectation.GetFieldValue<bool>("state").Should().BeFalse();
-    expectation.Not().Should().NotBeNull().And.BeSameAs(expectation);
+    expectation.Not().Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation);
     expectation.GetFieldValue<bool>("state").Should().BeTrue();
   }
 

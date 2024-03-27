@@ -58,7 +58,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
       AssertionExtensions.Should(() => Expectation.ThrowIfFalse((Exception) null)).ThrowExactly<ArgumentNullException>().WithParameterName("exception");
 
       AssertionExtensions.Should(() => new Expectation<object>(null).Expect(_ => false).ThrowIfFalse(new Exception("error"))).ThrowExactly<Exception>().WithMessage("error");
-      new Expectation<object>(null).With(expectation => expectation.ThrowIfFalse(new Exception()).Should().NotBeNull().And.BeSameAs(expectation));
+      new Expectation<object>(null).With(expectation => expectation.ThrowIfFalse(new Exception()).Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation));
     }
 
     using (new AssertionScope())
@@ -67,7 +67,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
       AssertionExtensions.Should(() => new Expectation<object>(null).Expect(_ => false).ThrowIfFalse("message")).ThrowExactly<InvalidOperationException>().WithMessage("message");
 
       AssertionExtensions.Should(() => new Expectation<object>(null).Expect(_ => false).ThrowIfFalse("error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      new Expectation<object>(null).With(expectation => expectation.ThrowIfFalse("error").Should().NotBeNull().And.BeSameAs(expectation));
+      new Expectation<object>(null).With(expectation => expectation.ThrowIfFalse("error").Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation));
     }
   }
 
@@ -81,7 +81,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
     AssertionExtensions.Should(() => Expectation.ThrowIfNull(null)).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
     AssertionExtensions.Should(() => Expectation.ThrowIfNull(null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-    new Expectation<object>(null).With(expectation => expectation.ThrowIfNull(new object()).Should().NotBeNull().And.BeSameAs(expectation));
+    new Expectation<object>(null).With(expectation => expectation.ThrowIfNull(new object()).Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation));
   }
 
   /// <summary>
@@ -91,7 +91,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
   public void To_Method()
   {
     ((IExpectation<object>) null).To().Should().BeNull();
-    Expectation.To().Should().NotBeNull().And.BeSameAs(Expectation);
+    Expectation.To().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -101,7 +101,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
   public void And_Method()
   {
     ((IExpectation<object>) null).And().Should().BeNull();
-    Expectation.And().Should().NotBeNull().And.BeSameAs(Expectation);
+    Expectation.And().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -111,7 +111,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
   public void Be_Method()
   {
     ((IExpectation<object>) null).Be().Should().BeNull();
-    Expectation.Be().Should().NotBeNull().And.BeSameAs(Expectation);
+    Expectation.Be().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -121,7 +121,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
   public void Having_Method()
   {
     ((IExpectation<object>) null).Having().Should().BeNull();
-    Expectation.Having().Should().NotBeNull().And.BeSameAs(Expectation);
+    Expectation.Having().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -131,7 +131,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
   public void With_Method()
   {
     ((IExpectation<object>) null).With().Should().BeNull();
-    Expectation.With().Should().NotBeNull().And.BeSameAs(Expectation);
+    Expectation.With().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -141,7 +141,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
   public void Of_Method()
   {
     ((IExpectation<object>) null).Of().Should().BeNull();
-    Expectation.Of().Should().NotBeNull().And.BeSameAs(Expectation);
+    Expectation.Of().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -151,7 +151,7 @@ public sealed class IExpectationExtensionsTest : UnitTest
   public void At_Method()
   {
     ((IExpectation<object>) null).At().Should().BeNull();
-    Expectation.At().Should().NotBeNull().And.BeSameAs(Expectation);
+    Expectation.At().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
   }
 
   /// <summary>
@@ -161,6 +161,6 @@ public sealed class IExpectationExtensionsTest : UnitTest
   public void On_Method()
   {
     ((IExpectation<object>) null).On().Should().BeNull();
-    Expectation.On().Should().NotBeNull().And.BeSameAs(Expectation);
+    Expectation.On().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
   }
 }

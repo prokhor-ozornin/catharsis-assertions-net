@@ -30,11 +30,11 @@ public sealed class XmlDocumentAssertionsTest : UnitTest
       var parent = document.AppendChild(document.CreateElement("parent"));
       var child = parent.AppendChild(document.CreateElement("child"));
 
-      Assert.To.Element(document, parent.Name).Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.Element(document, parent.Name, parent.NamespaceURI).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Element(document, parent.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Element(document, parent.Name, parent.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
 
-      Assert.To.Element(document, child.Name).Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.Element(document, child.Name, child.NamespaceURI).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Element(document, child.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Element(document, child.Name, child.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     });
   }
 }

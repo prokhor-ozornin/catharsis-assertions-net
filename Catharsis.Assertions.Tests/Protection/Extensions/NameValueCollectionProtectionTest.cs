@@ -21,6 +21,6 @@ public sealed class NameValueCollectionProtectionsTest : UnitTest
     AssertionExtensions.Should(() => Protect.From.Empty((NameValueCollection) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
     new NameValueCollection().With(collection => AssertionExtensions.Should(() => AssertionExtensions.Should(() => Protect.From.Empty(collection, "error")).ThrowExactly<ArgumentException>().WithMessage("error")));
-    new NameValueCollection().With(collection => Protect.From.Empty(collection.AddRange(("name", "value"))).Should().NotBeNull().And.BeSameAs(collection));
+    new NameValueCollection().With(collection => Protect.From.Empty(collection.AddRange(("name", "value"))).Should().BeOfType<NameValueCollection>().And.BeSameAs(collection));
   }
 }

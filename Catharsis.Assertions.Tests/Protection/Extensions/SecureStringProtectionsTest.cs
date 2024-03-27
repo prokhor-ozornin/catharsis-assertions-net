@@ -26,7 +26,7 @@ public sealed class SecureStringProtectionsTest : UnitTest
       AssertionExtensions.Should(() => SecureStringProtections.Empty(null, secure)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
       secure.AppendChar(char.MinValue);
-      Protect.From.Empty(secure).Should().NotBeNull().And.BeSameAs(secure);
+      Protect.From.Empty(secure).Should().BeOfType<SecureString>().And.BeSameAs(secure);
     }); 
   }
 }

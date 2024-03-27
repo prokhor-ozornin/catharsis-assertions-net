@@ -23,7 +23,7 @@ public sealed class XAttributeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Name(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
     AssertionExtensions.Should(() => Assert.To.Name(Attribute, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Name(Attribute, Attribute.Name).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Name(Attribute, Attribute.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -37,6 +37,6 @@ public sealed class XAttributeAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Value(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
     AssertionExtensions.Should(() => Assert.To.Name(Attribute, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Name(Attribute, Attribute.Name).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Name(Attribute, Attribute.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 }

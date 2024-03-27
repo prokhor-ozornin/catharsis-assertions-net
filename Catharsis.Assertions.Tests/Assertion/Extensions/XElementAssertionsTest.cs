@@ -29,8 +29,8 @@ public sealed class XElementAssertionsTest : UnitTest
     {
       element.SetAttributeValue("encoding", "utf-8");
 
-      Assert.To.Attribute(element, "encoding").Should().NotBeNull().And.BeSameAs(Assert.To);
-      Assert.To.Attribute(element, "encoding", "utf-8").Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Attribute(element, "encoding", "utf-8").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Attribute(element, "encoding", Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     });
   }

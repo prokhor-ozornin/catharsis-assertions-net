@@ -25,7 +25,7 @@ public sealed class TextWriterAssertionsTest : UnitTest
     Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
     {
       AssertionExtensions.Should(() => Assert.To.Format(writer, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Format(writer, writer.FormatProvider).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Format(writer, writer.FormatProvider).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     });
   }
 

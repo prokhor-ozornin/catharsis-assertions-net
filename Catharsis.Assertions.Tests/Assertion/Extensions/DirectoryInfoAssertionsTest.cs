@@ -19,7 +19,7 @@ public sealed class DirectoryInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => DirectoryInfoAssertions.Empty(null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => DirectoryInfoAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-    Assert.To.Empty(Attributes.TempDirectory().Directory).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Empty(Attributes.TempDirectory().Directory).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
 
     Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
     {
@@ -45,6 +45,6 @@ public sealed class DirectoryInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.InDirectory(Attributes.TempDirectory().Directory, null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
 
     AssertionExtensions.Should(() => Assert.To.InDirectory(Attributes.TempDirectory().Directory, Attributes.TempDirectory().Directory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.InDirectory(Attributes.TempDirectory().Directory, Attributes.TempDirectory().Directory.Parent).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.InDirectory(Attributes.TempDirectory().Directory, Attributes.TempDirectory().Directory.Parent).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 }

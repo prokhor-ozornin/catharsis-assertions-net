@@ -53,7 +53,7 @@ public sealed class FieldInfoAssertionsTest : UnitTest
 
       void Validate(FieldInfo field)
       {
-        Assert.To.Type(field, field.FieldType).Should().NotBeNull().And.BeSameAs(Assert.To);
+        Assert.To.Type(field, field.FieldType).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
         AssertionExtensions.Should(() => Assert.To.Type(field, GetType(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     }
@@ -72,7 +72,7 @@ public sealed class FieldInfoAssertionsTest : UnitTest
 
       void Validate(FieldInfo field)
       {
-        Assert.To.Type<string>(field).Should().NotBeNull().And.BeSameAs(Assert.To);
+        Assert.To.Type<string>(field).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
         AssertionExtensions.Should(() => Assert.To.Type<object>(field, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     }
@@ -87,12 +87,12 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => FieldInfoAssertions.Private(null, Field)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Private((FieldInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
 
-    Assert.To.Private(PrivateFieldInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Private(PrivateFieldInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Private(ProtectedFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Private(PublicFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Private(InternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Private(ProtectedInternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Private(StaticFieldInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Private(StaticFieldInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -105,7 +105,7 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Protected((FieldInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
 
     AssertionExtensions.Should(() => Assert.To.Protected(PrivateFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Protected(ProtectedFieldInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Protected(ProtectedFieldInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Protected(PublicFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Protected(InternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Protected(ProtectedInternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
@@ -123,7 +123,7 @@ public sealed class FieldInfoAssertionsTest : UnitTest
 
     AssertionExtensions.Should(() => Assert.To.Public(PrivateFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Public(ProtectedFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Public(PublicFieldInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Public(PublicFieldInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Public(InternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Public(ProtectedInternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Public(StaticFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
@@ -141,7 +141,7 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Internal(PrivateFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Internal(ProtectedFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Internal(PublicFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Internal(InternalFieldInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Internal(InternalFieldInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Internal(ProtectedInternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Internal(StaticFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
@@ -159,7 +159,7 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.ProtectedInternal(ProtectedFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.ProtectedInternal(PublicFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.ProtectedInternal(InternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.ProtectedInternal(ProtectedInternalFieldInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.ProtectedInternal(ProtectedInternalFieldInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.ProtectedInternal(StaticFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
@@ -177,7 +177,7 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Static(PublicFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Static(InternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Static(ProtectedInternalFieldInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Static(StaticFieldInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Static(StaticFieldInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
@@ -204,7 +204,7 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     static void Validate(FieldInfo field, object instance)
     {
       AssertionExtensions.Should(() => Assert.To.Value(field, instance, new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Value(field, instance, field.GetValue(instance)).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Value(field, instance, field.GetValue(instance)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
   }
 }

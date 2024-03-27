@@ -28,7 +28,7 @@ public sealed class HttpContentAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
     Content.Headers.Add("header", ((string) null).ToSequence());
-    Assert.To.ContainHeader(Content, "header").Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.ContainHeader(Content, "header").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>

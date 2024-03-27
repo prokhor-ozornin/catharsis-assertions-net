@@ -22,7 +22,7 @@ public sealed class XDocumentAssertionsTest : UnitTest
     AssertionExtensions.Should(() => XDocumentAssertions.Empty(null, Document)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => XDocumentAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("document");
 
-    Assert.To.Empty(Document).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Empty(Document).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     
     Document.With(document =>
     {
@@ -40,7 +40,7 @@ public sealed class XDocumentAssertionsTest : UnitTest
     AssertionExtensions.Should(() => XDocumentAssertions.Name(null, Document, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => XDocumentAssertions.Name(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("document");
 
-    Assert.To.Name(Document, null).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Name(Document, null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
 
     Document.With(document =>
     {
@@ -48,7 +48,7 @@ public sealed class XDocumentAssertionsTest : UnitTest
       document.Add(new XElement(name));
 
       AssertionExtensions.Should(() => Assert.To.Name(document, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Name(document, name).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Name(document, name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     });
   }
 }

@@ -25,7 +25,7 @@ public sealed class StreamReaderAssertionsTest : UnitTest
     Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
     {
       AssertionExtensions.Should(() => Assert.To.Encoding(reader, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Encoding(reader, reader.CurrentEncoding).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.Encoding(reader, reader.CurrentEncoding).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     });
   }
 
@@ -38,13 +38,13 @@ public sealed class StreamReaderAssertionsTest : UnitTest
     AssertionExtensions.Should(() => StreamReaderAssertions.End(null, Reader)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.End((StreamReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
     
-    Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To));
+    Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
 
     Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
     {
       AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       reader.ReadToEnd();
-      Assert.To.End(reader).Should().NotBeNull().And.BeSameAs(Assert.To);
+      Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     });
   }
 

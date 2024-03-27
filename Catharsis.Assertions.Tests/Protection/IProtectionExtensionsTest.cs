@@ -16,7 +16,7 @@ public sealed class IProtectionExtensionsTest : UnitTest
   public void And_Method()
   {
     ((IProtection) null).And().Should().BeNull();
-    Protect.From.And().Should().NotBeNull().And.BeSameAs(Protect.From);
+    Protect.From.And().Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
   }
 
   /// <summary>
@@ -26,7 +26,7 @@ public sealed class IProtectionExtensionsTest : UnitTest
   public void Being_Method()
   {
     ((IProtection) null).Being().Should().BeNull();
-    Protect.From.Being().Should().NotBeNull().And.BeSameAs(Protect.From);
+    Protect.From.Being().Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
   }
 
   /// <summary>
@@ -36,6 +36,6 @@ public sealed class IProtectionExtensionsTest : UnitTest
   public void Having_Method()
   {
     ((IProtection) null).Having().Should().BeNull();
-    Protect.From.Having().Should().NotBeNull().And.BeSameAs(Protect.From);
+    Protect.From.Having().Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
   }
 }

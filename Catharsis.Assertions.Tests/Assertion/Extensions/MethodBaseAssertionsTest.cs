@@ -38,7 +38,7 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => MethodBaseAssertions.Abstract(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => MethodBaseAssertions.Abstract(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-    Assert.To.Abstract(PublicAbstractMethodInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Abstract(PublicAbstractMethodInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Abstract(PublicFinalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Abstract(PublicMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Abstract(PrivateMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
@@ -60,9 +60,9 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Static(PublicAbstractMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Static(PublicFinalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Static(PublicMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Static(PrivateMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
-    AssertionExtensions.Should(() => Assert.To.Static(ProtectedVirtualMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
-    Assert.To.Static(PublicStaticMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Static(PrivateMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+    AssertionExtensions.Should(() => Assert.To.Static(ProtectedVirtualMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+    Assert.To.Static(PublicStaticMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Static(InternalVirtualMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Static(ProtectedInternalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
@@ -77,7 +77,7 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Final(null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
     AssertionExtensions.Should(() => Assert.To.Final(PublicAbstractMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Final(PublicFinalMethodInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Final(PublicFinalMethodInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Final(PublicMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Final(PrivateMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Final(ProtectedVirtualMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
@@ -95,13 +95,13 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => MethodBaseAssertions.Virtual(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Virtual(null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-    Assert.To.Virtual(PublicAbstractMethodInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
-    Assert.To.Virtual(PublicFinalMethodInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Virtual(PublicAbstractMethodInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    Assert.To.Virtual(PublicFinalMethodInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Virtual(PublicMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Virtual(PrivateMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error"); 
-    Assert.To.Virtual(ProtectedVirtualMethodInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Virtual(ProtectedVirtualMethodInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Virtual(PublicStaticMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Virtual(InternalVirtualMethodInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Virtual(InternalVirtualMethodInfo).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Virtual(ProtectedInternalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
@@ -114,13 +114,13 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => MethodBaseAssertions.Overridable(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Overridable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-    Assert.To.Overridable(PublicAbstractMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Overridable(PublicAbstractMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Overridable(PublicFinalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Overridable(PublicMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Overridable(PrivateMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Overridable(ProtectedVirtualMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Overridable(ProtectedVirtualMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Overridable(PublicStaticMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Overridable(InternalVirtualMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Overridable(InternalVirtualMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Overridable(ProtectedInternalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
@@ -136,7 +136,7 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Private(PublicAbstractMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Private(PublicFinalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Private(PublicMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Private(PrivateMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Private(PrivateMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Private(ProtectedVirtualMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Private(PublicStaticMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Private(InternalVirtualMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
@@ -155,8 +155,8 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Protected(PublicAbstractMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Protected(PublicFinalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Protected(PublicMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Protected(PrivateMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
-    Assert.To.Protected(ProtectedVirtualMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Protected(PrivateMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+    Assert.To.Protected(ProtectedVirtualMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Protected(PublicStaticMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Protected(InternalVirtualMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Protected(ProtectedInternalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
@@ -171,12 +171,12 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => MethodBaseAssertions.Public(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => MethodBaseAssertions.Public(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-    Assert.To.Public(PublicAbstractMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
-    Assert.To.Public(PublicFinalMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
-    Assert.To.Public(PublicMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Public(PrivateMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
-    AssertionExtensions.Should(() => Assert.To.Public(ProtectedVirtualMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
-    Assert.To.Public(PublicStaticMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Public(PublicAbstractMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    Assert.To.Public(PublicFinalMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    Assert.To.Public(PublicMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    AssertionExtensions.Should(() => Assert.To.Public(PrivateMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+    AssertionExtensions.Should(() => Assert.To.Public(ProtectedVirtualMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+    Assert.To.Public(PublicStaticMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Public(InternalVirtualMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Public(ProtectedInternalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
@@ -193,10 +193,10 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.Internal(PublicAbstractMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Internal(PublicFinalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.Internal(PublicMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Internal(PrivateMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
-    AssertionExtensions.Should(() => Assert.To.Internal(ProtectedVirtualMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
+    AssertionExtensions.Should(() => Assert.To.Internal(PrivateMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+    AssertionExtensions.Should(() => Assert.To.Internal(ProtectedVirtualMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
     AssertionExtensions.Should(() => Assert.To.Internal(PublicStaticMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Internal(InternalVirtualMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.Internal(InternalVirtualMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     AssertionExtensions.Should(() => Assert.To.Internal(ProtectedInternalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 
@@ -212,11 +212,11 @@ public class MethodBaseAssertionsTest : UnitTest
     AssertionExtensions.Should(() => Assert.To.ProtectedInternal(PublicAbstractMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.ProtectedInternal(PublicFinalMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.ProtectedInternal(PublicMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.ProtectedInternal(PrivateMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
-    AssertionExtensions.Should(() => Assert.To.ProtectedInternal(ProtectedVirtualMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To));
+    AssertionExtensions.Should(() => Assert.To.ProtectedInternal(PrivateMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+    AssertionExtensions.Should(() => Assert.To.ProtectedInternal(ProtectedVirtualMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
     AssertionExtensions.Should(() => Assert.To.ProtectedInternal(PublicStaticMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     AssertionExtensions.Should(() => Assert.To.ProtectedInternal(InternalVirtualMethodInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.ProtectedInternal(ProtectedInternalMethodInfo, "error").Should().NotBeNull().And.BeSameAs(Assert.To);
+    Assert.To.ProtectedInternal(ProtectedInternalMethodInfo, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
   }
 
   /// <summary>
