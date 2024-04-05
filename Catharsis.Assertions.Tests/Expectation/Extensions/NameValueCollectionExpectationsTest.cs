@@ -35,6 +35,6 @@ public sealed class NameValueCollectionExpectationsTest : UnitTest
     AssertionExtensions.Should(() => ((NameValueCollection) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
     new NameValueCollection().Expect().Empty().Result.Should().BeTrue();
-    new NameValueCollection().With(collection => collection.AddRange(("name", "value")).Expect().Empty().Result.Should().BeFalse());
+    new NameValueCollection().With(collection => collection.With(("name", "value")).Expect().Empty().Result.Should().BeFalse());
   }
 }

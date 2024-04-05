@@ -17,10 +17,10 @@ public sealed class NameValueCollectionProtectionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => NameValueCollectionProtections.Empty(null, new NameValueCollection())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    AssertionExtensions.Should(() => NameValueCollectionProtections.Empty(null, [])).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
     AssertionExtensions.Should(() => Protect.From.Empty((NameValueCollection) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
     new NameValueCollection().With(collection => AssertionExtensions.Should(() => AssertionExtensions.Should(() => Protect.From.Empty(collection, "error")).ThrowExactly<ArgumentException>().WithMessage("error")));
-    new NameValueCollection().With(collection => Protect.From.Empty(collection.AddRange(("name", "value"))).Should().BeOfType<NameValueCollection>().And.BeSameAs(collection));
+    new NameValueCollection().With(collection => Protect.From.Empty(collection.With(("name", "value"))).Should().BeOfType<NameValueCollection>().And.BeSameAs(collection));
   }
 }

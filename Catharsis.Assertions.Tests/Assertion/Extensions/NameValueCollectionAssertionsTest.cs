@@ -17,7 +17,7 @@ public sealed class NameValueCollectionAssertionsTest : UnitTest
   [Fact]
   public void Count_Method()
   {
-    AssertionExtensions.Should(() => NameValueCollectionAssertions.Count(null, new NameValueCollection(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => NameValueCollectionAssertions.Count(null, [], default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Count(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
     AssertionExtensions.Should(() => new NameValueCollection().With(collection => Assert.To.Count(collection, int.MinValue, "error"))).ThrowExactly<InvalidOperationException>().WithMessage("error");
@@ -31,10 +31,10 @@ public sealed class NameValueCollectionAssertionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => NameValueCollectionAssertions.Empty(null, new NameValueCollection())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    AssertionExtensions.Should(() => NameValueCollectionAssertions.Empty(null, [])).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     AssertionExtensions.Should(() => Assert.To.Empty((NameValueCollection) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
     Assert.To.Empty(new NameValueCollection()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Empty(new NameValueCollection().AddRange(("name", "value")), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    AssertionExtensions.Should(() => Assert.To.Empty(new NameValueCollection().With(("name", "value")), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
   }
 }

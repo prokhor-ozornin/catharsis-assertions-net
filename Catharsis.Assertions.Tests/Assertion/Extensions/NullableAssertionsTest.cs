@@ -10,7 +10,7 @@ namespace Catharsis.Assertions.Tests;
 public sealed class NullableAssertionsTest : UnitTest
 {
   /// <summary>
-  ///   <para>Performs testing of <see cref="NullableAssertions.HasValue{T}(IAssertion, T?, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="NullableAssertions.HasValue{T}(IAssertion, Nullable{T}, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void HasValue_Method()
@@ -22,7 +22,7 @@ public sealed class NullableAssertionsTest : UnitTest
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="NullableAssertions.Value{T}(IAssertion, T?, T, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="NullableAssertions.Value{T}(IAssertion, Nullable{T}, T, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Value_Method()
