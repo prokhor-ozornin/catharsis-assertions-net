@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -17,13 +18,23 @@ public sealed class RegexExpectationsTest : UnitTest
   [Fact]
   public void Matches_Method()
   {
-    AssertionExtensions.Should(() => RegexExpectations.Match(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Regex) null).Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => string.Empty.ToRegex().Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => RegexExpectations.Match(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Regex) null).Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => string.Empty.ToRegex().Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-    string.Empty.ToRegex().Expect().Match(string.Empty).Expect().Result.Should().BeTrue();
-    "anything".ToRegex().Expect().Match(string.Empty).Result.Should().BeFalse();
-    "[0-9]".ToRegex().Expect().Match(Attributes.Random().Digits(byte.MaxValue)).Result.Should().BeTrue();
-    "[0-9]".ToRegex().Expect().Match(Attributes.Random().Letters(byte.MaxValue)).Result.Should().BeFalse();
+      string.Empty.ToRegex().Expect().Match(string.Empty).Expect().Result.Should().BeTrue();
+      "anything".ToRegex().Expect().Match(string.Empty).Result.Should().BeFalse();
+      "[0-9]".ToRegex().Expect().Match(Attributes.Random().Digits(byte.MaxValue)).Result.Should().BeTrue();
+      "[0-9]".ToRegex().Expect().Match(Attributes.Random().Letters(byte.MaxValue)).Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

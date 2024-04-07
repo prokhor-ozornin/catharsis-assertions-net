@@ -3,6 +3,7 @@ using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -19,6 +20,8 @@ public sealed class XContainerExpectationsTest : UnitTest
   [Fact]
   public void Element_Method()
   {
+    using (new AssertionScope())
+    {
     AssertionExtensions.Should(() => XContainerExpectations.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
     AssertionExtensions.Should(() => ((XContainer) null).Expect().Element("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
     AssertionExtensions.Should(() => Container.Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
@@ -34,6 +37,14 @@ public sealed class XContainerExpectationsTest : UnitTest
       container.Expect().Element("parent").Result.Should().BeTrue();
       container.Expect().Element("child").Result.Should().BeFalse();
     });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -42,15 +53,25 @@ public sealed class XContainerExpectationsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => XContainerExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((XContainer) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-    Container.Expect().Empty().Result.Should().BeTrue();
-
-    Container.With(container =>
+    using (new AssertionScope())
     {
-      container.Add(new XElement("root"));
-      container.Expect().Empty().Result.Should().BeFalse();
-    });
+      AssertionExtensions.Should(() => XContainerExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((XContainer) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      Container.Expect().Empty().Result.Should().BeTrue();
+
+      Container.With(container =>
+      {
+        container.Add(new XElement("root"));
+        container.Expect().Empty().Result.Should().BeFalse();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

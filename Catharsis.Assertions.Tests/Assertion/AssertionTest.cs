@@ -2,6 +2,7 @@
 using Xunit;
 using FluentAssertions;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -26,17 +27,27 @@ public sealed class AssertionTest : UnitTest
   [Fact]
   public void Valid_Method()
   {
-    new Assertion(true).With(assertion =>
+    using (new AssertionScope())
     {
-      assertion.Valid(true).Should().BeTrue();
-      assertion.Valid(false).Should().BeFalse();
-    });
+      new Assertion(true).With(assertion =>
+      {
+        assertion.Valid(true).Should().BeTrue();
+        assertion.Valid(false).Should().BeFalse();
+      });
 
-    new Assertion(false).With(assertion =>
+      new Assertion(false).With(assertion =>
+      {
+        assertion.Valid(true).Should().BeFalse();
+        assertion.Valid(false).Should().BeTrue();
+      });
+    }
+
+    return;
+
+    static void Validate()
     {
-      assertion.Valid(true).Should().BeFalse();
-      assertion.Valid(false).Should().BeTrue();
-    });
+
+    }
   }
 
   /// <summary>
@@ -45,16 +56,26 @@ public sealed class AssertionTest : UnitTest
   [Fact]
   public void Invalid_Method()
   {
-    new Assertion(true).With(assertion =>
+    using (new AssertionScope())
     {
-      assertion.Invalid(true).Should().BeFalse();
-      assertion.Invalid(false).Should().BeTrue();
-    });
+      new Assertion(true).With(assertion =>
+      {
+        assertion.Invalid(true).Should().BeFalse();
+        assertion.Invalid(false).Should().BeTrue();
+      });
 
-    new Assertion(false).With(assertion =>
+      new Assertion(false).With(assertion =>
+      {
+        assertion.Invalid(true).Should().BeTrue();
+        assertion.Invalid(false).Should().BeFalse();
+      });
+    }
+
+    return;
+
+    static void Validate()
     {
-      assertion.Invalid(true).Should().BeTrue();
-      assertion.Invalid(false).Should().BeFalse();
-    });
+
+    }
   }
 }

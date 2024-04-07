@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -17,16 +18,26 @@ public sealed class SecureStringProtectionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => Protect.From.Empty((SecureString) null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
-
-    new SecureString().TryFinallyDispose(secure => AssertionExtensions.Should(() => Protect.From.Empty(secure, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-    
-    new SecureString().TryFinallyDispose(secure =>
+    using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => SecureStringProtections.Empty(null, secure)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.Empty((SecureString) null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-      secure.AppendChar(char.MinValue);
-      Protect.From.Empty(secure).Should().BeOfType<SecureString>().And.BeSameAs(secure);
-    }); 
+      new SecureString().TryFinallyDispose(secure => AssertionExtensions.Should(() => Protect.From.Empty(secure, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+      
+      new SecureString().TryFinallyDispose(secure =>
+      {
+        AssertionExtensions.Should(() => SecureStringProtections.Empty(null, secure)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+
+        secure.AppendChar(char.MinValue);
+        Protect.From.Empty(secure).Should().BeOfType<SecureString>().And.BeSameAs(secure);
+      }); 
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

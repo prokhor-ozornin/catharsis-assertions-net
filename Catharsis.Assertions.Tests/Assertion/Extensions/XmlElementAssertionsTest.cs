@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -19,23 +20,33 @@ public sealed class XmlElementAssertionsTest : UnitTest
   [Fact]
   public void Attribute_Method()
   {
-    AssertionExtensions.Should(() => XmlElementAssertions.Attribute(null, Element, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Attribute(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("element");
-    AssertionExtensions.Should(() => Assert.To.Attribute(Element, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
-
-    AssertionExtensions.Should(() => Assert.To.Attribute(Element, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-    Element.With(element =>
+    using (new AssertionScope())
     {
-      element.SetAttribute("encoding", null);
-      Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => XmlElementAssertions.Attribute(null, Element, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Attribute(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("element");
+      AssertionExtensions.Should(() => Assert.To.Attribute(Element, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      element.SetAttribute("encoding", "utf-8");
-      Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Attribute(Element, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-      AssertionExtensions.Should(() => Assert.To.Attribute(element, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    });
+      Element.With(element =>
+      {
+        element.SetAttribute("encoding", null);
+        Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+        element.SetAttribute("encoding", "utf-8");
+        Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+        AssertionExtensions.Should(() => Assert.To.Attribute(element, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

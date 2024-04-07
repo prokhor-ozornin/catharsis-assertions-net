@@ -3,6 +3,7 @@ using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -17,10 +18,20 @@ public sealed class NameValueCollectionProtectionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => NameValueCollectionProtections.Empty(null, [])).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((NameValueCollection) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => NameValueCollectionProtections.Empty(null, [])).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.Empty((NameValueCollection) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-    new NameValueCollection().With(collection => AssertionExtensions.Should(() => AssertionExtensions.Should(() => Protect.From.Empty(collection, "error")).ThrowExactly<ArgumentException>().WithMessage("error")));
-    new NameValueCollection().With(collection => Protect.From.Empty(collection.With(("name", "value"))).Should().BeOfType<NameValueCollection>().And.BeSameAs(collection));
+      new NameValueCollection().With(collection => AssertionExtensions.Should(() => AssertionExtensions.Should(() => Protect.From.Empty(collection, "error")).ThrowExactly<ArgumentException>().WithMessage("error")));
+      new NameValueCollection().With(collection => Protect.From.Empty(collection.With(("name", "value"))).Should().BeOfType<NameValueCollection>().And.BeSameAs(collection));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

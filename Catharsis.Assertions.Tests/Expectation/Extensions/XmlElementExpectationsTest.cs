@@ -3,6 +3,7 @@ using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -19,23 +20,33 @@ public sealed class XmlElementExpectationsTest : UnitTest
   [Fact]
   public void Attribute_Method()
   {
-    AssertionExtensions.Should(() => XmlElementExpectations.Attribute(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((XmlElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Element.Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
-
-    Element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
-
-    Element.With(element =>
+    using (new AssertionScope())
     {
-      element.SetAttribute("encoding", null);
-      element.Expect().Attribute("encoding").Result.Should().BeTrue();
-      element.Expect().Attribute("encoding", element.NamespaceURI).Result.Should().BeTrue();
+      AssertionExtensions.Should(() => XmlElementExpectations.Attribute(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((XmlElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => Element.Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      element.SetAttribute("encoding", "utf-8");
-      element.Expect().Attribute("encoding").Result.Should().BeTrue();
-      element.Expect().Attribute("encoding", element.NamespaceURI).Result.Should().BeTrue();
+      Element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
 
-      element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
-    });
+      Element.With(element =>
+      {
+        element.SetAttribute("encoding", null);
+        element.Expect().Attribute("encoding").Result.Should().BeTrue();
+        element.Expect().Attribute("encoding", element.NamespaceURI).Result.Should().BeTrue();
+
+        element.SetAttribute("encoding", "utf-8");
+        element.Expect().Attribute("encoding").Result.Should().BeTrue();
+        element.Expect().Attribute("encoding", element.NamespaceURI).Result.Should().BeTrue();
+
+        element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -15,12 +16,22 @@ public sealed class RangeAssertionsTest : UnitTest
   [Fact]
   public void StartIndex_Method()
   {
-    AssertionExtensions.Should(() => RangeAssertions.StartIndex(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => RangeAssertions.StartIndex(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    AssertionExtensions.Should(() => Assert.To.StartIndex(..0, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.StartIndex(..0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.StartIndex(.., 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.StartIndex(^0..0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.StartIndex(..0, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.StartIndex(..0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.StartIndex(.., 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.StartIndex(^0..0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -29,11 +40,21 @@ public sealed class RangeAssertionsTest : UnitTest
   [Fact]
   public void EndIndex_Method()
   {
-    AssertionExtensions.Should(() => RangeAssertions.EndIndex(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => RangeAssertions.EndIndex(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    AssertionExtensions.Should(() => Assert.To.EndIndex(..0, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.EndIndex(..0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.EndIndex(.., 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.EndIndex(..^int.MaxValue, int.MaxValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.EndIndex(..0, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.EndIndex(..0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.EndIndex(.., 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.EndIndex(..^int.MaxValue, int.MaxValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

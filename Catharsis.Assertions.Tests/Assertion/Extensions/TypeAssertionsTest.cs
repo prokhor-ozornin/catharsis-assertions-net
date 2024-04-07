@@ -18,23 +18,34 @@ public sealed class TypeAssertionsTest : UnitTest
   [Fact]
   public void Abstract_Method()
   {
-    AssertionExtensions.Should(() => TypeAssertions.Abstract(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => TypeAssertions.Abstract(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
-
-    AssertionExtensions.Should(() => Assert.To.Abstract(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Abstract(typeof(Stream)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
+    using (new AssertionScope())
     {
-      if (type.IsAbstract)
+      AssertionExtensions.Should(() => TypeAssertions.Abstract(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TypeAssertions.Abstract(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
+
+      AssertionExtensions.Should(() => Assert.To.Abstract(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Abstract(typeof(Stream)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
       {
-        Assert.To.Abstract(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      }
-      else
-      {
-        AssertionExtensions.Should(() => Assert.To.Abstract(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      }
-    });
+        if (type.IsAbstract)
+        {
+          Assert.To.Abstract(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Abstract(type, "error")).ThrowExactly<InvalidOperationException>()
+            .WithMessage("error");
+        }
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -43,23 +54,33 @@ public sealed class TypeAssertionsTest : UnitTest
   [Fact]
   public void Sealed_Method()
   {
-    AssertionExtensions.Should(() => TypeAssertions.Sealed(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Sealed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
-
-    AssertionExtensions.Should(() => Assert.To.Sealed(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Sealed(typeof(FileInfo)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
+    using (new AssertionScope())
     {
-      if (type.IsSealed)
+      AssertionExtensions.Should(() => TypeAssertions.Sealed(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Sealed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
+
+      AssertionExtensions.Should(() => Assert.To.Sealed(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Sealed(typeof(FileInfo)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
       {
-        Assert.To.Sealed(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      }
-      else
-      {
-        AssertionExtensions.Should(() => Assert.To.Sealed(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      }
-    });
+        if (type.IsSealed)
+        {
+          Assert.To.Sealed(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Sealed(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -68,23 +89,33 @@ public sealed class TypeAssertionsTest : UnitTest
   [Fact]
   public void Static_Method()
   {
-    AssertionExtensions.Should(() => TypeAssertions.Static(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => TypeAssertions.Static(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
-
-    AssertionExtensions.Should(() => Assert.To.Static(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Static(typeof(Enumerable)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
+    using (new AssertionScope())
     {
-      if (type.IsAbstract && type.IsSealed)
+      AssertionExtensions.Should(() => TypeAssertions.Static(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TypeAssertions.Static(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
+
+      AssertionExtensions.Should(() => Assert.To.Static(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Static(typeof(Enumerable)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
       {
-        Assert.To.Static(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      }
-      else
-      {
-        AssertionExtensions.Should(() => Assert.To.Static(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      }
-    });
+        if (type.IsAbstract && type.IsSealed)
+        {
+          Assert.To.Static(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Static(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -93,23 +124,33 @@ public sealed class TypeAssertionsTest : UnitTest
   [Fact]
   public void Public_Method()
   {
-    AssertionExtensions.Should(() => TypeAssertions.Public(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => TypeAssertions.Public(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
-
-    Assert.To.Public(typeof(object)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Public(typeof(Assertion), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
+    using (new AssertionScope())
     {
-      if (type.IsPublic && type.IsVisible)
+      AssertionExtensions.Should(() => TypeAssertions.Public(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TypeAssertions.Public(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
+
+      Assert.To.Public(typeof(object)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Public(typeof(Assertion), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
       {
-        Assert.To.Public(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      }
-      else
-      {
-        AssertionExtensions.Should(() => Assert.To.Public(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      }
-    });
+        if (type.IsPublic && type.IsVisible)
+        {
+          Assert.To.Public(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Public(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -118,23 +159,33 @@ public sealed class TypeAssertionsTest : UnitTest
   [Fact]
   public void Internal_Method()
   {
-    AssertionExtensions.Should(() => TypeAssertions.Internal(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Internal((Type) null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
-
-    AssertionExtensions.Should(() => Assert.To.Internal(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Internal(typeof(Assertion)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
+    using (new AssertionScope())
     {
-      if (type.IsNotPublic && !type.IsVisible)
+      AssertionExtensions.Should(() => TypeAssertions.Internal(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Internal((Type) null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
+
+      AssertionExtensions.Should(() => Assert.To.Internal(typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Internal(typeof(Assertion)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
       {
-        Assert.To.Internal(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      }
-      else
-      {
-        AssertionExtensions.Should(() => Assert.To.Internal(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      }
-    });
+        if (type.IsNotPublic && !type.IsVisible)
+        {
+          Assert.To.Internal(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Internal(type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -159,6 +210,11 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Subclass(typeof(string), typeof(IEnumerable<char>), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Assert.To.Subclass(type, typeof(object)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -172,6 +228,11 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Subclass<IEnumerable<char>>(typeof(string), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Assert.To.Subclass<object>(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -201,6 +262,11 @@ public sealed class TypeAssertionsTest : UnitTest
         Assert.To.AssignableFrom(type, type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
         Assert.To.AssignableFrom(typeof(object), type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       });
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -212,6 +278,11 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.AssignableFrom<object>(typeof(string), "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To)).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.AssignableFrom<string>(typeof(object)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       Assert.To.AssignableFrom<string>(typeof(IEnumerable<char>)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -241,6 +312,11 @@ public sealed class TypeAssertionsTest : UnitTest
         Assert.To.AssignableTo(type, type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
         Assert.To.AssignableTo(type, typeof(object)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       });
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -257,6 +333,11 @@ public sealed class TypeAssertionsTest : UnitTest
       {
         Assert.To.AssignableTo<object>(type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       });
+
+      static void Validate()
+      {
+
+      }
     }
   }
 }

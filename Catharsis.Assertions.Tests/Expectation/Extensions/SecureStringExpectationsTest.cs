@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -26,12 +27,22 @@ public sealed class SecureStringExpectationsTest : UnitTest
   [Fact]
   public void Length_Method()
   {
-    AssertionExtensions.Should(() => SecureStringExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((SecureString) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => SecureStringExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((SecureString) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    RandomSecureString.Expect().Length(int.MinValue).Result.Should().BeFalse();
-    RandomSecureString.Expect().Length(int.MaxValue).Result.Should().BeFalse();
-    RandomSecureString.Expect().Length(RandomSecureString.Length).Result.Should().BeTrue();
+      RandomSecureString.Expect().Length(int.MinValue).Result.Should().BeFalse();
+      RandomSecureString.Expect().Length(int.MaxValue).Result.Should().BeFalse();
+      RandomSecureString.Expect().Length(RandomSecureString.Length).Result.Should().BeTrue();
+    }
+
+    return;
+
+    static void Validate()
+    {
+      
+    }
   }
 
   /// <summary>
@@ -40,11 +51,21 @@ public sealed class SecureStringExpectationsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => SecureStringExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((SecureString) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => SecureStringExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((SecureString) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    EmptySecureString.Expect().Empty().Result.Should().BeTrue();
-    RandomSecureString.Expect().Empty().Result.Should().BeFalse();
+      EmptySecureString.Expect().Empty().Result.Should().BeTrue();
+      RandomSecureString.Expect().Empty().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -53,11 +74,21 @@ public sealed class SecureStringExpectationsTest : UnitTest
   [Fact]
   public void ReadOnly_Method()
   {
-    AssertionExtensions.Should(() => SecureStringExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((SecureString) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => SecureStringExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((SecureString) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    RandomSecureString.Expect().ReadOnly().Result.Should().BeFalse();
-    RandomSecureString.AsReadOnly().Expect().ReadOnly().Result.Should().BeTrue();
+      RandomSecureString.Expect().ReadOnly().Result.Should().BeFalse();
+      RandomSecureString.AsReadOnly().Expect().ReadOnly().Result.Should().BeTrue();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>

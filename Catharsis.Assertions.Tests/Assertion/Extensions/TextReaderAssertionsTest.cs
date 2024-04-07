@@ -1,6 +1,7 @@
 ﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -18,24 +19,34 @@ public sealed class TextReaderAssertionsTest : UnitTest
   [Fact]
   public void End_Method()
   {
-    AssertionExtensions.Should(() => TextReaderAssertions.End(null, Reader)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => TextReaderAssertions.End(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
-
-    Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
-    Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
+    using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      reader.ReadToEnd();
-      Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    });
+      AssertionExtensions.Should(() => TextReaderAssertions.End(null, Reader)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TextReaderAssertions.End(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-    new StringReader(string.Empty).TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
-    new StringReader(Attributes.RandomString()).TryFinallyDispose(reader =>
+      Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+      Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
+      {
+        AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        reader.ReadToEnd();
+        Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      });
+
+      new StringReader(string.Empty).TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
+      new StringReader(Attributes.RandomString()).TryFinallyDispose(reader =>
+      {
+        AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        reader.ReadToEnd();
+        Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      });
+    }
+
+    return;
+
+    static void Validate()
     {
-      AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      reader.ReadToEnd();
-      Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    });
+
+    }
   }
 
   public override void Dispose()

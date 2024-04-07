@@ -1,6 +1,7 @@
 ﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -13,6 +14,9 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
   private FileInfo RandomFakeFile { get; }
   private DirectoryInfo RandomFakeDirectory { get; }
 
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   public FileSystemInfoAssertionsTest()
   {
     RandomFakeFile = Attributes.Random().FilePath().ToFile();
@@ -25,14 +29,24 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
   [Fact]
   public void Exist_Method()
   {
-    AssertionExtensions.Should(() => FileSystemInfoAssertions.Exist(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => FileSystemInfoAssertions.Exist(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-    Assert.To.Exist(Attributes.TempFile().File).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeFile, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Exist(Attributes.TempFile().File).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeFile, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-    Assert.To.Exist(Attributes.TempDirectory().Directory).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeDirectory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Exist(Attributes.TempDirectory().Directory).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeDirectory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -41,24 +55,34 @@ public sealed class FileSystemInfoAssertionsTest : UnitTest
   [Fact]
   public void Attribute_Method()
   {
-    AssertionExtensions.Should(() => FileSystemInfoAssertions.Attribute(null, Attributes.TempFile().File, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Attribute(null, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
-
-    Attributes.TempFile().File.With(file =>
+    using (new AssertionScope())
     {
-      Enum.GetValues<FileAttributes>().ForEach(attribute =>
-      {
-        if ((file.Attributes & attribute) == attribute)
-        {
-          Assert.To.Attribute(file, attribute).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        }
-        else
-        {
-          AssertionExtensions.Should(() => Assert.To.Attribute(file, attribute, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-        }
-      });
+      AssertionExtensions.Should(() => FileSystemInfoAssertions.Attribute(null, Attributes.TempFile().File, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Attribute(null, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-      Assert.To.Attribute(file.AsReadOnly(), FileAttributes.ReadOnly).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    });
+      Attributes.TempFile().File.With(file =>
+      {
+        Enum.GetValues<FileAttributes>().ForEach(attribute =>
+        {
+          if ((file.Attributes & attribute) == attribute)
+          {
+            Assert.To.Attribute(file, attribute).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Attribute(file, attribute, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        });
+
+        Assert.To.Attribute(file.AsReadOnly(), FileAttributes.ReadOnly).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

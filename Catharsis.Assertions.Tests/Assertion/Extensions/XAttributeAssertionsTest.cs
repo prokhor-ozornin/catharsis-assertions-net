@@ -1,6 +1,8 @@
-﻿using System.Xml.Linq;
+﻿using System.Diagnostics;
+using System.Xml.Linq;
 using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -18,12 +20,22 @@ public sealed class XAttributeAssertionsTest : UnitTest
   [Fact]
   public void Name_Method()
   {
-    AssertionExtensions.Should(() => XAttributeAssertions.Name(null, Attribute, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => XAttributeAssertions.Name(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
-    AssertionExtensions.Should(() => Assert.To.Name(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => XAttributeAssertions.Name(null, Attribute, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => XAttributeAssertions.Name(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
+      AssertionExtensions.Should(() => Assert.To.Name(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    AssertionExtensions.Should(() => Assert.To.Name(Attribute, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Name(Attribute, Attribute.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Name(Attribute, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Name(Attribute, Attribute.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -32,11 +44,21 @@ public sealed class XAttributeAssertionsTest : UnitTest
   [Fact]
   public void Value_Method()
   {
-    AssertionExtensions.Should(() => XAttributeAssertions.Value(null, Attribute, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => XAttributeAssertions.Value(Assert.To, null, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
-    AssertionExtensions.Should(() => Assert.To.Value(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => XAttributeAssertions.Value(null, Attribute, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => XAttributeAssertions.Value(Assert.To, null, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
+      AssertionExtensions.Should(() => Assert.To.Value(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-    AssertionExtensions.Should(() => Assert.To.Name(Attribute, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Name(Attribute, Attribute.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Name(Attribute, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Name(Attribute, Attribute.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

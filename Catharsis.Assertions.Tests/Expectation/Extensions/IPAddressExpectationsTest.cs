@@ -3,6 +3,7 @@ using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -17,14 +18,24 @@ public sealed class IPAddressExpectationsTest : UnitTest
   [Fact]
   public void Ip4_Method()
   {
-    AssertionExtensions.Should(() => IPAddressExpectations.Ip4(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IPAddress) null).Expect().Ip4()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => IPAddressExpectations.Ip4(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((IPAddress) null).Expect().Ip4()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    new[] { IPAddress.Any, IPAddress.Broadcast, IPAddress.Loopback, IPAddress.None }.ForEach(address => address.Expect().Ip4().Result.Should().BeTrue());
-    new[] { IPAddress.IPv6Any, IPAddress.IPv6Loopback, IPAddress.IPv6None }.ForEach(address => address.Expect().Ip4().Result.Should().BeFalse());
-    
-    Attributes.Random().IpAddress().Expect().Ip4().Result.Should().BeTrue();
-    Attributes.Random().IpV6Address().Expect().Ip4().Result.Should().BeFalse();
+      new[] { IPAddress.Any, IPAddress.Broadcast, IPAddress.Loopback, IPAddress.None }.ForEach(address => address.Expect().Ip4().Result.Should().BeTrue());
+      new[] { IPAddress.IPv6Any, IPAddress.IPv6Loopback, IPAddress.IPv6None }.ForEach(address => address.Expect().Ip4().Result.Should().BeFalse());
+      
+      Attributes.Random().IpAddress().Expect().Ip4().Result.Should().BeTrue();
+      Attributes.Random().IpV6Address().Expect().Ip4().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -33,13 +44,23 @@ public sealed class IPAddressExpectationsTest : UnitTest
   [Fact]
   public void Ip6_Method()
   {
-    AssertionExtensions.Should(() => IPAddressExpectations.Ip6(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IPAddress) null).Expect().Ip6()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => IPAddressExpectations.Ip6(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((IPAddress) null).Expect().Ip6()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    new[] { IPAddress.IPv6Any, IPAddress.IPv6Loopback, IPAddress.IPv6None }.ForEach(address => address.Expect().Ip6().Result.Should().BeTrue());
-    new[] { IPAddress.Any, IPAddress.Broadcast, IPAddress.Loopback, IPAddress.None }.ForEach(address => address.Expect().Ip6().Result.Should().BeFalse());
+      new[] { IPAddress.IPv6Any, IPAddress.IPv6Loopback, IPAddress.IPv6None }.ForEach(address => address.Expect().Ip6().Result.Should().BeTrue());
+      new[] { IPAddress.Any, IPAddress.Broadcast, IPAddress.Loopback, IPAddress.None }.ForEach(address => address.Expect().Ip6().Result.Should().BeFalse());
 
-    Attributes.Random().IpV6Address().Expect().Ip6().Result.Should().BeTrue();
-    Attributes.Random().IpAddress().Expect().Ip6().Result.Should().BeFalse();
+      Attributes.Random().IpV6Address().Expect().Ip6().Result.Should().BeTrue();
+      Attributes.Random().IpAddress().Expect().Ip6().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

@@ -3,6 +3,7 @@ using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -17,15 +18,25 @@ public sealed class XDocumentProtectionsTest : UnitTest
   [Fact]
   public void Empty_XDocument_Method()
   {
-    AssertionExtensions.Should(() => XDocumentProtections.Empty(null, new XDocument())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((XDocument) null)).ThrowExactly<ArgumentNullException>().WithParameterName("document");
-
-    AssertionExtensions.Should(() => Protect.From.Empty(new XDocument(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    
-    new XDocument().With(document =>
+    using (new AssertionScope())
     {
-      document.Add(new XElement("root"));
-      Protect.From.Empty(document).Should().BeOfType<XDocument>().And.BeSameAs(document);
-    });
+      AssertionExtensions.Should(() => XDocumentProtections.Empty(null, new XDocument())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.Empty((XDocument) null)).ThrowExactly<ArgumentNullException>().WithParameterName("document");
+
+      AssertionExtensions.Should(() => Protect.From.Empty(new XDocument(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      
+      new XDocument().With(document =>
+      {
+        document.Add(new XElement("root"));
+        Protect.From.Empty(document).Should().BeOfType<XDocument>().And.BeSameAs(document);
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

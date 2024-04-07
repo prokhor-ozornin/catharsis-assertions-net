@@ -18,13 +18,23 @@ public sealed class TypeExpectationsTest : UnitTest
   [Fact]
   public void Abstract_Method()
   {
-    AssertionExtensions.Should(() => TypeExpectations.Abstract(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Type) null).Expect().Abstract()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeExpectations.Abstract(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Type) null).Expect().Abstract()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    typeof(object).Expect().Abstract().Result.Should().BeFalse();
-    typeof(Stream).Expect().Abstract().Result.Should().BeTrue();
+      typeof(object).Expect().Abstract().Result.Should().BeFalse();
+      typeof(Stream).Expect().Abstract().Result.Should().BeTrue();
 
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Abstract().Result.Should().Be(type.IsAbstract));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Abstract().Result.Should().Be(type.IsAbstract));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -33,13 +43,23 @@ public sealed class TypeExpectationsTest : UnitTest
   [Fact]
   public void Sealed_Method()
   {
-    AssertionExtensions.Should(() => TypeExpectations.Sealed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Type) null).Expect().Sealed()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeExpectations.Sealed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Type) null).Expect().Sealed()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    typeof(object).Expect().Sealed().Result.Should().BeFalse();
-    typeof(FileInfo).Expect().Sealed().Result.Should().BeTrue();
+      typeof(object).Expect().Sealed().Result.Should().BeFalse();
+      typeof(FileInfo).Expect().Sealed().Result.Should().BeTrue();
 
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Sealed().Result.Should().Be(type.IsSealed));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Sealed().Result.Should().Be(type.IsSealed));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -48,13 +68,23 @@ public sealed class TypeExpectationsTest : UnitTest
   [Fact]
   public void Static_Method()
   {
-    AssertionExtensions.Should(() => TypeExpectations.Static(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Type) null).Expect().Static()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeExpectations.Static(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Type) null).Expect().Static()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    typeof(object).Expect().Static().Result.Should().BeFalse();
-    typeof(Enumerable).Expect().Static().Result.Should().BeTrue();
+      typeof(object).Expect().Static().Result.Should().BeFalse();
+      typeof(Enumerable).Expect().Static().Result.Should().BeTrue();
 
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Static().Result.Should().Be(type.IsAbstract && type.IsSealed));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Static().Result.Should().Be(type.IsAbstract && type.IsSealed));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -63,13 +93,23 @@ public sealed class TypeExpectationsTest : UnitTest
   [Fact]
   public void Public_Method()
   {
-    AssertionExtensions.Should(() => TypeExpectations.Public(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Type) null).Expect().Public()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeExpectations.Public(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Type) null).Expect().Public()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    typeof(object).Expect().Public().Result.Should().BeTrue();
-    typeof(Assertion).Expect().Public().Result.Should().BeFalse();
+      typeof(object).Expect().Public().Result.Should().BeTrue();
+      typeof(Assertion).Expect().Public().Result.Should().BeFalse();
 
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Public().Result.Should().Be(type.IsPublic && type.IsVisible));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Public().Result.Should().Be(type.IsPublic && type.IsVisible));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -78,13 +118,23 @@ public sealed class TypeExpectationsTest : UnitTest
   [Fact]
   public void Internal_Method()
   {
-    AssertionExtensions.Should(() => TypeExpectations.Internal(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Type) null).Expect().Internal()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => TypeExpectations.Internal(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Type) null).Expect().Internal()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    typeof(object).Expect().Internal().Result.Should().BeFalse();
-    typeof(Assertion).Expect().Internal().Result.Should().BeTrue();
+      typeof(object).Expect().Internal().Result.Should().BeFalse();
+      typeof(Assertion).Expect().Internal().Result.Should().BeTrue();
 
-    Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Internal().Result.Should().Be(type.IsNotPublic && !type.IsVisible));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Internal().Result.Should().Be(type.IsNotPublic && !type.IsVisible));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -108,6 +158,11 @@ public sealed class TypeExpectationsTest : UnitTest
       typeof(string).Expect().Subclass(typeof(IEnumerable<char>)).Result.Should().BeFalse();
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Subclass(typeof(object)).Result.Should().BeTrue());
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -120,6 +175,11 @@ public sealed class TypeExpectationsTest : UnitTest
       typeof(string).Expect().Subclass<IEnumerable<char>>().Result.Should().BeFalse();
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Subclass<object>().Result.Should().BeTrue());
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -148,6 +208,11 @@ public sealed class TypeExpectationsTest : UnitTest
         type.Expect().AssignableFrom(type).Result.Should().BeTrue();
         typeof(object).Expect().AssignableFrom(type).Result.Should().BeTrue();
       });
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -159,6 +224,11 @@ public sealed class TypeExpectationsTest : UnitTest
       typeof(string).Expect().AssignableFrom<object>().Result.Should().BeFalse();
       typeof(object).Expect().AssignableFrom<string>().Result.Should().BeTrue();
       typeof(IEnumerable<char>).Expect().AssignableFrom<string>().Result.Should().BeTrue();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -187,6 +257,11 @@ public sealed class TypeExpectationsTest : UnitTest
         type.Expect().AssignableTo(type).Result.Should().BeTrue();
         type.Expect().AssignableTo(typeof(object)).Result.Should().BeTrue();
       });
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -203,6 +278,11 @@ public sealed class TypeExpectationsTest : UnitTest
       {
         type.Expect().AssignableTo<object>().Result.Should().BeTrue();
       });
+
+      static void Validate()
+      {
+
+      }
     }
   }
 }

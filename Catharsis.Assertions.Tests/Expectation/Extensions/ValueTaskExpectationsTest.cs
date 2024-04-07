@@ -27,6 +27,11 @@ public sealed class ValueTaskExpectationsTest : UnitTest
       ValueTask.CompletedTask.Expect().Successful().Result.Should().BeTrue();
       ValueTask.FromCanceled(new CancellationToken(true)).Expect().Successful().Result.Should().BeFalse();
       ValueTask.FromException(new Exception()).Expect().Successful().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -36,6 +41,11 @@ public sealed class ValueTaskExpectationsTest : UnitTest
       ValueTask.FromResult<object>(null).Expect().Successful().Result.Should().BeTrue();
       ValueTask.FromCanceled<object>(new CancellationToken(true)).Expect().Successful().Result.Should().BeFalse();
       ValueTask.FromException<object>(new Exception()).Expect().Successful().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -56,6 +66,11 @@ public sealed class ValueTaskExpectationsTest : UnitTest
       ValueTask.CompletedTask.Expect().Unsuccessful().Result.Should().BeFalse();
       ValueTask.FromCanceled(new CancellationToken(true)).Expect().Unsuccessful().Result.Should().BeFalse();
       ValueTask.FromException(new Exception()).Expect().Unsuccessful().Result.Should().BeTrue();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -65,6 +80,11 @@ public sealed class ValueTaskExpectationsTest : UnitTest
       ValueTask.FromResult<object>(null).Expect().Unsuccessful().Result.Should().BeFalse();
       ValueTask.FromCanceled<object>(new CancellationToken(true)).Expect().Unsuccessful().Result.Should().BeFalse();
       ValueTask.FromException<object>(new Exception()).Expect().Unsuccessful().Result.Should().BeTrue();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -85,6 +105,11 @@ public sealed class ValueTaskExpectationsTest : UnitTest
       ValueTask.CompletedTask.Expect().Canceled().Result.Should().BeFalse();
       ValueTask.FromCanceled(new CancellationToken(true)).Expect().Canceled().Result.Should().BeTrue();
       ValueTask.FromException(new Exception()).Expect().Canceled().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -94,6 +119,11 @@ public sealed class ValueTaskExpectationsTest : UnitTest
       ValueTask.FromResult<object>(null).Expect().Canceled().Result.Should().BeFalse();
       ValueTask.FromCanceled<object>(new CancellationToken(true)).Expect().Canceled().Result.Should().BeTrue();
       ValueTask.FromException<object>(new Exception()).Expect().Canceled().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -114,6 +144,11 @@ public sealed class ValueTaskExpectationsTest : UnitTest
       ValueTask.CompletedTask.Expect().Completed().Result.Should().BeTrue();
       ValueTask.FromCanceled(new CancellationToken(true)).Expect().Completed().Result.Should().BeTrue();
       ValueTask.FromException(new Exception()).Expect().Completed().Result.Should().BeTrue();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -123,6 +158,11 @@ public sealed class ValueTaskExpectationsTest : UnitTest
       ValueTask.FromResult<object>(null).Expect().Completed().Result.Should().BeTrue();
       ValueTask.FromCanceled<object>(new CancellationToken(true)).Expect().Completed().Result.Should().BeTrue();
       ValueTask.FromException<object>(new Exception()).Expect().Completed().Result.Should().BeTrue();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 }

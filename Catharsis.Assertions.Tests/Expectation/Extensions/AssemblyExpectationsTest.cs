@@ -31,6 +31,11 @@ public sealed class AssemblyExpectationsTest : UnitTest
 
       Assembly.GetAssembly(typeof(object)).Expect().Define(typeof(object)).Result.Should().BeTrue();
       Assembly.GetExecutingAssembly().Expect().Define(typeof(object)).Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -40,6 +45,11 @@ public sealed class AssemblyExpectationsTest : UnitTest
 
       Assembly.GetAssembly(typeof(object)).Expect().Define<object>().Result.Should().BeTrue();
       Assembly.GetExecutingAssembly().Expect().Define<object>().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -49,10 +59,18 @@ public sealed class AssemblyExpectationsTest : UnitTest
   [Fact]
   public void Dynamic_Method()
   {
-    AssertionExtensions.Should(() => AssemblyExpectations.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Assembly) null).Expect().Dynamic()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => AssemblyExpectations.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Assembly) null).Expect().Dynamic()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    Assembly.GetExecutingAssembly().Expect().Dynamic().Result.Should().BeFalse();
-    AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect).Expect().Dynamic().Result.Should().BeTrue();
+      Assembly.GetExecutingAssembly().Expect().Dynamic().Result.Should().BeFalse();
+      AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect).Expect().Dynamic().Result.Should().BeTrue();
+    }
+
+    static void Validate()
+    {
+
+    }
   }
 }

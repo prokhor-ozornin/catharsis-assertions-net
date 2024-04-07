@@ -1,5 +1,6 @@
 ﻿using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -15,10 +16,20 @@ public sealed class BooleanProtectionsTest : UnitTest
   [Fact]
   public void Truth_Method()
   {
-    AssertionExtensions.Should(() => BooleanProtections.Truth(null, true)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => BooleanProtections.Truth(null, true)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-    AssertionExtensions.Should(() => Protect.From.Truth(true, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Protect.From.Truth(false);
+      AssertionExtensions.Should(() => Protect.From.Truth(true, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Protect.From.Truth(false);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -27,9 +38,19 @@ public sealed class BooleanProtectionsTest : UnitTest
   [Fact]
   public void Lie_Method()
   {
-    AssertionExtensions.Should(() => BooleanProtections.Lie(null, false)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => BooleanProtections.Lie(null, false)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-    AssertionExtensions.Should(() => Protect.From.Lie(false, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Protect.From.Lie(true);
+      AssertionExtensions.Should(() => Protect.From.Lie(false, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Protect.From.Lie(true);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

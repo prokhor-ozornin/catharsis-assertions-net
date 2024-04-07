@@ -28,6 +28,11 @@ public sealed class TaskAssertionsTest : UnitTest
       Assert.To.Status(Task.CompletedTask, TaskStatus.RanToCompletion).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Status(Task.FromCanceled(new CancellationToken(true)), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Status(Task.FromException(new Exception()), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -38,6 +43,11 @@ public sealed class TaskAssertionsTest : UnitTest
       Assert.To.Status(Task.FromResult<object>(null), TaskStatus.RanToCompletion).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Status(Task.FromCanceled<object>(new CancellationToken(true)), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Status(Task.FromException<object>(new Exception()), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -59,6 +69,11 @@ public sealed class TaskAssertionsTest : UnitTest
       Assert.To.Successful(Task.CompletedTask).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Successful(Task.FromCanceled(new CancellationToken(true)), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Successful(Task.FromException(new Exception()), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -69,6 +84,11 @@ public sealed class TaskAssertionsTest : UnitTest
       Assert.To.Successful(Task.FromResult<object>(null)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Successful(Task.FromCanceled<object>(new CancellationToken(true)), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Successful(Task.FromException<object>(new Exception()), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -90,6 +110,11 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Unsuccessful(Task.CompletedTask, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Unsuccessful(Task.FromCanceled(new CancellationToken(true)), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Unsuccessful(Task.FromException(new Exception())).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -100,6 +125,11 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Unsuccessful(Task.FromResult<object>(null), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Unsuccessful(Task.FromCanceled<object>(new CancellationToken(true)), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Unsuccessful(Task.FromException<object>(new Exception())).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -121,6 +151,11 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Canceled(Task.CompletedTask, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Canceled(Task.FromCanceled(new CancellationToken(true))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Canceled(Task.FromException(new Exception()), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -131,6 +166,11 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Canceled(Task.FromResult<object>(null), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Canceled(Task.FromCanceled<object>(new CancellationToken(true))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Canceled(Task.FromException<object>(new Exception()), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -152,6 +192,11 @@ public sealed class TaskAssertionsTest : UnitTest
       Assert.To.Completed(Task.CompletedTask).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       Assert.To.Completed(Task.FromCanceled(new CancellationToken(true))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       Assert.To.Completed(Task.FromException(new Exception())).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -162,6 +207,11 @@ public sealed class TaskAssertionsTest : UnitTest
       Assert.To.Completed(Task.FromResult<object>(null)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       Assert.To.Completed(Task.FromCanceled<object>(new CancellationToken(true))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       Assert.To.Completed(Task.FromException<object>(new Exception())).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      static void Validate()
+      {
+
+      }
     }
   }
 }

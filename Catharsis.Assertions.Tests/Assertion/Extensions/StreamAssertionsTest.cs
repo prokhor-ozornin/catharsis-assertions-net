@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -16,12 +17,22 @@ public sealed class StreamAssertionsTest : UnitTest
   [Fact]
   public void Length_Method()
   {
-    AssertionExtensions.Should(() => StreamAssertions.Length(null, Stream.Null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => StreamAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StreamAssertions.Length(null, Stream.Null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => StreamAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-    AssertionExtensions.Should(() => Assert.To.Length(Stream.Null, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Length(Stream.Null, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Length(Stream.Null, Stream.Null.Length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Length(Stream.Null, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Length(Stream.Null, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Length(Stream.Null, Stream.Null.Length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -30,11 +41,21 @@ public sealed class StreamAssertionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => StreamAssertions.Empty(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Empty((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StreamAssertions.Empty(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Empty((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-    Assert.To.Empty(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Empty(Attributes.RandomStream(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Empty(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Empty(Attributes.RandomStream(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -43,12 +64,22 @@ public sealed class StreamAssertionsTest : UnitTest
   [Fact]
   public void Position_Method()
   {
-    AssertionExtensions.Should(() => StreamAssertions.Position(null, Stream.Null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Position(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StreamAssertions.Position(null, Stream.Null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Position(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-    AssertionExtensions.Should(() => Assert.To.Position(Stream.Null, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Position(Stream.Null, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Position(Stream.Null, Stream.Null.Position).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Position(Stream.Null, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Position(Stream.Null, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Position(Stream.Null, Stream.Null.Position).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -57,16 +88,26 @@ public sealed class StreamAssertionsTest : UnitTest
   [Fact]
   public void End_Method()
   {
-    AssertionExtensions.Should(() => StreamAssertions.End(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.End((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
-
-    Assert.To.End(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    
-    Attributes.RandomStream().With(stream =>
+    using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => Assert.To.End(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.End(stream.MoveToEnd()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    });
+      AssertionExtensions.Should(() => StreamAssertions.End(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.End((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+
+      Assert.To.End(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      
+      Attributes.RandomStream().With(stream =>
+      {
+        AssertionExtensions.Should(() => Assert.To.End(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        Assert.To.End(stream.MoveToEnd()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -75,12 +116,22 @@ public sealed class StreamAssertionsTest : UnitTest
   [Fact]
   public void Readable_Method()
   {
-    AssertionExtensions.Should(() => StreamAssertions.Readable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Readable((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StreamAssertions.Readable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Readable((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-    Assert.To.Readable(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Readable(Stream.Null.AsWriteOnly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Readable(Stream.Null.AsWriteOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Readable(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Readable(Stream.Null.AsWriteOnly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Readable(Stream.Null.AsWriteOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -89,12 +140,22 @@ public sealed class StreamAssertionsTest : UnitTest
   [Fact]
   public void Writable_Method()
   {
-    AssertionExtensions.Should(() => StreamAssertions.Writable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Writable((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StreamAssertions.Writable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Writable((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-    Assert.To.Writable(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Writable(Stream.Null.AsReadOnly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Writable(Stream.Null.AsReadOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Writable(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Writable(Stream.Null.AsReadOnly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Writable(Stream.Null.AsReadOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -103,12 +164,22 @@ public sealed class StreamAssertionsTest : UnitTest
   [Fact]
   public void Seekable_Method()
   {
-    AssertionExtensions.Should(() => StreamAssertions.Seekable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Seekable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StreamAssertions.Seekable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Seekable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-    Assert.To.Seekable(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Seekable(Stream.Null.AsReadOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Seekable(Stream.Null.AsWriteOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Seekable(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Seekable(Stream.Null.AsReadOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Seekable(Stream.Null.AsWriteOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -117,12 +188,22 @@ public sealed class StreamAssertionsTest : UnitTest
   [Fact]
   public void ReadOnly_Method()
   {
-    AssertionExtensions.Should(() => StreamAssertions.ReadOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.ReadOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
-    
-    AssertionExtensions.Should(() => Assert.To.ReadOnly(Stream.Null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.ReadOnly(Stream.Null.AsReadOnly()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.ReadOnly(Stream.Null.AsReadOnlyForward()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StreamAssertions.ReadOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.ReadOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+      
+      AssertionExtensions.Should(() => Assert.To.ReadOnly(Stream.Null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.ReadOnly(Stream.Null.AsReadOnly()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.ReadOnly(Stream.Null.AsReadOnlyForward()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -131,11 +212,21 @@ public sealed class StreamAssertionsTest : UnitTest
   [Fact]
   public void WriteOnly_Method()
   {
-    AssertionExtensions.Should(() => StreamAssertions.WriteOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.WriteOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StreamAssertions.WriteOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.WriteOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-    AssertionExtensions.Should(() => Assert.To.WriteOnly(Stream.Null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.WriteOnly(Stream.Null.AsWriteOnly()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.WriteOnly(Stream.Null.AsWriteOnlyForward()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.WriteOnly(Stream.Null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.WriteOnly(Stream.Null.AsWriteOnly()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.WriteOnly(Stream.Null.AsWriteOnlyForward()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

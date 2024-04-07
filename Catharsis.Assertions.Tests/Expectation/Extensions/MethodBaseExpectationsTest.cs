@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -33,17 +34,27 @@ public class MethodBaseExpectationsTest : UnitTest
   [Fact]
   public void Abstract_Method()
   {
-    AssertionExtensions.Should(() => MethodBaseExpectations.Abstract(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((MethodBase) null).Expect().Abstract()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => MethodBaseExpectations.Abstract(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((MethodBase) null).Expect().Abstract()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    PublicAbstractMethodInfo.Expect().Abstract().Result.Should().BeTrue();
-    PublicFinalMethodInfo.Expect().Abstract().Result.Should().BeFalse();
-    PublicMethodInfo.Expect().Abstract().Result.Should().BeFalse();
-    PrivateMethodInfo.Expect().Abstract().Result.Should().BeFalse();
-    ProtectedVirtualMethodInfo.Expect().Abstract().Result.Should().BeFalse();
-    PublicStaticMethodInfo.Expect().Abstract().Result.Should().BeFalse();
-    InternalVirtualMethodInfo.Expect().Abstract().Result.Should().BeFalse();
-    ProtectedInternalMethodInfo.Expect().Abstract().Result.Should().BeFalse();
+      PublicAbstractMethodInfo.Expect().Abstract().Result.Should().BeTrue();
+      PublicFinalMethodInfo.Expect().Abstract().Result.Should().BeFalse();
+      PublicMethodInfo.Expect().Abstract().Result.Should().BeFalse();
+      PrivateMethodInfo.Expect().Abstract().Result.Should().BeFalse();
+      ProtectedVirtualMethodInfo.Expect().Abstract().Result.Should().BeFalse();
+      PublicStaticMethodInfo.Expect().Abstract().Result.Should().BeFalse();
+      InternalVirtualMethodInfo.Expect().Abstract().Result.Should().BeFalse();
+      ProtectedInternalMethodInfo.Expect().Abstract().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -52,17 +63,27 @@ public class MethodBaseExpectationsTest : UnitTest
   [Fact]
   public void Static_Method()
   {
-    AssertionExtensions.Should(() => MethodBaseExpectations.Static(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((MethodBase) null).Expect().Static()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => MethodBaseExpectations.Static(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((MethodBase) null).Expect().Static()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    PublicAbstractMethodInfo.Expect().Static().Result.Should().BeFalse();
-    PublicFinalMethodInfo.Expect().Static().Result.Should().BeFalse();
-    PublicMethodInfo.Expect().Static().Result.Should().BeFalse();
-    PrivateMethodInfo.Expect().Static().Result.Should().BeFalse();
-    ProtectedVirtualMethodInfo.Expect().Static().Result.Should().BeFalse();
-    PublicStaticMethodInfo.Expect().Static().Result.Should().BeTrue();
-    InternalVirtualMethodInfo.Expect().Static().Result.Should().BeFalse();
-    ProtectedInternalMethodInfo.Expect().Static().Result.Should().BeFalse();
+      PublicAbstractMethodInfo.Expect().Static().Result.Should().BeFalse();
+      PublicFinalMethodInfo.Expect().Static().Result.Should().BeFalse();
+      PublicMethodInfo.Expect().Static().Result.Should().BeFalse();
+      PrivateMethodInfo.Expect().Static().Result.Should().BeFalse();
+      ProtectedVirtualMethodInfo.Expect().Static().Result.Should().BeFalse();
+      PublicStaticMethodInfo.Expect().Static().Result.Should().BeTrue();
+      InternalVirtualMethodInfo.Expect().Static().Result.Should().BeFalse();
+      ProtectedInternalMethodInfo.Expect().Static().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -71,17 +92,27 @@ public class MethodBaseExpectationsTest : UnitTest
   [Fact]
   public void Final_Method()
   {
-    AssertionExtensions.Should(() => MethodBaseExpectations.Final(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((MethodBase) null).Expect().Final()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => MethodBaseExpectations.Final(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((MethodBase) null).Expect().Final()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    PublicAbstractMethodInfo.Expect().Final().Result.Should().BeFalse();
-    PublicFinalMethodInfo.Expect().Final().Result.Should().BeTrue();
-    PublicMethodInfo.Expect().Final().Result.Should().BeFalse();
-    PrivateMethodInfo.Expect().Final().Result.Should().BeFalse();
-    ProtectedVirtualMethodInfo.Expect().Final().Result.Should().BeFalse();
-    PublicStaticMethodInfo.Expect().Final().Result.Should().BeFalse();
-    InternalVirtualMethodInfo.Expect().Final().Result.Should().BeFalse();
-    ProtectedInternalMethodInfo.Expect().Final().Result.Should().BeFalse();
+      PublicAbstractMethodInfo.Expect().Final().Result.Should().BeFalse();
+      PublicFinalMethodInfo.Expect().Final().Result.Should().BeTrue();
+      PublicMethodInfo.Expect().Final().Result.Should().BeFalse();
+      PrivateMethodInfo.Expect().Final().Result.Should().BeFalse();
+      ProtectedVirtualMethodInfo.Expect().Final().Result.Should().BeFalse();
+      PublicStaticMethodInfo.Expect().Final().Result.Should().BeFalse();
+      InternalVirtualMethodInfo.Expect().Final().Result.Should().BeFalse();
+      ProtectedInternalMethodInfo.Expect().Final().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -90,17 +121,27 @@ public class MethodBaseExpectationsTest : UnitTest
   [Fact]
   public void Virtual_Method()
   {
-    AssertionExtensions.Should(() => MethodBaseExpectations.Virtual(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((MethodBase) null).Expect().Virtual()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => MethodBaseExpectations.Virtual(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((MethodBase) null).Expect().Virtual()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    PublicAbstractMethodInfo.Expect().Virtual().Result.Should().BeTrue();
-    PublicFinalMethodInfo.Expect().Virtual().Result.Should().BeTrue();
-    PublicMethodInfo.Expect().Virtual().Result.Should().BeFalse();
-    PrivateMethodInfo.Expect().Virtual().Result.Should().BeFalse();
-    ProtectedVirtualMethodInfo.Expect().Virtual().Result.Should().BeTrue();
-    PublicStaticMethodInfo.Expect().Virtual().Result.Should().BeFalse();
-    InternalVirtualMethodInfo.Expect().Virtual().Result.Should().BeTrue();
-    ProtectedInternalMethodInfo.Expect().Virtual().Result.Should().BeFalse();
+      PublicAbstractMethodInfo.Expect().Virtual().Result.Should().BeTrue();
+      PublicFinalMethodInfo.Expect().Virtual().Result.Should().BeTrue();
+      PublicMethodInfo.Expect().Virtual().Result.Should().BeFalse();
+      PrivateMethodInfo.Expect().Virtual().Result.Should().BeFalse();
+      ProtectedVirtualMethodInfo.Expect().Virtual().Result.Should().BeTrue();
+      PublicStaticMethodInfo.Expect().Virtual().Result.Should().BeFalse();
+      InternalVirtualMethodInfo.Expect().Virtual().Result.Should().BeTrue();
+      ProtectedInternalMethodInfo.Expect().Virtual().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>

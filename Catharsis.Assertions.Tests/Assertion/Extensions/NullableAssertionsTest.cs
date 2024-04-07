@@ -1,5 +1,6 @@
 ﻿using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -15,10 +16,20 @@ public sealed class NullableAssertionsTest : UnitTest
   [Fact]
   public void HasValue_Method()
   {
-    AssertionExtensions.Should(() => NullableAssertions.HasValue<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => NullableAssertions.HasValue<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    Assert.To.HasValue((int?) 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.HasValue((int?) null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.HasValue((int?) 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.HasValue((int?) null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -27,20 +38,30 @@ public sealed class NullableAssertionsTest : UnitTest
   [Fact]
   public void Value_Method()
   {
-    AssertionExtensions.Should(() => NullableAssertions.Value(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => NullableAssertions.Value(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-    Assert.To.Value(0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.Value(null, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Value(null, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.Value(null, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Value(0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Value(null, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Value(null, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Value(null, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-    Assert.To.Value(DateTime.MinValue, DateTime.MinValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.Value(DateTime.MaxValue, DateTime.MaxValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.Value(null, DateTime.MinValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Value(null, DateTime.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Value(DateTime.MinValue, DateTime.MinValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Value(DateTime.MaxValue, DateTime.MaxValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Value(null, DateTime.MinValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Value(null, DateTime.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-    Assert.To.Value(Guid.Empty, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    Assert.To.Value(null, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    AssertionExtensions.Should(() => Assert.To.Value(null, Guid.NewGuid(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Value(Guid.Empty, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Assert.To.Value(null, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Value(null, Guid.NewGuid(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

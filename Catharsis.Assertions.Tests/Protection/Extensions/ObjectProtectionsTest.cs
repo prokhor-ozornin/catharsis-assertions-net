@@ -17,12 +17,22 @@ public sealed class ObjectProtectionsTest : UnitTest
   [Fact]
   public void Same_Method()
   {
-    AssertionExtensions.Should(() => ObjectProtections.Same(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ObjectProtections.Same(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-    AssertionExtensions.Should(() => Protect.From.Same<object>(null, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    new object().With(instance => Protect.From.Same(instance, null).Should().BeOfType<object>().And.BeSameAs(instance));
-    Protect.From.Same<object>(null, new object()).Should().BeNull();
-    AssertionExtensions.Should(() => new object().With(instance => Protect.From.Same(instance, instance, "error"))).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Protect.From.Same<object>(null, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      new object().With(instance => Protect.From.Same(instance, null).Should().BeOfType<object>().And.BeSameAs(instance));
+      Protect.From.Same<object>(null, new object()).Should().BeNull();
+      AssertionExtensions.Should(() => new object().With(instance => Protect.From.Same(instance, instance, "error"))).ThrowExactly<ArgumentException>().WithMessage("error");
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -43,6 +53,11 @@ public sealed class ObjectProtectionsTest : UnitTest
 
       AssertionExtensions.Should(() => Protect.From.OfType(new object(), typeof(object), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
       new object().With(instance => Protect.From.OfType(instance, typeof(string)).Should().BeOfType<object>().And.BeSameAs(instance));
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -52,6 +67,11 @@ public sealed class ObjectProtectionsTest : UnitTest
 
       AssertionExtensions.Should(() => Protect.From.OfType<object>(new object(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
       new object().With(instance => Protect.From.OfType<string>(instance).Should().BeOfType<object>().And.BeSameAs(instance));
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -61,15 +81,25 @@ public sealed class ObjectProtectionsTest : UnitTest
   [Fact]
   public void Equality_Method()
   {
-    AssertionExtensions.Should(() => ObjectProtections.Equality(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ObjectProtections.Equality(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-    AssertionExtensions.Should(() => Protect.From.Equality<object>(null, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    new object().With(instance => AssertionExtensions.Should(() => Protect.From.Equality(instance, instance, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-    new object().With(instance => Protect.From.Equality(instance, null).Should().BeOfType<object>().And.BeSameAs(instance));
-    Protect.From.Equality<object>(null, new object()).Should().BeNull();
-    AssertionExtensions.Should(() => Protect.From.Equality(0, 0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    AssertionExtensions.Should(() => Protect.From.Equality(DateTime.Today, DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Guid.NewGuid().With(guid => Protect.From.Equality(guid, Guid.NewGuid()).Should().Be(guid));
+      AssertionExtensions.Should(() => Protect.From.Equality<object>(null, null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      new object().With(instance => AssertionExtensions.Should(() => Protect.From.Equality(instance, instance, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+      new object().With(instance => Protect.From.Equality(instance, null).Should().BeOfType<object>().And.BeSameAs(instance));
+      Protect.From.Equality<object>(null, new object()).Should().BeNull();
+      AssertionExtensions.Should(() => Protect.From.Equality(0, 0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      AssertionExtensions.Should(() => Protect.From.Equality(DateTime.Today, DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Guid.NewGuid().With(guid => Protect.From.Equality(guid, Guid.NewGuid()).Should().Be(guid));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -78,19 +108,29 @@ public sealed class ObjectProtectionsTest : UnitTest
   [Fact]
   public void Default_Method()
   {
-    AssertionExtensions.Should(() => ObjectProtections.Default(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ObjectProtections.Default(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-    AssertionExtensions.Should(() => Protect.From.Default<object>(null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    new object().With(instance => Protect.From.Default(instance).Should().BeOfType<object>().And.BeSameAs(instance));
+      AssertionExtensions.Should(() => Protect.From.Default<object>(null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      new object().With(instance => Protect.From.Default(instance).Should().BeOfType<object>().And.BeSameAs(instance));
 
-    AssertionExtensions.Should(() => Protect.From.Default(0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Protect.From.Default(int.MinValue).Should().Be(int.MinValue);
+      AssertionExtensions.Should(() => Protect.From.Default(0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Protect.From.Default(int.MinValue).Should().Be(int.MinValue);
 
-    AssertionExtensions.Should(() => Protect.From.Default(DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Protect.From.Default(DateTime.Today).Should().Be(DateTime.Today);
+      AssertionExtensions.Should(() => Protect.From.Default(DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Protect.From.Default(DateTime.Today).Should().Be(DateTime.Today);
 
-    AssertionExtensions.Should(() => Protect.From.Default(Guid.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Guid.NewGuid().With(guid => Protect.From.Default(guid).Should().Be(guid));
+      AssertionExtensions.Should(() => Protect.From.Default(Guid.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Guid.NewGuid().With(guid => Protect.From.Default(guid).Should().Be(guid));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -99,10 +139,20 @@ public sealed class ObjectProtectionsTest : UnitTest
   [Fact]
   public void Null_Method()
   {
-    AssertionExtensions.Should(() => ObjectProtections.Null(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ObjectProtections.Null(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-    AssertionExtensions.Should(() => Protect.From.Null((object) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
-    new object().With(instance => Protect.From.Null(instance).Should().BeOfType<object>().And.BeSameAs(instance));
+      AssertionExtensions.Should(() => Protect.From.Null((object) null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+      new object().With(instance => Protect.From.Null(instance).Should().BeOfType<object>().And.BeSameAs(instance));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -124,6 +174,11 @@ public sealed class ObjectProtectionsTest : UnitTest
 
       Attributes.EmptySequence().With(sequence => Protect.From.AnyOf(string.Empty, sequence).Should().BeOfType<string>().And.BeSameAs(string.Empty));
       Attributes.RandomSequence().With(sequence => Protect.From.AnyOf(string.Empty, sequence).Should().BeOfType<string>().And.BeSameAs(string.Empty));
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -135,6 +190,11 @@ public sealed class ObjectProtectionsTest : UnitTest
 
       Attributes.EmptySequence().With(sequence => Protect.From.AnyOf(string.Empty, sequence.AsArray()).Should().BeOfType<string>().And.BeSameAs(string.Empty));
       Attributes.RandomSequence().With(sequence => Protect.From.AnyOf(string.Empty, sequence.AsArray()).Should().BeOfType<string>().And.BeSameAs(string.Empty));
+
+      static void Validate()
+      {
+
+      }
     }
   }
 }

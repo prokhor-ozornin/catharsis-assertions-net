@@ -3,6 +3,7 @@ using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -19,18 +20,28 @@ public sealed class XElementExpectationsTest : UnitTest
   [Fact]
   public void Attribute_Method()
   {
-    AssertionExtensions.Should(() => XElementExpectations.Attribute(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((XElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Element.Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
-
-    Element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
-
-    Element.With(element =>
+    using (new AssertionScope())
     {
-      element.SetAttributeValue("encoding", "utf-8");
-      element.Expect().Attribute("encoding").Result.Should().BeTrue();
-      element.Expect().Attribute("encoding", "utf-8").Result.Should().BeTrue();
-      element.Expect().Attribute("encoding", Attributes.RandomString()).Result.Should().BeFalse();
-    });
+      AssertionExtensions.Should(() => XElementExpectations.Attribute(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((XElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => Element.Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+
+      Element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
+
+      Element.With(element =>
+      {
+        element.SetAttributeValue("encoding", "utf-8");
+        element.Expect().Attribute("encoding").Result.Should().BeTrue();
+        element.Expect().Attribute("encoding", "utf-8").Result.Should().BeTrue();
+        element.Expect().Attribute("encoding", Attributes.RandomString()).Result.Should().BeFalse();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

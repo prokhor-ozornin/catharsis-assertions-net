@@ -28,6 +28,11 @@ public sealed class TaskProtectionsTest : UnitTest
 
       AssertionExtensions.Should(() => Protect.From.Status(Task.CompletedTask, TaskStatus.RanToCompletion, "error")).ThrowExactlyAsync<ArgumentException>().WithMessage("error").Await();
       Task.CompletedTask.With(task => Protect.From.Status(task, TaskStatus.Canceled).Should().BeOfType<Task>().And.BeSameAs(task));
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -37,6 +42,11 @@ public sealed class TaskProtectionsTest : UnitTest
 
       AssertionExtensions.Should(() => Protect.From.Status(Task.FromResult<object>(null), TaskStatus.RanToCompletion, "error")).ThrowExactlyAsync<ArgumentException>().WithMessage("error").Await();
       Task.FromResult<object>(null).With(task => Protect.From.Status(task, TaskStatus.Canceled).Should().BeOfType<Task<object>>().And.BeSameAs(task));
+
+      static void Validate()
+      {
+
+      }
     }
   }
 }

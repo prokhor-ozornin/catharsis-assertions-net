@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -16,10 +17,20 @@ public sealed class ICollectionsProtectionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => ICollectionProtections.Empty(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((ICollection<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ICollectionProtections.Empty(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.Empty((ICollection<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-    AssertionExtensions.Should(() => Protect.From.Empty(Array.Empty<object>(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-    Attributes.RandomSequence().ToArray().With(collection => Protect.From.Empty(collection).Should().BeOfType<object[]>().And.BeSameAs(collection));
+      AssertionExtensions.Should(() => Protect.From.Empty(Array.Empty<object>(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Attributes.RandomSequence().ToArray().With(collection => Protect.From.Empty(collection).Should().BeOfType<object[]>().And.BeSameAs(collection));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

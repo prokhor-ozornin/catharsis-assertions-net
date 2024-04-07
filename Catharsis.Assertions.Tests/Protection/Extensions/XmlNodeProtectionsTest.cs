@@ -3,6 +3,7 @@ using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -17,17 +18,27 @@ public sealed class XmlNodeProtectionsTest : UnitTest
   [Fact]
   public void Empty_XmlNode_Method()
   {
-    AssertionExtensions.Should(() => XmlNodeProtections.Empty(null, new XmlDocument().CreateElement("element"))).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((XmlNode) null)).ThrowExactly<ArgumentNullException>().WithParameterName("node");
-
-    var document = new XmlDocument();
-
-    AssertionExtensions.Should(() => Protect.From.Empty(document.CreateElement("root"), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-
-    document.CreateElement("root").With(node =>
+    using (new AssertionScope())
     {
-      node.AppendChild(document.CreateElement("element"));
-      Protect.From.Empty(node).Should().BeOfType<XmlElement>().And.BeSameAs(node);
-    });
+      AssertionExtensions.Should(() => XmlNodeProtections.Empty(null, new XmlDocument().CreateElement("element"))).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.Empty((XmlNode) null)).ThrowExactly<ArgumentNullException>().WithParameterName("node");
+
+      var document = new XmlDocument();
+
+      AssertionExtensions.Should(() => Protect.From.Empty(document.CreateElement("root"), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+
+      document.CreateElement("root").With(node =>
+      {
+        node.AppendChild(document.CreateElement("element"));
+        Protect.From.Empty(node).Should().BeOfType<XmlElement>().And.BeSameAs(node);
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

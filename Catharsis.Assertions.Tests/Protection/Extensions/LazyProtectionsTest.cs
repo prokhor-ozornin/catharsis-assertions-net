@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -16,10 +17,20 @@ public sealed class LazyProtectionsTest : UnitTest
   [Fact]
   public void Null_Method()
   {
-    AssertionExtensions.Should(() => ObjectProtections.Null(null, new Lazy<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ObjectProtections.Null(null, new Lazy<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-    AssertionExtensions.Should(() => Protect.From.Null(new Lazy<object>((object) null), "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
-    AssertionExtensions.Should(() => Protect.From.Null(new Lazy<object>(), "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
-    new Lazy<object>(new object()).With(lazy => Protect.From.Null(lazy).Should().BeOfType<Lazy<object>>().And.BeSameAs(lazy));
+      AssertionExtensions.Should(() => Protect.From.Null(new Lazy<object>((object) null), "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+      AssertionExtensions.Should(() => Protect.From.Null(new Lazy<object>(), "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+      new Lazy<object>(new object()).With(lazy => Protect.From.Null(lazy).Should().BeOfType<Lazy<object>>().And.BeSameAs(lazy));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

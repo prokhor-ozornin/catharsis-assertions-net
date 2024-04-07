@@ -1,5 +1,6 @@
 ﻿using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -17,17 +18,27 @@ public sealed class HttpContentExpectationsTest : UnitTest
   [Fact]
   public void ContainHeader_Method()
   {
-    AssertionExtensions.Should(() => HttpContentExpectations.ContainHeader(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((HttpContent) null).Expect().ContainHeader("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Content.Expect().ContainHeader(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => HttpContentExpectations.ContainHeader(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((HttpContent) null).Expect().ContainHeader("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => Content.Expect().ContainHeader(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    Content.Expect().ContainHeader("header").Result.Should().BeFalse();
+      Content.Expect().ContainHeader("header").Result.Should().BeFalse();
 
-    Content.Headers.Add("header", Enumerable.Empty<string>());
-    Content.Expect().ContainHeader("header").Result.Should().BeFalse();
+      Content.Headers.Add("header", Enumerable.Empty<string>());
+      Content.Expect().ContainHeader("header").Result.Should().BeFalse();
 
-    Content.Headers.Add("header", new string[] { null });
-    Content.Expect().ContainHeader("header").Result.Should().BeTrue();
+      Content.Headers.Add("header", new string[] { null });
+      Content.Expect().ContainHeader("header").Result.Should().BeTrue();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>

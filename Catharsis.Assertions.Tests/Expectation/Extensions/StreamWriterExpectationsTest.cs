@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -17,13 +18,23 @@ public sealed class StreamWriterExpectationsTest : UnitTest
   [Fact]
   public void Encoding_Method()
   {
-    AssertionExtensions.Should(() => StreamWriterExpectations.Encoding(null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((StreamWriter) null).Expect().Encoding(Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-    Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
+    using (new AssertionScope())
     {
-      writer.Expect().Encoding(null).Result.Should().BeFalse();
-      writer.Expect().Encoding(writer.Encoding).Result.Should().BeTrue();
-    });
+      AssertionExtensions.Should(() => StreamWriterExpectations.Encoding(null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((StreamWriter) null).Expect().Encoding(Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
+      {
+        writer.Expect().Encoding(null).Result.Should().BeFalse();
+        writer.Expect().Encoding(writer.Encoding).Result.Should().BeTrue();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

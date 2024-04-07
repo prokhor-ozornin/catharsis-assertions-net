@@ -2,6 +2,7 @@
 using System.Globalization;
 using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -17,13 +18,23 @@ public sealed class TextWriterExpectationsTest : UnitTest
   [Fact]
   public void Format_Method()
   {
-    AssertionExtensions.Should(() => TextWriterExpectations.Format(null, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((TextWriter) null).Expect().Format(CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    
-    Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
+    using (new AssertionScope())
     {
-      writer.Expect().Format(null).Result.Should().BeFalse();
-      writer.Expect().Format(writer.FormatProvider).Result.Should().BeTrue();
-    });
+      AssertionExtensions.Should(() => TextWriterExpectations.Format(null, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((TextWriter) null).Expect().Format(CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      
+      Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
+      {
+        writer.Expect().Format(null).Result.Should().BeFalse();
+        writer.Expect().Format(writer.FormatProvider).Result.Should().BeTrue();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

@@ -1,6 +1,7 @@
 ﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -16,22 +17,32 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => DirectoryInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-    Attributes.TempDirectory().Directory.Expect().Empty().Result.Should().BeTrue();
-    
-    Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
+    using (new AssertionScope())
     {
-      Attributes.Random().File(directory);
-      directory.Expect().Empty().Result.Should().BeFalse();
-    });
+      AssertionExtensions.Should(() => DirectoryInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
+      Attributes.TempDirectory().Directory.Expect().Empty().Result.Should().BeTrue();
+      
+      Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
+      {
+        Attributes.Random().File(directory);
+        directory.Expect().Empty().Result.Should().BeFalse();
+      });
+
+      Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
+      {
+        Attributes.Random().Directory(directory);
+        directory.Expect().Empty().Result.Should().BeFalse();
+      });
+    }
+
+    return;
+
+    static void Validate()
     {
-      Attributes.Random().Directory(directory);
-      directory.Expect().Empty().Result.Should().BeFalse();
-    });
+
+    }
   }
 
   /// <summary>
@@ -40,11 +51,21 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
   [Fact]
   public void InDirectory_Method()
   {
-    AssertionExtensions.Should(() => DirectoryInfoExpectations.InDirectory(null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().InDirectory(Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Attributes.TempDirectory().Directory.Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DirectoryInfoExpectations.InDirectory(null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().InDirectory(Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => Attributes.TempDirectory().Directory.Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
 
-    Attributes.TempDirectory().Directory.Expect().InDirectory(Attributes.TempDirectory().Directory).Result.Should().BeFalse();
-    Attributes.TempDirectory().Directory.Expect().InDirectory(Attributes.TempDirectory().Directory.Parent).Result.Should().BeTrue();
+      Attributes.TempDirectory().Directory.Expect().InDirectory(Attributes.TempDirectory().Directory).Result.Should().BeFalse();
+      Attributes.TempDirectory().Directory.Expect().InDirectory(Attributes.TempDirectory().Directory.Parent).Result.Should().BeTrue();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

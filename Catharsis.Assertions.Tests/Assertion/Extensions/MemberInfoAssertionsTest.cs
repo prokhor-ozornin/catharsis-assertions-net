@@ -38,6 +38,11 @@ public sealed class MemberInfoAssertionsTest : UnitTest
       Assert.To.Attribute(Member, typeof(DescriptionAttribute)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Attribute(Member, typeof(ObsoleteAttribute), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Attribute(Member, typeof(object))).ThrowExactly<ArgumentException>();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -48,6 +53,11 @@ public sealed class MemberInfoAssertionsTest : UnitTest
       Assert.To.Attribute<Attribute>(Member).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       Assert.To.Attribute< DescriptionAttribute>(Member).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       AssertionExtensions.Should(() => Assert.To.Attribute<ObsoleteAttribute>(Member, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -57,10 +67,20 @@ public sealed class MemberInfoAssertionsTest : UnitTest
   [Fact]
   public void Type_Method()
   {
-    AssertionExtensions.Should(() => MemberInfoAssertions.Type(null, Member, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => MemberInfoAssertions.Type(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => MemberInfoAssertions.Type(null, Member, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => MemberInfoAssertions.Type(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
 
-    AssertionExtensions.Should(() => Assert.To.Type(Member, MemberTypes.All, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Type(Member, Member.MemberType).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Type(Member, MemberTypes.All, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Type(Member, Member.MemberType).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

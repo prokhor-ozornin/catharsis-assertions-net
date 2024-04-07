@@ -1,6 +1,7 @@
 ﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -16,10 +17,20 @@ public sealed class StreamReaderProtectionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    Stream.Null.ToStreamReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => StreamReaderProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
-    AssertionExtensions.Should(() => Protect.From.Empty((StreamReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
+    using (new AssertionScope())
+    {
+      Stream.Null.ToStreamReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => StreamReaderProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
+      AssertionExtensions.Should(() => Protect.From.Empty((StreamReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-    Stream.Null.ToStreamReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => Protect.From.Empty(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-    Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader => Protect.From.Empty(reader).Should().BeOfType<StreamReader>().And.BeSameAs(reader));
+      Stream.Null.ToStreamReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => Protect.From.Empty(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+      Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader => Protect.From.Empty(reader).Should().BeOfType<StreamReader>().And.BeSameAs(reader));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

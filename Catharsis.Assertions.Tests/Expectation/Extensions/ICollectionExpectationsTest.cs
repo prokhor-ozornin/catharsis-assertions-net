@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -16,12 +17,22 @@ public sealed class ICollectionExpectationsTest : UnitTest
   [Fact]
   public void Count_Method()
   {
-    AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    Attributes.RandomSequence().ToArray().Expect().Count(int.MinValue).Result.Should().BeFalse();
-    Attributes.RandomSequence().ToArray().Expect().Count(int.MaxValue).Result.Should().BeFalse();
-    Attributes.RandomSequence().ToArray().With(collection => collection.Expect().Count(collection.Length).Result.Should().BeTrue());
+      Attributes.RandomSequence().ToArray().Expect().Count(int.MinValue).Result.Should().BeFalse();
+      Attributes.RandomSequence().ToArray().Expect().Count(int.MaxValue).Result.Should().BeFalse();
+      Attributes.RandomSequence().ToArray().With(collection => collection.Expect().Count(collection.Length).Result.Should().BeTrue());
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -30,11 +41,21 @@ public sealed class ICollectionExpectationsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    Attributes.EmptySequence().ToArray().Expect().Empty().Result.Should().BeTrue();
-    Attributes.RandomSequence().ToArray().Expect().Empty().Result.Should().BeFalse();
+      Attributes.EmptySequence().ToArray().Expect().Empty().Result.Should().BeTrue();
+      Attributes.RandomSequence().ToArray().Expect().Empty().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -43,10 +64,20 @@ public sealed class ICollectionExpectationsTest : UnitTest
   [Fact]
   public void ReadOnly_Method()
   {
-    AssertionExtensions.Should(() => ICollectionExpectations.ReadOnly<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => ICollectionExpectations.ReadOnly<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    Attributes.RandomSequence().ToArray().Expect().ReadOnly().Result.Should().BeTrue();
-    Attributes.RandomSequence().ToList().Expect().ReadOnly().Result.Should().BeFalse();
+      Attributes.RandomSequence().ToArray().Expect().ReadOnly().Result.Should().BeTrue();
+      Attributes.RandomSequence().ToList().Expect().ReadOnly().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

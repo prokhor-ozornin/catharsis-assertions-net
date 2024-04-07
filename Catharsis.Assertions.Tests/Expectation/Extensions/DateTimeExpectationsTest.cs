@@ -239,13 +239,23 @@ public sealed class DateTimeExpectationsTest : UnitTest
   [Fact]
   public void DayOfWeek_Method()
   {
-    AssertionExtensions.Should(() => DateTimeExpectations.DayOfWeek(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-
-    DateTime.MinValue.With(date =>
+    using (new AssertionScope())
     {
-      date.Expect().DayOfWeek(date.DayOfWeek).Result.Should().BeTrue();
-      date.Expect().DayOfWeek(date.DayOfWeek + 1).Result.Should().BeFalse();
-    });
+      AssertionExtensions.Should(() => DateTimeExpectations.DayOfWeek(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+
+      DateTime.MinValue.With(date =>
+      {
+        date.Expect().DayOfWeek(date.DayOfWeek).Result.Should().BeTrue();
+        date.Expect().DayOfWeek(date.DayOfWeek + 1).Result.Should().BeFalse();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -254,12 +264,22 @@ public sealed class DateTimeExpectationsTest : UnitTest
   [Fact]
   public void LocalTime_Method()
   {
-    AssertionExtensions.Should(() => DateTimeExpectations.LocalTime(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeExpectations.LocalTime(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-    DateTime.MinValue.Expect().LocalTime().Result.Should().BeFalse();
-    DateTime.MaxValue.Expect().LocalTime().Result.Should().BeFalse();
-    DateTime.Now.Expect().LocalTime().Result.Should().BeTrue();
-    DateTime.UtcNow.Expect().LocalTime().Result.Should().BeFalse();
+      DateTime.MinValue.Expect().LocalTime().Result.Should().BeFalse();
+      DateTime.MaxValue.Expect().LocalTime().Result.Should().BeFalse();
+      DateTime.Now.Expect().LocalTime().Result.Should().BeTrue();
+      DateTime.UtcNow.Expect().LocalTime().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -268,11 +288,21 @@ public sealed class DateTimeExpectationsTest : UnitTest
   [Fact]
   public void UtcTime_Method()
   {
-    AssertionExtensions.Should(() => DateTimeExpectations.UtcTime(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => DateTimeExpectations.UtcTime(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-    DateTime.MinValue.Expect().UtcTime().Result.Should().BeFalse();
-    DateTime.MaxValue.Expect().UtcTime().Result.Should().BeFalse();
-    DateTime.Now.Expect().UtcTime().Result.Should().BeFalse();
-    DateTime.UtcNow.Expect().UtcTime().Result.Should().BeTrue();
+      DateTime.MinValue.Expect().UtcTime().Result.Should().BeFalse();
+      DateTime.MaxValue.Expect().UtcTime().Result.Should().BeFalse();
+      DateTime.Now.Expect().UtcTime().Result.Should().BeFalse();
+      DateTime.UtcNow.Expect().UtcTime().Result.Should().BeTrue();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

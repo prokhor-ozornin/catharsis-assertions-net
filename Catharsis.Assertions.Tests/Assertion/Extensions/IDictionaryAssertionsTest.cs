@@ -1,6 +1,7 @@
 ﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -18,16 +19,26 @@ public sealed class IDictionaryAssertionsTest : UnitTest
   [Fact]
   public void ContainKey_Method()
   {
-    AssertionExtensions.Should(() => IDictionaryAssertions.ContainKey(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.ContainKey<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
-
-    AssertionExtensions.Should(() => Assert.To.ContainKey(Dictionary, Guid.NewGuid(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-    Dictionary.With(dictionary =>
+    using (new AssertionScope())
     {
-      dictionary.Add(Guid.Empty, new object());
-      Assert.To.ContainKey(Dictionary, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    });
+      AssertionExtensions.Should(() => IDictionaryAssertions.ContainKey(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.ContainKey<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
+
+      AssertionExtensions.Should(() => Assert.To.ContainKey(Dictionary, Guid.NewGuid(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      Dictionary.With(dictionary =>
+      {
+        dictionary.Add(Guid.Empty, new object());
+        Assert.To.ContainKey(Dictionary, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -36,15 +47,25 @@ public sealed class IDictionaryAssertionsTest : UnitTest
   [Fact]
   public void ContainValue_Method()
   {
-    AssertionExtensions.Should(() => IDictionaryAssertions.ContainValue(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.ContainValue<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
-
-    AssertionExtensions.Should(() => Assert.To.ContainValue(Dictionary, null, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-    Dictionary.With(dictionary =>
+    using (new AssertionScope())
     {
-      dictionary.Add(Guid.NewGuid(), null);
-      Assert.To.ContainValue(Dictionary, null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    });
+      AssertionExtensions.Should(() => IDictionaryAssertions.ContainValue(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.ContainValue<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
+
+      AssertionExtensions.Should(() => Assert.To.ContainValue(Dictionary, null, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      Dictionary.With(dictionary =>
+      {
+        dictionary.Add(Guid.NewGuid(), null);
+        Assert.To.ContainValue(Dictionary, null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

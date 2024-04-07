@@ -239,13 +239,23 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
   [Fact]
   public void DayOfWeek_Method()
   {
-    AssertionExtensions.Should(() => DateTimeOffsetAssertions.DayOfWeek(null, default, DayOfWeek.Monday)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-
-    DateTimeOffset.MinValue.With(date =>
+    using (new AssertionScope())
     {
-      Assert.To.DayOfWeek(date, date.DayOfWeek).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.DayOfWeek(date, date.DayOfWeek + 1, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    });
+      AssertionExtensions.Should(() => DateTimeOffsetAssertions.DayOfWeek(null, default, DayOfWeek.Monday)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      DateTimeOffset.MinValue.With(date =>
+      {
+        Assert.To.DayOfWeek(date, date.DayOfWeek).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        AssertionExtensions.Should(() => Assert.To.DayOfWeek(date, date.DayOfWeek + 1, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>

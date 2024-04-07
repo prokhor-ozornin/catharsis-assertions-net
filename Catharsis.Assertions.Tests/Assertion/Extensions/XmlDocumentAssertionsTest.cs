@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -19,22 +20,32 @@ public sealed class XmlDocumentAssertionsTest : UnitTest
   [Fact]
   public void Element_Method()
   {
-    AssertionExtensions.Should(() => XmlDocumentAssertions.Element(null, Document, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("document");
-    AssertionExtensions.Should(() => Assert.To.Element(Document, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
-
-    AssertionExtensions.Should(() => Assert.To.Element(Document, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-    Document.With(document =>
+    using (new AssertionScope())
     {
-      var parent = document.AppendChild(document.CreateElement("parent"));
-      var child = parent.AppendChild(document.CreateElement("child"));
+      AssertionExtensions.Should(() => XmlDocumentAssertions.Element(null, Document, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("document");
+      AssertionExtensions.Should(() => Assert.To.Element(Document, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Assert.To.Element(document, parent.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Element(document, parent.Name, parent.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Element(Document, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-      Assert.To.Element(document, child.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Element(document, child.Name, child.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    });
+      Document.With(document =>
+      {
+        var parent = document.AppendChild(document.CreateElement("parent"));
+        var child = parent.AppendChild(document.CreateElement("child"));
+
+        Assert.To.Element(document, parent.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Assert.To.Element(document, parent.Name, parent.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+        Assert.To.Element(document, child.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Assert.To.Element(document, child.Name, child.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

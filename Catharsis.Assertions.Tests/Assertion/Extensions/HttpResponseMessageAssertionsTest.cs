@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -19,22 +20,32 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
   [Fact]
   public void Successful_Method()
   {
-    AssertionExtensions.Should(() => HttpResponseMessageAssertions.Successful(null, Response)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => HttpResponseMessageAssertions.Successful(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
-
-    Enum.GetValues<HttpStatusCode>().ForEach(status =>
+    using (new AssertionScope())
     {
-      var code = (int) status;
+      AssertionExtensions.Should(() => HttpResponseMessageAssertions.Successful(null, Response)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => HttpResponseMessageAssertions.Successful(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
 
-      if (code is >= 200 and <= 299)
+      Enum.GetValues<HttpStatusCode>().ForEach(status =>
       {
-        new HttpResponseMessage(status).TryFinallyDispose(message => Assert.To.Successful(message).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
-      }
-      else
-      {
-        new HttpResponseMessage(status).TryFinallyDispose(message => AssertionExtensions.Should(() => Assert.To.Successful(message, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error"));
-      }
-    });
+        var code = (int) status;
+
+        if (code is >= 200 and <= 299)
+        {
+          new HttpResponseMessage(status).TryFinallyDispose(message => Assert.To.Successful(message).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+        }
+        else
+        {
+          new HttpResponseMessage(status).TryFinallyDispose(message => AssertionExtensions.Should(() => Assert.To.Successful(message, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error"));
+        }
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -43,11 +54,21 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
   [Fact]
   public void Status_Method()
   {
-    AssertionExtensions.Should(() => HttpResponseMessageAssertions.Status(null, Response, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Status((HttpResponseMessage) null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => HttpResponseMessageAssertions.Status(null, Response, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Status((HttpResponseMessage) null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
 
-    AssertionExtensions.Should(() => Assert.To.Status(Response, HttpStatusCode.NotFound, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.Status(Response, Response.StatusCode).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.Status(Response, HttpStatusCode.NotFound, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.Status(Response, Response.StatusCode).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -56,31 +77,41 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
   [Fact]
   public void Header_Method()
   {
-    AssertionExtensions.Should(() => HttpResponseMessageAssertions.Header(null, Response, "name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.Header(null, "name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
-    AssertionExtensions.Should(() => Assert.To.Header(Response, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
-
-    Response.With(response =>
+    using (new AssertionScope())
     {
-      response.Headers.Add("connection", (string) null);
-      AssertionExtensions.Should(() => Assert.To.Header(Response, "connection", null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Response.Headers.Clear();
+      AssertionExtensions.Should(() => HttpResponseMessageAssertions.Header(null, Response, "name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Header(null, "name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
+      AssertionExtensions.Should(() => Assert.To.Header(Response, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      response.Headers.Add("connection", Enumerable.Empty<string>());
-      AssertionExtensions.Should(() => Assert.To.Header(Response, "connection", null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Response.Headers.Clear();
+      Response.With(response =>
+      {
+        response.Headers.Add("connection", (string) null);
+        AssertionExtensions.Should(() => Assert.To.Header(Response, "connection", null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        Response.Headers.Clear();
 
-      response.Headers.Add("connection", "open");
-      response.Headers.Add("connection", "close");
-      Assert.To.Header(Response, "connection", "open").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Header(Response, "connection", "close").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Response.Headers.Clear();
+        response.Headers.Add("connection", Enumerable.Empty<string>());
+        AssertionExtensions.Should(() => Assert.To.Header(Response, "connection", null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        Response.Headers.Clear();
 
-      response.Headers.Add("connection", ["open", "close"]);
-      Assert.To.Header(Response, "connection", "open").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Header(Response, "connection", "close").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Response.Headers.Clear();
-    });
+        response.Headers.Add("connection", "open");
+        response.Headers.Add("connection", "close");
+        Assert.To.Header(Response, "connection", "open").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Assert.To.Header(Response, "connection", "close").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Response.Headers.Clear();
+
+        response.Headers.Add("connection", ["open", "close"]);
+        Assert.To.Header(Response, "connection", "open").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Assert.To.Header(Response, "connection", "close").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Response.Headers.Clear();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>

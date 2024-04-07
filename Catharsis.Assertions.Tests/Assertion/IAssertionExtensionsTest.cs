@@ -1,5 +1,6 @@
 ﻿using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -17,8 +18,18 @@ public sealed class IAssertionExtensionsTest : UnitTest
   [Fact]
   public void And_Method()
   {
-    ((IAssertion) null).And().Should().BeNull();
-    Assertion.And().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    using (new AssertionScope())
+    {
+      ((IAssertion)null).And().Should().BeNull();
+      Assertion.And().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -27,8 +38,18 @@ public sealed class IAssertionExtensionsTest : UnitTest
   [Fact]
   public void Be_Method()
   {
-    ((IAssertion) null).Be().Should().BeNull();
-    Assertion.Be().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    using (new AssertionScope())
+    {
+      ((IAssertion)null).Be().Should().BeNull();
+      Assertion.Be().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -37,8 +58,18 @@ public sealed class IAssertionExtensionsTest : UnitTest
   [Fact]
   public void Having_Method()
   {
-    ((IAssertion) null).Having().Should().BeNull();
-    Assertion.Having().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    using (new AssertionScope())
+    {
+      ((IAssertion)null).Having().Should().BeNull();
+      Assertion.Having().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -47,8 +78,18 @@ public sealed class IAssertionExtensionsTest : UnitTest
   [Fact]
   public void With_Method()
   {
-    ((IAssertion) null).With().Should().BeNull();
-    Assertion.With().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    using (new AssertionScope())
+    {
+      ((IAssertion)null).With().Should().BeNull();
+      Assertion.With().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -57,8 +98,18 @@ public sealed class IAssertionExtensionsTest : UnitTest
   [Fact]
   public void Of_Method()
   {
-    ((IAssertion) null).Of().Should().BeNull();
-    Assertion.Of().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    using (new AssertionScope())
+    {
+      ((IAssertion)null).Of().Should().BeNull();
+      Assertion.Of().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -67,8 +118,18 @@ public sealed class IAssertionExtensionsTest : UnitTest
   [Fact]
   public void At_Method()
   {
-    ((IAssertion) null).At().Should().BeNull();
-    Assertion.At().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    using (new AssertionScope())
+    {
+      ((IAssertion)null).At().Should().BeNull();
+      Assertion.At().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -77,7 +138,17 @@ public sealed class IAssertionExtensionsTest : UnitTest
   [Fact]
   public void On_Method()
   {
-    ((IAssertion) null).On().Should().BeNull();
-    Assertion.On().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    using (new AssertionScope())
+    {
+      ((IAssertion)null).On().Should().BeNull();
+      Assertion.On().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

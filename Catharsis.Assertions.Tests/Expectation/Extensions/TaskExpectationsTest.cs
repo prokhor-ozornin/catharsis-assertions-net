@@ -28,6 +28,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.CompletedTask.Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeTrue();
       Task.FromCanceled(new CancellationToken(true)).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeFalse();
       Task.FromException(new Exception()).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -38,6 +43,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.FromResult<object>(null).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeTrue();
       Task.FromCanceled<object>(new CancellationToken(true)).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeFalse();
       Task.FromException<object>(new Exception()).Expect().Status(TaskStatus.RanToCompletion).Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -59,6 +69,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.CompletedTask.Expect().Successful().Result.Should().BeTrue();
       Task.FromCanceled(new CancellationToken(true)).Expect().Successful().Result.Should().BeFalse();
       Task.FromException(new Exception()).Expect().Successful().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -69,6 +84,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.FromResult<object>(null).Expect().Successful().Result.Should().BeTrue();
       Task.FromCanceled<object>(new CancellationToken(true)).Expect().Successful().Result.Should().BeFalse();
       Task.FromException<object>(new Exception()).Expect().Successful().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -90,6 +110,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.CompletedTask.Expect().Unsuccessful().Result.Should().BeFalse();
       Task.FromCanceled(new CancellationToken(true)).Expect().Unsuccessful().Result.Should().BeFalse();
       Task.FromException(new Exception()).Expect().Unsuccessful().Result.Should().BeTrue();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -100,6 +125,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.FromResult<object>(null).Expect().Unsuccessful().Result.Should().BeFalse();
       Task.FromCanceled<object>(new CancellationToken(true)).Expect().Unsuccessful().Result.Should().BeFalse();
       Task.FromException<object>(new Exception()).Expect().Unsuccessful().Result.Should().BeTrue();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -121,6 +151,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.CompletedTask.Expect().Canceled().Result.Should().BeFalse();
       Task.FromCanceled(new CancellationToken(true)).Expect().Canceled().Result.Should().BeTrue();
       Task.FromException(new Exception()).Expect().Canceled().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -131,6 +166,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.FromResult<object>(null).Expect().Canceled().Result.Should().BeFalse();
       Task.FromCanceled<object>(new CancellationToken(true)).Expect().Canceled().Result.Should().BeTrue();
       Task.FromException<object>(new Exception()).Expect().Canceled().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -152,6 +192,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.CompletedTask.Expect().Completed().Result.Should().BeTrue();
       Task.FromCanceled(new CancellationToken(true)).Expect().Completed().Result.Should().BeTrue();
       Task.FromException(new Exception()).Expect().Completed().Result.Should().BeTrue();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -162,6 +207,11 @@ public sealed class TaskExpectationsTest : UnitTest
       Task.FromResult<object>(null).Expect().Completed().Result.Should().BeTrue();
       Task.FromCanceled<object>(new CancellationToken(true)).Expect().Completed().Result.Should().BeTrue();
       Task.FromException<object>(new Exception()).Expect().Completed().Result.Should().BeTrue();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 }

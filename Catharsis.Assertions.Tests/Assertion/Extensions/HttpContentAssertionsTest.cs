@@ -1,6 +1,7 @@
 ﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -18,17 +19,27 @@ public sealed class HttpContentAssertionsTest : UnitTest
   [Fact]
   public void ContainHeader_Method()
   {
-    AssertionExtensions.Should(() => HttpContentAssertions.ContainHeader(null, Content, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.ContainHeader(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("content");
-    AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => HttpContentAssertions.ContainHeader(null, Content, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.ContainHeader(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("content");
+      AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-    Content.Headers.Add("header", Enumerable.Empty<string>());
-    AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Content.Headers.Add("header", Enumerable.Empty<string>());
+      AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
-    Content.Headers.Add("header", ((string) null).ToSequence());
-    Assert.To.ContainHeader(Content, "header").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Content.Headers.Add("header", ((string) null).ToSequence());
+      Assert.To.ContainHeader(Content, "header").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>

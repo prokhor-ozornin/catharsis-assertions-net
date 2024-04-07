@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -19,16 +20,26 @@ public sealed class XDocumentExpectationsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => XDocumentExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((XDocument) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-    Document.Expect().Empty().Result.Should().BeTrue();
-
-    Document.With(document =>
+    using (new AssertionScope())
     {
-      document.Add(new XElement("root"));
-      document.Expect().Empty().Result.Should().BeFalse();
-    });
+      AssertionExtensions.Should(() => XDocumentExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((XDocument) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      Document.Expect().Empty().Result.Should().BeTrue();
+
+      Document.With(document =>
+      {
+        document.Add(new XElement("root"));
+        document.Expect().Empty().Result.Should().BeFalse();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -37,17 +48,27 @@ public sealed class XDocumentExpectationsTest : UnitTest
   [Fact]
   public void Name_Method()
   {
-    AssertionExtensions.Should(() => XDocumentExpectations.Name(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((XDocument) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-    Document.Expect().Name(null).Result.Should().BeTrue();
-    
-    Document.With(document =>
+    using (new AssertionScope())
     {
-      const string name = "root";
-      document.Add(new XElement(name));
-      document.Expect().Name(Attributes.RandomString()).Result.Should().BeFalse();
-      document.Expect().Name(name).Result.Should().BeTrue();
-    });
+      AssertionExtensions.Should(() => XDocumentExpectations.Name(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((XDocument) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      Document.Expect().Name(null).Result.Should().BeTrue();
+      
+      Document.With(document =>
+      {
+        const string name = "root";
+        document.Add(new XElement(name));
+        document.Expect().Name(Attributes.RandomString()).Result.Should().BeFalse();
+        document.Expect().Name(name).Result.Should().BeTrue();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

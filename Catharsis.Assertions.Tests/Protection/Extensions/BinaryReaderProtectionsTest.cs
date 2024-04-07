@@ -1,6 +1,7 @@
 ﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -16,10 +17,20 @@ public sealed class BinaryReaderProtectionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => BinaryReaderProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
-    AssertionExtensions.Should(() => Protect.From.Empty((BinaryReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
+    using (new AssertionScope())
+    {
+      Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => BinaryReaderProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
+      AssertionExtensions.Should(() => Protect.From.Empty((BinaryReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-    Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => Protect.From.Empty(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-    Attributes.RandomStream().ToBinaryReader().TryFinallyDispose(reader => Protect.From.Empty(reader).Should().BeOfType<BinaryReader>().And.BeSameAs(reader));
+      Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => Protect.From.Empty(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+      Attributes.RandomStream().ToBinaryReader().TryFinallyDispose(reader => Protect.From.Empty(reader).Should().BeOfType<BinaryReader>().And.BeSameAs(reader));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

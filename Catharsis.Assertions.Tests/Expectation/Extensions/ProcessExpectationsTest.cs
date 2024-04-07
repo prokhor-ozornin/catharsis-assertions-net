@@ -3,6 +3,7 @@ using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -19,16 +20,26 @@ public sealed class ProcessExpectationsTest : UnitTest
   [Fact]
   public void Exited_Method()
   {
-    AssertionExtensions.Should(() => ProcessExpectations.Exited(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Process) null).Expect().Exited()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-    Process.GetCurrentProcess().Expect().Exited().Result.Should().BeFalse();
-
-    ShellProcess.With(process =>
+    using (new AssertionScope())
     {
-      process.TryFinallyKill(process => process.Start());
-      process.Expect().Exited().Result.Should().BeTrue();
-    });
+      AssertionExtensions.Should(() => ProcessExpectations.Exited(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Process) null).Expect().Exited()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      Process.GetCurrentProcess().Expect().Exited().Result.Should().BeFalse();
+
+      ShellProcess.With(process =>
+      {
+        process.TryFinallyKill(process => process.Start());
+        process.Expect().Exited().Result.Should().BeTrue();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -37,16 +48,26 @@ public sealed class ProcessExpectationsTest : UnitTest
   [Fact]
   public void ExitCode_Method()
   {
-    AssertionExtensions.Should(() => ProcessExpectations.ExitCode(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((Process) null).Expect().ExitCode(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-
-    AssertionExtensions.Should(() => Process.GetCurrentProcess().Expect().ExitCode(0)).ThrowExactly<InvalidOperationException>();
-
-    ShellProcess.With(process =>
+    using (new AssertionScope())
     {
-      process.TryFinallyKill(process => process.Start());
-      process.Expect().ExitCode(0).Result.Should().BeFalse();
-      process.Expect().ExitCode(process.ExitCode).Result.Should().BeTrue();
-    });
+      AssertionExtensions.Should(() => ProcessExpectations.ExitCode(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Process) null).Expect().ExitCode(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+
+      AssertionExtensions.Should(() => Process.GetCurrentProcess().Expect().ExitCode(0)).ThrowExactly<InvalidOperationException>();
+
+      ShellProcess.With(process =>
+      {
+        process.TryFinallyKill(process => process.Start());
+        process.Expect().ExitCode(0).Result.Should().BeFalse();
+        process.Expect().ExitCode(process.ExitCode).Result.Should().BeTrue();
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

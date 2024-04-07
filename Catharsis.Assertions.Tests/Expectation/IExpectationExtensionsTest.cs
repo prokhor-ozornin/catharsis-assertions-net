@@ -19,13 +19,23 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void Expected_Method()
   {
-    AssertionExtensions.Should(() => IExpectationExtensions.Expected<object>(null, _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => Expectation.Expected(null)).ThrowExactly<ArgumentNullException>().WithParameterName("result");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => IExpectationExtensions.Expected<object>(null, _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => Expectation.Expected(null)).ThrowExactly<ArgumentNullException>().WithParameterName("result");
 
-    new Expectation<object>(null).Expected(_ => true).Result.Should().BeTrue();
-    new Expectation<object>(null).Expected(_ => false).Result.Should().BeFalse();
-    new Expectation<object>(null).Not().Expected(_ => true).Result.Should().BeFalse();
-    new Expectation<object>(null).Not().Expected(_ => false).Result.Should().BeTrue();
+      new Expectation<object>(null).Expected(_ => true).Result.Should().BeTrue();
+      new Expectation<object>(null).Expected(_ => false).Result.Should().BeFalse();
+      new Expectation<object>(null).Not().Expected(_ => true).Result.Should().BeFalse();
+      new Expectation<object>(null).Not().Expected(_ => false).Result.Should().BeTrue();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -34,12 +44,22 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void HaveSubject_Method()
   {
-    AssertionExtensions.Should(() => IExpectationExtensions.HaveSubject<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => IExpectationExtensions.HaveSubject<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-    AssertionExtensions.Should(() => new Expectation<object>(null).HaveSubject()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => new Expectation<object>(null).HaveSubject()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    new Expectation<object>(new object()).HaveSubject().Result.Should().BeTrue();
-    new Expectation<object>(new object()).Not().HaveSubject().Result.Should().BeFalse();
+      new Expectation<object>(new object()).HaveSubject().Result.Should().BeTrue();
+      new Expectation<object>(new object()).Not().HaveSubject().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -59,6 +79,11 @@ public sealed class IExpectationExtensionsTest : UnitTest
 
       AssertionExtensions.Should(() => new Expectation<object>(null).Expect(_ => false).ThrowIfFalse(new Exception("error"))).ThrowExactly<Exception>().WithMessage("error");
       new Expectation<object>(null).With(expectation => expectation.ThrowIfFalse(new Exception()).Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation));
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -68,6 +93,11 @@ public sealed class IExpectationExtensionsTest : UnitTest
 
       AssertionExtensions.Should(() => new Expectation<object>(null).Expect(_ => false).ThrowIfFalse("error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       new Expectation<object>(null).With(expectation => expectation.ThrowIfFalse("error").Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation));
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -77,11 +107,21 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void ThrowIfNull_Method()
   {
-    AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfNull<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => Expectation.ThrowIfNull(null)).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
-    AssertionExtensions.Should(() => Expectation.ThrowIfNull(null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfNull<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => Expectation.ThrowIfNull(null)).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
+      AssertionExtensions.Should(() => Expectation.ThrowIfNull(null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-    new Expectation<object>(null).With(expectation => expectation.ThrowIfNull(new object()).Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation));
+      new Expectation<object>(null).With(expectation => expectation.ThrowIfNull(new object()).Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -90,8 +130,18 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void To_Method()
   {
-    ((IExpectation<object>) null).To().Should().BeNull();
-    Expectation.To().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    using (new AssertionScope())
+    {
+      ((IExpectation<object>)null).To().Should().BeNull();
+      Expectation.To().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -100,8 +150,18 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void And_Method()
   {
-    ((IExpectation<object>) null).And().Should().BeNull();
-    Expectation.And().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    using (new AssertionScope())
+    {
+      ((IExpectation<object>)null).And().Should().BeNull();
+      Expectation.And().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -110,8 +170,18 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void Be_Method()
   {
-    ((IExpectation<object>) null).Be().Should().BeNull();
-    Expectation.Be().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    using (new AssertionScope())
+    {
+      ((IExpectation<object>)null).Be().Should().BeNull();
+      Expectation.Be().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -120,8 +190,18 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void Having_Method()
   {
-    ((IExpectation<object>) null).Having().Should().BeNull();
-    Expectation.Having().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    using (new AssertionScope())
+    {
+      ((IExpectation<object>)null).Having().Should().BeNull();
+      Expectation.Having().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -130,8 +210,18 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void With_Method()
   {
-    ((IExpectation<object>) null).With().Should().BeNull();
-    Expectation.With().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    using (new AssertionScope())
+    {
+      ((IExpectation<object>)null).With().Should().BeNull();
+      Expectation.With().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -140,8 +230,18 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void Of_Method()
   {
-    ((IExpectation<object>) null).Of().Should().BeNull();
-    Expectation.Of().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    using (new AssertionScope())
+    {
+      ((IExpectation<object>)null).Of().Should().BeNull();
+      Expectation.Of().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -150,8 +250,18 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void At_Method()
   {
-    ((IExpectation<object>) null).At().Should().BeNull();
-    Expectation.At().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    using (new AssertionScope())
+    {
+      ((IExpectation<object>)null).At().Should().BeNull();
+      Expectation.At().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -160,7 +270,17 @@ public sealed class IExpectationExtensionsTest : UnitTest
   [Fact]
   public void On_Method()
   {
-    ((IExpectation<object>) null).On().Should().BeNull();
-    Expectation.On().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    using (new AssertionScope())
+    {
+      ((IExpectation<object>)null).On().Should().BeNull();
+      Expectation.On().Should().BeOfType<Expectation<object>>().And.BeSameAs(Expectation);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

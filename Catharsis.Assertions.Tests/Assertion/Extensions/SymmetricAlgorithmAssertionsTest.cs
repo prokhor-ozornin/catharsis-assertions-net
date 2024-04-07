@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -18,12 +19,22 @@ public sealed class SymmetricAlgorithmAssertionsTest : UnitTest
   [Fact]
   public void BlockSize_Method()
   {
-    AssertionExtensions.Should(() => SymmetricAlgorithmAssertions.BlockSize(null, Algorithm, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.BlockSize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => SymmetricAlgorithmAssertions.BlockSize(null, Algorithm, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.BlockSize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
 
-    AssertionExtensions.Should(() => Assert.To.BlockSize(Algorithm, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.BlockSize(Algorithm, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.BlockSize(Algorithm, Algorithm.BlockSize).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.BlockSize(Algorithm, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.BlockSize(Algorithm, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.BlockSize(Algorithm, Algorithm.BlockSize).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -32,12 +43,22 @@ public sealed class SymmetricAlgorithmAssertionsTest : UnitTest
   [Fact]
   public void KeySize_Method()
   {
-    AssertionExtensions.Should(() => SymmetricAlgorithmAssertions.KeySize(null, Algorithm, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => Assert.To.KeySize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => SymmetricAlgorithmAssertions.KeySize(null, Algorithm, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.KeySize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
 
-    AssertionExtensions.Should(() => Assert.To.KeySize(Algorithm, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    AssertionExtensions.Should(() => Assert.To.KeySize(Algorithm, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-    Assert.To.KeySize(Algorithm, Algorithm.KeySize).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => Assert.To.KeySize(Algorithm, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.KeySize(Algorithm, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Assert.To.KeySize(Algorithm, Algorithm.KeySize).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>

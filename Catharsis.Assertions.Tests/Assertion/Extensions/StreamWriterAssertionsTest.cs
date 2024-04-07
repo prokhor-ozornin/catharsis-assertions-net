@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -19,14 +20,24 @@ public sealed class StreamWriterAssertionsTest : UnitTest
   [Fact]
   public void Encoding_Method()
   {
-    AssertionExtensions.Should(() => StreamWriterAssertions.Encoding(null, Writer, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-    AssertionExtensions.Should(() => StreamWriterAssertions.Encoding(Assert.To, null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
-
-    Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
+    using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => Assert.To.Encoding(writer, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Encoding(writer, writer.Encoding).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-    });
+      AssertionExtensions.Should(() => StreamWriterAssertions.Encoding(null, Writer, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => StreamWriterAssertions.Encoding(Assert.To, null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
+
+      Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
+      {
+        AssertionExtensions.Should(() => Assert.To.Encoding(writer, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        Assert.To.Encoding(writer, writer.Encoding).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      });
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>

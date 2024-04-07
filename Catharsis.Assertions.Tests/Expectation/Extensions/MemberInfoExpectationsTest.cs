@@ -39,6 +39,11 @@ public sealed class MemberInfoExpectationsTest : UnitTest
       Member.Expect().Attribute(typeof(ObsoleteAttribute)).Result.Should().BeFalse();
       
       AssertionExtensions.Should(() => Member.Expect().Attribute(typeof(object))).ThrowExactly<ArgumentException>();
+
+      static void Validate()
+      {
+
+      }
     }
 
     using (new AssertionScope())
@@ -49,6 +54,11 @@ public sealed class MemberInfoExpectationsTest : UnitTest
       Member.Expect().Attribute<Attribute>().Result.Should().BeTrue();
       Member.Expect().Attribute<DescriptionAttribute>().Result.Should().BeTrue();
       Member.Expect().Attribute<ObsoleteAttribute>().Result.Should().BeFalse();
+
+      static void Validate()
+      {
+
+      }
     }
   }
 
@@ -58,10 +68,20 @@ public sealed class MemberInfoExpectationsTest : UnitTest
   [Fact]
   public void Type_Method()
   {
-    AssertionExtensions.Should(() => MemberInfoExpectations.Type(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((MemberInfo) null).Expect().Type(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => MemberInfoExpectations.Type(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((MemberInfo) null).Expect().Type(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    Member.Expect().Type(MemberTypes.All).Result.Should().BeFalse();
-    Member.Expect().Type(Member.MemberType).Result.Should().BeTrue();
+      Member.Expect().Type(MemberTypes.All).Result.Should().BeFalse();
+      Member.Expect().Type(Member.MemberType).Result.Should().BeTrue();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -18,12 +19,22 @@ public sealed class StringBuilderExpectationsTest : UnitTest
   [Fact]
   public void Length_Method()
   {
-    AssertionExtensions.Should(() => StringBuilderExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StringBuilderExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    Builder.Expect().Length(int.MinValue).Result.Should().BeFalse();
-    Builder.Expect().Length(int.MaxValue).Result.Should().BeFalse();
-    Builder.Expect().Length(Builder.Length).Result.Should().BeTrue();
+      Builder.Expect().Length(int.MinValue).Result.Should().BeFalse();
+      Builder.Expect().Length(int.MaxValue).Result.Should().BeFalse();
+      Builder.Expect().Length(Builder.Length).Result.Should().BeTrue();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -32,10 +43,20 @@ public sealed class StringBuilderExpectationsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => StringBuilderExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StringBuilderExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-    Builder.Expect().Empty().Result.Should().BeTrue();
-    Builder.Append(char.MinValue).Expect().Empty().Result.Should().BeFalse();
+      Builder.Expect().Empty().Result.Should().BeTrue();
+      Builder.Append(char.MinValue).Expect().Empty().Result.Should().BeFalse();
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

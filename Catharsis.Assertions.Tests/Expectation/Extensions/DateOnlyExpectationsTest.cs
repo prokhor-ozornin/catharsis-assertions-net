@@ -21,16 +21,16 @@ public sealed class DateOnlyExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateOnlyExpectations.DayOfYear(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly(), DateTime.UtcNow.ToDateOnly() }.ForEach(Validate);
+      new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
+      {
+        Validate(false, int.MinValue, date);
+        Validate(true, date.DayOfYear, date);
+      });
     }
 
     return;
 
-    static void Validate(DateOnly date)
-    {
-      date.Expect().DayOfYear(int.MinValue).Result.Should().BeFalse();
-      date.Expect().DayOfYear(date.DayOfYear).Result.Should().BeTrue();
-    }
+    static void Validate(bool result, int day, DateOnly date) => date.Expect().DayOfYear(day).Result.Should().Be(result);
   }
 
   /// <summary>
@@ -43,16 +43,16 @@ public sealed class DateOnlyExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateOnlyExpectations.Year(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly(), DateTime.UtcNow.ToDateOnly() }.ForEach(Validate);
+      new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
+      {
+        Validate(false, int.MinValue, date);
+        Validate(true, date.Year, date);
+      });
     }
 
     return;
 
-    static void Validate(DateOnly date)
-    {
-      date.Expect().Year(int.MinValue).Result.Should().BeFalse();
-      date.Expect().Year(date.Year).Result.Should().BeTrue();
-    }
+    static void Validate(bool result, int year, DateOnly date) => date.Expect().Year(year).Result.Should().Be(result);
   }
 
   /// <summary>

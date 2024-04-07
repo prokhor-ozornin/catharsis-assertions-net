@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -16,9 +17,19 @@ public sealed class ObjectExtensionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    object subject = null;
-    var expectation = subject.Expect();
-    expectation.Should().NotBeNull().Should().BeOfType<Expectation<object>>().And.NotBeSameAs(subject.Expect());
-    expectation.GetFieldValue<object>("subject").Should().BeOfType<object>().And.BeSameAs(subject);
+    using (new AssertionScope())
+    {
+      object subject = null;
+      var expectation = subject.Expect();
+      expectation.Should().NotBeNull().Should().BeOfType<Expectation<object>>().And.NotBeSameAs(subject.Expect());
+      expectation.GetFieldValue<object>("subject").Should().BeOfType<object>().And.BeSameAs(subject);
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

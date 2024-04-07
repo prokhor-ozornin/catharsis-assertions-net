@@ -2,6 +2,7 @@
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -17,10 +18,20 @@ public sealed class StringBuilderProtectionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    AssertionExtensions.Should(() => StringBuilderProtections.Empty(null, new StringBuilder())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-    AssertionExtensions.Should(() => Protect.From.Empty((StringBuilder) null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => StringBuilderProtections.Empty(null, new StringBuilder())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => Protect.From.Empty((StringBuilder) null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
-    new StringBuilder().With(builder => AssertionExtensions.Should(() => Protect.From.Empty(builder, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-    new StringBuilder(Attributes.RandomString()).With(builder => Protect.From.Empty(builder).Should().BeOfType<StringBuilder>().And.BeSameAs(builder));
+      new StringBuilder().With(builder => AssertionExtensions.Should(() => Protect.From.Empty(builder, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+      new StringBuilder(Attributes.RandomString()).With(builder => Protect.From.Empty(builder).Should().BeOfType<StringBuilder>().And.BeSameAs(builder));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

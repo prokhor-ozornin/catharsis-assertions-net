@@ -1,6 +1,7 @@
 ﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace Catharsis.Assertions.Tests;
@@ -16,10 +17,20 @@ public sealed class BinaryWriterProtectionsTest : UnitTest
   [Fact]
   public void Empty_Method()
   {
-    Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => BinaryWriterProtections.Empty(null, writer)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
-    AssertionExtensions.Should(() => Protect.From.Empty((BinaryWriter) null)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
+    using (new AssertionScope())
+    {
+      Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => BinaryWriterProtections.Empty(null, writer)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
+      AssertionExtensions.Should(() => Protect.From.Empty((BinaryWriter) null)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
-    Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => Protect.From.Empty(writer, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-    Attributes.RandomStream().ToBinaryWriter().TryFinallyDispose(writer => Protect.From.Empty(writer).Should().BeOfType<BinaryWriter>().And.BeSameAs(writer));
+      Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => Protect.From.Empty(writer, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
+      Attributes.RandomStream().ToBinaryWriter().TryFinallyDispose(writer => Protect.From.Empty(writer).Should().BeOfType<BinaryWriter>().And.BeSameAs(writer));
+    }
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }
