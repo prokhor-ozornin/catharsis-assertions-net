@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
-using System.Reflection.Emit;
 using Catharsis.Commons;
-using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -85,11 +83,11 @@ public sealed class AssemblyAssertionsTest : UnitTest
     {
       if (result)
       {
-        Assert.To.Dynamic(AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Assert.To.Dynamic(assembly).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       }
       else
       {
-        AssertionExtensions.Should(() => Assert.To.Dynamic(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        AssertionExtensions.Should(() => Assert.To.Dynamic(assembly, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     }
   }

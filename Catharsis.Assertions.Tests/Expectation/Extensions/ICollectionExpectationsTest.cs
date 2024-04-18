@@ -42,7 +42,7 @@ public sealed class ICollectionExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.EmptySequence().ToArray().Expect().Empty().Result.Should().BeTrue();
+      Array.Empty<object>().Expect().Empty().Result.Should().BeTrue();
       Attributes.RandomSequence().ToArray().Expect().Empty().Result.Should().BeFalse();
     }
 
