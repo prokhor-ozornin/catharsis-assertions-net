@@ -25,27 +25,25 @@ public sealed class StreamWriterAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamWriterAssertions.Encoding(null, Writer, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StreamWriterAssertions.Encoding(Assert.To, null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
-      Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
-      {
-        AssertionExtensions.Should(() => Assert.To.Encoding(writer, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-        Assert.To.Encoding(writer, writer.Encoding).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      });
+      Stream.Null.ToStreamWriter().With(writer => Validate(true, writer, writer.Encoding));
+      Validate(false, Stream.Null.ToStreamWriter(), null);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, StreamWriter writer, Encoding encoding)
     {
-
+      using (writer)
+      {
+        if (result)
+        {
+          Assert.To.Encoding(writer, encoding).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Encoding(writer, encoding, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
-  }
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  public override void Dispose()
-  {
-    base.Dispose();
-    Writer.Dispose();
   }
 }

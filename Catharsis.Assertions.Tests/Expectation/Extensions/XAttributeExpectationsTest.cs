@@ -28,13 +28,9 @@ public sealed class XAttributeExpectationsTest : UnitTest
       Attribute.Expect().Name(Attributes.RandomString()).Result.Should().BeFalse();
       Attribute.Expect().Name(Attribute.Name).Result.Should().BeTrue();
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XAttribute attribute, XName name) => attribute.Expect().Name(name).Should().BeOfType<Expectation<XAttribute>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -55,9 +51,6 @@ public sealed class XAttributeExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XAttribute attribute, string value) => attribute.Expect().Value(value).Should().BeOfType<Expectation<XAttribute>>().Which.Result.Should().Be(result);
   }
 }

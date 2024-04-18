@@ -21,15 +21,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.Days(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero}.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int days)
     {
-      AssertionExtensions.Should(() => Assert.To.Days(timespan, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Days(timespan, timespan.Days).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Days(timespan, days).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Days(timespan, days, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -43,15 +52,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.Hours(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int hours)
     {
-      AssertionExtensions.Should(() => Assert.To.Hours(timespan, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Hours(timespan, timespan.Hours).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Hours(timespan, hours).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Hours(timespan, hours, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -65,15 +83,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.Minutes(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int minutes)
     {
-      AssertionExtensions.Should(() => Assert.To.Minutes(timespan, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Minutes(timespan, timespan.Minutes).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Minutes(timespan, minutes).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Minutes(timespan, minutes, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -87,15 +114,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.Seconds(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int seconds)
     {
-      AssertionExtensions.Should(() => Assert.To.Seconds(timespan, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Seconds(timespan, timespan.Seconds).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Seconds(timespan, seconds).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Seconds(timespan, seconds, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -109,15 +145,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.Milliseconds(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int milliseconds)
     {
-      AssertionExtensions.Should(() => Assert.To.Milliseconds(timespan, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Milliseconds(timespan, timespan.Milliseconds).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Milliseconds(timespan, milliseconds).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Milliseconds(timespan, milliseconds, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -131,15 +176,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.TotalDays(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int days)
     {
-      AssertionExtensions.Should(() => Assert.To.TotalDays(timespan, -1, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.TotalDays(timespan, (int) timespan.TotalDays).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.TotalDays(timespan, days).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.TotalDays(timespan, days, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -153,15 +207,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.TotalHours(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int hours)
     {
-      AssertionExtensions.Should(() => Assert.To.TotalHours(timespan, -1, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.TotalHours(timespan, (int) timespan.TotalHours).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.TotalHours(timespan, hours).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.TotalHours(timespan, hours, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -175,15 +238,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.TotalMinutes(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int minutes)
     {
-      AssertionExtensions.Should(() => Assert.To.TotalMinutes(timespan, -1, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.TotalMinutes(timespan, (int) timespan.TotalMinutes).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.TotalMinutes(timespan, minutes).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.TotalMinutes(timespan, minutes, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -197,15 +269,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.TotalSeconds(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int seconds)
     {
-      AssertionExtensions.Should(() => Assert.To.TotalSeconds(timespan, -1, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.TotalSeconds(timespan, (int) timespan.TotalSeconds).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.TotalSeconds(timespan, seconds).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.TotalSeconds(timespan, seconds, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -219,15 +300,24 @@ public sealed class TimeSpanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanAssertions.TotalMilliseconds(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(Validate);
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      {
+
+      });
     }
 
     return;
 
-    static void Validate(TimeSpan timespan)
+    static void Validate(bool result, TimeSpan timespan, int milliseconds)
     {
-      AssertionExtensions.Should(() => Assert.To.TotalMilliseconds(timespan, -1, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.TotalMilliseconds(timespan, (int) timespan.TotalMilliseconds).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.TotalMilliseconds(timespan, milliseconds).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.TotalMilliseconds(timespan, milliseconds, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

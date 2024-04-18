@@ -24,13 +24,9 @@ public sealed class ThreadExpectationsTest : UnitTest
       Thread.CurrentThread.Expect().State(ThreadState.Unstarted).Result.Should().BeFalse();
       Thread.CurrentThread.Expect().State(Thread.CurrentThread.ThreadState).Result.Should().BeTrue();
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Thread thread, ThreadState state) => thread.Expect().State(state).Should().BeOfType<Expectation<Thread>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -50,9 +46,6 @@ public sealed class ThreadExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Thread thread, ThreadPriority priority) => thread.Expect().Priority(priority).Should().BeOfType<Expectation<Thread>>().Which.Result.Should().Be(result);
   }
 }

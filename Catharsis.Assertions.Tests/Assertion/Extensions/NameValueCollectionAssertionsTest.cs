@@ -1,5 +1,4 @@
 ﻿using System.Collections.Specialized;
-using System.Linq.Expressions;
 using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
@@ -24,16 +23,23 @@ public sealed class NameValueCollectionAssertionsTest : UnitTest
       AssertionExtensions.Should(() => NameValueCollectionAssertions.Count(null, [], default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Count(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-      AssertionExtensions.Should(() => new NameValueCollection().With(collection => Assert.To.Count(collection, int.MinValue, "error"))).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => new NameValueCollection().With(collection => Assert.To.Count(collection, int.MaxValue, "error"))).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      new NameValueCollection().With(collection => Assert.To.Count(collection, collection.Count).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+      Validate(true, [], 0);
+      Validate(false, [], int.MinValue);
+      Validate(false, [], int.MaxValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, NameValueCollection collection, int count)
     {
-
+      if (result)
+      {
+        Assert.To.Count(collection, count).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Count(collection, count, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 

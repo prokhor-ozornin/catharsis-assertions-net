@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Xml.Linq;
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
@@ -51,11 +52,11 @@ public sealed class FieldInfoExpectationsTest : UnitTest
       Validate(ProtectedInternalFieldInfo);
       Validate(StaticFieldInfo);
 
-      static void Validate(FieldInfo field)
-      {
-        field.Expect().Type(field.FieldType).Result.Should().BeTrue();
-        //field.Expect().Type(GetType()).Result.Should().BeFalse();
-      }
+      static void Validate(bool result, FieldInfo field, Type type) => field.Expect().Type(type).Should().BeOfType<Expectation<FieldInfo>>().Which.Result.Should().Be(result);
+      //{
+      //field.Expect().Type(field.FieldType).Result.Should().BeTrue();
+      //field.Expect().Type(GetType()).Result.Should().BeFalse();
+      //}
     }
 
     using (new AssertionScope())
@@ -70,11 +71,11 @@ public sealed class FieldInfoExpectationsTest : UnitTest
       Validate(ProtectedInternalFieldInfo);
       Validate(StaticFieldInfo);
 
-      static void Validate(FieldInfo field)
-      {
-        field.Expect().Type<string>().Result.Should().BeTrue();
-        field.Expect().Type<object>().Result.Should().BeFalse();
-      }
+      void Validate<T>(bool result, FieldInfo field) => field.Expect().Type<T>().Should().BeOfType<Expectation<FieldInfo>>().Which.Result.Should().Be(result);
+      //{
+      //  field.Expect().Type<string>().Result.Should().BeTrue();
+      //  field.Expect().Type<object>().Result.Should().BeFalse();
+      //}
     }
   }
 
@@ -99,10 +100,7 @@ public sealed class FieldInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FieldInfo field) => field.Expect().Private().Should().BeOfType<Expectation<FieldInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -126,10 +124,7 @@ public sealed class FieldInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FieldInfo field) => field.Expect().Protected().Should().BeOfType<Expectation<FieldInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -153,10 +148,7 @@ public sealed class FieldInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FieldInfo field) => field.Expect().Public().Should().BeOfType<Expectation<FieldInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -180,10 +172,7 @@ public sealed class FieldInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FieldInfo field) => field.Expect().Internal().Should().BeOfType<Expectation<FieldInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -207,10 +196,7 @@ public sealed class FieldInfoExpectationsTest : UnitTest
     
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FieldInfo field) => field.Expect().ProtectedInternal().Should().BeOfType<Expectation<FieldInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -234,10 +220,7 @@ public sealed class FieldInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FieldInfo field) => field.Expect().Static().Should().BeOfType<Expectation<FieldInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -261,10 +244,10 @@ public sealed class FieldInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate(FieldInfo field, object instance)
-    {
-      field.Expect().Value(instance, new object()).Result.Should().BeFalse();
-      field.Expect().Value(instance, field.GetValue(instance)).Result.Should().BeTrue();
-    }
+    static void Validate(bool result, FieldInfo field, object subject, object value) => field.Expect().Value(subject, value).Should().BeOfType<Expectation<FieldInfo>>().Which.Result.Should().Be(result);
+    //{
+    //  field.Expect().Value(instance, new object()).Result.Should().BeFalse();
+    //  field.Expect().Value(instance, field.GetValue(instance)).Result.Should().BeTrue();
+    //}
   }
 }

@@ -36,12 +36,8 @@ public sealed class XElementExpectationsTest : UnitTest
         element.Expect().Attribute("encoding", Attributes.RandomString()).Result.Should().BeFalse();
       });
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XElement element, XName name, string value = null) => element.Expect().Attribute(name, value).Should().BeOfType<Expectation<XElement>>().Which.Result.Should().Be(result);
   }
 }

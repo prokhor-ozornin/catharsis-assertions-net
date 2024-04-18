@@ -20,17 +20,24 @@ public sealed class RangeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => RangeAssertions.StartIndex(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      AssertionExtensions.Should(() => Assert.To.StartIndex(..0, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.StartIndex(..0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.StartIndex(.., 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.StartIndex(^0..0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, ..0, 0);
+      Validate(true, .., 0);
+      Validate(true, ^0..0, 0);
+      Validate(false, ..0, int.MinValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Range range, int index)
     {
-
+      if (result)
+      {
+        Assert.To.StartIndex(range, index).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.StartIndex(range, index, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -44,17 +51,24 @@ public sealed class RangeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => RangeAssertions.EndIndex(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      AssertionExtensions.Should(() => Assert.To.EndIndex(..0, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.EndIndex(..0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.EndIndex(.., 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.EndIndex(..^int.MaxValue, int.MaxValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, ..0, 0);
+      Validate(true, .., 0);
+      Validate(true, ..^int.MaxValue, int.MaxValue);
+      Validate(false, ..0, int.MinValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Range range, int index)
     {
-
+      if (result)
+      {
+        Assert.To.EndIndex(range, index).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.EndIndex(range, index, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

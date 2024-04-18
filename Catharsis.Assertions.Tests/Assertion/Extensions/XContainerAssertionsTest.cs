@@ -26,8 +26,6 @@ public sealed class XContainerAssertionsTest : UnitTest
       AssertionExtensions.Should(() => XContainerAssertions.Element(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("container");
       AssertionExtensions.Should(() => Assert.To.Element(Container, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      AssertionExtensions.Should(() => Assert.To.Element(Container, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
       Container.With(container =>
       {
         var root = new XElement("parent");
@@ -41,9 +39,16 @@ public sealed class XContainerAssertionsTest : UnitTest
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, XContainer container, XName name)
     {
-
+      if (result)
+      {
+        Assert.To.Element(container, name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Element(container, name, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -58,8 +63,6 @@ public sealed class XContainerAssertionsTest : UnitTest
       AssertionExtensions.Should(() => XContainerAssertions.Empty(null, Container)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XContainerAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("container");
 
-      Assert.To.Empty(Container).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
       Container.With(container =>
       {
         container.Add(new XElement("root"));
@@ -69,9 +72,16 @@ public sealed class XContainerAssertionsTest : UnitTest
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, XContainer container)
     {
-
+      if (result)
+      {
+        Assert.To.Empty(container).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Empty(container, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

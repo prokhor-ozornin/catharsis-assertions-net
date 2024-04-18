@@ -1,5 +1,4 @@
 ﻿using Catharsis.Commons;
-using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -19,19 +18,22 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.Count(null, Attributes.EmptySequence(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IEnumerableAssertions.Count(null, Enumerable.Empty<object>(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => IEnumerableAssertions.Count<object>(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-
-      AssertionExtensions.Should(() => Assert.To.Count(Attributes.RandomSequence(), int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Count(Attributes.RandomSequence(), int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Count(Attributes.RandomSequence(), Attributes.RandomSequence().Count()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> sequence, int count)
     {
-
+      if (result)
+      {
+        Assert.To.Count(sequence, count).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Count(sequence, count, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -43,18 +45,22 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.Empty(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IEnumerableAssertions.Empty(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => IEnumerableAssertions.Empty<object>(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-
-      Assert.To.Empty(Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Empty(Attributes.RandomSequence(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> sequence)
     {
-
+      if (result)
+      {
+        Assert.To.Empty(sequence).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Empty(sequence, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -66,23 +72,23 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.EquivalentTo(null, Attributes.EmptySequence(), Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.EquivalentTo(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-      AssertionExtensions.Should(() => Assert.To.EquivalentTo(Attributes.EmptySequence(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
-
-      Assert.To.EquivalentTo(Enumerable.Empty<object>(), []).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      
-      Assert.To.EquivalentTo(Attributes.EmptySequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
-      Attributes.RandomSequence().With(sequence => Assert.To.EquivalentTo(sequence.ToList(), sequence.ToLinkedList()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
-      AssertionExtensions.Should(() => Assert.To.EquivalentTo(Attributes.RandomSequence(), Attributes.EmptySequence(), null, "error")).ThrowExactly<InvalidOperationException>();
+      AssertionExtensions.Should(() => IEnumerableAssertions.EquivalentTo(null, [], Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.EquivalentTo(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+      AssertionExtensions.Should(() => Assert.To.EquivalentTo(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> left, IEnumerable<T> right, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.EquivalentTo(left, right, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.EquivalentTo(left, right, comparer, "error")).ThrowExactly<InvalidOperationException>();
+      }
     }
   }
 
@@ -94,20 +100,22 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.Contain(null, Attributes.EmptySequence(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IEnumerableAssertions.Contain(null, [], new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Contain(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-
-      AssertionExtensions.Should(() => Assert.To.Contain(Attributes.EmptySequence(), new object(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      
-      AssertionExtensions.Should(() => Assert.To.Contain(Attributes.RandomSequence(), new object(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Attributes.RandomSequence().With(sequence => Assert.To.Contain(sequence, sequence.Random()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> sequence, T element, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.Contain(sequence, element, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Contain(sequence, element, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -119,24 +127,23 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.ContainAll(null, Attributes.EmptySequence(), Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.ContainAll(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-      AssertionExtensions.Should(() => Assert.To.ContainAll(Attributes.EmptySequence(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
-
-      Assert.To.ContainAll(Enumerable.Empty<object>(), []).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      
-      Assert.To.ContainAll(Attributes.EmptySequence(), Attributes.EmptySequence(), null, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.ContainAll(Attributes.EmptySequence(), Attributes.RandomSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-      Attributes.RandomSequence().With(sequence => Assert.To.ContainAll(sequence, sequence.Reverse()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
-      Assert.To.ContainAll(Attributes.RandomSequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => IEnumerableAssertions.ContainAll(null, [], Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.ContainAll(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+      AssertionExtensions.Should(() => Assert.To.ContainAll(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.ContainAll(superset, subset, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.ContainAll(superset, subset, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -148,24 +155,23 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.ContainAnyOf(null, Attributes.EmptySequence(), Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.ContainAnyOf(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-      AssertionExtensions.Should(() => Assert.To.ContainAnyOf(Attributes.EmptySequence(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
-
-      AssertionExtensions.Should(() => Assert.To.ContainAnyOf(Attributes.EmptySequence(), new object().ToSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
-      AssertionExtensions.Should(() => Assert.To.ContainAnyOf(Attributes.EmptySequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
-      AssertionExtensions.Should(() => Assert.To.ContainAnyOf(Attributes.EmptySequence(), Attributes.RandomSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
-
-      AssertionExtensions.Should(() => Assert.To.ContainAnyOf(Attributes.RandomSequence(), new object().ToSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
-      AssertionExtensions.Should(() => Assert.To.ContainAnyOf(Attributes.RandomSequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
-      Attributes.RandomSequence().With(sequence => Assert.To.ContainAnyOf(sequence, sequence.Random().ToSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+      AssertionExtensions.Should(() => IEnumerableAssertions.ContainAnyOf(null, [], Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.ContainAnyOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+      AssertionExtensions.Should(() => Assert.To.ContainAnyOf(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.ContainAnyOf(superset, subset, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.ContainAnyOf(superset, subset, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -177,19 +183,22 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.ContainNulls(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IEnumerableAssertions.ContainNulls(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainNulls<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-
-      AssertionExtensions.Should(() => Assert.To.ContainNulls(Attributes.EmptySequence(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.ContainNulls(Attributes.RandomSequence(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.ContainNulls(1.Nulls()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> sequence)
     {
-
+      if (result)
+      {
+        Assert.To.ContainNulls(sequence).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.ContainNulls(sequence, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -201,19 +210,22 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.ContainUnique(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IEnumerableAssertions.ContainUnique(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainUnique<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-
-      Assert.To.ContainUnique(Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.ContainUnique(Attributes.RandomSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.ContainUnique(2.Nulls(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.ContainUnique(sequence, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.ContainUnique(sequence, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -231,19 +243,20 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IEnumerableAssertions.ElementAt(null, Attributes.RandomSequence(), default, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ElementAt(null, default, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-      AssertionExtensions.Should(() => Assert.To.ElementAt(Attributes.EmptySequence(), 0, new object())).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("index");
+      AssertionExtensions.Should(() => Assert.To.ElementAt([], 0, new object())).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("index");
       AssertionExtensions.Should(() => Assert.To.ElementAt(Attributes.RandomSequence(), -1, new object())).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("index");
       AssertionExtensions.Should(() => Assert.To.ElementAt(Attributes.RandomSequence(), Attributes.RandomSequence().Count(), new object())).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("index");
 
-      Attributes.RandomSequence().With(sequence => sequence.ForEach((index, element) =>
+      static void Validate<T>(bool result, IEnumerable<T> sequence, int index, T value)
       {
-        Assert.To.ElementAt(sequence, index, element).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        AssertionExtensions.Should(() => Assert.To.ElementAt(sequence, index, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      }));
-
-      static void Validate()
-      {
-
+        if (result)
+        {
+          Assert.To.ElementAt(sequence, index, value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.ElementAt(sequence, index, value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
       }
     }
 
@@ -252,15 +265,16 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.ElementAt(null, Attributes.RandomSequence(), Index.Start, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ElementAt(null, Index.Start, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-      Attributes.RandomSequence().With(sequence => sequence.ForEach((index, element) =>
+      static void Validate<T>(bool result, IEnumerable<T> sequence, Index index, T value)
       {
-        Assert.To.ElementAt(sequence, Index.FromStart(index), element).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        AssertionExtensions.Should(() => Assert.To.ElementAt(sequence, Index.FromStart(index), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      }));
-
-      static void Validate()
-      {
-
+        if (result)
+        {
+          Assert.To.ElementAt(sequence, index, value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.ElementAt(sequence, index, value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
       }
     }
   }
@@ -273,24 +287,23 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.SubsetOf(null, Attributes.EmptySequence(), Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.SubsetOf(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("subset");
-      AssertionExtensions.Should(() => Assert.To.SubsetOf(Attributes.EmptySequence(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("superset");
-
-      Assert.To.SubsetOf(Attributes.EmptySequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.SubsetOf(Attributes.RandomSequence(), Attributes.RandomSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.SubsetOf(Attributes.EmptySequence(), Attributes.RandomSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.SubsetOf(Attributes.RandomSequence(), Attributes.EmptySequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.SubsetOf(Attributes.RandomSequence().Take(Attributes.RandomSequence().Count() / 2), Attributes.RandomSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.SubsetOf(Attributes.RandomSequence(), Attributes.RandomSequence().Randomize()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.SubsetOf(new object().ToSequence(), new object().ToSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => IEnumerableAssertions.SubsetOf(null, [], Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.SubsetOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("subset");
+      AssertionExtensions.Should(() => Assert.To.SubsetOf(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("superset");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> subset, IEnumerable<T> superset, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.SubsetOf(subset, superset, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.SubsetOf(subset, superset, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -302,24 +315,23 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.SupersetOf(null, Attributes.EmptySequence(), Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.SupersetOf(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("superset");
-      AssertionExtensions.Should(() => Assert.To.SupersetOf(Attributes.EmptySequence(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("subset");
-
-      Assert.To.SupersetOf(Attributes.EmptySequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.SupersetOf(Attributes.RandomSequence(), Attributes.RandomSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.SupersetOf(Attributes.RandomSequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.SupersetOf(Attributes.EmptySequence(), Attributes.RandomSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.SupersetOf(Attributes.RandomSequence(), Attributes.RandomSequence().Take(Attributes.RandomSequence().Count() / 2)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.SupersetOf(Attributes.RandomSequence(), Attributes.RandomSequence().Randomize()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.SupersetOf(new object().ToSequence(), new object().ToSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => IEnumerableAssertions.SupersetOf(null, Enumerable.Empty<object>(), Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.SupersetOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("superset");
+      AssertionExtensions.Should(() => Assert.To.SupersetOf(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("subset");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.SupersetOf(superset, subset, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.SupersetOf(superset, subset, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -331,23 +343,23 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.Reversed(null, Attributes.EmptySequence(), Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.Reversed(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-      AssertionExtensions.Should(() => Assert.To.Reversed(Attributes.EmptySequence(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("reversed");
-
-      Assert.To.Reversed(Attributes.EmptySequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Reversed(Attributes.RandomSequence(), Attributes.RandomSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Reversed(Attributes.RandomSequence(), Attributes.RandomSequence().Reverse()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Reversed(Attributes.RandomSequence(), Attributes.EmptySequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Reversed(Attributes.RandomSequence(), Attributes.RandomSequence().Take(Attributes.RandomSequence().Count() / 2).Reverse(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Reversed(2.Nulls(), 2.Nulls()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      AssertionExtensions.Should(() => IEnumerableAssertions.Reversed(null, Enumerable.Empty<object>(), Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Reversed(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+      AssertionExtensions.Should(() => Assert.To.Reversed(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("reversed");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEnumerable<T> reversed, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.Reversed(sequence, reversed, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Reversed(sequence, reversed, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -359,25 +371,22 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.Ordered(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IEnumerableAssertions.Ordered(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Ordered<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-
-      AssertionExtensions.Should(() => Assert.To.Ordered(Attributes.RandomSequence())).ThrowExactly<InvalidOperationException>();
-
-      Assert.To.Ordered(Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
-      Attributes.Random().IntSequence(byte.MaxValue).ToArray().With(sequence =>
-      {
-        AssertionExtensions.Should(() => Assert.To.Ordered(sequence, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-        Assert.To.Ordered(sequence.Order()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      });
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.Ordered(sequence, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Ordered(sequence, comparer)).ThrowExactly<InvalidOperationException>();
+      }
     }
   }
 
@@ -389,24 +398,23 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.StartWith(null, Attributes.EmptySequence(), Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.StartWith(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-      AssertionExtensions.Should(() => Assert.To.StartWith(Attributes.EmptySequence(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
-
-      Assert.To.StartWith(Attributes.EmptySequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.StartWith(Attributes.RandomSequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.StartWith(Attributes.RandomSequence(), Attributes.RandomSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.StartWith(Attributes.EmptySequence(), Attributes.RandomSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.StartWith(Attributes.RandomSequence(), Attributes.RandomSequence().Take(Attributes.RandomSequence().Count() / 2)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.StartWith(Attributes.RandomSequence(), Attributes.RandomSequence().Randomize(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.StartWith(new object().ToSequence(), new object().ToSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => IEnumerableAssertions.StartWith(null, Enumerable.Empty<object>(), Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.StartWith(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+      AssertionExtensions.Should(() => Assert.To.StartWith(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.StartWith(superset, subset, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.StartWith(superset, subset, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -418,24 +426,23 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.EndWith(null, Attributes.EmptySequence(), Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.EndWith(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-      AssertionExtensions.Should(() => Assert.To.EndWith(Attributes.EmptySequence(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
-
-      Assert.To.EndWith(Attributes.EmptySequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.EndWith(Attributes.RandomSequence(), Attributes.EmptySequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.EndWith(Attributes.RandomSequence(), Attributes.RandomSequence()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.EndWith(Attributes.EmptySequence(), Attributes.RandomSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.EndWith(Attributes.RandomSequence(), Attributes.RandomSequence().TakeLast(Attributes.RandomSequence().Count() / 2)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.EndWith(Attributes.RandomSequence(), Attributes.RandomSequence().Randomize(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.EndWith(new object().ToSequence(), new object().ToSequence(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => IEnumerableAssertions.EndWith(null, Enumerable.Empty<object>(), Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.EndWith(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+      AssertionExtensions.Should(() => Assert.To.EndWith(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.EndWith(superset, subset, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.EndWith(superset, subset, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -447,24 +454,23 @@ public sealed class IEnumerableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableAssertions.Match(null, Attributes.EmptySequence(), _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IEnumerableAssertions.Match(null, Enumerable.Empty<object>(), _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Match<object>(null, _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
-      AssertionExtensions.Should(() => Assert.To.Match(Attributes.EmptySequence(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("condition");
-
-      Assert.To.Match(Attributes.EmptySequence(), _ => true).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Match(Attributes.EmptySequence(), _ => false).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Match(Attributes.RandomSequence(), _ => true).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Match(Attributes.RandomSequence(), _ => false, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Match(Attributes.RandomSequence(), element => element is not null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Match(1.Nulls(), element => element is null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Match(1.Nulls(), element => element is not null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Match(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("condition");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> sequence, Predicate<T> condition)
     {
-
+      if (result)
+      {
+        Assert.To.Match(sequence, condition).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Match(sequence, condition, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

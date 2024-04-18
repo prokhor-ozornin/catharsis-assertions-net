@@ -25,13 +25,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Status(null, Task.CompletedTask, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => TaskAssertions.Status(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      Assert.To.Status(Task.CompletedTask, TaskStatus.RanToCompletion).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Status(Task.FromCanceled(new CancellationToken(true)), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Status(Task.FromException(new Exception()), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Task.CompletedTask, TaskStatus.RanToCompletion);
+      Validate(false, Task.FromCanceled(default), TaskStatus.RanToCompletion);
+      Validate(false, Task.FromException(new Exception()), TaskStatus.RanToCompletion);
 
-      static void Validate()
+      static void Validate(bool result, Task task, TaskStatus status)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Status(task, status).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Status(task, status, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
 
@@ -40,13 +50,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Status(null, Task.FromResult<object>(null), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Status<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      Assert.To.Status(Task.FromResult<object>(null), TaskStatus.RanToCompletion).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Status(Task.FromCanceled<object>(new CancellationToken(true)), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Status(Task.FromException<object>(new Exception()), TaskStatus.RanToCompletion, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Task.FromResult<object>(null), TaskStatus.RanToCompletion);
+      Validate(false, Task.FromCanceled<object>(new CancellationToken(true)), TaskStatus.RanToCompletion);
+      Validate(false, Task.FromException<object>(new Exception()), TaskStatus.RanToCompletion);
 
-      static void Validate()
+      static void Validate<T>(bool result, Task<T> task, TaskStatus status)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Status(task, status).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Status(task, status, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
   }
@@ -66,13 +86,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Successful(null, Task.CompletedTask)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => TaskAssertions.Successful(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      Assert.To.Successful(Task.CompletedTask).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Successful(Task.FromCanceled(new CancellationToken(true)), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Successful(Task.FromException(new Exception()), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Task.CompletedTask);
+      Validate(false, Task.FromCanceled(new CancellationToken(true)));
+      Validate(false, Task.FromException(new Exception()));
 
-      static void Validate()
+      static void Validate(bool result, Task task)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Successful(task).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Successful(task, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
 
@@ -81,13 +111,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Successful(null, Task.FromResult<object>(null))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Successful<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      Assert.To.Successful(Task.FromResult<object>(null)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Successful(Task.FromCanceled<object>(new CancellationToken(true)), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Successful(Task.FromException<object>(new Exception()), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Task.FromResult<object>(null));
+      Validate(false, Task.FromCanceled<object>(new CancellationToken(true)));
+      Validate(false, Task.FromException<object>(new Exception()));
 
-      static void Validate()
+      static void Validate<T>(bool result, Task<T> task)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Successful(task).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Successful(task, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
   }
@@ -107,13 +147,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Unsuccessful(null, Task.CompletedTask)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Unsuccessful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      AssertionExtensions.Should(() => Assert.To.Unsuccessful(Task.CompletedTask, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Unsuccessful(Task.FromCanceled(new CancellationToken(true)), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Unsuccessful(Task.FromException(new Exception())).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, Task.FromException(new Exception()));
+      Validate(false, Task.CompletedTask);
+      Validate(false, Task.FromCanceled(new CancellationToken(true)));
 
-      static void Validate()
+      static void Validate(bool result, Task task)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Unsuccessful(task).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Unsuccessful(task, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
 
@@ -122,13 +172,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Unsuccessful(null, Task.FromResult<object>(null))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Unsuccessful<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      AssertionExtensions.Should(() => Assert.To.Unsuccessful(Task.FromResult<object>(null), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Unsuccessful(Task.FromCanceled<object>(new CancellationToken(true)), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Unsuccessful(Task.FromException<object>(new Exception())).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, Task.FromException<object>(new Exception()));
+      Validate(false, Task.FromResult<object>(null));
+      Validate(false, Task.FromCanceled<object>(new CancellationToken(true)));
 
-      static void Validate()
+      static void Validate<T>(bool result, Task<T> task)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Unsuccessful(task).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Unsuccessful(task, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
   }
@@ -148,13 +208,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Canceled(null, Task.CompletedTask)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Canceled(null)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      AssertionExtensions.Should(() => Assert.To.Canceled(Task.CompletedTask, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Canceled(Task.FromCanceled(new CancellationToken(true))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Canceled(Task.FromException(new Exception()), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Task.FromCanceled(new CancellationToken(true)));
+      Validate(false, Task.CompletedTask);
+      Validate(false, Task.FromException(new Exception()));
 
-      static void Validate()
+      static void Validate(bool result, Task task)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Canceled(task).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Canceled(task, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
 
@@ -163,13 +233,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Canceled(null, Task.FromResult<object>(null))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Canceled<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      AssertionExtensions.Should(() => Assert.To.Canceled(Task.FromResult<object>(null), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Canceled(Task.FromCanceled<object>(new CancellationToken(true))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Canceled(Task.FromException<object>(new Exception()), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(false, Task.FromResult<object>(null));
+      Validate(true, Task.FromCanceled<object>(new CancellationToken(true)));
+      Validate(false, Task.FromException<object>(new Exception()));
 
-      static void Validate()
+      static void Validate<T>(bool result, Task<T> task)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Canceled(task).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Canceled(task, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
   }
@@ -189,13 +269,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Completed(null, Task.CompletedTask)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Completed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      Assert.To.Completed(Task.CompletedTask).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Completed(Task.FromCanceled(new CancellationToken(true))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Completed(Task.FromException(new Exception())).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, Task.CompletedTask);
+      Validate(true, Task.FromCanceled(new CancellationToken(true)));
+      Validate(true, Task.FromException(new Exception()));
 
-      static void Validate()
+      static void Validate(bool result, Task task)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Completed(task).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Completed(task, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
 
@@ -204,13 +294,23 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Completed(null, Task.FromResult<object>(null))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Completed<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
-      Assert.To.Completed(Task.FromResult<object>(null)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Completed(Task.FromCanceled<object>(new CancellationToken(true))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Completed(Task.FromException<object>(new Exception())).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, Task.FromResult<object>(null));
+      Validate(true, Task.FromCanceled<object>(new CancellationToken(true)));
+      Validate(true, Task.FromException<object>(new Exception()));
 
-      static void Validate()
+      static void Validate<T>(bool result, Task<T> task)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Assert.To.Completed(task).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Assert.To.Completed(task, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          }
+        }
       }
     }
   }

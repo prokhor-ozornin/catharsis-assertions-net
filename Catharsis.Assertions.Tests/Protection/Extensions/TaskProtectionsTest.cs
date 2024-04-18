@@ -26,12 +26,22 @@ public sealed class TaskProtectionsTest : UnitTest
       AssertionExtensions.Should(() => TaskProtections.Status(null, Task.CompletedTask, default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("protection").Await();
       AssertionExtensions.Should(() => Protect.From.Status(null, default, "error")).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("task").Await();
 
-      AssertionExtensions.Should(() => Protect.From.Status(Task.CompletedTask, TaskStatus.RanToCompletion, "error")).ThrowExactlyAsync<ArgumentException>().WithMessage("error").Await();
-      Task.CompletedTask.With(task => Protect.From.Status(task, TaskStatus.Canceled).Should().BeOfType<Task>().And.BeSameAs(task));
+      Validate(true, Task.CompletedTask, TaskStatus.Canceled);
+      Validate(false, Task.CompletedTask, TaskStatus.RanToCompletion);
 
-      static void Validate()
+      static void Validate(bool result, Task task, TaskStatus status)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Protect.From.Status(task, status).Should().BeOfType<Task>().And.BeSameAs(task);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Protect.From.Status(task, status, "error")).ThrowExactlyAsync<ArgumentException>().WithMessage("error").Await();
+          }
+        }
       }
     }
 
@@ -40,12 +50,22 @@ public sealed class TaskProtectionsTest : UnitTest
       AssertionExtensions.Should(() => TaskProtections.Status(null, Task.FromResult<object>(null), default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("protection").Await();
       AssertionExtensions.Should(() => Protect.From.Status((Task<object>) null, default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("task").Await();
 
-      AssertionExtensions.Should(() => Protect.From.Status(Task.FromResult<object>(null), TaskStatus.RanToCompletion, "error")).ThrowExactlyAsync<ArgumentException>().WithMessage("error").Await();
-      Task.FromResult<object>(null).With(task => Protect.From.Status(task, TaskStatus.Canceled).Should().BeOfType<Task<object>>().And.BeSameAs(task));
+      Validate(true, Task.FromResult<object>(null), TaskStatus.Canceled);
+      Validate(false, Task.FromResult<object>(null), TaskStatus.RanToCompletion);
 
-      static void Validate()
+      static void Validate<T>(bool result, Task<T> task, TaskStatus status)
       {
-
+        using (task)
+        {
+          if (result)
+          {
+            Protect.From.Status(task, status).Should().BeOfType<Task<T>>().And.BeSameAs(task);
+          }
+          else
+          {
+            AssertionExtensions.Should(() => Protect.From.Status(task, status, "error")).ThrowExactlyAsync<ArgumentException>().WithMessage("error").Await();
+          }
+        }
       }
     }
   }

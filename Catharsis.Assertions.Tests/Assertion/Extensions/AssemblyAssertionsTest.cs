@@ -29,10 +29,19 @@ public sealed class AssemblyAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Define(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
       AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      static void Validate()
+      Validate(true, Assembly.GetAssembly(typeof(object)), typeof(object));
+      Validate(false, Assembly.GetExecutingAssembly(), typeof(object));
+
+      static void Validate(bool result, Assembly assembly, Type type)
       {
-        Assert.To.Define(Assembly.GetAssembly(typeof(object)), typeof(object)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), typeof(object), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        if (result)
+        {
+          Assert.To.Define(assembly, type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Define(assembly, type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
       }
     }
 
@@ -41,11 +50,19 @@ public sealed class AssemblyAssertionsTest : UnitTest
       AssertionExtensions.Should(() => AssemblyAssertions.Define<object>(null, Assembly.GetExecutingAssembly())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Define<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
 
-      Assert.To.Define<object>(Assembly.GetAssembly(typeof(object))).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Define<object>(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate<object>(true, Assembly.GetAssembly(typeof(object)));
+      Validate<object>(false, Assembly.GetExecutingAssembly());
 
-      static void Validate()
+      static void Validate<T>(bool result, Assembly assembly)
       {
+        if (result)
+        {
+          Assert.To.Define<T>(assembly).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Define<T>(assembly, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
       }
     }
   }
@@ -60,15 +77,20 @@ public sealed class AssemblyAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => AssemblyAssertions.Dynamic(null, Assembly.GetExecutingAssembly())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
-
-      AssertionExtensions.Should(() => Assert.To.Dynamic(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Dynamic(AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Assembly assembly)
     {
+      if (result)
+      {
+        Assert.To.Dynamic(AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Dynamic(Assembly.GetExecutingAssembly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

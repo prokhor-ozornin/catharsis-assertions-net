@@ -21,15 +21,25 @@ public sealed class TimeOnlyAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeOnlyAssertions.Hour(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
+      {
+        Validate(true, time, time.Hour);
+        Validate(false, time, int.MinValue);
+      });
     }
 
     return;
 
-    static void Validate(TimeOnly time)
+    static void Validate(bool result, TimeOnly time, int hour)
     {
-      AssertionExtensions.Should(() => Assert.To.Hour(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Hour(time, time.Hour).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Hour(time, hour).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Hour(time, hour, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -43,15 +53,25 @@ public sealed class TimeOnlyAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeOnlyAssertions.Minute(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
+      {
+        Validate(true, time, time.Minute);
+        Validate(false, time, int.MinValue);
+      });
     }
 
     return;
 
-    static void Validate(TimeOnly time)
+    static void Validate(bool result, TimeOnly time, int minute)
     {
-      AssertionExtensions.Should(() => Assert.To.Minute(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Minute(time, time.Minute).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Minute(time, minute).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Minute(time, minute, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -65,15 +85,25 @@ public sealed class TimeOnlyAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeOnlyAssertions.Second(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
+      {
+        Validate(true, time, time.Second);
+        Validate(false, time, int.MinValue);
+      });
     }
 
     return;
 
-    static void Validate(TimeOnly time)
+    static void Validate(bool result, TimeOnly time, int second)
     {
-      AssertionExtensions.Should(() => Assert.To.Second(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Second(time, time.Second).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        AssertionExtensions.Should(() => Assert.To.Second(time, second, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
+      else
+      {
+        Assert.To.Second(time, second).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
     }
   }
 
@@ -87,15 +117,25 @@ public sealed class TimeOnlyAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeOnlyAssertions.Millisecond(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
+      {
+        Validate(true, time, time.Millisecond);
+        Validate(false, time, int.MinValue);
+      });
     }
 
     return;
 
-    static void Validate(TimeOnly time)
+    static void Validate(bool result, TimeOnly time, int millisecond)
     {
-      AssertionExtensions.Should(() => Assert.To.Millisecond(time, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Millisecond(time, time.Millisecond).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Millisecond(time, millisecond).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Millisecond(time, millisecond, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

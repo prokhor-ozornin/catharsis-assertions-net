@@ -12,8 +12,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class HttpResponseMessageExpectationsTest : UnitTest
 {
-  private HttpResponseMessage Response { get; } = new();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="HttpResponseMessageExpectations.Successful(IExpectation{HttpResponseMessage})"/> method.</para>
   /// </summary>
@@ -28,23 +26,18 @@ public sealed class HttpResponseMessageExpectationsTest : UnitTest
       Enum.GetValues<HttpStatusCode>().ForEach(status =>
       {
         var code = (int) status;
-
-        if (code is >= 200 and <= 299)
-        {
-          new HttpResponseMessage(status).TryFinallyDispose(message => message.Expect().Successful().Result.Should().BeTrue());
-        }
-        else
-        {
-          new HttpResponseMessage(status).TryFinallyDispose(message => message.Expect().Successful().Result.Should().BeFalse());
-        }
+        Validate(code is >= 200 and <= 299, new HttpResponseMessage(status));
       });
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, HttpResponseMessage response)
     {
-
+      using (response)
+      {
+        response.Expect().Successful().Should().BeOfType<Expectation<HttpResponseMessage>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -59,15 +52,18 @@ public sealed class HttpResponseMessageExpectationsTest : UnitTest
       AssertionExtensions.Should(() => HttpResponseMessageExpectations.Status(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((HttpResponseMessage) null).Expect().Status(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Response.Expect().Status(HttpStatusCode.NotFound).Result.Should().BeFalse();
-      Response.Expect().Status(Response.StatusCode).Result.Should().BeTrue();
+      Validate(true, new HttpResponseMessage(default), default);
+      Validate(false, new HttpResponseMessage(HttpStatusCode.OK), default);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, HttpResponseMessage response, HttpStatusCode status)
     {
-
+      using (response)
+      {
+        response.Expect().Status(status).Should().BeOfType<Expectation<HttpResponseMessage>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -81,45 +77,29 @@ public sealed class HttpResponseMessageExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => HttpResponseMessageExpectations.Header(null, "name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((HttpResponseMessage) null).Expect().Header("name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      AssertionExtensions.Should(() => Response.Expect().Header(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Response.With(response =>
+      Validate(false, new HttpResponseMessage().With(response => response.Headers.Add("connection", (string) null)), "connection", null);
+      Validate(false, new HttpResponseMessage().With(response => response.Headers.Add("connection", Enumerable.Empty<string>())), "connection", null);
+
+      Validate(true, new HttpResponseMessage().With(response => response.Headers.With(headers =>
       {
-        response.Headers.Add("connection", (string) null);
-        Response.Expect().Header("connection", null).Result.Should().BeFalse();
-        Response.Headers.Clear();
+        headers.Add("connection", "open");
+        headers.Add("connection", "close");
+      })), "connection", "open");
 
-        response.Headers.Add("connection", Enumerable.Empty<string>());
-        Response.Expect().Header("connection", null).Result.Should().BeFalse();
-        Response.Headers.Clear();
-
-        response.Headers.Add("connection", "open");
-        response.Headers.Add("connection", "close");
-        Response.Expect().Header("connection", "open").Result.Should().BeTrue();
-        Response.Expect().Header("connection", "close").Result.Should().BeTrue();
-        Response.Headers.Clear();
-
-        response.Headers.Add("connection", ["open", "close"]);
-        Response.Expect().Header("connection", "open").Result.Should().BeTrue();
-        Response.Expect().Header("connection", "close").Result.Should().BeTrue();
-        Response.Headers.Clear();
-      });
+      Validate(true, new HttpResponseMessage().With(response => response.Headers.Add("connection", ["open", "close"])), "connection", "close");
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, HttpResponseMessage response, string name, string value)
     {
+      using (response)
+      {
+        AssertionExtensions.Should(() => response.Expect().Header(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
+        response.Expect().Header(name, value).Should().BeOfType<Expectation<HttpResponseMessage>>().Which.Result.Should().Be(result);
+      }
     }
-  }
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  public override void Dispose()
-  {
-    base.Dispose();
-    Response.Dispose();
   }
 }

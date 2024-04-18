@@ -34,10 +34,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, string text, int length) => text.Expect().Length(length).Should().BeOfType<Expectation<string>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -57,10 +54,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, string text) => text.Expect().Empty().Should().BeOfType<Expectation<string>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -81,10 +75,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, string text) => text.Expect().WhiteSpace().Should().BeOfType<Expectation<string>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -105,10 +96,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, string text) => text.Expect().UpperCased().Should().BeOfType<Expectation<string>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -129,10 +117,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, string text) => text.Expect().LowerCased().Should().BeOfType<Expectation<string>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -159,10 +144,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, string text, string prefix, StringComparison? comparison = null) => text.Expect().StartWith(prefix, comparison).Should().BeOfType<Expectation<string>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -189,10 +171,7 @@ public sealed class StringExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, string text, string postfix, StringComparison? comparison = null) => text.Expect().EndWith(postfix, comparison).Should().BeOfType<Expectation<string>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -215,9 +194,6 @@ public sealed class StringExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, string text, Regex regex) => text.Expect().Match(regex).Should().BeOfType<Expectation<string>>().Which.Result.Should().Be(result);
   }
 }

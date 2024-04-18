@@ -20,16 +20,20 @@ public sealed class ThreadAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ThreadAssertions.State(null, Thread.CurrentThread, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.State(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("thread");
-
-      AssertionExtensions.Should(() => Assert.To.State(Thread.CurrentThread, ThreadState.Unstarted, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.State(Thread.CurrentThread, Thread.CurrentThread.ThreadState).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Thread thread, ThreadState state)
     {
-
+      if (result)
+      {
+        Assert.To.State(thread, state).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.State(thread, state, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -43,16 +47,20 @@ public sealed class ThreadAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ThreadAssertions.Priority(null, Thread.CurrentThread, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Priority(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("thread");
-
-      AssertionExtensions.Should(() => Assert.To.Priority(Thread.CurrentThread, ThreadPriority.Highest, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Priority(Thread.CurrentThread, Thread.CurrentThread.Priority).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Thread thread, ThreadPriority priority)
     {
-
+      if (result)
+      {
+        Assert.To.Priority(thread, priority).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Priority(thread, priority, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

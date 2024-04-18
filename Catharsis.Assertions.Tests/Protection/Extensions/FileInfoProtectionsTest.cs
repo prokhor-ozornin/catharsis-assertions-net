@@ -22,18 +22,25 @@ public sealed class FileInfoProtectionsTest : UnitTest
       AssertionExtensions.Should(() => FileInfoProtections.Empty(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((FileInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-      Attributes.TempFile().File.TryFinallyDelete(file =>
-      {
-        Protect.From.Empty(file).Should().BeOfType<FileInfo>().And.BeSameAs(file);
-        AssertionExtensions.Should(() => Protect.From.Empty(file.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      });
+      Validate(true, Attributes.TempFile());
+      Validate(false, Attributes.TempFile());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, TempFile file)
     {
-
+      using (file)
+      {
+        if (result)
+        {
+          Protect.From.Empty(file.File).Should().BeOfType<FileInfo>().And.BeSameAs(file);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Protect.From.Empty(file.File.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        }
+      }
     }
   }
 }

@@ -36,20 +36,20 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="other">Asserted sequence to compare for equality.</param>
+  /// <param name="left">Sequence of elements to inspect.</param>
+  /// <param name="right">Asserted sequence to compare for equality.</param>
   /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="left"/>, or <paramref name="right"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion EquivalentTo<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null, string error = null)
+  public static IAssertion EquivalentTo<T>(this IAssertion assertion, IEnumerable<T> left, IEnumerable<T> right, IEqualityComparer<T> comparer = null, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (sequence is null) throw new ArgumentNullException(nameof(sequence));
-    if (other is null) throw new ArgumentNullException(nameof(other));
+    if (left is null) throw new ArgumentNullException(nameof(left));
+    if (right is null) throw new ArgumentNullException(nameof(right));
 
-    return assertion.True(sequence.SequenceEqual(other, comparer), error);
+    return assertion.True(left.SequenceEqual(right, comparer), error);
   }
 
   /// <summary>
@@ -71,20 +71,20 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="other">Set of elements all of which are asserted to be contained in the sequence.</param>
+  /// <param name="superset">Sequence of elements to inspect.</param>
+  /// <param name="subset">Set of elements all of which are asserted to be contained in the sequence.</param>
   /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="superset"/>, or <paramref name="subset"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion ContainAll<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null, string error = null)
+  public static IAssertion ContainAll<T>(this IAssertion assertion, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (sequence is null) throw new ArgumentNullException(nameof(sequence));
-    if (other is null) throw new ArgumentNullException(nameof(other));
+    if (superset is null) throw new ArgumentNullException(nameof(superset));
+    if (subset is null) throw new ArgumentNullException(nameof(subset));
 
-    return assertion.Empty(other.Except(sequence, comparer), error);
+    return assertion.Empty(subset.Except(superset, comparer), error);
   }
 
   /// <summary>
@@ -92,20 +92,20 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="other">Set of elements one or more of which is asserted to be contained in the sequence.</param>
+  /// <param name="superset">Sequence of elements to inspect.</param>
+  /// <param name="subset">Set of elements one or more of which is asserted to be contained in the sequence.</param>
   /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="superset"/>, or <paramref name="subset"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion ContainAnyOf<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null, string error = null)
+  public static IAssertion ContainAnyOf<T>(this IAssertion assertion, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (sequence is null) throw new ArgumentNullException(nameof(sequence));
-    if (other is null) throw new ArgumentNullException(nameof(other));
+    if (superset is null) throw new ArgumentNullException(nameof(superset));
+    if (subset is null) throw new ArgumentNullException(nameof(subset));
 
-    return assertion.True(sequence.Intersect(other, comparer).Any(), error);
+    return assertion.True(superset.Intersect(subset, comparer).Any(), error);
   }
 
   /// <summary>
@@ -210,21 +210,21 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="other">Asserted starting sequence.</param>
+  /// <param name="superset">Sequence of elements to inspect.</param>
+  /// <param name="subset">Asserted starting sequence.</param>
   /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="superset"/>, or <paramref name="subset"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="EndWith{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
-  public static IAssertion StartWith<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null, string error = null)
+  public static IAssertion StartWith<T>(this IAssertion assertion, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (sequence is null) throw new ArgumentNullException(nameof(sequence));
-    if (other is null) throw new ArgumentNullException(nameof(other));
+    if (superset is null) throw new ArgumentNullException(nameof(superset));
+    if (subset is null) throw new ArgumentNullException(nameof(subset));
 
-    return assertion.True(sequence.Take(other.Count()).SequenceEqual(other, comparer), error);
+    return assertion.True(superset.Take(subset.Count()).SequenceEqual(subset, comparer), error);
   }
 
   /// <summary>
@@ -232,21 +232,21 @@ public static class IEnumerableAssertions
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="sequence">Sequence of elements to inspect.</param>
-  /// <param name="other">Asserted ending sequence.</param>
+  /// <param name="superset">Sequence of elements to inspect.</param>
+  /// <param name="subset">Asserted ending sequence.</param>
   /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="sequence"/>, or <paramref name="other"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="superset"/>, or <paramref name="subset"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="StartWith{T}(IAssertion, IEnumerable{T}, IEnumerable{T}, IEqualityComparer{T}, string)"/>
-  public static IAssertion EndWith<T>(this IAssertion assertion, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null, string error = null)
+  public static IAssertion EndWith<T>(this IAssertion assertion, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null, string error = null)
   {
     if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (sequence is null) throw new ArgumentNullException(nameof(sequence));
-    if (other is null) throw new ArgumentNullException(nameof(other));
+    if (superset is null) throw new ArgumentNullException(nameof(superset));
+    if (subset is null) throw new ArgumentNullException(nameof(subset));
 
-    return assertion.True(sequence.TakeLast(other.Count()).SequenceEqual(other, comparer), error);
+    return assertion.True(superset.TakeLast(subset.Count()).SequenceEqual(subset, comparer), error);
   }
 
   /// <summary>

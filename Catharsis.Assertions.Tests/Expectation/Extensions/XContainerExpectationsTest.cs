@@ -22,29 +22,26 @@ public sealed class XContainerExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-    AssertionExtensions.Should(() => XContainerExpectations.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((XContainer) null).Expect().Element("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Container.Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+      AssertionExtensions.Should(() => XContainerExpectations.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((XContainer) null).Expect().Element("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => Container.Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-    Container.Expect().Element(Attributes.RandomString()).Result.Should().BeFalse();
+      Container.Expect().Element(Attributes.RandomString()).Result.Should().BeFalse();
 
-    Container.With(container =>
-    {
-      var root = new XElement("parent");
-      root.Add(new XElement("child"));
-      container.Add(root);
+      Container.With(container =>
+      {
+        var root = new XElement("parent");
+        root.Add(new XElement("child"));
+        container.Add(root);
 
-      container.Expect().Element("parent").Result.Should().BeTrue();
-      container.Expect().Element("child").Result.Should().BeFalse();
-    });
+        container.Expect().Element("parent").Result.Should().BeTrue();
+        container.Expect().Element("child").Result.Should().BeFalse();
+      });
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XContainer container, XName name) => container.Expect().Element(name).Should().BeOfType<Expectation<XContainer>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -66,12 +63,8 @@ public sealed class XContainerExpectationsTest : UnitTest
         container.Expect().Empty().Result.Should().BeFalse();
       });
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XContainer container) => container.Expect().Empty().Should().BeOfType<Expectation<XContainer>>().Which.Result.Should().Be(result);
   }
 }

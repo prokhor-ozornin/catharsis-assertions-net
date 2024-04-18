@@ -36,10 +36,7 @@ public sealed class XDocumentExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XDocument document) => document.Expect().Empty().Should().BeOfType<Expectation<XDocument>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -66,9 +63,6 @@ public sealed class XDocumentExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XDocument document, XName name) => document.Expect().Name(name).Should().BeOfType<Expectation<XDocument>>().Which.Result.Should().Be(result);
   }
 }

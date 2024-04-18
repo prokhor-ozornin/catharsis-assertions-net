@@ -29,12 +29,14 @@ public sealed class TextWriterExpectationsTest : UnitTest
         writer.Expect().Format(writer.FormatProvider).Result.Should().BeTrue();
       });
     }
-
     return;
 
-    static void Validate()
+    static void Validate(bool result, TextWriter writer, IFormatProvider format)
     {
-
+      using (writer)
+      {
+        writer.Expect().Format(format).Should().BeOfType<Expectation<TextWriter>>().Which.Result.Should().Be(result);
+      }
     }
   }
 }

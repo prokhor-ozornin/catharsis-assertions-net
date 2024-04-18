@@ -22,22 +22,25 @@ public sealed class SecureStringProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => Protect.From.Empty((SecureString) null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-      new SecureString().TryFinallyDispose(secure => AssertionExtensions.Should(() => Protect.From.Empty(secure, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-      
-      new SecureString().TryFinallyDispose(secure =>
-      {
-        AssertionExtensions.Should(() => SecureStringProtections.Empty(null, secure)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-
-        secure.AppendChar(char.MinValue);
-        Protect.From.Empty(secure).Should().BeOfType<SecureString>().And.BeSameAs(secure);
-      }); 
+      Validate(true, new SecureString().With(char.MinValue));
+      Validate(false, new SecureString());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, SecureString secure)
     {
-
+      using (secure)
+      {
+        if (result)
+        {
+          Protect.From.Empty(secure).Should().BeOfType<SecureString>().And.BeSameAs(secure);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Protect.From.Empty(secure, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        }
+      }
     }
   }
 }

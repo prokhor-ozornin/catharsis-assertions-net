@@ -22,19 +22,25 @@ public sealed class DirectoryInfoProtectionsTest : UnitTest
       AssertionExtensions.Should(() => DirectoryInfoProtections.Empty(null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((DirectoryInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-      Attributes.TempDirectory().Directory.TryFinallyDelete(directory =>
-      {
-        AssertionExtensions.Should(() => Protect.From.Empty(directory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-        directory.CreateSubdirectory(Attributes.Random().DirectoryName()).TryFinallyDelete(_ => Protect.From.Empty(directory).Should().NotBeNull().And.BeSameAs(directory));
-        Attributes.Random().BinaryFile(0, null, null, directory).TryFinallyDelete(_ => Protect.From.Empty(directory).Should().BeOfType<DirectoryInfo>().And.BeSameAs(directory));
-      });
+      Validate(true, Attributes.TempDirectory().With(directory => directory.Directory.CreateSubdirectory(Attributes.Random().DirectoryName())));
+      Validate(false, Attributes.TempDirectory());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, TempDirectory directory)
     {
-
+      using (directory)
+      {
+        if (result)
+        {
+          Protect.From.Empty(directory.Directory).Should().BeOfType<DirectoryInfo>().And.BeSameAs(directory);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Protect.From.Empty(directory.Directory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        }
+      }
     }
   }
 }

@@ -28,13 +28,9 @@ public sealed class TypeExpectationsTest : UnitTest
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Abstract().Result.Should().Be(type.IsAbstract));
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Type type) => type.Expect().Abstract().Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -56,10 +52,7 @@ public sealed class TypeExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Type type) => type.Expect().Sealed().Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -81,10 +74,7 @@ public sealed class TypeExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Type type) => type.Expect().Static().Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -106,10 +96,7 @@ public sealed class TypeExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Type type) => type.Expect().Public().Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -131,10 +118,7 @@ public sealed class TypeExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Type type) => type.Expect().Internal().Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -159,10 +143,7 @@ public sealed class TypeExpectationsTest : UnitTest
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Subclass(typeof(object)).Result.Should().BeTrue());
 
-      static void Validate()
-      {
-
-      }
+      static void Validate(bool result, Type type, Type superclass) => type.Expect().Subclass(superclass).Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
@@ -176,10 +157,7 @@ public sealed class TypeExpectationsTest : UnitTest
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => type.Expect().Subclass<object>().Result.Should().BeTrue());
 
-      static void Validate()
-      {
-
-      }
+      static void Validate<T>(bool result, Type type) => type.Expect().Subclass<T>().Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
     }
   }
 
@@ -209,10 +187,7 @@ public sealed class TypeExpectationsTest : UnitTest
         typeof(object).Expect().AssignableFrom(type).Result.Should().BeTrue();
       });
 
-      static void Validate()
-      {
-
-      }
+      static void Validate(bool result, Type type, Type from) => type.Expect().AssignableFrom(from).Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
@@ -225,10 +200,7 @@ public sealed class TypeExpectationsTest : UnitTest
       typeof(object).Expect().AssignableFrom<string>().Result.Should().BeTrue();
       typeof(IEnumerable<char>).Expect().AssignableFrom<string>().Result.Should().BeTrue();
 
-      static void Validate()
-      {
-
-      }
+      static void Validate<T>(bool result, Type type) => type.Expect().AssignableFrom<T>().Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
     }
   }
 
@@ -258,10 +230,7 @@ public sealed class TypeExpectationsTest : UnitTest
         type.Expect().AssignableTo(typeof(object)).Result.Should().BeTrue();
       });
 
-      static void Validate()
-      {
-
-      }
+      static void Validate(bool result, Type type, Type to) => type.Expect().AssignableTo(to).Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
@@ -279,10 +248,7 @@ public sealed class TypeExpectationsTest : UnitTest
         type.Expect().AssignableTo<object>().Result.Should().BeTrue();
       });
 
-      static void Validate()
-      {
-
-      }
+      static void Validate<T>(bool result, Type type) => type.Expect().AssignableFrom<T>().Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
     }
   }
 }

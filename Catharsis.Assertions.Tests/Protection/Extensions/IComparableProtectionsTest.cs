@@ -2,7 +2,6 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
-using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -21,23 +20,29 @@ public sealed class IComparableProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IComparableProtections.Positive(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Protect.From.Positive(int.MinValue).Should().Be(int.MinValue);
-      Protect.From.Positive(0).Should().Be(0);
-      AssertionExtensions.Should(() => Protect.From.Positive(int.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Validate(true, int.MinValue);
+      Validate(true, 0);
+      Validate(true, DateTime.MinValue);
+      Validate(true, Guid.Empty);
 
-      Protect.From.Positive(DateTime.MinValue).Should().Be(DateTime.MinValue);
-      AssertionExtensions.Should(() => Protect.From.Positive(DateTime.Today, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      AssertionExtensions.Should(() => Protect.From.Positive(DateTime.MaxValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-
-      Protect.From.Positive(Guid.Empty).Should().Be(Guid.Empty);
-      AssertionExtensions.Should(() => Protect.From.Positive(Guid.NewGuid(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      Validate(false, int.MaxValue);
+      Validate(false, DateTime.Today);
+      Validate(false, DateTime.MaxValue);
+      Validate(false, Guid.NewGuid());
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T>
     {
-
+      if (result)
+      {
+        Protect.From.Positive(comparable).Should().BeOfType<T>().And.BeSameAs(comparable);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Positive(comparable, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 
@@ -51,23 +56,29 @@ public sealed class IComparableProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IComparableProtections.Negative(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      AssertionExtensions.Should(() => Protect.From.Negative(int.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Protect.From.Negative(0).Should().Be(0);
-      Protect.From.Negative(int.MaxValue).Should().Be(int.MaxValue);
+      Validate(true, 0);
+      Validate(true, int.MaxValue);
+      Validate(true, DateTime.MinValue);
+      Validate(true, DateTime.Today);
+      Validate(true, DateTime.MaxValue);
+      Validate(true, Guid.Empty);
+      Validate(true, Guid.NewGuid());
 
-      Protect.From.Negative(DateTime.MinValue).Should().Be(DateTime.MinValue);
-      Protect.From.Negative(DateTime.Today).Should().Be(DateTime.Today);
-      Protect.From.Negative(DateTime.MaxValue).Should().Be(DateTime.MaxValue);
-
-      Protect.From.Negative(Guid.Empty).Should().Be(Guid.Empty);
-      Guid.NewGuid().With(guid => Protect.From.Negative(guid).Should().Be(guid));
+      Validate(false, int.MinValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T>
     {
-
+      if (result)
+      {
+        Protect.From.Negative(comparable).Should().BeOfType<T>().And.BeSameAs(comparable);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Negative(comparable, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 
@@ -81,23 +92,29 @@ public sealed class IComparableProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IComparableProtections.Zero(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Protect.From.Zero(int.MinValue).Should().Be(int.MinValue);
-      AssertionExtensions.Should(() => Protect.From.Zero(0, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Protect.From.Zero(int.MaxValue).Should().Be(int.MaxValue);
+      Validate(true, int.MinValue);
+      Validate(true, int.MaxValue);
+      Validate(true, DateTime.Today);
+      Validate(true, DateTime.MaxValue);
+      Validate(true, Guid.NewGuid());
 
-      AssertionExtensions.Should(() => Protect.From.Zero(DateTime.MinValue, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Protect.From.Zero(DateTime.Today).Should().Be(DateTime.Today);
-      Protect.From.Zero(DateTime.MaxValue).Should().Be(DateTime.MaxValue);
-
-      AssertionExtensions.Should(() => Protect.From.Zero(Guid.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Guid.NewGuid().With(guid => Protect.From.Zero(guid).Should().Be(guid));
+      Validate(false, 0);
+      Validate(false, DateTime.MinValue);
+      Validate(false, Guid.Empty);
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T>
     {
-
+      if (result)
+      {
+        Protect.From.Zero(comparable).Should().BeOfType<T>().And.BeSameAs(comparable);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Zero(comparable, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 
@@ -115,18 +132,27 @@ public sealed class IComparableProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IComparableProtections.OutOfRange(null, 0, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Protect.From.OutOfRange(0, 0, 0).Should().Be(0);
-      Protect.From.OutOfRange(0, int.MinValue, 0).Should().Be(0);
-      Protect.From.OutOfRange(0, 0, int.MaxValue).Should().Be(0);
-      AssertionExtensions.Should(() => Protect.From.OutOfRange(int.MinValue, 0, int.MaxValue, "error")).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("error");
+      Validate(true, 0, 0, 0);
+      Validate(true, 0, int.MinValue, 0);
+      Validate(true, 0, 0, int.MaxValue);
+      Validate(true, DateTime.Today, DateTime.Today, DateTime.Today);
+      Validate(true, DateTime.Today, DateTime.MinValue, DateTime.Today);
+      Validate(true, DateTime.Today, DateTime.MinValue, DateTime.Today);
+      Validate(true, DateTime.Today, DateTime.Today, DateTime.MaxValue);
 
-      Protect.From.OutOfRange(DateTime.Today, DateTime.Today, DateTime.Today).Should().Be(DateTime.Today);
-      Protect.From.OutOfRange(DateTime.Today, DateTime.MinValue, DateTime.Today).Should().Be(DateTime.Today);
-      Protect.From.OutOfRange(DateTime.Today, DateTime.Today, DateTime.MaxValue).Should().Be(DateTime.Today);
-      AssertionExtensions.Should(() => Protect.From.OutOfRange(DateTime.MinValue, DateTime.Today, DateTime.MaxValue, "error")).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("error");
+      Validate(false, int.MinValue, 0, int.MaxValue);
+      Validate(false, DateTime.MinValue, DateTime.Today, DateTime.MaxValue);
 
-      static void Validate()
+      static void Validate<T>(bool result, T comparable, T min, T max) where T : struct, IComparable<T>
       {
+        if (result)
+        {
+          Protect.From.OutOfRange(comparable, min, max).Should().BeOfType<T>().And.BeSameAs(comparable);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Protect.From.OutOfRange(comparable, min, max, "error")).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("error");
+        }
       }
     }
 
@@ -134,12 +160,21 @@ public sealed class IComparableProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IComparableProtections.OutOfRange(null, 0, ..0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Protect.From.OutOfRange(0, ..0).Should().Be(0);
-      Protect.From.OutOfRange(0, ..int.MaxValue).Should().Be(0);
-      AssertionExtensions.Should(() => Protect.From.OutOfRange(int.MinValue, ..int.MaxValue, "error")).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("error");
+      Validate(true, 0, ..0);
+      Validate(true, 0, ..int.MaxValue);
 
-      static void Validate()
+      Validate(false, int.MinValue, ..int.MaxValue);
+
+      static void Validate(bool result, int value, Range range)
       {
+        if (result)
+        {
+          Protect.From.OutOfRange(value, range).Should().Be(value);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Protect.From.OutOfRange(value, range, "error")).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("error");
+        }
       }
     }
   }

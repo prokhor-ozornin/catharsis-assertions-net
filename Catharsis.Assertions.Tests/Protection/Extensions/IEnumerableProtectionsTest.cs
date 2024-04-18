@@ -1,5 +1,4 @@
 ﻿using Catharsis.Commons;
-using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -22,15 +21,22 @@ public sealed class IEnumerableProtectionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableProtections.Empty(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((IEnumerable<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-      Attributes.EmptySequence().With(sequence => AssertionExtensions.Should(() => Protect.From.Empty(sequence, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-      Attributes.RandomSequence().With(sequence => Protect.From.Empty(sequence).Should().BeOfType<IEnumerable<object>>().And.BeSameAs(sequence));
+      Validate(true, Attributes.RandomSequence());
+      Validate(false, Enumerable.Empty<object>());
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, IEnumerable<T> sequence)
     {
-
+      if (result)
+      {
+        Protect.From.Empty(sequence).Should().BeOfType<IEnumerable<T>>().And.BeSameAs(sequence);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Empty(sequence, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 }

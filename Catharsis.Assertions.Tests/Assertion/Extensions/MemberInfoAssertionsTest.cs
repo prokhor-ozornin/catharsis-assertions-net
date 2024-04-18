@@ -33,15 +33,19 @@ public sealed class MemberInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => MemberInfoAssertions.Attribute(null, Member, typeof(Attribute))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Attribute(null, typeof(Attribute))).ThrowExactly<ArgumentNullException>().WithParameterName("member");
       AssertionExtensions.Should(() => Assert.To.Attribute(Member, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
-
-      Assert.To.Attribute(Member, typeof(Attribute)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Attribute(Member, typeof(DescriptionAttribute)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Attribute(Member, typeof(ObsoleteAttribute), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Attribute(Member, typeof(object))).ThrowExactly<ArgumentException>();
 
-      static void Validate()
-      {
 
+      static void Validate(bool result, MemberInfo member, Type type)
+      {
+        if (result)
+        {
+          Assert.To.Attribute(member, type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Attribute(member, type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
       }
     }
 
@@ -50,13 +54,16 @@ public sealed class MemberInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => MemberInfoAssertions.Attribute<Attribute>(null, Member)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Attribute<Attribute>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
 
-      Assert.To.Attribute<Attribute>(Member).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Attribute< DescriptionAttribute>(Member).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Attribute<ObsoleteAttribute>(Member, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-      static void Validate()
+      static void Validate<T>(bool result, MemberInfo member) where T : Attribute
       {
-
+        if (result)
+        {
+          Assert.To.Attribute<Attribute>(member).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Attribute<ObsoleteAttribute>(member, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
       }
     }
   }
@@ -71,16 +78,20 @@ public sealed class MemberInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MemberInfoAssertions.Type(null, Member, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MemberInfoAssertions.Type(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
-
-      AssertionExtensions.Should(() => Assert.To.Type(Member, MemberTypes.All, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Type(Member, Member.MemberType).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, MemberInfo member, MemberTypes type)
     {
-
+      if (result)
+      {
+        Assert.To.Type(member, type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Type(member, type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

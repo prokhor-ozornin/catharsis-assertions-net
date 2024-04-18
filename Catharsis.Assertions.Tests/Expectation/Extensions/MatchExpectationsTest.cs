@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
@@ -24,16 +23,13 @@ public sealed class MatchExpectationsTest : UnitTest
       AssertionExtensions.Should(() => MatchExpectations.Successful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Match) null).Expect().Successful()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Match.Empty.Expect().Successful().Result.Should().BeFalse();
-      string.Empty.ToRegex().Match(string.Empty).Expect().Successful().Result.Should().BeTrue();
+      Validate(true, string.Empty.ToRegex().Match(string.Empty));
+      Validate(false, Match.Empty);
     }
 
     return;
-
-    static void Validate()
-    {
-
-    }
+    
+    static void Validate(bool result, Match match) => match.Expect().Successful().Should().BeOfType<Expectation<Match>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -48,15 +44,12 @@ public sealed class MatchExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((Match) null).Expect().Value(string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => Match.Empty.Expect().Value(null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-      Match.Empty.Expect().Value(Attributes.RandomString()).Result.Should().BeFalse();
-      Match.Empty.Expect().Value(Match.Empty.Value).Result.Should().BeTrue();
+      Validate(true, Match.Empty, Match.Empty.Value);
+      Validate(false, Match.Empty, Attributes.RandomString());
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Match match, string value) => match.Expect().Value(value).Should().BeOfType<Expectation<Match>>().Which.Result.Should().Be(result);
   }
 }

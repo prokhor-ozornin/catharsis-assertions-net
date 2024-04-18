@@ -20,15 +20,23 @@ public sealed class BooleanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => BooleanAssertions.True(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      AssertionExtensions.Should(() => Assert.To.True(null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.True(false, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.True(true, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, true);
+      Validate(false, null);
+      Validate(false, false);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, bool? value)
     {
+      if (result)
+      {
+        Assert.To.True(value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.True(value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -42,15 +50,23 @@ public sealed class BooleanAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => BooleanAssertions.False(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Assert.To.False(null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.False(false).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.False(true, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, null);
+      Validate(true, false);
+      Validate(false, true);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, bool? value)
     {
+      if (result)
+      {
+        Assert.To.False(value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.False(value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

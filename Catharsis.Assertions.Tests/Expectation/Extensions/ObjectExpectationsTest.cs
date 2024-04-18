@@ -29,10 +29,7 @@ public sealed class ObjectExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T instance, object other) => instance.Expect().Same(other).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -56,10 +53,7 @@ public sealed class ObjectExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T instance, object other) => instance.Expect().Equal(other).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -87,10 +81,7 @@ public sealed class ObjectExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T instance) => instance.Expect().Default().Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -111,10 +102,7 @@ public sealed class ObjectExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T instance, Type type) => instance.Expect().OfType(type).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -133,10 +121,7 @@ public sealed class ObjectExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T instance) => instance.Expect().Null().Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -158,9 +143,6 @@ public sealed class ObjectExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T instance, IEnumerable<T> sequence, IEqualityComparer<T> comparer = null) => instance.Expect().OneOf(sequence, comparer).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 }

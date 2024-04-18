@@ -25,8 +25,6 @@ public sealed class XDocumentAssertionsTest : UnitTest
       AssertionExtensions.Should(() => XDocumentAssertions.Empty(null, Document)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XDocumentAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("document");
 
-      Assert.To.Empty(Document).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      
       Document.With(document =>
       {
         document.Add(new XElement("root"));
@@ -36,9 +34,16 @@ public sealed class XDocumentAssertionsTest : UnitTest
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, XDocument document)
     {
-
+      if (result)
+      {
+        Assert.To.Empty(document).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Empty(document, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -53,8 +58,6 @@ public sealed class XDocumentAssertionsTest : UnitTest
       AssertionExtensions.Should(() => XDocumentAssertions.Name(null, Document, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XDocumentAssertions.Name(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("document");
 
-      Assert.To.Name(Document, null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
       Document.With(document =>
       {
         const string name = "root";
@@ -67,9 +70,16 @@ public sealed class XDocumentAssertionsTest : UnitTest
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, XDocument document, XName name)
     {
-
+      if (result)
+      {
+        Assert.To.Name(document, name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Name(document, name, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

@@ -40,12 +40,8 @@ public sealed class XmlDocumentExpectationsTest : UnitTest
         document.Expect().Element(child.Name, child.NamespaceURI).Result.Should().BeTrue();
       });
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XmlDocument document, string name, string uri = null) => document.Expect().Element(name, uri).Should().BeOfType<Expectation<XmlDocument>>().Which.Result.Should().Be(result);
   }
 }

@@ -38,12 +38,14 @@ public sealed class TextReaderExpectationsTest : UnitTest
         reader.Expect().End().Result.Should().BeTrue();
       });
     }
-
     return;
 
-    static void Validate()
+    static void Validate(bool result, TextReader reader)
     {
-
+      using (reader)
+      {
+        reader.Expect().End().Should().BeOfType<Expectation<TextReader>>().Which.Result.Should().Be(result);
+      }
     }
   }
 }

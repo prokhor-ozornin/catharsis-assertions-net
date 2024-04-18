@@ -29,13 +29,10 @@ public sealed class AssemblyExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((Assembly) null).Expect().Define(typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => Assembly.GetExecutingAssembly().Expect().Define(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Assembly.GetAssembly(typeof(object)).Expect().Define(typeof(object)).Result.Should().BeTrue();
-      Assembly.GetExecutingAssembly().Expect().Define(typeof(object)).Result.Should().BeFalse();
+      Validate(true, Assembly.GetAssembly(typeof(object)), typeof(object));
+      Validate(false, Assembly.GetExecutingAssembly(), typeof(object));
 
-      static void Validate()
-      {
-
-      }
+      static void Validate(bool result, Assembly assembly, Type type) => assembly.Expect().Define(type).Should().BeOfType<Expectation<Assembly>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
@@ -43,13 +40,10 @@ public sealed class AssemblyExpectationsTest : UnitTest
       AssertionExtensions.Should(() => AssemblyExpectations.Define<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Assembly) null).Expect().Define<object>()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Assembly.GetAssembly(typeof(object)).Expect().Define<object>().Result.Should().BeTrue();
-      Assembly.GetExecutingAssembly().Expect().Define<object>().Result.Should().BeFalse();
+      Validate<object>(true, Assembly.GetAssembly(typeof(object)));
+      Validate<object>(false, Assembly.GetExecutingAssembly());
 
-      static void Validate()
-      {
-
-      }
+      static void Validate<T>(bool result, Assembly assembly) => assembly.Expect().Define<T>().Should().BeOfType<Expectation<Assembly>>().Which.Result.Should().Be(result);
     }
   }
 
@@ -64,13 +58,10 @@ public sealed class AssemblyExpectationsTest : UnitTest
       AssertionExtensions.Should(() => AssemblyExpectations.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Assembly) null).Expect().Dynamic()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Assembly.GetExecutingAssembly().Expect().Dynamic().Result.Should().BeFalse();
-      AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect).Expect().Dynamic().Result.Should().BeTrue();
+      Validate(true, AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect));
+      Validate(false, Assembly.GetExecutingAssembly());
     }
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Assembly assembly) => assembly.Expect().Dynamic().Should().BeOfType<Expectation<Assembly>>().Which.Result.Should().Be(result);
   }
 }

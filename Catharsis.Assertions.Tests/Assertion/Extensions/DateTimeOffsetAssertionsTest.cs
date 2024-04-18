@@ -21,16 +21,26 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Past(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date);
+        Validate(true, date.AddMilliseconds(-1));
+        Validate(false, date.AddMilliseconds(1));
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date)
     {
-      Assert.To.Past(date.AddSeconds(-1)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Past(date).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Past(date.AddSeconds(1), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      if (result)
+      {
+        Assert.To.Past(date).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Past(date, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -44,16 +54,26 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Future(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date.AddMilliseconds(1));
+        Validate(false, date);
+        Validate(false, date.AddMilliseconds(-1));
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date)
     {
-      Assert.To.Future(date.AddSeconds(1)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Future(date.AddSeconds(-1), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Future(date, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      if (result)
+      {
+        Assert.To.Future(date).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Future(date, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -67,15 +87,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.DayOfYear(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date, date.DayOfYear);
+        Validate(false, date, default);
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date, int day)
     {
-      AssertionExtensions.Should(() => Assert.To.DayOfYear(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.DayOfYear(date, date.DayOfYear).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.DayOfYear(date, day).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.DayOfYear(date, day, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -89,15 +119,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Year(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date, date.Year);
+        Validate(false, date, default);
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date, int year)
     {
-      AssertionExtensions.Should(() => Assert.To.Year(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Year(date, date.Year).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Year(date, year).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Year(date, year, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -111,15 +151,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Month(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date, date.Month);
+        Validate(false, date, default);
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date, int month)
     {
-      AssertionExtensions.Should(() => Assert.To.Month(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Month(date, date.Month).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Month(date, month).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Month(date, month, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -133,15 +183,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Day(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date, date.Day);
+        Validate(false, date, default);
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date, int day)
     {
-      AssertionExtensions.Should(() => Assert.To.Day(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Day(date, date.Day).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Day(date, day).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Day(date, day, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -155,15 +215,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Hour(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date, date.Hour);
+        Validate(false, date, default);
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date, int hour)
     {
-      AssertionExtensions.Should(() => Assert.To.Hour(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Hour(date, date.Hour).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Hour(date, hour).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Hour(date, hour, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -177,15 +247,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Minute(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date, date.Minute);
+        Validate(false, date, default);
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date, int minute)
     {
-      AssertionExtensions.Should(() => Assert.To.Minute(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Minute(date, date.Minute).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Minute(date, minute).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Minute(date, minute, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -199,15 +279,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Second(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date, date.Second);
+        Validate(false, date, default);
+      });
     }
     
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date, int second)
     {
-      AssertionExtensions.Should(() => Assert.To.Second(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Second(date, date.Second).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Second(date, second).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Second(date, second, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -221,15 +311,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Millisecond(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date, date.Millisecond);
+        Validate(false, date, default);
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date, int millisecond)
     {
-      AssertionExtensions.Should(() => Assert.To.Millisecond(date, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Millisecond(date, date.Millisecond).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Millisecond(date, millisecond).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Millisecond(date, millisecond, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -243,18 +343,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.DayOfWeek(null, default, DayOfWeek.Monday)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      DateTimeOffset.MinValue.With(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
       {
-        Assert.To.DayOfWeek(date, date.DayOfWeek).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        AssertionExtensions.Should(() => Assert.To.DayOfWeek(date, date.DayOfWeek + 1, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        Validate(true, date, date.DayOfWeek);
+        Validate(false, date, date.DayOfWeek + 1);
       });
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, DateTimeOffset date, DayOfWeek day)
     {
-
+      if (result)
+      {
+        Assert.To.DayOfWeek(date, day).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.DayOfWeek(date, day, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -268,15 +375,25 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Offset(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(Validate);
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      {
+        Validate(true, date, date.Offset);
+        Validate(false, date, date.Offset.Add(TimeSpan.FromMilliseconds(1)));
+      });
     }
 
     return;
 
-    static void Validate(DateTimeOffset date)
+    static void Validate(bool result, DateTimeOffset date, TimeSpan offset)
     {
-      AssertionExtensions.Should(() => Assert.To.Offset(date, TimeSpan.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Offset(date, date.Offset).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      if (result)
+      {
+        Assert.To.Offset(date, offset).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Offset(date, offset, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

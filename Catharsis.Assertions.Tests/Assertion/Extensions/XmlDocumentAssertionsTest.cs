@@ -15,7 +15,7 @@ public sealed class XmlDocumentAssertionsTest : UnitTest
   private XmlDocument Document { get; } = new();
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="XmlDocumentAssertions.Element(IAssertion, System.Xml.XmlDocument, string, string, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="XmlDocumentAssertions.Element(IAssertion, XmlDocument, string, string, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Element_Method()
@@ -25,8 +25,6 @@ public sealed class XmlDocumentAssertionsTest : UnitTest
       AssertionExtensions.Should(() => XmlDocumentAssertions.Element(null, Document, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("document");
       AssertionExtensions.Should(() => Assert.To.Element(Document, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
-
-      AssertionExtensions.Should(() => Assert.To.Element(Document, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
 
       Document.With(document =>
       {
@@ -43,9 +41,16 @@ public sealed class XmlDocumentAssertionsTest : UnitTest
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, XmlDocument document, string name, string uri = null)
     {
-
+      if (result)
+      {
+        Assert.To.Element(document, name, uri).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Element(document, name, uri, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -11,8 +12,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class StringBuilderExpectationsTest : UnitTest
 {
-  private StringBuilder Builder { get; } = new();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="StringBuilderExpectations.Length(IExpectation{StringBuilder}, int)"/> method.</para>
   /// </summary>
@@ -24,17 +23,14 @@ public sealed class StringBuilderExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StringBuilderExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Builder.Expect().Length(int.MinValue).Result.Should().BeFalse();
-      Builder.Expect().Length(int.MaxValue).Result.Should().BeFalse();
-      Builder.Expect().Length(Builder.Length).Result.Should().BeTrue();
+      Validate(true, new StringBuilder(), 0);
+      Validate(false, new StringBuilder(), int.MinValue);
+      Validate(false, new StringBuilder(), int.MaxValue);
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, StringBuilder builder, int length) => builder.Expect().Length(length).Should().BeOfType<Expectation<StringBuilder>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -48,15 +44,12 @@ public sealed class StringBuilderExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StringBuilderExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Builder.Expect().Empty().Result.Should().BeTrue();
-      Builder.Append(char.MinValue).Expect().Empty().Result.Should().BeFalse();
+      Validate(true, new StringBuilder());
+      Validate(false, new StringBuilder().With(char.MinValue));
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, StringBuilder builder) => builder.Expect().Empty().Should().BeOfType<Expectation<StringBuilder>>().Which.Result.Should().Be(result);
   }
 }

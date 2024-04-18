@@ -34,10 +34,7 @@ public sealed class IComparableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T> => comparable.Expect().Positive().Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -64,10 +61,7 @@ public sealed class IComparableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T> => comparable.Expect().Negative().Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -94,10 +88,7 @@ public sealed class IComparableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T> => comparable.Expect().Zero().Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -121,13 +112,9 @@ public sealed class IComparableExpectationsTest : UnitTest
       Guid.Empty.Expect().Greater(Guid.Empty).Result.Should().BeFalse();
       Guid.Empty.Expect().Greater(Guid.NewGuid()).Result.Should().BeFalse();
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T left, T right) where T : struct, IComparable<T> => left.Expect().Greater(right).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -154,10 +141,7 @@ public sealed class IComparableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T left, T right) where T : struct, IComparable<T> => left.Expect().GreaterOrEqual(right).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -184,10 +168,7 @@ public sealed class IComparableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T left, T right) where T : struct, IComparable<T> => left.Expect().Lesser(right).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -214,10 +195,7 @@ public sealed class IComparableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T left, T right) where T : struct, IComparable<T> => left.Expect().LesserOrEqual(right).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -246,10 +224,7 @@ public sealed class IComparableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T comparable, T min, T max) where T : struct, IComparable<T> => comparable.Expect().InRange(min, max).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -281,9 +256,6 @@ public sealed class IComparableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, T comparable, T min, T max) where T : struct, IComparable<T> => comparable.Expect().OutOfRange(min, max).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 }

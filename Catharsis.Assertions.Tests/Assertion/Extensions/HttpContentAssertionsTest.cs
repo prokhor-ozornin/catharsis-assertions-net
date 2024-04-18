@@ -11,8 +11,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class HttpContentAssertionsTest : UnitTest
 {
-  private HttpContent Content { get; } = new StringContent(string.Empty);
-
   /// <summary>
   ///   <para>Performs testing of <see cref="HttpContentAssertions.ContainHeader(IAssertion, HttpContent, string, string)"/> method.</para>
   /// </summary>
@@ -21,33 +19,30 @@ public sealed class HttpContentAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => HttpContentAssertions.ContainHeader(null, Content, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.ContainHeader(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("content");
-      AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
-
-      AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-      Content.Headers.Add("header", Enumerable.Empty<string>());
-      AssertionExtensions.Should(() => Assert.To.ContainHeader(Content, "header", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-      Content.Headers.Add("header", ((string) null).ToSequence());
-      Assert.To.ContainHeader(Content, "header").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, string.Empty.ToStringContent().With(content => content.Headers.Add("header", new string[] { null })), "header");
+      Validate(false, string.Empty.ToStringContent(), "header");
+      Validate(false, string.Empty.ToStringContent().With(content => content.Headers.Add("header", Enumerable.Empty<string>())), "header");
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, HttpContent content, string name)
     {
+      using (content)
+      {
+        AssertionExtensions.Should(() => HttpContentAssertions.ContainHeader(null, content, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+        AssertionExtensions.Should(() => Assert.To.ContainHeader(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("content");
+        AssertionExtensions.Should(() => Assert.To.ContainHeader(content, null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
+        if (result)
+        {
+          Assert.To.ContainHeader(content, name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.ContainHeader(content, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
-  }
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  public override void Dispose()
-  {
-    base.Dispose();
-    Content.Dispose();
   }
 }

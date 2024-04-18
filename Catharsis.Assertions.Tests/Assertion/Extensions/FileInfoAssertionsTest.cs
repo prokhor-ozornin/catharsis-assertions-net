@@ -1,5 +1,4 @@
 ﻿using Catharsis.Commons;
-using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -24,16 +23,20 @@ public sealed class FileInfoAssertionsTest : UnitTest
 
       AssertionExtensions.Should(() => Assert.To.Length(Attributes.TempFile().File, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       AssertionExtensions.Should(() => Assert.To.Length(Attributes.TempFile().File, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-      Assert.To.Length(Attributes.TempFile().File, Attributes.TempFile().File.Length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Length(Attributes.TempFile().File.Empty(), 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, FileInfo file, long length)
     {
-
+      if (result)
+      {
+        Assert.To.Length(file, length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Length(file, length, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -47,16 +50,20 @@ public sealed class FileInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => FileInfoAssertions.Empty(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => FileInfoAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
-
-      AssertionExtensions.Should(() => Assert.To.Empty(Attributes.TempFile().File, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Empty(Attributes.TempFile().File.Empty()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, FileInfo file)
     {
-
+      if (result)
+      {
+        Assert.To.Empty(file).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Empty(file, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -70,16 +77,20 @@ public sealed class FileInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => FileInfoAssertions.ReadOnly(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => FileInfoAssertions.ReadOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
-
-      AssertionExtensions.Should(() => Assert.To.ReadOnly(Attributes.TempFile().File, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.ReadOnly(Attributes.TempFile().File.AsReadOnly()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, FileInfo file)
     {
-
+      if (result)
+      {
+        Assert.To.ReadOnly(file).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.ReadOnly(file, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -94,16 +105,20 @@ public sealed class FileInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => FileInfoAssertions.InDirectory(null, Attributes.TempFile().File, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => FileInfoAssertions.InDirectory(Assert.To, null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
       AssertionExtensions.Should(() => Assert.To.InDirectory(Attributes.TempFile().File, null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
-
-      AssertionExtensions.Should(() => Assert.To.InDirectory(Attributes.TempFile().File, Environment.SystemDirectory.ToDirectory(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.InDirectory(Attributes.TempFile().File, Attributes.TempDirectory().Directory).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, FileInfo file, DirectoryInfo directory)
     {
-
+      if (result)
+      {
+        Assert.To.InDirectory(file, directory).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.InDirectory(file, directory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

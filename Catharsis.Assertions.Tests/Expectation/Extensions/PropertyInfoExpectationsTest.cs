@@ -45,13 +45,9 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Readable(WriteOnlyPropertyInfo, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       Assert.To.Readable(ReadWritePropertyInfo).Should().NotBeNull().And.BeSameAs(Assert.To);
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, PropertyInfo property) => property.Expect().Readable().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -72,10 +68,7 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, PropertyInfo property) => property.Expect().WriteOnly().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -96,10 +89,7 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, PropertyInfo property) => property.Expect().Writable().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -120,10 +110,10 @@ public sealed class PropertyInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate(PropertyInfo property, object instance)
-    {
-      AssertionExtensions.Should(() => Assert.To.Value(property, instance, new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Value(property, instance, property.GetValue(instance)).Should().NotBeNull().And.BeSameAs(Assert.To);
-    }
+    static void Validate(bool result, PropertyInfo property, object subject, object value) => property.Expect().Value(subject, value).Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
+    //{
+    //  AssertionExtensions.Should(() => Assert.To.Value(property, instance, new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+    //  Assert.To.Value(property, instance, property.GetValue(instance)).Should().NotBeNull().And.BeSameAs(Assert.To);
+    //}
   }
 }

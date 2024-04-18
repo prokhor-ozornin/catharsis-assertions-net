@@ -29,10 +29,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, int count) => sequence.Expect().Count(count).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -52,10 +49,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence) => sequence.Expect().Empty().Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -80,10 +74,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEnumerable<T> left, IEnumerable<T> right, IEqualityComparer<T> comparer = null) => left.Expect().EquivalentTo(right, comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -105,10 +96,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, T element, IEqualityComparer<T> comparer = null) => sequence.Expect().Contain(element, comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -134,10 +122,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null) => sequence.Expect().ContainAll(other, comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -163,10 +148,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null) => sequence.Expect().ContainAnyOf(other, comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -187,10 +169,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence) => sequence.Expect().ContainNulls().Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -211,10 +190,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEqualityComparer<T> comparer = null) => sequence.Expect().ContainUnique(comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -241,10 +217,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
         sequence.Expect().ElementAt(index, null).Result.Should().BeFalse();
       }));
 
-      static void Validate()
-      {
-
-      }
+      static void Validate<T>(bool result, IEnumerable<T> sequence, int index, T value) => sequence.Expect().ElementAt(index, value).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
@@ -260,10 +233,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
         sequence.Expect().ElementAt(Index.FromStart(index), null).Result.Should().BeFalse();
       }));
 
-      static void Validate()
-      {
-
-      }
+      static void Validate<T>(bool result, IEnumerable<T> sequence, Index index, T value) => sequence.Expect().ElementAt(index, value).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
     }
   }
 
@@ -290,10 +260,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEnumerable<T> superset, IEqualityComparer<T> comparer = null) => sequence.Expect().SubsetOf(superset, comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -319,10 +286,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEnumerable<T> subset, IEqualityComparer<T> comparer = null) => sequence.Expect().SupersetOf(subset, comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -347,10 +311,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEnumerable<T> reversed, IEqualityComparer<T> comparer = null) => sequence.Expect().Reversed(reversed, comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -377,10 +338,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IComparer<T> comparer = null) => sequence.Expect().Ordered(comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -406,10 +364,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null) => sequence.Expect().StartWith(other, comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -420,25 +375,22 @@ public sealed class IEnumerableExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-    AssertionExtensions.Should(() => IEnumerableExpectations.EndWith(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-    AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EndWith(Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-    AssertionExtensions.Should(() => Attributes.EmptySequence().Expect().EndWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+      AssertionExtensions.Should(() => IEnumerableExpectations.EndWith(null, Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EndWith(Attributes.EmptySequence())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => Attributes.EmptySequence().Expect().EndWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
-    Attributes.EmptySequence().Expect().EndWith(Attributes.EmptySequence()).Result.Should().BeTrue();
-    Attributes.RandomSequence().Expect().EndWith(Attributes.EmptySequence()).Result.Should().BeTrue();
-    Attributes.RandomSequence().Expect().EndWith(Attributes.RandomSequence()).Result.Should().BeTrue();
-    Attributes.EmptySequence().Expect().EndWith(Attributes.RandomSequence()).Result.Should().BeFalse();
-    Attributes.RandomSequence().Expect().EndWith(Attributes.RandomSequence().TakeLast(Attributes.RandomSequence().Count() / 2)).Result.Should().BeTrue();
-    Attributes.RandomSequence().Expect().EndWith(Attributes.RandomSequence().Randomize()).Result.Should().BeFalse();
-    new object().ToSequence().Expect().EndWith(new object().ToSequence()).Result.Should().BeFalse();
+      Attributes.EmptySequence().Expect().EndWith(Attributes.EmptySequence()).Result.Should().BeTrue();
+      Attributes.RandomSequence().Expect().EndWith(Attributes.EmptySequence()).Result.Should().BeTrue();
+      Attributes.RandomSequence().Expect().EndWith(Attributes.RandomSequence()).Result.Should().BeTrue();
+      Attributes.EmptySequence().Expect().EndWith(Attributes.RandomSequence()).Result.Should().BeFalse();
+      Attributes.RandomSequence().Expect().EndWith(Attributes.RandomSequence().TakeLast(Attributes.RandomSequence().Count() / 2)).Result.Should().BeTrue();
+      Attributes.RandomSequence().Expect().EndWith(Attributes.RandomSequence().Randomize()).Result.Should().BeFalse();
+      new object().ToSequence().Expect().EndWith(new object().ToSequence()).Result.Should().BeFalse();
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, IEnumerable<T> other, IEqualityComparer<T> comparer = null) => sequence.Expect().EndWith(other, comparer).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -464,9 +416,6 @@ public sealed class IEnumerableExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, IEnumerable<T> sequence, Predicate<T> condition) => sequence.Expect().Match(condition).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
   }
 }

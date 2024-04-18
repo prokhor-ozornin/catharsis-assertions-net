@@ -1,7 +1,6 @@
 ﻿using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
-using Catharsis.Extensions;
 using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
@@ -21,17 +20,20 @@ public sealed class ICollectionAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ICollectionAssertions.Count(null, Array.Empty<object>(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Count<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
-
-      AssertionExtensions.Should(() => Assert.To.Count(Attributes.RandomSequence(), int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Count(Attributes.RandomSequence(), int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Attributes.RandomSequence().ToArray().With(collection => Assert.To.Count(collection, collection.Length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, ICollection<T> collection, int count)
     {
-
+      if (result)
+      {
+        Assert.To.Count(collection, count).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Count(collection, count, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -45,16 +47,20 @@ public sealed class ICollectionAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ICollectionAssertions.Empty(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Empty<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
-
-      Assert.To.Empty(Attributes.EmptySequence().ToArray()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Empty(Attributes.RandomSequence().ToArray(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, ICollection<T> collection)
     {
-
+      if (result)
+      {
+        Assert.To.Empty(collection).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Empty(collection, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -68,16 +74,20 @@ public sealed class ICollectionAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ICollectionAssertions.ReadOnly(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ReadOnly<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
-
-      Assert.To.ReadOnly(Attributes.RandomSequence().ToArray()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.ReadOnly(Attributes.RandomSequence().ToList(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, ICollection<T> collection)
     {
-
+      if (result)
+      {
+        Assert.To.ReadOnly(collection).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.ReadOnly(collection, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

@@ -22,16 +22,19 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Stream) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.Expect().Length(int.MinValue).Result.Should().BeFalse();
-      Stream.Null.Expect().Length(int.MaxValue).Result.Should().BeFalse();
-      Stream.Null.Expect().Length(Stream.Null.Length).Result.Should().BeTrue();
+      Validate(true, Stream.Null, 0);
+      Validate(false, Stream.Null, int.MinValue);
+      Validate(false, Stream.Null, int.MaxValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream, int length)
     {
-
+      using (stream)
+      {
+        stream.Expect().Length(length).Should().BeOfType<Expectation<Stream>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -46,15 +49,18 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Stream) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.Expect().Empty().Result.Should().BeTrue();
-      Attributes.RandomStream().Expect().Empty().Result.Should().BeFalse();
+      Validate(true, Stream.Null);
+      Validate(false, Attributes.RandomStream());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        stream.Expect().Empty().Should().BeOfType<Expectation<Stream>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -69,16 +75,19 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamExpectations.Position(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Stream) null).Expect().Position(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.Expect().Position(int.MinValue).Result.Should().BeFalse();
-      Stream.Null.Expect().Position(int.MaxValue).Result.Should().BeFalse();
-      Stream.Null.Expect().Position(Stream.Null.Position).Result.Should().BeTrue();
+      Validate(false, Stream.Null, int.MinValue);
+      Validate(false, Stream.Null, int.MaxValue);
+      Validate(true, Stream.Null, 0);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream, long position)
     {
-
+      using (stream)
+      {
+        stream.Expect().Position(position).Should().BeOfType<Expectation<Stream>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -93,20 +102,19 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamExpectations.End(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Stream) null).Expect().End()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.Expect().End().Result.Should().BeTrue();
-      
-      Attributes.RandomStream().With(stream =>
-      {
-        stream.Expect().End().Result.Should().BeFalse();
-        stream.MoveToEnd().Expect().Result.Should().BeTrue();
-      });
+      Validate(true, Stream.Null);
+      Validate(true, Attributes.RandomStream().MoveToEnd());
+      Validate(false, Attributes.RandomStream());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        stream.Expect().End().Should().BeOfType<Expectation<Stream>>().Which.Result.Should().Be(result);
+      }
     }
   }
   
@@ -121,16 +129,21 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamExpectations.Readable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Stream) null).Expect().Readable()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.Expect().Readable().Result.Should().BeTrue();
-      Stream.Null.AsWriteOnly().Expect().Readable().Result.Should().BeFalse();
-      Stream.Null.AsWriteOnlyForward().Expect().Readable().Result.Should().BeFalse();
+      Validate(true, Stream.Null);
+      Validate(true, Stream.Null.AsReadOnly());
+      Validate(true, Stream.Null.AsWriteOnlyForward());
+      Validate(false, Stream.Null.AsWriteOnly());
+      Validate(false, Stream.Null.AsWriteOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        stream.Expect().Readable().Should().BeOfType<Expectation<Stream>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -145,16 +158,21 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamExpectations.Writable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Stream) null).Expect().Writable()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.Expect().Writable().Result.Should().BeTrue();
-      Stream.Null.AsReadOnly().Expect().Writable().Result.Should().BeFalse();
-      Stream.Null.AsReadOnlyForward().Expect().Writable().Result.Should().BeFalse();
+      Validate(true, Stream.Null);
+      Validate(true, Stream.Null.AsWriteOnly());
+      Validate(true, Stream.Null.AsWriteOnlyForward());
+      Validate(false, Stream.Null.AsReadOnly());
+      Validate(false, Stream.Null.AsReadOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        stream.Expect().Writable().Should().BeOfType<Expectation<Stream>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -169,16 +187,21 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamExpectations.Seekable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Stream) null).Expect().Seekable()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.Expect().Seekable().Result.Should().BeTrue();
-      Stream.Null.AsReadOnlyForward().Expect().Seekable().Result.Should().BeFalse();
-      Stream.Null.AsWriteOnlyForward().Expect().Seekable().Result.Should().BeFalse();
+      Validate(true, Stream.Null);
+      Validate(true, Stream.Null.AsReadOnly());
+      Validate(true, Stream.Null.AsWriteOnly());
+      Validate(false, Stream.Null.AsReadOnlyForward());
+      Validate(false, Stream.Null.AsWriteOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        stream.Expect().Seekable().Should().BeOfType<Expectation<Stream>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -193,16 +216,21 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Stream) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.Expect().ReadOnly().Result.Should().BeFalse();
-      Stream.Null.AsReadOnly().Expect().ReadOnly().Result.Should().BeTrue();
-      Stream.Null.AsReadOnlyForward().Expect().ReadOnly().Result.Should().BeTrue();
+      Validate(true, Stream.Null);
+      Validate(true, Stream.Null.AsReadOnly());
+      Validate(true, Stream.Null.AsReadOnlyForward());
+      Validate(false, Stream.Null.AsWriteOnly());
+      Validate(false, Stream.Null.AsWriteOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        stream.Expect().ReadOnly().Should().BeOfType<Expectation<Stream>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -216,17 +244,22 @@ public sealed class StreamExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => StreamExpectations.WriteOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Stream) null).Expect().WriteOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      
-      Stream.Null.Expect().WriteOnly().Result.Should().BeFalse();
-      Stream.Null.AsWriteOnly().Expect().WriteOnly().Result.Should().BeTrue();
-      Stream.Null.AsWriteOnlyForward().Expect().WriteOnly().Result.Should().BeTrue();
+
+      Validate(true, Stream.Null.AsWriteOnly());
+      Validate(true, Stream.Null.AsWriteOnlyForward());
+      Validate(false, Stream.Null);
+      Validate(false, Stream.Null.AsReadOnly());
+      Validate(false, Stream.Null.AsReadOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        stream.Expect().WriteOnly().Should().BeOfType<Expectation<Stream>>().Which.Result.Should().Be(result);
+      }
     }
   }
 }

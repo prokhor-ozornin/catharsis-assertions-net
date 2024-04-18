@@ -41,12 +41,8 @@ public sealed class XmlElementExpectationsTest : UnitTest
         element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
       });
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XmlElement element, string name, string uri = null) => element.Expect().Attribute(name, uri).Should().BeOfType<Expectation<XmlElement>>().Which.Result.Should().Be(result);
   }
 }

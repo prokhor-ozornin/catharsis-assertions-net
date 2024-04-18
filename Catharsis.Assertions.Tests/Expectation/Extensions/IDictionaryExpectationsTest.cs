@@ -36,10 +36,7 @@ public sealed class IDictionaryExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TKey key) => dictionary.Expect().ContainKey(key).Should().BeOfType<Expectation<IDictionary<TKey, TValue>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -64,9 +61,6 @@ public sealed class IDictionaryExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TValue value, IEqualityComparer<TValue> comparer = null) => dictionary.Expect().ContainValue(value, comparer).Should().BeOfType<Expectation<IDictionary<TKey, TValue>>>().Which.Result.Should().Be(result);
   }
 }

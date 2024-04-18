@@ -20,15 +20,22 @@ public sealed class NullableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => NullableAssertions.HasValue<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Assert.To.HasValue((int?) 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.HasValue((int?) null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, (int?) 0);
+      Validate(false, (int?) null);
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, T? instance) where T : struct
     {
-
+      if (result)
+      {
+        Assert.To.HasValue(instance).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.HasValue(instance, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -42,26 +49,33 @@ public sealed class NullableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => NullableAssertions.Value(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Assert.To.Value(0, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Value(null, 0).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Value(null, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Value(null, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, 0, 0);
+      Validate(true, null, 0);
+      Validate(false, null, int.MinValue);
+      Validate(false, null, int.MaxValue);
 
-      Assert.To.Value(DateTime.MinValue, DateTime.MinValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Value(DateTime.MaxValue, DateTime.MaxValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Value(null, DateTime.MinValue).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Value(null, DateTime.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, DateTime.MinValue, DateTime.MinValue);
+      Validate(true, DateTime.MaxValue, DateTime.MaxValue);
+      Validate(true, null, DateTime.MinValue);
+      Validate(false, null, DateTime.MaxValue);
 
-      Assert.To.Value(Guid.Empty, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.Value(null, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Value(null, Guid.NewGuid(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Guid.Empty, Guid.Empty);
+      Validate(true, null, Guid.Empty);
+      Validate(false, null, Guid.NewGuid());
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(bool result, T? instance, T value) where T : struct
     {
-
+      if (result)
+      {
+        Assert.To.Value(instance, value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Value(instance, value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

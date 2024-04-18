@@ -23,20 +23,22 @@ public sealed class XContainerProtectionsTest : UnitTest
       AssertionExtensions.Should(() => XContainerProtections.Empty(null, new XElement("element"))).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((XContainer) null)).ThrowExactly<ArgumentNullException>().WithParameterName("container");
 
-      AssertionExtensions.Should(() => Protect.From.Empty((XContainer) new XDocument(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      
-      new XDocument().With(document =>
-      {
-        document.Add(new XElement("root"));
-        Protect.From.Empty((XContainer) document).Should().BeOfType<XDocument>().And.BeSameAs(document);
-      });
+      Validate(true, new XDocument().With(new XElement("root")));
+      Validate(false, new XDocument());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, XContainer container)
     {
-
+      if (result)
+      {
+        Protect.From.Empty(container).Should().BeOfType<XDocument>().And.BeSameAs(container);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Empty(container, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 }

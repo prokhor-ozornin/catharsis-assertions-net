@@ -23,17 +23,14 @@ public sealed class NameValueCollectionExpectationsTest : UnitTest
       AssertionExtensions.Should(() => NameValueCollectionExpectations.Count(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((NameValueCollection) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      new NameValueCollection().With(collection => collection.Expect().Count(int.MinValue).Result.Should().BeFalse());
-      new NameValueCollection().With(collection => collection.Expect().Count(int.MaxValue).Result.Should().BeFalse());
-      new NameValueCollection().With(collection => collection.Expect().Count(collection.Count).Result.Should().BeTrue());
+      Validate(true, [], 0);
+      Validate(false, [], int.MinValue);
+      Validate(false, [], int.MaxValue);
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, NameValueCollection collection, int count) => collection.Expect().Count(count).Should().BeOfType<Expectation<NameValueCollection>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -47,15 +44,12 @@ public sealed class NameValueCollectionExpectationsTest : UnitTest
       AssertionExtensions.Should(() => NameValueCollectionExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((NameValueCollection) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      new NameValueCollection().Expect().Empty().Result.Should().BeTrue();
-      new NameValueCollection().With(collection => collection.With(("name", "value")).Expect().Empty().Result.Should().BeFalse());
+      Validate(true, []);
+      Validate(false, new NameValueCollection().With(("name", "value")));
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, NameValueCollection collection) => collection.Expect().Empty().Should().BeOfType<Expectation<NameValueCollection>>().Which.Result.Should().Be(result);
   }
 }

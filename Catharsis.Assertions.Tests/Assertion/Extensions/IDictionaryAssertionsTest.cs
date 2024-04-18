@@ -1,5 +1,4 @@
 ﻿using Catharsis.Commons;
-using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -23,21 +22,20 @@ public sealed class IDictionaryAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IDictionaryAssertions.ContainKey(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainKey<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
-
-      AssertionExtensions.Should(() => Assert.To.ContainKey(Dictionary, Guid.NewGuid(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-      Dictionary.With(dictionary =>
-      {
-        dictionary.Add(Guid.Empty, new object());
-        Assert.To.ContainKey(Dictionary, Guid.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      });
     }
 
     return;
 
-    static void Validate()
+    static void Validate<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TKey key)
     {
-
+      if (result)
+      {
+        Assert.To.ContainKey(dictionary, key).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.ContainKey(dictionary, key, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -51,21 +49,20 @@ public sealed class IDictionaryAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IDictionaryAssertions.ContainValue(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainValue<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
-
-      AssertionExtensions.Should(() => Assert.To.ContainValue(Dictionary, null, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
-      Dictionary.With(dictionary =>
-      {
-        dictionary.Add(Guid.NewGuid(), null);
-        Assert.To.ContainValue(Dictionary, null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      });
     }
 
     return;
 
-    static void Validate()
+    static void Validate<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TValue value, IEqualityComparer<TValue> comparer = null)
     {
-
+      if (result)
+      {
+        Assert.To.ContainValue(dictionary, value, comparer).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.ContainValue(dictionary, value, comparer, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

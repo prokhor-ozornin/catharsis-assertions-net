@@ -16,6 +16,8 @@ public sealed class ExpectationTest : UnitTest
   [Fact]
   public void Constructors()
   {
+    typeof(Expectation<object>).Should().BeDerivedFrom<object>().And.Implement<IExpectation<object>>();
+
     new Expectation<object>(null).With(expectation =>
     {
       expectation.GetFieldValue<object>("subject").Should().BeNull();

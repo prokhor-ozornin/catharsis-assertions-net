@@ -26,13 +26,9 @@ public sealed class ICollectionExpectationsTest : UnitTest
       Attributes.RandomSequence().ToArray().Expect().Count(int.MaxValue).Result.Should().BeFalse();
       Attributes.RandomSequence().ToArray().With(collection => collection.Expect().Count(collection.Length).Result.Should().BeTrue());
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, ICollection<T> collection, int count) => collection.Expect().Count(count).Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -52,10 +48,7 @@ public sealed class ICollectionExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, ICollection<T> collection) => collection.Expect().Empty().Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -75,9 +68,6 @@ public sealed class ICollectionExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate<T>(bool result, ICollection<T> collection) => collection.Expect().ReadOnly().Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
   }
 }

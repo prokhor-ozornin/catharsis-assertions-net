@@ -16,7 +16,7 @@ public sealed class RegexExpectationsTest : UnitTest
   ///   <para>Performs testing of <see cref="RegexExpectations.Match(IExpectation{Regex}, string)"/> method.</para>
   /// </summary>
   [Fact]
-  public void Matches_Method()
+  public void Match_Method()
   {
     using (new AssertionScope())
     {
@@ -24,17 +24,14 @@ public sealed class RegexExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((Regex) null).Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => string.Empty.ToRegex().Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      string.Empty.ToRegex().Expect().Match(string.Empty).Expect().Result.Should().BeTrue();
-      "anything".ToRegex().Expect().Match(string.Empty).Result.Should().BeFalse();
-      "[0-9]".ToRegex().Expect().Match(Attributes.Random().Digits(byte.MaxValue)).Result.Should().BeTrue();
-      "[0-9]".ToRegex().Expect().Match(Attributes.Random().Letters(byte.MaxValue)).Result.Should().BeFalse();
+      Validate(true, string.Empty.ToRegex(), string.Empty);
+      Validate(true, "[0-9]".ToRegex(), Attributes.Random().Digits(byte.MaxValue));
+      Validate(false, char.MinValue.ToString().ToRegex(), string.Empty);
+      Validate(false, "[0-9]".ToRegex(), Attributes.Random().Letters(byte.MaxValue));
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Regex regex, string text) => regex.Expect().Match(text).Should().BeOfType<Expectation<Regex>>().Which.Result.Should().Be(result);
   }
 }

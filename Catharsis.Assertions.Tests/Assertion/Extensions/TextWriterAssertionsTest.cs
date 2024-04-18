@@ -34,9 +34,19 @@ public sealed class TextWriterAssertionsTest : UnitTest
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, TextWriter writer, IFormatProvider format)
     {
-
+      using (writer)
+      {
+        if (result)
+        {
+          Assert.To.Format(writer, format).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Format(writer, format, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 

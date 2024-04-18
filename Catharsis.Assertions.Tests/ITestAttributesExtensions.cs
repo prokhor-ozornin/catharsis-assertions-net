@@ -5,8 +5,6 @@ namespace Catharsis.Assertions.Tests;
 
 public static class ITestAttributesExtensions
 {
-  public static IEnumerable<object> EmptySequence(this ITestAttributes attributes) => attributes is not null ? attributes.Retrieve(nameof(EmptySequence), Enumerable.Empty<object>()) : throw new ArgumentNullException(nameof(attributes));
-
   public static IEnumerable<object> RandomSequence(this ITestAttributes attributes) => attributes is not null ? attributes.Retrieve(nameof(RandomSequence), attributes.Random().ObjectSequence(byte.MaxValue, typeof(object)).ToArray()) : throw new ArgumentNullException(nameof(attributes));
 
   public static string RandomString(this ITestAttributes attributes) => attributes is not null ? attributes.Retrieve(nameof(RandomString), attributes.Random().Letters(byte.MaxValue)) : throw new ArgumentNullException(nameof(attributes));

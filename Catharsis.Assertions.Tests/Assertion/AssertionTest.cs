@@ -17,6 +17,8 @@ public sealed class AssertionTest : UnitTest
   [Fact]
   public void Constructors()
   {
+    typeof(Assertion).Should().BeDerivedFrom<object>().And.Implement<IAssertion>();
+
     new Assertion(true).With(assertion => assertion.GetFieldValue<bool>("state").Should().BeTrue());
     new Assertion(false).With(assertion => assertion.GetFieldValue<bool>("state").Should().BeFalse());
   }

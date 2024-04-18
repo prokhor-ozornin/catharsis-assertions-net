@@ -12,15 +12,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class SecureStringExpectationsTest : UnitTest
 {
-  private SecureString EmptySecureString { get; }
-  private SecureString RandomSecureString { get; }
-
-  public SecureStringExpectationsTest()
-  {
-    EmptySecureString = new SecureString().AsReadOnly();
-    RandomSecureString = Attributes.Random().SecureString(byte.MaxValue);
-  }
-
   /// <summary>
   ///   <para>Performs testing of <see cref="SecureStringExpectations.Length(IExpectation{SecureString}, int)"/> method.</para>
   /// </summary>
@@ -32,16 +23,19 @@ public sealed class SecureStringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => SecureStringExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((SecureString) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      RandomSecureString.Expect().Length(int.MinValue).Result.Should().BeFalse();
-      RandomSecureString.Expect().Length(int.MaxValue).Result.Should().BeFalse();
-      RandomSecureString.Expect().Length(RandomSecureString.Length).Result.Should().BeTrue();
+      Validate(true, new SecureString(), 0);
+      Validate(false, new SecureString(), int.MinValue);
+      Validate(false, new SecureString(), int.MaxValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, SecureString secure, int length)
     {
-      
+      using (secure)
+      {
+        secure.Expect().Length(length).Should().BeOfType<Expectation<SecureString>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -56,15 +50,18 @@ public sealed class SecureStringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => SecureStringExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((SecureString) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      EmptySecureString.Expect().Empty().Result.Should().BeTrue();
-      RandomSecureString.Expect().Empty().Result.Should().BeFalse();
+      Validate(true, new SecureString());
+      Validate(false, new SecureString().With(char.MinValue));
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, SecureString secure)
     {
-
+      using (secure)
+      {
+        secure.Expect().Empty().Should().BeOfType<Expectation<SecureString>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -79,25 +76,18 @@ public sealed class SecureStringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => SecureStringExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((SecureString) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      RandomSecureString.Expect().ReadOnly().Result.Should().BeFalse();
-      RandomSecureString.AsReadOnly().Expect().ReadOnly().Result.Should().BeTrue();
+      Validate(true, new SecureString().AsReadOnly());
+      Validate(false, new SecureString());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, SecureString secure)
     {
-
+      using (secure)
+      {
+        secure.Expect().ReadOnly().Should().BeOfType<Expectation<SecureString>>().Which.Result.Should().Be(result);
+      }
     }
-  }
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  public override void Dispose()
-  {
-    base.Dispose();
-    EmptySecureString.Dispose();
-    RandomSecureString.Dispose();
   }
 }

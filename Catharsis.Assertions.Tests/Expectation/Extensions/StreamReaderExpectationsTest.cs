@@ -23,18 +23,18 @@ public sealed class StreamReaderExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamReaderExpectations.Encoding(null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((StreamReader) null).Expect().Encoding(Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
-      {
-        reader.Expect().Encoding(null).Result.Should().BeFalse();
-        reader.Expect().Encoding(reader.CurrentEncoding).Result.Should().BeTrue();
-      });
+      Stream.Null.ToStreamReader().With(reader => Validate(true, reader, reader.CurrentEncoding));
+      Validate(false, Stream.Null.ToStreamReader(), null);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, StreamReader reader, Encoding encoding)
     {
-
+      using (reader)
+      {
+        reader.Expect().Encoding(encoding).Should().BeOfType<Expectation<StreamReader>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -49,21 +49,19 @@ public sealed class StreamReaderExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StreamReaderExpectations.End(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((StreamReader) null).Expect().End()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.ToStreamReader().TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
-
-      Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
-      {
-        reader.Expect().End().Result.Should().BeFalse();
-        reader.ReadToEnd();
-        reader.Expect().End().Result.Should().BeTrue();
-      });
+      Validate(true, Stream.Null.ToStreamReader());
+      Validate(true, Attributes.RandomStream().ToStreamReader().With(reader => reader.ReadToEnd()));
+      Validate(false, Attributes.RandomStream().ToStreamReader());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, StreamReader reader)
     {
-
+      using (reader)
+      {
+        reader.Expect().End().Should().BeOfType<Expectation<StreamReader>>().Which.Result.Should().Be(result);
+      }
     }
   }
 }

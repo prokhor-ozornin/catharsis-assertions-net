@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Catharsis.Commons;
+﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -22,16 +21,16 @@ public sealed class TimeOnlyExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeOnlyExpectations.Hour(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
+      {
+        Validate(true, time, time.Hour);
+        Validate(false, time, int.MinValue);
+      });
     }
 
     return;
 
-    static void Validate(TimeOnly time)
-    {
-      time.Expect().Hour(int.MinValue).Result.Should().BeFalse();
-      time.Expect().Hour(time.Hour).Result.Should().BeTrue();
-    }
+    static void Validate(bool result, TimeOnly time, int hour) => time.Expect().Hour(hour).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -44,16 +43,16 @@ public sealed class TimeOnlyExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeOnlyExpectations.Minute(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
+      {
+        Validate(true, time, time.Minute);
+        Validate(false, time, int.MinValue);
+      });
     }
 
     return;
 
-    static void Validate(TimeOnly time)
-    {
-      time.Expect().Minute(int.MinValue).Result.Should().BeFalse();
-      time.Expect().Minute(time.Minute).Result.Should().BeTrue();
-    }
+    static void Validate(bool result, TimeOnly time, int minute) => time.Expect().Minute(minute).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -66,16 +65,16 @@ public sealed class TimeOnlyExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeOnlyExpectations.Second(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
+      {
+        Validate(true, time, time.Second);
+        Validate(false, time, int.MinValue);
+      });
     }
 
     return;
 
-    static void Validate(TimeOnly time)
-    {
-      time.Expect().Second(int.MinValue).Result.Should().BeFalse();
-      time.Expect().Second(time.Second).Result.Should().BeTrue();
-    }
+    static void Validate(bool result, TimeOnly time, int second) => time.Expect().Second(second).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -88,15 +87,15 @@ public sealed class TimeOnlyExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeOnlyExpectations.Millisecond(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly(), DateTime.UtcNow.ToTimeOnly() }.ForEach(Validate);
+      new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
+      {
+        Validate(true, time, time.Millisecond);
+        Validate(false, time, int.MinValue);
+      });
     }
 
     return;
 
-    static void Validate(TimeOnly time)
-    {
-      time.Expect().Millisecond(int.MinValue).Result.Should().BeFalse();
-      time.Expect().Millisecond(time.Millisecond).Result.Should().BeTrue();
-    }
+    static void Validate(bool result, TimeOnly time, int millisecond) => time.Expect().Millisecond(millisecond).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
   }
 }

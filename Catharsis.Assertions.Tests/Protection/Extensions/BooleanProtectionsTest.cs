@@ -20,15 +20,22 @@ public sealed class BooleanProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => BooleanProtections.Truth(null, true)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      AssertionExtensions.Should(() => Protect.From.Truth(true, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Protect.From.Truth(false);
+      Validate(true, true);
+      Validate(false, true);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, bool value)
     {
-
+      if (result)
+      {
+        Protect.From.Truth(value);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Truth(value, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 
@@ -42,15 +49,22 @@ public sealed class BooleanProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => BooleanProtections.Lie(null, false)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      AssertionExtensions.Should(() => Protect.From.Lie(false, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Protect.From.Lie(true);
+      Validate(true, false);
+      Validate(false, false);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, bool value)
     {
-
+      if (result)
+      {
+        Protect.From.Lie(value);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Lie(value, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 }

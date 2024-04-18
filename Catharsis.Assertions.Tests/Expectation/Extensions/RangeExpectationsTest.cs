@@ -20,18 +20,15 @@ public sealed class RangeExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => RangeExpectations.StartIndex(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      (..0).Expect().StartIndex(int.MinValue).Result.Should().BeFalse();
-      (..0).Expect().StartIndex(0).Result.Should().BeTrue();
-      (..).Expect().StartIndex(0).Result.Should().BeTrue();
-      (^0..0).Expect().StartIndex(0).Result.Should().BeTrue();
+      Validate(true, ..0, 0);
+      Validate(true, .., 0);
+      Validate(true, ^0..0, 0);
+      Validate(false, ..0, int.MinValue);
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Range range, int index) => range.Expect().StartIndex(index).Should().BeOfType<Expectation<Range>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -44,17 +41,14 @@ public sealed class RangeExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => RangeExpectations.EndIndex(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      (..0).Expect().EndIndex(int.MinValue).Result.Should().BeFalse();
-      (..0).Expect().EndIndex(0).Result.Should().BeTrue();
-      (..).Expect().EndIndex(0).Result.Should().BeTrue();
-      (..^int.MaxValue).Expect().EndIndex(int.MaxValue).Result.Should().BeTrue();
+      Validate(true, ..0, 0);
+      Validate(true, .., 0);
+      Validate(true, ..^int.MaxValue, int.MaxValue);
+      Validate(false, ..0, int.MinValue);
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, Range range, int index) => range.Expect().EndIndex(index).Should().BeOfType<Expectation<Range>>().Which.Result.Should().Be(result);
   }
 }

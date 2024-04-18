@@ -23,16 +23,22 @@ public sealed class StringProtectionsTest : UnitTest
       AssertionExtensions.Should(() => StringProtections.Empty(null, string.Empty)) .ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((string) null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      AssertionExtensions.Should(() => Protect.From.Empty(string.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      
-      Attributes.RandomString().With(text => Protect.From.Empty(text).Should().BeOfType<string>().And.BeSameAs(text));
+      Validate(true, Attributes.RandomString());
+      Validate(false, string.Empty);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, string text)
     {
-
+      if (result)
+      {
+        Protect.From.Empty(text).Should().BeOfType<string>().And.BeSameAs(text);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Empty(text, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 
@@ -47,17 +53,23 @@ public sealed class StringProtectionsTest : UnitTest
       AssertionExtensions.Should(() => StringProtections.WhiteSpace(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      AssertionExtensions.Should(() => Protect.From.WhiteSpace(string.Empty, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      AssertionExtensions.Should(() => Protect.From.WhiteSpace("\r\n\t", "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-
-      Attributes.RandomString().With(text => Protect.From.Empty(text).Should().BeOfType<string>().And.BeSameAs(text));
+      Validate(true, Attributes.RandomString());
+      Validate(false, string.Empty);
+      Validate(false, "\r\n\t");
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, string text)
     {
-
+      if (result)
+      {
+        Protect.From.Empty(text).Should().BeOfType<string>().And.BeSameAs(text);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.WhiteSpace(text, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 
@@ -73,17 +85,25 @@ public sealed class StringProtectionsTest : UnitTest
       AssertionExtensions.Should(() => Protect.From.Match(null, new Regex(string.Empty))).ThrowExactly<ArgumentNullException>().WithParameterName("text");
       AssertionExtensions.Should(() => Protect.From.Match(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
 
-      AssertionExtensions.Should(() => Protect.From.Match(string.Empty, string.Empty.ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Protect.From.Match(string.Empty, "anything".ToRegex()).Should().BeOfType<string>().And.BeSameAs(string.Empty);
-      AssertionExtensions.Should(() => Protect.From.Match(Attributes.Random().Digits(byte.MaxValue), "[0-9]".ToRegex(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Attributes.Random().Letters(byte.MaxValue).With(text => Protect.From.Match(text, "[0-9]".ToRegex()).Should().BeOfType<string>().And.BeSameAs(text));
+      Validate(true, string.Empty, "anything".ToRegex());
+      Validate(true, Attributes.Random().Letters(byte.MaxValue), "[0-9]".ToRegex());
+      
+      Validate(false, string.Empty, string.Empty.ToRegex());
+      Validate(false, Attributes.Random().Digits(byte.MaxValue), "[0-9]".ToRegex());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, string text, Regex regex)
     {
-
+      if (result)
+      {
+        Protect.From.Match(text, regex).Should().BeOfType<string>().And.BeSameAs(text);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Match(text, regex, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 }

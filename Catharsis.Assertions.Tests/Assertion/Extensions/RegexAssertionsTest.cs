@@ -24,17 +24,24 @@ public sealed class RegexAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Match(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
       AssertionExtensions.Should(() => Assert.To.Match(string.Empty.ToRegex(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Assert.To.Match(string.Empty.ToRegex(), string.Empty).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Match("anything".ToRegex(), string.Empty, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Match("[0-9]".ToRegex(), Attributes.Random().Digits(byte.MaxValue)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Match("[0-9]".ToRegex(), Attributes.Random().Letters(byte.MaxValue), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, string.Empty.ToRegex(), string.Empty);
+      Validate(true, "[0-9]".ToRegex(), Attributes.Random().Digits(byte.MaxValue));
+      Validate(false, char.MinValue.ToString().ToRegex(), string.Empty);
+      Validate(false, "[0-9]".ToRegex(), Attributes.Random().Letters(byte.MaxValue));
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Regex regex, string text)
     {
-
+      if (result)
+      {
+        Assert.To.Match(regex, text).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Match(regex, text, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -11,8 +12,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class SymmetricAlgorithmExpectationsTest : UnitTest
 {
-  private SymmetricAlgorithm Algorithm { get; } = Aes.Create();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="SymmetricAlgorithmExpectations.BlockSize(IExpectation{SymmetricAlgorithm}, int)"/> method.</para>
   /// </summary>
@@ -24,16 +23,19 @@ public sealed class SymmetricAlgorithmExpectationsTest : UnitTest
       AssertionExtensions.Should(() => SymmetricAlgorithmExpectations.BlockSize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((SymmetricAlgorithm) null).Expect().BlockSize(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Algorithm.Expect().BlockSize(int.MinValue).Result.Should().BeFalse();
-      Algorithm.Expect().BlockSize(int.MaxValue).Result.Should().BeFalse();
-      Algorithm.Expect().BlockSize(Algorithm.BlockSize).Result.Should().BeTrue();
+      Aes.Create().With(algorithm => Validate(true, algorithm, algorithm.BlockSize));
+      Validate(false, Aes.Create(), int.MinValue);
+      Validate(false, Aes.Create(), int.MaxValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, SymmetricAlgorithm algorithm, int size)
     {
-
+      using (algorithm)
+      {
+        algorithm.Expect().BlockSize(size).Should().BeOfType<Expectation<SymmetricAlgorithm>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -48,25 +50,19 @@ public sealed class SymmetricAlgorithmExpectationsTest : UnitTest
       AssertionExtensions.Should(() => SymmetricAlgorithmExpectations.KeySize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((SymmetricAlgorithm) null).Expect().KeySize(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Algorithm.Expect().KeySize(int.MinValue).Result.Should().BeFalse();
-      Algorithm.Expect().KeySize(int.MaxValue).Result.Should().BeFalse();
-      Algorithm.Expect().KeySize(Algorithm.KeySize).Result.Should().BeTrue();
+      Aes.Create().With(algorithm => Validate(true, algorithm, algorithm.KeySize));
+      Validate(false, Aes.Create(), int.MinValue);
+      Validate(false, Aes.Create(), int.MaxValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, SymmetricAlgorithm algorithm, int size)
     {
-
+      using (algorithm)
+      {
+        algorithm.Expect().KeySize(size).Should().BeOfType<Expectation<SymmetricAlgorithm>>().Which.Result.Should().Be(result);
+      }
     }
-  }
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  public override void Dispose()
-  {
-    base.Dispose();
-    Algorithm.Dispose();
   }
 }

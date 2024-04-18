@@ -22,15 +22,25 @@ public sealed class BinaryReaderProtectionsTest : UnitTest
       Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => BinaryReaderProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
       AssertionExtensions.Should(() => Protect.From.Empty((BinaryReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-      Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => Protect.From.Empty(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-      Attributes.RandomStream().ToBinaryReader().TryFinallyDispose(reader => Protect.From.Empty(reader).Should().BeOfType<BinaryReader>().And.BeSameAs(reader));
+      Validate(true, Attributes.RandomStream().ToBinaryReader());
+      Validate(false, Stream.Null.ToBinaryReader());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, BinaryReader reader)
     {
-
+      using (reader)
+      {
+        if (result)
+        {
+          Protect.From.Empty(reader).Should().BeOfType<BinaryReader>().And.BeSameAs(reader);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Protect.From.Empty(reader, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        }
+      }
     }
   }
 }

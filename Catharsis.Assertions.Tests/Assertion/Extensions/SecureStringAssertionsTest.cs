@@ -12,92 +12,105 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class SecureStringAssertionsTest : UnitTest
 {
-  private SecureString EmptySecureString { get; }
-  private SecureString RandomSecureString { get; }
-
-  public SecureStringAssertionsTest()
-  {
-    EmptySecureString = new SecureString().AsReadOnly();
-    RandomSecureString = Attributes.Random().SecureString(byte.MaxValue);
-  }
-
   /// <summary>
-  ///   <para>Performs testing of <see cref="SecureStringAssertions.Length(IAssertion, System.Security.SecureString, int, string)"/> method.</para>
-  /// </summary>
+  ///   <para>Performs testing of <see cref="SecureStringAssertions.Length(IAssertion, SecureString, int, string)"/> method.</para> </summary>
   [Fact]
   public void Length_Method()
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => SecureStringAssertions.Length(null, EmptySecureString, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => SecureStringAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-      AssertionExtensions.Should(() => Assert.To.Length(RandomSecureString, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Length(RandomSecureString, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Length(RandomSecureString, RandomSecureString.Length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, new SecureString(), 0);
+      Validate(false, new SecureString(), int.MinValue);
+      Validate(false, new SecureString(), int.MaxValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, SecureString secure, int length)
     {
+      using (secure)
+      {
+        AssertionExtensions.Should(() => SecureStringAssertions.Length(null, secure, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
+        if (result)
+        {
+          Assert.To.Length(secure, length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Length(secure, length, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="SecureStringAssertions.Empty(IAssertion, System.Security.SecureString, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="SecureStringAssertions.Empty(IAssertion, SecureString, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void Empty_Method()
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => SecureStringAssertions.Empty(null, EmptySecureString)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => SecureStringAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-      Assert.To.Empty(EmptySecureString).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Empty(RandomSecureString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, new SecureString());
+      Validate(false, new SecureString().With(char.MinValue));
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, SecureString secure)
     {
+      using (secure)
+      {
+        AssertionExtensions.Should(() => SecureStringAssertions.Empty(null, secure)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
+        if (result)
+        {
+          Assert.To.Empty(secure).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Empty(secure, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
   /// <summary>
-  ///   <para>Performs testing of <see cref="SecureStringAssertions.ReadOnly(IAssertion, System.Security.SecureString, string)"/> method.</para>
+  ///   <para>Performs testing of <see cref="SecureStringAssertions.ReadOnly(IAssertion, SecureString, string)"/> method.</para>
   /// </summary>
   [Fact]
   public void ReadOnly_Method()
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => SecureStringAssertions.ReadOnly(null, EmptySecureString)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => SecureStringAssertions.ReadOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-      AssertionExtensions.Should(() => Assert.To.ReadOnly(RandomSecureString, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.ReadOnly(RandomSecureString.AsReadOnly()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, new SecureString().AsReadOnly());
+      Validate(false, new SecureString());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, SecureString secure)
     {
+      using (secure)
+      {
+        AssertionExtensions.Should(() => SecureStringAssertions.ReadOnly(null, secure)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
+        if (result)
+        {
+          Assert.To.ReadOnly(secure).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.ReadOnly(secure, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
-  }
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  public override void Dispose()
-  {
-    base.Dispose();
-    EmptySecureString.Dispose();
-    RandomSecureString.Dispose();
   }
 }

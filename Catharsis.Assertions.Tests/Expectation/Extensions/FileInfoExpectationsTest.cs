@@ -1,5 +1,4 @@
-﻿using System.Security.AccessControl;
-using Catharsis.Commons;
+﻿using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -28,13 +27,9 @@ public sealed class FileInfoExpectationsTest : UnitTest
       Attributes.TempFile().File.Expect().Length(Attributes.TempFile().File.Length).Result.Should().BeTrue();
       Attributes.TempFile().File.Empty().Expect().Length(0).Result.Should().BeTrue();
     }
-
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, TempFile file, long length) => file.File.Expect().Length(length).Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -54,10 +49,7 @@ public sealed class FileInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FileInfo file) => file.Expect().Empty().Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -77,10 +69,7 @@ public sealed class FileInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, TempFile file) => file.File.Expect().ReadOnly().Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -101,9 +90,6 @@ public sealed class FileInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FileInfo file, DirectoryInfo directory) => file.Expect().InDirectory(directory).Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 }

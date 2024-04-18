@@ -24,7 +24,6 @@ public sealed class TextReaderAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TextReaderAssertions.End(null, Reader)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => TextReaderAssertions.End(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-      Stream.Null.ToStreamReader().TryFinallyDispose(reader => Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
       Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
       {
         AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
@@ -43,9 +42,19 @@ public sealed class TextReaderAssertionsTest : UnitTest
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, TextReader reader)
     {
-
+      using (reader)
+      {
+        if (result)
+        {
+          Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 

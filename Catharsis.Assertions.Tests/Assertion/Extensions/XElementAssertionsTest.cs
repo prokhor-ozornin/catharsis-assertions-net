@@ -26,8 +26,6 @@ public sealed class XElementAssertionsTest : UnitTest
       AssertionExtensions.Should(() => XElementAssertions.Attribute(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("element");
       AssertionExtensions.Should(() => Assert.To.Attribute(Element, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      AssertionExtensions.Should(() => Assert.To.Element(Element, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
       Element.With(element =>
       {
         element.SetAttributeValue("encoding", "utf-8");
@@ -40,9 +38,16 @@ public sealed class XElementAssertionsTest : UnitTest
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, XElement element, XName name, string value = null)
     {
-
+      if (result)
+      {
+        Assert.To.Attribute(element, name, value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Attribute(element, name, value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

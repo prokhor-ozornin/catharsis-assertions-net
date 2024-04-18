@@ -22,26 +22,29 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => DirectoryInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.TempDirectory().Directory.Expect().Empty().Result.Should().BeTrue();
+      Validate(true, Attributes.TempDirectory());
       
-      Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
+      Attributes.TempDirectory().With(directory =>
       {
-        Attributes.Random().File(directory);
-        directory.Expect().Empty().Result.Should().BeFalse();
+        Attributes.Random().File(directory.Directory);
+        Validate(false, directory);
       });
 
-      Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
+      Attributes.TempDirectory().With(directory =>
       {
-        Attributes.Random().Directory(directory);
-        directory.Expect().Empty().Result.Should().BeFalse();
+        Attributes.Random().Directory(directory.Directory);
+        Validate(false, directory);
       });
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, TempDirectory directory)
     {
-
+      using (directory)
+      {
+        directory.Directory.Expect().Empty().Should().BeOfType<Expectation<DirectoryInfo>>().Which.Result.Should().Be(result);
+      }
     }
   }
 
@@ -57,15 +60,18 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().InDirectory(Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => Attributes.TempDirectory().Directory.Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
 
-      Attributes.TempDirectory().Directory.Expect().InDirectory(Attributes.TempDirectory().Directory).Result.Should().BeFalse();
-      Attributes.TempDirectory().Directory.Expect().InDirectory(Attributes.TempDirectory().Directory.Parent).Result.Should().BeTrue();
+      Attributes.TempDirectory().With(directory => Validate(true, directory, directory.Directory.Parent));
+      Attributes.TempDirectory().With(directory => Validate(false, directory, directory.Directory));
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, TempDirectory directory, DirectoryInfo parent)
     {
-
+      using (directory)
+      {
+        directory.Directory.Expect().InDirectory(parent).Should().BeOfType<Expectation<DirectoryInfo>>().Which.Result.Should().Be(result);
+      }
     }
   }
 }

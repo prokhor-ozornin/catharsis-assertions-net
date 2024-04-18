@@ -23,22 +23,22 @@ public sealed class XmlNodeProtectionsTest : UnitTest
       AssertionExtensions.Should(() => XmlNodeProtections.Empty(null, new XmlDocument().CreateElement("element"))).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((XmlNode) null)).ThrowExactly<ArgumentNullException>().WithParameterName("node");
 
-      var document = new XmlDocument();
-
-      AssertionExtensions.Should(() => Protect.From.Empty(document.CreateElement("root"), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-
-      document.CreateElement("root").With(node =>
-      {
-        node.AppendChild(document.CreateElement("element"));
-        Protect.From.Empty(node).Should().BeOfType<XmlElement>().And.BeSameAs(node);
-      });
+      Validate(true, new XmlDocument().With(document => document.With(document.CreateElement("element"))));
+      Validate(false, new XmlDocument());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, XmlNode node)
     {
-
+      if (result)
+      {
+        Protect.From.Empty(node).Should().BeOfType<XmlElement>().And.BeSameAs(node);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Empty(node, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 }

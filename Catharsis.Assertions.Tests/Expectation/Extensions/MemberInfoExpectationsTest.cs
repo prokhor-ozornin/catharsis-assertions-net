@@ -40,10 +40,7 @@ public sealed class MemberInfoExpectationsTest : UnitTest
       
       AssertionExtensions.Should(() => Member.Expect().Attribute(typeof(object))).ThrowExactly<ArgumentException>();
 
-      static void Validate()
-      {
-
-      }
+      static void Validate(bool result, MemberInfo member, Type type) => member.Expect().Attribute(type).Should().BeOfType<Expectation<MemberInfo>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
@@ -55,10 +52,7 @@ public sealed class MemberInfoExpectationsTest : UnitTest
       Member.Expect().Attribute<DescriptionAttribute>().Result.Should().BeTrue();
       Member.Expect().Attribute<ObsoleteAttribute>().Result.Should().BeFalse();
 
-      static void Validate()
-      {
-
-      }
+      static void Validate<T>(bool result, MemberInfo member) where T : Attribute => member.Expect().Attribute<T>().Should().BeOfType<Expectation<MemberInfo>>().Which.Result.Should().Be(result);
     }
   }
 
@@ -79,9 +73,6 @@ public sealed class MemberInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, MemberInfo member, MemberTypes type) => member.Expect().Type(type).Should().BeOfType<Expectation<MemberInfo>>().Which.Result.Should().Be(result);
   }
 }

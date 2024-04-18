@@ -25,21 +25,13 @@ public sealed class XmlNodeExpectationsTest : UnitTest
       AssertionExtensions.Should(() => XmlNodeExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XmlNode) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Node.Expect().Empty().Result.Should().BeTrue();
-      
-      Node.With(node =>
-      {
-        node.AppendChild(Node.OwnerDocument.CreateElement("element"));
-        Node.Expect().Empty().Result.Should().BeFalse();
-      });
+      Validate(true, new XmlDocument());
+      Validate(false, new XmlDocument().With(document => document.With(document.CreateElement("root"))));
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XmlNode node) => node.Expect().Empty().Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -54,16 +46,16 @@ public sealed class XmlNodeExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((XmlNode) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => Node.Expect().Name(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
+      //Validate(true, new);
+      //Validate(false, null);
+
       Node.Expect().Name(Attributes.RandomString()).Result.Should().BeFalse();
       Node.Expect().Name(Node.Name).Result.Should().BeTrue();
     }
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XmlNode node, string name) => node.Expect().Name(name).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -84,10 +76,7 @@ public sealed class XmlNodeExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XmlNode node, string text) => node.Expect().InnerText(text).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -108,10 +97,7 @@ public sealed class XmlNodeExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XmlNode node, string xml) => node.Expect().InnerXml(xml).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -132,10 +118,7 @@ public sealed class XmlNodeExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XmlNode node, string xml) => node.Expect().OuterXml(xml).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -155,9 +138,6 @@ public sealed class XmlNodeExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, XmlNode node, string value) => node.Expect().Value(value).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 }

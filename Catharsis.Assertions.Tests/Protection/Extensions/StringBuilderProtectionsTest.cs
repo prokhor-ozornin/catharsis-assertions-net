@@ -23,15 +23,22 @@ public sealed class StringBuilderProtectionsTest : UnitTest
       AssertionExtensions.Should(() => StringBuilderProtections.Empty(null, new StringBuilder())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((StringBuilder) null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
-      new StringBuilder().With(builder => AssertionExtensions.Should(() => Protect.From.Empty(builder, "error")).ThrowExactly<ArgumentException>().WithMessage("error"));
-      new StringBuilder(Attributes.RandomString()).With(builder => Protect.From.Empty(builder).Should().BeOfType<StringBuilder>().And.BeSameAs(builder));
+      Validate(true, Attributes.RandomString().ToStringBuilder());
+      Validate(false, new StringBuilder());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, StringBuilder builder)
     {
-
+      if (result)
+      {
+        Protect.From.Empty(builder).Should().BeOfType<StringBuilder>().And.BeSameAs(builder);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Empty(builder, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+      }
     }
   }
 }

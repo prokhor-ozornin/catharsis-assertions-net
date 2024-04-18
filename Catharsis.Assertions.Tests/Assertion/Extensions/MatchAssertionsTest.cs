@@ -23,15 +23,22 @@ public sealed class MatchAssertionsTest : UnitTest
       AssertionExtensions.Should(() => MatchAssertions.Successful(null, Match.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MatchAssertions.Successful(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("match");
 
-      AssertionExtensions.Should(() => Assert.To.Successful(Match.Empty, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Successful(string.Empty.ToRegex().Match(string.Empty)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, string.Empty.ToRegex().Match(string.Empty));
+      Validate(false, Match.Empty);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Match match)
     {
-
+      if (result)
+      {
+        Assert.To.Successful(match).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Successful(match, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -47,15 +54,22 @@ public sealed class MatchAssertionsTest : UnitTest
       AssertionExtensions.Should(() => MatchAssertions.Value(Assert.To, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("match");
       AssertionExtensions.Should(() => Assert.To.Value(Match.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-      AssertionExtensions.Should(() => Assert.To.Value(Match.Empty, Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Value(Match.Empty, Match.Empty.Value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, Match.Empty, Match.Empty.Value);
+      Validate(false, Match.Empty, Attributes.RandomString());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Match match, string value)
     {
-
+      if (result)
+      {
+        Assert.To.Value(match, value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Value(match, value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

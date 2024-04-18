@@ -40,10 +40,7 @@ public sealed class FileSystemInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FileSystemInfo info) => info.Expect().Exist().Should().BeOfType<Expectation<FileSystemInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -66,9 +63,6 @@ public sealed class FileSystemInfoExpectationsTest : UnitTest
 
     return;
 
-    static void Validate()
-    {
-
-    }
+    static void Validate(bool result, FileSystemInfo info, FileAttributes attribute) => info.Expect().Attribute(attribute).Should().BeOfType<Expectation<FileSystemInfo>>().Which.Result.Should().Be(result);
   }
 }

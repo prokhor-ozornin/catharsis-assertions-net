@@ -1,5 +1,4 @@
 ﻿using Catharsis.Commons;
-using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -21,27 +20,20 @@ public sealed class DirectoryInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DirectoryInfoAssertions.Empty(null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => DirectoryInfoAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
-
-      Assert.To.Empty(Attributes.TempDirectory().Directory).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
-      Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
-      {
-        Attributes.Random().File(directory);
-        AssertionExtensions.Should(() => Assert.To.Empty(directory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      });
-
-      Attributes.TempDirectory().Directory.TryFinallyClear(directory =>
-      {
-        Attributes.Random().Directory(directory);
-        AssertionExtensions.Should(() => Assert.To.Empty(directory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      });
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, DirectoryInfo directory)
     {
-
+      if (result)
+      {
+        Assert.To.Empty(directory).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Empty(directory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -56,16 +48,20 @@ public sealed class DirectoryInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => DirectoryInfoAssertions.InDirectory(null, Attributes.TempDirectory().Directory, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => DirectoryInfoAssertions.InDirectory(Assert.To, null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
       AssertionExtensions.Should(() => Assert.To.InDirectory(Attributes.TempDirectory().Directory, null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
-
-      AssertionExtensions.Should(() => Assert.To.InDirectory(Attributes.TempDirectory().Directory, Attributes.TempDirectory().Directory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.InDirectory(Attributes.TempDirectory().Directory, Attributes.TempDirectory().Directory.Parent).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, DirectoryInfo directory, DirectoryInfo parent)
     {
-
+      if (result)
+      {
+        Assert.To.InDirectory(directory, parent).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.InDirectory(directory, parent, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

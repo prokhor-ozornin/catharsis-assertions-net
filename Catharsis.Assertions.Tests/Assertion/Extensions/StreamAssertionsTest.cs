@@ -22,16 +22,26 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamAssertions.Length(null, Stream.Null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StreamAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      AssertionExtensions.Should(() => Assert.To.Length(Stream.Null, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Length(Stream.Null, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Length(Stream.Null, Stream.Null.Length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, Stream.Null, 0);
+      Validate(false, Stream.Null, int.MinValue);
+      Validate(false, Stream.Null, int.MaxValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream, int length)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Assert.To.Length(stream, length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Length(stream, length, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
@@ -46,15 +56,25 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamAssertions.Empty(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Empty((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Assert.To.Empty(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Empty(Attributes.RandomStream(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Stream.Null);
+      Validate(false, Attributes.RandomStream());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Assert.To.Empty(stream).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Empty(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
@@ -69,16 +89,26 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamAssertions.Position(null, Stream.Null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Position(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      AssertionExtensions.Should(() => Assert.To.Position(Stream.Null, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Position(Stream.Null, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Position(Stream.Null, Stream.Null.Position).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(false, Stream.Null, int.MinValue);
+      Validate(false, Stream.Null, int.MaxValue);
+      Validate(true, Stream.Null, 0);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream, long position)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Assert.To.Position(stream, position).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Position(stream, position, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
@@ -93,20 +123,26 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamAssertions.End(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.End((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Assert.To.End(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      
-      Attributes.RandomStream().With(stream =>
-      {
-        AssertionExtensions.Should(() => Assert.To.End(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-        Assert.To.End(stream.MoveToEnd()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      });
+      Validate(true, Stream.Null);
+      Validate(true, Attributes.RandomStream().MoveToEnd());
+      Validate(false, Attributes.RandomStream());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Assert.To.End(stream).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.End(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
@@ -121,16 +157,28 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamAssertions.Readable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Readable((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Assert.To.Readable(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Readable(Stream.Null.AsWriteOnly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Readable(Stream.Null.AsWriteOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Stream.Null);
+      Validate(true, Stream.Null.AsReadOnly());
+      Validate(true, Stream.Null.AsWriteOnlyForward());
+      Validate(false, Stream.Null.AsWriteOnly());
+      Validate(false, Stream.Null.AsWriteOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Assert.To.Readable(stream).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Readable(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
@@ -145,16 +193,28 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamAssertions.Writable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Writable((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Assert.To.Writable(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Writable(Stream.Null.AsReadOnly(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Writable(Stream.Null.AsReadOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Stream.Null);
+      Validate(true, Stream.Null.AsWriteOnly());
+      Validate(true, Stream.Null.AsWriteOnlyForward());
+      Validate(false, Stream.Null.AsReadOnly());
+      Validate(false, Stream.Null.AsReadOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Assert.To.Writable(stream).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Writable(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
@@ -169,16 +229,28 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamAssertions.Seekable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Seekable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Assert.To.Seekable(Stream.Null).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Seekable(Stream.Null.AsReadOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Seekable(Stream.Null.AsWriteOnlyForward(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, Stream.Null);
+      Validate(true, Stream.Null.AsReadOnly());
+      Validate(true, Stream.Null.AsWriteOnly());
+      Validate(false, Stream.Null.AsReadOnlyForward());
+      Validate(false, Stream.Null.AsWriteOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Assert.To.Seekable(stream).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.Seekable(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
@@ -192,17 +264,29 @@ public sealed class StreamAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => StreamAssertions.ReadOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ReadOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
-      
-      AssertionExtensions.Should(() => Assert.To.ReadOnly(Stream.Null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.ReadOnly(Stream.Null.AsReadOnly()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.ReadOnly(Stream.Null.AsReadOnlyForward()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+
+      Validate(true, Stream.Null);
+      Validate(true, Stream.Null.AsReadOnly());
+      Validate(true, Stream.Null.AsReadOnlyForward());
+      Validate(false, Stream.Null.AsWriteOnly());
+      Validate(false, Stream.Null.AsWriteOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Assert.To.ReadOnly(stream).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.ReadOnly(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 
@@ -217,16 +301,28 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamAssertions.WriteOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.WriteOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      AssertionExtensions.Should(() => Assert.To.WriteOnly(Stream.Null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.WriteOnly(Stream.Null.AsWriteOnly()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      Assert.To.WriteOnly(Stream.Null.AsWriteOnlyForward()).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, Stream.Null.AsWriteOnly());
+      Validate(true, Stream.Null.AsWriteOnlyForward());
+      Validate(false, Stream.Null);
+      Validate(false, Stream.Null.AsReadOnly());
+      Validate(false, Stream.Null.AsReadOnlyForward());
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Assert.To.WriteOnly(stream).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Assert.To.WriteOnly(stream, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        }
+      }
     }
   }
 }

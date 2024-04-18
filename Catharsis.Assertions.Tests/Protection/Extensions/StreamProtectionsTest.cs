@@ -21,15 +21,25 @@ public sealed class StreamProtectionsTest : UnitTest
       AssertionExtensions.Should(() => StreamProtections.Empty(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      AssertionExtensions.Should(() => Protect.From.Empty(Stream.Null, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-      Protect.From.Empty(Attributes.RandomStream()).Should().BeOfType<Stream>().And.BeSameAs(Attributes.RandomStream());
+      Validate(true, Attributes.RandomStream());
+      Validate(false, Stream.Null);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, Stream stream)
     {
-
+      using (stream)
+      {
+        if (result)
+        {
+          Protect.From.Empty(stream).Should().BeOfType<Stream>().And.BeSameAs(stream);
+        }
+        else
+        {
+          AssertionExtensions.Should(() => Protect.From.Empty(stream, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        }
+      }
     }
   }
 }

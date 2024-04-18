@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -11,8 +12,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class StringBuilderAssertionsTest : UnitTest
 {
-  private StringBuilder Builder { get; } = new();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="StringBuilderAssertions.Length(IAssertion, StringBuilder, int, string)"/> method.</para>
   /// </summary>
@@ -21,19 +20,26 @@ public sealed class StringBuilderAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => StringBuilderAssertions.Length(null, Builder, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => StringBuilderAssertions.Length(null, new StringBuilder(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StringBuilderAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
-      AssertionExtensions.Should(() => Assert.To.Length(Builder, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Length(Builder, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      Assert.To.Length(Builder, Builder.Length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      Validate(true, new StringBuilder(), 0);
+      Validate(false, new StringBuilder(), int.MinValue);
+      Validate(false, new StringBuilder(), int.MaxValue);
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, StringBuilder builder, int length)
     {
-
+      if (result)
+      {
+        Assert.To.Length(builder, length).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Length(builder, length, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -45,18 +51,25 @@ public sealed class StringBuilderAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => StringBuilderAssertions.Empty(null, Builder)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => StringBuilderAssertions.Empty(null, new StringBuilder())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StringBuilderAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
-      Assert.To.Empty(Builder, "error").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Empty(Builder.Append(char.MinValue), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(true, new StringBuilder());
+      Validate(false, new StringBuilder().With(char.MinValue));
     }
 
     return;
 
-    static void Validate()
+    static void Validate(bool result, StringBuilder builder)
     {
-
+      if (result)
+      {
+        Assert.To.Empty(builder).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Empty(builder, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }
