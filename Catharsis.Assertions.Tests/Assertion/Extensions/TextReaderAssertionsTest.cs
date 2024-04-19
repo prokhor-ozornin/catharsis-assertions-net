@@ -11,8 +11,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class TextReaderAssertionsTest : UnitTest
 {
-  private TextReader Reader { get; } = new StringReader(string.Empty);
-
   /// <summary>
   ///   <para>Performs testing of <see cref="TextReaderAssertions.End(IAssertion, TextReader, string)"/> method.</para>
   /// </summary>
@@ -21,22 +19,22 @@ public sealed class TextReaderAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TextReaderAssertions.End(null, Reader)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => TextReaderAssertions.End(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-      Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
+      Validate(true, Stream.Null.ToStreamReader());
+
+      Attributes.RandomString().ToStringReader().With(reader =>
       {
-        AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
         reader.ReadToEnd();
-        Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Validate(true, reader);
       });
 
-      new StringReader(string.Empty).TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
-      new StringReader(Attributes.RandomString()).TryFinallyDispose(reader =>
+      Validate(true, string.Empty.ToStringReader());
+
+      Attributes.RandomString().ToStringReader().With(reader =>
       {
-        AssertionExtensions.Should(() => Assert.To.End(reader, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
         reader.ReadToEnd();
-        Assert.To.End(reader).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Validate(true, reader);
       });
     }
 
@@ -44,6 +42,8 @@ public sealed class TextReaderAssertionsTest : UnitTest
 
     static void Validate(bool result, TextReader reader)
     {
+      AssertionExtensions.Should(() => TextReaderAssertions.End(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
       using (reader)
       {
         if (result)
@@ -56,11 +56,5 @@ public sealed class TextReaderAssertionsTest : UnitTest
         }
       }
     }
-  }
-
-  public override void Dispose()
-  {
-    base.Dispose();
-    Reader.Dispose();
   }
 }

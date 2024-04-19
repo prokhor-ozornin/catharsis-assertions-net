@@ -1,4 +1,5 @@
 ﻿using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -21,9 +22,10 @@ public sealed class ThreadExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ThreadExpectations.State(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Thread) null).Expect().State(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Thread.CurrentThread.Expect().State(ThreadState.Unstarted).Result.Should().BeFalse();
-      Thread.CurrentThread.Expect().State(Thread.CurrentThread.ThreadState).Result.Should().BeTrue();
+      Thread.CurrentThread.With(thread => Validate(true, thread, thread.ThreadState));
+      Validate(false, Thread.CurrentThread, ThreadState.Unstarted);
     }
+
     return;
 
     static void Validate(bool result, Thread thread, ThreadState state) => thread.Expect().State(state).Should().BeOfType<Expectation<Thread>>().Which.Result.Should().Be(result);
@@ -40,8 +42,8 @@ public sealed class ThreadExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ThreadExpectations.Priority(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Thread) null).Expect().Priority(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Thread.CurrentThread.Expect().Priority(ThreadPriority.Highest).Result.Should().BeFalse();
-      Thread.CurrentThread.Expect().Priority(Thread.CurrentThread.Priority).Result.Should().BeTrue();
+      Thread.CurrentThread.With(thread => Validate(true, thread, thread.Priority));
+      Validate(false, Thread.CurrentThread, ThreadPriority.Highest);
     }
 
     return;

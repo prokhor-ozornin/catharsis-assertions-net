@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Text;
+using System.Xml.Linq;
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
@@ -12,8 +13,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class XElementAssertionsTest : UnitTest
 {
-  private XElement Element { get; } = new("root");
-
   /// <summary>
   ///   <para>Performs testing of <see cref="XElementAssertions.Attribute(IAssertion, XElement, XName, string, string)"/> method.</para>
   /// </summary>
@@ -22,17 +21,22 @@ public sealed class XElementAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => XElementAssertions.Attribute(null, Element, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => XElementAssertions.Attribute(null, new XElement("root"), "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XElementAssertions.Attribute(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("element");
-      AssertionExtensions.Should(() => Assert.To.Attribute(Element, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+      AssertionExtensions.Should(() => Assert.To.Attribute(new XElement("root"), null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Element.With(element =>
+      Validate(false, new XElement("root"), string.Empty);
+
+      new XElement("root").With(element =>
       {
-        element.SetAttributeValue("encoding", "utf-8");
+        Encoding.GetEncodings().ForEach(encoding =>
+        {
+          element.SetAttributeValue("encoding", encoding.Name);
 
-        Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        Assert.To.Attribute(element, "encoding", "utf-8").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        AssertionExtensions.Should(() => Assert.To.Attribute(element, "encoding", Attributes.RandomString(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          Validate(true, element, "encoding");
+          Validate(true, element, "encoding", encoding.Name);
+          Validate(false, element, "encoding", string.Empty);
+        });
       });
     }
 

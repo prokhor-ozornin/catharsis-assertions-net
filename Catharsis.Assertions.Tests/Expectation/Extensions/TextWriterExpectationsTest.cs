@@ -22,13 +22,11 @@ public sealed class TextWriterExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TextWriterExpectations.Format(null, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((TextWriter) null).Expect().Format(CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      
-      Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
-      {
-        writer.Expect().Format(null).Result.Should().BeFalse();
-        writer.Expect().Format(writer.FormatProvider).Result.Should().BeTrue();
-      });
+
+      Stream.Null.ToStreamWriter().With(writer => Validate(true, writer, writer.FormatProvider));
+      Validate(false, Stream.Null.ToStreamWriter(), null); 
     }
+
     return;
 
     static void Validate(bool result, TextWriter writer, IFormatProvider format)

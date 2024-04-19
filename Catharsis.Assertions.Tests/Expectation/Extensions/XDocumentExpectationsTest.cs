@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
 using Catharsis.Commons;
-using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -12,8 +11,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class XDocumentExpectationsTest : UnitTest
 {
-  private XDocument Document { get; } = new();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="XDocumentExpectations.Empty(IExpectation{XDocument})"/> method.</para>
   /// </summary>
@@ -25,13 +22,8 @@ public sealed class XDocumentExpectationsTest : UnitTest
       AssertionExtensions.Should(() => XDocumentExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XDocument) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Document.Expect().Empty().Result.Should().BeTrue();
-
-      Document.With(document =>
-      {
-        document.Add(new XElement("root"));
-        document.Expect().Empty().Result.Should().BeFalse();
-      });
+      Validate(true, new XDocument());
+      Validate(false, new XDocument(new XElement("root")));
     }
 
     return;
@@ -50,15 +42,9 @@ public sealed class XDocumentExpectationsTest : UnitTest
       AssertionExtensions.Should(() => XDocumentExpectations.Name(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XDocument) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Document.Expect().Name(null).Result.Should().BeTrue();
-      
-      Document.With(document =>
-      {
-        const string name = "root";
-        document.Add(new XElement(name));
-        document.Expect().Name(Attributes.RandomString()).Result.Should().BeFalse();
-        document.Expect().Name(name).Result.Should().BeTrue();
-      });
+      Validate(true, new XDocument(), null);
+      Validate(true, new XDocument(new XElement("root")), "root");
+      Validate(false, new XDocument(new XElement("root")), string.Empty);
     }
 
     return;

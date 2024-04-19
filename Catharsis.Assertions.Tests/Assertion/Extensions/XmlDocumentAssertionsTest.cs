@@ -12,8 +12,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class XmlDocumentAssertionsTest : UnitTest
 {
-  private XmlDocument Document { get; } = new();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="XmlDocumentAssertions.Element(IAssertion, XmlDocument, string, string, string)"/> method.</para>
   /// </summary>
@@ -22,21 +20,23 @@ public sealed class XmlDocumentAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => XmlDocumentAssertions.Element(null, Document, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => XmlDocumentAssertions.Element(null, new XmlDocument(), "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("document");
-      AssertionExtensions.Should(() => Assert.To.Element(Document, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+      AssertionExtensions.Should(() => Assert.To.Element(new XmlDocument(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Document.With(document =>
+      new XmlDocument().With(document =>
       {
         var parent = document.AppendChild(document.CreateElement("parent"));
         var child = parent.AppendChild(document.CreateElement("child"));
 
-        Assert.To.Element(document, parent.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        Assert.To.Element(document, parent.Name, parent.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Validate(true, document, parent.Name);
+        Validate(true, document, parent.Name, parent.NamespaceURI);
 
-        Assert.To.Element(document, child.Name).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        Assert.To.Element(document, child.Name, child.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Validate(true, document, child.Name);
+        Validate(true, document, child.Name, child.NamespaceURI);
       });
+
+      Validate(false, new XmlDocument(), Attributes.RandomString());
     }
 
     return;

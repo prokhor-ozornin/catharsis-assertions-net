@@ -11,8 +11,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class XAttributeAssertionsTest : UnitTest
 {
-  private XAttribute Attribute { get; } = new("name", "value");
-
   /// <summary>
   ///   <para>Performs testing of <see cref="XAttributeAssertions.Name(IAssertion, XAttribute, XName, string)"/> method.</para>
   /// </summary>
@@ -21,9 +19,12 @@ public sealed class XAttributeAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => XAttributeAssertions.Name(null, Attribute, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => XAttributeAssertions.Name(null, new XAttribute("name", "value"), "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XAttributeAssertions.Name(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
-      AssertionExtensions.Should(() => Assert.To.Name(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+      AssertionExtensions.Should(() => Assert.To.Name(new XAttribute("name", "value"), null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+
+      Validate(true, new XAttribute("name", "value"), "name");
+      Validate(false, new XAttribute("name", "value"), string.Empty);
     }
 
     return;
@@ -49,9 +50,12 @@ public sealed class XAttributeAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => XAttributeAssertions.Value(null, Attribute, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => XAttributeAssertions.Value(null, new XAttribute("name", "value"), "value")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XAttributeAssertions.Value(Assert.To, null, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
-      AssertionExtensions.Should(() => Assert.To.Value(Attribute, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
+      AssertionExtensions.Should(() => Assert.To.Value(new XAttribute("name", "value"), null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
+
+      Validate(true, new XAttribute("name", "value"), "value");
+      Validate(false, new XAttribute("name", "value"), string.Empty);
     }
 
     return;
@@ -60,11 +64,11 @@ public sealed class XAttributeAssertionsTest : UnitTest
     {
       if (result)
       {
-        Assert.To.Name(attribute, value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Assert.To.Value(attribute, value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       }
       else
       {
-        AssertionExtensions.Should(() => Assert.To.Name(attribute, value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        AssertionExtensions.Should(() => Assert.To.Value(attribute, value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     }
   }

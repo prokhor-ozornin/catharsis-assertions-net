@@ -13,20 +13,17 @@ namespace Catharsis.Assertions.Tests;
 public sealed class PropertyInfoAssertionsTest : UnitTest
 {
   private string field;
-
   private string WriteOnlyProperty
   {
     set => field = value;
   }
 
   private string ReadOnlyProperty => nameof(ReadOnlyProperty);
-
   private string ReadWriteProperty { get; set; } = nameof(ReadWriteProperty);
-
   private static string StaticProperty { get; set; } = nameof(StaticProperty);
 
-  private PropertyInfo WriteOnlyPropertyInfo => GetType().AnyProperty(nameof(WriteOnlyProperty));
   private PropertyInfo ReadOnlyPropertyInfo => GetType().AnyProperty(nameof(ReadOnlyProperty));
+  private PropertyInfo WriteOnlyPropertyInfo => GetType().AnyProperty(nameof(WriteOnlyProperty));
   private PropertyInfo ReadWritePropertyInfo => GetType().AnyProperty(nameof(ReadWriteProperty));
   private PropertyInfo StaticPropertyInfo => GetType().AnyProperty(nameof(StaticProperty));
 
@@ -40,6 +37,10 @@ public sealed class PropertyInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => PropertyInfoAssertions.Readable(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => PropertyInfoAssertions.Readable(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
+
+      Validate(true, ReadOnlyPropertyInfo);
+      Validate(true, ReadWritePropertyInfo);
+      Validate(false, WriteOnlyPropertyInfo);
     }
 
     return;
@@ -67,6 +68,10 @@ public sealed class PropertyInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => PropertyInfoAssertions.ReadOnly(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => PropertyInfoAssertions.ReadOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
+
+      Validate(true, ReadOnlyPropertyInfo);
+      Validate(false, ReadWritePropertyInfo);
+      Validate(false, WriteOnlyPropertyInfo);
     }
 
     return;
@@ -94,6 +99,10 @@ public sealed class PropertyInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => PropertyInfoAssertions.Writable(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => PropertyInfoAssertions.Writable(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
+
+      Validate(true, ReadWritePropertyInfo);
+      Validate(true, WriteOnlyPropertyInfo);
+      Validate(false, ReadOnlyPropertyInfo);
     }
 
     return;
@@ -121,6 +130,10 @@ public sealed class PropertyInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => PropertyInfoAssertions.WriteOnly(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => PropertyInfoAssertions.WriteOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
+
+      Validate(true, WriteOnlyPropertyInfo);
+      Validate(false, ReadWritePropertyInfo);
+      Validate(false, ReadOnlyPropertyInfo);
     }
 
     return;
@@ -150,9 +163,8 @@ public sealed class PropertyInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => PropertyInfoAssertions.Value(Assert.To, null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
       AssertionExtensions.Should(() => Assert.To.Value(WriteOnlyPropertyInfo, string.Empty, string.Empty)).ThrowExactly<ArgumentException>();
 
-      //Validate(ReadOnlyPropertyInfo, this);
-      //Validate(ReadWritePropertyInfo, this);
-      //Validate(StaticPropertyInfo, null);
+      Validate(true, ReadOnlyPropertyInfo, this, ReadOnlyProperty);
+      Validate(false, ReadOnlyPropertyInfo, this, null);
     }
 
     return;

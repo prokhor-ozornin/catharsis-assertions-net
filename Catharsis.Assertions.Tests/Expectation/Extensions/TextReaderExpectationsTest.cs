@@ -22,22 +22,23 @@ public sealed class TextReaderExpectationsTest : UnitTest
       AssertionExtensions.Should(() => TextReaderExpectations.End(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((TextReader) null).Expect().End()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.ToStreamReader().TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
-      Attributes.RandomStream().ToStreamReader().TryFinallyDispose(reader =>
+      Validate(true, Stream.Null.ToStreamReader());
+
+      Attributes.RandomString().ToStringReader().With(reader =>
       {
-        reader.Expect().End().Result.Should().BeFalse();
         reader.ReadToEnd();
-        reader.Expect().End().Result.Should().BeTrue();
+        Validate(true, reader);
       });
-      
-      new StringReader(string.Empty).TryFinallyDispose(reader => reader.Expect().End().Result.Should().BeTrue());
-      new StringReader(Attributes.RandomString()).TryFinallyDispose(reader =>
+
+      Validate(true, string.Empty.ToStringReader());
+
+      Attributes.RandomString().ToStringReader().With(reader =>
       {
-        reader.Expect().End().Result.Should().BeFalse();
         reader.ReadToEnd();
-        reader.Expect().End().Result.Should().BeTrue();
+        Validate(true, reader);
       });
     }
+
     return;
 
     static void Validate(bool result, TextReader reader)

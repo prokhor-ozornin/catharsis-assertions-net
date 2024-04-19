@@ -22,6 +22,14 @@ public sealed class StringAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => StringAssertions.Length(null, string.Empty, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StringAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+
+      Validate(true, string.Empty, 0);
+      Validate(false, string.Empty, int.MinValue);
+      Validate(false, string.Empty, int.MaxValue);
+
+      Attributes.RandomString().With(text => Validate(true, text, text.Length));
+      Validate(false, Attributes.RandomString(), int.MinValue);
+      Validate(false, Attributes.RandomString(), int.MaxValue);
     }
 
     return;
@@ -49,6 +57,9 @@ public sealed class StringAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => StringAssertions.Empty(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StringAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+
+      Validate(true, string.Empty);
+      Validate(false, Attributes.RandomString());
     }
 
     return;
@@ -76,6 +87,10 @@ public sealed class StringAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => StringAssertions.WhiteSpace(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+
+      Validate(true, string.Empty);
+      Validate(true, "\r\n\t");
+      Validate(false, Attributes.RandomString());
     }
 
     return;
@@ -103,6 +118,10 @@ public sealed class StringAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => StringAssertions.UpperCased(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.UpperCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+
+      Validate(true, string.Empty);
+      Validate(true, Attributes.RandomString().ToUpperInvariant());
+      Validate(false, Attributes.RandomString().ToLowerInvariant());
     }
 
     return;
@@ -130,6 +149,10 @@ public sealed class StringAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => StringAssertions.LowerCased(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.LowerCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
+
+      Validate(true, string.Empty);
+      Validate(true, Attributes.RandomString().ToLowerInvariant());
+      Validate(false, Attributes.RandomString().ToUpperInvariant());
     }
 
     return;
@@ -158,6 +181,15 @@ public sealed class StringAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StringAssertions.StartWith(null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.StartWith(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
       AssertionExtensions.Should(() => Assert.To.StartWith(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("prefix");
+
+      Validate(true, string.Empty, string.Empty);
+      Validate(true, string.Empty, char.MinValue.ToString());
+      Validate(false, string.Empty, char.MaxValue.ToString());
+
+      Validate(true, Attributes.RandomString(), string.Empty);
+      Attributes.RandomString().With(text => Validate(true, text, text));
+      Attributes.RandomString().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Attributes.RandomString().With(text => Validate(false, text, text.ToUpperInvariant()));
     }
 
     return;
@@ -186,6 +218,15 @@ public sealed class StringAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StringAssertions.EndWith(null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.EndWith(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
       AssertionExtensions.Should(() => Assert.To.EndWith(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("postfix");
+
+      Validate(true, string.Empty, string.Empty);
+      Validate(true, string.Empty, char.MinValue.ToString());
+      Validate(false, string.Empty, char.MaxValue.ToString());
+
+      Validate(true, Attributes.RandomString(), string.Empty);
+      Attributes.RandomString().With(text => Validate(true, text, text));
+      Attributes.RandomString().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Attributes.RandomString().With(text => Validate(false, text, text.ToUpperInvariant()));
     }
 
     return;
@@ -214,6 +255,11 @@ public sealed class StringAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StringAssertions.Match(null, string.Empty, string.Empty.ToRegex())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Match(null, string.Empty.ToRegex())).ThrowExactly<ArgumentNullException>().WithParameterName("text");
       AssertionExtensions.Should(() => Assert.To.Match(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
+
+      Validate(true, string.Empty, string.Empty.ToRegex());
+      Validate(false, string.Empty, "anything".ToRegex());
+      Validate(true, Attributes.Random().Digits(byte.MaxValue), "[0-9]".ToRegex());
+      Validate(false, Attributes.Random().Letters(byte.MaxValue), "[0-9]".ToRegex());
     }
 
     return;

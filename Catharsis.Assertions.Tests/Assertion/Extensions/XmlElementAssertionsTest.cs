@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Text;
+using System.Xml;
 using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
@@ -26,18 +27,21 @@ public sealed class XmlElementAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Attribute(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("element");
       AssertionExtensions.Should(() => Assert.To.Attribute(Element, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Element.With(element =>
+      new XmlDocument().CreateElement("root").With(element =>
       {
         element.SetAttribute("encoding", null);
-        Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Validate(true, element, "encoding");
+        Validate(true, element, "encoding", element.NamespaceURI);
 
-        element.SetAttribute("encoding", "utf-8");
-        Assert.To.Attribute(element, "encoding").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        Assert.To.Attribute(element, "encoding", element.NamespaceURI).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-
-        AssertionExtensions.Should(() => Assert.To.Attribute(element, Attributes.RandomString(), null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        Encoding.GetEncodings().ForEach(encoding =>
+        {
+          element.SetAttribute("encoding", encoding.Name);
+          Validate(true, element, "encoding");
+          Validate(true, element, "encoding", element.NamespaceURI);
+        });
       });
+
+      Validate(false, new XmlDocument().CreateElement("root"), Attributes.RandomString());
     }
 
     return;

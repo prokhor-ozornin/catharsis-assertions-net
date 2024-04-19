@@ -1,4 +1,5 @@
 ﻿using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -19,6 +20,11 @@ public sealed class ObjectAssertionsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ObjectAssertions.Same(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      Validate(true, (object) null, null);
+      new object().With(instance => Validate(true, instance, instance));
+      Validate(false, new object(), null);
+      Validate(false, (object) null, new object());
     }
 
     return;
@@ -45,6 +51,16 @@ public sealed class ObjectAssertionsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ObjectAssertions.Equal(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      Validate(true, (object) null, null);
+      new object().With(instance => Validate(true, instance, instance));
+
+      Validate(true, 0, 0);
+      Validate(true, DateTime.Today, DateTime.Today);
+
+      Validate(false, new object(), null);
+      Validate(false, (object) null, new object());
+      Validate(false, Guid.NewGuid(), Guid.NewGuid());
     }
 
     return;
@@ -71,6 +87,18 @@ public sealed class ObjectAssertionsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ObjectAssertions.Default(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      Validate(true, (object) null);
+      Validate(false, new object());
+
+      Validate(true, 0);
+      Validate(false, int.MinValue);
+
+      Validate(true, DateTime.MinValue);
+      Validate(false, DateTime.Today);
+
+      Validate(true, Guid.Empty);
+      Validate(false, Guid.NewGuid());
     }
 
     return;
@@ -104,15 +132,18 @@ public sealed class ObjectAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.OfType(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
       AssertionExtensions.Should(() => Assert.To.OfType(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      static void Validate<T>(bool result, T instance)
+      Validate(true, new object(), typeof(object));
+      Validate(false, new object(), typeof(string));
+
+      static void Validate(bool result, object instance, Type type)
       {
         if (result)
         {
-          Assert.To.OfType<T>(instance).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+          Assert.To.OfType(instance, type).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
         }
         else
         {
-          AssertionExtensions.Should(() => Assert.To.OfType<T>(instance, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          AssertionExtensions.Should(() => Assert.To.OfType(instance, type, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
         }
       }
     }
@@ -121,6 +152,9 @@ public sealed class ObjectAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectAssertions.OfType<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.OfType<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
+
+      Validate<object>(true, new object());
+      Validate<string>(false, new object());
 
       static void Validate<T>(bool result, object instance)
       {
@@ -145,6 +179,9 @@ public sealed class ObjectAssertionsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ObjectAssertions.Null(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+
+      Validate(true, (object) null);
+      Validate(false, new object());
     }
 
     return;
@@ -172,6 +209,11 @@ public sealed class ObjectAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectAssertions.OneOf(null, new object(), [])).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.OneOf(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+
+      Validate(true, null, new object[] { null, new(), null });
+      Validate(true, string.Empty, new object[] { string.Empty, Guid.Empty, new() });
+      Validate(false, null, Enumerable.Empty<object>());
+      Validate(false, new object(), [new object()]);
     }
 
     return;

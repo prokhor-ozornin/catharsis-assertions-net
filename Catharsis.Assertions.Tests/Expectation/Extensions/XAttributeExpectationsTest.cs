@@ -11,8 +11,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class XAttributeExpectationsTest : UnitTest
 {
-  private XAttribute Attribute { get; } = new("name", "value");
-
   /// <summary>
   ///   <para>Performs testing of <see cref="XAttributeExpectations.Name(IExpectation{XAttribute}, XName)"/> method.</para>
   /// </summary>
@@ -23,11 +21,12 @@ public sealed class XAttributeExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => XAttributeExpectations.Name(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XAttribute) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      AssertionExtensions.Should(() => Attribute.Expect().Name(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+      AssertionExtensions.Should(() => new XAttribute("name", "value").Expect().Name(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Attribute.Expect().Name(Attributes.RandomString()).Result.Should().BeFalse();
-      Attribute.Expect().Name(Attribute.Name).Result.Should().BeTrue();
+      Validate(true, new XAttribute("name", "value"), "name");
+      Validate(false, new XAttribute("name", "value"), string.Empty);
     }
+
     return;
 
     static void Validate(bool result, XAttribute attribute, XName name) => attribute.Expect().Name(name).Should().BeOfType<Expectation<XAttribute>>().Which.Result.Should().Be(result);
@@ -43,10 +42,10 @@ public sealed class XAttributeExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => XAttributeExpectations.Value(null, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XAttribute) null).Expect().Value("value")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      AssertionExtensions.Should(() => Attribute.Expect().Value(null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
+      AssertionExtensions.Should(() => new XAttribute("name", "value").Expect().Value(null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-      Attribute.Expect().Value(Attributes.RandomString()).Result.Should().BeFalse();
-      Attribute.Expect().Value(Attribute.Value).Result.Should().BeTrue();
+      Validate(true, new XAttribute("name", "value"), "value");
+      Validate(false, new XAttribute("name", "value"), string.Empty);
     }
 
     return;

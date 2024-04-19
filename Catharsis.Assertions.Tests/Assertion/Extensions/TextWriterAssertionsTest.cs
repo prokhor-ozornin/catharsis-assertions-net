@@ -12,8 +12,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class TextWriterAssertionsTest : UnitTest
 {
-  private TextWriter Writer { get; } = new StringWriter();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="TextWriterAssertions.Format(IAssertion, TextWriter, IFormatProvider, string)"/> method.</para>
   /// </summary>
@@ -22,14 +20,11 @@ public sealed class TextWriterAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TextWriterAssertions.Format(null, Writer, CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TextWriterAssertions.Format(null, new StringWriter(), CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => ((TextWriter) null).Expect().Format(CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      
-      Attributes.RandomStream().ToStreamWriter().TryFinallyDispose(writer =>
-      {
-        AssertionExtensions.Should(() => Assert.To.Format(writer, null, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-        Assert.To.Format(writer, writer.FormatProvider).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-      });
+
+      Stream.Null.ToStreamWriter().With(writer => Validate(true, writer, writer.FormatProvider));
+      Validate(false, Stream.Null.ToStreamWriter(), null);
     }
 
     return;
@@ -48,11 +43,5 @@ public sealed class TextWriterAssertionsTest : UnitTest
         }
       }
     }
-  }
-
-  public override void Dispose()
-  {
-    base.Dispose();
-    Writer.Dispose();
   }
 }

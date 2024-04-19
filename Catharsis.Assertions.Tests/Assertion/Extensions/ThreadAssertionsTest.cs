@@ -1,4 +1,5 @@
 ﻿using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -20,6 +21,9 @@ public sealed class ThreadAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ThreadAssertions.State(null, Thread.CurrentThread, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.State(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("thread");
+
+      Thread.CurrentThread.With(thread => Validate(true, thread, thread.ThreadState));
+      Validate(false, Thread.CurrentThread, ThreadState.Unstarted);
     }
 
     return;
@@ -47,6 +51,9 @@ public sealed class ThreadAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ThreadAssertions.Priority(null, Thread.CurrentThread, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Priority(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("thread");
+
+      Thread.CurrentThread.With(thread => Validate(true, thread, thread.Priority));
+      Validate(false, Thread.CurrentThread, ThreadPriority.Highest);
     }
 
     return;

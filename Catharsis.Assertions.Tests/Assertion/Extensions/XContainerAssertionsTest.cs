@@ -26,15 +26,13 @@ public sealed class XContainerAssertionsTest : UnitTest
       AssertionExtensions.Should(() => XContainerAssertions.Element(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("container");
       AssertionExtensions.Should(() => Assert.To.Element(Container, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Container.With(container =>
+      new XDocument(new XElement("parent", new XElement("child"))).With(container =>
       {
-        var root = new XElement("parent");
-        root.Add(new XElement("child"));
-        container.Add(root);
-
-        Assert.To.Element(container, "parent").Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        AssertionExtensions.Should(() => Assert.To.Element(container, "child", "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        Validate(true, container, "parent");
+        Validate(false, container, "child");
       });
+
+      Validate(false, new XDocument(), null);
     }
 
     return;
@@ -63,11 +61,8 @@ public sealed class XContainerAssertionsTest : UnitTest
       AssertionExtensions.Should(() => XContainerAssertions.Empty(null, Container)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XContainerAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("container");
 
-      Container.With(container =>
-      {
-        container.Add(new XElement("root"));
-        AssertionExtensions.Should(() => Assert.To.Empty(container, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      });
+      Validate(true, new XDocument());
+      Validate(false, new XDocument(new XElement("root")));
     }
 
     return;

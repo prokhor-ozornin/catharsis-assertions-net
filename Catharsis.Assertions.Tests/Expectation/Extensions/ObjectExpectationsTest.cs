@@ -21,10 +21,10 @@ public sealed class ObjectExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectExpectations.Same<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      ((object) null).Expect().Same(null).Result.Should().BeTrue();
-      new object().With(instance => instance.Expect().Same(null).Result.Should().BeFalse());
-      ((object) null).Expect().Same(new object()).Result.Should().BeFalse();
-      new object().With(instance => instance.Expect().Same(instance).Result.Should().BeTrue());
+      Validate(true, (object) null, null);
+      new object().With(instance => Validate(true, instance, instance));
+      Validate(false, new object(), null);
+      Validate(false, (object) null, new object());
     }
 
     return;
@@ -42,13 +42,15 @@ public sealed class ObjectExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectExpectations.Equal<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      ((object) null).Expect().Equal(null).Result.Should().BeTrue();
-      new object().With(instance => instance.Expect().Equal(instance).Result.Should().BeTrue());
-      new object().Expect().Equal(null).Result.Should().BeFalse();
-      ((object) null).Expect().Equal(new object()).Result.Should().BeFalse();
-      0.Expect().Equal(0).Result.Should().BeTrue();
-      DateTime.Today.Expect().Equal(DateTime.Today).Result.Should().BeTrue();
-      Guid.NewGuid().Expect().Equal(Guid.NewGuid()).Result.Should().BeFalse();
+      Validate(true, (object) null, null);
+      new object().With(instance => Validate(true, instance, instance));
+
+      Validate(true, 0, 0);
+      Validate(true, DateTime.Today, DateTime.Today);
+
+      Validate(false, new object(), null);
+      Validate(false, (object) null, new object());
+      Validate(false, Guid.NewGuid(), Guid.NewGuid());
     }
 
     return;
@@ -66,17 +68,17 @@ public sealed class ObjectExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectExpectations.Default<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      ((object) null).Expect().Default().Result.Should().BeTrue();
-      new object().Expect().Default().Result.Should().BeFalse();
+      Validate(true, (object) null);
+      Validate(false, new object());
 
-      0.Expect().Default().Result.Should().BeTrue();
-      int.MinValue.Expect().Default().Result.Should().BeFalse();
+      Validate(true, 0);
+      Validate(false, int.MinValue);
 
-      DateTime.MinValue.Expect().Default().Result.Should().BeTrue();
-      DateTime.Today.Expect().Default().Result.Should().BeFalse();
+      Validate(true, DateTime.MinValue);
+      Validate(false, DateTime.Today);
 
-      Guid.Empty.Expect().Default().Result.Should().BeTrue();
-      Guid.NewGuid().Expect().Default().Result.Should().BeFalse();
+      Validate(true, Guid.Empty);
+      Validate(false, Guid.NewGuid());
     }
 
     return;
@@ -96,8 +98,8 @@ public sealed class ObjectExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((object) null).Expect().OfType(typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new object().Expect().OfType(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      new object().Expect().OfType(typeof(object)).Result.Should().BeTrue();
-      new object().Expect().OfType(typeof(string)).Result.Should().BeFalse();
+      Validate(true, new object(), typeof(object));
+      Validate(false, new object(), typeof(string));
     }
 
     return;
@@ -115,8 +117,8 @@ public sealed class ObjectExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectExpectations.Null<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      ((object) null).Expect().Null().Result.Should().BeTrue();
-      new object().Expect().Null().Result.Should().BeFalse();
+      Validate(true, (object) null);
+      Validate(false, new object());
     }
 
     return;
@@ -135,10 +137,10 @@ public sealed class ObjectExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ObjectExpectations.OneOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => new object().Expect().OneOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-      ((object) null).Expect().OneOf(Enumerable.Empty<object>()).Result.Should().BeFalse();
-      ((object) null).Expect().OneOf(new object[] { null, new(), null }).Result.Should().BeTrue();
-      new object().Expect().OneOf(new object[] { new() }).Result.Should().BeFalse();
-      string.Empty.Expect().OneOf(new object[] { string.Empty, Guid.Empty, new() }).Result.Should().BeTrue();
+      Validate(true, null, new object[] { null, new(), null });
+      Validate(true, string.Empty, new object[] { string.Empty, Guid.Empty, new() });
+      Validate(false, null, Enumerable.Empty<object>());
+      Validate(false, new object(), [new object()]);
     }
 
     return;

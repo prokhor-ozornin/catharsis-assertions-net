@@ -23,13 +23,13 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StringExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((string)null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      string.Empty.Expect().Length(int.MinValue).Result.Should().BeFalse();
-      string.Empty.Expect().Length(int.MaxValue).Result.Should().BeFalse();
-      string.Empty.Expect().Length(string.Empty.Length).Result.Should().BeTrue();
+      Validate(true, string.Empty, 0);
+      Validate(false, string.Empty, int.MinValue);
+      Validate(false, string.Empty, int.MaxValue);
 
-      Attributes.RandomString().Expect().Length(int.MinValue).Result.Should().BeFalse();
-      Attributes.RandomString().Expect().Length(int.MaxValue).Result.Should().BeFalse();
-      Attributes.RandomString().Expect().Length(Attributes.RandomString().Length).Result.Should().BeTrue();
+      Attributes.RandomString().With(text => Validate(true, text, text.Length));
+      Validate(false, Attributes.RandomString(), int.MinValue);
+      Validate(false, Attributes.RandomString(), int.MaxValue);
     }
 
     return;
@@ -48,8 +48,8 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StringExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((string) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      string.Empty.Expect().Empty().Result.Should().BeTrue();
-      Attributes.RandomString().Expect().Empty().Result.Should().BeFalse();
+      Validate(true, string.Empty);
+      Validate(false, Attributes.RandomString());
     }
 
     return;
@@ -68,9 +68,9 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StringExpectations.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((string) null).Expect().WhiteSpace()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      string.Empty.Expect().WhiteSpace().Result.Should().BeTrue();
-      "\r\n\t".Expect().WhiteSpace().Result.Should().BeTrue();
-      Attributes.RandomString().Expect().WhiteSpace().Result.Should().BeFalse();
+      Validate(true, string.Empty);
+      Validate(true, "\r\n\t");
+      Validate(false, Attributes.RandomString());
     }
 
     return;
@@ -89,9 +89,9 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StringExpectations.UpperCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((string) null).Expect().UpperCased()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      string.Empty.Expect().UpperCased().Result.Should().BeTrue();
-      Attributes.RandomString().ToUpperInvariant().Expect().UpperCased().Result.Should().BeTrue();
-      Attributes.RandomString().ToLowerInvariant().Expect().UpperCased().Result.Should().BeFalse();
+      Validate(true, string.Empty);
+      Validate(true, Attributes.RandomString().ToUpperInvariant());
+      Validate(false, Attributes.RandomString().ToLowerInvariant());
     }
 
     return;
@@ -110,9 +110,9 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => StringExpectations.LowerCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((string) null).Expect().LowerCased()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      string.Empty.Expect().LowerCased().Result.Should().BeTrue();
-      Attributes.RandomString().ToLowerInvariant().Expect().LowerCased().Result.Should().BeTrue();
-      Attributes.RandomString().ToUpperInvariant().Expect().LowerCased().Result.Should().BeFalse();
+      Validate(true, string.Empty);
+      Validate(true, Attributes.RandomString().ToLowerInvariant());
+      Validate(false, Attributes.RandomString().ToUpperInvariant());
     }
 
     return;
@@ -132,14 +132,14 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((string) null).Expect().StartWith(string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => string.Empty.Expect().StartWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("prefix");
 
-      string.Empty.Expect().StartWith(string.Empty).Result.Should().BeTrue();
-      string.Empty.Expect().StartWith(char.MinValue.ToString()).Result.Should().BeTrue();
-      string.Empty.Expect().StartWith(char.MaxValue.ToString()).Result.Should().BeFalse();
-      
-      Attributes.RandomString().Expect().StartWith(string.Empty).Result.Should().BeTrue();
-      Attributes.RandomString().Expect().StartWith(Attributes.RandomString()).Result.Should().BeTrue();
-      Attributes.RandomString().Expect().StartWith(Attributes.RandomString().ToUpperInvariant()).Result.Should().BeFalse();
-      Attributes.RandomString().Expect().StartWith(Attributes.RandomString().ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Result.Should().BeTrue();
+      Validate(true, string.Empty, string.Empty);
+      Validate(true, string.Empty, char.MinValue.ToString());
+      Validate(false, string.Empty, char.MaxValue.ToString());
+
+      Validate(true, Attributes.RandomString(), string.Empty);
+      Attributes.RandomString().With(text => Validate(true, text, text));
+      Attributes.RandomString().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Attributes.RandomString().With(text => Validate(false, text, text.ToUpperInvariant()));
     }
 
     return;
@@ -159,14 +159,14 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((string) null).Expect().EndWith(string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => string.Empty.Expect().EndWith(null)).ThrowExactly<ArgumentNullException>().WithParameterName("postfix");
 
-      string.Empty.Expect().EndWith(string.Empty).Result.Should().BeTrue();
-      string.Empty.Expect().EndWith(char.MinValue.ToString()).Result.Should().BeTrue();
-      string.Empty.Expect().EndWith(char.MaxValue.ToString()).Result.Should().BeFalse();
+      Validate(true, string.Empty, string.Empty);
+      Validate(true, string.Empty, char.MinValue.ToString());
+      Validate(false, string.Empty, char.MaxValue.ToString());
 
-      Attributes.RandomString().Expect().EndWith(string.Empty).Result.Should().BeTrue();
-      Attributes.RandomString().Expect().EndWith(Attributes.RandomString()).Result.Should().BeTrue();
-      Attributes.RandomString().Expect().EndWith(Attributes.RandomString().ToUpperInvariant()).Result.Should().BeFalse();
-      Attributes.RandomString().Expect().EndWith(Attributes.RandomString().ToUpperInvariant(), StringComparison.OrdinalIgnoreCase).Result.Should().BeTrue();
+      Validate(true, Attributes.RandomString(), string.Empty);
+      Attributes.RandomString().With(text => Validate(true, text, text));
+      Attributes.RandomString().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Attributes.RandomString().With(text => Validate(false, text, text.ToUpperInvariant()));
     }
 
     return;
@@ -186,10 +186,10 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((string) null).Expect().Match(string.Empty.ToRegex())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => string.Empty.Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
 
-      string.Empty.Expect().Match(string.Empty.ToRegex()).Result.Should().BeTrue();
-      string.Empty.Expect().Match("anything".ToRegex()).Result.Should().BeFalse();
-      Attributes.Random().Digits(byte.MaxValue).Expect().Match("[0-9]".ToRegex()).Result.Should().BeTrue();
-      Attributes.Random().Letters(byte.MaxValue).Expect().Match("[0-9]".ToRegex()).Result.Should().BeFalse();
+      Validate(true, string.Empty, string.Empty.ToRegex());
+      Validate(false, string.Empty, "anything".ToRegex());
+      Validate(true, Attributes.Random().Digits(byte.MaxValue), "[0-9]".ToRegex());
+      Validate(false, Attributes.Random().Letters(byte.MaxValue), "[0-9]".ToRegex());
     }
 
     return;

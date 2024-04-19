@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Text;
+using System.Xml;
 using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
@@ -12,8 +13,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class XmlElementExpectationsTest : UnitTest
 {
-  private XmlElement Element { get; } = new XmlDocument().CreateElement("root");
-
   /// <summary>
   ///   <para>Performs testing of <see cref="XmlElementExpectations.Attribute(IExpectation{XmlElement}, string, string)"/> method.</para>
   /// </summary>
@@ -24,23 +23,25 @@ public sealed class XmlElementExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => XmlElementExpectations.Attribute(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XmlElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      AssertionExtensions.Should(() => Element.Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+      AssertionExtensions.Should(() => new XmlDocument().CreateElement("root").Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
-
-      Element.With(element =>
+      new XmlDocument().CreateElement("root").With(element =>
       {
         element.SetAttribute("encoding", null);
-        element.Expect().Attribute("encoding").Result.Should().BeTrue();
-        element.Expect().Attribute("encoding", element.NamespaceURI).Result.Should().BeTrue();
+        Validate(true, element, "encoding");
+        Validate(true, element, "encoding", element.NamespaceURI);
 
-        element.SetAttribute("encoding", "utf-8");
-        element.Expect().Attribute("encoding").Result.Should().BeTrue();
-        element.Expect().Attribute("encoding", element.NamespaceURI).Result.Should().BeTrue();
-
-        element.Expect().Attribute(Attributes.RandomString()).Result.Should().BeFalse();
+        Encoding.GetEncodings().ForEach(encoding =>
+        {
+          element.SetAttribute("encoding", encoding.Name);
+          Validate(true, element, "encoding");
+          Validate(true, element, "encoding", element.NamespaceURI);
+        });
       });
+
+      Validate(false, new XmlDocument().CreateElement("root"), Attributes.RandomString());
     }
+
     return;
 
     static void Validate(bool result, XmlElement element, string name, string uri = null) => element.Expect().Attribute(name, uri).Should().BeOfType<Expectation<XmlElement>>().Which.Result.Should().Be(result);

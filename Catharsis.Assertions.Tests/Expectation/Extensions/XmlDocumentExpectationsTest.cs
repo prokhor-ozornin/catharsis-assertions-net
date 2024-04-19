@@ -12,8 +12,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class XmlDocumentExpectationsTest : UnitTest
 {
-  private XmlDocument Document { get; } = new();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="XmlDocumentExpectations.Element(IExpectation{XmlDocument}, string, string)"/> method.</para>
   /// </summary>
@@ -24,22 +22,23 @@ public sealed class XmlDocumentExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => XmlDocumentExpectations.Element(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XmlDocument) null).Expect().Element("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      AssertionExtensions.Should(() => Document.Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+      AssertionExtensions.Should(() => new XmlDocument().Expect().Element(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Document.Expect().Element(Attributes.RandomString()).Result.Should().BeFalse();
-
-      Document.With(document =>
+      new XmlDocument().With(document =>
       {
         var parent = document.AppendChild(document.CreateElement("parent"));
         var child = parent.AppendChild(document.CreateElement("child"));
         
-        document.Expect().Element(parent.Name).Result.Should().BeTrue();
-        document.Expect().Element(parent.Name, parent.NamespaceURI).Result.Should().BeTrue();
+        Validate(true, document, parent.Name);
+        Validate(true, document, parent.Name, parent.NamespaceURI);
 
-        document.Expect().Element(child.Name).Result.Should().BeTrue();
-        document.Expect().Element(child.Name, child.NamespaceURI).Result.Should().BeTrue();
+        Validate(true, document, child.Name);
+        Validate(true, document, child.Name, child.NamespaceURI);
       });
+
+      Validate(false, new XmlDocument(), Attributes.RandomString());
     }
+
     return;
 
     static void Validate(bool result, XmlDocument document, string name, string uri = null) => document.Expect().Element(name, uri).Should().BeOfType<Expectation<XmlDocument>>().Which.Result.Should().Be(result);

@@ -23,7 +23,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, timespan.Days);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
@@ -54,7 +55,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, timespan.Hours);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
@@ -85,7 +87,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, timespan.Minutes);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
@@ -116,7 +119,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, timespan.Seconds);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
@@ -147,7 +151,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, timespan.Milliseconds);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
@@ -178,7 +183,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, (int) timespan.TotalDays);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
@@ -209,7 +215,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, (int) timespan.TotalHours);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
@@ -240,7 +247,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, (int) timespan.TotalMinutes);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
@@ -271,7 +279,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, (int) timespan.TotalSeconds);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
@@ -302,7 +311,8 @@ public sealed class TimeSpanAssertionsTest : UnitTest
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
       {
-
+        Validate(true, timespan, (int) timespan.TotalMilliseconds);
+        Validate(false, timespan, int.MinValue);
       });
     }
 
