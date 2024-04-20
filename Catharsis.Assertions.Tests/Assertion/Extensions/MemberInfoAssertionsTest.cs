@@ -35,6 +35,9 @@ public sealed class MemberInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Attribute(Member, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
       AssertionExtensions.Should(() => Assert.To.Attribute(Member, typeof(object))).ThrowExactly<ArgumentException>();
 
+      Validate(true, Member, typeof(Attribute));
+      Validate(true, Member, typeof(DescriptionAttribute));
+      Validate(false, Member, typeof(ObsoleteAttribute));
 
       static void Validate(bool result, MemberInfo member, Type type)
       {
@@ -53,6 +56,10 @@ public sealed class MemberInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MemberInfoAssertions.Attribute<Attribute>(null, Member)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Attribute<Attribute>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
+
+      Validate<Attribute>(true, Member);
+      Validate<DescriptionAttribute>(true, Member);
+      Validate<ObsoleteAttribute>(false, Member);
 
       static void Validate<T>(bool result, MemberInfo member) where T : Attribute
       {
@@ -78,6 +85,9 @@ public sealed class MemberInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MemberInfoAssertions.Type(null, Member, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MemberInfoAssertions.Type(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
+
+      Validate(true, Member, Member.MemberType);
+      Validate(false, Member, MemberTypes.All);
     }
 
     return;

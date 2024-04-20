@@ -19,27 +19,24 @@ public sealed class DirectoryInfoProtectionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DirectoryInfoProtections.Empty(null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => DirectoryInfoProtections.Empty(null, Attributes.Random().DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((DirectoryInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-      Validate(true, Attributes.TempDirectory().With(directory => directory.Directory.CreateSubdirectory(Attributes.Random().DirectoryName())));
-      Validate(false, Attributes.TempDirectory());
+      Attributes.Random().Directory().With(directory => Validate(true, directory.With(Attributes.Random().Directory(directory))));
+      Attributes.Random().Directory().TryFinallyDelete(directory => Validate(false, directory));
     }
 
     return;
 
-    static void Validate(bool result, TempDirectory directory)
+    static void Validate(bool result, DirectoryInfo directory)
     {
-      using (directory)
+      if (result)
       {
-        if (result)
-        {
-          Protect.From.Empty(directory.Directory).Should().BeOfType<DirectoryInfo>().And.BeSameAs(directory);
-        }
-        else
-        {
-          AssertionExtensions.Should(() => Protect.From.Empty(directory.Directory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-        }
+        Protect.From.Empty(directory).Should().BeOfType<DirectoryInfo>().And.BeSameAs(directory);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Empty(directory, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
       }
     }
   }

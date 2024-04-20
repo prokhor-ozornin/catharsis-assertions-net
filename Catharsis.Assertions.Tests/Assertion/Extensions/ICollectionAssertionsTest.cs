@@ -20,6 +20,10 @@ public sealed class ICollectionAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ICollectionAssertions.Count(null, Array.Empty<object>(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Count<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+
+      Validate(true, Array.Empty<object>(), 0);
+      Validate(false, Array.Empty<object>(), int.MinValue);
+      Validate(false, Array.Empty<object>(), int.MaxValue);
     }
 
     return;
@@ -47,6 +51,9 @@ public sealed class ICollectionAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ICollectionAssertions.Empty(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Empty<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+
+      Validate(true, Array.Empty<object>());
+      Validate(false, Attributes.RandomSequence().ToArray());
     }
 
     return;
@@ -74,6 +81,9 @@ public sealed class ICollectionAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ICollectionAssertions.ReadOnly(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ReadOnly<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+
+      Validate(true, Array.Empty<object>());
+      Validate(false, new List<object>());
     }
 
     return;

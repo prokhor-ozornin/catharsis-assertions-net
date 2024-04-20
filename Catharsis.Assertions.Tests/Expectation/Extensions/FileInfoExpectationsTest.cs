@@ -22,14 +22,17 @@ public sealed class FileInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => FileInfoExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.TempFile().File.Expect().Length(int.MinValue).Result.Should().BeFalse();
-      Attributes.TempFile().File.Expect().Length(int.MaxValue).Result.Should().BeFalse();
-      Attributes.TempFile().File.Expect().Length(Attributes.TempFile().File.Length).Result.Should().BeTrue();
-      Attributes.TempFile().File.Empty().Expect().Length(0).Result.Should().BeTrue();
+      Attributes.Random().File().TryFinallyDelete(file =>
+      {
+        Validate(true, file, file.Length);
+        Validate(true, file.Empty(), 0);
+        Validate(false, file, int.MinValue);
+      });
     }
+
     return;
 
-    static void Validate(bool result, TempFile file, long length) => file.File.Expect().Length(length).Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
+    static void Validate(bool result, FileInfo file, long length) => file.Expect().Length(length).Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -43,8 +46,11 @@ public sealed class FileInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => FileInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.TempFile().File.Expect().Empty().Result.Should().BeFalse();
-      Attributes.TempFile().File.Empty().Expect().Empty().Result.Should().BeTrue();
+      Attributes.Random().File().TryFinallyDelete(file =>
+      {
+        Validate(false, file);
+        Validate(true, file.Empty());
+      });
     }
 
     return;
@@ -63,13 +69,16 @@ public sealed class FileInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => FileInfoExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.TempFile().File.Expect().ReadOnly().Result.Should().BeFalse();
-      Attributes.TempFile().File.AsReadOnly().Expect().ReadOnly().Result.Should().BeTrue();
+      Attributes.Random().File().TryFinallyDelete(file =>
+      {
+        Validate(false, file);
+        Validate(true, file.AsReadOnly());
+      });
     }
 
     return;
 
-    static void Validate(bool result, TempFile file) => file.File.Expect().ReadOnly().Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
+    static void Validate(bool result, FileInfo file) => file.Expect().ReadOnly().Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -80,12 +89,15 @@ public sealed class FileInfoExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoExpectations.InDirectory(null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((FileInfo) null).Expect().InDirectory(Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      AssertionExtensions.Should(() => Attributes.TempFile().File.Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
+      AssertionExtensions.Should(() => FileInfoExpectations.InDirectory(null, Attributes.Random().DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((FileInfo) null).Expect().InDirectory(Attributes.Random().DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => Attributes.Random().FileName().ToFile().Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-      Attributes.TempFile().File.Expect().InDirectory(Environment.SystemDirectory.ToDirectory()).Result.Should().BeFalse();
-      Attributes.TempFile().File.Expect().InDirectory(Attributes.TempDirectory().Directory).Result.Should().BeTrue();
+      Attributes.Random().File().TryFinallyDelete(file =>
+      {
+        Validate(true, file, file.Directory);
+        Validate(false, file, Environment.SystemDirectory.ToDirectory());
+      });
     }
 
     return;

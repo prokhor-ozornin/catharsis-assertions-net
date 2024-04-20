@@ -25,13 +25,8 @@ public sealed class IDictionaryExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((IDictionary<object, object>) null).Expect().ContainKey(new object())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => Dictionary.Expect().ContainKey(null)).ThrowExactly<ArgumentNullException>().WithParameterName("key");
 
-      Dictionary.Expect().ContainKey(Guid.NewGuid()).Result.Should().BeFalse();
-      
-      Dictionary.With(dictionary =>
-      {
-        dictionary.Add(Guid.Empty, new object());
-        dictionary.Expect().ContainKey(Guid.Empty).Result.Should().BeTrue();
-      });
+      Validate(true, new Dictionary<object, object>().With(("id", null)), "id");
+      Validate(false, new Dictionary<object, object>(), new object());
     }
 
     return;
@@ -50,13 +45,8 @@ public sealed class IDictionaryExpectationsTest : UnitTest
       AssertionExtensions.Should(() => IDictionaryExpectations.ContainValue<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((IDictionary<object, object>) null).Expect().ContainValue(new object())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Dictionary.Expect().ContainValue(null).Result.Should().BeFalse();
-
-      Dictionary.With(dictionary =>
-      {
-        dictionary.Add(Guid.NewGuid(), null);
-        dictionary.Expect().ContainValue(null).Result.Should().BeTrue();
-      });
+      Validate(true, new Dictionary<object, object>().With("id", null), null);
+      Validate(false, new Dictionary<object, object>(), null);
     }
 
     return;

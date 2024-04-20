@@ -32,10 +32,11 @@ public sealed class IExpectationExtensionsTest : UnitTest
 
     return;
 
-    static void Validate()
+    /*static void Validate<T>(bool result, IExpectation<T> expectation, Predicate<T> predicate)
     {
+      var expectation = expectation.Expected(predicate);
 
-    }
+    }*/
   }
 
   /// <summary>

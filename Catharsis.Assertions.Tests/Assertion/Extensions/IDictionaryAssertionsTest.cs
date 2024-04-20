@@ -1,4 +1,5 @@
 ﻿using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -10,8 +11,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class IDictionaryAssertionsTest : UnitTest
 {
-  private IDictionary<object, object> Dictionary { get; } = new Dictionary<object, object>();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="IDictionaryAssertions.ContainKey{TKey, TValue}(IAssertion, IDictionary{TKey, TValue}, TKey, string)"/> method.</para>
   /// </summary>
@@ -20,8 +19,11 @@ public sealed class IDictionaryAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IDictionaryAssertions.ContainKey(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IDictionaryAssertions.ContainKey(null, new Dictionary<object, object>(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainKey<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
+
+      Validate(true, new Dictionary<object, object>().With(("id", null)), "id");
+      Validate(false, new Dictionary<object, object>(), new object());
     }
 
     return;
@@ -47,8 +49,11 @@ public sealed class IDictionaryAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IDictionaryAssertions.ContainValue(null, Dictionary, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IDictionaryAssertions.ContainValue(null, new Dictionary<object, object>(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainValue<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
+
+      Validate(true, new Dictionary<object, object>().With("id", null), null);
+      Validate(false, new Dictionary<object, object>(), null);
     }
 
     return;

@@ -1,4 +1,5 @@
 ﻿using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -20,6 +21,10 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IEnumerableAssertions.Count(null, Enumerable.Empty<object>(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => IEnumerableAssertions.Count<object>(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+
+      Validate(true, Enumerable.Empty<object>(), 0);
+      Validate(false, Enumerable.Empty<object>(), int.MinValue);
+      Validate(false, Enumerable.Empty<object>(), int.MaxValue);
     }
 
     return;
@@ -47,6 +52,9 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IEnumerableAssertions.Empty(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => IEnumerableAssertions.Empty<object>(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+
+      Validate(true, Enumerable.Empty<object>());
+      Validate(false, Attributes.RandomSequence());
     }
 
     return;
@@ -75,6 +83,11 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.EquivalentTo(null, [], Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.EquivalentTo(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
       AssertionExtensions.Should(() => Assert.To.EquivalentTo(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+
+      Validate(true, [], Enumerable.Empty<object>());
+      Validate(true, [], Array.Empty<object>());
+      Attributes.RandomSequence().With(sequence => Validate(true, sequence.ToList(), sequence.ToLinkedList()));
+      Validate(false, Attributes.RandomSequence(), Enumerable.Empty<object>());
     }
 
     return;
@@ -102,6 +115,10 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IEnumerableAssertions.Contain(null, [], new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Contain(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+
+      Validate(false, [], new object());
+      Validate(false, Attributes.RandomSequence(), new object());
+      Attributes.RandomSequence().With(sequence => Validate(true, sequence, sequence.Random()));
     }
 
     return;
@@ -130,6 +147,12 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.ContainAll(null, [], Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainAll(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
       AssertionExtensions.Should(() => Assert.To.ContainAll(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+
+      Validate(true, [], Enumerable.Empty<object>());
+      Validate(true, Enumerable.Empty<object>(), []);
+      Validate(false, [], [new object()]);
+      Validate(true, Attributes.RandomSequence(), []);
+      Attributes.RandomSequence().With(sequence => Validate(true, sequence, sequence.Reverse()));
     }
 
     return;
@@ -158,6 +181,11 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.ContainAnyOf(null, [], Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainAnyOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
       AssertionExtensions.Should(() => Assert.To.ContainAnyOf(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+
+      Attributes.RandomSequence().With(sequence => Validate(true, sequence, [sequence.Random()]));
+      Validate(false, [], [new object()]);
+      Validate(false, [], Enumerable.Empty<object>());
+      Validate(false, Attributes.RandomSequence(), []);
     }
 
     return;
@@ -185,6 +213,10 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IEnumerableAssertions.ContainNulls(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainNulls<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+
+      Validate(true, 1.Nulls());
+      Validate(false, Enumerable.Empty<object>());
+      Validate(false, Attributes.RandomSequence());
     }
 
     return;
@@ -212,6 +244,10 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IEnumerableAssertions.ContainUnique(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainUnique<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+
+      Validate(true, Enumerable.Empty<object>());
+      Validate(true, Attributes.RandomSequence());
+      Validate(false, 2.Nulls());
     }
 
     return;
@@ -247,6 +283,12 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.ElementAt(Attributes.RandomSequence(), -1, new object())).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("index");
       AssertionExtensions.Should(() => Assert.To.ElementAt(Attributes.RandomSequence(), Attributes.RandomSequence().Count(), new object())).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("index");
 
+      Attributes.RandomSequence().With(sequence => sequence.ForEach((index, element) =>
+      {
+        Validate(true, sequence, index, element);
+        Validate(false, sequence, index, null);
+      }));
+
       static void Validate<T>(bool result, IEnumerable<T> sequence, int index, T value)
       {
         if (result)
@@ -264,6 +306,12 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IEnumerableAssertions.ElementAt(null, Attributes.RandomSequence(), Index.Start, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ElementAt(null, Index.Start, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+
+      Attributes.RandomSequence().With(sequence => sequence.ForEach((index, element) =>
+      {
+        Validate(true, sequence, Index.FromStart(index), element);
+        Validate(false, sequence, Index.FromStart(index), element);
+      }));
 
       static void Validate<T>(bool result, IEnumerable<T> sequence, Index index, T value)
       {
@@ -290,6 +338,14 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.SubsetOf(null, [], Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.SubsetOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("subset");
       AssertionExtensions.Should(() => Assert.To.SubsetOf(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("superset");
+
+      Validate(true, [], Enumerable.Empty<object>());
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence());
+      Validate(true, [], Attributes.RandomSequence());
+      Validate(true, Attributes.RandomSequence().Take(Attributes.RandomSequence().Count() / 2), Attributes.RandomSequence());
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence().Randomize());
+      Validate(false, Attributes.RandomSequence(), []);
+      Validate(false, [new object()], [new object()]);
     }
 
     return;
@@ -318,6 +374,14 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.SupersetOf(null, Enumerable.Empty<object>(), Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.SupersetOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("superset");
       AssertionExtensions.Should(() => Assert.To.SupersetOf(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("subset");
+
+      Validate(true, [], Enumerable.Empty<object>());
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence());
+      Validate(true, Attributes.RandomSequence(), []);
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence().Take(Attributes.RandomSequence().Count() / 2));
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence().Randomize());
+      Validate(false, [], Attributes.RandomSequence());
+      Validate(false, [new object()], [new object()]);
     }
 
     return;
@@ -346,6 +410,13 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.Reversed(null, Enumerable.Empty<object>(), Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Reversed(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
       AssertionExtensions.Should(() => Assert.To.Reversed(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("reversed");
+
+      Validate(true, [], Enumerable.Empty<object>());
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence().Reverse());
+      Validate(true, 2.Nulls(), 2.Nulls());
+      Validate(false, Attributes.RandomSequence(), Attributes.RandomSequence());
+      Validate(false, Attributes.RandomSequence(), []);
+      Validate(false, Attributes.RandomSequence(), Attributes.RandomSequence().Take(Attributes.RandomSequence().Count() / 2).Reverse());
     }
 
     return;
@@ -373,6 +444,10 @@ public sealed class IEnumerableAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => IEnumerableAssertions.Ordered(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Ordered<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
+
+      Validate(true, Enumerable.Empty<object>());
+      Validate(true, Attributes.Random().IntSequence(byte.MaxValue).Order());
+      Validate(false, Attributes.Random().IntSequence(byte.MaxValue));
     }
 
     return;
@@ -401,6 +476,14 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.StartWith(null, Enumerable.Empty<object>(), Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.StartWith(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
       AssertionExtensions.Should(() => Assert.To.StartWith(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+
+      Validate(true, [], Enumerable.Empty<object>());
+      Validate(true, Attributes.RandomSequence(), []);
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence());
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence().Take(Attributes.RandomSequence().Count() / 2));
+      Validate(false, [], Attributes.RandomSequence());
+      Validate(false, Attributes.RandomSequence(), Attributes.RandomSequence().Randomize());
+      Validate(false, [new object()], [new object()]);
     }
 
     return;
@@ -429,6 +512,14 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.EndWith(null, Enumerable.Empty<object>(), Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.EndWith(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
       AssertionExtensions.Should(() => Assert.To.EndWith(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
+
+      Validate(true, [], Enumerable.Empty<object>());
+      Validate(true, Attributes.RandomSequence(), []);
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence());
+      Validate(true, Attributes.RandomSequence(), Attributes.RandomSequence().TakeLast(Attributes.RandomSequence().Count() / 2));
+      Validate(false, [], Attributes.RandomSequence());
+      Validate(false, Attributes.RandomSequence(), Attributes.RandomSequence().Randomize());
+      Validate(false, [new object()], [new object()]);
     }
 
     return;
@@ -457,6 +548,14 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableAssertions.Match(null, Enumerable.Empty<object>(), _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Match<object>(null, _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
       AssertionExtensions.Should(() => Assert.To.Match(Enumerable.Empty<object>(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("condition");
+
+      Validate(true, Enumerable.Empty<object>(), _ => true);
+      Validate(true, Enumerable.Empty<object>(), _ => false);
+      Validate(true, Attributes.RandomSequence(), _ => true);
+      Validate(true, Attributes.RandomSequence(), element => element is not null);
+      Validate(true, 1.Nulls(), element => element is null);
+      Validate(false, Attributes.RandomSequence(), _ => false);
+      Validate(false, 1.Nulls(), element => element is not null);
     }
 
     return;

@@ -1,4 +1,5 @@
 ﻿using Catharsis.Commons;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -18,11 +19,18 @@ public sealed class FileInfoAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoAssertions.Length(null, Attributes.TempFile().File, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => FileInfoAssertions.Length(null, Attributes.Random().FileName().ToFile(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => FileInfoAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-      AssertionExtensions.Should(() => Assert.To.Length(Attributes.TempFile().File, int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Length(Attributes.TempFile().File, int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Length(Attributes.Random().FileName().ToFile(), int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      AssertionExtensions.Should(() => Assert.To.Length(Attributes.Random().FileName().ToFile(), int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+
+      Attributes.Random().File().TryFinallyDelete(file =>
+      {
+        Validate(true, file, file.Length);
+        Validate(true, file.Empty(), 0);
+        Validate(false, file, int.MinValue);
+      });
     }
 
     return;
@@ -48,8 +56,14 @@ public sealed class FileInfoAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoAssertions.Empty(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => FileInfoAssertions.Empty(null, Attributes.Random().FileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => FileInfoAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
+
+      Attributes.Random().File().TryFinallyDelete(file =>
+      {
+        Validate(false, file);
+        Validate(true, file.Empty());
+      });
     }
 
     return;
@@ -75,8 +89,14 @@ public sealed class FileInfoAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoAssertions.ReadOnly(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => FileInfoAssertions.ReadOnly(null, Attributes.Random().FileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => FileInfoAssertions.ReadOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
+
+      Attributes.Random().File().TryFinallyDelete(file =>
+      {
+        Validate(false, file);
+        Validate(true, file.AsReadOnly());
+      });
     }
 
     return;
@@ -102,9 +122,15 @@ public sealed class FileInfoAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoAssertions.InDirectory(null, Attributes.TempFile().File, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => FileInfoAssertions.InDirectory(Assert.To, null, Attributes.TempDirectory().Directory)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
-      AssertionExtensions.Should(() => Assert.To.InDirectory(Attributes.TempFile().File, null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
+      AssertionExtensions.Should(() => FileInfoAssertions.InDirectory(null, Attributes.Random().FileName().ToFile(), Attributes.Random().DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => FileInfoAssertions.InDirectory(Assert.To, null, Attributes.Random().DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("file");
+      AssertionExtensions.Should(() => Assert.To.InDirectory(Attributes.Random().FileName().ToFile(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
+
+      Attributes.Random().File().TryFinallyDelete(file =>
+      {
+        Validate(true, file, file.Directory);
+        Validate(false, file, Environment.SystemDirectory.ToDirectory());
+      });
     }
 
     return;

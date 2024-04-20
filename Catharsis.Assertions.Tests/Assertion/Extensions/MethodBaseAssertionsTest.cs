@@ -40,6 +40,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.Abstract(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Abstract(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, PublicAbstractMethodInfo);
+      Validate(false, PublicFinalMethodInfo);
+      Validate(false, PublicMethodInfo);
+      Validate(false, PrivateMethodInfo);
+      Validate(false, ProtectedVirtualMethodInfo);
+      Validate(false, PublicStaticMethodInfo);
+      Validate(false, InternalVirtualMethodInfo);
+      Validate(false, ProtectedInternalMethodInfo);
     }
 
     return;
@@ -67,6 +76,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.Static(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Static(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, PublicStaticMethodInfo);
+      Validate(false, PublicAbstractMethodInfo);
+      Validate(false, PublicFinalMethodInfo);
+      Validate(false, PublicMethodInfo);
+      Validate(false, PrivateMethodInfo);
+      Validate(false, ProtectedVirtualMethodInfo);
+      Validate(false, InternalVirtualMethodInfo);
+      Validate(false, ProtectedInternalMethodInfo);
     }
 
     return;
@@ -94,6 +112,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.Final(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Final(null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, PublicFinalMethodInfo);
+      Validate(false, PublicAbstractMethodInfo);
+      Validate(false, PublicMethodInfo);
+      Validate(false, PrivateMethodInfo);
+      Validate(false, ProtectedVirtualMethodInfo);
+      Validate(false, PublicStaticMethodInfo);
+      Validate(false, InternalVirtualMethodInfo);
+      Validate(false, ProtectedInternalMethodInfo);
     }
 
     return;
@@ -121,6 +148,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.Virtual(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Virtual(null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, PublicAbstractMethodInfo);
+      Validate(true, PublicFinalMethodInfo);
+      Validate(true, ProtectedVirtualMethodInfo);
+      Validate(true, InternalVirtualMethodInfo);
+      Validate(false, PublicMethodInfo);
+      Validate(false, PrivateMethodInfo);
+      Validate(false, PublicStaticMethodInfo);
+      Validate(false, ProtectedInternalMethodInfo);
     }
 
     return;
@@ -148,6 +184,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.Overridable(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Overridable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, PublicAbstractMethodInfo);
+      Validate(true, ProtectedVirtualMethodInfo);
+      Validate(true, InternalVirtualMethodInfo);
+      Validate(false, PublicFinalMethodInfo);
+      Validate(false, PublicMethodInfo);
+      Validate(false, PrivateMethodInfo);
+      Validate(false, PublicStaticMethodInfo);
+      Validate(false, ProtectedInternalMethodInfo);
     }
 
     return;
@@ -175,6 +220,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.Private(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Private(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, PrivateMethodInfo);
+      Validate(false, PublicAbstractMethodInfo);
+      Validate(false, PublicFinalMethodInfo);
+      Validate(false, PublicMethodInfo);
+      Validate(false, ProtectedVirtualMethodInfo);
+      Validate(false, PublicStaticMethodInfo);
+      Validate(false, InternalVirtualMethodInfo);
+      Validate(false, ProtectedInternalMethodInfo);
     }
 
     return;
@@ -202,6 +256,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.Protected(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Protected(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, ProtectedVirtualMethodInfo);
+      Validate(false, PublicAbstractMethodInfo);
+      Validate(false, PublicFinalMethodInfo);
+      Validate(false, PublicMethodInfo);
+      Validate(false, PrivateMethodInfo);
+      Validate(false, PublicStaticMethodInfo);
+      Validate(false, InternalVirtualMethodInfo);
+      Validate(false, ProtectedInternalMethodInfo);
     }
 
     return;
@@ -229,6 +292,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.Public(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Public(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, PublicAbstractMethodInfo);
+      Validate(true, PublicFinalMethodInfo);
+      Validate(true, PublicMethodInfo);
+      Validate(true, PublicStaticMethodInfo);
+      Validate(false, PrivateMethodInfo);
+      Validate(false, ProtectedVirtualMethodInfo);
+      Validate(false, InternalVirtualMethodInfo);
+      Validate(false, ProtectedInternalMethodInfo);
     }
 
     return;
@@ -256,6 +328,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.Internal(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Internal(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, InternalVirtualMethodInfo);
+      Validate(false, PublicAbstractMethodInfo);
+      Validate(false, PublicFinalMethodInfo);
+      Validate(false, PublicMethodInfo);
+      Validate(false, PrivateMethodInfo);
+      Validate(false, ProtectedVirtualMethodInfo);
+      Validate(false, PublicStaticMethodInfo);
+      Validate(false, ProtectedInternalMethodInfo);
     }
 
     return;
@@ -283,6 +364,15 @@ public class MethodBaseAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => MethodBaseAssertions.ProtectedInternal(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.ProtectedInternal(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
+
+      Validate(true, ProtectedInternalMethodInfo);
+      Validate(false, PublicAbstractMethodInfo);
+      Validate(false, PublicFinalMethodInfo);
+      Validate(false, PublicMethodInfo);
+      Validate(false, PrivateMethodInfo);
+      Validate(false, ProtectedVirtualMethodInfo);
+      Validate(false, PublicStaticMethodInfo);
+      Validate(false, InternalVirtualMethodInfo);
     }
 
     return;
@@ -299,9 +389,4 @@ public class MethodBaseAssertionsTest : UnitTest
       }
     }
   }
-
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  public override sealed void Dispose() => base.Dispose();
 }

@@ -1,7 +1,6 @@
 ﻿using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
-using Catharsis.Extensions;
 using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
@@ -22,10 +21,11 @@ public sealed class ICollectionExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.RandomSequence().ToArray().Expect().Count(int.MinValue).Result.Should().BeFalse();
-      Attributes.RandomSequence().ToArray().Expect().Count(int.MaxValue).Result.Should().BeFalse();
-      Attributes.RandomSequence().ToArray().With(collection => collection.Expect().Count(collection.Length).Result.Should().BeTrue());
+      Validate(true, Array.Empty<object>(), 0);
+      Validate(false, Array.Empty<object>(), int.MinValue);
+      Validate(false, Array.Empty<object>(), int.MaxValue);
     }
+
     return;
 
     static void Validate<T>(bool result, ICollection<T> collection, int count) => collection.Expect().Count(count).Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
@@ -42,8 +42,8 @@ public sealed class ICollectionExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Array.Empty<object>().Expect().Empty().Result.Should().BeTrue();
-      Attributes.RandomSequence().ToArray().Expect().Empty().Result.Should().BeFalse();
+      Validate(true, Array.Empty<object>());
+      Validate(false, Attributes.RandomSequence().ToArray());
     }
 
     return;
@@ -62,8 +62,8 @@ public sealed class ICollectionExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ICollectionExpectations.ReadOnly<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.RandomSequence().ToArray().Expect().ReadOnly().Result.Should().BeTrue();
-      Attributes.RandomSequence().ToList().Expect().ReadOnly().Result.Should().BeFalse();
+      Validate(true, Array.Empty<object>());
+      Validate(false, new List<object>());
     }
 
     return;

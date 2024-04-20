@@ -12,15 +12,16 @@ namespace Catharsis.Assertions.Tests;
 public sealed class ObjectExtensionsTest : UnitTest
 {
   /// <summary>
-  ///   <para>Performs testing of <see cref="ObjectExtensions"/> method.</para>
+  ///   <para>Performs testing of <see cref="ObjectExtensions.Expect{T}(T)"/> method.</para>
   /// </summary>
   [Fact]
-  public void Empty_Method()
+  public void Expect_Method()
   {
     using (new AssertionScope())
     {
       object subject = null;
       var expectation = subject.Expect();
+      
       expectation.Should().NotBeNull().Should().BeOfType<Expectation<object>>().And.NotBeSameAs(subject.Expect());
       expectation.GetFieldValue<object>("subject").Should().BeOfType<object>().And.BeSameAs(subject);
     }

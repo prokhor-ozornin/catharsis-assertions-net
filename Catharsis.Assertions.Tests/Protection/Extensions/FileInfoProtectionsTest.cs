@@ -19,27 +19,24 @@ public sealed class FileInfoProtectionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoProtections.Empty(null, Attributes.TempFile().File)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => FileInfoProtections.Empty(null, Attributes.Random().FileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((FileInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-      Validate(true, Attributes.TempFile());
-      Validate(false, Attributes.TempFile());
+      Attributes.Random().File().TryFinallyDelete(file => Validate(true, file));
+      Attributes.Random().File().TryFinallyDelete(file => Validate(false, file.Empty()));
     }
 
     return;
 
-    static void Validate(bool result, TempFile file)
+    static void Validate(bool result, FileInfo file)
     {
-      using (file)
+      if (result)
       {
-        if (result)
-        {
-          Protect.From.Empty(file.File).Should().BeOfType<FileInfo>().And.BeSameAs(file);
-        }
-        else
-        {
-          AssertionExtensions.Should(() => Protect.From.Empty(file.File.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
-        }
+        Protect.From.Empty(file).Should().BeOfType<FileInfo>().And.BeSameAs(file);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Protect.From.Empty(file.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
       }
     }
   }

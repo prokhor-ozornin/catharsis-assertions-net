@@ -11,15 +11,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class FileSystemInfoExpectationsTest : UnitTest
 {
-  private FileInfo RandomFakeFile { get; }
-  private DirectoryInfo RandomFakeDirectory { get; }
-
-  public FileSystemInfoExpectationsTest()
-  {
-    RandomFakeFile = Attributes.Random().FilePath().ToFile();
-    RandomFakeDirectory = Attributes.Random().DirectoryPath().ToDirectory();
-  }
-
   /// <summary>
   ///   <para>Performs testing of <see cref="FileSystemInfoExpectations.Exist(IExpectation{FileSystemInfo})"/> method.</para>
   /// </summary>
@@ -31,11 +22,11 @@ public sealed class FileSystemInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => FileSystemInfoExpectations.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Exist()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Assert.To.Exist(Attributes.TempFile().File).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeFile, "error")).ThrowExactly<InvalidOperationException>("error");
+      Attributes.Random().File().TryFinallyDelete(file => Validate(true, file));
+      Attributes.Random().Directory().TryFinallyDelete(directory => Validate(true, directory));
 
-      Assert.To.Exist(Attributes.TempDirectory().Directory).Should().NotBeNull().And.BeSameAs(Assert.To);
-      AssertionExtensions.Should(() => Assert.To.Exist(RandomFakeDirectory, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      Validate(false, Attributes.Random().FileName().ToFile());
+      Validate(false, Attributes.Random().DirectoryName().ToDirectory());
     }
 
     return;
@@ -54,10 +45,10 @@ public sealed class FileSystemInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => FileSystemInfoExpectations.Attribute(null, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Attribute(FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.TempFile().File.With(file =>
+      Attributes.Random().File().TryFinallyDelete(file =>
       {
-        Enum.GetValues<FileAttributes>().ForEach(attribute => file.Expect().Attribute(attribute).Result.Should().Be((file.Attributes & attribute) == attribute));
-        file.AsReadOnly().Expect().Attribute(FileAttributes.ReadOnly).Result.Should().BeTrue();
+        Validate(true, file.AsReadOnly(), FileAttributes.ReadOnly);
+        Enum.GetValues<FileAttributes>().ForEach(attribute => Validate((file.Attributes & attribute) == attribute, file, attribute));
       });
     }
 

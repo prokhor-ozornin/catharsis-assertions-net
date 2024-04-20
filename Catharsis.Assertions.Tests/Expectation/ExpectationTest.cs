@@ -29,6 +29,13 @@ public sealed class ExpectationTest : UnitTest
       expectation.GetFieldValue<string>("subject").Should().BeEmpty();
       expectation.GetFieldValue<bool>("state").Should().BeTrue();
     });
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 
   /// <summary>
@@ -39,11 +46,23 @@ public sealed class ExpectationTest : UnitTest
   {
     var expectation = new Expectation<object>(null);
 
-    expectation.GetFieldValue<bool>("state").Should().BeTrue();
+    Validate(true, expectation);
+
+    //expectation.GetFieldValue<bool>("state").Should().BeTrue();
+
     expectation.Not().Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation);
     expectation.GetFieldValue<bool>("state").Should().BeFalse();
+    
     expectation.Not().Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation);
     expectation.GetFieldValue<bool>("state").Should().BeTrue();
+
+    return;
+
+    static void Validate<T>(bool result, IExpectation<T> expectation)
+    {
+      expectation.Not().Should().BeOfType<Expectation<T>>().And.BeSameAs(expectation);
+      expectation.GetFieldValue<bool>("state").Should().Be(result);
+    }
   }
 
   /// <summary>
@@ -58,5 +77,12 @@ public sealed class ExpectationTest : UnitTest
     new Expectation<object>(null).Expect(subject => subject is not null).Result.Should().BeFalse();
     new Expectation<object>(null).Not().Expect(subject => subject is null).Result.Should().BeFalse();
     new Expectation<object>(null).Not().Expect(subject => subject is not null).Result.Should().BeTrue();
+
+    return;
+
+    static void Validate()
+    {
+
+    }
   }
 }

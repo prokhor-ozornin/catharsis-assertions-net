@@ -34,11 +34,9 @@ public sealed class MemberInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((MemberInfo) null).Expect().Attribute(typeof(Attribute))).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => Member.Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Member.Expect().Attribute(typeof(Attribute)).Result.Should().BeTrue();
-      Member.Expect().Attribute(typeof(DescriptionAttribute)).Result.Should().BeTrue();
-      Member.Expect().Attribute(typeof(ObsoleteAttribute)).Result.Should().BeFalse();
-      
-      AssertionExtensions.Should(() => Member.Expect().Attribute(typeof(object))).ThrowExactly<ArgumentException>();
+      Validate(true, Member, typeof(Attribute));
+      Validate(true, Member, typeof(DescriptionAttribute));
+      Validate(false, Member, typeof(ObsoleteAttribute));
 
       static void Validate(bool result, MemberInfo member, Type type) => member.Expect().Attribute(type).Should().BeOfType<Expectation<MemberInfo>>().Which.Result.Should().Be(result);
     }
@@ -48,9 +46,9 @@ public sealed class MemberInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => MemberInfoExpectations.Attribute<Attribute>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MemberInfo) null).Expect().Attribute<Attribute>()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Member.Expect().Attribute<Attribute>().Result.Should().BeTrue();
-      Member.Expect().Attribute<DescriptionAttribute>().Result.Should().BeTrue();
-      Member.Expect().Attribute<ObsoleteAttribute>().Result.Should().BeFalse();
+      Validate<Attribute>(true, Member);
+      Validate<DescriptionAttribute>(true, Member);
+      Validate<ObsoleteAttribute>(false, Member);
 
       static void Validate<T>(bool result, MemberInfo member) where T : Attribute => member.Expect().Attribute<T>().Should().BeOfType<Expectation<MemberInfo>>().Which.Result.Should().Be(result);
     }
@@ -67,8 +65,8 @@ public sealed class MemberInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => MemberInfoExpectations.Type(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MemberInfo) null).Expect().Type(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Member.Expect().Type(MemberTypes.All).Result.Should().BeFalse();
-      Member.Expect().Type(Member.MemberType).Result.Should().BeTrue();
+      Validate(true, Member, Member.MemberType);
+      Validate(false, Member, MemberTypes.All);
     }
 
     return;
