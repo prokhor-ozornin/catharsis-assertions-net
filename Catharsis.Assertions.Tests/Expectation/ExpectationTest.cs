@@ -2,6 +2,7 @@
 using Xunit;
 using FluentAssertions;
 using Catharsis.Extensions;
+using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
 
@@ -29,13 +30,6 @@ public sealed class ExpectationTest : UnitTest
       expectation.GetFieldValue<string>("subject").Should().BeEmpty();
       expectation.GetFieldValue<bool>("state").Should().BeTrue();
     });
-
-    return;
-
-    static void Validate()
-    {
-
-    }
   }
 
   /// <summary>
@@ -44,17 +38,11 @@ public sealed class ExpectationTest : UnitTest
   [Fact]
   public void Not_Method()
   {
-    var expectation = new Expectation<object>(null);
-
-    Validate(true, expectation);
-
-    //expectation.GetFieldValue<bool>("state").Should().BeTrue();
-
-    expectation.Not().Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation);
-    expectation.GetFieldValue<bool>("state").Should().BeFalse();
-    
-    expectation.Not().Should().BeOfType<Expectation<object>>().And.BeSameAs(expectation);
-    expectation.GetFieldValue<bool>("state").Should().BeTrue();
+    using (new AssertionScope())
+    {
+      Validate(true, new Expectation<object>(null).Not());
+      Validate(false, new Expectation<object>(null));
+    }
 
     return;
 
@@ -71,12 +59,15 @@ public sealed class ExpectationTest : UnitTest
   [Fact]
   public void Expect_Method()
   {
-    AssertionExtensions.Should(() => new Expectation<object>(null).Expect(null)).ThrowExactly<ArgumentNullException>().WithParameterName("result");
+    using (new AssertionScope())
+    {
+      AssertionExtensions.Should(() => new Expectation<object>(null).Expect(null)).ThrowExactly<ArgumentNullException>().WithParameterName("result");
 
-    new Expectation<object>(null).Expect(subject => subject is null).Result.Should().BeTrue();
-    new Expectation<object>(null).Expect(subject => subject is not null).Result.Should().BeFalse();
-    new Expectation<object>(null).Not().Expect(subject => subject is null).Result.Should().BeFalse();
-    new Expectation<object>(null).Not().Expect(subject => subject is not null).Result.Should().BeTrue();
+      new Expectation<object>(null).Expect(subject => subject is null).Result.Should().BeTrue();
+      new Expectation<object>(null).Expect(subject => subject is not null).Result.Should().BeFalse();
+      new Expectation<object>(null).Not().Expect(subject => subject is null).Result.Should().BeFalse();
+      new Expectation<object>(null).Not().Expect(subject => subject is not null).Result.Should().BeTrue();
+    }
 
     return;
 

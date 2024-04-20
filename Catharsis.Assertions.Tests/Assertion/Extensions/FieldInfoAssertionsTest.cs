@@ -14,12 +14,12 @@ public sealed class FieldInfoAssertionsTest : UnitTest
 {
   private FieldInfo Field { get; } = typeof(string).AnyField(nameof(string.Empty));
 
-  private string PrivateField = nameof(PrivateField);
-  protected string ProtectedField = nameof(ProtectedField);
-  public string PublicField = nameof(PublicField);
-  internal string InternalField = nameof(InternalField);
-  protected internal string ProtectedInternalField = nameof(ProtectedInternalField);
-  static string StaticField = nameof(StaticField);
+  private readonly string PrivateField = nameof(PrivateField);
+  protected readonly string ProtectedField = nameof(ProtectedField);
+  public readonly string PublicField = nameof(PublicField);
+  internal readonly string InternalField = nameof(InternalField);
+  protected internal readonly string ProtectedInternalField = nameof(ProtectedInternalField);
+  static readonly string StaticField = nameof(StaticField);
 
   private FieldInfo PrivateFieldInfo => GetType().AnyField(nameof(PrivateField));
   private FieldInfo ProtectedFieldInfo => GetType().AnyField(nameof(ProtectedField));
@@ -44,12 +44,8 @@ public sealed class FieldInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Type(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("field");
       AssertionExtensions.Should(() => Assert.To.Type(Field, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      //Validate(PrivateFieldInfo);
-      //Validate(ProtectedFieldInfo);
-      //Validate(PublicFieldInfo);
-      //Validate(InternalFieldInfo);
-      //Validate(ProtectedInternalFieldInfo);
-      //Validate(StaticFieldInfo);
+      Validate(true, PrivateFieldInfo, typeof(string));
+      Validate(false, PrivateFieldInfo, typeof(object));
 
       static void Validate(bool result, FieldInfo field, Type type)
       {
@@ -69,12 +65,8 @@ public sealed class FieldInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => FieldInfoAssertions.Type<object>(null, Field)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Type<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
 
-      //Validate(PrivateFieldInfo);
-      //Validate(ProtectedFieldInfo);
-      //Validate(PublicFieldInfo);
-      //Validate(InternalFieldInfo);
-      //Validate(ProtectedInternalFieldInfo);
-      //Validate(StaticFieldInfo);
+      Validate<string>(true, PrivateFieldInfo);
+      Validate<object>(false, PrivateFieldInfo);
 
       void Validate<T>(bool result, FieldInfo field)
       {
@@ -100,6 +92,13 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => FieldInfoAssertions.Private(null, Field)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Private((FieldInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
+
+      Validate(true, PrivateFieldInfo);
+      Validate(false, ProtectedFieldInfo);
+      Validate(false, PublicFieldInfo);
+      Validate(false, InternalFieldInfo);
+      Validate(false, InternalFieldInfo);
+      Validate(false, StaticFieldInfo);
     }
 
     return;
@@ -127,6 +126,13 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => FieldInfoAssertions.Protected(null, Field)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Protected((FieldInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
+
+      Validate(true, ProtectedFieldInfo);
+      Validate(false, PrivateFieldInfo);
+      Validate(false, PublicFieldInfo);
+      Validate(false, InternalFieldInfo);
+      Validate(false, ProtectedInternalFieldInfo);
+      Validate(false, StaticFieldInfo);
     }
 
     return;
@@ -154,6 +160,13 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => FieldInfoAssertions.Public(null, Field)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Public((FieldInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
+
+      Validate(true, PublicFieldInfo);
+      Validate(false, PrivateFieldInfo);
+      Validate(false, ProtectedFieldInfo);
+      Validate(false, InternalFieldInfo);
+      Validate(false, ProtectedInternalFieldInfo);
+      Validate(false, StaticFieldInfo);
     }
 
     return;
@@ -181,6 +194,13 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => FieldInfoAssertions.Internal(null, Field)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Internal((FieldInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
+
+      Validate(true, InternalFieldInfo);
+      Validate(false, PrivateFieldInfo);
+      Validate(false, ProtectedFieldInfo);
+      Validate(false, PublicFieldInfo);
+      Validate(false, ProtectedInternalFieldInfo);
+      Validate(false, StaticFieldInfo);
     }
 
     return;
@@ -208,6 +228,13 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => FieldInfoAssertions.ProtectedInternal(null, Field)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ProtectedInternal((FieldInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
+
+      Validate(true, ProtectedInternalFieldInfo);
+      Validate(false, PrivateFieldInfo);
+      Validate(false, ProtectedFieldInfo);
+      Validate(false, PublicFieldInfo);
+      Validate(false, InternalFieldInfo);
+      Validate(false, StaticFieldInfo);
     }
 
     return;
@@ -235,6 +262,13 @@ public sealed class FieldInfoAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => FieldInfoAssertions.Static(null, Field)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Static((FieldInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
+
+      Validate(true, StaticFieldInfo);
+      Validate(false, PrivateFieldInfo);
+      Validate(false, ProtectedFieldInfo);
+      Validate(false, PublicFieldInfo);
+      Validate(false, InternalFieldInfo);
+      Validate(false, ProtectedInternalFieldInfo);
     }
 
     return;
@@ -263,25 +297,21 @@ public sealed class FieldInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => FieldInfoAssertions.Value(null, Field, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => FieldInfoAssertions.Value(Assert.To, null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
 
-      //Validate(PrivateFieldInfo, this);
-      //Validate(ProtectedFieldInfo, this);
-      //Validate(PublicFieldInfo, this);
-      //Validate(InternalFieldInfo, this);
-      //Validate(ProtectedInternalFieldInfo, this);
-      //Validate(StaticFieldInfo, null);
+      Validate(true, PrivateFieldInfo, this, new object());
+      Validate(false, PrivateFieldInfo, this, PrivateField);
     }
 
     return;
 
-    static void Validate(bool result, FieldInfo field, object instance)
+    static void Validate(bool result, FieldInfo field, object subject, object value)
     {
       if (result)
       {
-        Assert.To.Value(field, instance, field.GetValue(instance)).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        Assert.To.Value(field, subject, value).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       }
       else
       {
-        AssertionExtensions.Should(() => Assert.To.Value(field, instance, new object(), "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        AssertionExtensions.Should(() => Assert.To.Value(field, subject, value, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     }
   }

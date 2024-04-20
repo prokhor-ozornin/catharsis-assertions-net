@@ -19,18 +19,27 @@ public sealed class ObjectExtensionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      object subject = null;
-      var expectation = subject.Expect();
-      
-      expectation.Should().NotBeNull().Should().BeOfType<Expectation<object>>().And.NotBeSameAs(subject.Expect());
-      expectation.GetFieldValue<object>("subject").Should().BeOfType<object>().And.BeSameAs(subject);
+      Validate((object) null);
+      Validate(new object());
     }
 
     return;
 
-    static void Validate()
+    static void Validate<T>(T subject)
     {
+      var expectation = subject.Expect();
 
+      expectation.Should().BeOfType<Expectation<T>>();
+      expectation.GetFieldValue<bool>("state").Should().BeTrue();
+
+      if (subject is not null)
+      {
+        expectation.GetFieldValue<object>("subject").Should().BeOfType<T>().And.BeSameAs(subject);
+      }
+      else
+      {
+        expectation.GetFieldValue<object>("subject").Should().BeNull();
+      }
     }
   }
 }
