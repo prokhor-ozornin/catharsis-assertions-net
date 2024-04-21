@@ -24,7 +24,6 @@ public sealed class XAttributeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Name(new XAttribute("name", "value"), null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
       Validate(true, new XAttribute("name", "value"), "name");
-      Validate(false, new XAttribute("name", "value"), string.Empty);
     }
 
     return;

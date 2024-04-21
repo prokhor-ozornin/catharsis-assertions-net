@@ -222,7 +222,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
       Attributes.RandomSequence().With(sequence => sequence.ForEach((index, element) =>
       {
         Validate(true, sequence, Index.FromStart(index), element);
-        Validate(false, sequence, Index.FromStart(index), element);
+        Validate(false, sequence, Index.FromStart(index), null);
       }));
 
       static void Validate<T>(bool result, IEnumerable<T> sequence, Index index, T value) => sequence.Expect().ElementAt(index, value).Should().BeOfType<Expectation<IEnumerable<T>>>().Which.Result.Should().Be(result);
@@ -319,8 +319,8 @@ public sealed class IEnumerableExpectationsTest : UnitTest
       AssertionExtensions.Should(() => Attributes.RandomSequence().Expect().Ordered()).ThrowExactly<InvalidOperationException>();
 
       Validate(true, Enumerable.Empty<object>());
-      Validate(true, Attributes.Random().IntSequence(byte.MaxValue).Order());
-      Validate(false, Attributes.Random().IntSequence(byte.MaxValue));
+      Validate(true, Attributes.Random().IntSequence(byte.MaxValue).Order().ToArray());
+      Validate(false, Attributes.Random().IntSequence(byte.MaxValue).ToArray());
     }
 
     return;

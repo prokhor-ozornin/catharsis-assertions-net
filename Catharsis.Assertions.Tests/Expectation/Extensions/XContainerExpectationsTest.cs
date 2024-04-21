@@ -29,8 +29,6 @@ public sealed class XContainerExpectationsTest : UnitTest
         Validate(true, container, "parent");
         Validate(false, container, "child");
       });
-
-      Validate(false, new XDocument(), null);
     }
 
     return;

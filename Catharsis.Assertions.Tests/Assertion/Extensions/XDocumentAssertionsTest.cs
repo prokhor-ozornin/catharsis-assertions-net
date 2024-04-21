@@ -56,7 +56,7 @@ public sealed class XDocumentAssertionsTest : UnitTest
 
       Validate(true, new XDocument(), null);
       Validate(true, new XDocument(new XElement("root")), "root");
-      Validate(false, new XDocument(new XElement("root")), string.Empty);
+      Validate(false, new XDocument(new XElement("root")), Attributes.RandomString());
     }
 
     return;

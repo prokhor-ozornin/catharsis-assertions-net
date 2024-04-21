@@ -287,4 +287,6 @@ public class MethodBaseExpectationsTest : UnitTest
 
     static void Validate(bool result, MethodBase method) => method.Expect().ProtectedInternal().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
+
+  public sealed override void Dispose() => base.Dispose();
 }

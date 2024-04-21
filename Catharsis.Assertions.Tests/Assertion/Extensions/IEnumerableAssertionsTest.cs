@@ -310,7 +310,7 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       Attributes.RandomSequence().With(sequence => sequence.ForEach((index, element) =>
       {
         Validate(true, sequence, Index.FromStart(index), element);
-        Validate(false, sequence, Index.FromStart(index), element);
+        Validate(false, sequence, Index.FromStart(index), null);
       }));
 
       static void Validate<T>(bool result, IEnumerable<T> sequence, Index index, T value)
@@ -446,8 +446,8 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Ordered<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
       Validate(true, Enumerable.Empty<object>());
-      Validate(true, Attributes.Random().IntSequence(byte.MaxValue).Order());
-      Validate(false, Attributes.Random().IntSequence(byte.MaxValue));
+      Validate(true, Attributes.Random().IntSequence(byte.MaxValue).Order().ToArray());
+      Validate(false, Attributes.Random().IntSequence(byte.MaxValue).ToArray());
     }
 
     return;

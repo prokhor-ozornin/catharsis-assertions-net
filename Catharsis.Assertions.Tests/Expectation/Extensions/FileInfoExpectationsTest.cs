@@ -46,7 +46,7 @@ public sealed class FileInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => FileInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.Random().File().TryFinallyDelete(file =>
+      Attributes.Random().BinaryFile(short.MaxValue).TryFinallyDelete(file =>
       {
         Validate(false, file);
         Validate(true, file.Empty());

@@ -389,4 +389,6 @@ public class MethodBaseAssertionsTest : UnitTest
       }
     }
   }
+
+  public sealed override void Dispose() => base.Dispose();
 }

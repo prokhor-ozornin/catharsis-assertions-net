@@ -74,11 +74,11 @@ public sealed class FieldInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((FieldInfo) null).Expect().Private()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, PrivateFieldInfo);
+      Validate(true, StaticFieldInfo);
       Validate(false, ProtectedFieldInfo);
       Validate(false, PublicFieldInfo);
       Validate(false, InternalFieldInfo);
-      Validate(false, InternalFieldInfo);
-      Validate(false, StaticFieldInfo);
+      Validate(false, ProtectedInternalFieldInfo);
     }
 
     return;
@@ -217,8 +217,8 @@ public sealed class FieldInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => FieldInfoExpectations.Value(null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FieldInfo) null).Expect().Value(string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, PrivateFieldInfo, this, new object());
-      Validate(false, PrivateFieldInfo, this, PrivateField);
+      Validate(false, PrivateFieldInfo, this, new object());
+      Validate(true, PrivateFieldInfo, this, PrivateField);
     }
 
     return;

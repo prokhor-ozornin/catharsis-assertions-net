@@ -24,7 +24,7 @@ public sealed class DateOnlyExpectationsTest : UnitTest
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
         Validate(true, date, date.DayOfYear);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -46,7 +46,7 @@ public sealed class DateOnlyExpectationsTest : UnitTest
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
         Validate(true, date, date.Year);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -68,7 +68,7 @@ public sealed class DateOnlyExpectationsTest : UnitTest
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
         Validate(true, date, date.Month);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -90,7 +90,7 @@ public sealed class DateOnlyExpectationsTest : UnitTest
       new[] {DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
         Validate(true, date, date.Day);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 

@@ -70,7 +70,7 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.DayOfYear);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -92,7 +92,7 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
       {
         Validate(true, date, date.Year);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -114,7 +114,7 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
       {
         Validate(true, date, date.Month);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -136,7 +136,7 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
       {
         Validate(true, date, date.Day);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -158,7 +158,7 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
       {
         Validate(true, date, date.Hour);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -180,7 +180,7 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
       {
         Validate(true, date, date.Minute);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -202,7 +202,7 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
       {
         Validate(true, date, date.Second);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -224,7 +224,7 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
       {
         Validate(true, date, date.Millisecond);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 

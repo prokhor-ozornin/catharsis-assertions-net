@@ -25,7 +25,7 @@ public sealed class XElementExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((XElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new XElement("root").Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Validate(false, new XElement("root"), string.Empty);
+      Validate(false, new XElement("root"), Attributes.RandomString());
 
       new XElement("root").With(element =>
       {

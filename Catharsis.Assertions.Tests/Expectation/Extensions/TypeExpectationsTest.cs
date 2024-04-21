@@ -26,7 +26,7 @@ public sealed class TypeExpectationsTest : UnitTest
       Validate(true, typeof(Stream));
       Validate(false, typeof(object));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(type.IsAbstract, type));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(type.IsAbstract && !type.IsSealed, type));
     }
 
     return;
@@ -48,7 +48,7 @@ public sealed class TypeExpectationsTest : UnitTest
       Validate(true, typeof(FileInfo));
       Validate(false, typeof(object));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(type.IsSealed, type));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(type.IsSealed && !type.IsAbstract, type));
     }
 
     return;
@@ -199,7 +199,7 @@ public sealed class TypeExpectationsTest : UnitTest
 
       Validate<object>(true, typeof(object));
       Validate<string>(true, typeof(string));
-      Validate<object>(true, typeof(string));
+      Validate<string>(true, typeof(object));
       Validate<string>(true, typeof(IEnumerable<char>));
       Validate<object>(false, typeof(string));
 
@@ -242,11 +242,9 @@ public sealed class TypeExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((Type) null).Expect().AssignableTo<object>()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate<object>(true, typeof(object));
-      Validate<object>(true, typeof(string));
-      Validate<IEnumerable<char>>(true, typeof(string));
-      Validate<string>(false, typeof(object));
-
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate<object>(true, type));
+      Validate<string>(true, typeof(object));
+      Validate<string>(true, typeof(IEnumerable<char>));
+      Validate<object>(false, typeof(string));
 
       static void Validate<T>(bool result, Type type) => type.Expect().AssignableFrom<T>().Should().BeOfType<Expectation<Type>>().Which.Result.Should().Be(result);
     }

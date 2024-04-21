@@ -11,8 +11,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class IDictionaryExpectationsTest : UnitTest
 {
-  private IDictionary<object, object> Dictionary { get; } = new Dictionary<object, object>();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="IDictionaryExpectations.ContainKey{TKey, TValue}(IExpectation{IDictionary{TKey, TValue}}, TKey)"/> method.</para>
   /// </summary>
@@ -23,7 +21,7 @@ public sealed class IDictionaryExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => IDictionaryExpectations.ContainKey<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((IDictionary<object, object>) null).Expect().ContainKey(new object())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      AssertionExtensions.Should(() => Dictionary.Expect().ContainKey(null)).ThrowExactly<ArgumentNullException>().WithParameterName("key");
+      AssertionExtensions.Should(() => new Dictionary<object, object>().Expect().ContainKey(null)).ThrowExactly<ArgumentNullException>().WithParameterName("key");
 
       Validate(true, new Dictionary<object, object>().With(("id", null)), "id");
       Validate(false, new Dictionary<object, object>(), new object());

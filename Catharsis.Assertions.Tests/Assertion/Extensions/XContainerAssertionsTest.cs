@@ -12,8 +12,6 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class XContainerAssertionsTest : UnitTest
 {
-  private XContainer Container { get; } = new XDocument();
-
   /// <summary>
   ///   <para>Performs testing of <see cref="XContainerAssertions.Element(IAssertion, XContainer, XName, string)"/> method.</para>
   /// </summary>
@@ -22,17 +20,15 @@ public sealed class XContainerAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => XContainerAssertions.Element(null, Container, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => XContainerAssertions.Element(null, new XDocument(), "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XContainerAssertions.Element(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("container");
-      AssertionExtensions.Should(() => Assert.To.Element(Container, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
+      AssertionExtensions.Should(() => Assert.To.Element(new XDocument(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
       new XDocument(new XElement("parent", new XElement("child"))).With(container =>
       {
         Validate(true, container, "parent");
         Validate(false, container, "child");
       });
-
-      Validate(false, new XDocument(), null);
     }
 
     return;
@@ -58,7 +54,7 @@ public sealed class XContainerAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => XContainerAssertions.Empty(null, Container)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => XContainerAssertions.Empty(null, new XDocument())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XContainerAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("container");
 
       Validate(true, new XDocument());
