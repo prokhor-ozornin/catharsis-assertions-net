@@ -31,7 +31,7 @@ public sealed class IEnumerableProtectionsTest : UnitTest
     {
       if (result)
       {
-        Protect.From.Empty(sequence).Should().BeOfType<IEnumerable<T>>().And.BeSameAs(sequence);
+        Protect.From.Empty(sequence).Should().BeAssignableTo<IEnumerable<T>>().And.BeSameAs(sequence);
       }
       else
       {

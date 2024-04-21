@@ -15,6 +15,6 @@ public sealed class ProtectTest : UnitTest
   [Fact]
   public void From_Property()
   {
-    Protect.From.Should().NotBeNull().Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
+    Protect.From.Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
   }
 }

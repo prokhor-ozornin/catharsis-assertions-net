@@ -22,7 +22,18 @@ public sealed class DirectoryInfoProtectionsTest : UnitTest
       AssertionExtensions.Should(() => DirectoryInfoProtections.Empty(null, Attributes.Random().DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((DirectoryInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-      Attributes.Random().Directory().With(directory => Validate(true, directory.With(Attributes.Random().Directory(directory))));
+      Attributes.Random().Directory().TryFinallyDelete(directory =>
+      {
+        Attributes.Random().File(directory);
+        Validate(true, directory);
+      });
+
+      Attributes.Random().Directory().TryFinallyDelete(directory =>
+      {
+        Attributes.Random().Directory(directory);
+        Validate(true, directory);
+      });
+
       Attributes.Random().Directory().TryFinallyDelete(directory => Validate(false, directory));
     }
 

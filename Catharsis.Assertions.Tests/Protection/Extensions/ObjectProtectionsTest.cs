@@ -21,11 +21,10 @@ public sealed class ObjectProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectProtections.Same(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, new object(), new object());
-      Validate(true, (object) null, new object());
-
       Validate(false, (object) null, null);
-      Validate(false, Stream.Null, Stream.Null);
+      new object().With(instance => Validate(false, instance, instance));
+      Validate(true, new object(), null);
+      Validate(true, (object) null, new object());
     }
 
     return;
@@ -34,7 +33,7 @@ public sealed class ObjectProtectionsTest : UnitTest
     {
       if (result)
       {
-        Protect.From.Same(instance, other).Should().BeOfType<T>().And.BeSameAs(instance);
+        Protect.From.Same(instance, other).Should().BeSameAs(instance);
       }
       else
       {
@@ -87,7 +86,7 @@ public sealed class ObjectProtectionsTest : UnitTest
       {
         if (result)
         {
-          Protect.From.OfType<T>(instance).Should().BeOfType<object>().And.BeSameAs(instance);
+          Protect.From.OfType<T>(instance).Should().BeOfType<T>().And.BeSameAs(instance);
         }
         else
         {
@@ -107,14 +106,15 @@ public sealed class ObjectProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectProtections.Equality(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, new object(), null);
-      Validate(true, (object) null, new object());
-      Validate(true, string.Empty, string.Empty);
-
       Validate(false, (object) null, null);
       new object().With(instance => Validate(false, instance, instance));
+
       Validate(false, 0, 0);
       Validate(false, DateTime.Today, DateTime.Today);
+
+      Validate(true, new object(), null);
+      Validate(true, (object) null, new object());
+      Validate(true, Guid.NewGuid(), Guid.NewGuid());
     }
 
     return;
@@ -123,7 +123,7 @@ public sealed class ObjectProtectionsTest : UnitTest
     {
       if (result)
       {
-        Protect.From.Equality(instance, other).Should().BeNull();
+        Protect.From.Equality(instance, other).Should().Be(instance);
       }
       else
       {
@@ -159,7 +159,7 @@ public sealed class ObjectProtectionsTest : UnitTest
     {
       if (result)
       {
-        Protect.From.Default(instance).Should().BeOfType<T>().And.BeSameAs(instance);
+        Protect.From.Default(instance).Should().BeOfType<T>().And.Be(instance);
       }
       else
       {
@@ -212,7 +212,7 @@ public sealed class ObjectProtectionsTest : UnitTest
       AssertionExtensions.Should(() => ObjectProtections.AnyOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("values");
 
-      Validate<object>(true, Enumerable.Empty<object>(), [string.Empty, Enumerable.Empty<object>()]);
+      Validate<object>(false, Enumerable.Empty<object>(), [string.Empty, Enumerable.Empty<object>()]);
       Validate<object>(true, Attributes.RandomSequence(), [string.Empty, Enumerable.Empty<object>()]);
       Validate<object>(false, null, [string.Empty, null]);
 
@@ -220,7 +220,7 @@ public sealed class ObjectProtectionsTest : UnitTest
       {
         if (result)
         {
-          Protect.From.AnyOf(value, values).Should().BeOfType<string>().And.BeSameAs(string.Empty);
+          Protect.From.AnyOf(value, values).Should().BeAssignableTo<IEnumerable<T>>().And.BeSameAs(value);
         }
         else
         {
@@ -234,7 +234,7 @@ public sealed class ObjectProtectionsTest : UnitTest
       AssertionExtensions.Should(() => ObjectProtections.AnyOf(null, new object(), null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), "error", null)).ThrowExactly<ArgumentNullException>().WithParameterName("values");
 
-      Validate<object>(true, Enumerable.Empty<object>(), string.Empty, Enumerable.Empty<object>());
+      Validate<object>(false, Enumerable.Empty<object>(), string.Empty, Enumerable.Empty<object>());
       Validate<object>(true, Attributes.RandomSequence(), string.Empty, Enumerable.Empty<object>());
       Validate<object>(false, null, string.Empty, null);
 
@@ -242,7 +242,7 @@ public sealed class ObjectProtectionsTest : UnitTest
       {
         if (result)
         {
-          Protect.From.AnyOf(value, "error", values).Should().BeOfType<string>().And.BeSameAs(string.Empty);
+          Protect.From.AnyOf(value, "error", values).Should().BeAssignableTo<IEnumerable<T>>().And.BeSameAs(value);
         }
         else
         {

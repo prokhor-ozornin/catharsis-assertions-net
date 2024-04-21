@@ -31,7 +31,7 @@ public sealed class ICollectionsProtectionsTest : UnitTest
     {
       if (result)
       {
-        Protect.From.Empty(collection).Should().BeOfType<ICollection<T>>().And.BeSameAs(collection);
+        Protect.From.Empty(collection).Should().BeAssignableTo<ICollection<T>>().And.BeSameAs(collection);
       }
       else
       {

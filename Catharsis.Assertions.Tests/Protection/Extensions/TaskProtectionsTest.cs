@@ -35,7 +35,7 @@ public sealed class TaskProtectionsTest : UnitTest
         {
           if (result)
           {
-            Protect.From.Status(task, status).Should().BeOfType<Task>().And.BeSameAs(task);
+            Protect.From.Status(task, status).Should().BeAssignableTo<Task>().And.BeSameAs(task);
           }
           else
           {
@@ -59,7 +59,7 @@ public sealed class TaskProtectionsTest : UnitTest
         {
           if (result)
           {
-            Protect.From.Status(task, status).Should().BeOfType<Task<T>>().And.BeSameAs(task);
+            Protect.From.Status(task, status).Should().BeAssignableTo<Task<T>>().And.BeSameAs(task);
           }
           else
           {

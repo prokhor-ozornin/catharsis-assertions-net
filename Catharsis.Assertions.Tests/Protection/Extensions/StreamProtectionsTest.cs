@@ -33,7 +33,7 @@ public sealed class StreamProtectionsTest : UnitTest
       {
         if (result)
         {
-          Protect.From.Empty(stream).Should().BeOfType<Stream>().And.BeSameAs(stream);
+          Protect.From.Empty(stream).Should().BeAssignableTo<Stream>().And.BeSameAs(stream);
         }
         else
         {

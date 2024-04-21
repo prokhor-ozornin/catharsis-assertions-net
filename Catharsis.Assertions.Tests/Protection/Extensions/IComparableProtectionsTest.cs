@@ -37,7 +37,7 @@ public sealed class IComparableProtectionsTest : UnitTest
     {
       if (result)
       {
-        Protect.From.Positive(comparable).Should().BeOfType<T>().And.BeSameAs(comparable);
+        Protect.From.Positive(comparable).Should().BeOfType<T>().And.Be(comparable);
       }
       else
       {
@@ -73,7 +73,7 @@ public sealed class IComparableProtectionsTest : UnitTest
     {
       if (result)
       {
-        Protect.From.Negative(comparable).Should().BeOfType<T>().And.BeSameAs(comparable);
+        Protect.From.Negative(comparable).Should().BeOfType<T>().And.Be(comparable);
       }
       else
       {
@@ -109,7 +109,7 @@ public sealed class IComparableProtectionsTest : UnitTest
     {
       if (result)
       {
-        Protect.From.Zero(comparable).Should().BeOfType<T>().And.BeSameAs(comparable);
+        Protect.From.Zero(comparable).Should().BeOfType<T>().And.Be(comparable);
       }
       else
       {
@@ -147,7 +147,7 @@ public sealed class IComparableProtectionsTest : UnitTest
       {
         if (result)
         {
-          Protect.From.OutOfRange(comparable, min, max).Should().BeOfType<T>().And.BeSameAs(comparable);
+          Protect.From.OutOfRange(comparable, min, max).Should().BeOfType<T>().And.Be(comparable);
         }
         else
         {

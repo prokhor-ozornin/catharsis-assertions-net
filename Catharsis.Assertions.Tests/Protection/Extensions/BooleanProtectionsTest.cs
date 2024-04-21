@@ -20,7 +20,7 @@ public sealed class BooleanProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => BooleanProtections.Truth(null, true)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, true);
+      Validate(true, false);
       Validate(false, true);
     }
 
@@ -49,7 +49,7 @@ public sealed class BooleanProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => BooleanProtections.Lie(null, false)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, false);
+      Validate(true, true);
       Validate(false, false);
     }
 
