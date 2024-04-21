@@ -21,11 +21,11 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.Past(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.Now, DateTime.UtcNow }.ForEach(date =>
       {
         Validate(true, date);
-        Validate(true, date.AddMilliseconds(-1));
-        Validate(false, date.AddMilliseconds(1));
+        Validate(true, date.AddSeconds(-1));
+        Validate(false, date.AddSeconds(1));
       });
     }
 
@@ -54,11 +54,11 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.Future(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.Now, DateTime.UtcNow }.ForEach(date =>
       {
-        Validate(true, date.AddMilliseconds(1));
+        Validate(true, date.AddSeconds(1));
         Validate(false, date);
-        Validate(false, date.AddMilliseconds(-1));
+        Validate(false, date.AddSeconds(-1));
       });
     }
 
@@ -87,10 +87,10 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.DayOfYear(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
         Validate(true, date, date.DayOfYear);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -119,10 +119,10 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.Year(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
         Validate(true, date, date.Year);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -151,10 +151,10 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.Month(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
         Validate(true, date, date.Month);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -183,10 +183,10 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.Day(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
         Validate(true, date, date.Day);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -215,10 +215,10 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.Hour(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
         Validate(true, date, date.Hour);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -247,10 +247,10 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.Minute(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
         Validate(true, date, date.Minute);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -279,10 +279,10 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.Second(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
         Validate(true, date, date.Second);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -311,10 +311,10 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.Millisecond(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
         Validate(true, date, date.Millisecond);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -343,7 +343,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeAssertions.DayOfWeek(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
         Validate(true, date, date.DayOfWeek);
         Validate(false, date, date.DayOfWeek + 1);
@@ -376,9 +376,9 @@ public sealed class DateTimeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => DateTimeAssertions.LocalTime(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       Validate(true, DateTime.Now);
+      Validate(true, DateTime.Today);
       Validate(false, DateTime.MinValue);
       Validate(false, DateTime.MaxValue);
-      Validate(false, DateTime.UtcNow);
     }
 
     return;
@@ -410,6 +410,7 @@ public sealed class DateTimeAssertionsTest : UnitTest
       Validate(false, DateTime.MinValue);
       Validate(false, DateTime.MaxValue);
       Validate(false, DateTime.Now);
+      Validate(false, DateTime.Today);
     }
 
     return;

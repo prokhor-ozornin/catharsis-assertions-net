@@ -21,11 +21,11 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Past(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      new[] { DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(date =>
       {
         Validate(true, date);
-        Validate(true, date.AddMilliseconds(-1));
-        Validate(false, date.AddMilliseconds(1));
+        Validate(true, date.AddSeconds(-1));
+        Validate(false, date.AddSeconds(1));
       });
     }
 
@@ -54,11 +54,11 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.Future(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
+      new[] { DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(date =>
       {
-        Validate(true, date.AddMilliseconds(1));
+        Validate(true, date.AddSeconds(1));
         Validate(false, date);
-        Validate(false, date.AddMilliseconds(-1));
+        Validate(false, date.AddSeconds(-1));
       });
     }
 
@@ -90,7 +90,7 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.DayOfYear);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -122,7 +122,7 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.Year);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -154,7 +154,7 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.Month);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -186,7 +186,7 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.Day);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -218,7 +218,7 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.Hour);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -250,7 +250,7 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.Minute);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -282,7 +282,7 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.Second);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
     
@@ -314,7 +314,7 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.Millisecond);
-        Validate(false, date, default);
+        Validate(false, date, int.MinValue);
       });
     }
 
@@ -343,7 +343,7 @@ public sealed class DateTimeOffsetAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => DateTimeOffsetAssertions.DayOfWeek(null, default, DayOfWeek.Monday)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now }.ForEach(date =>
+      new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
         Validate(true, date, date.DayOfWeek);
         Validate(false, date, date.DayOfWeek + 1);
