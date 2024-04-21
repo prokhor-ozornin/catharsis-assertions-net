@@ -98,11 +98,11 @@ public sealed class TimeOnlyAssertionsTest : UnitTest
     {
       if (result)
       {
-        AssertionExtensions.Should(() => Assert.To.Second(time, second, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+        Assert.To.Second(time, second).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
       }
       else
       {
-        Assert.To.Second(time, second).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+        AssertionExtensions.Should(() => Assert.To.Second(time, second, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
       }
     }
   }

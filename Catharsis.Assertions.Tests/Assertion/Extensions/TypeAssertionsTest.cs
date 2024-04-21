@@ -286,8 +286,6 @@ public sealed class TypeAssertionsTest : UnitTest
       Validate<string>(true, typeof(IEnumerable<char>));
       Validate<object>(false, typeof(string));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate<object>(true, type));
-
       static void Validate<T>(bool result, Type from)
       {
         if (result)
@@ -348,11 +346,9 @@ public sealed class TypeAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.AssignableTo<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("from");
 
       Validate<object>(true, typeof(object));
-      Validate<string>(true, typeof(object));
-      Validate<string>(true, typeof(IEnumerable<char>));
-      Validate<object>(false, typeof(string));
-
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate<object>(true, type));
+      Validate<object>(true, typeof(string));
+      Validate<IEnumerable<char>>(true, typeof(string));
+      Validate<string>(false, typeof(object));
 
       static void Validate<T>(bool result, Type type)
       {

@@ -25,13 +25,13 @@ public sealed class ProcessExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ProcessExpectations.Exited(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Process) null).Expect().Exited()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, ShellProcess.With(process => process.Start()));
+      Validate(true, ShellProcess.Run(TimeSpan.Zero));
       Validate(false, Process.GetCurrentProcess());
     }
 
     return;
 
-    static void Validate(bool result, Process process) => process.TryFinallyKill(process => process.Expect().Exited().Should().BeOfType<Expectation<Process>>().Which.Result.Should().Be(result));
+    static void Validate(bool result, Process process) => process.Expect().Exited().Should().BeOfType<Expectation<Process>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -47,12 +47,12 @@ public sealed class ProcessExpectationsTest : UnitTest
 
       AssertionExtensions.Should(() => Process.GetCurrentProcess().Expect().ExitCode(0)).ThrowExactly<InvalidOperationException>();
 
-      Validate(true, ShellProcess, ShellProcess.ExitCode);
+      Validate(true, ShellProcess, ShellProcess.Run(TimeSpan.Zero).ExitCode);
       Validate(false, ShellProcess, 0);
     }
 
     return;
 
-    static void Validate(bool result, Process process, int code) => process.TryFinallyKill(process => process.Expect().ExitCode(code).Should().BeOfType<Expectation<Process>>().Which.Result.Should().Be(result));
+    static void Validate(bool result, Process process, int code) => process.Expect().ExitCode(code).Should().BeOfType<Expectation<Process>>().Which.Result.Should().Be(result);
   }
 }

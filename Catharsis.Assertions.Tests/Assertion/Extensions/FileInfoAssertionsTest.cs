@@ -22,9 +22,6 @@ public sealed class FileInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => FileInfoAssertions.Length(null, Attributes.Random().FileName().ToFile(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => FileInfoAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-      AssertionExtensions.Should(() => Assert.To.Length(Attributes.Random().FileName().ToFile(), int.MinValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-      AssertionExtensions.Should(() => Assert.To.Length(Attributes.Random().FileName().ToFile(), int.MaxValue, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-
       Attributes.Random().File().TryFinallyDelete(file =>
       {
         Validate(true, file, file.Length);

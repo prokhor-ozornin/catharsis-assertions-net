@@ -36,7 +36,7 @@ public sealed class FileInfoProtectionsTest : UnitTest
       }
       else
       {
-        AssertionExtensions.Should(() => Protect.From.Empty(file.Empty(), "error")).ThrowExactly<ArgumentException>().WithMessage("error");
+        AssertionExtensions.Should(() => Protect.From.Empty(file, "error")).ThrowExactly<ArgumentException>().WithMessage("error");
       }
     }
   }

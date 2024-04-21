@@ -87,7 +87,7 @@ public sealed class IEnumerableAssertionsTest : UnitTest
       Validate(true, [], Enumerable.Empty<object>());
       Validate(true, [], Array.Empty<object>());
       Attributes.RandomSequence().With(sequence => Validate(true, sequence.ToList(), sequence.ToLinkedList()));
-      Validate(false, Attributes.RandomSequence(), Enumerable.Empty<object>());
+      Validate(false, Attributes.RandomSequence(), []);
     }
 
     return;

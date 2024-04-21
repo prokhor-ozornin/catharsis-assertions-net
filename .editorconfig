@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# IDE0058: Expression value is never used
+dotnet_diagnostic.IDE0058.severity = suggestion
+
+# IDE0301: Simplify collection initialization
+dotnet_diagnostic.IDE0301.severity = suggestion

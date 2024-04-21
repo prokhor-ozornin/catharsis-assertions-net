@@ -124,8 +124,8 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.End((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
       Validate(true, Stream.Null);
-      Validate(true, Attributes.RandomStream().MoveToEnd());
-      Validate(false, Attributes.RandomStream());
+      Validate(true, Attributes.Random().MemoryStream(short.MaxValue).MoveToEnd());
+      Validate(false, Attributes.Random().MemoryStream(short.MaxValue));
     }
 
     return;
@@ -159,7 +159,7 @@ public sealed class StreamAssertionsTest : UnitTest
 
       Validate(true, Stream.Null);
       Validate(true, Stream.Null.AsReadOnly());
-      Validate(true, Stream.Null.AsWriteOnlyForward());
+      Validate(true, Stream.Null.AsReadOnlyForward());
       Validate(false, Stream.Null.AsWriteOnly());
       Validate(false, Stream.Null.AsWriteOnlyForward());
     }
@@ -265,9 +265,9 @@ public sealed class StreamAssertionsTest : UnitTest
       AssertionExtensions.Should(() => StreamAssertions.ReadOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ReadOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Stream.Null);
       Validate(true, Stream.Null.AsReadOnly());
       Validate(true, Stream.Null.AsReadOnlyForward());
+      Validate(false, Stream.Null);
       Validate(false, Stream.Null.AsWriteOnly());
       Validate(false, Stream.Null.AsWriteOnlyForward());
     }

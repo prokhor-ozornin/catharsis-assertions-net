@@ -26,7 +26,7 @@ public sealed class TaskAssertionsTest : UnitTest
       AssertionExtensions.Should(() => TaskAssertions.Status(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("task");
 
       Validate(true, Task.CompletedTask, TaskStatus.RanToCompletion);
-      Validate(false, Task.FromCanceled(default), TaskStatus.RanToCompletion);
+      Validate(false, Task.FromCanceled(new CancellationToken(true)), TaskStatus.RanToCompletion);
       Validate(false, Task.FromException(new Exception()), TaskStatus.RanToCompletion);
 
       static void Validate(bool result, Task task, TaskStatus status)

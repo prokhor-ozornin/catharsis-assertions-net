@@ -50,14 +50,8 @@ public sealed class StreamReaderExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((StreamReader) null).Expect().End()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, Stream.Null.ToStreamReader());
-
-      Attributes.RandomStream().ToStreamReader().With(reader =>
-      {
-        reader.BaseStream.MoveToEnd();
-        Validate(true, reader);
-        reader.BaseStream.MoveToStart();
-        Validate(false, reader);
-      });
+      Validate(true, Attributes.Random().MemoryStream(short.MaxValue).ToStreamReader().With(reader => reader.ReadToEnd()));
+      Validate(false, Attributes.Random().MemoryStream(short.MaxValue).ToStreamReader());
     }
 
     return;

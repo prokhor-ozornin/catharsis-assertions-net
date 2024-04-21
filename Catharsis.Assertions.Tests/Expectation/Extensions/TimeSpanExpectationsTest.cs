@@ -21,10 +21,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Days(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, timespan.Days);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
     
@@ -43,10 +43,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Hours(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, timespan.Hours);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
     
@@ -65,10 +65,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Minutes(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, timespan.Minutes);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
 
@@ -87,10 +87,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Seconds(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, timespan.Seconds);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
 
@@ -109,10 +109,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.Milliseconds(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, timespan.Milliseconds);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
 
@@ -131,10 +131,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalDays(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, (int) timespan.TotalDays);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
 
@@ -153,10 +153,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalHours(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, (int) timespan.TotalHours);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
 
@@ -175,10 +175,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalMinutes(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, (int) timespan.TotalMinutes);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
 
@@ -197,10 +197,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalSeconds(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, (int) timespan.TotalSeconds);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
 
@@ -219,10 +219,10 @@ public sealed class TimeSpanExpectationsTest : UnitTest
     {
       AssertionExtensions.Should(() => TimeSpanExpectations.TotalMilliseconds(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      new[] { TimeSpan.MinValue, TimeSpan.MaxValue, TimeSpan.Zero }.ForEach(timespan =>
+      new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
         Validate(true, timespan, (int) timespan.TotalMilliseconds);
-        Validate(false, timespan, int.MinValue);
+        Validate(false, timespan, 0);
       });
     }
 

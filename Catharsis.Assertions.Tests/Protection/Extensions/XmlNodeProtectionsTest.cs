@@ -33,7 +33,7 @@ public sealed class XmlNodeProtectionsTest : UnitTest
     {
       if (result)
       {
-        Protect.From.Empty(node).Should().BeOfType<XmlElement>().And.BeSameAs(node);
+        Protect.From.Empty(node).Should().BeAssignableTo<XmlNode>().And.BeSameAs(node);
       }
       else
       {

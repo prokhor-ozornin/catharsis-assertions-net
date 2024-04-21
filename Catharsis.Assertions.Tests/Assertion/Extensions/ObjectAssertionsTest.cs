@@ -160,7 +160,7 @@ public sealed class ObjectAssertionsTest : UnitTest
       {
         if (result)
         {
-          Assert.To.OfType<T>(instance.Should().BeOfType<Assertion>().And.BeSameAs(Assert.To));
+          Assert.To.OfType<T>(instance).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
         }
         else
         {

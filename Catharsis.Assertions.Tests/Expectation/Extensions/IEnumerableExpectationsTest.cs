@@ -61,7 +61,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => IEnumerableExpectations.EquivalentTo(null,  Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EquivalentTo( Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().EquivalentTo([])).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() =>  Enumerable.Empty<object>().Expect().EquivalentTo(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
       Validate(true, [], Enumerable.Empty<object>());
@@ -105,7 +105,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => IEnumerableExpectations.ContainAll(null,  Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAll( Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAll([])).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() =>  Enumerable.Empty<object>().Expect().ContainAll(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
       Validate(true, [], Enumerable.Empty<object>());
@@ -129,7 +129,7 @@ public sealed class IEnumerableExpectationsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => IEnumerableExpectations.ContainAnyOf(null,  Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAnyOf( Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ContainAnyOf([])).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() =>  Enumerable.Empty<object>().Expect().ContainAnyOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("other");
 
       Attributes.RandomSequence().With(sequence => Validate(true, sequence, [sequence.Random()]));

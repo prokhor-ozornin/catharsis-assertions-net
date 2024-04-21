@@ -32,7 +32,7 @@ public sealed class HttpContentAssertionsTest : UnitTest
       {
         AssertionExtensions.Should(() => HttpContentAssertions.ContainHeader(null, content, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
         AssertionExtensions.Should(() => Assert.To.ContainHeader(null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("content");
-        AssertionExtensions.Should(() => Assert.To.ContainHeader(content, null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+        AssertionExtensions.Should(() => Assert.To.ContainHeader(content, null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
         if (result)
         {
@@ -40,7 +40,7 @@ public sealed class HttpContentAssertionsTest : UnitTest
         }
         else
         {
-          AssertionExtensions.Should(() => Assert.To.ContainHeader(content, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+          AssertionExtensions.Should(() => Assert.To.ContainHeader(content, name, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
         }
       }
     }

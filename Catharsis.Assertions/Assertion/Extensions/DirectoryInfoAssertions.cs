@@ -15,7 +15,13 @@ public static class DirectoryInfoAssertions
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="directory"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion Empty(this IAssertion assertion, DirectoryInfo directory, string error = null) => directory is not null ? assertion.Empty(directory.EnumerateFileSystemInfos(), error) : throw new ArgumentNullException(nameof(directory));
+  public static IAssertion Empty(this IAssertion assertion, DirectoryInfo directory, string error = null)
+  {
+    if (assertion is null) throw new ArgumentNullException(nameof(assertion));
+    if (directory is null) throw new ArgumentNullException(nameof(directory));
+
+    return assertion.Empty(directory.EnumerateFileSystemInfos(), error);
+  }
 
   /// <summary>
   ///   <para>Asserts that a given directory is located in a specified parent directory.</para>

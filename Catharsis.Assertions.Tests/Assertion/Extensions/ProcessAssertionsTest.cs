@@ -25,7 +25,7 @@ public sealed class ProcessAssertionsTest : UnitTest
       AssertionExtensions.Should(() => ProcessAssertions.Exited(null, Process.GetCurrentProcess())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Exited(null)).ThrowExactly<ArgumentNullException>().WithParameterName("process");
 
-      Validate(true, ShellProcess.With(process => process.Start()));
+      Validate(true, ShellProcess.Run(TimeSpan.Zero));
       Validate(false, Process.GetCurrentProcess());
     }
 
@@ -33,17 +33,14 @@ public sealed class ProcessAssertionsTest : UnitTest
 
     static void Validate(bool result, Process process)
     {
-      process.TryFinallyKill(process =>
+      if (result)
       {
-        if (result)
-        {
-          Assert.To.Exited(process).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        }
-        else
-        {
-          AssertionExtensions.Should(() => Assert.To.Exited(process, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-        }
-      });
+        Assert.To.Exited(process).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.Exited(process, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 
@@ -59,7 +56,7 @@ public sealed class ProcessAssertionsTest : UnitTest
       
       AssertionExtensions.Should(() => Assert.To.ExitCode(Process.GetCurrentProcess(), 0, "error")).ThrowExactly<InvalidOperationException>();
 
-      Validate(true, ShellProcess, ShellProcess.ExitCode);
+      Validate(true, ShellProcess, ShellProcess.Run(TimeSpan.Zero).ExitCode);
       Validate(false, ShellProcess, 0);
     }
 
@@ -67,17 +64,14 @@ public sealed class ProcessAssertionsTest : UnitTest
 
     static void Validate(bool result, Process process, int code)
     {
-      process.TryFinallyKill(process =>
+      if (result)
       {
-        if (result)
-        {
-          Assert.To.ExitCode(process, code).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-        }
-        else
-        {
-          AssertionExtensions.Should(() => Assert.To.ExitCode(process, code, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
-        }
-      });
+        Assert.To.ExitCode(process, code).Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
+      }
+      else
+      {
+        AssertionExtensions.Should(() => Assert.To.ExitCode(process, code, "error")).ThrowExactly<InvalidOperationException>().WithMessage("error");
+      }
     }
   }
 }

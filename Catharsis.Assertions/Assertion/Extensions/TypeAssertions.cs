@@ -151,12 +151,12 @@ public static class TypeAssertions
   /// </summary>
   /// <typeparam name="T">Asserted assigned type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="to">Type to inspect.</param>
+  /// <param name="from">Type to inspect.</param>
   /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="to"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="from"/> is a <see langword="null"/> reference.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   /// <seealso cref="AssignableTo(IAssertion, Type, Type, string)"/>
-  public static IAssertion AssignableTo<T>(this IAssertion assertion, Type to, string error = null) => assertion.AssignableTo(to, typeof(T), error);
+  public static IAssertion AssignableTo<T>(this IAssertion assertion, Type from, string error = null) => assertion.AssignableTo(from, typeof(T), error);
   #endif
 }
