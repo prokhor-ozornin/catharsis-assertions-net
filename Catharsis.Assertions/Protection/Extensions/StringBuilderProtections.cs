@@ -13,9 +13,9 @@ public static class StringBuilderProtections
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="builder">String builder to protect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="builder"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="builder"/> is <see langword="null"/>.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   public static StringBuilder Empty(this IProtection protection, StringBuilder builder, string error = null)
   {

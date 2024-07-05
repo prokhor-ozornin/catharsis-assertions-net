@@ -12,8 +12,8 @@ public static class TimeOnlyExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="hour">Expected hour component value.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   public static IExpectation<TimeOnly> Hour(this IExpectation<TimeOnly> expectation, int hour) => expectation.Expected(time => time.Hour == hour);
 
   /// <summary>
@@ -21,8 +21,8 @@ public static class TimeOnlyExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="minute">Expected minute component value.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   public static IExpectation<TimeOnly> Minute(this IExpectation<TimeOnly> expectation, int minute) => expectation.Expected(time => time.Minute == minute);
 
   /// <summary>
@@ -30,8 +30,8 @@ public static class TimeOnlyExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="second">Expected second component value.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   public static IExpectation<TimeOnly> Second(this IExpectation<TimeOnly> expectation, int second) => expectation.Expected(time => time.Second == second);
 
   /// <summary>
@@ -39,8 +39,8 @@ public static class TimeOnlyExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="millisecond">Expected millisecond component value.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is a <see langword="null"/> reference.</exception>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   public static IExpectation<TimeOnly> Millisecond(this IExpectation<TimeOnly> expectation, int millisecond) => expectation.Expected(time => time.Millisecond == millisecond);
 }
 #endif

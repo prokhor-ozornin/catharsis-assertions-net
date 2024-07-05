@@ -12,7 +12,7 @@ public static class MethodBaseExpectations
   ///   <para>Expects that a given type's method is <see langword="abstract"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> Abstract(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsAbstract);
 
@@ -20,7 +20,7 @@ public static class MethodBaseExpectations
   ///   <para>Expects that a given type's method is <see langword="static"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> Static(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsStatic);
 
@@ -28,7 +28,7 @@ public static class MethodBaseExpectations
   ///   <para>Expects that a given type's method is <see langword="final"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> Final(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsFinal);
 
@@ -36,7 +36,7 @@ public static class MethodBaseExpectations
   ///   <para>Expects that a given type's method is <see langword="virtual"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> Virtual(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsVirtual);
 
@@ -44,7 +44,7 @@ public static class MethodBaseExpectations
   ///   <para>Expects that a given type's method can be overriden in subclasses.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> Overridable(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsVirtual && !method.IsFinal);
 
@@ -52,7 +52,7 @@ public static class MethodBaseExpectations
   ///   <para>Expects that a given type's method is of <see langword="private"/> visibility.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> Private(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsPrivate);
 
@@ -60,7 +60,7 @@ public static class MethodBaseExpectations
   ///   <para></para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> Protected(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsFamily);
 
@@ -68,7 +68,7 @@ public static class MethodBaseExpectations
   ///   <para></para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> Public(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsPublic);
 
@@ -76,7 +76,7 @@ public static class MethodBaseExpectations
   ///   <para></para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> Internal(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsAssembly);
 
@@ -84,7 +84,7 @@ public static class MethodBaseExpectations
   ///   <para></para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MethodBase> ProtectedInternal(this IExpectation<MethodBase> expectation) => expectation.HaveSubject().And().Expected(method => method.IsFamilyOrAssembly);
 }

@@ -13,15 +13,15 @@ public static class XContainerExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="name">Expected expanded element name.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="name"/> is <see langword="null"/>.</exception>
   public static IExpectation<XContainer> Element(this IExpectation<XContainer> expectation, XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(container => container.Elements(name).Any());
 
   /// <summary>
   ///   <para>Expects that a given XML container is empty (contains no child nodes).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<XContainer> Empty(this IExpectation<XContainer> expectation) => expectation.HaveSubject().And().Expected(container => !container.Nodes().Any());
 }

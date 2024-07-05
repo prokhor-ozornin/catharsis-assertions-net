@@ -13,9 +13,9 @@ public static class NameValueCollectionProtections
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="collection">Collection to protect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="collection"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="collection"/> is <see langword="null"/>.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   public static NameValueCollection Empty(this IProtection protection, NameValueCollection collection, string error = null)
   {

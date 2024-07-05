@@ -13,8 +13,8 @@ public static class MemberInfoExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="type">Expected custom attribute type.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="type"/> is a <see langword="null"/> reference.</exception>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
+  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject, or <paramref name="type"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Attribute{T}(IExpectation{MemberInfo})"/>
   public static IExpectation<MemberInfo> Attribute(this IExpectation<MemberInfo> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(member => member.GetCustomAttribute(type) is not null);
 
@@ -23,7 +23,7 @@ public static class MemberInfoExpectations
   /// </summary>
   /// <typeparam name="T">Type of the custom attribute.</typeparam>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   /// <seealso cref="Attribute(IExpectation{MemberInfo}, System.Type)"/>
   public static IExpectation<MemberInfo> Attribute<T>(this IExpectation<MemberInfo> expectation) where T : Attribute => expectation.Attribute(typeof(T));
@@ -33,7 +33,7 @@ public static class MemberInfoExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="type">Expected member type.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<MemberInfo> Type(this IExpectation<MemberInfo> expectation, MemberTypes type) => expectation.HaveSubject().And().Expected(member => member.MemberType == type);
 }

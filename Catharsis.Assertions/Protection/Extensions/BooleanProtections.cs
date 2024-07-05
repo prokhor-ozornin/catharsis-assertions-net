@@ -11,9 +11,9 @@ public static class BooleanProtections
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="expression">Protected boolean expression.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+  /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is <see langword="null"/>.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   /// <seealso cref="Lie(IProtection, bool, string)"/>
   public static void Truth(this IProtection protection, bool expression, string error = null)
@@ -31,9 +31,9 @@ public static class BooleanProtections
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="expression">Protected boolean expression.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+  /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is <see langword="null"/>.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   /// <seealso cref="Truth(IProtection, bool, string)"/>
   public static void Lie(this IProtection protection, bool expression, string error = null)

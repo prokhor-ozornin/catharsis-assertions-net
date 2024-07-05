@@ -12,7 +12,7 @@ public static class XDocumentExpectations
   ///   <para>Expects that a given XML document is empty (contains no child nodes).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<XDocument> Empty(this IExpectation<XDocument> expectation) => expectation.HaveSubject().And().Expected(document => !document.Nodes().Any());
 
@@ -21,7 +21,7 @@ public static class XDocumentExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="name">Asserted expanded element name.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<XDocument> Name(this IExpectation<XDocument> expectation, XName name) => expectation.HaveSubject().And().Expected(document => document.Root?.Name == name);
 }

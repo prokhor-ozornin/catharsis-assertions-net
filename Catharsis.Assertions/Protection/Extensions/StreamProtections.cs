@@ -12,9 +12,9 @@ public static class StreamProtections
   /// <typeparam name="TStream">Type of stream.</typeparam>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="stream">Stream to protect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="stream"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="stream"/> is <see langword="null"/>.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   public static TStream Empty<TStream>(this IProtection protection, TStream stream, string error = null) where TStream : Stream
   {

@@ -7,16 +7,16 @@
 public static class IDictionaryAssertions
 {
   /// <summary>
-  ///   <para>Asserts that a given dictionary contains an element with specified key.</para>
+  ///   <para>This function asserts that the given dictionary has an element with the specified key.</para>
   /// </summary>
   /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="dictionary">Dictionary to inspect.</param>
   /// <param name="key">Asserted key value.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="dictionary"/>, or <paramref name="key"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="dictionary"/>, or <paramref name="key"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion ContainKey<TKey, TValue>(this IAssertion assertion, IDictionary<TKey, TValue> dictionary, TKey key, string error = null) where TKey : notnull
   {
@@ -28,7 +28,7 @@ public static class IDictionaryAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that a given dictionary contains an element with specified value.</para>
+  ///   <para>This function asserts that the given dictionary has an element with the specified value.</para>
   /// </summary>
   /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>
@@ -36,9 +36,9 @@ public static class IDictionaryAssertions
   /// <param name="dictionary">Dictionary to inspect.</param>
   /// <param name="value">Asserted element value.</param>
   /// <param name="comparer">Equality comparer for dictionary values.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="dictionary"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="dictionary"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion ContainValue<TKey, TValue>(this IAssertion assertion, IDictionary<TKey, TValue> dictionary, TValue value, IEqualityComparer<TValue> comparer = null, string error = null) => dictionary is not null ? assertion.Contain(dictionary.Values, value, comparer, error) : throw new ArgumentNullException(nameof(dictionary));
 }

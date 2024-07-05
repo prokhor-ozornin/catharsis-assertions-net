@@ -1,19 +1,19 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for <see cref="TextReader"/> type.</para>
+///   <para>A set of assertions for the <see cref="TextReader"/> type.</para>
 /// </summary>
 /// <seealso cref="TextReader"/>
 public static class TextReaderAssertions
 {
   /// <summary>
-  ///   <para>Asserts that a given text reader has no more available characters to read.</para>
+  ///   <para>This function asserts that the given text reader has no more available characters to read.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="reader">Text reader to inspect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="reader"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="reader"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion End(this IAssertion assertion, TextReader reader, string error = null) => reader is not null ? assertion.True(reader.Peek() < 0, error) : throw new ArgumentNullException(nameof(reader));
 }

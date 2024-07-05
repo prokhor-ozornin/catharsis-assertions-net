@@ -3,20 +3,20 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for <see cref="XContainer"/> type.</para>
+///   <para>A set of assertions for the <see cref="XContainer"/> type.</para>
 /// </summary>
 /// <seealso cref="XContainer"/>
 public static class XContainerAssertions
 {
   /// <summary>
-  ///   <para>Asserts that a given XML container contains a child element with a specified name.</para>
+  ///   <para>This function asserts that the given XML container contains a child element with a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="container">XML container to inspect.</param>
   /// <param name="name">Asserted expanded element name.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="container"/>, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="container"/>, or <paramref name="name"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Element(this IAssertion assertion, XContainer container, XName name, string error = null)
   {
@@ -28,13 +28,13 @@ public static class XContainerAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that a given XML container is empty (contains no child nodes).</para>
+  ///   <para>This function asserts that the given XML container is empty (contains no child nodes).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="container">XML container to inspect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="container"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="container"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Empty(this IAssertion assertion, XContainer container, string error = null) => container is not null ? assertion.Empty(container.Nodes(), error) : throw new ArgumentNullException(nameof(container));
 }

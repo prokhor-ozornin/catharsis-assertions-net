@@ -11,7 +11,7 @@ public static class StreamExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="length">Expected stream length.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> Length(this IExpectation<Stream> expectation, long length) => expectation.HaveSubject().And().Expected(stream => stream.Length == length);
 
@@ -19,7 +19,7 @@ public static class StreamExpectations
   ///   <para>Expects that a given stream is empty (zero-length).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> Empty(this IExpectation<Stream> expectation) => expectation.Length(0);
 
@@ -28,7 +28,7 @@ public static class StreamExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="position">Expected position within the stream.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> Position(this IExpectation<Stream> expectation, long position) => expectation.HaveSubject().And().Expected(stream => stream.Position == position);
 
@@ -36,7 +36,7 @@ public static class StreamExpectations
   ///   <para>Expects that a given stream is positioned at the end of it.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> End(this IExpectation<Stream> expectation) => expectation.HaveSubject().And().Expected(stream => stream.Position == stream.Length);
 
@@ -44,7 +44,7 @@ public static class StreamExpectations
   ///   <para>Expects that a given stream supports reading operations.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> Readable(this IExpectation<Stream> expectation) => expectation.HaveSubject().And().Expected(stream => stream.CanRead);
 
@@ -52,7 +52,7 @@ public static class StreamExpectations
   ///   <para>Expects that a given stream supports writing operations.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> Writable(this IExpectation<Stream> expectation) => expectation.HaveSubject().And().Expected(stream => stream.CanWrite);
 
@@ -60,7 +60,7 @@ public static class StreamExpectations
   ///   <para>Expects that a given stream supports seeking operations.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> Seekable(this IExpectation<Stream> expectation) => expectation.HaveSubject().And().Expected(stream => stream.CanSeek);
 
@@ -68,7 +68,7 @@ public static class StreamExpectations
   ///   <para>Expects that a given stream is read-only (does not support writing operations).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> ReadOnly(this IExpectation<Stream> expectation) => expectation.HaveSubject().And().Expected(stream => stream.CanRead && !stream.CanWrite);
 
@@ -76,7 +76,7 @@ public static class StreamExpectations
   ///   <para>Expects that a given stream is write-only (does not support reading operations).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<Stream> WriteOnly(this IExpectation<Stream> expectation) => expectation.HaveSubject().And().Expected(stream => stream.CanWrite && !stream.CanRead);
 }

@@ -1,19 +1,19 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for <see cref="DirectoryInfo"/> type.</para>
+///   <para>A set of assertions for the <see cref="DirectoryInfo"/> type.</para>
 /// </summary>
 /// <seealso cref="DirectoryInfo"/>
 public static class DirectoryInfoAssertions
 {
   /// <summary>
-  ///   <para>Asserts that a given directory is empty (contains no files and/or subdirectories).</para>
+  ///   <para>This function asserts that the given directory is empty, meaning it contains no files or subdirectories.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="directory">Directory to inspect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="directory"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="directory"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Empty(this IAssertion assertion, DirectoryInfo directory, string error = null)
   {
@@ -24,14 +24,14 @@ public static class DirectoryInfoAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that a given directory is located in a specified parent directory.</para>
+  ///   <para>This function asserts that the specified directory is a subdirectory of a specified parent directory.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="directory">Directory to inspect.</param>
   /// <param name="parent">Asserted parent directory.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="directory"/>, or <paramref name="parent"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="directory"/>, or <paramref name="parent"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion InDirectory(this IAssertion assertion, DirectoryInfo directory, DirectoryInfo parent, string error = null)
   {

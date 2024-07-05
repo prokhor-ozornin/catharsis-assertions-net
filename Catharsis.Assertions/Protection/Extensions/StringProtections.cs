@@ -13,9 +13,9 @@ public static class StringProtections
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="text">String to protect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="text"/> is <see langword="null"/>.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   public static string Empty(this IProtection protection, string text, string error = null)
   {
@@ -32,9 +32,9 @@ public static class StringProtections
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="text">String to protect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="text"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="text"/> is <see langword="null"/>.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   public static string WhiteSpace(this IProtection protection, string text, string error = null)
   {
@@ -52,9 +52,9 @@ public static class StringProtections
   /// <param name="protection">Protection to perform.</param>
   /// <param name="text">String to protect.</param>
   /// <param name="regex">Regular expression to match against.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/>, <paramref name="text"/>, or <paramref name="regex"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="protection"/>, <paramref name="text"/>, or <paramref name="regex"/> is <see langword="null"/>.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>
   public static string Match(this IProtection protection, string text, Regex regex, string error = null)
   {

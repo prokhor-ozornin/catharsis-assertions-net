@@ -1,19 +1,19 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for <see cref="bool"/> type.</para>
+///   <para>A set of assertions for the <see cref="bool"/> type.</para>
 /// </summary>
 /// <seealso cref="bool"/>
 public static class BooleanAssertions
 {
   /// <summary>
-  ///   <para>Asserts that a given boolean expression evaluates to be <see langword="true"/>.</para>
+  ///   <para>This function asserts that the given boolean expression is <see langword="true"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="expected">Boolean expression to inspect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion True(this IAssertion assertion, bool? expected, string error = null)
   {
@@ -28,13 +28,13 @@ public static class BooleanAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that a given boolean expression evaluates to be <see langword="false"/>.</para>
+  ///   <para>This function asserts that the given boolean expression is <see langword="false"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="expected">Boolean expression to inspect.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion False(this IAssertion assertion, bool? expected, string error = null)
   {

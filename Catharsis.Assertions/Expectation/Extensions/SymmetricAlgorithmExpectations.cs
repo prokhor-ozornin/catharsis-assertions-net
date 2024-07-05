@@ -13,7 +13,7 @@ public static class SymmetricAlgorithmExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="size">Expected block size in bits.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<SymmetricAlgorithm> BlockSize(this IExpectation<SymmetricAlgorithm> expectation, int size) => expectation.HaveSubject().And().Expected(algorithm => algorithm.BlockSize == size);
 
@@ -22,7 +22,7 @@ public static class SymmetricAlgorithmExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="size">Expected key size in bits.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<SymmetricAlgorithm> KeySize(this IExpectation<SymmetricAlgorithm> expectation, int size) => expectation.HaveSubject().And().Expected(algorithm => algorithm.KeySize == size);
 }

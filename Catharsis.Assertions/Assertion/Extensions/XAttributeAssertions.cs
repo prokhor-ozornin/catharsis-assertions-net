@@ -3,20 +3,20 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for <see cref="XAttribute"/> type.</para>
+///   <para>A set of assertions for the <see cref="XAttribute"/> type.</para>
 /// </summary>
 /// <seealso cref="XAttribute"/>
 public static class XAttributeAssertions
 {
   /// <summary>
-  ///   <para>Asserts that a given XML attribute has a specified name.</para>
+  ///   <para>This function asserts that the given XML attribute has a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="attribute">Attribute to inspect.</param>
   /// <param name="name">Asserted expanded attribute name.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="attribute"/>, or <paramref name="name"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="attribute"/>, or <paramref name="name"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Name(this IAssertion assertion, XAttribute attribute, XName name, string error = null)
   {
@@ -28,14 +28,14 @@ public static class XAttributeAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that a given XML attribute has a specified value.</para>
+  ///   <para>This function asserts that the given XML attribute has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="attribute">Attribute to inspect.</param>
   /// <param name="value">Asserted attribute value.</param>
-  /// <param name="error">Error description phrase for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="attribute"/>, or <paramref name="value"/> is a <see langword="null"/> reference.</exception>
+  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="attribute"/>, or <paramref name="value"/> is <see langword="null"/>.</exception>
   /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
   public static IAssertion Value(this IAssertion assertion, XAttribute attribute, string value, string error = null)
   {

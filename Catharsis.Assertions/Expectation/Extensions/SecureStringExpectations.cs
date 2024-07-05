@@ -13,7 +13,7 @@ public static class SecureStringExpectations
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
   /// <param name="length">Expected string length.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<SecureString> Length(this IExpectation<SecureString> expectation, int length) => expectation.HaveSubject().And().Expected(secure => secure.Length == length);
 
@@ -21,7 +21,7 @@ public static class SecureStringExpectations
   ///   <para>Expects that a given secure string is empty (contains no characters).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<SecureString> Empty(this IExpectation<SecureString> expectation) => expectation.Length(0);
 
@@ -29,7 +29,7 @@ public static class SecureStringExpectations
   ///   <para>Expects that a given secure string is marked as read-only (cannot be modified).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be met.</param>
-  /// <returns>Back reference to the given <paramref name="expectation"/>.</returns>
+  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> reference or has an undefined subject.</exception>
   public static IExpectation<SecureString> ReadOnly(this IExpectation<SecureString> expectation) => expectation.HaveSubject().And().Expected(secure => secure.IsReadOnly());
 }

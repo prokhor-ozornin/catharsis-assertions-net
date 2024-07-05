@@ -22,6 +22,6 @@ public interface IExpectation<out T>
   /// </summary>
   /// <param name="result">Expected result.</param>
   /// <returns>Back reference to the current expectation.</returns>
-  /// <exception cref="ArgumentNullException">If <paramref name="result"/> is a <see langword="null"/> reference.</exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="result"/> is <see langword="null"/>.</exception>
   IExpectation<T> Expect(Predicate<T> result);
 }
