@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of expectations for comparable types.</para>
+///   <para>A set of expectations for comparable types.</para>
 /// </summary>
 /// <seealso cref="IComparable{T}"/>
 public static class IComparableExpectations
@@ -10,7 +10,7 @@ public static class IComparableExpectations
   ///   <para>Expects that a given comparable element is "positive" (higher than its default value).</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Negative{T}(IExpectation{T})"/>
@@ -20,7 +20,7 @@ public static class IComparableExpectations
   ///   <para>Expects that a given comparable element is "negative" (lower than its default value).</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Positive{T}(IExpectation{T})"/>
@@ -30,7 +30,7 @@ public static class IComparableExpectations
   ///   <para>Expects that a given comparable element is "zero" (equal to its default value).</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   public static IExpectation<T> Zero<T>(this IExpectation<T> expectation) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(default) == 0);
@@ -39,7 +39,7 @@ public static class IComparableExpectations
   ///   <para>Expects that a given comparable element is greater than a specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="other">Expected element value for comparison.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -50,7 +50,7 @@ public static class IComparableExpectations
   ///   <para>Expects that a given comparable element is greater than or equal to a specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="other">Expected element value for comparison.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -61,7 +61,7 @@ public static class IComparableExpectations
   ///   <para>Expects that a given comparable element is lesser than a specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="other">Expected element value for comparison.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -72,7 +72,7 @@ public static class IComparableExpectations
   ///   <para>Expects that a given comparable element is lesser than or equal to a specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="other">Expected element value for comparison.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -83,7 +83,7 @@ public static class IComparableExpectations
   ///   <para>Expects that a given comparable element lies within a specified range of values.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="min">Expected range lower bound (inclusive).</param>
   /// <param name="max">Expected range upper bound (inclusive).</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -95,7 +95,7 @@ public static class IComparableExpectations
   ///   <para>Expects that a given comparable element lies out of a specified range of values.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="min">Expected range lower bound (inclusive).</param>
   /// <param name="max">Expected range upper bound (inclusive).</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>

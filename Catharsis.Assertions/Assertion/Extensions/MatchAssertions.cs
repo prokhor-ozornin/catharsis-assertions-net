@@ -20,7 +20,7 @@ public static class MatchAssertions
   public static IAssertion Successful(this IAssertion assertion, Match match, string error = null) => match is not null ? assertion.True(match.Success, error) : throw new ArgumentNullException(nameof(match));
 
   /// <summary>
-  ///   <para>This function asserts that a result of a given regular expression match equals to a specified value.</para>
+  ///   <para>This function asserts that the result of a regular expression match is equal to a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="match">Match to inspect.</param>

@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of protections for <see cref="StringBuilder"/> type.</para>
+///   <para>A set of protections for <see cref="StringBuilder"/> type.</para>
 /// </summary>
 /// <seealso cref="StringBuilder"/>
 public static class StringBuilderProtections

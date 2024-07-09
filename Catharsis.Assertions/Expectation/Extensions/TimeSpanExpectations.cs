@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of expectations for <see cref="TimeSpan"/> type.</para>
+///   <para>A set of expectations for <see cref="TimeSpan"/> type.</para>
 /// </summary>
 /// <seealso cref="TimeSpan"/>
 public static class TimeSpanExpectations
@@ -9,7 +9,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval has a specified days component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="days">Expected days component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -18,7 +18,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval has a specified hours component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="hours">Expected hours component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -27,7 +27,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval has a specified minutes component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="minutes">Expected minutes component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -36,7 +36,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval has a specified seconds component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="seconds">Expected seconds component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -45,7 +45,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval has a specified milliseconds component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="milliseconds">Expected milliseconds component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -54,7 +54,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval represents a specified total number of whole days.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="days">Expected days count.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -63,7 +63,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval represents a specified total number of whole hours.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="hours">Expected hours count.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -72,7 +72,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval represents a specified total number of whole minutes.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="minutes">Expected minutes count.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -81,7 +81,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval represents a specified total number of whole seconds.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="seconds">Expected seconds count.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -90,7 +90,7 @@ public static class TimeSpanExpectations
   /// <summary>
   ///   <para>Expects that a given time interval represents a specified total number of whole milliseconds.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="milliseconds">Expected milliseconds count.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>

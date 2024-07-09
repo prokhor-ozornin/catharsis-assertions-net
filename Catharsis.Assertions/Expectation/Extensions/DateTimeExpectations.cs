@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of expectations for <see cref="DateTime"/> type.</para>
+///   <para>A set of expectations for <see cref="DateTime"/> type.</para>
 /// </summary>
 /// <seealso cref="DateTime"/>
 public static class DateTimeExpectations
@@ -9,7 +9,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expect that a given date lies in the past (lesser than the current).</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Future(IExpectation{DateTime})"/>
@@ -18,7 +18,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date lies in the future (greater than the current).</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Past(IExpectation{DateTime})"/>
@@ -27,7 +27,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date represents a specified day of the year.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="day">Expected day of the year.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -36,7 +36,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date has a specified year component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="year">Expected year component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -45,7 +45,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date has a specified month component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="month">Expected month component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -54,7 +54,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date has a specified day component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="day">Expected day component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -63,7 +63,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date has a specified hour component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="hour">Expected hour component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -72,7 +72,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date has specified minute component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="minute">Expected minute component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -81,7 +81,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date has a specified second component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="second">Expected second component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -90,7 +90,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date has a specified millisecond component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="millisecond">Expected millisecond component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -99,7 +99,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date represents a specified day of the week.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="day">Expected day of the week.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -108,7 +108,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date represents a date/time in the local timezone.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="UtcTime(IExpectation{DateTime})"/>
@@ -117,7 +117,7 @@ public static class DateTimeExpectations
   /// <summary>
   ///   <para>Expects that a given date represents a date/time in the UTC/GMT timezone.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="LocalTime(IExpectation{DateTime})"/>

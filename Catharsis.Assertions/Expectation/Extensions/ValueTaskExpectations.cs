@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of expectations for <see cref="ValueTask"/> type.</para>
+///   <para>A set of expectations for <see cref="ValueTask"/> type.</para>
 /// </summary>
 /// <seealso cref="ValueTask"/>
 /// <seealso cref="ValueTask{TResult}"/>
@@ -10,7 +10,7 @@ public static class ValueTaskExpectations
   /// <summary>
   ///   <para>Expects that a given task completed successfully.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Successful{T}(IExpectation{ValueTask{T}})"/>
@@ -19,7 +19,7 @@ public static class ValueTaskExpectations
   /// <summary>
   ///   <para>Expects that a given task completed unsuccessfully due to unhandled exception.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Unsuccessful{T}(IExpectation{ValueTask{T}})"/>
@@ -28,7 +28,7 @@ public static class ValueTaskExpectations
   /// <summary>
   ///   <para>Expects that a given task failed to complete due to being cancelled.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Canceled{T}(IExpectation{ValueTask{T}})"/>
@@ -37,7 +37,7 @@ public static class ValueTaskExpectations
   /// <summary>
   ///   <para>Expects that a given task completed, whether successfully or not.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Completed{T}(IExpectation{ValueTask{T}})"/>
@@ -47,7 +47,7 @@ public static class ValueTaskExpectations
   ///   <para>Expects that a given task completed successfully.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Successful(IExpectation{ValueTask})"/>
@@ -57,7 +57,7 @@ public static class ValueTaskExpectations
   ///   <para>Expects that a given task completed unsuccessfully due to unhandled exception.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Unsuccessful(IExpectation{ValueTask})"/>
@@ -67,7 +67,7 @@ public static class ValueTaskExpectations
   ///   <para>Expects that a given task failed to complete due to being cancelled.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Canceled(IExpectation{ValueTask})"/>
@@ -77,7 +77,7 @@ public static class ValueTaskExpectations
   ///   <para>Expects that a given task completed, whether successfully or not.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="Completed(IExpectation{ValueTask})"/>

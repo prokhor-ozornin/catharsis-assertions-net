@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of protections for <see cref="ICollection{T}"/> types.</para>
+///   <para>A set of protections for <see cref="ICollection{T}"/> types.</para>
 /// </summary>
 /// <seealso cref="ICollection{T}"/>
 public static class ICollectionProtections

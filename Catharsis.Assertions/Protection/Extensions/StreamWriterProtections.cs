@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of protections for <see cref="StreamWriter"/> type.</para>
+///   <para>A set of protections for <see cref="StreamWriter"/> type.</para>
 /// </summary>
 /// <seealso cref="StreamWriter"/>
 public static class StreamWriterProtections

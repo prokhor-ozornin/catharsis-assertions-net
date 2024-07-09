@@ -109,7 +109,7 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence contains at least one <see langword="null"/> reference.</para>
+  ///   <para>This function asserts that the given sequence contains at least one <see langword="null"/>.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>

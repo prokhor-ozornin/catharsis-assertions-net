@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of protections for <see cref="object"/> type.</para>
+///   <para>A set of protections for <see cref="object"/> type.</para>
 /// </summary>
 /// <seealso cref="object"/>
 public static class ObjectProtections

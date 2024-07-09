@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of protections for <see cref="IEnumerable{T}"/> types.</para>
+///   <para>A set of protections for <see cref="IEnumerable{T}"/> types.</para>
 /// </summary>
 /// <seealso cref="IEnumerable{T}"/>
 public static class IEnumerableProtections

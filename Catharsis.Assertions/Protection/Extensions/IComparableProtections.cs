@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of protections for <see cref="IComparable{T}"/> types.</para>
+///   <para>A set of protections for <see cref="IComparable{T}"/> types.</para>
 /// </summary>
 /// <seealso cref="IComparable{T}"/>
 public static class IComparableProtections

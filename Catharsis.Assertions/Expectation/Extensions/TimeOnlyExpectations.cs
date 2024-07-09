@@ -2,7 +2,7 @@
 
 #if NET7_0_OR_GREATER
 /// <summary>
-///   <para>Set of expectations for <see cref="TimeOnly"/> type.</para>
+///   <para>A set of expectations for <see cref="TimeOnly"/> type.</para>
 /// </summary>
 /// <seealso cref="TimeOnly"/>
 public static class TimeOnlyExpectations
@@ -10,7 +10,7 @@ public static class TimeOnlyExpectations
   /// <summary>
   ///   <para>Expects that a given time has a specified hour component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="hour">Expected hour component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -19,7 +19,7 @@ public static class TimeOnlyExpectations
   /// <summary>
   ///   <para>Expects that a given time has a specified minute component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="minute">Expected minute component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -28,7 +28,7 @@ public static class TimeOnlyExpectations
   /// <summary>
   ///   <para>Expects that a given time has a specified second component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="second">Expected second component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>
@@ -37,7 +37,7 @@ public static class TimeOnlyExpectations
   /// <summary>
   ///   <para>Expects that a given time has a specified millisecond component.</para>
   /// </summary>
-  /// <param name="expectation">Expectation to be met.</param>
+  /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="millisecond">Expected millisecond component value.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is <see langword="null"/>.</exception>

@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of protections for <see cref="NameValueCollection"/> types.</para>
+///   <para>A set of protections for <see cref="NameValueCollection"/> types.</para>
 /// </summary>
 /// <seealso cref="NameValueCollection"/>
 public static class NameValueCollectionProtections

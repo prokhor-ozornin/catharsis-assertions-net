@@ -7,11 +7,11 @@
 public static class ObjectAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given typed object is the same instance as the specified one.</para>
+  ///   <para>This function asserts that the given object of a specific type is the same as the specified object.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="instance">Typed object to inspect.</param>
+  /// <param name="instance">Object to inspect.</param>
   /// <param name="other">Asserted object for reference equality comparison.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
@@ -20,11 +20,11 @@ public static class ObjectAssertions
   public static IAssertion Same<T>(this IAssertion assertion, T instance, object other, string error = null) => assertion.True(ReferenceEquals(instance, other), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given typed object is considered equal to the specified one.</para>
+  ///   <para>This function asserts that the given object is considered equal to the specified object.</para>
   /// </summary>
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="instance">Typed object to inspect.</param>
+  /// <param name="instance">Object to inspect.</param>
   /// <param name="other">Asserted object for equality comparison.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
@@ -33,11 +33,11 @@ public static class ObjectAssertions
   public static IAssertion Equal<T>(this IAssertion assertion, T instance, object other, string error = null) => assertion.True(Equals(instance, other), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given typed object is considered equal to the default value of its type.</para>
+  ///   <para>This function asserts that the given object is equal to the default value for its type.</para>
   /// </summary>
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="instance">Typed object to inspect.</param>
+  /// <param name="instance">Object to inspect.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is <see langword="null"/>.</exception>
@@ -45,11 +45,11 @@ public static class ObjectAssertions
   public static IAssertion Default<T>(this IAssertion assertion, T instance, string error = null) => assertion.Equal(instance, default(T), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given object instance is of specified type.</para>
+  ///   <para>This function asserts that the given object instance is of the specified type.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Object to inspect.</param>
-  /// <param name="type">Asserted type of object instance.</param>
+  /// <param name="type">Asserted type of object.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="instance"/>, or <paramref name="type"/> is <see langword="null"/>.</exception>
@@ -64,9 +64,9 @@ public static class ObjectAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given object instance is of specified type.</para>
+  ///   <para>This function asserts that the given object instance is of the specified type.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">Asserted type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Object to inspect.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
@@ -88,13 +88,13 @@ public static class ObjectAssertions
   public static IAssertion Null<T>(this IAssertion assertion, T instance, string error = null) => assertion.True(instance is null, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given object is considered equal to at least one in a specified sequence.</para>
+  ///   <para>This function asserts that the given object is equal to at least one element in a specified sequence.</para>
   /// </summary>
   /// <typeparam name="T">Asserted type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="value">Typed object to inspect.</param>
-  /// <param name="sequence">Asserted sequence of possible object values.</param>
-  /// <param name="comparer">Comparer to perform comparison of objects for equality.</param>
+  /// <param name="value">Object to inspect.</param>
+  /// <param name="sequence">Asserted sequence of possible object's values.</param>
+  /// <param name="comparer">Comparer for equality.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="sequence"/> is <see langword="null"/>.</exception>

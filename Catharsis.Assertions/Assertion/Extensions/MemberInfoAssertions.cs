@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class MemberInfoAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given type's member is decorated with a custom attribute of specified type.</para>
+  ///   <para>This function asserts that the given type has a member that is decorated with the specified custom attribute.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member">Type's member to inspect.</param>
-  /// <param name="type">Asserted custom attribute type.</param>
+  /// <param name="type">Asserted attribute's type.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="member"/>, or <paramref name="type"/> is <see langword="null"/>.</exception>
@@ -29,9 +29,9 @@ public static class MemberInfoAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given type's member is decorated with a custom attribute of specified type.</para>
+  ///   <para>This function asserts that the given type has a member that is decorated with the specified custom attribute.</para>
   /// </summary>
-  /// <typeparam name="T">Asserted custom attribute type.</typeparam>
+  /// <typeparam name="T">Asserted attribute's type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member">Type's member to inspect.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
@@ -42,11 +42,11 @@ public static class MemberInfoAssertions
   public static IAssertion Attribute<T>(this IAssertion assertion, MemberInfo member, string error = null) where T : Attribute => assertion.Attribute(member, typeof(T), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given type's member is of specified type.</para>
+  ///   <para>This function asserts that the given member of the specified type is of the expected type.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member">Type's member to inspect.</param>
-  /// <param name="type">Asserted member type.</param>
+  /// <param name="type">Asserted member's type.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="member"/> is <see langword="null"/>.</exception>

@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of protections for <see cref="BinaryReader"/> type.</para>
+///   <para>A set of protections for <see cref="BinaryReader"/> type.</para>
 /// </summary>
 /// <seealso cref="BinaryReader"/>
 public static class BinaryReaderProtections

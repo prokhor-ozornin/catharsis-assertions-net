@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of protections for <see cref="XContainer"/> type.</para>
+///   <para>A set of protections for <see cref="XContainer"/> type.</para>
 /// </summary>
 /// <seealso cref="XContainer"/>
 public static class XContainerProtections
