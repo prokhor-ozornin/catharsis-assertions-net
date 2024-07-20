@@ -7,7 +7,7 @@
 public static class BinaryReaderProtections
 {
   /// <summary>
-  ///   <para>Protects given binary reader from having an empty underlying stream.</para>
+  ///   <para>Protects the given <see cref="BinaryReader"/> from being empty, ensuring that it has a non-empty underlying <see cref="Stream"/>.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="reader">Binary reader to protect.</param>

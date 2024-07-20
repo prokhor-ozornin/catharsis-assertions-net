@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class StringBuilderProtections
 {
   /// <summary>
-  ///   <para>Protects given string builder from being empty (containing no characters).</para>
+  ///   <para>Protects the given <see cref="StringBuilder"/> from being empty, ensuring that it contains at least one character.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="builder">String builder to protect.</param>

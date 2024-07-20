@@ -8,7 +8,7 @@
 public static class TaskProtections
 {
   /// <summary>
-  ///   <para>Protects given task from having a specified status.</para>
+  ///   <para>Protects the given <see cref="Task"/> from being in a specific stage, ensuring that it doesn't have the specified status.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="task">Task to protect.</param>
@@ -29,7 +29,7 @@ public static class TaskProtections
   }
 
   /// <summary>
-  ///   <para>Protects given task from having a specified status.</para>
+  ///   <para>Protects the given <see cref="Task"/> from being in a specific stage, ensuring that it doesn't have the specified status.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="protection">Protection to perform.</param>

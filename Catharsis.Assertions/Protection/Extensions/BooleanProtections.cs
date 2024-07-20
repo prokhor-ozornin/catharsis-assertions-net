@@ -7,7 +7,7 @@
 public static class BooleanProtections
 {
   /// <summary>
-  ///   <para>Protects given boolean expression from being <see langword="true"/>.</para>
+  ///   <para>Protects the given boolean expression from becoming <see langword="true"/>, ensuring that it remains <see langword="false"/>.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="expression">Protected boolean expression.</param>
@@ -27,7 +27,7 @@ public static class BooleanProtections
   }
 
   /// <summary>
-  ///   <para>Protects given boolean expression from being <see langword="false"/>.</para>
+  ///   <para>Protects the given boolean expression from becoming <see langword="false"/>, ensuring that it remains <see langword="true"/>.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="expression">Protected boolean expression.</param>

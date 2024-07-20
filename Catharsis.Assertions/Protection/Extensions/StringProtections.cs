@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class StringProtections
 {
   /// <summary>
-  ///   <para>Protects given string from being empty (containing no characters).</para>
+  ///   <para>Protects the given <see cref="string"/> from being empty, ensuring that it contains at least one character.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="text">String to protect.</param>
@@ -28,7 +28,7 @@ public static class StringProtections
   }
 
   /// <summary>
-  ///   <para>Protects given string from being either <see langword="null"/>, empty, or consisting only of white-space characters.</para>
+  ///   <para>Protects the given <see cref="string"/> from being "whitespace", ensuring that it only contains non-whitespace characters.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="text">String to protect.</param>
@@ -47,11 +47,11 @@ public static class StringProtections
   }
 
   /// <summary>
-  ///   <para>Protects given string from matching a specified regular expression.</para>
+  ///   <para>Protects the given <see cref="string"/> from matching a specified regular expression, ensuring that it doesn't match.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="text">String to protect.</param>
-  /// <param name="regex">Regular expression to match against.</param>
+  /// <param name="regex">Regular expression for matching.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/>, <paramref name="text"/>, or <paramref name="regex"/> is <see langword="null"/>.</exception>

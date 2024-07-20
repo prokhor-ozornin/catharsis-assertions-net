@@ -7,7 +7,7 @@
 public static class StreamReaderProtections
 {
   /// <summary>
-  ///   <para>Protects given stream reader from having an empty underlying stream.</para>
+  ///   <para>Protects the given <see cref="StreamReader"/> from being empty, ensuring that it has a non-empty underlying <see cref="Stream"/>.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="reader">Stream reader to protect.</param>

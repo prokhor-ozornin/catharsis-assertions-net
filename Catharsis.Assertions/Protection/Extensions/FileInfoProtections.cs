@@ -7,7 +7,7 @@
 public static class FileInfoProtections
 {
   /// <summary>
-  ///   <para>Protects given file from being empty (zero-sized).</para>
+  ///   <para>Protects the given <see cref="FileInfo"/> from being empty, ensuring that its size is not zero.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="file">File to protect.</param>

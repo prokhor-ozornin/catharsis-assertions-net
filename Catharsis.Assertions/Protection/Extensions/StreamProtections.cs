@@ -7,7 +7,7 @@
 public static class StreamProtections
 {
   /// <summary>
-  ///   <para>Protects given stream from being empty (zero-length).</para>
+  ///   <para>Protects the given <see cref="Stream"/> from being empty, ensuring that its size is not zero.</para>
   /// </summary>
   /// <typeparam name="TStream">Type of stream.</typeparam>
   /// <param name="protection">Protection to perform.</param>

@@ -7,7 +7,7 @@
 public static class StreamWriterProtections
 {
   /// <summary>
-  ///   <para>Protects given stream writer from having an empty underlying stream.</para>
+  ///   <para>Protects the given <see cref="StreamWriter"/> from being empty, ensuring that it has a non-empty underlying <see cref="Stream"/>.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="writer">Stream writer to protect.</param>

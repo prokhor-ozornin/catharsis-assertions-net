@@ -7,12 +7,12 @@
 public static class ObjectProtections
 {
   /// <summary>
-  ///   <para>Protects given typed object from being the same instance as the specified one.</para>
+  ///   <para>Protects the given <see cref="object"/> from being the same instance as another object, ensuring that their references are not equal.</para>
   /// </summary>
-  /// <typeparam name="T">Type of protected object.</typeparam>
+  /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="instance">Typed object to protect.</param>
-  /// <param name="other">Object for reference equality comparison.</param>
+  /// <param name="instance">Object to protect.</param>
+  /// <param name="other">Target for equality comparison.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is <see langword="null"/>.</exception>
@@ -27,11 +27,11 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects given typed object from being an instance of a specified type.</para>
+  ///   <para>Protects the given <see cref="object"/> from having a specific type, ensuring that its <see cref="Type"/> is different.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="instance">Typed object to protect.</param>
-  /// <param name="type">Type of object instance.</param>
+  /// <param name="instance">Object to protect.</param>
+  /// <param name="type">Type of object.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/>, <paramref name="instance"/>, or <paramref name="type"/> is <see langword="null"/>.</exception>
@@ -49,11 +49,11 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects given typed object from being an instance of a specified type.</para>
+  ///   <para>Protects the given <see cref="object"/> from having a specific type, ensuring that its <see cref="Type"/> is different.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="instance">Typed object to protect.</param>
+  /// <param name="instance">Object to protect.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="instance"/> is <see langword="null"/>.</exception>
@@ -62,12 +62,12 @@ public static class ObjectProtections
   public static object OfType<T>(this IProtection protection, object instance, string error = null) => protection.OfType(instance, typeof(T), error);
 
   /// <summary>
-  ///   <para>Protects given typed object from being equal to the specified one.</para>
+  ///   <para>Protects the given <see cref="object"/> from being equal to another object, ensuring that they are not considered equal.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="instance">Typed object to protect.</param>
-  /// <param name="other">Object for equality comparison.</param>
+  /// <param name="instance">Object to protect.</param>
+  /// <param name="other">Target for equality comparison.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is <see langword="null"/>.</exception>
@@ -82,11 +82,11 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects given typed object from being equal to the default value of its type.</para>
+  ///   <para>Protects the given <see cref="object"/> from being equal to the default value of its <see cref="Type"/>, ensuring that it is different.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="instance">Typed object to protect.</param>
+  /// <param name="instance">Object to protect.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is <see langword="null"/>.</exception>
@@ -94,11 +94,11 @@ public static class ObjectProtections
   public static T Default<T>(this IProtection protection, T instance, string error = null) => protection.Equality(instance, default(T), error);
 
   /// <summary>
-  ///   <para>Protects given typed object from being <see langword="null"/>.</para>
+  ///   <para>Protects the given <see cref="object"/> from being <see langword="null"/>, ensuring that it represents a valid reference.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="instance">Typed object to protect.</param>
+  /// <param name="instance">Object to protect.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="instance"/> is <see langword="null"/>.</exception>
@@ -115,12 +115,12 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects given typed object from being equal to any of the specified values.</para>
+  ///   <para>Protects the given <see cref="object"/> from being equal to a specified range of values, ensuring it does not match any of the specified values.</para>
   /// </summary>
-  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
+  /// <typeparam name="T">Type of values.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="value">Typed object to protect.</param>
-  /// <param name="values">Values to protect from.</param>
+  /// <param name="value">Object to protect.</param>
+  /// <param name="values">Range of values.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="values"/> is <see langword="null"/>.</exception>
@@ -137,13 +137,13 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects given typed object from being equal to any of the specified values.</para>
+  ///   <para>Protects the given <see cref="object"/> from being equal to a specified range of values, ensuring it does not match any of the specified values.</para>
   /// </summary>
-  /// <typeparam name="T">Type of elements in the sequence.</typeparam>
+  /// <typeparam name="T">TType of values.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="value">Typed object to protect.</param>
+  /// <param name="value">Object to protect.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
-  /// <param name="values">Values to protect from.</param>
+  /// <param name="values">Range of values.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="protection"/> or <paramref name="values"/> is <see langword="null"/>.</exception>
   /// <exception cref="ArgumentException">If <paramref name="protection"/>'s condition was not met.</exception>

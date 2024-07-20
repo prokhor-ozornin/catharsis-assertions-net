@@ -7,7 +7,7 @@
 public static class IComparableProtections
 {
   /// <summary>
-  ///   <para>Protects given comparable element from being "positive" (higher than its default value).</para>
+  ///   <para>Protects the given <see cref="IComparable"/> element from being "positive", ensuring that it's less than the default value of its type.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -27,7 +27,7 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para>Protects given comparable element from being "negative" (lower than its default value).</para>
+  ///   <para>Protects the given comparable element from being "negative", ensuring that it's higher than the default value of its type.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -47,7 +47,7 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para>Protects given comparable element from being "zero" (equal to its default value).</para>
+  ///   <para>Protects the given comparable element from being "zero", ensuring that it's equal to the default value of its type.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -66,13 +66,13 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para>Protects given comparable element from lying out of a specified range of values.</para>
+  ///   <para>Protects given comparable element from being outside a specified range of values, ensuring that it remains within a particular margins.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="comparable">Element to inspect.</param>
-  /// <param name="min">Range lower bound (inclusive).</param>
-  /// <param name="max">Range upper bound (inclusive).</param>
+  /// <param name="min">Range lower bound, inclusive.</param>
+  /// <param name="max">Range upper bound, inclusive.</param>
   /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="protection"/> is <see langword="null"/>.</exception>
@@ -91,7 +91,7 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para>Protects given comparable element from lying out of a specified range of values.</para>
+  ///   <para>Protects given comparable element from being outside a specified range of values, ensuring that it remains within a particular margins.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="value">Element to inspect.</param>
