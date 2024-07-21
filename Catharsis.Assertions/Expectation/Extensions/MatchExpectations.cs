@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class MatchExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given regular expression match is successful.</para>
+  ///   <para>Expects that a given regular expression <see cref="Match"/> is successful.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -17,7 +17,7 @@ public static class MatchExpectations
   public static IExpectation<Match> Successful(this IExpectation<Match> expectation) => expectation.HaveSubject().And().Expected(match => match.Success);
 
   /// <summary>
-  ///   <para>Expects that a result of a given regular expression match is equal to a specified value.</para>
+  ///   <para>Expects that a result of a given regular expression <see cref="Match"/> is equal to a specified value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="value">Expected match captured substring.</param>

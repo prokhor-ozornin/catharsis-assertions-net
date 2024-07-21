@@ -7,7 +7,7 @@
 public static class IDictionaryExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given dictionary contains an element with specified key.</para>
+  ///   <para>Expects that a given <see cref="IDictionary{TKey,TValue}"/> contains an element with specified key.</para>
   /// </summary>
   /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>
@@ -18,7 +18,7 @@ public static class IDictionaryExpectations
   public static IExpectation<IDictionary<TKey, TValue>> ContainKey<TKey, TValue>(this IExpectation<IDictionary<TKey, TValue>> expectation, TKey key) where TKey : notnull => expectation.HaveSubject().And().ThrowIfNull(key, nameof(key)).And().Expected(dictionary => dictionary.ContainsKey(key));
 
   /// <summary>
-  ///   <para>Expects that a given dictionary contains an element with specified value.</para>
+  ///   <para>Expects that a given <see cref="IDictionary{TKey,TValue}"/> contains an element with specified value.</para>
   /// </summary>
   /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>

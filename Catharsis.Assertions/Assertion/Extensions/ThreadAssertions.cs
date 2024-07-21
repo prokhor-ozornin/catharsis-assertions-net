@@ -7,7 +7,7 @@
 public static class ThreadAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given thread is in a specified state.</para>
+  ///   <para>This function asserts that the given <see cref="Thread"/> is in a specified state.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="thread">Thread to inspect.</param>
@@ -19,7 +19,7 @@ public static class ThreadAssertions
   public static IAssertion State(this IAssertion assertion, Thread thread, ThreadState state, string error = null) => thread is not null ? assertion.True(thread.ThreadState == state, error) : throw new ArgumentNullException(nameof(thread));
 
   /// <summary>
-  ///   <para>This function asserts that the given thread has a specified scheduling priority.</para>
+  ///   <para>This function asserts that the given <see cref="Thread"/> has a specified scheduling priority.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="thread">Thread to inspect.</param>

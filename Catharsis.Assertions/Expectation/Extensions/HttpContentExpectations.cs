@@ -7,7 +7,7 @@
 public static class HttpContentExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given HTTP content instance contains a header with specified name.</para>
+  ///   <para>Expects that a given <see cref="HttpContent"/> contains a header with specified name.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="name">Expected HTTP header name.</param>

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class MemberInfoExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given type's member is decorated with a custom attribute of specified type.</para>
+  ///   <para>Expects that a given type's <see cref="MemberInfo"/> is decorated with a custom attribute of specified type.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="type">Expected custom attribute type.</param>
@@ -19,7 +19,7 @@ public static class MemberInfoExpectations
   public static IExpectation<MemberInfo> Attribute(this IExpectation<MemberInfo> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(member => member.GetCustomAttribute(type) is not null);
 
   /// <summary>
-  ///   <para>Expects that a given type's member is decorated with a custom attribute of specified type.</para>
+  ///   <para>Expects that a given type's <see cref="MemberInfo"/> is decorated with a custom attribute of specified type.</para>
   /// </summary>
   /// <typeparam name="T">Type of the custom attribute.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -29,7 +29,7 @@ public static class MemberInfoExpectations
   public static IExpectation<MemberInfo> Attribute<T>(this IExpectation<MemberInfo> expectation) where T : Attribute => expectation.Attribute(typeof(T));
 
   /// <summary>
-  ///   <para>Expects that a given type's member is of specified type.</para>
+  ///   <para>Expects that a given type's <see cref="MemberInfo"/> is of specified type.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="type">Expected member type.</param>

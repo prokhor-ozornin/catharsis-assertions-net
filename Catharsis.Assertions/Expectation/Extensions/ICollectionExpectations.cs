@@ -7,7 +7,7 @@
 public static class ICollectionExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given collection contains a specified number of elements.</para>
+  ///   <para>Expects that a given <see cref="ICollection{T}"/> contains a specified number of elements.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements inside the collection.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -17,7 +17,7 @@ public static class ICollectionExpectations
   public static IExpectation<ICollection<T>> Count<T>(this IExpectation<ICollection<T>> expectation, int count) => expectation.HaveSubject().And().Expected(collection => collection.Count == count);
 
   /// <summary>
-  ///   <para>Expects that a given collection is empty (contains no elements).</para>
+  ///   <para>Expects that a given <see cref="ICollection{T}"/> is empty (contains no elements).</para>
   /// </summary>
   /// <typeparam name="T">Type of elements inside the collection.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -26,7 +26,7 @@ public static class ICollectionExpectations
   public static IExpectation<ICollection<T>> Empty<T>(this IExpectation<ICollection<T>> expectation) => expectation.Count(0);
 
   /// <summary>
-  ///   <para>Expects that a given collection is read-only (does not allow modifications).</para>
+  ///   <para>Expects that a given <see cref="ICollection{T}"/> is read-only (does not allow modifications).</para>
   /// </summary>
   /// <typeparam name="T">Type of elements inside the collection.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>

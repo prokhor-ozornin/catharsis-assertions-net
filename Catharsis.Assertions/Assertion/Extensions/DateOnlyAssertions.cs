@@ -1,6 +1,6 @@
 ﻿namespace Catharsis.Assertions;
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
 /// <summary>
 ///   <para>A set of assertions for the <see cref="DateOnly"/> type.</para>
 /// </summary>
@@ -8,7 +8,7 @@
 public static class DateOnlyAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given date corresponds to a specific day of the year.</para>
+  ///   <para>This function asserts that the given <see cref="DateOnly"/> corresponds to a specific day of the year.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
@@ -20,7 +20,7 @@ public static class DateOnlyAssertions
   public static IAssertion DayOfYear(this IAssertion assertion, DateOnly date, int day, string error = null) => assertion.True(date.DayOfYear == day, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given date has a specified year.</para>
+  ///   <para>This function asserts that the given <see cref="DateOnly"/> has a specified year.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
@@ -32,7 +32,7 @@ public static class DateOnlyAssertions
   public static IAssertion Year(this IAssertion assertion, DateOnly date, int year, string error = null) => assertion.True(date.Year == year, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given date has a specified month.</para>
+  ///   <para>This function asserts that the given <see cref="DateOnly"/> has a specified month.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>
@@ -44,7 +44,7 @@ public static class DateOnlyAssertions
   public static IAssertion Month(this IAssertion assertion, DateOnly date, int month, string error = null) => assertion.True(date.Month == month, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given date has a specified day.</para>
+  ///   <para>This function asserts that the given <see cref="DateOnly"/> has a specified day.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="date">Date to inspect.</param>

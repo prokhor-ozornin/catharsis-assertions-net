@@ -7,7 +7,7 @@
 public static class IEnumerableProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="IEnumerable{T}"/> from being empty, ensuring that it contains at least one element.</para>
+  ///   <para>This function protects the given <see cref="IEnumerable{T}"/> from being empty, ensuring that it contains at least one element.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the enumerable sequence.</typeparam>
   /// <param name="protection">Protection to perform.</param>

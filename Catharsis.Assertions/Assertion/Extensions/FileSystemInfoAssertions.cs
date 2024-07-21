@@ -7,7 +7,7 @@
 public static class FileSystemInfoAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given filesystem object exists.</para>
+  ///   <para>This function asserts that the given <see cref="FileSystemInfo"/> exists.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="info">Filesystem object to inspect.</param>
@@ -18,7 +18,7 @@ public static class FileSystemInfoAssertions
   public static IAssertion Exist(this IAssertion assertion, FileSystemInfo info, string error = null) => info is not null ? assertion.True(info.Exists, error) : throw new ArgumentNullException(nameof(info));
 
   /// <summary>
-  ///   <para>This function asserts that the given filesystem object has a specific attribute.</para>
+  ///   <para>This function asserts that the given <see cref="FileSystemInfo"/> has a specific attribute.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="info">Filesystem object to inspect.</param>

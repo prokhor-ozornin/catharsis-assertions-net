@@ -7,7 +7,7 @@
 public static class DateTimeOffsetExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given date lies in the past (lesser than the current).</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> lies in the past (lesser than the current).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -16,7 +16,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> Past(this IExpectation<DateTimeOffset> expectation) => expectation.Expected(date => date < DateTime.UtcNow);
 
   /// <summary>
-  ///   <para>Expects that a given date lies in the future (greater than the current).</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> lies in the future (greater than the current).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -25,7 +25,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> Future(this IExpectation<DateTimeOffset> expectation) => expectation.Expected(date => date > DateTime.UtcNow);
 
   /// <summary>
-  ///   <para>Expects that a given date represents a specified day of the year.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> represents a specified day of the year.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="day">Expected day of the year.</param>
@@ -34,7 +34,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> DayOfYear(this IExpectation<DateTimeOffset> expectation, int day) => expectation.Expected(date => date.DayOfYear == day);
 
   /// <summary>
-  ///   <para>Expects that a given date has a specified year component.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> has a specified year component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="year">Expected year component value.</param>
@@ -43,7 +43,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> Year(this IExpectation<DateTimeOffset> expectation, int year) => expectation.Expected(date => date.Year == year);
 
   /// <summary>
-  ///   <para>Expects that a given date has a specified month component.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> has a specified month component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="month">Expected month component value.</param>
@@ -52,7 +52,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> Month(this IExpectation<DateTimeOffset> expectation, int month) => expectation.Expected(date => date.Month == month);
 
   /// <summary>
-  ///   <para>Expects that a given date has a specified day component.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> has a specified day component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="day">Expected day component value.</param>
@@ -61,7 +61,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> Day(this IExpectation<DateTimeOffset> expectation, int day) => expectation.Expected(date => date.Day == day);
 
   /// <summary>
-  ///   <para>Expects that a given date has a specified hour component.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> has a specified hour component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="hour">Expected hour component value.</param>
@@ -70,7 +70,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> Hour(this IExpectation<DateTimeOffset> expectation, int hour) => expectation.Expected(date => date.Hour == hour);
 
   /// <summary>
-  ///   <para>Expects that a given date has specified minute component.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> has specified minute component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="minute">Expected minute component value.</param>
@@ -79,7 +79,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> Minute(this IExpectation<DateTimeOffset> expectation, int minute) => expectation.Expected(date => date.Minute == minute);
 
   /// <summary>
-  ///   <para>Expects that a given date has a specified second component.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> has a specified second component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="second">Expected second component value.</param>
@@ -88,7 +88,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> Second(this IExpectation<DateTimeOffset> expectation, int second) => expectation.Expected(date => date.Second == second);
 
   /// <summary>
-  ///   <para>Expects that a given date has a specified millisecond component.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> has a specified millisecond component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="millisecond">Expected millisecond component value.</param>
@@ -97,7 +97,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> Millisecond(this IExpectation<DateTimeOffset> expectation, int millisecond) => expectation.Expected(date => date.Millisecond == millisecond);
 
   /// <summary>
-  ///   <para>Expects that a given date represents a specified day of the week.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> represents a specified day of the week.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="day">Expected day of the week.</param>
@@ -106,7 +106,7 @@ public static class DateTimeOffsetExpectations
   public static IExpectation<DateTimeOffset> DayOfWeek(this IExpectation<DateTimeOffset> expectation, DayOfWeek day) => expectation.Expected(date => date.DayOfWeek == day);
 
   /// <summary>
-  ///   <para>Expects that a given date has a specified offset from UTC/GMT timezone.</para>
+  ///   <para>Expects that a given <see cref="DateTimeOffset"/> has a specified offset from UTC/GMT timezone.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="offset">Expected timezone offset.</param>

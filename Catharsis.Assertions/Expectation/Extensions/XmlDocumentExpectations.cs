@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XmlDocumentExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given XML document contains a child element with a specified name.</para>
+  ///   <para>Expects that a given <see cref="XmlDocument"/> contains a child element with a specified name.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="name">Expected element name.</param>

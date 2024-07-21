@@ -7,7 +7,7 @@
 public static class IDictionaryAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given dictionary has an element with the specified key.</para>
+  ///   <para>This function asserts that the given <see cref="IDictionary{TKey,TValue}"/> has an element with the specified key.</para>
   /// </summary>
   /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>
@@ -28,7 +28,7 @@ public static class IDictionaryAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given dictionary has an element with the specified value.</para>
+  ///   <para>This function asserts that the given <see cref="IDictionary{TKey,TValue}"/> has an element with the specified value.</para>
   /// </summary>
   /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
   /// <typeparam name="TValue">Type of dictionary values.</typeparam>

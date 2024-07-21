@@ -1,6 +1,6 @@
 ﻿namespace Catharsis.Assertions;
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
 /// <summary>
 ///   <para>A set of expectations for <see cref="TimeOnly"/> type.</para>
 /// </summary>
@@ -8,7 +8,7 @@
 public static class TimeOnlyExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given time has a specified hour component.</para>
+  ///   <para>Expects that a given <see cref="TimeOnly"/> has a specified hour component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="hour">Expected hour component value.</param>
@@ -17,7 +17,7 @@ public static class TimeOnlyExpectations
   public static IExpectation<TimeOnly> Hour(this IExpectation<TimeOnly> expectation, int hour) => expectation.Expected(time => time.Hour == hour);
 
   /// <summary>
-  ///   <para>Expects that a given time has a specified minute component.</para>
+  ///   <para>Expects that a given <see cref="TimeOnly"/> has a specified minute component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="minute">Expected minute component value.</param>
@@ -26,7 +26,7 @@ public static class TimeOnlyExpectations
   public static IExpectation<TimeOnly> Minute(this IExpectation<TimeOnly> expectation, int minute) => expectation.Expected(time => time.Minute == minute);
 
   /// <summary>
-  ///   <para>Expects that a given time has a specified second component.</para>
+  ///   <para>Expects that a given <see cref="TimeOnly"/> has a specified second component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="second">Expected second component value.</param>
@@ -35,7 +35,7 @@ public static class TimeOnlyExpectations
   public static IExpectation<TimeOnly> Second(this IExpectation<TimeOnly> expectation, int second) => expectation.Expected(time => time.Second == second);
 
   /// <summary>
-  ///   <para>Expects that a given time has a specified millisecond component.</para>
+  ///   <para>Expects that a given <see cref="TimeOnly"/> has a specified millisecond component.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="millisecond">Expected millisecond component value.</param>

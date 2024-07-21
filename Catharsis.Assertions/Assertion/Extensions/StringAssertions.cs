@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class StringAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given string is of specified length.</para>
+  ///   <para>This function asserts that the given <see cref="string"/> is of specified length.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
@@ -21,7 +21,7 @@ public static class StringAssertions
   public static IAssertion Length(this IAssertion assertion, string text, int length, string error = null) => text is not null ? assertion.True(text.Length == length, error) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
-  ///   <para>This function asserts that the given string is empty (contains no characters).</para>
+  ///   <para>This function asserts that the given <see cref="string"/> is empty (contains no characters).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
@@ -32,7 +32,7 @@ public static class StringAssertions
   public static IAssertion Empty(this IAssertion assertion, string text, string error = null) => assertion.Length(text, 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given string is either <see langword="null"/>, empty, or consists only of white-space characters.</para>
+  ///   <para>This function asserts that the given <see cref="string"/> is either <see langword="null"/>, empty, or consists only of white-space characters.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
@@ -49,7 +49,7 @@ public static class StringAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given string consists only of upper-cased characters.</para>
+  ///   <para>This function asserts that the given <see cref="string"/> consists only of upper-cased characters.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
@@ -61,7 +61,7 @@ public static class StringAssertions
   public static IAssertion UpperCased(this IAssertion assertion, string text, string error = null) => text is not null ? assertion.True(text.All(char.IsUpper), error) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
-  ///   <para>This function asserts that the given string consists only of lower-cased characters.</para>
+  ///   <para>This function asserts that the given <see cref="string"/> consists only of lower-cased characters.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
@@ -73,7 +73,7 @@ public static class StringAssertions
   public static IAssertion LowerCased(this IAssertion assertion, string text, string error = null) => text is not null ? assertion.True(text.All(char.IsLower), error) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
-  ///   <para>This function asserts that the beginning of a given string matches the specified prefix string.</para>
+  ///   <para>This function asserts that the beginning of a given <see cref="string"/> matches the specified prefix string.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
@@ -94,7 +94,7 @@ public static class StringAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the end of a given string matches the specified postfix string.</para>
+  ///   <para>This function asserts that the end of a given <see cref="string"/> matches the specified postfix string.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
@@ -115,7 +115,7 @@ public static class StringAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given string matches a specified regular expression.</para>
+  ///   <para>This function asserts that the given <see cref="string"/> matches a specified regular expression.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>

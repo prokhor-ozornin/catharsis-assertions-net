@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class StreamReaderAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given stream reader uses a specified character encoding.</para>
+  ///   <para>This function asserts that the given <see cref="StreamReader"/> uses a specified character encoding.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="reader">Stream reader to inspect.</param>
@@ -21,7 +21,7 @@ public static class StreamReaderAssertions
   public static IAssertion Encoding(this IAssertion assertion, StreamReader reader, Encoding encoding, string error = null) => reader is not null ? assertion.Equal(reader.CurrentEncoding, encoding, error) : throw new ArgumentNullException(nameof(reader));
 
   /// <summary>
-  ///   <para>This function asserts that the given stream reader has reached the end of the underlying stream.</para>
+  ///   <para>This function asserts that the given <see cref="StreamReader"/> has reached the end of the underlying stream.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="reader">Stream reader to inspect.</param>

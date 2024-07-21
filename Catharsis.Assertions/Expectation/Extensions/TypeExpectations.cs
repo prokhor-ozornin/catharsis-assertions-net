@@ -7,7 +7,7 @@
 public static class TypeExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given type is declared <see langword="abstract"/>.</para>
+  ///   <para>Expects that a given <see cref="Type"/> is declared <see langword="abstract"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -15,7 +15,7 @@ public static class TypeExpectations
   public static IExpectation<Type> Abstract(this IExpectation<Type> expectation) => expectation.HaveSubject().And().Expected(type => type.IsAbstract && !type.IsSealed);
 
   /// <summary>
-  ///   <para>Expects that a given type is declared <see langword="sealed"/>.</para>
+  ///   <para>Expects that a given <see cref="Type"/> is declared <see langword="sealed"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -23,7 +23,7 @@ public static class TypeExpectations
   public static IExpectation<Type> Sealed(this IExpectation<Type> expectation) => expectation.HaveSubject().And().Expected(type => type.IsSealed && !type.IsAbstract);
 
   /// <summary>
-  ///   <para>Expects that a given type is declared <see langword="static"/>.</para>
+  ///   <para>Expects that a given <see cref="Type"/> is declared <see langword="static"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -31,7 +31,7 @@ public static class TypeExpectations
   public static IExpectation<Type> Static(this IExpectation<Type> expectation) => expectation.HaveSubject().And().Expected(type => type.IsAbstract && type.IsSealed);
 
   /// <summary>
-  ///   <para>Expects that a given type is of <see langword="public"/> visibility.</para>
+  ///   <para>Expects that a given <see cref="Type"/> is of <see langword="public"/> visibility.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -39,7 +39,7 @@ public static class TypeExpectations
   public static IExpectation<Type> Public(this IExpectation<Type> expectation) => expectation.HaveSubject().And().Expected(type => type.IsPublic && type.IsVisible);
 
   /// <summary>
-  ///   <para>Expects that a given type is of <see langword="internal"/> visibility.</para>
+  ///   <para>Expects that a given <see cref="Type"/> is of <see langword="internal"/> visibility.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -47,7 +47,7 @@ public static class TypeExpectations
   public static IExpectation<Type> Internal(this IExpectation<Type> expectation) => expectation.HaveSubject().And().Expected(type => type.IsNotPublic && !type.IsVisible);
 
   /// <summary>
-  ///   <para>Expects that a given type is derived from a specified type.</para>
+  ///   <para>Expects that a given <see cref="Type"/> is derived from a specified type.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="superclass">Expected superclass type.</param>
@@ -56,7 +56,7 @@ public static class TypeExpectations
   public static IExpectation<Type> Subclass(this IExpectation<Type> expectation, Type superclass) => expectation.HaveSubject().And().ThrowIfNull(superclass, nameof(superclass)).And().Expected(subclass => subclass.IsSubclassOf(superclass));
 
   /// <summary>
-  ///   <para>Expects that a given type is derived from a specified type.</para>
+  ///   <para>Expects that a given <see cref="Type"/> is derived from a specified type.</para>
   /// </summary>
   /// <typeparam name="T">Expected superclass type.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -65,7 +65,7 @@ public static class TypeExpectations
   public static IExpectation<Type> Subclass<T>(this IExpectation<Type> expectation) => expectation.Subclass(typeof(T));
 
   /// <summary>
-  ///   <para>Expects that an instance of the given type is assignable from an instance of the specified type.</para>
+  ///   <para>Expects that an instance of the given <see cref="Type"/> is assignable from an instance of the specified type.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="from">Asserted assigned type.</param>
@@ -75,7 +75,7 @@ public static class TypeExpectations
   public static IExpectation<Type> AssignableFrom(this IExpectation<Type> expectation, Type from) => expectation.HaveSubject().And().ThrowIfNull(from, nameof(from)).And().Expected(it => it.IsAssignableFrom(from));
 
   /// <summary>
-  ///   <para>Expects that an instance of the given type is assignable from an instance of the specified type.</para>
+  ///   <para>Expects that an instance of the given <see cref="Type"/> is assignable from an instance of the specified type.</para>
   /// </summary>
   /// <typeparam name="T">Asserted assigned type.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -84,9 +84,9 @@ public static class TypeExpectations
   /// <seealso cref="AssignableFrom(IExpectation{Type}, Type)"/>
   public static IExpectation<Type> AssignableFrom<T>(this IExpectation<Type> expectation) => expectation.AssignableFrom(typeof(T));
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
   /// <summary>
-  ///   <para>This function asserts that an instance of the given type is assignable to an instance of the specified type.</para>
+  ///   <para>This function asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="to">Asserted assigned type.</param>
@@ -96,7 +96,7 @@ public static class TypeExpectations
   public static IExpectation<Type> AssignableTo(this IExpectation<Type> expectation, Type to) => expectation.HaveSubject().And().ThrowIfNull(to, nameof(to)).And().Expected(it => it.IsAssignableTo(to));
 
   /// <summary>
-  ///   <para>This function asserts that an instance of the given type is assignable to an instance of the specified type.</para>
+  ///   <para>This function asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
   /// </summary>
   /// <typeparam name="T">Asserted assigned type.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class FieldInfoExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given object field is of specified type.</para>
+  ///   <para>Expects that a given <see cref="FieldInfo"/> is of specified <see cref="Type"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="type">Type of field to check for.</param>
@@ -19,7 +19,7 @@ public static class FieldInfoExpectations
   public static IExpectation<FieldInfo> Type(this IExpectation<FieldInfo> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(field => field.FieldType == type);
 
   /// <summary>
-  ///   <para>Expects that a given object field is of specified type.</para>
+  ///   <para>Expects that a given <see cref="FieldInfo"/> is of specified <see cref="Type"/>.</para>
   /// </summary>
   /// <typeparam name="T">Type of field to check for.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -29,7 +29,7 @@ public static class FieldInfoExpectations
   public static IExpectation<FieldInfo> Type<T>(this IExpectation<FieldInfo> expectation) => expectation.Type(typeof(T));
 
   /// <summary>
-  ///   <para>Expects that a given object field is of <see langword="private"/> visibility.</para>
+  ///   <para>Expects that a given <see cref="FieldInfo"/> is of <see langword="private"/> visibility.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -37,7 +37,7 @@ public static class FieldInfoExpectations
   public static IExpectation<FieldInfo> Private(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsPrivate);
 
   /// <summary>
-  ///   <para>Expects that a given object field is of <see langword="protected"/> visibility.</para>
+  ///   <para>Expects that a given <see cref="FieldInfo"/> is of <see langword="protected"/> visibility.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -45,7 +45,7 @@ public static class FieldInfoExpectations
   public static IExpectation<FieldInfo> Protected(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsFamily);
 
   /// <summary>
-  ///   <para>Expects that a given object field is of <see langword="public"/> visibility.</para>
+  ///   <para>Expects that a given <see cref="FieldInfo"/> is of <see langword="public"/> visibility.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -53,7 +53,7 @@ public static class FieldInfoExpectations
   public static IExpectation<FieldInfo> Public(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsPublic);
 
   /// <summary>
-  ///   <para>Expects that a given object field is of <see langword="internal"/> visibility.</para>
+  ///   <para>Expects that a given <see cref="FieldInfo"/> is of <see langword="internal"/> visibility.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -61,7 +61,7 @@ public static class FieldInfoExpectations
   public static IExpectation<FieldInfo> Internal(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsAssembly);
 
   /// <summary>
-  ///   <para>Expects that a given object field is of <see langword="protected internal"/> visibility.</para>
+  ///   <para>Expects that a given <see cref="FieldInfo"/> is of <see langword="protected internal"/> visibility.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -69,7 +69,7 @@ public static class FieldInfoExpectations
   public static IExpectation<FieldInfo> ProtectedInternal(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsFamilyOrAssembly);
 
   /// <summary>
-  ///   <para>Expects that a given object field is <see langword="static"/>.</para>
+  ///   <para>Expects that a given <see cref="FieldInfo"/> is <see langword="static"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -77,7 +77,7 @@ public static class FieldInfoExpectations
   public static IExpectation<FieldInfo> Static(this IExpectation<FieldInfo> expectation) => expectation.HaveSubject().And().Expected(field => field.IsStatic);
 
   /// <summary>
-  ///   <para>Expects that a given object field has a specified value.</para>
+  ///   <para>Expects that a given <see cref="FieldInfo"/> has a specified value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="subject">Target object.</param>

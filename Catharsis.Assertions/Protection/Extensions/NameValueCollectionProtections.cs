@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class NameValueCollectionProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="NameValueCollection"/> from being empty, ensuring that it contains at least one element.</para>
+  ///   <para>This function protects the given <see cref="NameValueCollection"/> from being empty, ensuring that it contains at least one element.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="collection">Collection to protect.</param>

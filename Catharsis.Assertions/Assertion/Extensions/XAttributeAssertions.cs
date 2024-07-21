@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XAttributeAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given XML attribute has a specified name.</para>
+  ///   <para>This function asserts that the given <see cref="XAttribute"/> has a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="attribute">Attribute to inspect.</param>
@@ -28,7 +28,7 @@ public static class XAttributeAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given XML attribute has a specified value.</para>
+  ///   <para>This function asserts that the given <see cref="XAttribute"/> has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="attribute">Attribute to inspect.</param>

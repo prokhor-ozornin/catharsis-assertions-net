@@ -7,7 +7,7 @@
 public static class TypeAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given type is declared <see langword="abstract"/>.</para>
+  ///   <para>This function asserts that the given <see cref="Type"/> is declared <see langword="abstract"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="type">Type to inspect.</param>
@@ -18,7 +18,7 @@ public static class TypeAssertions
   public static IAssertion Abstract(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsAbstract && !type.IsSealed, error) : throw new ArgumentNullException(nameof(type));
 
   /// <summary>
-  ///   <para>This function asserts that the given type is declared <see langword="sealed"/>.</para>
+  ///   <para>This function asserts that the given <see cref="Type"/> is declared <see langword="sealed"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="type">Type to inspect.</param>
@@ -29,7 +29,7 @@ public static class TypeAssertions
   public static IAssertion Sealed(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsSealed && !type.IsAbstract, error) : throw new ArgumentNullException(nameof(type));
 
   /// <summary>
-  ///   <para>This function asserts that the given type is declared <see langword="static"/>.</para>
+  ///   <para>This function asserts that the given <see cref="Type"/> is declared <see langword="static"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="type">Type to inspect.</param>
@@ -40,7 +40,7 @@ public static class TypeAssertions
   public static IAssertion Static(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsAbstract && type.IsSealed, error) : throw new ArgumentNullException(nameof(type));
 
   /// <summary>
-  ///   <para>This function asserts that the given type is of <see langword="public"/> visibility.</para>
+  ///   <para>This function asserts that the given <see cref="Type"/> is of <see langword="public"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="type">Type to inspect.</param>
@@ -51,7 +51,7 @@ public static class TypeAssertions
   public static IAssertion Public(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsPublic && type.IsVisible, error) : throw new ArgumentNullException(nameof(type));
 
   /// <summary>
-  ///   <para>This function asserts that the given type is of <see langword="internal"/> visibility.</para>
+  ///   <para>This function asserts that the given <see cref="Type"/> is of <see langword="internal"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="type">Type to inspect.</param>
@@ -62,7 +62,7 @@ public static class TypeAssertions
   public static IAssertion Internal(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsNotPublic && !type.IsVisible, error) : throw new ArgumentNullException(nameof(type));
 
   /// <summary>
-  ///   <para>This function asserts that the given type is derived from a specified type.</para>
+  ///   <para>This function asserts that the given <see cref="Type"/> is derived from a specified type.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="subclass">Asserted subclass type.</param>
@@ -81,7 +81,7 @@ public static class TypeAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given type is derived from a specified type.</para>
+  ///   <para>This function asserts that the given <see cref="Type"/> is derived from a specified type.</para>
   /// </summary>
   /// <typeparam name="T">Asserted superclass type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -93,7 +93,7 @@ public static class TypeAssertions
   public static IAssertion Subclass<T>(this IAssertion assertion, Type subclass, string error = null) => assertion.Subclass(subclass, typeof(T), error);
 
   /// <summary>
-  ///   <para>This function asserts that an instance of the given type is assignable from an instance of the specified type.</para>
+  ///   <para>This function asserts that an instance of the given <see cref="Type"/> is assignable from an instance of the specified type.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="to">Asserted assignable type.</param>
@@ -113,7 +113,7 @@ public static class TypeAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that an instance of the given type is assignable from an instance of the specified type.</para>
+  ///   <para>This function asserts that an instance of the given <see cref="Type"/> is assignable from an instance of the specified type.</para>
   /// </summary>
   /// <typeparam name="T">Asserted assigned type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -125,9 +125,9 @@ public static class TypeAssertions
   /// <seealso cref="AssignableFrom(IAssertion, Type, Type, string)"/>
   public static IAssertion AssignableFrom<T>(this IAssertion assertion, Type from, string error = null) => assertion.AssignableFrom(from, typeof(T), error);
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
   /// <summary>
-  ///   <para>This function asserts that an instance of the given type is assignable to an instance of the specified type.</para>
+  ///   <para>This function asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="from">Asserted assignable type.</param>
@@ -147,7 +147,7 @@ public static class TypeAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that an instance of the given type is assignable to an instance of the specified type.</para>
+  ///   <para>This function asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
   /// </summary>
   /// <typeparam name="T">Asserted assigned type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>

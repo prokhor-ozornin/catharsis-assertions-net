@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class StringBuilderExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given string builder contains a specified number of characters.</para>
+  ///   <para>Expects that a given <see cref="StringBuilder"/> contains a specified number of characters.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="length">Expected string builder length.</param>
@@ -18,7 +18,7 @@ public static class StringBuilderExpectations
   public static IExpectation<StringBuilder> Length(this IExpectation<StringBuilder> expectation, int length) => expectation.HaveSubject().And().Expected(builder => builder.Length == length);
 
   /// <summary>
-  ///   <para>Expects that a given string builder is empty (contains no characters).</para>
+  ///   <para>Expects that a given <see cref="StringBuilder"/> is empty (contains no characters).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XDocumentProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="XDocument"/> from being empty, ensuring that it contains at least one child node.</para>
+  ///   <para>This function protects the given <see cref="XDocument"/> from being empty, ensuring that it contains at least one child node.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="document">XML document to protect.</param>

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class HttpResponseMessageAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given HTTP response was successful.</para>
+  ///   <para>This function asserts that the given <see cref="HttpResponseMessage"/> was successful.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="response">HTTP response to inspect.</param>
@@ -20,7 +20,7 @@ public static class HttpResponseMessageAssertions
   public static IAssertion Successful(this IAssertion assertion, HttpResponseMessage response, string error = null) => response is not null ? assertion.True(response.IsSuccessStatusCode, error) : throw new ArgumentNullException(nameof(response));
 
   /// <summary>
-  ///   <para>This function asserts that the given HTTP response has the specified result status code.</para>
+  ///   <para>This function asserts that the given <see cref="HttpResponseMessage"/> has the specified result status code.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="response">HTTP response to inspect.</param>
@@ -32,7 +32,7 @@ public static class HttpResponseMessageAssertions
   public static IAssertion Status(this IAssertion assertion, HttpResponseMessage response, HttpStatusCode status, string error = null) => response is not null ? assertion.True(response.StatusCode == status, error) : throw new ArgumentNullException(nameof(response));
 
   /// <summary>
-  ///   <para>This function asserts that the given HTTP response contains a header with the specified name and value.</para>
+  ///   <para>This function asserts that the given <see cref="HttpResponseMessage"/> contains a header with the specified name and value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="response">HTTP response to inspect.</param>

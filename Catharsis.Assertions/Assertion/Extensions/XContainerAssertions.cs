@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XContainerAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given XML container contains a child element with a specified name.</para>
+  ///   <para>This function asserts that the given <see cref="XContainer"/> contains a child element with a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="container">XML container to inspect.</param>
@@ -28,7 +28,7 @@ public static class XContainerAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given XML container is empty (contains no child nodes).</para>
+  ///   <para>This function asserts that the given <see cref="XContainer"/> is empty (contains no child nodes).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="container">XML container to inspect.</param>

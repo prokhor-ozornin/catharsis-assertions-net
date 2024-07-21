@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XAttributeExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given XML attribute has a specified name.</para>
+  ///   <para>Expects that a given <see cref="XAttribute"/> has a specified name.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="name">Expected expanded attribute name.</param>
@@ -18,7 +18,7 @@ public static class XAttributeExpectations
   public static IExpectation<XAttribute> Name(this IExpectation<XAttribute> expectation, XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(attribute => attribute.Name == name);
 
   /// <summary>
-  ///   <para>Expects that a given XML attribute has a specified value.</para>
+  ///   <para>Expects that a given <see cref="XAttribute"/> has a specified value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="value">Expected attribute value.</param>

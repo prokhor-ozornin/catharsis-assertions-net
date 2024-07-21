@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class SecureStringAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given secure string is of specified length.</para>
+  ///   <para>This function asserts that the given <see cref="SecureString"/> is of specified length.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="secure">Secure string to inspect.</param>
@@ -21,7 +21,7 @@ public static class SecureStringAssertions
   public static IAssertion Length(this IAssertion assertion, SecureString secure, int length, string error = null) => secure is not null ? assertion.True(secure.Length == length, error) : throw new ArgumentNullException(nameof(secure));
 
   /// <summary>
-  ///   <para>This function asserts that the given secure string is empty (contains no characters).</para>
+  ///   <para>This function asserts that the given <see cref="SecureString"/> is empty (contains no characters).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="secure">Secure string to inspect.</param>
@@ -32,7 +32,7 @@ public static class SecureStringAssertions
   public static IAssertion Empty(this IAssertion assertion, SecureString secure, string error = null) => assertion.Length(secure, 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given secure string is marked as read-only (cannot be modified).</para>
+  ///   <para>This function asserts that the given <see cref="SecureString"/> is marked as read-only (cannot be modified).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="secure">Secure string to inspect.</param>

@@ -7,7 +7,7 @@
 public static class IEnumerableAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given sequence has the specified number of elements.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> has the specified number of elements.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -20,7 +20,7 @@ public static class IEnumerableAssertions
   public static IAssertion Count<T>(this IAssertion assertion, IEnumerable<T> sequence, int count, string error = null) => sequence is not null ? assertion.True(sequence.Count() == count, error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence is empty, meaning it contains no elements.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> is empty, meaning it contains no elements.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -32,7 +32,7 @@ public static class IEnumerableAssertions
   public static IAssertion Empty<T>(this IAssertion assertion, IEnumerable<T> sequence, string error = null) => sequence is not null ? assertion.True(!sequence.Any(), error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence is equal to the specified one.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> is equal to the specified one.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -53,7 +53,7 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence contains the specified element.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> contains the specified element.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -67,7 +67,7 @@ public static class IEnumerableAssertions
   public static IAssertion Contain<T>(this IAssertion assertion, IEnumerable<T> sequence, T element, IEqualityComparer<T> comparer = null, string error = null) => sequence is not null ? assertion.True(sequence.Contains(element, comparer), error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence contains all the specified elements at least once.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> contains all the specified elements at least once.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -88,7 +88,7 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence contains any of the specified elements at least once.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> contains any of the specified elements at least once.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -109,7 +109,7 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence contains at least one <see langword="null"/>.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> contains at least one <see langword="null"/>.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -134,7 +134,7 @@ public static class IEnumerableAssertions
   public static IAssertion ContainUnique<T>(this IAssertion assertion, IEnumerable<T> sequence, IEqualityComparer<T> comparer = null, string error = null) => sequence is not null ? assertion.True(!sequence.GroupBy(sequence => sequence, comparer).Where(group => group.Count() > 1).Select(group => group.Key).Any(), error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence contains a specified element at a specified index.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> contains a specified element at a specified index.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -148,7 +148,7 @@ public static class IEnumerableAssertions
   public static IAssertion ElementAt<T>(this IAssertion assertion, IEnumerable<T> sequence, int index, T value, string error = null) => sequence is not null ? assertion.Equal(sequence.ElementAt(index), value, error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence represents a subset of a specified superset.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> represents a subset of a specified superset.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -170,7 +170,7 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence represents a superset for a specified subset.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> represents a superset for a specified subset.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -185,7 +185,7 @@ public static class IEnumerableAssertions
   public static IAssertion SupersetOf<T>(this IAssertion assertion, IEnumerable<T> superset, IEnumerable<T> subset, IEqualityComparer<T> comparer = null, string error = null) => assertion.SubsetOf(subset, superset, comparer, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence represents an inverted version of the specified one.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> represents an inverted version of the specified one.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -206,7 +206,7 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence starts with the same elements as in a specified sequence.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> starts with the same elements as in a specified sequence.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -228,7 +228,7 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence ends with the same elements as in a specified sequence.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> ends with the same elements as in a specified sequence.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -250,7 +250,7 @@ public static class IEnumerableAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that all elements of a given sequence satisfy a specified condition.</para>
+  ///   <para>This function asserts that all elements of a given <see cref="IEnumerable{T}"/> satisfy a specified condition.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -269,9 +269,9 @@ public static class IEnumerableAssertions
     return assertion.True(sequence.All(element => condition(element)), error);
   }
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
   /// <summary>
-  ///   <para>This function asserts that the given sequence contains a specified element at a specified index.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> contains a specified element at a specified index.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -285,7 +285,7 @@ public static class IEnumerableAssertions
   public static IAssertion ElementAt<T>(this IAssertion assertion, IEnumerable<T> sequence, Index index, T value, string error = null) => sequence is not null ? assertion.Equal(sequence.ElementAt(index), value, error) : throw new ArgumentNullException(nameof(sequence));
 
   /// <summary>
-  ///   <para>This function asserts that the given sequence is ordered.</para>
+  ///   <para>This function asserts that the given <see cref="IEnumerable{T}"/> is ordered.</para>
   /// </summary>
   /// <typeparam name="T">Type of elements in the sequence.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>

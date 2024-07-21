@@ -7,7 +7,7 @@
 public static class ICollectionAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given collection has a specified number of elements.</para>
+  ///   <para>This function asserts that the given <see cref="ICollection{T}"/> has a specified number of elements.</para>
   /// </summary>
   /// <typeparam name="T">The type of elements in the collection.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -20,7 +20,7 @@ public static class ICollectionAssertions
   public static IAssertion Count<T>(this IAssertion assertion, ICollection<T> collection, int count, string error = null) => collection is not null ? assertion.True(collection.Count == count, error) : throw new ArgumentNullException(nameof(collection));
 
   /// <summary>
-  ///   <para>This function asserts that the given collection is empty, meaning it contains no elements.</para>
+  ///   <para>This function asserts that the given <see cref="ICollection{T}"/> is empty, meaning it contains no elements.</para>
   /// </summary>
   /// <typeparam name="T">The type of elements in the collection.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -32,7 +32,7 @@ public static class ICollectionAssertions
   public static IAssertion Empty<T>(this IAssertion assertion, ICollection<T> collection, string error = null) => assertion.Count(collection, 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given collection is read-only.</para>
+  ///   <para>This function asserts that the given <see cref="ICollection{T}"/> is read-only.</para>
   /// </summary>
   /// <typeparam name="T">The type of elements in the collection.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>

@@ -7,7 +7,7 @@
 public static class IComparableExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given comparable element is "positive" (higher than its default value).</para>
+  ///   <para>Expects that a given <see cref="IComparable"/> element is "positive" (higher than its default value).</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -17,7 +17,7 @@ public static class IComparableExpectations
   public static IExpectation<T> Positive<T>(this IExpectation<T> expectation) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(default) > 0);
 
   /// <summary>
-  ///   <para>Expects that a given comparable element is "negative" (lower than its default value).</para>
+  ///   <para>Expects that a given <see cref="IComparable"/> element is "negative" (lower than its default value).</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -27,7 +27,7 @@ public static class IComparableExpectations
   public static IExpectation<T> Negative<T>(this IExpectation<T> expectation) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(default) < 0);
 
   /// <summary>
-  ///   <para>Expects that a given comparable element is "zero" (equal to its default value).</para>
+  ///   <para>Expects that a given <see cref="IComparable"/> element is "zero" (equal to its default value).</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -36,7 +36,7 @@ public static class IComparableExpectations
   public static IExpectation<T> Zero<T>(this IExpectation<T> expectation) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(default) == 0);
 
   /// <summary>
-  ///   <para>Expects that a given comparable element is greater than a specified value.</para>
+  ///   <para>Expects that a given <see cref="IComparable"/> element is greater than a specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -47,7 +47,7 @@ public static class IComparableExpectations
   public static IExpectation<T> Greater<T>(this IExpectation<T> expectation, T other) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(other) > 0);
 
   /// <summary>
-  ///   <para>Expects that a given comparable element is greater than or equal to a specified value.</para>
+  ///   <para>Expects that a given <see cref="IComparable"/> element is greater than or equal to a specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -58,7 +58,7 @@ public static class IComparableExpectations
   public static IExpectation<T> GreaterOrEqual<T>(this IExpectation<T> expectation, T other) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(other) >= 0);
 
   /// <summary>
-  ///   <para>Expects that a given comparable element is lesser than a specified value.</para>
+  ///   <para>Expects that a given <see cref="IComparable"/> element is lesser than a specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -69,7 +69,7 @@ public static class IComparableExpectations
   public static IExpectation<T> Lesser<T>(this IExpectation<T> expectation, T other) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(other) < 0);
 
   /// <summary>
-  ///   <para>Expects that a given comparable element is lesser than or equal to a specified value.</para>
+  ///   <para>Expects that a given <see cref="IComparable"/> element is lesser than or equal to a specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -80,7 +80,7 @@ public static class IComparableExpectations
   public static IExpectation<T> LesserOrEqual<T>(this IExpectation<T> expectation, T other) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(other) <= 0);
 
   /// <summary>
-  ///   <para>Expects that a given comparable element lies within a specified range of values.</para>
+  ///   <para>Expects that a given <see cref="IComparable"/> element lies within a specified range of values.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -92,7 +92,7 @@ public static class IComparableExpectations
   public static IExpectation<T> InRange<T>(this IExpectation<T> expectation, T min, T max) where T : struct, IComparable<T> => expectation.Expected(value => value.CompareTo(min) >= 0 && value.CompareTo(max) <= 0);
 
   /// <summary>
-  ///   <para>Expects that a given comparable element lies out of a specified range of values.</para>
+  ///   <para>Expects that a given <see cref="IComparable"/> element lies out of a specified range of values.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>

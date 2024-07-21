@@ -7,7 +7,7 @@
 public static class IComparableAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given element is greater than its default value.</para>
+  ///   <para>This function asserts that the given <see cref="IComparable"/> element is greater than its default value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -20,7 +20,7 @@ public static class IComparableAssertions
   public static IAssertion Positive<T>(this IAssertion assertion, T comparable, string error = null) where T : struct, IComparable<T> => assertion.True(comparable.CompareTo(default) > 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given element is lower than its default value.</para>
+  ///   <para>This function asserts that the given <see cref="IComparable"/> element is lower than its default value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -33,7 +33,7 @@ public static class IComparableAssertions
   public static IAssertion Negative<T>(this IAssertion assertion, T comparable, string error = null) where T : struct, IComparable<T> => assertion.True(comparable.CompareTo(default) < 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given element is equal to its default value.</para>
+  ///   <para>This function asserts that the given <see cref="IComparable"/> element is equal to its default value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -45,7 +45,7 @@ public static class IComparableAssertions
   public static IAssertion Zero<T>(this IAssertion assertion, T comparable, string error = null) where T : struct, IComparable<T> => assertion.True(comparable.CompareTo(default) == 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given comparable element is greater than the specified value.</para>
+  ///   <para>This function asserts that the given <see cref="IComparable"/> element is greater than the specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -59,7 +59,7 @@ public static class IComparableAssertions
   public static IAssertion Greater<T>(this IAssertion assertion, T left, T right, string error = null) where T : struct, IComparable<T> => assertion.True(left.CompareTo(right) > 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given comparable element is greater than or equal to the specified value.</para>
+  ///   <para>This function asserts that the given <see cref="IComparable"/> element is greater than or equal to the specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -73,7 +73,7 @@ public static class IComparableAssertions
   public static IAssertion GreaterOrEqual<T>(this IAssertion assertion, T left, T right, string error = null) where T : struct, IComparable<T> => assertion.True(left.CompareTo(right) >= 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given element is lesser than the specified value.</para>
+  ///   <para>This function asserts that the given <see cref="IComparable"/> element is lesser than the specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -87,7 +87,7 @@ public static class IComparableAssertions
   public static IAssertion Lesser<T>(this IAssertion assertion, T left, T right, string error = null) where T : struct, IComparable<T> => assertion.True(left.CompareTo(right) < 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given element is lesser than or equal to the specified value.</para>
+  ///   <para>This function asserts that the given <see cref="IComparable"/> element is lesser than or equal to the specified value.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -101,7 +101,7 @@ public static class IComparableAssertions
   public static IAssertion LesserOrEqual<T>(this IAssertion assertion, T left, T right, string error = null) where T : struct, IComparable<T> => assertion.True(left.CompareTo(right) <= 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given element is within a specified range of values.</para>
+  ///   <para>This function asserts that the given <see cref="IComparable"/> element is within a specified range of values.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -116,7 +116,7 @@ public static class IComparableAssertions
   public static IAssertion InRange<T>(this IAssertion assertion, T comparable, T min, T max, string error = null) where T : struct, IComparable<T> => assertion.True(comparable.CompareTo(min) >= 0 && comparable.CompareTo(max) <= 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given element is outside a specified range.</para>
+  ///   <para>This function asserts that the given <see cref="IComparable"/> element is outside a specified range.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>

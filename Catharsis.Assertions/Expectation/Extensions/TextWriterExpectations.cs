@@ -7,7 +7,7 @@
 public static class TextWriterExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given text writer has a specified format provider that controls formatting.</para>
+  ///   <para>Expects that a given <see cref="TextWriter"/> has a specified format provider that controls formatting.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="format">Expected object that controls formatting.</param>

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class StreamWriterExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given stream writer uses a specified character encoding.</para>
+  ///   <para>Expects that a given <see cref="StreamWriter"/> uses a specified character encoding.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="encoding">Expected text character encoding.</param>

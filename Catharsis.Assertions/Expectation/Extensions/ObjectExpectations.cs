@@ -7,7 +7,7 @@
 public static class ObjectExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given typed object is the same instance as the specified one.</para>
+  ///   <para>Expects that a given typed <see cref="object"/> is the same instance as the specified one.</para>
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -17,7 +17,7 @@ public static class ObjectExpectations
   public static IExpectation<T> Same<T>(this IExpectation<T> expectation, object other) => expectation.Expected(instance => ReferenceEquals(instance, other));
 
   /// <summary>
-  ///   <para>Expects that a given typed object is considered equal to the specified one.</para>
+  ///   <para>Expects that a given typed <see cref="object"/> is considered equal to the specified one.</para>
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -27,7 +27,7 @@ public static class ObjectExpectations
   public static IExpectation<T> Equal<T>(this IExpectation<T> expectation, object other) => expectation.Expected(instance => Equals(instance, other));
 
   /// <summary>
-  ///   <para>Expects that a given typed object is considered equal to the default value of its type.</para>
+  ///   <para>Expects that a given typed <see cref="object"/> is considered equal to the default value of its type.</para>
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -36,7 +36,7 @@ public static class ObjectExpectations
   public static IExpectation<T> Default<T>(this IExpectation<T> expectation) => expectation.Equal(default(T));
 
   /// <summary>
-  ///   <para>Expects that a given object instance is of specified type.</para>
+  ///   <para>Expects that a given <see cref="object"/> instance is of specified type.</para>
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -46,7 +46,7 @@ public static class ObjectExpectations
   public static IExpectation<T> OfType<T>(this IExpectation<T> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(instance => instance.GetType() == type);
 
   /// <summary>
-  ///   <para>Expects that a given object is <see langword="null"/>.</para>
+  ///   <para>Expects that a given <see cref="object"/> is <see langword="null"/>.</para>
   /// </summary>
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -55,7 +55,7 @@ public static class ObjectExpectations
   public static IExpectation<T> Null<T>(this IExpectation<T> expectation) => expectation.Expected(instance => instance is null);
 
   /// <summary>
-  ///   <para>Expects that a given object is considered equal to at least one in a specified sequence.</para>
+  ///   <para>Expects that a given <see cref="object"/> is considered equal to at least one in a specified sequence.</para>
   /// </summary>
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>

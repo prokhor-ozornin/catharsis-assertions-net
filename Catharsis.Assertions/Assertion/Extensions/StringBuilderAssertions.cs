@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class StringBuilderAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given string builder contains a specified number of characters.</para>
+  ///   <para>This function asserts that the given <see cref="StringBuilder"/> contains a specified number of characters.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="builder">String builder to inspect.</param>
@@ -21,7 +21,7 @@ public static class StringBuilderAssertions
   public static IAssertion Length(this IAssertion assertion, StringBuilder builder, int length, string error = null) => builder is not null ? assertion.True(builder.Length == length, error) : throw new ArgumentNullException(nameof(builder));
 
   /// <summary>
-  ///   <para>This function asserts that the given string builder is empty (contains no characters).</para>
+  ///   <para>This function asserts that the given <see cref="StringBuilder"/> is empty (contains no characters).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="builder">String builder to inspect.</param>

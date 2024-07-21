@@ -7,7 +7,7 @@
 public static class ICollectionProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="ICollection{T}"/> from being empty, ensuring that it contains at least one element.</para>
+  ///   <para>This function protects the given <see cref="ICollection{T}"/> from being empty, ensuring that it contains at least one element.</para>
   /// </summary>
   /// <typeparam name="T">The type of elements in the collection.</typeparam>
   /// <param name="protection">Protection to perform.</param>

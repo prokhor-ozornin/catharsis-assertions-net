@@ -7,7 +7,7 @@
 public static class IComparableProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="IComparable"/> element from being "positive", ensuring that it's less than the default value of its type.</para>
+  ///   <para>This function protects the given <see cref="IComparable"/> element from being "positive", ensuring that it's less than the default value of its type.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -27,7 +27,7 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para>Protects the given comparable element from being "negative", ensuring that it's higher than the default value of its type.</para>
+  ///   <para>This function protects the given comparable element from being "negative", ensuring that it's higher than the default value of its type.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -47,7 +47,7 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para>Protects the given comparable element from being "zero", ensuring that it's equal to the default value of its type.</para>
+  ///   <para>This function protects the given comparable element from being "zero", ensuring that it's equal to the default value of its type.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -66,7 +66,7 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para>Protects given comparable element from being outside a specified range of values, ensuring that it remains within a particular margins.</para>
+  ///   <para>This function protects given comparable element from being outside a specified range of values, ensuring that it remains within a particular margins.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -91,7 +91,7 @@ public static class IComparableProtections
   }
 
   /// <summary>
-  ///   <para>Protects given comparable element from being outside a specified range of values, ensuring that it remains within a particular margins.</para>
+  ///   <para>This function protects given comparable element from being outside a specified range of values, ensuring that it remains within a particular margins.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="value">Element to inspect.</param>

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class SecureStringExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given secure string is of specified length.</para>
+  ///   <para>Expects that a given <see cref="SecureString"/> is of specified length.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="length">Expected string length.</param>
@@ -18,7 +18,7 @@ public static class SecureStringExpectations
   public static IExpectation<SecureString> Length(this IExpectation<SecureString> expectation, int length) => expectation.HaveSubject().And().Expected(secure => secure.Length == length);
 
   /// <summary>
-  ///   <para>Expects that a given secure string is empty (contains no characters).</para>
+  ///   <para>Expects that a given <see cref="SecureString"/> is empty (contains no characters).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -26,7 +26,7 @@ public static class SecureStringExpectations
   public static IExpectation<SecureString> Empty(this IExpectation<SecureString> expectation) => expectation.Length(0);
 
   /// <summary>
-  ///   <para>Expects that a given secure string is marked as read-only (cannot be modified).</para>
+  ///   <para>Expects that a given <see cref="SecureString"/> is marked as read-only (cannot be modified).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>

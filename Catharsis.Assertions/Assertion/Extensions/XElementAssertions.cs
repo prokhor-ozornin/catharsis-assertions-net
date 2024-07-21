@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XElementAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given XML element has an attribute with specified name and value.</para>
+  ///   <para>This function asserts that the given <see cref="XElement"/> has an attribute with specified name and value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="element">Element to inspect.</param>

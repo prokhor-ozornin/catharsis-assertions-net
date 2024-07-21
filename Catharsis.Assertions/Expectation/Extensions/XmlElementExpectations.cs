@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XmlElementExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given XML element has an attribute with a specified name.</para>
+  ///   <para>Expects that a given <see cref="XmlElement"/> has an attribute with a specified name.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="name">Expected attribute name.</param>

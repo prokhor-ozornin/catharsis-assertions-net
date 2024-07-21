@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class HttpResponseMessageExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given HTTP response was successful.</para>
+  ///   <para>Expects that a given <see cref="HttpResponseMessage"/> was successful.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -17,7 +17,7 @@ public static class HttpResponseMessageExpectations
   public static IExpectation<HttpResponseMessage> Successful(this IExpectation<HttpResponseMessage> expectation) => expectation.HaveSubject().And().Expected(response => response.IsSuccessStatusCode);
 
   /// <summary>
-  ///   <para>Expects that a given HTTP response has a specified result status code.</para>
+  ///   <para>Expects that a given <see cref="HttpResponseMessage"/> has a specified result status code.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="status">Expected HTTP status code.</param>
@@ -26,7 +26,7 @@ public static class HttpResponseMessageExpectations
   public static IExpectation<HttpResponseMessage> Status(this IExpectation<HttpResponseMessage> expectation, HttpStatusCode status) => expectation.HaveSubject().And().Expected(response => response.StatusCode == status);
 
   /// <summary>
-  ///   <para>Expects that a given HTTP response contains a header with specified name and value.</para>
+  ///   <para>Expects that a given <see cref="HttpResponseMessage"/> contains a header with specified name and value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="name">Expected HTTP header name.</param>

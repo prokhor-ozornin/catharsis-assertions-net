@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class RegexExpectations
 {
   /// <summary>
-  ///   <para>Expects that a specified text string matches a given regular expression.</para>
+  ///   <para>Expects that a specified text string matches a given <see cref="Regex"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="text">Expected matched text.</param>

@@ -7,7 +7,7 @@
 public static class TextWriterAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given text writer has a specified format provider that controls formatting.</para>
+  ///   <para>This function asserts that the given <see cref="TextWriter"/> has a specified format provider that controls formatting.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="writer">Text writer to inspect.</param>

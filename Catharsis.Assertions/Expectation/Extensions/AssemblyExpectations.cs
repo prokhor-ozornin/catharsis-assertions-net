@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class AssemblyExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given assembly contains a definition of the specified type.</para>
+  ///   <para>Expects that a given <see cref="Assembly"/> contains a definition of the specified <see cref="Type"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="type">Expected type.</param>
@@ -19,7 +19,7 @@ public static class AssemblyExpectations
   public static IExpectation<Assembly> Define(this IExpectation<Assembly> expectation, Type type) => expectation.HaveSubject().And().ThrowIfNull(type, nameof(type)).And().Expected(assembly => assembly.DefinedTypes.Contains(type));
 
   /// <summary>
-  ///   <para>Expects that a given assembly contains a definition of the specified type.</para>
+  ///   <para>Expects that a given <see cref="Assembly"/> contains a definition of the specified <see cref="Type"/>.</para>
   /// </summary>
   /// <typeparam name="T">Expected type.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
@@ -29,7 +29,7 @@ public static class AssemblyExpectations
   public static IExpectation<Assembly> Define<T>(this IExpectation<Assembly> expectation) => expectation.Define(typeof(T));
 
   /// <summary>
-  ///   <para>Expects that a given assembly was generated dynamically in the current process with reflection.</para>
+  ///   <para>Expects that a given <see cref="Assembly"/> was generated dynamically in the current process with reflection.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>

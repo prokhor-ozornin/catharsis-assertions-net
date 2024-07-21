@@ -7,7 +7,7 @@
 public static class TextReaderExpectations
 {
   /// <summary>
-  ///   <para>This function asserts that the given text reader has no more available characters to read.</para>
+  ///   <para>This function asserts that the given <see cref="TextReader"/> has no more available characters to read.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>

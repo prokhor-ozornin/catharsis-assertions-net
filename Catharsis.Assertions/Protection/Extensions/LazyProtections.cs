@@ -7,7 +7,7 @@
 public static class LazyProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="Lazy{T}"/> object from being <see langword="null"/>, ensuring that it has a valid value.</para>
+  ///   <para>This function protects the given <see cref="Lazy{T}"/> object from being <see langword="null"/>, ensuring that it has a valid value.</para>
   /// </summary>
   /// <typeparam name="T">Type of lazily instantiated instance.</typeparam>
   /// <param name="protection">Protection to perform.</param>

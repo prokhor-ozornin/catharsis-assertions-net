@@ -7,7 +7,7 @@
 public static class ObjectProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="object"/> from being the same instance as another object, ensuring that their references are not equal.</para>
+  ///   <para>This function protects the given <see cref="object"/> from being the same instance as another object, ensuring that their references are not equal.</para>
   /// </summary>
   /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -27,7 +27,7 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects the given <see cref="object"/> from having a specific type, ensuring that its <see cref="Type"/> is different.</para>
+  ///   <para>This function protects the given <see cref="object"/> from having a specific type, ensuring that its <see cref="Type"/> is different.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="instance">Object to protect.</param>
@@ -49,7 +49,7 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects the given <see cref="object"/> from having a specific type, ensuring that its <see cref="Type"/> is different.</para>
+  ///   <para>This function protects the given <see cref="object"/> from having a specific type, ensuring that its <see cref="Type"/> is different.</para>
   /// </summary>
   /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -62,7 +62,7 @@ public static class ObjectProtections
   public static object OfType<T>(this IProtection protection, object instance, string error = null) => protection.OfType(instance, typeof(T), error);
 
   /// <summary>
-  ///   <para>Protects the given <see cref="object"/> from being equal to another object, ensuring that they are not considered equal.</para>
+  ///   <para>This function protects the given <see cref="object"/> from being equal to another object, ensuring that they are not considered equal.</para>
   /// </summary>
   /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -82,7 +82,7 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects the given <see cref="object"/> from being equal to the default value of its <see cref="Type"/>, ensuring that it is different.</para>
+  ///   <para>This function protects the given <see cref="object"/> from being equal to the default value of its <see cref="Type"/>, ensuring that it is different.</para>
   /// </summary>
   /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -94,7 +94,7 @@ public static class ObjectProtections
   public static T Default<T>(this IProtection protection, T instance, string error = null) => protection.Equality(instance, default(T), error);
 
   /// <summary>
-  ///   <para>Protects the given <see cref="object"/> from being <see langword="null"/>, ensuring that it represents a valid reference.</para>
+  ///   <para>This function protects the given <see cref="object"/> from being <see langword="null"/>, ensuring that it represents a valid reference.</para>
   /// </summary>
   /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -115,7 +115,7 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects the given <see cref="object"/> from being equal to a specified range of values, ensuring it does not match any of the specified values.</para>
+  ///   <para>This function protects the given <see cref="object"/> from being equal to a specified range of values, ensuring it does not match any of the specified values.</para>
   /// </summary>
   /// <typeparam name="T">Type of values.</typeparam>
   /// <param name="protection">Protection to perform.</param>
@@ -137,7 +137,7 @@ public static class ObjectProtections
   }
 
   /// <summary>
-  ///   <para>Protects the given <see cref="object"/> from being equal to a specified range of values, ensuring it does not match any of the specified values.</para>
+  ///   <para>This function protects the given <see cref="object"/> from being equal to a specified range of values, ensuring it does not match any of the specified values.</para>
   /// </summary>
   /// <typeparam name="T">TType of values.</typeparam>
   /// <param name="protection">Protection to perform.</param>

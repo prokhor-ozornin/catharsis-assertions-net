@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class ProcessExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given system process has been terminated.</para>
+  ///   <para>Expects that a given <see cref="Process"/> has been terminated.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -17,7 +17,7 @@ public static class ProcessExpectations
   public static IExpectation<Process> Exited(this IExpectation<Process> expectation) => expectation.HaveSubject().And().Expected(process => process.HasExited);
 
   /// <summary>
-  ///   <para>Expects that a given system process has set a specified exit code when it terminated.</para>
+  ///   <para>Expects that a given <see cref="Process"/> has set a specified exit code when it terminated.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="code">Expected process exit code.</param>

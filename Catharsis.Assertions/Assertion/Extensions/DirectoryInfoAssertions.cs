@@ -7,7 +7,7 @@
 public static class DirectoryInfoAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given directory is empty, meaning it contains no files or subdirectories.</para>
+  ///   <para>This function asserts that the given <see cref="DirectoryInfo"/> is empty, meaning it contains no files or subdirectories.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="directory">Directory to inspect.</param>
@@ -24,7 +24,7 @@ public static class DirectoryInfoAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the specified directory is a subdirectory of a specified parent directory.</para>
+  ///   <para>This function asserts that the given <see cref="DirectoryInfo"/> is a subdirectory of a specified parent directory.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="directory">Directory to inspect.</param>

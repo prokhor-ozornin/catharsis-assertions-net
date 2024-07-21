@@ -7,7 +7,7 @@
 public static class FileInfoAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given file is of a specified size.</para>
+  ///   <para>This function asserts that the given <see cref="FileInfo"/> is of a specified size.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file">File to inspect.</param>
@@ -25,7 +25,7 @@ public static class FileInfoAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given file is empty.</para>
+  ///   <para>This function asserts that the given <see cref="FileInfo"/> is empty.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file">File to inspect.</param>
@@ -36,7 +36,7 @@ public static class FileInfoAssertions
   public static IAssertion Empty(this IAssertion assertion, FileInfo file, string error = null) => assertion.Length(file, 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given file is read-only.</para>
+  ///   <para>This function asserts that the given <see cref="FileInfo"/> is read-only.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file">File to inspect.</param>
@@ -47,7 +47,7 @@ public static class FileInfoAssertions
   public static IAssertion ReadOnly(this IAssertion assertion, FileInfo file, string error = null) => file is not null ? assertion.True(file.IsReadOnly, error) : throw new ArgumentNullException(nameof(file));
 
   /// <summary>
-  ///   <para>This function asserts that the specified file is located in the given directory.</para>
+  ///   <para>This function asserts that the given <see cref="FileInfo"/> is located in the given directory.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="file">File to inspect.</param>

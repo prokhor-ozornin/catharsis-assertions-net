@@ -7,7 +7,7 @@
 public static class DirectoryInfoProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="DirectoryInfo"/> from being empty, ensuring that it contains files and/or subdirectories.</para>
+  ///   <para>This function protects the given <see cref="DirectoryInfo"/> from being empty, ensuring that it contains files and/or subdirectories.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="directory">Directory to protect.</param>

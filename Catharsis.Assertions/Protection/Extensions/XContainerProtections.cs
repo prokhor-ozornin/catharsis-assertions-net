@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XContainerProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="XContainer"/> from being empty, ensuring that it contains at least one child node.</para>
+  ///   <para>This function protects the given <see cref="XContainer"/> from being empty, ensuring that it contains at least one child node.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="container">XML container to protect.</param>

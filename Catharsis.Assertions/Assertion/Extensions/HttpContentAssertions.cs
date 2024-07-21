@@ -7,7 +7,7 @@
 public static class HttpContentAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given HTTP content instance contains a header with the specified name.</para>
+  ///   <para>This function asserts that the given <see cref="HttpContent"/> contains a header with the specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="content">Content instance to inspect.</param>

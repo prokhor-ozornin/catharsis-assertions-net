@@ -7,7 +7,7 @@
 public static class StreamAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given stream has a specified length in bytes.</para>
+  ///   <para>This function asserts that the given <see cref="Stream"/> has a specified length in bytes.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="stream">Stream to inspect.</param>
@@ -19,7 +19,7 @@ public static class StreamAssertions
   public static IAssertion Length(this IAssertion assertion, Stream stream, long length, string error = null) => stream is not null ? assertion.True(stream.Length == length, error)  : throw new ArgumentNullException(nameof(stream));
 
   /// <summary>
-  ///   <para>This function asserts that the given stream is empty (zero-length).</para>
+  ///   <para>This function asserts that the given <see cref="Stream"/> is empty (zero-length).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="stream">Stream to inspect.</param>
@@ -30,7 +30,7 @@ public static class StreamAssertions
   public static IAssertion Empty(this IAssertion assertion, Stream stream, string error = null) => assertion.Length(stream, 0, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given stream is at specified position/offset.</para>
+  ///   <para>This function asserts that the given <see cref="Stream"/> is at specified position/offset.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="stream">Stream to inspect.</param>
@@ -42,7 +42,7 @@ public static class StreamAssertions
   public static IAssertion Position(this IAssertion assertion, Stream stream, long position, string error = null) => stream is not null ? assertion.True(stream.Position == position, error) : throw new ArgumentNullException(nameof(stream));
 
   /// <summary>
-  ///   <para>This function asserts that the given stream is positioned at the end of it.</para>
+  ///   <para>This function asserts that the given <see cref="Stream"/> is positioned at the end of it.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="stream">Stream to inspect.</param>
@@ -53,7 +53,7 @@ public static class StreamAssertions
   public static IAssertion End(this IAssertion assertion, Stream stream, string error = null) => stream is not null ? assertion.True(stream.Position == stream.Length, error) : throw new ArgumentNullException(nameof(stream));
 
   /// <summary>
-  ///   <para>This function asserts that the given stream supports reading operations.</para>
+  ///   <para>This function asserts that the given <see cref="Stream"/> supports reading operations.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="stream">Stream to inspect.</param>
@@ -64,7 +64,7 @@ public static class StreamAssertions
   public static IAssertion Readable(this IAssertion assertion, Stream stream, string error = null) => stream is not null ? assertion.True(stream.CanRead, error) : throw new ArgumentNullException(nameof(stream));
 
   /// <summary>
-  ///   <para>This function asserts that the given stream supports writing operations.</para>
+  ///   <para>This function asserts that the given <see cref="Stream"/> supports writing operations.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="stream">Stream to inspect.</param>
@@ -75,7 +75,7 @@ public static class StreamAssertions
   public static IAssertion Writable(this IAssertion assertion, Stream stream, string error = null) => stream is not null ? assertion.True(stream.CanWrite, error) : throw new ArgumentNullException(nameof(stream));
 
   /// <summary>
-  ///   <para>This function asserts that the given stream supports seeking operations.</para>
+  ///   <para>This function asserts that the given <see cref="Stream"/> supports seeking operations.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="stream">Stream to inspect.</param>
@@ -86,7 +86,7 @@ public static class StreamAssertions
   public static IAssertion Seekable(this IAssertion assertion, Stream stream, string error = null) => stream is not null ? assertion.True(stream.CanSeek, error) : throw new ArgumentNullException(nameof(stream));
 
   /// <summary>
-  ///   <para>This function asserts that the given stream is read-only (does not support writing operations).</para>
+  ///   <para>This function asserts that the given <see cref="Stream"/> is read-only (does not support writing operations).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="stream">Stream to inspect.</param>
@@ -97,7 +97,7 @@ public static class StreamAssertions
   public static IAssertion ReadOnly(this IAssertion assertion, Stream stream, string error = null) => stream is not null ? assertion.True(stream.CanRead && !stream.CanWrite, error) : throw new ArgumentNullException(nameof(stream));
 
   /// <summary>
-  ///   <para>This function asserts that the given stream is write-only (does not support reading operations).</para>
+  ///   <para>This function asserts that the given <see cref="Stream"/> is write-only (does not support reading operations).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="stream">Stream to inspect.</param>

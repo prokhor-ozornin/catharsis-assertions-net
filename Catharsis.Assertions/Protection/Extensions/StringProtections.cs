@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class StringProtections
 {
   /// <summary>
-  ///   <para>Protects the given <see cref="string"/> from being empty, ensuring that it contains at least one character.</para>
+  ///   <para>This function protects the given <see cref="string"/> from being empty, ensuring that it contains at least one character.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="text">String to protect.</param>
@@ -28,7 +28,7 @@ public static class StringProtections
   }
 
   /// <summary>
-  ///   <para>Protects the given <see cref="string"/> from being "whitespace", ensuring that it only contains non-whitespace characters.</para>
+  ///   <para>This function protects the given <see cref="string"/> from being "whitespace", ensuring that it only contains non-whitespace characters.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="text">String to protect.</param>
@@ -47,7 +47,7 @@ public static class StringProtections
   }
 
   /// <summary>
-  ///   <para>Protects the given <see cref="string"/> from matching a specified regular expression, ensuring that it doesn't match.</para>
+  ///   <para>This function protects the given <see cref="string"/> from matching a specified regular expression, ensuring that it doesn't match.</para>
   /// </summary>
   /// <param name="protection">Protection to perform.</param>
   /// <param name="text">String to protect.</param>
