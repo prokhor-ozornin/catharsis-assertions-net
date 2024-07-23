@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of protections for <see cref="Stream"/> type.</para>
+///   <para>A set of protections for the <see cref="Stream"/> type.</para>
 /// </summary>
 /// <seealso cref="Stream"/>
 public static class StreamProtections

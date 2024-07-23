@@ -10,7 +10,7 @@ namespace Catharsis.Assertions;
 public static class IPAddressAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="IPAddress"/> is of IP version 4.</para>
+  ///   <para>Asserts that the given <see cref="IPAddress"/> is of IP version 4.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="address">IP address to inspect.</param>
@@ -22,7 +22,7 @@ public static class IPAddressAssertions
   public static IAssertion Ip4(this IAssertion assertion, IPAddress address, string error = null) => address is not null ? assertion.True(address.AddressFamily == AddressFamily.InterNetwork, error) : throw new ArgumentNullException(nameof(address));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="IPAddress"/> is of IP version 6.</para>
+  ///   <para>Asserts that the given <see cref="IPAddress"/> is of IP version 6.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="address">IP address to inspect.</param>

@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="PropertyInfo"/> type.</para>
+///   <para>A set of expectations for the <see cref="PropertyInfo"/> type.</para>
 /// </summary>
 /// <seealso cref="PropertyInfo"/>
 public static class PropertyInfoExpectations

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class AssemblyAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="Assembly"/> defines a specified type.</para>
+  ///   <para>Asserts that the given <see cref="Assembly"/> defines a specified <see cref="Type"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="assembly">Assembly to inspect.</param>
@@ -29,7 +29,7 @@ public static class AssemblyAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="Assembly"/> defines a specified type.</para>
+  ///   <para>Asserts that the given <see cref="Assembly"/> defines a specified <see cref="Type"/>.</para>
   /// </summary>
   /// <typeparam name="T">Asserted type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -42,7 +42,7 @@ public static class AssemblyAssertions
   public static IAssertion Define<T>(this IAssertion assertion, Assembly assembly, string error = null) => assertion.Define(assembly, typeof(T), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="Assembly"/> was dynamically generated in the current process using reflection.</para>
+  ///   <para>Asserts that the given <see cref="Assembly"/> was dynamically generated in the current process using reflection.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="assembly">Assembly to inspect.</param>

@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="SymmetricAlgorithm"/> type.</para>
+///   <para>A set of expectations for the <see cref="SymmetricAlgorithm"/> type.</para>
 /// </summary>
 /// <seealso cref="SymmetricAlgorithm"/>
 public static class SymmetricAlgorithmExpectations

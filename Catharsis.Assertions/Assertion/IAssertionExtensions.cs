@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of extension methods for <see cref="IAssertion"/> interface.</para>
+///   <para>A set of extension methods for <see cref="IAssertion"/> interface.</para>
 /// </summary>
 /// <seealso cref="IAssertion"/>
 public static class IAssertionExtensions

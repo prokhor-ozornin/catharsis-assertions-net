@@ -1,13 +1,13 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="FileInfo"/> type.</para>
+///   <para>A set of expectations for the <see cref="FileInfo"/> type.</para>
 /// </summary>
 /// <seealso cref="FileInfo"/>
 public static class FileInfoExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given <see cref="FileInfo"/> has a specified size.</para>
+  ///   <para>Expects that the given <see cref="FileInfo"/> is of a specified size.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="length">Expected size of file in bytes.</param>
@@ -16,7 +16,7 @@ public static class FileInfoExpectations
   public static IExpectation<FileInfo> Length(this IExpectation<FileInfo> expectation, long length) => expectation.HaveSubject().And().Expected(file => file.Length == length);
 
   /// <summary>
-  ///   <para>Expects that a given <see cref="FileInfo"/> is empty (zero-sized).</para>
+  ///   <para>Expects that the given <see cref="FileInfo"/> is empty.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -24,7 +24,7 @@ public static class FileInfoExpectations
   public static IExpectation<FileInfo> Empty(this IExpectation<FileInfo> expectation) => expectation.Length(0);
 
   /// <summary>
-  ///   <para>Expects that a given <see cref="FileInfo"/> is read-only (not writable).</para>
+  ///   <para>Expects that the given <see cref="FileInfo"/> is read-only.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -32,7 +32,7 @@ public static class FileInfoExpectations
   public static IExpectation<FileInfo> ReadOnly(this IExpectation<FileInfo> expectation) => expectation.HaveSubject().And().Expected(file => file.IsReadOnly);
 
   /// <summary>
-  ///   <para>Expects that a given <see cref="FileInfo"/> is located in a specified directory.</para>
+  ///   <para>Expects that the given <see cref="FileInfo"/> is located in the given directory.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="directory">Expected file location directory.</param>

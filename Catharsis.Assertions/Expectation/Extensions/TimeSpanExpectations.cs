@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="TimeSpan"/> type.</para>
+///   <para>A set of expectations for the <see cref="TimeSpan"/> type.</para>
 /// </summary>
 /// <seealso cref="TimeSpan"/>
 public static class TimeSpanExpectations

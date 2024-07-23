@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of protections for <see cref="XmlNode"/> type.</para>
+///   <para>A set of protections for the <see cref="XmlNode"/> type.</para>
 /// </summary>
 /// <seealso cref="XmlNode"/>
 public static class XmlNodeProtections

@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="Process"/> type.</para>
+///   <para>A set of expectations for the <see cref="Process"/> type.</para>
 /// </summary>
 /// <seealso cref="Process"/>
 public static class ProcessExpectations

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class StreamWriterAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="StreamWriter"/> uses a specified character encoding.</para>
+  ///   <para>Asserts that the given <see cref="StreamWriter"/> uses a specified character encoding.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="writer">Stream writer to inspect.</param>

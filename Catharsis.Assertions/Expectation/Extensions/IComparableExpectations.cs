@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for comparable types.</para>
+///   <para>A set of expectations for <see cref="IComparable"/> types.</para>
 /// </summary>
 /// <seealso cref="IComparable{T}"/>
 public static class IComparableExpectations

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class RegexAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that a specified text string matches a given <see cref="Regex"/>.</para>
+  ///   <para>Asserts that a specified text string matches a given <see cref="Regex"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="regex">Regular expression to match against.</param>

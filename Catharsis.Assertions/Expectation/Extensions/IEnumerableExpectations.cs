@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for enumerable types.</para>
+///   <para>A set of expectations for <see cref="IEnumerable{T}"/> types.</para>
 /// </summary>
 /// <seealso cref="IEnumerable{T}"/>
 public static class IEnumerableExpectations

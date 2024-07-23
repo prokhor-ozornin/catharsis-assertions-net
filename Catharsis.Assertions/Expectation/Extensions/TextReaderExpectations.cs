@@ -1,13 +1,13 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="TextReader"/> type.</para>
+///   <para>A set of expectations for the <see cref="TextReader"/> type.</para>
 /// </summary>
 /// <seealso cref="TextReader"/>
 public static class TextReaderExpectations
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="TextReader"/> has no more available characters to read.</para>
+  ///   <para>Asserts that the given <see cref="TextReader"/> has no more available characters to read.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>

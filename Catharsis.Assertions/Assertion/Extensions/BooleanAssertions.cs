@@ -7,7 +7,7 @@
 public static class BooleanAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given boolean expression is <see langword="true"/>.</para>
+  ///   <para>Asserts that the given boolean expression is <see langword="true"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="expected">Boolean expression to inspect.</param>
@@ -28,7 +28,7 @@ public static class BooleanAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given boolean expression is <see langword="false"/>.</para>
+  ///   <para>Asserts that the given boolean expression is <see langword="false"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="expected">Boolean expression to inspect.</param>

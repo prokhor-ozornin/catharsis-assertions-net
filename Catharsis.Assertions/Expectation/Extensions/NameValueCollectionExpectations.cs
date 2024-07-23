@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="NameValueCollection"/> type.</para>
+///   <para>A set of expectations for the <see cref="NameValueCollection"/> type.</para>
 /// </summary>
 /// <seealso cref="NameValueCollection"/>
 public static class NameValueCollectionExpectations
@@ -18,7 +18,7 @@ public static class NameValueCollectionExpectations
   public static IExpectation<NameValueCollection> Count(this IExpectation<NameValueCollection> expectation, int count) => expectation.HaveSubject().And().Expected(collection => collection.Count == count);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="NameValueCollection"/> is empty (contains no elements).</para>
+  ///   <para>Asserts that the given <see cref="NameValueCollection"/> is empty (contains no elements).</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>

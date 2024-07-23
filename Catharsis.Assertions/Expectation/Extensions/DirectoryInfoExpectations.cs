@@ -1,13 +1,13 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="DirectoryInfo"/> type.</para>
+///   <para>A set of expectations for the <see cref="DirectoryInfo"/> type.</para>
 /// </summary>
 /// <seealso cref="DirectoryInfo"/>
 public static class DirectoryInfoExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given <see cref="DirectoryInfo"/> is empty (contains no files and/or subdirectories).</para>
+  ///   <para>Expects that the given <see cref="DirectoryInfo"/> is empty, meaning it contains no files or subdirectories.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
@@ -15,7 +15,7 @@ public static class DirectoryInfoExpectations
   public static IExpectation<DirectoryInfo> Empty(this IExpectation<DirectoryInfo> expectation) => expectation.HaveSubject().And().Expected(directory => !directory.EnumerateFileSystemInfos().Any());
 
   /// <summary>
-  ///   <para>Expects that a given <see cref="DirectoryInfo"/> is located in a specified parent directory.</para>
+  ///   <para>Expects that the given <see cref="DirectoryInfo"/> is a subdirectory of a specified parent directory.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="parent">Expected parent directory.</param>

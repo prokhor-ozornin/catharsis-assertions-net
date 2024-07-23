@@ -7,7 +7,7 @@
 public static class TextReaderAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="TextReader"/> has no more available characters to read.</para>
+  ///   <para>Asserts that the given <see cref="TextReader"/> has no more available characters to read.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="reader">Text reader to inspect.</param>

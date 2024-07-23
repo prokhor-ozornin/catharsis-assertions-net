@@ -7,7 +7,7 @@
 public static class RangeAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="Range"/>'s start index has a specified value.</para>
+  ///   <para>Asserts that the given <see cref="Range"/>'s start index has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="range">Range to inspect.</param>
@@ -19,7 +19,7 @@ public static class RangeAssertions
   public static IAssertion StartIndex(this IAssertion assertion, Range range, int index, string error = null) => assertion.True(range.Start.Value == index, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="Range"/>'s end index has a specified value.</para>
+  ///   <para>Asserts that the given <see cref="Range"/>'s end index has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="range">Range to inspect.</param>

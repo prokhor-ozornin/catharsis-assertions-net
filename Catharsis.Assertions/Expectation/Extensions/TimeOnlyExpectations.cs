@@ -2,7 +2,7 @@
 
 #if NET8_0_OR_GREATER
 /// <summary>
-///   <para>A set of expectations for <see cref="TimeOnly"/> type.</para>
+///   <para>A set of expectations for the <see cref="TimeOnly"/> type.</para>
 /// </summary>
 /// <seealso cref="TimeOnly"/>
 public static class TimeOnlyExpectations

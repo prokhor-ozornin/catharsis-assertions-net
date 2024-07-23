@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class NameValueCollectionAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="NameValueCollection"/> has the specified number of elements.</para>
+  ///   <para>Asserts that the given <see cref="NameValueCollection"/> has a specified number of elements.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="collection">Collection to inspect.</param>
-  /// <param name="count">Asserted element count.</param>
+  /// <param name="count">Asserted number of elements.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="collection"/> is <see langword="null"/>.</exception>
@@ -21,7 +21,7 @@ public static class NameValueCollectionAssertions
   public static IAssertion Count(this IAssertion assertion, NameValueCollection collection, int count, string error = null) => collection is not null ? assertion.True(collection.Count == count, error) : throw new ArgumentNullException(nameof(collection));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="NameValueCollection"/> is empty, meaning it contains no elements.</para>
+  ///   <para>Asserts that the given <see cref="NameValueCollection"/> is empty, meaning it contains no elements.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="collection">Collection to inspect.</param>

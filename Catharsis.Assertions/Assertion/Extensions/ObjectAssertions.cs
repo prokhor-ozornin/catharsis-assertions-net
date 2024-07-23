@@ -7,7 +7,7 @@
 public static class ObjectAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="object"/> of a specific type is the same as the specified object.</para>
+  ///   <para>Asserts that the given <see cref="object"/> of a specific type is the same as the specified object.</para>
   /// </summary>
   /// <typeparam name="T">Type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -20,7 +20,7 @@ public static class ObjectAssertions
   public static IAssertion Same<T>(this IAssertion assertion, T instance, object other, string error = null) => assertion.True(ReferenceEquals(instance, other), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="object"/> is considered equal to the specified object.</para>
+  ///   <para>Asserts that the given <see cref="object"/> is considered equal to the specified object.</para>
   /// </summary>
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -33,7 +33,7 @@ public static class ObjectAssertions
   public static IAssertion Equal<T>(this IAssertion assertion, T instance, object other, string error = null) => assertion.True(Equals(instance, other), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="object"/> is equal to the default value for its type.</para>
+  ///   <para>Asserts that the given <see cref="object"/> is equal to the default value for its type.</para>
   /// </summary>
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -45,7 +45,7 @@ public static class ObjectAssertions
   public static IAssertion Default<T>(this IAssertion assertion, T instance, string error = null) => assertion.Equal(instance, default(T), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="object"/> instance is of the specified type.</para>
+  ///   <para>Asserts that the given <see cref="object"/> instance is of the specified type.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Object to inspect.</param>
@@ -64,7 +64,7 @@ public static class ObjectAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="object"/> instance is of the specified type.</para>
+  ///   <para>Asserts that the given <see cref="object"/> instance is of the specified type.</para>
   /// </summary>
   /// <typeparam name="T">Asserted type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -76,7 +76,7 @@ public static class ObjectAssertions
   public static IAssertion OfType<T>(this IAssertion assertion, object instance, string error = null) => assertion.OfType(instance, typeof(T), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="object"/> is <see langword="null"/>.</para>
+  ///   <para>Asserts that the given <see cref="object"/> is <see langword="null"/>.</para>
   /// </summary>
   /// <typeparam name="T">Type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -88,7 +88,7 @@ public static class ObjectAssertions
   public static IAssertion Null<T>(this IAssertion assertion, T instance, string error = null) => assertion.True(instance is null, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="object"/> is equal to at least one element in a specified sequence.</para>
+  ///   <para>Asserts that the given <see cref="object"/> is equal to at least one element in a specified sequence.</para>
   /// </summary>
   /// <typeparam name="T">Asserted type of object instance.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>

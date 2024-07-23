@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="Thread"/> type.</para>
+///   <para>A set of expectations for the <see cref="Thread"/> type.</para>
 /// </summary>
 /// <seealso cref="Thread"/>
 public static class ThreadExpectations

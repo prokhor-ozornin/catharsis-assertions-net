@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="Type"/> type.</para>
+///   <para>A set of expectations for the <see cref="Type"/> type.</para>
 /// </summary>
 /// <seealso cref="Type"/>
 public static class TypeExpectations
@@ -86,7 +86,7 @@ public static class TypeExpectations
 
 #if NET8_0_OR_GREATER
   /// <summary>
-  ///   <para>This function asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
+  ///   <para>Asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="to">Asserted assigned type.</param>
@@ -96,7 +96,7 @@ public static class TypeExpectations
   public static IExpectation<Type> AssignableTo(this IExpectation<Type> expectation, Type to) => expectation.HaveSubject().And().ThrowIfNull(to, nameof(to)).And().Expected(it => it.IsAssignableTo(to));
 
   /// <summary>
-  ///   <para>This function asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
+  ///   <para>Asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
   /// </summary>
   /// <typeparam name="T">Asserted assigned type.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>

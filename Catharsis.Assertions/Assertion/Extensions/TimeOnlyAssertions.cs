@@ -8,7 +8,7 @@
 public static class TimeOnlyAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="TimeOnly"/> has a specified hour component.</para>
+  ///   <para>Asserts that the given <see cref="TimeOnly"/> has a specified hour component.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="time">Time to inspect.</param>
@@ -20,7 +20,7 @@ public static class TimeOnlyAssertions
   public static IAssertion Hour(this IAssertion assertion, TimeOnly time, int hour, string error = null) => assertion.True(time.Hour == hour, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="TimeOnly"/> has a specified minute component.</para>
+  ///   <para>Asserts that the given <see cref="TimeOnly"/> has a specified minute component.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="time">Time to inspect.</param>
@@ -32,7 +32,7 @@ public static class TimeOnlyAssertions
   public static IAssertion Minute(this IAssertion assertion, TimeOnly time, int minute, string error = null) => assertion.True(time.Minute == minute, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="TimeOnly"/> has a specified second component.</para>
+  ///   <para>Asserts that the given <see cref="TimeOnly"/> has a specified second component.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="time">Time to inspect.</param>
@@ -44,7 +44,7 @@ public static class TimeOnlyAssertions
   public static IAssertion Second(this IAssertion assertion, TimeOnly time, int second, string error = null) => assertion.True(time.Second == second, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="TimeOnly"/> has a specified millisecond component.</para>
+  ///   <para>Asserts that the given <see cref="TimeOnly"/> has a specified millisecond component.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="time">Time to inspect.</param>

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class FieldInfoAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="FieldInfo"/> is of the specified type.</para>
+  ///   <para>Asserts that the given <see cref="FieldInfo"/> is of the specified <see cref="Type"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="field">Field to inspect.</param>
@@ -29,7 +29,7 @@ public static class FieldInfoAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="FieldInfo"/> is of the specified type.</para>
+  ///   <para>Asserts that the given <see cref="FieldInfo"/> is of the specified <see cref="Type"/>.</para>
   /// </summary>
   /// <typeparam name="T">Type of field to check.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -42,7 +42,7 @@ public static class FieldInfoAssertions
   public static IAssertion Type<T>(this IAssertion assertion, FieldInfo field, string error = null) => assertion.Type(field, typeof(T), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="FieldInfo"/> has <see langword="private"/> visibility.</para>
+  ///   <para>Asserts that the given <see cref="FieldInfo"/> has <see langword="private"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="field">Field to inspect.</param>
@@ -53,7 +53,7 @@ public static class FieldInfoAssertions
   public static IAssertion Private(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsPrivate, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="FieldInfo"/> has <see langword="protected"/> visibility.</para>
+  ///   <para>Asserts that the given <see cref="FieldInfo"/> has <see langword="protected"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="field">Field to inspect.</param>
@@ -64,7 +64,7 @@ public static class FieldInfoAssertions
   public static IAssertion Protected(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsFamily, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="FieldInfo"/> has <see langword="public"/> visibility.</para>
+  ///   <para>Asserts that the given <see cref="FieldInfo"/> has <see langword="public"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="field">Field to inspect.</param>
@@ -75,7 +75,7 @@ public static class FieldInfoAssertions
   public static IAssertion Public(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsPublic, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="FieldInfo"/> has <see langword="internal"/> visibility.</para>
+  ///   <para>Asserts that the given <see cref="FieldInfo"/> has <see langword="internal"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="field">Field to inspect.</param>
@@ -86,7 +86,7 @@ public static class FieldInfoAssertions
   public static IAssertion Internal(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsAssembly, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="FieldInfo"/> has <see langword="protected internal"/> visibility.</para>
+  ///   <para>Asserts that the given <see cref="FieldInfo"/> has <see langword="protected internal"/> visibility.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="field">Field to inspect.</param>
@@ -97,7 +97,7 @@ public static class FieldInfoAssertions
   public static IAssertion ProtectedInternal(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsFamilyOrAssembly, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="FieldInfo"/> is <see langword="static"/>.</para>
+  ///   <para>Asserts that the given <see cref="FieldInfo"/> is <see langword="static"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="field">Field to inspect.</param>
@@ -108,7 +108,7 @@ public static class FieldInfoAssertions
   public static IAssertion Static(this IAssertion assertion, FieldInfo field, string error = null) => field is not null ? assertion.True(field.IsStatic, error) : throw new ArgumentNullException(nameof(field));
 
   /// <summary>
-  ///   <para>This function asserts that the given object has a specified field value.</para>
+  ///   <para>Asserts that the given object has a specified field value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="field">Field to inspect.</param>

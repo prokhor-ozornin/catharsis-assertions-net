@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="XAttribute"/> type.</para>
+///   <para>A set of expectations for the <see cref="XAttribute"/> type.</para>
 /// </summary>
 /// <seealso cref="XAttribute"/>
 public static class XAttributeExpectations

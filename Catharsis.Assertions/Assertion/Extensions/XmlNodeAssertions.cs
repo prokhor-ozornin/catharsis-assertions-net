@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XmlNodeAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that a specified <see cref="XmlNode"/> is empty (contains no child nodes).</para>
+  ///   <para>Asserts that a specified <see cref="XmlNode"/> is empty (contains no child nodes).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="node">Node to inspect.</param>
@@ -20,7 +20,7 @@ public static class XmlNodeAssertions
   public static IAssertion Empty(this IAssertion assertion, XmlNode node, string error = null) => node is not null ? assertion.False(node.HasChildNodes, error) : throw new ArgumentNullException(nameof(node));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="XmlNode"/> has a specified name.</para>
+  ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="node">Node to inspect.</param>
@@ -39,7 +39,7 @@ public static class XmlNodeAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="XmlNode"/> has a specified inner text.</para>
+  ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified inner text.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="node">Node to inspect.</param>
@@ -58,7 +58,7 @@ public static class XmlNodeAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="XmlNode"/> has a specified inner XML markup.</para>
+  ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified inner XML markup.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="node">Node to inspect.</param>
@@ -78,7 +78,7 @@ public static class XmlNodeAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="XmlNode"/> has a specified outer XML markup.</para>
+  ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified outer XML markup.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="node">Node to inspect.</param>
@@ -98,7 +98,7 @@ public static class XmlNodeAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="XmlNode"/> has a specified value.</para>
+  ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="node">Node to inspect.</param>

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class MemberInfoAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given type has a <see cref="MemberInfo"/> that is decorated with the specified custom attribute.</para>
+  ///   <para>Asserts that the given <see cref="Type"/> has a <see cref="MemberInfo"/> that is decorated with the specified custom attribute.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member">Type's member to inspect.</param>
@@ -29,7 +29,7 @@ public static class MemberInfoAssertions
   }
 
   /// <summary>
-  ///   <para>This function asserts that the given type has a <see cref="MemberInfo"/> that is decorated with the specified custom attribute.</para>
+  ///   <para>Asserts that the given <see cref="Type"/> has a <see cref="MemberInfo"/> that is decorated with the specified custom attribute.</para>
   /// </summary>
   /// <typeparam name="T">Asserted attribute's type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -42,7 +42,7 @@ public static class MemberInfoAssertions
   public static IAssertion Attribute<T>(this IAssertion assertion, MemberInfo member, string error = null) where T : Attribute => assertion.Attribute(member, typeof(T), error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="MemberInfo"/> of the specified type is of the expected type.</para>
+  ///   <para>Asserts that the given <see cref="MemberInfo"/> is of the expected <see cref="MemberTypes"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="member">Type's member to inspect.</param>

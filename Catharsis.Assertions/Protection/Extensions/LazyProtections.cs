@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of protections for <see cref="Lazy{T}"/> type.</para>
+///   <para>A set of protections for the <see cref="Lazy{T}"/> type.</para>
 /// </summary>
 /// <seealso cref="Lazy{T}"/>
 public static class LazyProtections

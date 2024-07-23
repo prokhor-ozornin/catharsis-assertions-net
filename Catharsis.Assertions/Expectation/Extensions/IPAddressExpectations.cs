@@ -4,7 +4,7 @@ using System.Net.Sockets;
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="IPAddress"/> type.</para>
+///   <para>A set of expectations for the <see cref="IPAddress"/> type.</para>
 /// </summary>
 /// <seealso cref="IPAddress"/>
 public static class IPAddressExpectations

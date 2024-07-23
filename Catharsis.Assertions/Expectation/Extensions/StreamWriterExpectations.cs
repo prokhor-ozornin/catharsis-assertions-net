@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="StreamWriter"/> type.</para>
+///   <para>A set of expectations for the <see cref="StreamWriter"/> type.</para>
 /// </summary>
 /// <seealso cref="StreamWriter"/>
 public static class StreamWriterExpectations

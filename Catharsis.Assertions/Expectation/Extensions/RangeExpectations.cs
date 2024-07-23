@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="Range"/> type.</para>
+///   <para>A set of expectations for the <see cref="Range"/> type.</para>
 /// </summary>
 /// <seealso cref="Range"/>
 public static class RangeExpectations

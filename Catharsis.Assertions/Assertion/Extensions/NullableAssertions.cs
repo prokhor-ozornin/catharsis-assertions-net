@@ -7,7 +7,7 @@
 public static class NullableAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="Nullable{T}"/> object has a value.</para>
+  ///   <para>Asserts that the given <see cref="Nullable{T}"/> object has a value.</para>
   /// </summary>
   /// <typeparam name="T">Underlying type of the nullable object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -19,7 +19,7 @@ public static class NullableAssertions
   public static IAssertion HasValue<T>(this IAssertion assertion, T? instance, string error = null) where T : struct => assertion.True(instance.HasValue, error);
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="Nullable{T}"/> object has the specified value.</para>
+  ///   <para>Asserts that the given <see cref="Nullable{T}"/> object has the specified value.</para>
   /// </summary>
   /// <typeparam name="T">Underlying type of the nullable object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>

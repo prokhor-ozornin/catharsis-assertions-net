@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="MethodBase"/> type.</para>
+///   <para>A set of expectations for the <see cref="MethodBase"/> type.</para>
 /// </summary>
 /// <seealso cref="MethodBase"/>
 public static class MethodBaseExpectations

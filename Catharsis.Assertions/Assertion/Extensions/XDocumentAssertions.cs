@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class XDocumentAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="XDocument"/> is empty (contains no child nodes).</para>
+  ///   <para>Asserts that the given <see cref="XDocument"/> is empty (contains no child nodes).</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="document">XML document to inspect.</param>
@@ -20,7 +20,7 @@ public static class XDocumentAssertions
   public static IAssertion Empty(this IAssertion assertion, XDocument document, string error = null) => document is not null ? assertion.Empty(document.Nodes(), error) : throw new ArgumentNullException(nameof(document));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="XDocument"/> has a root element with a specified name.</para>
+  ///   <para>Asserts that the given <see cref="XDocument"/> has a root element with a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="document">XML document to inspect.</param>

@@ -3,7 +3,7 @@
 namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="XElement"/> type.</para>
+///   <para>A set of expectations for the <see cref="XElement"/> type.</para>
 /// </summary>
 /// <seealso cref="XElement"/>
 public static class XElementExpectations

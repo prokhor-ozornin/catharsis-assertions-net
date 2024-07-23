@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>A set of expectations for <see cref="TextWriter"/> type.</para>
+///   <para>A set of expectations for the <see cref="TextWriter"/> type.</para>
 /// </summary>
 /// <seealso cref="TextWriter"/>
 public static class TextWriterExpectations

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class ProcessAssertions
 {
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="Process"/> has completed.</para>
+  ///   <para>Asserts that the given <see cref="Process"/> has completed.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="process">Local or remote process to inspect.</param>
@@ -20,7 +20,7 @@ public static class ProcessAssertions
   public static IAssertion Exited(this IAssertion assertion, Process process, string error = null) => process is not null ? assertion.True(process.HasExited, error) : throw new ArgumentNullException(nameof(process));
 
   /// <summary>
-  ///   <para>This function asserts that the given <see cref="Process"/> has set the specified exit code when it finished.</para>
+  ///   <para>Asserts that the given <see cref="Process"/> has set the specified exit code when it finished.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="process">Local or remote process to inspect.</param>
