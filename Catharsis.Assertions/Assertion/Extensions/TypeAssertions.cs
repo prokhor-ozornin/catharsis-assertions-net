@@ -7,7 +7,7 @@
 public static class TypeAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Type"/> is declared <see langword="abstract"/>.</para>
+  ///   <para>Asserts that the given <see cref="Type"/> is declared as <see langword="abstract"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="type">Type to inspect.</param>
@@ -18,7 +18,7 @@ public static class TypeAssertions
   public static IAssertion Abstract(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsAbstract && !type.IsSealed, error) : throw new ArgumentNullException(nameof(type));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Type"/> is declared <see langword="sealed"/>.</para>
+  ///   <para>Asserts that the given <see cref="Type"/> is declared as <see langword="sealed"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="type">Type to inspect.</param>
@@ -29,7 +29,7 @@ public static class TypeAssertions
   public static IAssertion Sealed(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsSealed && !type.IsAbstract, error) : throw new ArgumentNullException(nameof(type));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Type"/> is declared <see langword="static"/>.</para>
+  ///   <para>Asserts that the given <see cref="Type"/> is declared as <see langword="static"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="type">Type to inspect.</param>
@@ -62,7 +62,7 @@ public static class TypeAssertions
   public static IAssertion Internal(this IAssertion assertion, Type type, string error = null) => type is not null ? assertion.True(type.IsNotPublic && !type.IsVisible, error) : throw new ArgumentNullException(nameof(type));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Type"/> is derived from a specified type.</para>
+  ///   <para>Asserts that the given <see cref="Type"/> is derived from a specified <see cref="Type"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="subclass">Asserted subclass type.</param>
@@ -81,7 +81,7 @@ public static class TypeAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Type"/> is derived from a specified type.</para>
+  ///   <para>Asserts that the given <see cref="Type"/> is derived from a specified <see cref="Type"/>.</para>
   /// </summary>
   /// <typeparam name="T">Asserted superclass type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -93,11 +93,11 @@ public static class TypeAssertions
   public static IAssertion Subclass<T>(this IAssertion assertion, Type subclass, string error = null) => assertion.Subclass(subclass, typeof(T), error);
 
   /// <summary>
-  ///   <para>Asserts that an instance of the given <see cref="Type"/> is assignable from an instance of the specified type.</para>
+  ///   <para>Asserts that an instance of a given <see cref="Type"/> is assignable from an instance of another specified <see cref="Type"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="to">Asserted assignable type.</param>
-  /// <param name="from">Asserted assigned type.</param>
+  /// <param name="to">Asserted target type.</param>
+  /// <param name="from">Asserted source type.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="to"/>, or <paramref name="from"/> is <see langword="null"/>.</exception>
@@ -113,11 +113,11 @@ public static class TypeAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that an instance of the given <see cref="Type"/> is assignable from an instance of the specified type.</para>
+  ///   <para>Asserts that an instance of a given <see cref="Type"/> is assignable from an instance of another specified <see cref="Type"/>.</para>
   /// </summary>
-  /// <typeparam name="T">Asserted assigned type.</typeparam>
+  /// <typeparam name="T">Asserted target type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="from">Asserted assignable type.</param>
+  /// <param name="from">Asserted source type.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="from"/> is <see langword="null"/>.</exception>
@@ -127,11 +127,11 @@ public static class TypeAssertions
 
 #if NET8_0_OR_GREATER
   /// <summary>
-  ///   <para>Asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
+  ///   <para>Asserts that an instance of a given <see cref="Type"/> is assignable to an instance of the specified <see cref="Type"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="from">Asserted assignable type.</param>
-  /// <param name="to">Asserted assigned type.</param>
+  /// <param name="from">Asserted source type.</param>
+  /// <param name="to">Asserted target type.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="from"/>, or <paramref name="to"/> is <see langword="null"/>.</exception>
@@ -147,11 +147,11 @@ public static class TypeAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that an instance of the given <see cref="Type"/> is assignable to an instance of the specified type.</para>
+  ///   <para>Asserts that an instance of a given <see cref="Type"/> is assignable to an instance of the specified <see cref="Type"/>.</para>
   /// </summary>
-  /// <typeparam name="T">Asserted assigned type.</typeparam>
+  /// <typeparam name="T">Asserted target type.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="from">Type to inspect.</param>
+  /// <param name="from">Asserted source type.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="from"/> is <see langword="null"/>.</exception>

@@ -9,16 +9,16 @@ namespace Catharsis.Assertions;
 public static class NameValueCollectionExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given <see cref="NameValueCollection"/> contains a specified number of elements.</para>
+  ///   <para>Expects that the given <see cref="NameValueCollection"/> has a specified number of elements.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
-  /// <param name="count">Expected elements count.</param>
+  /// <param name="count">Expected number of elements.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> or has an undefined subject.</exception>
   public static IExpectation<NameValueCollection> Count(this IExpectation<NameValueCollection> expectation, int count) => expectation.HaveSubject().And().Expected(collection => collection.Count == count);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="NameValueCollection"/> is empty (contains no elements).</para>
+  ///   <para>Expects that the given <see cref="NameValueCollection"/> is empty, meaning it contains no elements.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>

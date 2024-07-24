@@ -8,7 +8,7 @@
 public static class ValueTaskAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="ValueTask"/> completed successfully.</para>
+  ///   <para>Asserts that the given <see cref="ValueTask"/> was completed successfully.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
@@ -20,7 +20,7 @@ public static class ValueTaskAssertions
   public static IAssertion Successful(this IAssertion assertion, ValueTask task, string error = null) => assertion.True(task.IsCompletedSuccessfully, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="ValueTask"/> completed unsuccessfully due to unhandled exception.</para>
+  ///   <para>Asserts that the given <see cref="ValueTask"/> was completed unsuccessfully due to an unhandled exception.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
@@ -32,7 +32,7 @@ public static class ValueTaskAssertions
   public static IAssertion Unsuccessful(this IAssertion assertion, ValueTask task, string error = null) => assertion.True(task.IsFaulted, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="ValueTask"/> failed to complete due to being cancelled.</para>
+  ///   <para>Asserts that the given <see cref="ValueTask"/> was completed unsuccessfully due to being cancelled.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
@@ -44,7 +44,7 @@ public static class ValueTaskAssertions
   public static IAssertion Canceled(this IAssertion assertion, ValueTask task, string error = null) => assertion.True(task.IsCanceled, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="ValueTask"/> completed, whether successfully or not.</para>
+  ///   <para>Asserts that the given <see cref="ValueTask"/> was completed regardless of how.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
@@ -56,7 +56,7 @@ public static class ValueTaskAssertions
   public static IAssertion Completed(this IAssertion assertion, ValueTask task, string error = null) => assertion.True(task.IsCompleted, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="ValueTask{T}"/> completed successfully.</para>
+  ///   <para>Asserts that the given <see cref="ValueTask{T}"/> was completed successfully.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -69,7 +69,7 @@ public static class ValueTaskAssertions
   public static IAssertion Successful<T>(this IAssertion assertion, ValueTask<T> task, string error = null) => assertion.True(task.IsCompletedSuccessfully, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="ValueTask{T}"/> completed unsuccessfully due to unhandled exception.</para>
+  ///   <para>Asserts that the given <see cref="ValueTask{T}"/> was completed unsuccessfully due to an unhandled exception.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -82,7 +82,7 @@ public static class ValueTaskAssertions
   public static IAssertion Unsuccessful<T>(this IAssertion assertion, ValueTask<T> task, string error = null) => assertion.True(task.IsFaulted, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="ValueTask{T}"/> failed to complete due to being cancelled.</para>
+  ///   <para>Asserts that the given <see cref="ValueTask{T}"/> was completed unsuccessfully due to being cancelled.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -95,7 +95,7 @@ public static class ValueTaskAssertions
   public static IAssertion Canceled<T>(this IAssertion assertion, ValueTask<T> task, string error = null) => assertion.True(task.IsCanceled, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="ValueTask{T}"/> completed, whether successfully or not.</para>
+  ///   <para>Asserts that the given <see cref="ValueTask{T}"/> was completed regardless of how.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>

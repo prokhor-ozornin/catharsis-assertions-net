@@ -7,7 +7,7 @@
 public static class RangeExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given <see cref="Range"/>'s start index has a specified value.</para>
+  ///   <para>Expects that the starting index of the given <see cref="Range"/> is equal to a specified value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="index">Expected index value.</param>
@@ -16,7 +16,7 @@ public static class RangeExpectations
   public static IExpectation<Range> StartIndex(this IExpectation<Range> expectation, int index) => expectation.Expected(range => range.Start.Value == index);
 
   /// <summary>
-  ///   <para>Expects that a given <see cref="Range"/>'s end index has a specified value.</para>
+  ///   <para>Expects that the ending index of the given <see cref="Range"/> is equal to a specified value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="index">Expected index value.</param>

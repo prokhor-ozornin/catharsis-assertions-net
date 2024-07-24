@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class XContainerAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="XContainer"/> contains a child element with a specified name.</para>
+  ///   <para>Asserts that the given <see cref="XContainer"/> has a child element with the specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="container">XML container to inspect.</param>
-  /// <param name="name">Asserted expanded element name.</param>
+  /// <param name="name">Asserted element name.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="container"/>, or <paramref name="name"/> is <see langword="null"/>.</exception>
@@ -28,7 +28,7 @@ public static class XContainerAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="XContainer"/> is empty (contains no child nodes).</para>
+  ///   <para>Asserts that the given <see cref="XContainer"/> is empty, meaning it contains no child nodes.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="container">XML container to inspect.</param>

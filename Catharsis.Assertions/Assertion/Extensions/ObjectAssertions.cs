@@ -9,7 +9,7 @@ public static class ObjectAssertions
   /// <summary>
   ///   <para>Asserts that the given <see cref="object"/> of a specific type is the same as the specified object.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object.</typeparam>
+  /// <typeparam name="T">The type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Object to inspect.</param>
   /// <param name="other">Asserted object for reference equality comparison.</param>
@@ -22,7 +22,7 @@ public static class ObjectAssertions
   /// <summary>
   ///   <para>Asserts that the given <see cref="object"/> is considered equal to the specified object.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">The type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Object to inspect.</param>
   /// <param name="other">Asserted object for equality comparison.</param>
@@ -33,9 +33,9 @@ public static class ObjectAssertions
   public static IAssertion Equal<T>(this IAssertion assertion, T instance, object other, string error = null) => assertion.True(Equals(instance, other), error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="object"/> is equal to the default value for its type.</para>
+  ///   <para>Asserts that the given <see cref="object"/> is equal to the default value for its <see cref="Type"/>.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">The type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Object to inspect.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
@@ -45,11 +45,11 @@ public static class ObjectAssertions
   public static IAssertion Default<T>(this IAssertion assertion, T instance, string error = null) => assertion.Equal(instance, default(T), error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="object"/> instance is of the specified type.</para>
+  ///   <para>Asserts that the given <see cref="object"/> is of the specified <see cref="Type"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Object to inspect.</param>
-  /// <param name="type">Asserted type of object.</param>
+  /// <param name="type">Asserted object type.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="instance"/>, or <paramref name="type"/> is <see langword="null"/>.</exception>
@@ -64,7 +64,7 @@ public static class ObjectAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="object"/> instance is of the specified type.</para>
+  ///   <para>Asserts that the given <see cref="object"/> is of the specified <see cref="Type"/>.</para>
   /// </summary>
   /// <typeparam name="T">Asserted type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -78,7 +78,7 @@ public static class ObjectAssertions
   /// <summary>
   ///   <para>Asserts that the given <see cref="object"/> is <see langword="null"/>.</para>
   /// </summary>
-  /// <typeparam name="T">Type of object instance.</typeparam>
+  /// <typeparam name="T">The type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="instance">Object to inspect.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
@@ -88,12 +88,12 @@ public static class ObjectAssertions
   public static IAssertion Null<T>(this IAssertion assertion, T instance, string error = null) => assertion.True(instance is null, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="object"/> is equal to at least one element in a specified sequence.</para>
+  ///   <para>Asserts that the given <see cref="object"/> is equal to at least one element in the specified sequence.</para>
   /// </summary>
-  /// <typeparam name="T">Asserted type of object instance.</typeparam>
+  /// <typeparam name="T">The type of object.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="value">Object to inspect.</param>
-  /// <param name="sequence">Asserted sequence of possible object's values.</param>
+  /// <param name="sequence">Asserted sequence of possible values for an object.</param>
   /// <param name="comparer">Comparer for equality.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>

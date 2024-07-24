@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class StreamWriterAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="StreamWriter"/> uses a specified character encoding.</para>
+  ///   <para>Asserts that the given <see cref="StreamWriter"/> uses a specified <see cref="Encoding"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="writer">Stream writer to inspect.</param>
-  /// <param name="encoding">Asserted text character encoding.</param>
+  /// <param name="encoding">Asserted character encoding.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="writer"/> is <see langword="null"/>.</exception>

@@ -9,10 +9,10 @@ namespace Catharsis.Assertions;
 public static class XElementExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given <see cref="XElement"/> has an attribute with specified name and value.</para>
+  ///   <para>Expects that the given <see cref="XElement"/> has an attribute with the specified name and value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
-  /// <param name="name">Expected expanded attribute name.</param>
+  /// <param name="name">Expected attribute name.</param>
   /// <param name="value">Expected attribute value or <see langword="null"/> to skip value check.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> or has an undefined subject, or <paramref name="name"/> is <see langword="null"/>.</exception>

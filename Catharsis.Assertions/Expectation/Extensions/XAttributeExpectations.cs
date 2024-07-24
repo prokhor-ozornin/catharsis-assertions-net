@@ -9,16 +9,16 @@ namespace Catharsis.Assertions;
 public static class XAttributeExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given <see cref="XAttribute"/> has a specified name.</para>
+  ///   <para>Expects that the given <see cref="XAttribute"/> has a specified name.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
-  /// <param name="name">Expected expanded attribute name.</param>
+  /// <param name="name">Expected attribute name.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> or has an undefined subject, or <paramref name="name"/> is <see langword="null"/>.</exception>
   public static IExpectation<XAttribute> Name(this IExpectation<XAttribute> expectation, XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(attribute => attribute.Name == name);
 
   /// <summary>
-  ///   <para>Expects that a given <see cref="XAttribute"/> has a specified value.</para>
+  ///   <para>Expects that the given <see cref="XAttribute"/> has a specified value.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="value">Expected attribute value.</param>

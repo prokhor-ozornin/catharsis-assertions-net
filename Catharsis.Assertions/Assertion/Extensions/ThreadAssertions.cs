@@ -7,7 +7,7 @@
 public static class ThreadAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Thread"/> is in a specified state.</para>
+  ///   <para>Asserts that the given <see cref="Thread"/> is in the specified state.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="thread">Thread to inspect.</param>
@@ -23,7 +23,7 @@ public static class ThreadAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="thread">Thread to inspect.</param>
-  /// <param name="priority">Asserted thread scheduling priority.</param>
+  /// <param name="priority">Asserted thread priority.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="thread"/> is <see langword="null"/>.</exception>

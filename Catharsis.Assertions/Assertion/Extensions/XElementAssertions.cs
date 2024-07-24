@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class XElementAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="XElement"/> has an attribute with specified name and value.</para>
+  ///   <para>Asserts that the given <see cref="XElement"/> has an attribute with the specified name and value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="element">Element to inspect.</param>
-  /// <param name="name">Asserted expanded attribute name.</param>
+  /// <param name="element">XML element to inspect.</param>
+  /// <param name="name">Asserted attribute name.</param>
   /// <param name="value">Asserted attribute value or <see langword="null"/> to skip value check.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>

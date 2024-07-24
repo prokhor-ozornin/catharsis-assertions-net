@@ -9,10 +9,10 @@ namespace Catharsis.Assertions;
 public static class XmlNodeAssertions
 {
   /// <summary>
-  ///   <para>Asserts that a specified <see cref="XmlNode"/> is empty (contains no child nodes).</para>
+  ///   <para>Asserts that the given <see cref="XmlNode"/> is empty, meaning it contains no child nodes.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="node">Node to inspect.</param>
+  /// <param name="node">XML node to inspect.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="node"/> is <see langword="null"/>.</exception>
@@ -23,8 +23,8 @@ public static class XmlNodeAssertions
   ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="node">Node to inspect.</param>
-  /// <param name="name">Asserted qualified node name.</param>
+  /// <param name="node">XML node to inspect.</param>
+  /// <param name="name">Asserted node name.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="node"/>, or <paramref name="name"/> is <see langword="null"/>.</exception>
@@ -42,8 +42,8 @@ public static class XmlNodeAssertions
   ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified inner text.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="node">Node to inspect.</param>
-  /// <param name="text">Asserted concatenated value of the node and all its children.</param>
+  /// <param name="node">XML node to inspect.</param>
+  /// <param name="text">Asserted inner text.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="node"/>, or <paramref name="text"/> is <see langword="null"/>.</exception>
@@ -61,8 +61,8 @@ public static class XmlNodeAssertions
   ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified inner XML markup.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="node">Node to inspect.</param>
-  /// <param name="xml">Asserted concatenated XML markup of all child nodes.</param>
+  /// <param name="node">XML node to inspect.</param>
+  /// <param name="xml">Asserted XML markup.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="node"/>, or <paramref name="xml"/> is <see langword="null"/>.</exception>
@@ -81,8 +81,8 @@ public static class XmlNodeAssertions
   ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified outer XML markup.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="node">Node to inspect.</param>
-  /// <param name="xml">Asserted concatenated XML markup of the node and all its children.</param>
+  /// <param name="node">XML node to inspect.</param>
+  /// <param name="xml">Asserted XML markup.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="node"/>, or <paramref name="xml"/> is <see langword="null"/>.</exception>
@@ -101,7 +101,7 @@ public static class XmlNodeAssertions
   ///   <para>Asserts that the given <see cref="XmlNode"/> has a specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="node">Node to inspect.</param>
+  /// <param name="node">XML node to inspect.</param>
   /// <param name="value">Asserted node value.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>

@@ -7,11 +7,11 @@
 public static class TextWriterAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="TextWriter"/> has a specified format provider that controls formatting.</para>
+  ///   <para>Asserts that the given <see cref="TextWriter"/> has a specified associated <see cref="IFormatProvider"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="writer">Text writer to inspect.</param>
-  /// <param name="format">Asserted object that controls formatting.</param>
+  /// <param name="format">Asserted format provider.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="writer"/> is <see langword="null"/>.</exception>

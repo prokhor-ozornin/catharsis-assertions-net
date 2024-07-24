@@ -12,7 +12,7 @@ public static class ProcessAssertions
   ///   <para>Asserts that the given <see cref="Process"/> has completed.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="process">Local or remote process to inspect.</param>
+  /// <param name="process">Process to inspect.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="process"/> is <see langword="null"/>.</exception>

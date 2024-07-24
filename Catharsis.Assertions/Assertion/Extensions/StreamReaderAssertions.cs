@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class StreamReaderAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="StreamReader"/> uses a specified character encoding.</para>
+  ///   <para>Asserts that the given <see cref="StreamReader"/> uses a specified <see cref="Encoding"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="reader">Stream reader to inspect.</param>
-  /// <param name="encoding">Asserted text character encoding.</param>
+  /// <param name="encoding">Asserted character encoding.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="reader"/> is <see langword="null"/>.</exception>
@@ -21,7 +21,7 @@ public static class StreamReaderAssertions
   public static IAssertion Encoding(this IAssertion assertion, StreamReader reader, Encoding encoding, string error = null) => reader is not null ? assertion.Equal(reader.CurrentEncoding, encoding, error) : throw new ArgumentNullException(nameof(reader));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="StreamReader"/> has reached the end of the underlying stream.</para>
+  ///   <para>Asserts that the given <see cref="StreamReader"/> has reached the end of its underlying <see cref="Stream"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="reader">Stream reader to inspect.</param>

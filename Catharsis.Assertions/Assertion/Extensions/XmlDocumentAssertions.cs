@@ -9,12 +9,12 @@ namespace Catharsis.Assertions;
 public static class XmlDocumentAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="XmlDocument"/> contains a child element with a specified name.</para>
+  ///   <para>Asserts that the given <see cref="XmlDocument"/> contains a child element with the specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="document">XML document to inspect.</param>
   /// <param name="name">Asserted element name.</param>
-  /// <param name="uri">Asserted element namespace URI.</param>
+  /// <param name="uri">Asserted namespace URI.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="document"/>, or <paramref name="name"/> is <see langword="null"/>.</exception>

@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class PropertyInfoAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="PropertyInfo"/> can be read.</para>
+  ///   <para>Asserts that the given <see cref="PropertyInfo"/> represents a readable property.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property">Object property to inspect.</param>
@@ -21,7 +21,7 @@ public static class PropertyInfoAssertions
   public static IAssertion Readable(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanRead, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="PropertyInfo"/> is read-only (cannot be written to).</para>
+  ///   <para>Asserts that the given <see cref="PropertyInfo"/> represents a read-only property.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property">Object property to inspect.</param>
@@ -32,7 +32,7 @@ public static class PropertyInfoAssertions
   public static IAssertion ReadOnly(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanRead && !property.CanWrite, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="PropertyInfo"/> can be written to.</para>
+  ///   <para>Asserts that the given <see cref="PropertyInfo"/> represents a writable property.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property">Object property to inspect.</param>
@@ -44,7 +44,7 @@ public static class PropertyInfoAssertions
   public static IAssertion Writable(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanWrite, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="PropertyInfo"/> is write-only (cannot be read).</para>
+  ///   <para>Asserts that the given <see cref="PropertyInfo"/> represents a write-only property.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property">Object property to inspect.</param>
@@ -55,7 +55,7 @@ public static class PropertyInfoAssertions
   public static IAssertion WriteOnly(this IAssertion assertion, PropertyInfo property, string error = null) => property is not null ? assertion.True(property.CanWrite && !property.CanRead, error) : throw new ArgumentNullException(nameof(property));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="PropertyInfo"/> has a specified value.</para>
+  ///   <para>Asserts that the given <see cref="PropertyInfo"/> represents a property with the specified value.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="property">Object property to inspect.</param>

@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for dictionary types.</para>
+///   <para>A set of assertions for <see cref="IDictionary{TKey,TValue}"/> types.</para>
 /// </summary>
 /// <seealso cref="IDictionary{TKey, TValue}"/>
 public static class IDictionaryAssertions
@@ -9,11 +9,11 @@ public static class IDictionaryAssertions
   /// <summary>
   ///   <para>Asserts that the given <see cref="IDictionary{TKey,TValue}"/> has an element with the specified key.</para>
   /// </summary>
-  /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
-  /// <typeparam name="TValue">Type of dictionary values.</typeparam>
+  /// <typeparam name="TKey">The type of keys in the dictionary.</typeparam>
+  /// <typeparam name="TValue">The type of values in the dictionary.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="dictionary">Dictionary to inspect.</param>
-  /// <param name="key">Asserted key value.</param>
+  /// <param name="key">Asserted key's value.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="dictionary"/>, or <paramref name="key"/> is <see langword="null"/>.</exception>
@@ -30,12 +30,12 @@ public static class IDictionaryAssertions
   /// <summary>
   ///   <para>Asserts that the given <see cref="IDictionary{TKey,TValue}"/> has an element with the specified value.</para>
   /// </summary>
-  /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
-  /// <typeparam name="TValue">Type of dictionary values.</typeparam>
+  /// <typeparam name="TKey">The type of keys in the dictionary.</typeparam>
+  /// <typeparam name="TValue">The type of values in the dictionary.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="dictionary">Dictionary to inspect.</param>
-  /// <param name="value">Asserted element value.</param>
-  /// <param name="comparer">Equality comparer for dictionary values.</param>
+  /// <param name="value">Asserted element's value.</param>
+  /// <param name="comparer">Equality comparer for dictionary's values.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="dictionary"/> is <see langword="null"/>.</exception>

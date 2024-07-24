@@ -13,7 +13,7 @@ public static class XAttributeAssertions
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="attribute">Attribute to inspect.</param>
-  /// <param name="name">Asserted expanded attribute name.</param>
+  /// <param name="name">Asserted attribute name.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="attribute"/>, or <paramref name="name"/> is <see langword="null"/>.</exception>

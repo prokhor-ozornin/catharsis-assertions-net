@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for tasks types.</para>
+///   <para>A set of assertions for <see cref="Task"/> types.</para>
 /// </summary>
 /// <seealso cref="Task"/>
 /// <seealso cref="Task{TResult}"/>
@@ -20,7 +20,7 @@ public static class TaskAssertions
   public static IAssertion Status(this IAssertion assertion, Task task, TaskStatus status, string error = null) => task is not null ? assertion.True(task.Status == status, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Task"/> completed successfully.</para>
+  ///   <para>Asserts that the given <see cref="Task"/> was completed successfully.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
@@ -32,7 +32,7 @@ public static class TaskAssertions
   public static IAssertion Successful(this IAssertion assertion, Task task, string error = null) => task is not null ? assertion.True(task.IsCompletedSuccessfully, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Task"/> completed unsuccessfully due to unhandled exception.</para>
+  ///   <para>Asserts that the given <see cref="Task"/> was completed unsuccessfully due to an unhandled exception.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
@@ -44,7 +44,7 @@ public static class TaskAssertions
   public static IAssertion Unsuccessful(this IAssertion assertion, Task task, string error = null) => task is not null ? assertion.True(task.IsFaulted, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Task"/> failed to complete due to being cancelled.</para>
+  ///   <para>Asserts that the given <see cref="Task"/> was completed unsuccessfully due to being cancelled.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
@@ -56,7 +56,7 @@ public static class TaskAssertions
   public static IAssertion Canceled(this IAssertion assertion, Task task, string error = null) => task is not null ? assertion.True(task.IsCanceled, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Task"/> completed, whether successfully or not.</para>
+  ///   <para>Asserts that the given <see cref="Task"/> was completed regardless of how.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
@@ -68,12 +68,12 @@ public static class TaskAssertions
   public static IAssertion Completed(this IAssertion assertion, Task task, string error = null) => task is not null ? assertion.True(task.IsCompleted, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Task{T}"/> ended prematurely due to specified exception.</para>
+  ///   <para>Asserts that the given <see cref="Task{T}"/> was completed prematurely due to the specified <see cref="Exception{T}"/>.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="task">Task to inspect.</param>
-  /// <param name="exception">Asserted exception that caused the task to be aborted, or <see langword="null"/> if the task completed successfully or has not yet thrown exceptions.</param>
+  /// <param name="exception">Asserted exception or <see langword="null"/> if the task completed successfully or has not yet thrown exceptions.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="task"/> is <see langword="null"/>.</exception>
@@ -94,7 +94,7 @@ public static class TaskAssertions
   public static IAssertion Status<T>(this IAssertion assertion, Task<T> task, TaskStatus status, string error = null) => task is not null ? assertion.True(task.Status == status, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Task{T}"/> completed successfully.</para>
+  ///   <para>Asserts that the given <see cref="Task{T}"/> was completed successfully.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -107,7 +107,7 @@ public static class TaskAssertions
   public static IAssertion Successful<T>(this IAssertion assertion, Task<T> task, string error = null) => task is not null ? assertion.True(task.IsCompletedSuccessfully, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Task{T}"/> completed unsuccessfully due to unhandled exception.</para>
+  ///   <para>Asserts that the given <see cref="Task{T}"/> was completed unsuccessfully due to an unhandled exception.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -120,7 +120,7 @@ public static class TaskAssertions
   public static IAssertion Unsuccessful<T>(this IAssertion assertion, Task<T> task, string error = null) => task is not null ? assertion.True(task.IsFaulted, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Task{T}"/> failed to complete due to being cancelled.</para>
+  ///   <para>Asserts that the given <see cref="Task{T}"/> was completed unsuccessfully due to being cancelled.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
@@ -133,7 +133,7 @@ public static class TaskAssertions
   public static IAssertion Canceled<T>(this IAssertion assertion, Task<T> task, string error = null) => task is not null ? assertion.True(task.IsCanceled, error) : throw new ArgumentNullException(nameof(task));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="Task{T}"/> completed, whether successfully or not.</para>
+  ///   <para>Asserts that the given <see cref="Task{T}"/> was completed regardless of how.</para>
   /// </summary>
   /// <typeparam name="T">Type of task result.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>

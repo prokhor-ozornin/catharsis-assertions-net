@@ -9,7 +9,7 @@ namespace Catharsis.Assertions;
 public static class SymmetricAlgorithmAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="SymmetricAlgorithm"/> has a specified block size in bits of cryptographic operations.</para>
+  ///   <para>Asserts that the given <see cref="SymmetricAlgorithm"/> has a specified block size of the cryptographic operations.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="algorithm">Cryptographic algorithm to inspect.</param>
@@ -21,7 +21,7 @@ public static class SymmetricAlgorithmAssertions
   public static IAssertion BlockSize(this IAssertion assertion, SymmetricAlgorithm algorithm, int size, string error = null) => algorithm is not null ? assertion.True(algorithm.BlockSize == size, error) : throw new ArgumentNullException(nameof(algorithm));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="SymmetricAlgorithm"/> has a specified size in bits of the secret key.</para>
+  ///   <para>Asserts that the given <see cref="SymmetricAlgorithm"/> has a specified size of the secret key.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="algorithm">Cryptographic algorithm to inspect.</param>

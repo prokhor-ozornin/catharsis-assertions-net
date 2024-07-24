@@ -9,10 +9,10 @@ namespace Catharsis.Assertions;
 public static class StreamWriterExpectations
 {
   /// <summary>
-  ///   <para>Expects that a given <see cref="StreamWriter"/> uses a specified character encoding.</para>
+  ///   <para>Expects that the given <see cref="StreamWriter"/> uses a specified <see cref="Encoding"/>.</para>
   /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
-  /// <param name="encoding">Expected text character encoding.</param>
+  /// <param name="encoding">Expected character encoding.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> or has an undefined subject.</exception>
   public static IExpectation<StreamWriter> Encoding(this IExpectation<StreamWriter> expectation, Encoding encoding) => expectation.HaveSubject().And().Expected(writer => writer.Encoding.Equals(encoding));

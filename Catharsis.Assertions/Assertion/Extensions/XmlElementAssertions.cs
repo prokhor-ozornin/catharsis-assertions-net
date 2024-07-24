@@ -9,12 +9,12 @@ namespace Catharsis.Assertions;
 public static class XmlElementAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="XmlElement"/> has an attribute with a specified name.</para>
+  ///   <para>Asserts that the given <see cref="XmlElement"/> has an attribute with the specified name.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="element">Element to inspect.</param>
+  /// <param name="element">XML element to inspect.</param>
   /// <param name="name">Asserted attribute name.</param>
-  /// <param name="uri">Asserted attribute namespace URI.</param>
+  /// <param name="uri">Asserted namespace URI.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="element"/>, or <paramref name="name"/> is <see langword="null"/>.</exception>

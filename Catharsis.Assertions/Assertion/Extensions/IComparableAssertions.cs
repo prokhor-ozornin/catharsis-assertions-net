@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of assertions for <see cref="IComparable"/> types.</para>
+///   <para>A set of assertions for <see cref="IComparable"/> types.</para>
 /// </summary>
 /// <seealso cref="IComparable{T}"/>
 public static class IComparableAssertions
@@ -101,13 +101,13 @@ public static class IComparableAssertions
   public static IAssertion LesserOrEqual<T>(this IAssertion assertion, T left, T right, string error = null) where T : struct, IComparable<T> => assertion.True(left.CompareTo(right) <= 0, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="IComparable"/> element is within a specified range of values.</para>
+  ///   <para>Asserts that the given <see cref="IComparable"/> element is within the specified range of values.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="comparable">Element to inspect.</param>
-  /// <param name="min">Asserted range lower bound (inclusive).</param>
-  /// <param name="max">Asserted range upper bound (inclusive).</param>
+  /// <param name="min">Asserted range's lower bound (inclusive).</param>
+  /// <param name="max">Asserted range's upper bound (inclusive).</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is <see langword="null"/>.</exception>
@@ -116,13 +116,13 @@ public static class IComparableAssertions
   public static IAssertion InRange<T>(this IAssertion assertion, T comparable, T min, T max, string error = null) where T : struct, IComparable<T> => assertion.True(comparable.CompareTo(min) >= 0 && comparable.CompareTo(max) <= 0, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="IComparable"/> element is outside a specified range.</para>
+  ///   <para>Asserts that the given <see cref="IComparable"/> element is outside the specified range of values.</para>
   /// </summary>
   /// <typeparam name="T">Type of element.</typeparam>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="comparable">Element to inspect.</param>
-  /// <param name="min">Asserted range lower bound (inclusive).</param>
-  /// <param name="max">Asserted range upper bound (inclusive).</param>
+  /// <param name="min">Asserted range's lower bound (inclusive).</param>
+  /// <param name="max">Asserted range's upper bound (inclusive).</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is <see langword="null"/>.</exception>

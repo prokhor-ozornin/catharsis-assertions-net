@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class RegexAssertions
 {
   /// <summary>
-  ///   <para>Asserts that a specified text string matches a given <see cref="Regex"/>.</para>
+  ///   <para>Asserts that the specified text string matches the given <see cref="Regex"/>.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="regex">Regular expression to match against.</param>
-  /// <param name="text">Asserted matched text.</param>
+  /// <param name="regex">Regular to inspect.</param>
+  /// <param name="text">Asserted matched text string.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="regex"/>, or <paramref name="text"/> is <see langword="null"/>.</exception>

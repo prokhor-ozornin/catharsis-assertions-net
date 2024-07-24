@@ -1,7 +1,7 @@
 ﻿namespace Catharsis.Assertions;
 
 /// <summary>
-///   <para>Set of extension methods for <see cref="object"/> class.</para>
+///   <para>A set of extension methods for <see cref="object"/> class.</para>
 /// </summary>
 /// <seealso cref="object"/>
 public static class ObjectExtensions

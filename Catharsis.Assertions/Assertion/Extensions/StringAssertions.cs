@@ -9,11 +9,11 @@ namespace Catharsis.Assertions;
 public static class StringAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="string"/> is of specified length.</para>
+  ///   <para>Asserts that the given <see cref="string"/> has the specified length.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
-  /// <param name="length">String length.</param>
+  /// <param name="length">Asserted string length.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="text"/> is <see langword="null"/>.</exception>
@@ -21,7 +21,7 @@ public static class StringAssertions
   public static IAssertion Length(this IAssertion assertion, string text, int length, string error = null) => text is not null ? assertion.True(text.Length == length, error) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="string"/> is empty (contains no characters).</para>
+  ///   <para>Asserts that the given <see cref="string"/> is empty, meaning it contains no characters.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
@@ -73,12 +73,12 @@ public static class StringAssertions
   public static IAssertion LowerCased(this IAssertion assertion, string text, string error = null) => text is not null ? assertion.True(text.All(char.IsLower), error) : throw new ArgumentNullException(nameof(text));
 
   /// <summary>
-  ///   <para>Asserts that the beginning of a given <see cref="string"/> matches the specified prefix string.</para>
+  ///   <para>Asserts that the given <see cref="string"/> begins with a specified prefix substring.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
-  /// <param name="prefix">Starting string prefix.</param>
-  /// <param name="comparison">Strings comparison options.</param>
+  /// <param name="prefix">Asserted string prefix.</param>
+  /// <param name="comparison">Strings comparison rules.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="text"/>, or <paramref name="prefix"/> is <see langword="null"/>.</exception>
@@ -94,12 +94,12 @@ public static class StringAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that the end of a given <see cref="string"/> matches the specified postfix string.</para>
+  ///   <para>Asserts that the given <see cref="string"/> ends with a specified postfix substring.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
-  /// <param name="postfix">Ending string postfix.</param>
-  /// <param name="comparison">Strings comparison options.</param>
+  /// <param name="postfix">Asserted string postfix.</param>
+  /// <param name="comparison">Strings comparison rules.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="text"/>, or <paramref name="postfix"/> is <see langword="null"/>.</exception>
@@ -115,11 +115,11 @@ public static class StringAssertions
   }
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="string"/> matches a specified regular expression.</para>
+  ///   <para>Asserts that the given <see cref="string"/> matches the specified regular expression.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
   /// <param name="text">String to inspect.</param>
-  /// <param name="regex">Regular expression to match against.</param>
+  /// <param name="regex">Regular expression to match.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="text"/>, or <paramref name="regex"/> is <see langword="null"/>.</exception>

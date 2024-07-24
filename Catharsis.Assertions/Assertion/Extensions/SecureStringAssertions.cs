@@ -9,10 +9,10 @@ namespace Catharsis.Assertions;
 public static class SecureStringAssertions
 {
   /// <summary>
-  ///   <para>Asserts that the given <see cref="SecureString"/> is of specified length.</para>
+  ///   <para>Asserts that the given <see cref="SecureString"/> has the specified length.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="secure">Secure string to inspect.</param>
+  /// <param name="secure">String to inspect.</param>
   /// <param name="length">Asserted string length.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
@@ -21,10 +21,10 @@ public static class SecureStringAssertions
   public static IAssertion Length(this IAssertion assertion, SecureString secure, int length, string error = null) => secure is not null ? assertion.True(secure.Length == length, error) : throw new ArgumentNullException(nameof(secure));
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="SecureString"/> is empty (contains no characters).</para>
+  ///   <para>Asserts that the given <see cref="SecureString"/> is empty, meaning it contains no characters.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="secure">Secure string to inspect.</param>
+  /// <param name="secure">String to inspect.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="secure"/> is <see langword="null"/>.</exception>
@@ -32,10 +32,10 @@ public static class SecureStringAssertions
   public static IAssertion Empty(this IAssertion assertion, SecureString secure, string error = null) => assertion.Length(secure, 0, error);
 
   /// <summary>
-  ///   <para>Asserts that the given <see cref="SecureString"/> is marked as read-only (cannot be modified).</para>
+  ///   <para>Asserts that the given <see cref="SecureString"/> is marked as read-only and cannot be changed.</para>
   /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="secure">Secure string to inspect.</param>
+  /// <param name="secure">String to inspect.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
   /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="secure"/> is <see langword="null"/>.</exception>
