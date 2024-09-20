@@ -11,6 +11,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assertion\.gitignore" />
+    <None Remove="Assertion\Extensions\.gitignore" />
+    <None Remove="Expectation\.gitignore" />
+    <None Remove="Expectation\Extensions\.gitignore" />
+    <None Remove="Protection\.gitignore" />
+    <None Remove="Protection\Extensions\.gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\Catharsis.Assertions\Assertion\Assert.cs" Link="Assertion\Assert.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Assertion.cs" Link="Assertion\Assertion.cs" />
     <Compile Include="..\Catharsis.Assertions\Assertion\Extensions\AssemblyAssertions.cs" Link="Assertion\Extensions\AssemblyAssertions.cs" />
@@ -148,7 +157,10 @@
 
   <ItemGroup>
     <Folder Include="Assertion\Extensions\" />
+    <Folder Include="Assertion\Extensions\" />
     <Folder Include="Expectation\Extensions\" />
+    <Folder Include="Expectation\Extensions\" />
+    <Folder Include="Protection\Extensions\" />
     <Folder Include="Protection\Extensions\" />
   </ItemGroup>
 </Project>
