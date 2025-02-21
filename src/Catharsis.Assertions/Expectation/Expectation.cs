@@ -2,17 +2,16 @@
 
 internal sealed class Expectation<T> : IExpectation<T>
 {
-  private readonly T subject;
-  
-  private bool state = true;
+  private readonly T _subject;  
+  private bool _state = true;
 
   public bool Result { get; private set; } = true;
 
-  public Expectation(T subject) => this.subject = subject;
+  public Expectation(T subject) => _subject = subject;
 
   public IExpectation<T> Not()
   {
-    state = !state;
+    _state = !_state;
     return this;
   }
 
@@ -20,9 +19,9 @@ internal sealed class Expectation<T> : IExpectation<T>
   {
     if (result is null) throw new ArgumentNullException(nameof(result));
 
-    var condition = result(subject);
+    var condition = result(_subject);
 
-    Result = Result && (state ? condition : !condition);
+    Result = Result && (_state ? condition : !condition);
     
     return this;
   }

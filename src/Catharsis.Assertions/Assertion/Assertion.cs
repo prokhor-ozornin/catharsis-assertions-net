@@ -2,11 +2,11 @@
 
 internal sealed class Assertion : IAssertion
 {
-  private readonly bool state;
+  private readonly bool _state;
 
-  public Assertion(bool state) => this.state = state;
+  public Assertion(bool state) => _state = state;
 
-  public bool Valid(bool result) => result == state;
+  public bool Valid(bool result) => result == _state;
 
-  public bool Invalid(bool result) => result != state;
+  public bool Invalid(bool result) => result != _state;
 }

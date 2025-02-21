@@ -12,10 +12,10 @@ namespace Catharsis.Assertions.Tests;
 /// </summary>
 public sealed class PropertyInfoAssertionsTest : UnitTest
 {
-  private string field;
+  private string _field;
   private string WriteOnlyProperty
   {
-    set => field = value;
+    set => _field = value;
   }
 
   private string ReadOnlyProperty => nameof(ReadOnlyProperty);
