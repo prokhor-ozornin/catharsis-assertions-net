@@ -14,19 +14,19 @@ public sealed class FieldInfoAssertionsTest : UnitTest
 {
   private FieldInfo Field { get; } = typeof(string).AnyField(nameof(string.Empty));
 
-  private readonly string _PrivateField = nameof(_PrivateField);
-  protected readonly string _ProtectedField = nameof(_ProtectedField);
-  public readonly string _PublicField = nameof(_PublicField);
-  internal readonly string _InternalField = nameof(_InternalField);
-  protected internal readonly string _ProtectedInternalField = nameof(_ProtectedInternalField);
-  static readonly string _StaticField = nameof(_StaticField);
+  private readonly string PrivateField = nameof(PrivateField);
+  protected readonly string ProtectedField = nameof(ProtectedField);
+  public readonly string PublicField = nameof(PublicField);
+  internal readonly string InternalField = nameof(InternalField);
+  protected internal readonly string ProtectedInternalField = nameof(ProtectedInternalField);
+  static readonly string StaticField = nameof(StaticField);
 
-  private FieldInfo PrivateFieldInfo => GetType().AnyField(nameof(_PrivateField));
-  private FieldInfo ProtectedFieldInfo => GetType().AnyField(nameof(_ProtectedField));
-  private FieldInfo PublicFieldInfo => GetType().AnyField(nameof(_PublicField));
-  private FieldInfo InternalFieldInfo => GetType().AnyField(nameof(_InternalField));
-  private FieldInfo ProtectedInternalFieldInfo => GetType().AnyField(nameof(_ProtectedInternalField));
-  private FieldInfo StaticFieldInfo => GetType().AnyField(nameof(_StaticField));
+  private FieldInfo PrivateFieldInfo => GetType().AnyField(nameof(PrivateField));
+  private FieldInfo ProtectedFieldInfo => GetType().AnyField(nameof(ProtectedField));
+  private FieldInfo PublicFieldInfo => GetType().AnyField(nameof(PublicField));
+  private FieldInfo InternalFieldInfo => GetType().AnyField(nameof(InternalField));
+  private FieldInfo ProtectedInternalFieldInfo => GetType().AnyField(nameof(ProtectedInternalField));
+  private FieldInfo StaticFieldInfo => GetType().AnyField(nameof(StaticField));
 
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
@@ -298,7 +298,7 @@ public sealed class FieldInfoAssertionsTest : UnitTest
       AssertionExtensions.Should(() => FieldInfoAssertions.Value(Assert.To, null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("field");
 
       Validate(false, PrivateFieldInfo, this, new object());
-      Validate(true, PrivateFieldInfo, this, _PrivateField);
+      Validate(true, PrivateFieldInfo, this, PrivateField);
     }
 
     return;
