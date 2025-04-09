@@ -18,7 +18,7 @@ public sealed class BooleanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => BooleanAssertions.True(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => BooleanAssertions.True(null, null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       Validate(true, true);
       Validate(false, null);
@@ -48,7 +48,7 @@ public sealed class BooleanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => BooleanAssertions.False(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => BooleanAssertions.False(null, null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       Validate(true, null);
       Validate(true, false);

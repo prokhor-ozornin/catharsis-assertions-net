@@ -20,7 +20,7 @@ public sealed class SymmetricAlgorithmAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => Assert.To.BlockSize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
+      AssertionExtensions.Should(() => Assert.To.BlockSize(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
 
       Aes.Create().With(algorithm => Validate(true, algorithm, algorithm.BlockSize));
       Validate(false, Aes.Create(), int.MinValue);
@@ -33,7 +33,7 @@ public sealed class SymmetricAlgorithmAssertionsTest : UnitTest
     {
       using (algorithm)
       {
-        AssertionExtensions.Should(() => SymmetricAlgorithmAssertions.BlockSize(null, algorithm, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+        AssertionExtensions.Should(() => SymmetricAlgorithmAssertions.BlockSize(null, algorithm, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
         if (result)
         {
@@ -55,7 +55,7 @@ public sealed class SymmetricAlgorithmAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => Assert.To.KeySize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
+      AssertionExtensions.Should(() => Assert.To.KeySize(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
 
       Aes.Create().With(algorithm => Validate(true, algorithm, algorithm.KeySize));
       Validate(false, Aes.Create(), int.MinValue);
@@ -68,7 +68,7 @@ public sealed class SymmetricAlgorithmAssertionsTest : UnitTest
     {
       using (algorithm)
       {
-        AssertionExtensions.Should(() => SymmetricAlgorithmAssertions.KeySize(null, algorithm, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+        AssertionExtensions.Should(() => SymmetricAlgorithmAssertions.KeySize(null, algorithm, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
         if (result)
         {

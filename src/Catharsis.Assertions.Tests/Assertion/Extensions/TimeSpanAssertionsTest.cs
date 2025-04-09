@@ -19,7 +19,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.Days(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.Days(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
@@ -51,7 +51,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.Hours(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.Hours(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
@@ -83,7 +83,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.Minutes(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.Minutes(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
@@ -115,7 +115,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.Seconds(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.Seconds(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
@@ -147,7 +147,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.Milliseconds(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.Milliseconds(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
@@ -179,7 +179,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.TotalDays(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.TotalDays(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
@@ -211,7 +211,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.TotalHours(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.TotalHours(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
@@ -243,7 +243,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.TotalMinutes(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.TotalMinutes(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
@@ -275,7 +275,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.TotalSeconds(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.TotalSeconds(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
@@ -307,7 +307,7 @@ public sealed class TimeSpanAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeSpanAssertions.TotalMilliseconds(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => TimeSpanAssertions.TotalMilliseconds(null, TimeSpan.Zero, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {

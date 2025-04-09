@@ -20,8 +20,8 @@ public sealed class SymmetricAlgorithmExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => SymmetricAlgorithmExpectations.BlockSize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((SymmetricAlgorithm) null).Expect().BlockSize(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => SymmetricAlgorithmExpectations.BlockSize(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((SymmetricAlgorithm) null).Expect().BlockSize(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Aes.Create().With(algorithm => Validate(true, algorithm, algorithm.BlockSize));
       Validate(false, Aes.Create(), int.MinValue);
@@ -47,8 +47,8 @@ public sealed class SymmetricAlgorithmExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => SymmetricAlgorithmExpectations.KeySize(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((SymmetricAlgorithm) null).Expect().KeySize(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => SymmetricAlgorithmExpectations.KeySize(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((SymmetricAlgorithm) null).Expect().KeySize(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Aes.Create().With(algorithm => Validate(true, algorithm, algorithm.KeySize));
       Validate(false, Aes.Create(), int.MinValue);

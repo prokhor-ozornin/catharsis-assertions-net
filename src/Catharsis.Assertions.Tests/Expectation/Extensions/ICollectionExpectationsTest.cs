@@ -18,8 +18,8 @@ public sealed class ICollectionExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Count(0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Count(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, Array.Empty<object>(), 0);
       Validate(false, Array.Empty<object>(), int.MinValue);

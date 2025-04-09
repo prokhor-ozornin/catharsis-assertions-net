@@ -19,8 +19,8 @@ public sealed class StreamExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => StreamExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((Stream) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => StreamExpectations.Length(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Stream) null).Expect().Length(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, Stream.Null, 0);
       Validate(false, Stream.Null, int.MinValue);
@@ -72,8 +72,8 @@ public sealed class StreamExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => StreamExpectations.Position(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((Stream) null).Expect().Position(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => StreamExpectations.Position(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Stream) null).Expect().Position(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(false, Stream.Null, int.MinValue);
       Validate(false, Stream.Null, int.MaxValue);

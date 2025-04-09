@@ -263,7 +263,7 @@ public sealed class DateTimeOffsetExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateTimeOffsetExpectations.Offset(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateTimeOffsetExpectations.Offset(null, TimeSpan.Zero)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {

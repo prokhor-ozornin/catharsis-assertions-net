@@ -19,7 +19,7 @@ public sealed class TimeOnlyExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeOnlyExpectations.Hour(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => TimeOnlyExpectations.Hour(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
@@ -41,7 +41,7 @@ public sealed class TimeOnlyExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeOnlyExpectations.Minute(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => TimeOnlyExpectations.Minute(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
@@ -63,7 +63,7 @@ public sealed class TimeOnlyExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeOnlyExpectations.Second(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => TimeOnlyExpectations.Second(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
@@ -85,7 +85,7 @@ public sealed class TimeOnlyExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => TimeOnlyExpectations.Millisecond(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => TimeOnlyExpectations.Millisecond(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {

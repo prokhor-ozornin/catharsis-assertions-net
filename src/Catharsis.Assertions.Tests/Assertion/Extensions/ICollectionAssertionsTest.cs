@@ -18,8 +18,8 @@ public sealed class ICollectionAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => ICollectionAssertions.Count(null, Array.Empty<object>(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.Count<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+      AssertionExtensions.Should(() => ICollectionAssertions.Count(null, Array.Empty<object>(), 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Count<object>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
       Validate(true, Array.Empty<object>(), 0);
       Validate(false, Array.Empty<object>(), int.MinValue);

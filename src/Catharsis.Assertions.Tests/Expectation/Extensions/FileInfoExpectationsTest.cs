@@ -19,8 +19,8 @@ public sealed class FileInfoExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((FileInfo) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => FileInfoExpectations.Length(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((FileInfo) null).Expect().Length(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Attributes.Random().File().TryFinallyDelete(file =>
       {

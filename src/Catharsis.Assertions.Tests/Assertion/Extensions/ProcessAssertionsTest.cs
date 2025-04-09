@@ -52,7 +52,7 @@ public sealed class ProcessAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => Assert.To.ExitCode(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("process");
+      AssertionExtensions.Should(() => Assert.To.ExitCode(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("process");
       
       AssertionExtensions.Should(() => Assert.To.ExitCode(Process.GetCurrentProcess(), 0, "error")).ThrowExactly<InvalidOperationException>();
 

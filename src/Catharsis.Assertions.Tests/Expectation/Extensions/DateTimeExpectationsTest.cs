@@ -65,7 +65,7 @@ public sealed class DateTimeExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateTimeExpectations.DayOfYear(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateTimeExpectations.DayOfYear(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
@@ -87,7 +87,7 @@ public sealed class DateTimeExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateTimeExpectations.Year(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateTimeExpectations.Year(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
@@ -109,7 +109,7 @@ public sealed class DateTimeExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateTimeExpectations.Month(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateTimeExpectations.Month(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
@@ -131,7 +131,7 @@ public sealed class DateTimeExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateTimeExpectations.Month(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateTimeExpectations.Month(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
@@ -153,7 +153,7 @@ public sealed class DateTimeExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateTimeExpectations.Hour(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateTimeExpectations.Hour(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
@@ -175,7 +175,7 @@ public sealed class DateTimeExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateTimeExpectations.Minute(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateTimeExpectations.Minute(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
@@ -197,7 +197,7 @@ public sealed class DateTimeExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateTimeExpectations.Second(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateTimeExpectations.Second(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {
@@ -219,7 +219,7 @@ public sealed class DateTimeExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DateTimeExpectations.Millisecond(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => DateTimeExpectations.Millisecond(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       new[] { DateTime.MinValue, DateTime.MaxValue, DateTime.Now, DateTime.Today }.ForEach(date =>
       {

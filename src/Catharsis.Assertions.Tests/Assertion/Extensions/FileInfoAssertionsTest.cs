@@ -19,8 +19,8 @@ public sealed class FileInfoAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoAssertions.Length(null, Attributes.Random().FileName().ToFile(), default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => FileInfoAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
+      AssertionExtensions.Should(() => FileInfoAssertions.Length(null, Attributes.Random().FileName().ToFile(), 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => FileInfoAssertions.Length(Assert.To, null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
       Attributes.Random().File().TryFinallyDelete(file =>
       {

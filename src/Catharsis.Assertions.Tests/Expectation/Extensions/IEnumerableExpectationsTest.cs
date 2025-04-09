@@ -19,8 +19,8 @@ public sealed class IEnumerableExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableExpectations.Count<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Count(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => IEnumerableExpectations.Count<object>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().Count(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, Enumerable.Empty<object>(), 0);
       Validate(false, Enumerable.Empty<object>(), int.MinValue);
@@ -197,8 +197,8 @@ public sealed class IEnumerableExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IEnumerableExpectations.ElementAt(null, default, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ElementAt(default, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => IEnumerableExpectations.ElementAt(null, 0, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((IEnumerable<object>) null).Expect().ElementAt(0, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() =>  Enumerable.Empty<object>().Expect().ElementAt(0, new object())).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("index");
       AssertionExtensions.Should(() => Attributes.RandomSequence().Expect().ElementAt(-1, new object())).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("index");
       AssertionExtensions.Should(() => Attributes.RandomSequence().Expect().ElementAt(Attributes.RandomSequence().Count(), new object())).ThrowExactly<ArgumentOutOfRangeException>().WithParameterName("index");

@@ -20,8 +20,8 @@ public sealed class StringBuilderExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => StringBuilderExpectations.Length(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Length(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => StringBuilderExpectations.Length(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Length(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, new StringBuilder(), 0);
       Validate(false, new StringBuilder(), int.MinValue);

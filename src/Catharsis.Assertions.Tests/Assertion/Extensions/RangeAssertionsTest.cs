@@ -18,7 +18,7 @@ public sealed class RangeAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => RangeAssertions.StartIndex(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => RangeAssertions.StartIndex(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       Validate(true, ..0, 0);
       Validate(true, .., 0);
@@ -49,7 +49,7 @@ public sealed class RangeAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => RangeAssertions.EndIndex(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => RangeAssertions.EndIndex(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       Validate(true, ..0, 0);
       Validate(true, .., 0);

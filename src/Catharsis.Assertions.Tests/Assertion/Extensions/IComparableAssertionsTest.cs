@@ -18,7 +18,7 @@ public sealed class IComparableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableAssertions.Positive<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IComparableAssertions.Positive<int>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     }
 
     return;
@@ -44,7 +44,7 @@ public sealed class IComparableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableAssertions.Negative<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IComparableAssertions.Negative<int>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     }
 
     return;
@@ -70,7 +70,7 @@ public sealed class IComparableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableAssertions.Zero<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IComparableAssertions.Zero<int>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     }
 
     return;
@@ -96,7 +96,7 @@ public sealed class IComparableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableAssertions.Greater<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IComparableAssertions.Greater<int>(null, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     }
 
     return;
@@ -122,7 +122,7 @@ public sealed class IComparableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableAssertions.GreaterOrEqual<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IComparableAssertions.GreaterOrEqual<int>(null, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     }
 
     return;
@@ -148,7 +148,7 @@ public sealed class IComparableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableAssertions.Lesser<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IComparableAssertions.Lesser<int>(null, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     }
 
     return;
@@ -174,7 +174,7 @@ public sealed class IComparableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableAssertions.LesserOrEqual<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IComparableAssertions.LesserOrEqual<int>(null, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     }
 
     return;
@@ -200,7 +200,7 @@ public sealed class IComparableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableAssertions.InRange<int>(null, default, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IComparableAssertions.InRange<int>(null, 0, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     }
 
     return;
@@ -226,7 +226,7 @@ public sealed class IComparableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableAssertions.OutOfRange<int>(null, default, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => IComparableAssertions.OutOfRange<int>(null, 0, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
     }
 
     return;

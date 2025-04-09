@@ -18,7 +18,7 @@ public sealed class NullableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => NullableAssertions.HasValue<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => NullableAssertions.HasValue<int>(null, null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       Validate(true, (int?) 0);
       Validate(false, (int?) null);
@@ -47,7 +47,7 @@ public sealed class NullableAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => NullableAssertions.Value(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => NullableAssertions.Value(null, null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
       Validate(true, 0, 0);
       Validate(true, null, 0);

@@ -99,7 +99,7 @@ public sealed class IComparableExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableExpectations.Greater<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => IComparableExpectations.Greater<int>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       0.Expect().Greater(int.MinValue).Result.Should().BeTrue();
       0.Expect().Greater(0).Result.Should().BeFalse();
@@ -125,7 +125,7 @@ public sealed class IComparableExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableExpectations.GreaterOrEqual<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => IComparableExpectations.GreaterOrEqual<int>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       0.Expect().GreaterOrEqual(int.MinValue).Result.Should().BeTrue();
       0.Expect().GreaterOrEqual(0).Result.Should().BeTrue();
@@ -152,7 +152,7 @@ public sealed class IComparableExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableExpectations.Lesser<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => IComparableExpectations.Lesser<int>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       0.Expect().Lesser(int.MinValue).Result.Should().BeFalse();
       0.Expect().Lesser(0).Result.Should().BeFalse();
@@ -179,7 +179,7 @@ public sealed class IComparableExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableExpectations.Lesser<int>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => IComparableExpectations.Lesser<int>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       0.Expect().LesserOrEqual(int.MinValue).Result.Should().BeFalse();
       0.Expect().LesserOrEqual(0).Result.Should().BeTrue();
@@ -206,8 +206,8 @@ public sealed class IComparableExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableExpectations.InRange<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => IComparableExpectations.InRange<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => IComparableExpectations.InRange<int>(null, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => IComparableExpectations.InRange<int>(null, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       0.Expect().InRange(0, 0).Result.Should().BeTrue();
       0.Expect().InRange(int.MinValue, 0).Result.Should().BeTrue();
@@ -235,7 +235,7 @@ public sealed class IComparableExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => IComparableExpectations.OutOfRange<int>(null, default, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => IComparableExpectations.OutOfRange<int>(null, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
       0.Expect().OutOfRange(0, 0).Result.Should().BeFalse();
       0.Expect().OutOfRange(int.MinValue, 0).Result.Should().BeFalse();

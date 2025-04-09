@@ -20,8 +20,8 @@ public sealed class NameValueCollectionAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => NameValueCollectionAssertions.Count(null, [], default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => Assert.To.Count(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+      AssertionExtensions.Should(() => NameValueCollectionAssertions.Count(null, [], 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => Assert.To.Count(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
       Validate(true, [], 0);
       Validate(false, [], int.MinValue);

@@ -19,7 +19,7 @@ public sealed class SecureStringAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => SecureStringAssertions.Length(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
+      AssertionExtensions.Should(() => SecureStringAssertions.Length(Assert.To, null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
       Validate(true, new SecureString(), 0);
       Validate(false, new SecureString(), int.MinValue);
@@ -32,7 +32,7 @@ public sealed class SecureStringAssertionsTest : UnitTest
     {
       using (secure)
       {
-        AssertionExtensions.Should(() => SecureStringAssertions.Length(null, secure, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+        AssertionExtensions.Should(() => SecureStringAssertions.Length(null, secure, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
         if (result)
         {

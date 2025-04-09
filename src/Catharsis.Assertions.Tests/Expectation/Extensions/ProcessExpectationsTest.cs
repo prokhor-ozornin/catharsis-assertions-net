@@ -42,8 +42,8 @@ public sealed class ProcessExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => ProcessExpectations.ExitCode(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((Process) null).Expect().ExitCode(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => ProcessExpectations.ExitCode(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((Process) null).Expect().ExitCode(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       AssertionExtensions.Should(() => Process.GetCurrentProcess().Expect().ExitCode(0)).ThrowExactly<InvalidOperationException>();
 
