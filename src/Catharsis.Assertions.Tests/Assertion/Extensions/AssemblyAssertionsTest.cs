@@ -75,6 +75,8 @@ public sealed class AssemblyAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => AssemblyAssertions.Dynamic(null, Assembly.GetExecutingAssembly())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
+
+      throw new NotImplementedException();
     }
 
     return;
