@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="ThreadAssertions"/>.</para>
 /// </summary>
-public sealed class ThreadAssertionsTest : UnitTest
+public sealed class ThreadAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="ThreadAssertions.State(IAssertion, Thread, ThreadState, string)"/> method.</para>

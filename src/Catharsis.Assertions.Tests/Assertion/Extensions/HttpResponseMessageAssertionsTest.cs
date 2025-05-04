@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="HttpResponseMessageAssertions"/>.</para>
 /// </summary>
-public sealed class HttpResponseMessageAssertionsTest : UnitTest
+public sealed class HttpResponseMessageAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="HttpResponseMessageAssertions.Successful(IAssertion, HttpResponseMessage, string)"/> method.</para>
@@ -94,7 +93,7 @@ public sealed class HttpResponseMessageAssertionsTest : UnitTest
       AssertionExtensions.Should(() => Assert.To.Header(null, "name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("response");
 
       Validate(false, new HttpResponseMessage().With(response => response.Headers.Add("connection", (string) null)), "connection", null);
-      Validate(false, new HttpResponseMessage().With(response => response.Headers.Add("connection", Enumerable.Empty<string>())), "connection", null);
+      Validate(false, new HttpResponseMessage().With(response => response.Headers.Add("connection", [])), "connection", null);
 
       Validate(true, new HttpResponseMessage().With(response => response.Headers.With(headers =>
       {

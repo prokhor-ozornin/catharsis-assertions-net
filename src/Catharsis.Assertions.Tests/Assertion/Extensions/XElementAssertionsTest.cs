@@ -1,6 +1,6 @@
-﻿using System.Text;
+﻿using AutoFixture;
+using System.Text;
 using System.Xml.Linq;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -11,7 +11,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XElementAssertions"/>.</para>
 /// </summary>
-public sealed class XElementAssertionsTest : UnitTest
+public sealed class XElementAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="XElementAssertions.Attribute(IAssertion, XElement, XName, string, string)"/> method.</para>
@@ -25,7 +25,7 @@ public sealed class XElementAssertionsTest : UnitTest
       AssertionExtensions.Should(() => XElementAssertions.Attribute(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("element");
       AssertionExtensions.Should(() => Assert.To.Attribute(new XElement("root"), null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Validate(false, new XElement("root"), Attributes.RandomString());
+      Validate(false, new XElement("root"), Fixture.Create<string>());
 
       new XElement("root").With(element =>
       {

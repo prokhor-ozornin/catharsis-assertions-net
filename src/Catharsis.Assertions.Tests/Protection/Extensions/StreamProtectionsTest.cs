@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StreamProtections"/>.</para>
 /// </summary>
-public sealed class StreamProtectionsTest : UnitTest
+public sealed class StreamProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="StreamProtections.Empty{TStream}(IProtection, TStream, string)"/> method.</para>
@@ -21,7 +20,7 @@ public sealed class StreamProtectionsTest : UnitTest
       AssertionExtensions.Should(() => StreamProtections.Empty(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Attributes.RandomStream());
+      Validate(true, RandomStream);
       Validate(false, Stream.Null);
     }
 

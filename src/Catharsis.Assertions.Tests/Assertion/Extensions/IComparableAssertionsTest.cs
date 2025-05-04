@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="IComparableAssertions"/>.</para>
 /// </summary>
-public sealed class IComparableAssertionsTest : UnitTest
+public sealed class IComparableAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="IComparableAssertions.Positive{T}(IAssertion, T, string)"/> method.</para>

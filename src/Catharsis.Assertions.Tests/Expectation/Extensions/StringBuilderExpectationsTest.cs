@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StringBuilderExpectations"/>.</para>
 /// </summary>
-public sealed class StringBuilderExpectationsTest : UnitTest
+public sealed class StringBuilderExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="StringBuilderExpectations.Length(IExpectation{StringBuilder}, int)"/> method.</para>

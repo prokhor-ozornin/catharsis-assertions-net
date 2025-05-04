@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
 using FluentAssertions.Execution;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="ObjectExtensions"/>.</para>
 /// </summary>
-public sealed class ObjectExtensionsTest : UnitTest
+public sealed class ObjectExtensionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="ObjectExtensions.Expect{T}(T)"/> method.</para>
@@ -19,7 +18,7 @@ public sealed class ObjectExtensionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      Validate((object) null);
+      Validate<object>(null);
       Validate(new object());
     }
 

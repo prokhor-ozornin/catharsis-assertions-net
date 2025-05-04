@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="IEnumerableProtections"/>.</para>
 /// </summary>
-public sealed class IEnumerableProtectionsTest : UnitTest
+public sealed class IEnumerableProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="IEnumerableProtections.Empty{T}(IProtection, IEnumerable{T}, string)"/> method.</para>
@@ -21,7 +20,7 @@ public sealed class IEnumerableProtectionsTest : UnitTest
       AssertionExtensions.Should(() => IEnumerableProtections.Empty(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((IEnumerable<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-      Validate(true, Attributes.RandomSequence());
+      Validate(true, RandomSequence);
       Validate(false, Enumerable.Empty<object>());
     }
 

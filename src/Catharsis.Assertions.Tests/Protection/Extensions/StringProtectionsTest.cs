@@ -1,5 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using Catharsis.Commons;
+﻿using AutoFixture;
+using System.Text.RegularExpressions;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +10,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StringProtections"/>.</para>
 /// </summary>
-public sealed class StringProtectionsTest : UnitTest
+public sealed class StringProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="StringProtections.Empty(IProtection, string, string)"/> method.</para>
@@ -23,7 +23,7 @@ public sealed class StringProtectionsTest : UnitTest
       AssertionExtensions.Should(() => StringProtections.Empty(null, string.Empty)) .ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((string) null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, Attributes.RandomString());
+      Validate(true, Fixture.Create<string>());
       Validate(false, string.Empty);
     }
 
@@ -53,7 +53,7 @@ public sealed class StringProtectionsTest : UnitTest
       AssertionExtensions.Should(() => StringProtections.WhiteSpace(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, Attributes.RandomString());
+      Validate(true, Fixture.Create<string>());
       Validate(false, string.Empty);
       Validate(false, "\r\n\t");
     }
@@ -86,10 +86,10 @@ public sealed class StringProtectionsTest : UnitTest
       AssertionExtensions.Should(() => Protect.From.Match(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
 
       Validate(true, string.Empty, "anything".ToRegex());
-      Validate(true, Attributes.Random().Letters(byte.MaxValue), "[0-9]".ToRegex());
+      Validate(true, Random.Letters(byte.MaxValue), "[0-9]".ToRegex());
       
       Validate(false, string.Empty, string.Empty.ToRegex());
-      Validate(false, Attributes.Random().Digits(byte.MaxValue), "[0-9]".ToRegex());
+      Validate(false, Random.Digits(byte.MaxValue), "[0-9]".ToRegex());
     }
 
     return;

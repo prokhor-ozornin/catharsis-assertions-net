@@ -1,5 +1,5 @@
-﻿using System.Net;
-using Catharsis.Commons;
+﻿using AutoFixture;
+using System.Net;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +10,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="IPAddressAssertions"/>.</para>
 /// </summary>
-public sealed class IPAddressAssertionsTest : UnitTest
+public sealed class IPAddressAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="IPAddressAssertions.Ip4(IAssertion, IPAddress, string)"/> method.</para>
@@ -27,12 +27,12 @@ public sealed class IPAddressAssertionsTest : UnitTest
       Validate(true, IPAddress.Broadcast);
       Validate(true, IPAddress.Loopback);
       Validate(true, IPAddress.None);
-      Validate(true, Attributes.Random().IpAddress());
+      Validate(true, Random.IpAddress());
 
       Validate(false, IPAddress.IPv6Any);
       Validate(false, IPAddress.IPv6Loopback);
       Validate(false, IPAddress.IPv6None);
-      Validate(false, Attributes.Random().IpV6Address());
+      Validate(false, Random.IpV6Address());
     }
 
     return;
@@ -64,13 +64,13 @@ public sealed class IPAddressAssertionsTest : UnitTest
       Validate(true, IPAddress.IPv6Any);
       Validate(true, IPAddress.IPv6Loopback);
       Validate(true, IPAddress.IPv6None);
-      Validate(true, Attributes.Random().IpV6Address());
+      Validate(true, Random.IpV6Address());
 
       Validate(false, IPAddress.Any);
       Validate(false, IPAddress.Broadcast);
       Validate(false, IPAddress.Loopback);
       Validate(false, IPAddress.None);
-      Validate(false, Attributes.Random().IpAddress());
+      Validate(false, Random.IpAddress());
     }
 
     return;

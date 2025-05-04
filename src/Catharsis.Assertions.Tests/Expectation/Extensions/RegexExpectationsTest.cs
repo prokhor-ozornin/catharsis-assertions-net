@@ -1,5 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using Catharsis.Commons;
+﻿using AutoFixture;
+using System.Text.RegularExpressions;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +10,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="RegexExpectations"/>.</para>
 /// </summary>
-public sealed class RegexExpectationsTest : UnitTest
+public sealed class RegexExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="RegexExpectations.Match(IExpectation{Regex}, string)"/> method.</para>
@@ -25,9 +25,9 @@ public sealed class RegexExpectationsTest : UnitTest
       AssertionExtensions.Should(() => string.Empty.ToRegex().Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
       Validate(true, string.Empty.ToRegex(), string.Empty);
-      Validate(true, "[0-9]".ToRegex(), Attributes.Random().Digits(byte.MaxValue));
+      Validate(true, "[0-9]".ToRegex(), Random.Digits(byte.MaxValue));
       Validate(false, char.MinValue.ToString().ToRegex(), string.Empty);
-      Validate(false, "[0-9]".ToRegex(), Attributes.Random().Letters(byte.MaxValue));
+      Validate(false, "[0-9]".ToRegex(), Random.Letters(byte.MaxValue));
     }
 
     return;

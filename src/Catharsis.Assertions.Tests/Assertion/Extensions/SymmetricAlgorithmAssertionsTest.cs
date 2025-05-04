@@ -1,5 +1,4 @@
 ﻿using System.Security.Cryptography;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="SymmetricAlgorithmAssertions"/>.</para>
 /// </summary>
-public sealed class SymmetricAlgorithmAssertionsTest : UnitTest
+public sealed class SymmetricAlgorithmAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="SymmetricAlgorithmAssertions.BlockSize(IAssertion, SymmetricAlgorithm, int, string)"/> method.</para>

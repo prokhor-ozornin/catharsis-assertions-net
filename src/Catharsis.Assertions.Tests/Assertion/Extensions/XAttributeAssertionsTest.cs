@@ -1,5 +1,4 @@
 ﻿using System.Xml.Linq;
-using Catharsis.Commons;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XAttributeAssertions"/>.</para>
 /// </summary>
-public sealed class XAttributeAssertionsTest : UnitTest
+public sealed class XAttributeAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="XAttributeAssertions.Name(IAssertion, XAttribute, XName, string)"/> method.</para>

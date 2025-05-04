@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="DirectoryInfoExpectations"/>.</para>
 /// </summary>
-public sealed class DirectoryInfoExpectationsTest : UnitTest
+public sealed class DirectoryInfoExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="DirectoryInfoExpectations.Empty(IExpectation{DirectoryInfo})"/> method.</para>
@@ -22,17 +21,17 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => DirectoryInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.Random().Directory().TryFinallyDelete(directory => Validate(true, directory));
+      Random.Directory().TryFinallyDelete(directory => Validate(true, directory));
 
-      Attributes.Random().Directory().TryFinallyDelete(directory =>
+      Random.Directory().TryFinallyDelete(directory =>
       {
-        Attributes.Random().File(directory);
+        Random.File(directory);
         Validate(false, directory);
       });
 
-      Attributes.Random().Directory().TryFinallyDelete(directory =>
+      Random.Directory().TryFinallyDelete(directory =>
       {
-        Attributes.Random().Directory(directory);
+        Random.Directory(directory);
         Validate(false, directory);
       });
     }
@@ -50,11 +49,11 @@ public sealed class DirectoryInfoExpectationsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DirectoryInfoExpectations.InDirectory(null, Attributes.Random().DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().InDirectory(Attributes.Random().DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      AssertionExtensions.Should(() => Attributes.Random().DirectoryName().ToDirectory().Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
+      AssertionExtensions.Should(() => DirectoryInfoExpectations.InDirectory(null, Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().InDirectory(Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => Random.DirectoryName().ToDirectory().Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
 
-      Attributes.Random().Directory().TryFinallyDelete(directory =>
+      Random.Directory().TryFinallyDelete(directory =>
       {
         Validate(true, directory, directory.Parent);
         Validate(false, directory, directory);

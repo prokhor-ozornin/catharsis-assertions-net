@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -11,7 +10,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="MemberInfoAssertions"/>.</para>
 /// </summary>
-public sealed class MemberInfoAssertionsTest : UnitTest
+public sealed class MemberInfoAssertionsTest : Test
 {
   [Description]
   private string Property => nameof(Property);

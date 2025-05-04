@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="NullableAssertions"/>.</para>
 /// </summary>
-public sealed class NullableAssertionsTest : UnitTest
+public sealed class NullableAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="NullableAssertions.HasValue{T}(IAssertion, Nullable{T}, string)"/> method.</para>

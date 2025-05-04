@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Catharsis.Commons;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="TypeAssertions"/>.</para>
 /// </summary>
-public sealed class TypeAssertionsTest : UnitTest
+public sealed class TypeAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="TypeAssertions.Abstract(IAssertion, Type, string)"/> method.</para>

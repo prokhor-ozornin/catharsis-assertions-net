@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="FileSystemInfoExpectations"/>.</para>
 /// </summary>
-public sealed class FileSystemInfoExpectationsTest : UnitTest
+public sealed class FileSystemInfoExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="FileSystemInfoExpectations.Exist(IExpectation{FileSystemInfo})"/> method.</para>
@@ -22,11 +21,11 @@ public sealed class FileSystemInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => FileSystemInfoExpectations.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Exist()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.Random().File().TryFinallyDelete(file => Validate(true, file));
-      Attributes.Random().Directory().TryFinallyDelete(directory => Validate(true, directory));
+      Random.File().TryFinallyDelete(file => Validate(true, file));
+      Random.Directory().TryFinallyDelete(directory => Validate(true, directory));
 
-      Validate(false, Attributes.Random().FileName().ToFile());
-      Validate(false, Attributes.Random().DirectoryName().ToDirectory());
+      Validate(false, Random.FileName().ToFile());
+      Validate(false, Random.DirectoryName().ToDirectory());
     }
 
     return;
@@ -45,7 +44,7 @@ public sealed class FileSystemInfoExpectationsTest : UnitTest
       AssertionExtensions.Should(() => FileSystemInfoExpectations.Attribute(null, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Attribute(FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Attributes.Random().File().TryFinallyDelete(file =>
+      Random.File().TryFinallyDelete(file =>
       {
         Validate(true, file.AsReadOnly(), FileAttributes.ReadOnly);
         Enum.GetValues<FileAttributes>().ForEach(attribute => Validate((file.Attributes & attribute) == attribute, file, attribute));

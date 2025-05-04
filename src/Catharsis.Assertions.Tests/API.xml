@@ -2734,35 +2734,6 @@
               <para>Performs testing of <see cref="M:Catharsis.Assertions.ObjectExtensions.Expect``1(``0)"/> method.</para>
             </summary>
         </member>
-        <member name="T:Catharsis.Assertions.Tests.ITestAttributesExtensions">
-            <summary>
-              <para></para>
-            </summary>
-        </member>
-        <member name="M:Catharsis.Assertions.Tests.ITestAttributesExtensions.RandomString(Catharsis.Commons.ITestAttributes)">
-            <summary>
-              <para></para>
-            </summary>
-            <param name="attributes"></param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:Catharsis.Assertions.Tests.ITestAttributesExtensions.RandomSequence(Catharsis.Commons.ITestAttributes)">
-            <summary>
-              <para></para>
-            </summary>
-            <param name="attributes"></param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:Catharsis.Assertions.Tests.ITestAttributesExtensions.RandomStream(Catharsis.Commons.ITestAttributes)">
-            <summary>
-              <para></para>
-            </summary>
-            <param name="attributes"></param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
         <member name="T:Catharsis.Assertions.Tests.BinaryReaderProtectionsTest">
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.BinaryReaderProtections"/>.</para>

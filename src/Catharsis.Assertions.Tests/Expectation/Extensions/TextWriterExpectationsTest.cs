@@ -1,6 +1,5 @@
 ﻿using Catharsis.Extensions;
 using System.Globalization;
-using Catharsis.Commons;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="TextWriterExpectations"/>.</para>
 /// </summary>
-public sealed class TextWriterExpectationsTest : UnitTest
+public sealed class TextWriterExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="TextWriterExpectations.Format(IExpectation{TextWriter}, IFormatProvider)"/> method.</para>

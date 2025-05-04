@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Catharsis.Commons;
+﻿using AutoFixture;
+using System.Text;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +10,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StringBuilderProtections"/>.</para>
 /// </summary>
-public sealed class StringBuilderProtectionsTest : UnitTest
+public sealed class StringBuilderProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="StringBuilderProtections.Empty(IProtection, StringBuilder, string)"/> method.</para>
@@ -23,7 +23,7 @@ public sealed class StringBuilderProtectionsTest : UnitTest
       AssertionExtensions.Should(() => StringBuilderProtections.Empty(null, new StringBuilder())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((StringBuilder) null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
-      Validate(true, Attributes.RandomString().ToStringBuilder());
+      Validate(true, Fixture.Create<string>().ToStringBuilder());
       Validate(false, new StringBuilder());
     }
 

@@ -1,5 +1,4 @@
 ﻿using System.Xml.Linq;
-using Catharsis.Commons;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XDocumentProtections"/>.</para>
 /// </summary>
-public sealed class XDocumentProtectionsTest : UnitTest
+public sealed class XDocumentProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="XDocumentProtections.Empty(IProtection, XDocument, string)"/> method.</para>

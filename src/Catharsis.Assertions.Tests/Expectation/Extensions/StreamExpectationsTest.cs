@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
 using FluentAssertions.Execution;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StreamExpectations"/>.</para>
 /// </summary>
-public sealed class StreamExpectationsTest : UnitTest
+public sealed class StreamExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="StreamExpectations.Length(IExpectation{Stream}, long)"/> method.</para>
@@ -50,7 +49,7 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((Stream) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, Stream.Null);
-      Validate(false, Attributes.RandomStream());
+      Validate(false, RandomStream);
     }
 
     return;
@@ -103,8 +102,8 @@ public sealed class StreamExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((Stream) null).Expect().End()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, Stream.Null);
-      Validate(true, Attributes.Random().MemoryStream(short.MaxValue).MoveToEnd());
-      Validate(false, Attributes.Random().MemoryStream(short.MaxValue));
+      Validate(true, Random.MemoryStream(short.MaxValue).MoveToEnd());
+      Validate(false, Random.MemoryStream(short.MaxValue));
     }
 
     return;

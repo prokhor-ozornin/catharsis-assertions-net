@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 using Catharsis.Extensions;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="DateTimeOffsetAssertions"/>.</para>
 /// </summary>
-public sealed class DateTimeOffsetAssertionsTest : UnitTest
+public sealed class DateTimeOffsetAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="DateTimeOffsetAssertions.Past(IAssertion, DateTimeOffset, string)"/> method.</para>

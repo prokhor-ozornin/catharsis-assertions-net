@@ -1,5 +1,5 @@
-﻿using System.Xml.Linq;
-using Catharsis.Commons;
+﻿using AutoFixture;
+using System.Xml.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XDocumentAssertions"/>.</para>
 /// </summary>
-public sealed class XDocumentAssertionsTest : UnitTest
+public sealed class XDocumentAssertionsTest : Test
 {
   private XDocument Document { get; } = new();
 
@@ -56,7 +56,7 @@ public sealed class XDocumentAssertionsTest : UnitTest
 
       Validate(true, new XDocument(), null);
       Validate(true, new XDocument(new XElement("root")), "root");
-      Validate(false, new XDocument(new XElement("root")), Attributes.RandomString());
+      Validate(false, new XDocument(new XElement("root")), Fixture.Create<string>());
     }
 
     return;

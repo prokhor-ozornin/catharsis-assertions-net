@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="BooleanAssertions"/>.</para>
 /// </summary>
-public sealed class BooleanAssertionsTest : UnitTest
+public sealed class BooleanAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="BooleanAssertions.True(IAssertion, bool?, string)"/> method.</para>

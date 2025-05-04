@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using System.Collections.Specialized;
-using Catharsis.Commons;
 using Xunit;
 using Catharsis.Extensions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="NameValueCollectionExpectations"/>.</para>
 /// </summary>
-public sealed class NameValueCollectionExpectationsTest : UnitTest
+public sealed class NameValueCollectionExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="NameValueCollectionExpectations.Count(IExpectation{NameValueCollection}, int)"/> method.</para>

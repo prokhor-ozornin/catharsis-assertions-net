@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Catharsis.Commons;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="TypeExpectations"/>.</para>
 /// </summary>
-public sealed class TypeExpectationsTest : UnitTest
+public sealed class TypeExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="TypeExpectations.Abstract(IExpectation{Type})"/> method.</para>

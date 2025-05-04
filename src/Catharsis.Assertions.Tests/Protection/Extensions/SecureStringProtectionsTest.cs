@@ -1,5 +1,4 @@
 ﻿using System.Security;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="SecureStringProtections"/>.</para>
 /// </summary>
-public sealed class SecureStringProtectionsTest : UnitTest
+public sealed class SecureStringProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="SecureStringProtections.Empty(IProtection, SecureString, string)"/> method.</para>

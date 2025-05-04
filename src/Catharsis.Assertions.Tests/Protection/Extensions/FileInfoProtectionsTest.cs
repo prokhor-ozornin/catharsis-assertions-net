@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="FileInfoProtections"/>.</para>
 /// </summary>
-public sealed class FileInfoProtectionsTest : UnitTest
+public sealed class FileInfoProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="FileInfoProtections.Empty(IProtection, FileInfo, string)"/> method.</para>
@@ -19,10 +18,10 @@ public sealed class FileInfoProtectionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoProtections.Empty(null, Attributes.Random().FileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => FileInfoProtections.Empty(null, Random.FileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((FileInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-      Attributes.Random().BinaryFile(short.MaxValue).TryFinallyDelete(file =>
+      Random.BinaryFile(short.MaxValue).TryFinallyDelete(file =>
       {
         Validate(true, file);
         Validate(false, file.Empty());

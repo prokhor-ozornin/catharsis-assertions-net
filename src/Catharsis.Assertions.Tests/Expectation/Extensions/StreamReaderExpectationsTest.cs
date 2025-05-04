@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StreamReaderExpectations"/>.</para>
 /// </summary>
-public sealed class StreamReaderExpectationsTest : UnitTest
+public sealed class StreamReaderExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="StreamReaderExpectations.Encoding(IExpectation{StreamReader}, Encoding)"/> method.</para>
@@ -50,8 +49,8 @@ public sealed class StreamReaderExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((StreamReader) null).Expect().End()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, Stream.Null.ToStreamReader());
-      Validate(true, Attributes.Random().MemoryStream(short.MaxValue).ToStreamReader().With(reader => reader.ReadToEnd()));
-      Validate(false, Attributes.Random().MemoryStream(short.MaxValue).ToStreamReader());
+      Validate(true, Random.MemoryStream(short.MaxValue).ToStreamReader().With(reader => reader.ReadToEnd()));
+      Validate(false, Random.MemoryStream(short.MaxValue).ToStreamReader());
     }
 
     return;

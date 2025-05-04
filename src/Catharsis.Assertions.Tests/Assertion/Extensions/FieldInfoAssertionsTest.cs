@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="FieldInfoAssertions"/>.</para>
 /// </summary>
-public sealed class FieldInfoAssertionsTest : UnitTest
+public sealed class FieldInfoAssertionsTest : Test
 {
   private FieldInfo Field { get; } = typeof(string).AnyField(nameof(string.Empty));
 

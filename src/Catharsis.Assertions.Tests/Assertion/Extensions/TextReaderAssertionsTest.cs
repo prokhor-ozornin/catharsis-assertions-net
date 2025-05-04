@@ -1,4 +1,4 @@
-﻿using Catharsis.Commons;
+﻿using AutoFixture;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -9,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="TextReaderAssertions"/>.</para>
 /// </summary>
-public sealed class TextReaderAssertionsTest : UnitTest
+public sealed class TextReaderAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="TextReaderAssertions.End(IAssertion, TextReader, string)"/> method.</para>
@@ -23,7 +23,7 @@ public sealed class TextReaderAssertionsTest : UnitTest
 
       Validate(true, Stream.Null.ToStreamReader());
 
-      Attributes.RandomString().ToStringReader().With(reader =>
+      Fixture.Create<string>().ToStringReader().With(reader =>
       {
         reader.ReadToEnd();
         Validate(true, reader);
@@ -31,7 +31,7 @@ public sealed class TextReaderAssertionsTest : UnitTest
 
       Validate(true, string.Empty.ToStringReader());
 
-      Attributes.RandomString().ToStringReader().With(reader =>
+      Fixture.Create<string>().ToStringReader().With(reader =>
       {
         reader.ReadToEnd();
         Validate(true, reader);

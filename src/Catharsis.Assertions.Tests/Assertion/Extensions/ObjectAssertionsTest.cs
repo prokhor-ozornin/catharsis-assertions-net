@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="ObjectAssertions"/>.</para>
 /// </summary>
-public sealed class ObjectAssertionsTest : UnitTest
+public sealed class ObjectAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="ObjectAssertions.Same{T}(IAssertion, T, object, string)"/> method.</para>
@@ -21,10 +20,10 @@ public sealed class ObjectAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectAssertions.Same(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, (object) null, null);
+      Validate<object>(true, null, null);
       new object().With(instance => Validate(true, instance, instance));
       Validate(false, new object(), null);
-      Validate(false, (object) null, new object());
+      Validate<object>(false, null, new object());
     }
 
     return;
@@ -52,14 +51,14 @@ public sealed class ObjectAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectAssertions.Equal(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, (object) null, null);
+      Validate<object>(true, null, null);
       new object().With(instance => Validate(true, instance, instance));
 
       Validate(true, 0, 0);
       Validate(true, DateTime.Today, DateTime.Today);
 
       Validate(false, new object(), null);
-      Validate(false, (object) null, new object());
+      Validate<object>(false, null, new object());
       Validate(false, Guid.NewGuid(), Guid.NewGuid());
     }
 
@@ -88,7 +87,7 @@ public sealed class ObjectAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectAssertions.Default(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, (object) null);
+      Validate<object>(true, null);
       Validate(false, new object());
 
       Validate(true, 0);
@@ -180,7 +179,7 @@ public sealed class ObjectAssertionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectAssertions.Null(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, (object) null);
+      Validate<object>(true, null);
       Validate(false, new object());
     }
 

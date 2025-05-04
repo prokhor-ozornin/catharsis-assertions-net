@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="HttpContentAssertions"/>.</para>
 /// </summary>
-public sealed class HttpContentAssertionsTest : UnitTest
+public sealed class HttpContentAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="HttpContentAssertions.ContainHeader(IAssertion, HttpContent, string, string)"/> method.</para>
@@ -19,9 +18,9 @@ public sealed class HttpContentAssertionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      Validate(true, string.Empty.ToStringContent().With(content => content.Headers.Add("header", new string[] { null })), "header");
+      Validate(true, string.Empty.ToStringContent().With(content => content.Headers.Add("header", [null])), "header");
       Validate(false, string.Empty.ToStringContent(), "header");
-      Validate(false, string.Empty.ToStringContent().With(content => content.Headers.Add("header", Enumerable.Empty<string>())), "header");
+      Validate(false, string.Empty.ToStringContent().With(content => content.Headers.Add("header", [])), "header");
     }
 
     return;

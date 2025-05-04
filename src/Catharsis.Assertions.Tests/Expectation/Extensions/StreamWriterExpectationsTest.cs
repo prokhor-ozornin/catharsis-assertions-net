@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StreamWriterExpectations"/>.</para>
 /// </summary>
-public sealed class StreamWriterExpectationsTest : UnitTest
+public sealed class StreamWriterExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="StreamWriterExpectations.Encoding(IExpectation{StreamWriter}, Encoding)"/> method.</para>

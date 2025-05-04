@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 using FluentAssertions.Execution;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="LazyProtections"/>.</para>
 /// </summary>
-public sealed class LazyProtectionsTest : UnitTest
+public sealed class LazyProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="LazyProtections.Null{T}(IProtection, Lazy{T}, string)"/> method.</para>

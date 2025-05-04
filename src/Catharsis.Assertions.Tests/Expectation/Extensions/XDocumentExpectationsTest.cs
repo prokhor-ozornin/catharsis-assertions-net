@@ -1,5 +1,5 @@
-﻿using System.Xml.Linq;
-using Catharsis.Commons;
+﻿using AutoFixture;
+using System.Xml.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XDocumentExpectations"/>.</para>
 /// </summary>
-public sealed class XDocumentExpectationsTest : UnitTest
+public sealed class XDocumentExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="XDocumentExpectations.Empty(IExpectation{XDocument})"/> method.</para>
@@ -44,7 +44,7 @@ public sealed class XDocumentExpectationsTest : UnitTest
 
       Validate(true, new XDocument(), null);
       Validate(true, new XDocument(new XElement("root")), "root");
-      Validate(false, new XDocument(new XElement("root")), Attributes.RandomString());
+      Validate(false, new XDocument(new XElement("root")), Fixture.Create<string>());
     }
 
     return;

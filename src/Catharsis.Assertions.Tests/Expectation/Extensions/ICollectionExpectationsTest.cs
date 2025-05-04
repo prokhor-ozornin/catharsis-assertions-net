@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 using FluentAssertions.Execution;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="ICollectionExpectations"/>.</para>
 /// </summary>
-public sealed class ICollectionExpectationsTest : UnitTest
+public sealed class ICollectionExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="ICollectionExpectations.Count{T}(IExpectation{ICollection{T}}, int)"/> method.</para>
@@ -43,7 +42,7 @@ public sealed class ICollectionExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, Array.Empty<object>());
-      Validate(false, Attributes.RandomSequence().ToArray());
+      Validate(false, RandomSequence.ToArray());
     }
 
     return;

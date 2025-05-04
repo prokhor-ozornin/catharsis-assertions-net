@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StreamWriterAssertions"/>.</para>
 /// </summary>
-public sealed class StreamWriterAssertionsTest : UnitTest
+public sealed class StreamWriterAssertionsTest : Test
 {
   private StreamWriter Writer { get; } = Stream.Null.ToStreamWriter();
 

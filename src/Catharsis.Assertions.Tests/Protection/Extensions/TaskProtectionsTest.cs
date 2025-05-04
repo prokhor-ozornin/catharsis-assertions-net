@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="TaskProtections"/>.</para>
 /// </summary>
-public sealed class TaskProtectionsTest : UnitTest
+public sealed class TaskProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
@@ -48,7 +47,7 @@ public sealed class TaskProtectionsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => TaskProtections.Status(null, Task.FromResult<object>(null), default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("protection").Await();
-      AssertionExtensions.Should(() => Protect.From.Status((Task<object>) null, default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("task").Await();
+      AssertionExtensions.Should(() => Protect.From.Status<object>(null, default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("task").Await();
 
       Validate(true, Task.FromResult<object>(null), TaskStatus.Canceled);
       Validate(false, Task.FromResult<object>(null), TaskStatus.RanToCompletion);

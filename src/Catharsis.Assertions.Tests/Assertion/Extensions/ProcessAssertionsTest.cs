@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="ProcessAssertions"/>.</para>
 /// </summary>
-public sealed class ProcessAssertionsTest : UnitTest
+public sealed class ProcessAssertionsTest : Test
 {
   private Process ShellProcess { get; } = "cmd.exe".ToProcess();
 

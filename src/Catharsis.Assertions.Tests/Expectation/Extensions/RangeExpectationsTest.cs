@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="RangeExpectations"/>.</para>
 /// </summary>
-public sealed class RangeExpectationsTest : UnitTest
+public sealed class RangeExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="RangeExpectations.StartIndex(IExpectation{Range}, int)"/> method.</para>

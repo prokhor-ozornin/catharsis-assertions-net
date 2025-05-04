@@ -1,5 +1,5 @@
-﻿using System.Xml;
-using Catharsis.Commons;
+﻿using AutoFixture;
+using System.Xml;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +10,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XmlDocumentAssertions"/>.</para>
 /// </summary>
-public sealed class XmlDocumentAssertionsTest : UnitTest
+public sealed class XmlDocumentAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="XmlDocumentAssertions.Element(IAssertion, XmlDocument, string, string, string)"/> method.</para>
@@ -36,7 +36,7 @@ public sealed class XmlDocumentAssertionsTest : UnitTest
         Validate(true, document, child.Name, child.NamespaceURI);
       });
 
-      Validate(false, new XmlDocument(), Attributes.RandomString());
+      Validate(false, new XmlDocument(), Fixture.Create<string>());
     }
 
     return;

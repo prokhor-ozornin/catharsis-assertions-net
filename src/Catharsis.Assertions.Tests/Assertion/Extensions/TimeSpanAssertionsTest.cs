@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 using Catharsis.Extensions;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="TimeSpanAssertions"/>.</para>
 /// </summary>
-public sealed class TimeSpanAssertionsTest : UnitTest
+public sealed class TimeSpanAssertionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="TimeSpanAssertions.Days(IAssertion, TimeSpan, int, string)"/> method.</para>

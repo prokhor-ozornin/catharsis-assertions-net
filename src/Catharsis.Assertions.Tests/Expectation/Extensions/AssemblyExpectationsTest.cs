@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿using AutoFixture;
+using System.Reflection;
 using System.Reflection.Emit;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -11,7 +11,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="AssemblyExpectations"/>.</para>
 /// </summary>
-public sealed class AssemblyExpectationsTest : UnitTest
+public sealed class AssemblyExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of following methods :</para>
@@ -58,7 +58,7 @@ public sealed class AssemblyExpectationsTest : UnitTest
       AssertionExtensions.Should(() => AssemblyExpectations.Dynamic(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Assembly) null).Expect().Dynamic()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Attributes.Random().Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect));
+      Validate(true, AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Random.Letters(byte.MaxValue)), AssemblyBuilderAccess.RunAndCollect));
       Validate(false, Assembly.GetExecutingAssembly());
     }
 

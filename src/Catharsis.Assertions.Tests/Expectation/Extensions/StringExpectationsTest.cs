@@ -1,5 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using Catharsis.Commons;
+﻿using AutoFixture;
+using System.Text.RegularExpressions;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +10,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StringExpectations"/>.</para>
 /// </summary>
-public sealed class StringExpectationsTest : UnitTest
+public sealed class StringExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="StringExpectations.Length(IExpectation{string}, int)"/> method.</para>
@@ -27,9 +27,9 @@ public sealed class StringExpectationsTest : UnitTest
       Validate(false, string.Empty, int.MinValue);
       Validate(false, string.Empty, int.MaxValue);
 
-      Attributes.RandomString().With(text => Validate(true, text, text.Length));
-      Validate(false, Attributes.RandomString(), int.MinValue);
-      Validate(false, Attributes.RandomString(), int.MaxValue);
+      Fixture.Create<string>().With(text => Validate(true, text, text.Length));
+      Validate(false, Fixture.Create<string>(), int.MinValue);
+      Validate(false, Fixture.Create<string>(), int.MaxValue);
     }
 
     return;
@@ -49,7 +49,7 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((string) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, string.Empty);
-      Validate(false, Attributes.RandomString());
+      Validate(false, Fixture.Create<string>());
     }
 
     return;
@@ -70,7 +70,7 @@ public sealed class StringExpectationsTest : UnitTest
 
       Validate(true, string.Empty);
       Validate(true, "\r\n\t");
-      Validate(false, Attributes.RandomString());
+      Validate(false, Fixture.Create<string>());
     }
 
     return;
@@ -90,8 +90,8 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((string) null).Expect().UpperCased()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, string.Empty);
-      Validate(true, Attributes.RandomString().ToUpperInvariant());
-      Validate(false, Attributes.RandomString().ToLowerInvariant());
+      Validate(true, Fixture.Create<string>().ToUpperInvariant());
+      Validate(false, Fixture.Create<string>().ToLowerInvariant());
     }
 
     return;
@@ -111,8 +111,8 @@ public sealed class StringExpectationsTest : UnitTest
       AssertionExtensions.Should(() => ((string) null).Expect().LowerCased()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
       Validate(true, string.Empty);
-      Validate(true, Attributes.RandomString().ToLowerInvariant());
-      Validate(false, Attributes.RandomString().ToUpperInvariant());
+      Validate(true, Fixture.Create<string>().ToLowerInvariant());
+      Validate(false, Fixture.Create<string>().ToUpperInvariant());
     }
 
     return;
@@ -136,10 +136,10 @@ public sealed class StringExpectationsTest : UnitTest
       Validate(true, string.Empty, char.MinValue.ToString());
       Validate(false, string.Empty, char.MaxValue.ToString());
 
-      Validate(true, Attributes.RandomString(), string.Empty);
-      Attributes.RandomString().With(text => Validate(true, text, text));
-      Attributes.RandomString().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
-      Attributes.RandomString().With(text => Validate(false, text, text.ToUpperInvariant()));
+      Validate(true, Fixture.Create<string>(), string.Empty);
+      Fixture.Create<string>().With(text => Validate(true, text, text));
+      Fixture.Create<string>().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Fixture.Create<string>().With(text => Validate(false, text, text.ToUpperInvariant()));
     }
 
     return;
@@ -163,10 +163,10 @@ public sealed class StringExpectationsTest : UnitTest
       Validate(true, string.Empty, char.MinValue.ToString());
       Validate(false, string.Empty, char.MaxValue.ToString());
 
-      Validate(true, Attributes.RandomString(), string.Empty);
-      Attributes.RandomString().With(text => Validate(true, text, text));
-      Attributes.RandomString().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
-      Attributes.RandomString().With(text => Validate(false, text, text.ToUpperInvariant()));
+      Validate(true, Fixture.Create<string>(), string.Empty);
+      Fixture.Create<string>().With(text => Validate(true, text, text));
+      Fixture.Create<string>().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Fixture.Create<string>().With(text => Validate(false, text, text.ToUpperInvariant()));
     }
 
     return;
@@ -188,8 +188,8 @@ public sealed class StringExpectationsTest : UnitTest
 
       Validate(true, string.Empty, string.Empty.ToRegex());
       Validate(false, string.Empty, "anything".ToRegex());
-      Validate(true, Attributes.Random().Digits(byte.MaxValue), "[0-9]".ToRegex());
-      Validate(false, Attributes.Random().Letters(byte.MaxValue), "[0-9]".ToRegex());
+      Validate(true, Random.Digits(byte.MaxValue), "[0-9]".ToRegex());
+      Validate(false, Random.Letters(byte.MaxValue), "[0-9]".ToRegex());
     }
 
     return;

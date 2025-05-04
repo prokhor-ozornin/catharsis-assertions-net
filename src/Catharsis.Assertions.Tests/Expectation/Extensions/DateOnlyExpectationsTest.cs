@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 using Catharsis.Extensions;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="DateOnlyExpectations"/>.</para>
 /// </summary>
-public sealed class DateOnlyExpectationsTest : UnitTest
+public sealed class DateOnlyExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="DateOnlyExpectations.DayOfYear(IExpectation{DateOnly}, int)"/> method.</para>

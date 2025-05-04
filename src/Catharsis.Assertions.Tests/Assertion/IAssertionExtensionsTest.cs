@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="IAssertionExtensions"/>.</para>
 /// </summary>
-public sealed class IAssertionExtensionsTest : UnitTest
+public sealed class IAssertionExtensionsTest : Test
 {
   private IAssertion Assertion => Assert.To;
 

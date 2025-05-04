@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="DirectoryInfoProtections"/>.</para>
 /// </summary>
-public sealed class DirectoryInfoProtectionsTest : UnitTest
+public sealed class DirectoryInfoProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="DirectoryInfoProtections.Empty(IProtection, DirectoryInfo, string)"/> method.</para>
@@ -19,22 +18,22 @@ public sealed class DirectoryInfoProtectionsTest : UnitTest
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DirectoryInfoProtections.Empty(null, Attributes.Random().DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => DirectoryInfoProtections.Empty(null, Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((DirectoryInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-      Attributes.Random().Directory().TryFinallyDelete(directory =>
+      Random.Directory().TryFinallyDelete(directory =>
       {
-        Attributes.Random().File(directory);
+        Random.File(directory);
         Validate(true, directory);
       });
 
-      Attributes.Random().Directory().TryFinallyDelete(directory =>
+      Random.Directory().TryFinallyDelete(directory =>
       {
-        Attributes.Random().Directory(directory);
+        Random.Directory(directory);
         Validate(true, directory);
       });
 
-      Attributes.Random().Directory().TryFinallyDelete(directory => Validate(false, directory));
+      Random.Directory().TryFinallyDelete(directory => Validate(false, directory));
     }
 
     return;

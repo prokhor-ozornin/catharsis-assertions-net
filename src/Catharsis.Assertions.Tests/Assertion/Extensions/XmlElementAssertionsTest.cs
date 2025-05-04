@@ -1,6 +1,6 @@
-﻿using System.Text;
+﻿using AutoFixture;
+using System.Text;
 using System.Xml;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -11,7 +11,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XmlElementAssertions"/>.</para>
 /// </summary>
-public sealed class XmlElementAssertionsTest : UnitTest
+public sealed class XmlElementAssertionsTest : Test
 {
   private XmlElement Element { get; } = new XmlDocument().CreateElement("root");
 
@@ -41,7 +41,7 @@ public sealed class XmlElementAssertionsTest : UnitTest
         });
       });
 
-      Validate(false, new XmlDocument().CreateElement("root"), Attributes.RandomString());
+      Validate(false, new XmlDocument().CreateElement("root"), Fixture.Create<string>());
     }
 
     return;

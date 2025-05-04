@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 using Catharsis.Extensions;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="ObjectProtections"/>.</para>
 /// </summary>
-public sealed class ObjectProtectionsTest : UnitTest
+public sealed class ObjectProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="ObjectProtections.Same{T}(IProtection, T, object, string)"/> method.</para>
@@ -21,10 +20,10 @@ public sealed class ObjectProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectProtections.Same(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(false, (object) null, null);
+      Validate<object>(false, null, null);
       new object().With(instance => Validate(false, instance, instance));
       Validate(true, new object(), null);
-      Validate(true, (object) null, new object());
+      Validate<object>(true, null, new object());
     }
 
     return;
@@ -106,14 +105,14 @@ public sealed class ObjectProtectionsTest : UnitTest
     {
       AssertionExtensions.Should(() => ObjectProtections.Equality(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(false, (object) null, null);
+      Validate<object>(false, null, null);
       new object().With(instance => Validate(false, instance, instance));
 
       Validate(false, 0, 0);
       Validate(false, DateTime.Today, DateTime.Today);
 
       Validate(true, new object(), null);
-      Validate(true, (object) null, new object());
+      Validate<object>(true, null, new object());
       Validate(true, Guid.NewGuid(), Guid.NewGuid());
     }
 
@@ -147,7 +146,7 @@ public sealed class ObjectProtectionsTest : UnitTest
       Validate(true, DateTime.Today);
       Validate(true, Guid.NewGuid());
 
-      Validate(false, (object) null);
+      Validate<object>(false, null);
       Validate(false, 0);
       Validate(false, DateTime.MinValue);
       Validate(false, Guid.Empty);
@@ -179,7 +178,7 @@ public sealed class ObjectProtectionsTest : UnitTest
       AssertionExtensions.Should(() => ObjectProtections.Null(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
       Validate(true, new object());
-      Validate(false, (object) null);
+      Validate<object>(false, null);
     }
 
     return;
@@ -213,7 +212,7 @@ public sealed class ObjectProtectionsTest : UnitTest
       AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("values");
 
       Validate<object>(false, Enumerable.Empty<object>(), [string.Empty, Enumerable.Empty<object>()]);
-      Validate<object>(true, Attributes.RandomSequence(), [string.Empty, Enumerable.Empty<object>()]);
+      Validate<object>(true, RandomSequence, [string.Empty, Enumerable.Empty<object>()]);
       Validate<object>(false, null, [string.Empty, null]);
 
       static void Validate<T>(bool result, T value, IEnumerable<T> values)
@@ -231,11 +230,11 @@ public sealed class ObjectProtectionsTest : UnitTest
 
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => ObjectProtections.AnyOf(null, new object(), null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => ObjectProtections.AnyOf(null, new object(), null, [])).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.AnyOf(new object(), "error", null)).ThrowExactly<ArgumentNullException>().WithParameterName("values");
 
       Validate<object>(false, Enumerable.Empty<object>(), string.Empty, Enumerable.Empty<object>());
-      Validate<object>(true, Attributes.RandomSequence(), string.Empty, Enumerable.Empty<object>());
+      Validate<object>(true, RandomSequence, string.Empty, Enumerable.Empty<object>());
       Validate<object>(false, null, string.Empty, null);
 
       static void Validate<T>(bool result, T value, params T[] values)

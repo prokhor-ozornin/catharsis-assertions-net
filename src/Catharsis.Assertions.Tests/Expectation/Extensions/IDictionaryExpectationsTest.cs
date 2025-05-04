@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="IDictionaryExpectations"/>.</para>
 /// </summary>
-public sealed class IDictionaryExpectationsTest : UnitTest
+public sealed class IDictionaryExpectationsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="IDictionaryExpectations.ContainKey{TKey, TValue}(IExpectation{IDictionary{TKey, TValue}}, TKey)"/> method.</para>

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Catharsis.Commons;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="MethodBaseAssertions"/>.</para>
 /// </summary>
-public class MethodBaseAssertionsTest : UnitTest
+public class MethodBaseAssertionsTest : Test
 {
   private MethodBase Method { get; } = typeof(object).AnyMethod(nameof(ToString));
 

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Catharsis.Commons;
 using Xunit;
 using Catharsis.Extensions;
 using FluentAssertions;
@@ -10,7 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="PropertyInfoAssertions"/>.</para>
 /// </summary>
-public sealed class PropertyInfoAssertionsTest : UnitTest
+public sealed class PropertyInfoAssertionsTest : Test
 {
   private string Field;
   private string WriteOnlyProperty

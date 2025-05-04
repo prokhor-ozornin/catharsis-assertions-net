@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -9,7 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="BinaryWriterProtections"/>.</para>
 /// </summary>
-public sealed class BinaryWriterProtectionsTest : UnitTest
+public sealed class BinaryWriterProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="BinaryWriterProtections.Empty(IProtection, BinaryWriter, string)"/> method.</para>
@@ -22,7 +21,7 @@ public sealed class BinaryWriterProtectionsTest : UnitTest
       Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => BinaryWriterProtections.Empty(null, writer)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
       AssertionExtensions.Should(() => Protect.From.Empty((BinaryWriter) null)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
-      Validate(true, Attributes.RandomStream().ToBinaryWriter());
+      Validate(true, RandomStream.ToBinaryWriter());
       Validate(false, Stream.Null.ToBinaryWriter());
     }
 

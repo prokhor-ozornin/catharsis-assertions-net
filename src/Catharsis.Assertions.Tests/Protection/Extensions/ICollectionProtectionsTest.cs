@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 using FluentAssertions.Execution;
 
@@ -8,7 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="ICollectionProtections"/>.</para>
 /// </summary>
-public sealed class ICollectionsProtectionsTest : UnitTest
+public sealed class ICollectionsProtectionsTest : Test
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="ICollectionProtections.Empty{T}(IProtection, ICollection{T}, string)"/> method.</para>
@@ -19,9 +18,9 @@ public sealed class ICollectionsProtectionsTest : UnitTest
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ICollectionProtections.Empty(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
-      AssertionExtensions.Should(() => Protect.From.Empty((ICollection<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
+      AssertionExtensions.Should(() => Protect.From.Empty<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-      Validate(true, Attributes.RandomSequence().ToArray());
+      Validate(true, RandomSequence.ToArray());
       Validate(false, Array.Empty<object>());
     }
 
