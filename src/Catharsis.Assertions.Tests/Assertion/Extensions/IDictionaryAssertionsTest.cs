@@ -21,13 +21,13 @@ public sealed class IDictionaryAssertionsTest : Test
       AssertionExtensions.Should(() => IDictionaryAssertions.ContainKey(null, new Dictionary<object, object>(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainKey<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
 
-      Validate(true, new Dictionary<object, object>().With(("id", null)), "id");
-      Validate(false, new Dictionary<object, object>(), new object());
+      Test(true, new Dictionary<object, object>().With(("id", null)), "id");
+      Test(false, new Dictionary<object, object>(), new object());
     }
 
     return;
 
-    static void Validate<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TKey key)
+    static void Test<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TKey key)
     {
       if (result)
       {
@@ -51,13 +51,13 @@ public sealed class IDictionaryAssertionsTest : Test
       AssertionExtensions.Should(() => IDictionaryAssertions.ContainValue(null, new Dictionary<object, object>(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainValue<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("dictionary");
 
-      Validate(true, new Dictionary<object, object>().With("id", null), null);
-      Validate(false, new Dictionary<object, object>(), null);
+      Test(true, new Dictionary<object, object>().With("id", null), null);
+      Test(false, new Dictionary<object, object>(), null);
     }
 
     return;
 
-    static void Validate<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TValue value, IEqualityComparer<TValue> comparer = null)
+    static void Test<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TValue value, IEqualityComparer<TValue> comparer = null)
     {
       if (result)
       {

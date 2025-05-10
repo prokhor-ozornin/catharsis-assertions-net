@@ -19,13 +19,13 @@ public sealed class NullableExpectationsTest : Test
     {
       AssertionExtensions.Should(() => NullableExpectations.HasValue<int>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, (int?) 0);
-      Validate(false, (int?) null);
+      Test(true, (int?) 0);
+      Test(false, (int?) null);
     }
 
     return;
 
-    static void Validate<T>(bool result, T? instance) where T : struct => instance.Expect().HasValue().Should().BeOfType<Expectation<T?>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, T? instance) where T : struct => instance.Expect().HasValue().Should().BeOfType<Expectation<T?>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -38,23 +38,23 @@ public sealed class NullableExpectationsTest : Test
     {
       AssertionExtensions.Should(() => NullableExpectations.Value(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, 0, 0);
-      Validate(true, null, 0);
-      Validate(false, null, int.MinValue);
-      Validate(false, null, int.MaxValue);
+      Test(true, 0, 0);
+      Test(true, null, 0);
+      Test(false, null, int.MinValue);
+      Test(false, null, int.MaxValue);
 
-      Validate(true, DateTime.MinValue, DateTime.MinValue);
-      Validate(true, DateTime.MaxValue, DateTime.MaxValue);
-      Validate(true, null, DateTime.MinValue);
-      Validate(false, null, DateTime.MaxValue);
+      Test(true, DateTime.MinValue, DateTime.MinValue);
+      Test(true, DateTime.MaxValue, DateTime.MaxValue);
+      Test(true, null, DateTime.MinValue);
+      Test(false, null, DateTime.MaxValue);
 
-      Validate(true, Guid.Empty, Guid.Empty);
-      Validate(true, null, Guid.Empty);
-      Validate(false, null, Guid.NewGuid());
+      Test(true, Guid.Empty, Guid.Empty);
+      Test(true, null, Guid.Empty);
+      Test(false, null, Guid.NewGuid());
     }
 
     return;
 
-    static void Validate<T>(bool result, T? instance, T value) where T : struct => instance.Expect().Value(value).Should().BeOfType<Expectation<T?>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, T? instance, T value) where T : struct => instance.Expect().Value(value).Should().BeOfType<Expectation<T?>>().Which.Result.Should().Be(result);
   }
 }

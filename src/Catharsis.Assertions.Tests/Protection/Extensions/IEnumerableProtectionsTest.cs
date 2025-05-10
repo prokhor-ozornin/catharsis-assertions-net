@@ -20,13 +20,13 @@ public sealed class IEnumerableProtectionsTest : Test
       AssertionExtensions.Should(() => IEnumerableProtections.Empty(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((IEnumerable<object>) null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-      Validate(true, RandomSequence);
-      Validate(false, Enumerable.Empty<object>());
+      Test(true, RandomSequence);
+      Test(false, Enumerable.Empty<object>());
     }
 
     return;
 
-    static void Validate<T>(bool result, IEnumerable<T> sequence)
+    static void Test<T>(bool result, IEnumerable<T> sequence)
     {
       if (result)
       {

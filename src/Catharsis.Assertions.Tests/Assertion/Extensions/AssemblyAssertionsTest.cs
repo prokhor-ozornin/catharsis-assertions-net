@@ -26,10 +26,10 @@ public sealed class AssemblyAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Define(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
       AssertionExtensions.Should(() => Assert.To.Define(Assembly.GetExecutingAssembly(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Validate(true, Assembly.GetAssembly(typeof(object)), typeof(object));
-      Validate(false, Assembly.GetExecutingAssembly(), typeof(object));
+      Test(true, Assembly.GetAssembly(typeof(object)), typeof(object));
+      Test(false, Assembly.GetExecutingAssembly(), typeof(object));
 
-      static void Validate(bool result, Assembly assembly, Type type)
+      static void Test(bool result, Assembly assembly, Type type)
       {
         if (result)
         {
@@ -47,10 +47,10 @@ public sealed class AssemblyAssertionsTest : Test
       AssertionExtensions.Should(() => AssemblyAssertions.Define<object>(null, Assembly.GetExecutingAssembly())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Define<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("assembly");
 
-      Validate<object>(true, Assembly.GetAssembly(typeof(object)));
-      Validate<object>(false, Assembly.GetExecutingAssembly());
+      Test<object>(true, Assembly.GetAssembly(typeof(object)));
+      Test<object>(false, Assembly.GetExecutingAssembly());
 
-      static void Validate<T>(bool result, Assembly assembly)
+      static void Test<T>(bool result, Assembly assembly)
       {
         if (result)
         {
@@ -80,7 +80,7 @@ public sealed class AssemblyAssertionsTest : Test
 
     return;
 
-    static void Validate(bool result, Assembly assembly)
+    static void Test(bool result, Assembly assembly)
     {
       if (result)
       {

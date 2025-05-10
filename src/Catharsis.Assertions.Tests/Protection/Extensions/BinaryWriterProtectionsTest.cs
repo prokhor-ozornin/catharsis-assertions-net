@@ -21,13 +21,13 @@ public sealed class BinaryWriterProtectionsTest : Test
       Stream.Null.ToBinaryWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => BinaryWriterProtections.Empty(null, writer)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
       AssertionExtensions.Should(() => Protect.From.Empty((BinaryWriter) null)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
-      Validate(true, RandomStream.ToBinaryWriter());
-      Validate(false, Stream.Null.ToBinaryWriter());
+      Test(true, RandomStream.ToBinaryWriter());
+      Test(false, Stream.Null.ToBinaryWriter());
     }
 
     return;
 
-    static void Validate(bool result, BinaryWriter writer)
+    static void Test(bool result, BinaryWriter writer)
     {
       using (writer)
       {

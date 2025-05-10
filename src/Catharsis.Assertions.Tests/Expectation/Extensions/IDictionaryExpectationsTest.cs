@@ -22,13 +22,13 @@ public sealed class IDictionaryExpectationsTest : Test
       AssertionExtensions.Should(() => ((IDictionary<object, object>) null).Expect().ContainKey(new object())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new Dictionary<object, object>().Expect().ContainKey(null)).ThrowExactly<ArgumentNullException>().WithParameterName("key");
 
-      Validate(true, new Dictionary<object, object>().With(("id", null)), "id");
-      Validate(false, new Dictionary<object, object>(), new object());
+      Test(true, new Dictionary<object, object>().With(("id", null)), "id");
+      Test(false, new Dictionary<object, object>(), new object());
     }
 
     return;
 
-    static void Validate<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TKey key) => dictionary.Expect().ContainKey(key).Should().BeOfType<Expectation<IDictionary<TKey, TValue>>>().Which.Result.Should().Be(result);
+    static void Test<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TKey key) => dictionary.Expect().ContainKey(key).Should().BeOfType<Expectation<IDictionary<TKey, TValue>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -42,12 +42,12 @@ public sealed class IDictionaryExpectationsTest : Test
       AssertionExtensions.Should(() => IDictionaryExpectations.ContainValue<object, object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((IDictionary<object, object>) null).Expect().ContainValue(new object())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, new Dictionary<object, object>().With("id", null), null);
-      Validate(false, new Dictionary<object, object>(), null);
+      Test(true, new Dictionary<object, object>().With("id", null), null);
+      Test(false, new Dictionary<object, object>(), null);
     }
 
     return;
 
-    static void Validate<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TValue value, IEqualityComparer<TValue> comparer = null) => dictionary.Expect().ContainValue(value, comparer).Should().BeOfType<Expectation<IDictionary<TKey, TValue>>>().Which.Result.Should().Be(result);
+    static void Test<TKey, TValue>(bool result, IDictionary<TKey, TValue> dictionary, TValue value, IEqualityComparer<TValue> comparer = null) => dictionary.Expect().ContainValue(value, comparer).Should().BeOfType<Expectation<IDictionary<TKey, TValue>>>().Which.Result.Should().Be(result);
   }
 }

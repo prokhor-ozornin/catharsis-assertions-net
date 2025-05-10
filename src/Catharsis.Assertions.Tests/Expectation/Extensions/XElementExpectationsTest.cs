@@ -25,7 +25,7 @@ public sealed class XElementExpectationsTest : Test
       AssertionExtensions.Should(() => ((XElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new XElement("root").Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Validate(false, new XElement("root"), Fixture.Create<string>());
+      Test(false, new XElement("root"), Fixture.Create<string>());
 
       new XElement("root").With(element =>
       {
@@ -33,15 +33,15 @@ public sealed class XElementExpectationsTest : Test
         {
           element.SetAttributeValue("encoding", encoding.Name);
 
-          Validate(true, element, "encoding");
-          Validate(true, element, "encoding", encoding.Name);
-          Validate(false, element, "encoding", string.Empty);
+          Test(true, element, "encoding");
+          Test(true, element, "encoding", encoding.Name);
+          Test(false, element, "encoding", string.Empty);
         });
       });
     }
 
     return;
 
-    static void Validate(bool result, XElement element, XName name, string value = null) => element.Expect().Attribute(name, value).Should().BeOfType<Expectation<XElement>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XElement element, XName name, string value = null) => element.Expect().Attribute(name, value).Should().BeOfType<Expectation<XElement>>().Which.Result.Should().Be(result);
   }
 }

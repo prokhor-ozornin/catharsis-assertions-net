@@ -21,14 +21,14 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => StreamAssertions.Length(null, Stream.Null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StreamAssertions.Length(Assert.To, null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Stream.Null, 0);
-      Validate(false, Stream.Null, int.MinValue);
-      Validate(false, Stream.Null, int.MaxValue);
+      Test(true, Stream.Null, 0);
+      Test(false, Stream.Null, int.MinValue);
+      Test(false, Stream.Null, int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, Stream stream, int length)
+    static void Test(bool result, Stream stream, int length)
     {
       using (stream)
       {
@@ -55,13 +55,13 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => StreamAssertions.Empty(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Empty((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Stream.Null);
-      Validate(false, RandomStream);
+      Test(true, Stream.Null);
+      Test(false, RandomStream);
     }
 
     return;
 
-    static void Validate(bool result, Stream stream)
+    static void Test(bool result, Stream stream)
     {
       using (stream)
       {
@@ -88,14 +88,14 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => StreamAssertions.Position(null, Stream.Null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Position(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(false, Stream.Null, int.MinValue);
-      Validate(false, Stream.Null, int.MaxValue);
-      Validate(true, Stream.Null, 0);
+      Test(false, Stream.Null, int.MinValue);
+      Test(false, Stream.Null, int.MaxValue);
+      Test(true, Stream.Null, 0);
     }
 
     return;
 
-    static void Validate(bool result, Stream stream, long position)
+    static void Test(bool result, Stream stream, long position)
     {
       using (stream)
       {
@@ -122,14 +122,14 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => StreamAssertions.End(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.End((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Stream.Null);
-      Validate(true, Random.MemoryStream(short.MaxValue).MoveToEnd());
-      Validate(false, Random.MemoryStream(short.MaxValue));
+      Test(true, Stream.Null);
+      Test(true, Random.MemoryStream(short.MaxValue).MoveToEnd());
+      Test(false, Random.MemoryStream(short.MaxValue));
     }
 
     return;
 
-    static void Validate(bool result, Stream stream)
+    static void Test(bool result, Stream stream)
     {
       using (stream)
       {
@@ -156,16 +156,16 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => StreamAssertions.Readable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Readable((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Stream.Null);
-      Validate(true, Stream.Null.AsReadOnly());
-      Validate(true, Stream.Null.AsReadOnlyForward());
-      Validate(false, Stream.Null.AsWriteOnly());
-      Validate(false, Stream.Null.AsWriteOnlyForward());
+      Test(true, Stream.Null);
+      Test(true, Stream.Null.AsReadOnly());
+      Test(true, Stream.Null.AsReadOnlyForward());
+      Test(false, Stream.Null.AsWriteOnly());
+      Test(false, Stream.Null.AsWriteOnlyForward());
     }
 
     return;
 
-    static void Validate(bool result, Stream stream)
+    static void Test(bool result, Stream stream)
     {
       using (stream)
       {
@@ -192,16 +192,16 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => StreamAssertions.Writable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Writable((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Stream.Null);
-      Validate(true, Stream.Null.AsWriteOnly());
-      Validate(true, Stream.Null.AsWriteOnlyForward());
-      Validate(false, Stream.Null.AsReadOnly());
-      Validate(false, Stream.Null.AsReadOnlyForward());
+      Test(true, Stream.Null);
+      Test(true, Stream.Null.AsWriteOnly());
+      Test(true, Stream.Null.AsWriteOnlyForward());
+      Test(false, Stream.Null.AsReadOnly());
+      Test(false, Stream.Null.AsReadOnlyForward());
     }
 
     return;
 
-    static void Validate(bool result, Stream stream)
+    static void Test(bool result, Stream stream)
     {
       using (stream)
       {
@@ -228,16 +228,16 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => StreamAssertions.Seekable(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Seekable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Stream.Null);
-      Validate(true, Stream.Null.AsReadOnly());
-      Validate(true, Stream.Null.AsWriteOnly());
-      Validate(false, Stream.Null.AsReadOnlyForward());
-      Validate(false, Stream.Null.AsWriteOnlyForward());
+      Test(true, Stream.Null);
+      Test(true, Stream.Null.AsReadOnly());
+      Test(true, Stream.Null.AsWriteOnly());
+      Test(false, Stream.Null.AsReadOnlyForward());
+      Test(false, Stream.Null.AsWriteOnlyForward());
     }
 
     return;
 
-    static void Validate(bool result, Stream stream)
+    static void Test(bool result, Stream stream)
     {
       using (stream)
       {
@@ -264,16 +264,16 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => StreamAssertions.ReadOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ReadOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Stream.Null.AsReadOnly());
-      Validate(true, Stream.Null.AsReadOnlyForward());
-      Validate(false, Stream.Null);
-      Validate(false, Stream.Null.AsWriteOnly());
-      Validate(false, Stream.Null.AsWriteOnlyForward());
+      Test(true, Stream.Null.AsReadOnly());
+      Test(true, Stream.Null.AsReadOnlyForward());
+      Test(false, Stream.Null);
+      Test(false, Stream.Null.AsWriteOnly());
+      Test(false, Stream.Null.AsWriteOnlyForward());
     }
 
     return;
 
-    static void Validate(bool result, Stream stream)
+    static void Test(bool result, Stream stream)
     {
       using (stream)
       {
@@ -300,16 +300,16 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => StreamAssertions.WriteOnly(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.WriteOnly((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, Stream.Null.AsWriteOnly());
-      Validate(true, Stream.Null.AsWriteOnlyForward());
-      Validate(false, Stream.Null);
-      Validate(false, Stream.Null.AsReadOnly());
-      Validate(false, Stream.Null.AsReadOnlyForward());
+      Test(true, Stream.Null.AsWriteOnly());
+      Test(true, Stream.Null.AsWriteOnlyForward());
+      Test(false, Stream.Null);
+      Test(false, Stream.Null.AsReadOnly());
+      Test(false, Stream.Null.AsReadOnlyForward());
     }
 
     return;
 
-    static void Validate(bool result, Stream stream)
+    static void Test(bool result, Stream stream)
     {
       using (stream)
       {

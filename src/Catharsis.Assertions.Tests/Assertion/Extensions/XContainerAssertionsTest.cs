@@ -25,14 +25,14 @@ public sealed class XContainerAssertionsTest : Test
 
       new XDocument(new XElement("parent", new XElement("child"))).With(container =>
       {
-        Validate(true, container, "parent");
-        Validate(false, container, "child");
+        Test(true, container, "parent");
+        Test(false, container, "child");
       });
     }
 
     return;
 
-    static void Validate(bool result, XContainer container, XName name)
+    static void Test(bool result, XContainer container, XName name)
     {
       if (result)
       {
@@ -56,13 +56,13 @@ public sealed class XContainerAssertionsTest : Test
       AssertionExtensions.Should(() => XContainerAssertions.Empty(null, new XDocument())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XContainerAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("container");
 
-      Validate(true, new XDocument());
-      Validate(false, new XDocument(new XElement("root")));
+      Test(true, new XDocument());
+      Test(false, new XDocument(new XElement("root")));
     }
 
     return;
 
-    static void Validate(bool result, XContainer container)
+    static void Test(bool result, XContainer container)
     {
       if (result)
       {

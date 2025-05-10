@@ -20,14 +20,14 @@ public sealed class ICollectionExpectationsTest : Test
       AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Count(0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Count(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Array.Empty<object>(), 0);
-      Validate(false, Array.Empty<object>(), int.MinValue);
-      Validate(false, Array.Empty<object>(), int.MaxValue);
+      Test(true, Array.Empty<object>(), 0);
+      Test(false, Array.Empty<object>(), int.MinValue);
+      Test(false, Array.Empty<object>(), int.MaxValue);
     }
 
     return;
 
-    static void Validate<T>(bool result, ICollection<T> collection, int count) => collection.Expect().Count(count).Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, ICollection<T> collection, int count) => collection.Expect().Count(count).Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -41,13 +41,13 @@ public sealed class ICollectionExpectationsTest : Test
       AssertionExtensions.Should(() => ((IExpectation<ICollection<object>>) null).Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Array.Empty<object>());
-      Validate(false, RandomSequence.ToArray());
+      Test(true, Array.Empty<object>());
+      Test(false, RandomSequence.ToArray());
     }
 
     return;
 
-    static void Validate<T>(bool result, ICollection<T> collection) => collection.Expect().Empty().Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, ICollection<T> collection) => collection.Expect().Empty().Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -61,12 +61,12 @@ public sealed class ICollectionExpectationsTest : Test
       AssertionExtensions.Should(() => ICollectionExpectations.ReadOnly<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((ICollection<object>) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Array.Empty<object>());
-      Validate(false, new List<object>());
+      Test(true, Array.Empty<object>());
+      Test(false, new List<object>());
     }
 
     return;
 
-    static void Validate<T>(bool result, ICollection<T> collection) => collection.Expect().ReadOnly().Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, ICollection<T> collection) => collection.Expect().ReadOnly().Should().BeOfType<Expectation<ICollection<T>>>().Which.Result.Should().Be(result);
   }
 }

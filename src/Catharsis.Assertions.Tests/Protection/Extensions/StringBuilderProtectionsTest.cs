@@ -23,13 +23,13 @@ public sealed class StringBuilderProtectionsTest : Test
       AssertionExtensions.Should(() => StringBuilderProtections.Empty(null, new StringBuilder())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((StringBuilder) null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
-      Validate(true, Fixture.Create<string>().ToStringBuilder());
-      Validate(false, new StringBuilder());
+      Test(true, Fixture.Create<string>().ToStringBuilder());
+      Test(false, new StringBuilder());
     }
 
     return;
 
-    static void Validate(bool result, StringBuilder builder)
+    static void Test(bool result, StringBuilder builder)
     {
       if (result)
       {

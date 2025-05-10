@@ -23,20 +23,20 @@ public sealed class IPAddressExpectationsTest : Test
       AssertionExtensions.Should(() => IPAddressExpectations.Ip4(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((IPAddress) null).Expect().Ip4()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, IPAddress.Any);
-      Validate(true, IPAddress.Broadcast);
-      Validate(true, IPAddress.Loopback);
-      Validate(true, IPAddress.None);
-      Validate(true, Fixture.Create<IPAddress>());
+      Test(true, IPAddress.Any);
+      Test(true, IPAddress.Broadcast);
+      Test(true, IPAddress.Loopback);
+      Test(true, IPAddress.None);
+      Test(true, Fixture.Create<IPAddress>());
 
-      Validate(false, IPAddress.IPv6Any);
-      Validate(false, IPAddress.IPv6Loopback);
-      Validate(false, IPAddress.IPv6None);
+      Test(false, IPAddress.IPv6Any);
+      Test(false, IPAddress.IPv6Loopback);
+      Test(false, IPAddress.IPv6None);
     }
 
     return;
 
-    static void Validate(bool result, IPAddress address) => address.Expect().Ip4().Should().BeOfType<Expectation<IPAddress>>().Which.Result.Should().Be(result);
+    static void Test(bool result, IPAddress address) => address.Expect().Ip4().Should().BeOfType<Expectation<IPAddress>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -50,20 +50,20 @@ public sealed class IPAddressExpectationsTest : Test
       AssertionExtensions.Should(() => IPAddressExpectations.Ip6(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((IPAddress) null).Expect().Ip6()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, IPAddress.IPv6Any);
-      Validate(true, IPAddress.IPv6Loopback);
-      Validate(true, IPAddress.IPv6None);
-      Validate(true, Random.IpV6Address());
+      Test(true, IPAddress.IPv6Any);
+      Test(true, IPAddress.IPv6Loopback);
+      Test(true, IPAddress.IPv6None);
+      Test(true, Random.IpV6Address());
 
-      Validate(false, IPAddress.Any);
-      Validate(false, IPAddress.Broadcast);
-      Validate(false, IPAddress.Loopback);
-      Validate(false, IPAddress.None);
-      Validate(false, Random.IpAddress());
+      Test(false, IPAddress.Any);
+      Test(false, IPAddress.Broadcast);
+      Test(false, IPAddress.Loopback);
+      Test(false, IPAddress.None);
+      Test(false, Random.IpAddress());
     }
 
     return;
 
-    static void Validate(bool result, IPAddress address) => address.Expect().Ip6().Should().BeOfType<Expectation<IPAddress>>().Which.Result.Should().Be(result);
+    static void Test(bool result, IPAddress address) => address.Expect().Ip6().Should().BeOfType<Expectation<IPAddress>>().Which.Result.Should().Be(result);
   }
 }

@@ -22,14 +22,14 @@ public sealed class StringBuilderExpectationsTest : Test
       AssertionExtensions.Should(() => StringBuilderExpectations.Length(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Length(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, new StringBuilder(), 0);
-      Validate(false, new StringBuilder(), int.MinValue);
-      Validate(false, new StringBuilder(), int.MaxValue);
+      Test(true, new StringBuilder(), 0);
+      Test(false, new StringBuilder(), int.MinValue);
+      Test(false, new StringBuilder(), int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, StringBuilder builder, int length) => builder.Expect().Length(length).Should().BeOfType<Expectation<StringBuilder>>().Which.Result.Should().Be(result);
+    static void Test(bool result, StringBuilder builder, int length) => builder.Expect().Length(length).Should().BeOfType<Expectation<StringBuilder>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -43,12 +43,12 @@ public sealed class StringBuilderExpectationsTest : Test
       AssertionExtensions.Should(() => StringBuilderExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((StringBuilder) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, new StringBuilder());
-      Validate(false, new StringBuilder().With(char.MinValue));
+      Test(true, new StringBuilder());
+      Test(false, new StringBuilder().With(char.MinValue));
     }
 
     return;
 
-    static void Validate(bool result, StringBuilder builder) => builder.Expect().Empty().Should().BeOfType<Expectation<StringBuilder>>().Which.Result.Should().Be(result);
+    static void Test(bool result, StringBuilder builder) => builder.Expect().Empty().Should().BeOfType<Expectation<StringBuilder>>().Which.Result.Should().Be(result);
   }
 }

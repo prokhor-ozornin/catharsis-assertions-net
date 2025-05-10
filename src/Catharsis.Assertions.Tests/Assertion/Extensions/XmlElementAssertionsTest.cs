@@ -30,23 +30,23 @@ public sealed class XmlElementAssertionsTest : Test
       new XmlDocument().CreateElement("root").With(element =>
       {
         element.SetAttribute("encoding", null);
-        Validate(true, element, "encoding");
-        Validate(true, element, "encoding", element.NamespaceURI);
+        Test(true, element, "encoding");
+        Test(true, element, "encoding", element.NamespaceURI);
 
         Encoding.GetEncodings().ForEach(encoding =>
         {
           element.SetAttribute("encoding", encoding.Name);
-          Validate(true, element, "encoding");
-          Validate(true, element, "encoding", element.NamespaceURI);
+          Test(true, element, "encoding");
+          Test(true, element, "encoding", element.NamespaceURI);
         });
       });
 
-      Validate(false, new XmlDocument().CreateElement("root"), Fixture.Create<string>());
+      Test(false, new XmlDocument().CreateElement("root"), Fixture.Create<string>());
     }
 
     return;
 
-    static void Validate(bool result, XmlElement element, string name, string uri = null)
+    static void Test(bool result, XmlElement element, string name, string uri = null)
     {
       if (result)
       {

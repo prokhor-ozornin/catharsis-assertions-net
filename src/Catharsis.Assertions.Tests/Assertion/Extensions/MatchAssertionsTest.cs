@@ -23,13 +23,13 @@ public sealed class MatchAssertionsTest : Test
       AssertionExtensions.Should(() => MatchAssertions.Successful(null, Match.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MatchAssertions.Successful(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("match");
 
-      Validate(true, string.Empty.ToRegex().Match(string.Empty));
-      Validate(false, Match.Empty);
+      Test(true, string.Empty.ToRegex().Match(string.Empty));
+      Test(false, Match.Empty);
     }
 
     return;
 
-    static void Validate(bool result, Match match)
+    static void Test(bool result, Match match)
     {
       if (result)
       {
@@ -54,13 +54,13 @@ public sealed class MatchAssertionsTest : Test
       AssertionExtensions.Should(() => MatchAssertions.Value(Assert.To, null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("match");
       AssertionExtensions.Should(() => Assert.To.Value(Match.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-      Validate(true, Match.Empty, Match.Empty.Value);
-      Validate(false, Match.Empty, Fixture.Create<string>());
+      Test(true, Match.Empty, Match.Empty.Value);
+      Test(false, Match.Empty, Fixture.Create<string>());
     }
 
     return;
 
-    static void Validate(bool result, Match match, string value)
+    static void Test(bool result, Match match, string value)
     {
       if (result)
       {

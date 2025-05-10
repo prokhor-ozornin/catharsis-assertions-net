@@ -24,14 +24,14 @@ public sealed class RegexExpectationsTest : Test
       AssertionExtensions.Should(() => ((Regex) null).Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => string.Empty.ToRegex().Expect().Match(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, string.Empty.ToRegex(), string.Empty);
-      Validate(true, "[0-9]".ToRegex(), Random.Digits(byte.MaxValue));
-      Validate(false, char.MinValue.ToString().ToRegex(), string.Empty);
-      Validate(false, "[0-9]".ToRegex(), Random.Letters(byte.MaxValue));
+      Test(true, string.Empty.ToRegex(), string.Empty);
+      Test(true, "[0-9]".ToRegex(), Random.Digits(byte.MaxValue));
+      Test(false, char.MinValue.ToString().ToRegex(), string.Empty);
+      Test(false, "[0-9]".ToRegex(), Random.Letters(byte.MaxValue));
     }
 
     return;
 
-    static void Validate(bool result, Regex regex, string text) => regex.Expect().Match(text).Should().BeOfType<Expectation<Regex>>().Which.Result.Should().Be(result);
+    static void Test(bool result, Regex regex, string text) => regex.Expect().Match(text).Should().BeOfType<Expectation<Regex>>().Which.Result.Should().Be(result);
   }
 }

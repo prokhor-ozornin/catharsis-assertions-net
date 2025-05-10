@@ -21,24 +21,24 @@ public sealed class DirectoryInfoAssertionsTest : Test
       AssertionExtensions.Should(() => DirectoryInfoAssertions.Empty(null, Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => DirectoryInfoAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-      Random.Directory().TryFinallyDelete(directory => Validate(true, directory));
+      Random.Directory().TryFinallyDelete(directory => Test(true, directory));
 
       Random.Directory().TryFinallyDelete(directory =>
       {
         Random.File(directory);
-        Validate(false, directory);
+        Test(false, directory);
       });
 
       Random.Directory().TryFinallyDelete(directory =>
       {
         Random.Directory(directory);
-        Validate(false, directory);
+        Test(false, directory);
       });
     }
 
     return;
 
-    static void Validate(bool result, DirectoryInfo directory)
+    static void Test(bool result, DirectoryInfo directory)
     {
       if (result)
       {
@@ -65,14 +65,14 @@ public sealed class DirectoryInfoAssertionsTest : Test
 
       Random.Directory().TryFinallyDelete(directory =>
       {
-        Validate(true, directory, directory.Parent);
-        Validate(false, directory, directory);
+        Test(true, directory, directory.Parent);
+        Test(false, directory, directory);
       });
     }
 
     return;
 
-    static void Validate(bool result, DirectoryInfo directory, DirectoryInfo parent)
+    static void Test(bool result, DirectoryInfo directory, DirectoryInfo parent)
     {
       if (result)
       {

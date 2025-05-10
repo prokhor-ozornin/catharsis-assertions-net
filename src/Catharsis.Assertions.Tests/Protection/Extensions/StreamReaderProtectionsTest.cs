@@ -21,13 +21,13 @@ public sealed class StreamReaderProtectionsTest : Test
       Stream.Null.ToStreamReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => StreamReaderProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
       AssertionExtensions.Should(() => Protect.From.Empty((StreamReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-      Validate(true, RandomStream.ToStreamReader());
-      Validate(false, Stream.Null.ToStreamReader());
+      Test(true, RandomStream.ToStreamReader());
+      Test(false, Stream.Null.ToStreamReader());
     }
 
     return;
 
-    static void Validate(bool result, StreamReader reader)
+    static void Test(bool result, StreamReader reader)
     {
       using (reader)
       {

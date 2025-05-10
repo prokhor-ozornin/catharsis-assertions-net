@@ -20,15 +20,15 @@ public sealed class ObjectAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ObjectAssertions.Same(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate<object>(true, null, null);
-      new object().With(instance => Validate(true, instance, instance));
-      Validate(false, new object(), null);
-      Validate<object>(false, null, new object());
+      Test<object>(true, null, null);
+      new object().With(instance => Test(true, instance, instance));
+      Test(false, new object(), null);
+      Test<object>(false, null, new object());
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance, object other)
+    static void Test<T>(bool result, T instance, object other)
     {
       if (result)
       {
@@ -51,20 +51,20 @@ public sealed class ObjectAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ObjectAssertions.Equal(null, new object(), new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate<object>(true, null, null);
-      new object().With(instance => Validate(true, instance, instance));
+      Test<object>(true, null, null);
+      new object().With(instance => Test(true, instance, instance));
 
-      Validate(true, 0, 0);
-      Validate(true, DateTime.Today, DateTime.Today);
+      Test(true, 0, 0);
+      Test(true, DateTime.Today, DateTime.Today);
 
-      Validate(false, new object(), null);
-      Validate<object>(false, null, new object());
-      Validate(false, Guid.NewGuid(), Guid.NewGuid());
+      Test(false, new object(), null);
+      Test<object>(false, null, new object());
+      Test(false, Guid.NewGuid(), Guid.NewGuid());
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance, object other)
+    static void Test<T>(bool result, T instance, object other)
     {
       if (result)
       {
@@ -87,22 +87,22 @@ public sealed class ObjectAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ObjectAssertions.Default(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate<object>(true, null);
-      Validate(false, new object());
+      Test<object>(true, null);
+      Test(false, new object());
 
-      Validate(true, 0);
-      Validate(false, int.MinValue);
+      Test(true, 0);
+      Test(false, int.MinValue);
 
-      Validate(true, DateTime.MinValue);
-      Validate(false, DateTime.Today);
+      Test(true, DateTime.MinValue);
+      Test(false, DateTime.Today);
 
-      Validate(true, Guid.Empty);
-      Validate(false, Guid.NewGuid());
+      Test(true, Guid.Empty);
+      Test(false, Guid.NewGuid());
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance)
+    static void Test<T>(bool result, T instance)
     {
       if (result)
       {
@@ -131,10 +131,10 @@ public sealed class ObjectAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.OfType(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
       AssertionExtensions.Should(() => Assert.To.OfType(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Validate(true, new object(), typeof(object));
-      Validate(false, new object(), typeof(string));
+      Test(true, new object(), typeof(object));
+      Test(false, new object(), typeof(string));
 
-      static void Validate(bool result, object instance, Type type)
+      static void Test(bool result, object instance, Type type)
       {
         if (result)
         {
@@ -152,10 +152,10 @@ public sealed class ObjectAssertionsTest : Test
       AssertionExtensions.Should(() => ObjectAssertions.OfType<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.OfType<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
 
-      Validate<object>(true, new object());
-      Validate<string>(false, new object());
+      Test<object>(true, new object());
+      Test<string>(false, new object());
 
-      static void Validate<T>(bool result, object instance)
+      static void Test<T>(bool result, object instance)
       {
         if (result)
         {
@@ -179,13 +179,13 @@ public sealed class ObjectAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ObjectAssertions.Null(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate<object>(true, null);
-      Validate(false, new object());
+      Test<object>(true, null);
+      Test(false, new object());
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance)
+    static void Test<T>(bool result, T instance)
     {
       if (result)
       {
@@ -209,15 +209,15 @@ public sealed class ObjectAssertionsTest : Test
       AssertionExtensions.Should(() => ObjectAssertions.OneOf(null, new object(), [])).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.OneOf(new object(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-      Validate(true, null, new object[] { null, new(), null });
-      Validate(true, string.Empty, new object[] { string.Empty, Guid.Empty, new() });
-      Validate(false, null, Enumerable.Empty<object>());
-      Validate(false, new object(), [new object()]);
+      Test(true, null, new object[] { null, new(), null });
+      Test(true, string.Empty, new object[] { string.Empty, Guid.Empty, new() });
+      Test(false, null, Enumerable.Empty<object>());
+      Test(false, new object(), [new object()]);
     }
 
     return;
 
-    static void Validate<T>(bool result, T value, IEnumerable<T> sequence, IEqualityComparer<T> comparer = null)
+    static void Test<T>(bool result, T value, IEnumerable<T> sequence, IEqualityComparer<T> comparer = null)
     {
       if (result)
       {

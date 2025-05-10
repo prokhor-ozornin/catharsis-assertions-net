@@ -24,13 +24,13 @@ public sealed class XDocumentAssertionsTest : Test
       AssertionExtensions.Should(() => XDocumentAssertions.Empty(null, Document)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XDocumentAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("document");
 
-      Validate(true, new XDocument());
-      Validate(false, new XDocument(new XElement("root")));
+      Test(true, new XDocument());
+      Test(false, new XDocument(new XElement("root")));
     }
 
     return;
 
-    static void Validate(bool result, XDocument document)
+    static void Test(bool result, XDocument document)
     {
       if (result)
       {
@@ -54,14 +54,14 @@ public sealed class XDocumentAssertionsTest : Test
       AssertionExtensions.Should(() => XDocumentAssertions.Name(null, Document, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => XDocumentAssertions.Name(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("document");
 
-      Validate(true, new XDocument(), null);
-      Validate(true, new XDocument(new XElement("root")), "root");
-      Validate(false, new XDocument(new XElement("root")), Fixture.Create<string>());
+      Test(true, new XDocument(), null);
+      Test(true, new XDocument(new XElement("root")), "root");
+      Test(false, new XDocument(new XElement("root")), Fixture.Create<string>());
     }
 
     return;
 
-    static void Validate(bool result, XDocument document, XName name)
+    static void Test(bool result, XDocument document, XName name)
     {
       if (result)
       {

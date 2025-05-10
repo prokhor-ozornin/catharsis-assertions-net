@@ -20,14 +20,14 @@ public sealed class SecureStringAssertionsTest : Test
     {
       AssertionExtensions.Should(() => SecureStringAssertions.Length(Assert.To, null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-      Validate(true, new SecureString(), 0);
-      Validate(false, new SecureString(), int.MinValue);
-      Validate(false, new SecureString(), int.MaxValue);
+      Test(true, new SecureString(), 0);
+      Test(false, new SecureString(), int.MinValue);
+      Test(false, new SecureString(), int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, SecureString secure, int length)
+    static void Test(bool result, SecureString secure, int length)
     {
       using (secure)
       {
@@ -55,13 +55,13 @@ public sealed class SecureStringAssertionsTest : Test
     {
       AssertionExtensions.Should(() => SecureStringAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-      Validate(true, new SecureString());
-      Validate(false, new SecureString().With(char.MinValue));
+      Test(true, new SecureString());
+      Test(false, new SecureString().With(char.MinValue));
     }
 
     return;
 
-    static void Validate(bool result, SecureString secure)
+    static void Test(bool result, SecureString secure)
     {
       using (secure)
       {
@@ -89,13 +89,13 @@ public sealed class SecureStringAssertionsTest : Test
     {
       AssertionExtensions.Should(() => SecureStringAssertions.ReadOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-      Validate(true, new SecureString().AsReadOnly());
-      Validate(false, new SecureString());
+      Test(true, new SecureString().AsReadOnly());
+      Test(false, new SecureString());
     }
 
     return;
 
-    static void Validate(bool result, SecureString secure)
+    static void Test(bool result, SecureString secure)
     {
       using (secure)
       {

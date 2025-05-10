@@ -22,15 +22,15 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => TypeAssertions.Abstract(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => TypeAssertions.Abstract(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Validate(true, typeof(Stream));
-      Validate(false, typeof(object));
+      Test(true, typeof(Stream));
+      Test(false, typeof(object));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(type.IsAbstract && !type.IsSealed, type));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Test(type.IsAbstract && !type.IsSealed, type));
     }
 
     return;
 
-    static void Validate(bool result, Type type)
+    static void Test(bool result, Type type)
     {
       if (result)
       {
@@ -54,15 +54,15 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => TypeAssertions.Sealed(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Sealed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Validate(true, typeof(FileInfo));
-      Validate(false, typeof(object));
+      Test(true, typeof(FileInfo));
+      Test(false, typeof(object));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(type.IsSealed && !type.IsAbstract, type));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Test(type.IsSealed && !type.IsAbstract, type));
     }
 
     return;
 
-    static void Validate(bool result, Type type)
+    static void Test(bool result, Type type)
     {
       if (result)
       {
@@ -86,15 +86,15 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => TypeAssertions.Static(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => TypeAssertions.Static(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Validate(true, typeof(Enumerable));
-      Validate(false, typeof(object));
+      Test(true, typeof(Enumerable));
+      Test(false, typeof(object));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(type.IsAbstract && type.IsSealed, type));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Test(type.IsAbstract && type.IsSealed, type));
     }
 
     return;
 
-    static void Validate(bool result, Type type)
+    static void Test(bool result, Type type)
     {
       if (result)
       {
@@ -118,15 +118,15 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => TypeAssertions.Public(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => TypeAssertions.Public(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Validate(true, typeof(object));
-      Validate(false, typeof(Assertion));
+      Test(true, typeof(object));
+      Test(false, typeof(Assertion));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(type.IsPublic && type.IsVisible, type));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Test(type.IsPublic && type.IsVisible, type));
     }
 
     return;
 
-    static void Validate(bool result, Type type)
+    static void Test(bool result, Type type)
     {
       if (result)
       {
@@ -150,15 +150,15 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => TypeAssertions.Internal(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Internal((Type) null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Validate(true, typeof(Assertion));
-      Validate(false, typeof(object));
+      Test(true, typeof(Assertion));
+      Test(false, typeof(object));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(type.IsNotPublic && !type.IsVisible, type));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Test(type.IsNotPublic && !type.IsVisible, type));
     }
 
     return;
 
-    static void Validate(bool result, Type type)
+    static void Test(bool result, Type type)
     {
       if (result)
       {
@@ -187,14 +187,14 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Subclass(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("subclass");
       AssertionExtensions.Should(() => Assert.To.Subclass(typeof(object), null)).ThrowExactly<ArgumentNullException>().WithParameterName("superclass");
 
-      Validate(true, typeof(string), typeof(object));
-      Validate(false, typeof(object), typeof(object));
-      Validate(false, typeof(object), typeof(string));
-      Validate(false, typeof(string), typeof(IEnumerable<char>));
+      Test(true, typeof(string), typeof(object));
+      Test(false, typeof(object), typeof(object));
+      Test(false, typeof(object), typeof(string));
+      Test(false, typeof(string), typeof(IEnumerable<char>));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate(true, type, typeof(object)));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Test(true, type, typeof(object)));
 
-      static void Validate(bool result, Type subclass, Type superclass)
+      static void Test(bool result, Type subclass, Type superclass)
       {
         if (result)
         {
@@ -212,14 +212,14 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => TypeAssertions.Subclass<object>(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Subclass<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("subclass");
 
-      Validate<object>(false, typeof(object));
-      Validate<string>(false, typeof(object));
-      Validate<object>(true, typeof(string));
-      Validate<IEnumerable<char>>(false, typeof(string));
+      Test<object>(false, typeof(object));
+      Test<string>(false, typeof(object));
+      Test<object>(true, typeof(string));
+      Test<IEnumerable<char>>(false, typeof(string));
 
-      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Validate<object>(true, type));
+      Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type => Test<object>(true, type));
 
-      static void Validate<T>(bool result, Type subclass)
+      static void Test<T>(bool result, Type subclass)
       {
         if (result)
         {
@@ -249,19 +249,19 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.AssignableFrom(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("to");
       AssertionExtensions.Should(() => Assert.To.AssignableFrom(typeof(object), null)).ThrowExactly<ArgumentNullException>().WithParameterName("from");
 
-      Validate(true, typeof(object), typeof(object));
-      Validate(true, typeof(string), typeof(string));
-      Validate(true, typeof(object), typeof(string));
-      Validate(true, typeof(IEnumerable<char>), typeof(string));
-      Validate(false, typeof(string), typeof(object));
+      Test(true, typeof(object), typeof(object));
+      Test(true, typeof(string), typeof(string));
+      Test(true, typeof(object), typeof(string));
+      Test(true, typeof(IEnumerable<char>), typeof(string));
+      Test(false, typeof(string), typeof(object));
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
       {
-        Validate(true, type, type);
-        Validate(true, typeof(object), type);
+        Test(true, type, type);
+        Test(true, typeof(object), type);
       });
 
-      static void Validate(bool result, Type to, Type from)
+      static void Test(bool result, Type to, Type from)
       {
         if (result)
         {
@@ -279,13 +279,13 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => TypeAssertions.AssignableFrom<object>(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.AssignableFrom<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("to");
 
-      Validate<object>(true, typeof(object));
-      Validate<string>(true, typeof(string));
-      Validate<string>(true, typeof(object));
-      Validate<string>(true, typeof(IEnumerable<char>));
-      Validate<object>(false, typeof(string));
+      Test<object>(true, typeof(object));
+      Test<string>(true, typeof(string));
+      Test<string>(true, typeof(object));
+      Test<string>(true, typeof(IEnumerable<char>));
+      Test<object>(false, typeof(string));
 
-      static void Validate<T>(bool result, Type from)
+      static void Test<T>(bool result, Type from)
       {
         if (result)
         {
@@ -315,18 +315,18 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.AssignableTo(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("from");
       AssertionExtensions.Should(() => Assert.To.AssignableTo(typeof(object), null)).ThrowExactly<ArgumentNullException>().WithParameterName("to");
 
-      Validate(true, typeof(object), typeof(object));
-      Validate(true, typeof(string), typeof(object));
-      Validate(true, typeof(string), typeof(IEnumerable<char>));
-      Validate(false, typeof(object), typeof(string));
+      Test(true, typeof(object), typeof(object));
+      Test(true, typeof(string), typeof(object));
+      Test(true, typeof(string), typeof(IEnumerable<char>));
+      Test(false, typeof(object), typeof(string));
 
       Assembly.GetExecutingAssembly().DefinedTypes.ForEach(type =>
       {
-        Validate(true, type, type);
-        Validate(true, type, typeof(object));
+        Test(true, type, type);
+        Test(true, type, typeof(object));
       });
 
-      static void Validate(bool result, Type type, Type to)
+      static void Test(bool result, Type type, Type to)
       {
         if (result)
         {
@@ -344,12 +344,12 @@ public sealed class TypeAssertionsTest : Test
       AssertionExtensions.Should(() => TypeAssertions.AssignableTo<object>(null, typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.AssignableTo<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("from");
 
-      Validate<object>(true, typeof(object));
-      Validate<object>(true, typeof(string));
-      Validate<IEnumerable<char>>(true, typeof(string));
-      Validate<string>(false, typeof(object));
+      Test<object>(true, typeof(object));
+      Test<object>(true, typeof(string));
+      Test<IEnumerable<char>>(true, typeof(string));
+      Test<string>(false, typeof(object));
 
-      static void Validate<T>(bool result, Type type)
+      static void Test<T>(bool result, Type type)
       {
         if (result)
         {

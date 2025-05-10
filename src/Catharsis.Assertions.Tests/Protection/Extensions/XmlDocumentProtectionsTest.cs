@@ -22,13 +22,13 @@ public sealed class XmlDocumentProtectionsTest : Test
       AssertionExtensions.Should(() => XmlNodeProtections.Empty(null, new XmlDocument())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((XmlDocument) null)).ThrowExactly<ArgumentNullException>().WithParameterName("document");
 
-      Validate(true, new XmlDocument().With(document => document.With(document.CreateElement("root"))));
-      Validate(false, new XmlDocument());
+      Test(true, new XmlDocument().With(document => document.With(document.CreateElement("root"))));
+      Test(false, new XmlDocument());
     }
 
     return;
 
-    static void Validate(bool result, XmlDocument document)
+    static void Test(bool result, XmlDocument document)
     {
       if (result)
       {

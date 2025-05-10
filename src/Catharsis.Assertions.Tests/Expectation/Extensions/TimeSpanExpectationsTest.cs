@@ -22,14 +22,14 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Days);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Days);
+        Test(false, timespan, 0);
       });
     }
     
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int days) => timespan.Expect().Days(days).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int days) => timespan.Expect().Days(days).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -44,14 +44,14 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Hours);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Hours);
+        Test(false, timespan, 0);
       });
     }
     
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int hours) => timespan.Expect().Hours(hours).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int hours) => timespan.Expect().Hours(hours).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -66,14 +66,14 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Minutes);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Minutes);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int minutes) => timespan.Expect().Minutes(minutes).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int minutes) => timespan.Expect().Minutes(minutes).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -88,14 +88,14 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Seconds);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Seconds);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int seconds) => timespan.Expect().Seconds(seconds).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int seconds) => timespan.Expect().Seconds(seconds).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -110,14 +110,14 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Milliseconds);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Milliseconds);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int milliseconds) => timespan.Expect().Milliseconds(milliseconds).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int milliseconds) => timespan.Expect().Milliseconds(milliseconds).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -132,14 +132,14 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalDays);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalDays);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int days) => timespan.Expect().TotalDays(days).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int days) => timespan.Expect().TotalDays(days).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -154,14 +154,14 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalHours);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalHours);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int hours) => timespan.Expect().TotalHours(hours).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int hours) => timespan.Expect().TotalHours(hours).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -176,14 +176,14 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalMinutes);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalMinutes);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int minutes) => timespan.Expect().TotalMinutes(minutes).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int minutes) => timespan.Expect().TotalMinutes(minutes).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -198,14 +198,14 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalSeconds);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalSeconds);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int seconds) => timespan.Expect().TotalSeconds(seconds).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int seconds) => timespan.Expect().TotalSeconds(seconds).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -220,13 +220,13 @@ public sealed class TimeSpanExpectationsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalMilliseconds);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalMilliseconds);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int milliseconds) => timespan.Expect().TotalMilliseconds(milliseconds).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeSpan timespan, int milliseconds) => timespan.Expect().TotalMilliseconds(milliseconds).Should().BeOfType<Expectation<TimeSpan>>().Which.Result.Should().Be(result);
   }
 }

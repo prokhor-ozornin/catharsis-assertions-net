@@ -21,13 +21,13 @@ public sealed class ThreadAssertionsTest : Test
       AssertionExtensions.Should(() => ThreadAssertions.State(null, Thread.CurrentThread, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.State(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("thread");
 
-      Thread.CurrentThread.With(thread => Validate(true, thread, thread.ThreadState));
-      Validate(false, Thread.CurrentThread, ThreadState.Unstarted);
+      Thread.CurrentThread.With(thread => Test(true, thread, thread.ThreadState));
+      Test(false, Thread.CurrentThread, ThreadState.Unstarted);
     }
 
     return;
 
-    static void Validate(bool result, Thread thread, ThreadState state)
+    static void Test(bool result, Thread thread, ThreadState state)
     {
       if (result)
       {
@@ -51,13 +51,13 @@ public sealed class ThreadAssertionsTest : Test
       AssertionExtensions.Should(() => ThreadAssertions.Priority(null, Thread.CurrentThread, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Priority(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("thread");
 
-      Thread.CurrentThread.With(thread => Validate(true, thread, thread.Priority));
-      Validate(false, Thread.CurrentThread, ThreadPriority.Highest);
+      Thread.CurrentThread.With(thread => Test(true, thread, thread.Priority));
+      Test(false, Thread.CurrentThread, ThreadPriority.Highest);
     }
 
     return;
 
-    static void Validate(bool result, Thread thread, ThreadPriority priority)
+    static void Test(bool result, Thread thread, ThreadPriority priority)
     {
       if (result)
       {

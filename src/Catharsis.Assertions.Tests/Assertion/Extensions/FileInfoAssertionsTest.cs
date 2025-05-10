@@ -23,15 +23,15 @@ public sealed class FileInfoAssertionsTest : Test
 
       Random.File().TryFinallyDelete(file =>
       {
-        Validate(true, file, file.Length);
-        Validate(true, file.Empty(), 0);
-        Validate(false, file, int.MinValue);
+        Test(true, file, file.Length);
+        Test(true, file.Empty(), 0);
+        Test(false, file, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, FileInfo file, long length)
+    static void Test(bool result, FileInfo file, long length)
     {
       if (result)
       {
@@ -57,14 +57,14 @@ public sealed class FileInfoAssertionsTest : Test
 
       Random.BinaryFile(short.MaxValue).TryFinallyDelete(file =>
       {
-        Validate(false, file);
-        Validate(true, file.Empty());
+        Test(false, file);
+        Test(true, file.Empty());
       });
     }
 
     return;
 
-    static void Validate(bool result, FileInfo file)
+    static void Test(bool result, FileInfo file)
     {
       if (result)
       {
@@ -90,14 +90,14 @@ public sealed class FileInfoAssertionsTest : Test
 
       Random.File().TryFinallyDelete(file =>
       {
-        Validate(false, file);
-        Validate(true, file.AsReadOnly());
+        Test(false, file);
+        Test(true, file.AsReadOnly());
       });
     }
 
     return;
 
-    static void Validate(bool result, FileInfo file)
+    static void Test(bool result, FileInfo file)
     {
       if (result)
       {
@@ -124,14 +124,14 @@ public sealed class FileInfoAssertionsTest : Test
 
       Random.File().TryFinallyDelete(file =>
       {
-        Validate(true, file, file.Directory);
-        Validate(false, file, Environment.SystemDirectory.ToDirectory());
+        Test(true, file, file.Directory);
+        Test(false, file, Environment.SystemDirectory.ToDirectory());
       });
     }
 
     return;
 
-    static void Validate(bool result, FileInfo file, DirectoryInfo directory)
+    static void Test(bool result, FileInfo file, DirectoryInfo directory)
     {
       if (result)
       {

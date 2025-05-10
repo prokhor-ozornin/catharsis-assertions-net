@@ -24,11 +24,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Status(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task) null).Expect().Status(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Task.CompletedTask, TaskStatus.RanToCompletion);
-      Validate(false, Task.FromCanceled(new CancellationToken(true)), TaskStatus.RanToCompletion);
-      Validate(false, Task.FromException(new Exception()), TaskStatus.RanToCompletion);
+      Test(true, Task.CompletedTask, TaskStatus.RanToCompletion);
+      Test(false, Task.FromCanceled(new CancellationToken(true)), TaskStatus.RanToCompletion);
+      Test(false, Task.FromException(new Exception()), TaskStatus.RanToCompletion);
 
-      static void Validate(bool result, Task task, TaskStatus status)
+      static void Test(bool result, Task task, TaskStatus status)
       {
         using (task)
         {
@@ -42,11 +42,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Status<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task<object>) null).Expect().Status(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Task.FromResult<object>(null), TaskStatus.RanToCompletion);
-      Validate(false, Task.FromCanceled<object>(new CancellationToken(true)), TaskStatus.RanToCompletion);
-      Validate(false, Task.FromException<object>(new Exception()), TaskStatus.RanToCompletion);
+      Test(true, Task.FromResult<object>(null), TaskStatus.RanToCompletion);
+      Test(false, Task.FromCanceled<object>(new CancellationToken(true)), TaskStatus.RanToCompletion);
+      Test(false, Task.FromException<object>(new Exception()), TaskStatus.RanToCompletion);
 
-      static void Validate<T>(bool result, Task<T> task, TaskStatus status)
+      static void Test<T>(bool result, Task<T> task, TaskStatus status)
       {
         using (task)
         {
@@ -71,11 +71,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Successful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task) null).Expect().Successful()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Task.CompletedTask);
-      Validate(false, Task.FromCanceled(new CancellationToken(true)));
-      Validate(false, Task.FromException(new Exception()));
+      Test(true, Task.CompletedTask);
+      Test(false, Task.FromCanceled(new CancellationToken(true)));
+      Test(false, Task.FromException(new Exception()));
 
-      static void Validate(bool result, Task task)
+      static void Test(bool result, Task task)
       {
         using (task)
         {
@@ -89,11 +89,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Successful<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task<object>) null).Expect().Successful()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Task.FromResult<object>(null));
-      Validate(false, Task.FromCanceled<object>(new CancellationToken(true)));
-      Validate(false, Task.FromException<object>(new Exception()));
+      Test(true, Task.FromResult<object>(null));
+      Test(false, Task.FromCanceled<object>(new CancellationToken(true)));
+      Test(false, Task.FromException<object>(new Exception()));
 
-      static void Validate<T>(bool result, Task<T> task)
+      static void Test<T>(bool result, Task<T> task)
       {
         using (task)
         {
@@ -118,11 +118,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Unsuccessful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task) null).Expect().Unsuccessful()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Task.FromException(new Exception()));
-      Validate(false, Task.CompletedTask);
-      Validate(false, Task.FromCanceled(new CancellationToken(true)));
+      Test(true, Task.FromException(new Exception()));
+      Test(false, Task.CompletedTask);
+      Test(false, Task.FromCanceled(new CancellationToken(true)));
 
-      static void Validate(bool result, Task task)
+      static void Test(bool result, Task task)
       {
         using (task)
         {
@@ -136,11 +136,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Unsuccessful<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task<object>) null).Expect().Unsuccessful()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Task.FromException<object>(new Exception()));
-      Validate(false, Task.FromResult<object>(null));
-      Validate(false, Task.FromCanceled<object>(new CancellationToken(true)));
+      Test(true, Task.FromException<object>(new Exception()));
+      Test(false, Task.FromResult<object>(null));
+      Test(false, Task.FromCanceled<object>(new CancellationToken(true)));
 
-      static void Validate<T>(bool result, Task<T> task)
+      static void Test<T>(bool result, Task<T> task)
       {
         using (task)
         {
@@ -165,11 +165,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Canceled(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task) null).Expect().Canceled()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Task.FromCanceled(new CancellationToken(true)));
-      Validate(false, Task.CompletedTask);
-      Validate(false, Task.FromException(new Exception()));
+      Test(true, Task.FromCanceled(new CancellationToken(true)));
+      Test(false, Task.CompletedTask);
+      Test(false, Task.FromException(new Exception()));
 
-      static void Validate(bool result, Task task)
+      static void Test(bool result, Task task)
       {
         using (task)
         {
@@ -183,11 +183,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Canceled<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task<object>) null).Expect().Canceled()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(false, Task.FromResult<object>(null));
-      Validate(true, Task.FromCanceled<object>(new CancellationToken(true)));
-      Validate(false, Task.FromException<object>(new Exception()));
+      Test(false, Task.FromResult<object>(null));
+      Test(true, Task.FromCanceled<object>(new CancellationToken(true)));
+      Test(false, Task.FromException<object>(new Exception()));
 
-      static void Validate<T>(bool result, Task<T> task)
+      static void Test<T>(bool result, Task<T> task)
       {
         using (task)
         {
@@ -212,11 +212,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Completed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task) null).Expect().Completed()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Task.CompletedTask);
-      Validate(true, Task.FromCanceled(new CancellationToken(true)));
-      Validate(true, Task.FromException(new Exception()));
+      Test(true, Task.CompletedTask);
+      Test(true, Task.FromCanceled(new CancellationToken(true)));
+      Test(true, Task.FromException(new Exception()));
 
-      static void Validate(bool result, Task task)
+      static void Test(bool result, Task task)
       {
         using (task)
         {
@@ -230,11 +230,11 @@ public sealed class TaskExpectationsTest : Test
       AssertionExtensions.Should(() => TaskExpectations.Completed<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Task<object>) null).Expect().Completed()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, Task.FromResult<object>(null));
-      Validate(true, Task.FromCanceled<object>(new CancellationToken(true)));
-      Validate(true, Task.FromException<object>(new Exception()));
+      Test(true, Task.FromResult<object>(null));
+      Test(true, Task.FromCanceled<object>(new CancellationToken(true)));
+      Test(true, Task.FromException<object>(new Exception()));
 
-      static void Validate<T>(bool result, Task<T> task)
+      static void Test<T>(bool result, Task<T> task)
       {
         using (task)
         {

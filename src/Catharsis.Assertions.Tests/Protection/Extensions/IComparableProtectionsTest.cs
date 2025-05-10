@@ -19,20 +19,20 @@ public sealed class IComparableProtectionsTest : Test
     {
       AssertionExtensions.Should(() => IComparableProtections.Positive(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, int.MinValue);
-      Validate(true, 0);
-      Validate(true, DateTime.MinValue);
-      Validate(true, Guid.Empty);
+      Test(true, int.MinValue);
+      Test(true, 0);
+      Test(true, DateTime.MinValue);
+      Test(true, Guid.Empty);
 
-      Validate(false, int.MaxValue);
-      Validate(false, DateTime.Today);
-      Validate(false, DateTime.MaxValue);
-      Validate(false, Guid.NewGuid());
+      Test(false, int.MaxValue);
+      Test(false, DateTime.Today);
+      Test(false, DateTime.MaxValue);
+      Test(false, Guid.NewGuid());
     }
 
     return;
 
-    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T comparable) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -55,20 +55,20 @@ public sealed class IComparableProtectionsTest : Test
     {
       AssertionExtensions.Should(() => IComparableProtections.Negative(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, 0);
-      Validate(true, int.MaxValue);
-      Validate(true, DateTime.MinValue);
-      Validate(true, DateTime.Today);
-      Validate(true, DateTime.MaxValue);
-      Validate(true, Guid.Empty);
-      Validate(true, Guid.NewGuid());
+      Test(true, 0);
+      Test(true, int.MaxValue);
+      Test(true, DateTime.MinValue);
+      Test(true, DateTime.Today);
+      Test(true, DateTime.MaxValue);
+      Test(true, Guid.Empty);
+      Test(true, Guid.NewGuid());
 
-      Validate(false, int.MinValue);
+      Test(false, int.MinValue);
     }
 
     return;
 
-    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T comparable) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -91,20 +91,20 @@ public sealed class IComparableProtectionsTest : Test
     {
       AssertionExtensions.Should(() => IComparableProtections.Zero(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, int.MinValue);
-      Validate(true, int.MaxValue);
-      Validate(true, DateTime.Today);
-      Validate(true, DateTime.MaxValue);
-      Validate(true, Guid.NewGuid());
+      Test(true, int.MinValue);
+      Test(true, int.MaxValue);
+      Test(true, DateTime.Today);
+      Test(true, DateTime.MaxValue);
+      Test(true, Guid.NewGuid());
 
-      Validate(false, 0);
-      Validate(false, DateTime.MinValue);
-      Validate(false, Guid.Empty);
+      Test(false, 0);
+      Test(false, DateTime.MinValue);
+      Test(false, Guid.Empty);
     }
 
     return;
 
-    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T comparable) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -131,18 +131,18 @@ public sealed class IComparableProtectionsTest : Test
     {
       AssertionExtensions.Should(() => IComparableProtections.OutOfRange(null, 0, 0, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, 0, 0, 0);
-      Validate(true, 0, int.MinValue, 0);
-      Validate(true, 0, 0, int.MaxValue);
-      Validate(true, DateTime.Today, DateTime.Today, DateTime.Today);
-      Validate(true, DateTime.Today, DateTime.MinValue, DateTime.Today);
-      Validate(true, DateTime.Today, DateTime.MinValue, DateTime.Today);
-      Validate(true, DateTime.Today, DateTime.Today, DateTime.MaxValue);
+      Test(true, 0, 0, 0);
+      Test(true, 0, int.MinValue, 0);
+      Test(true, 0, 0, int.MaxValue);
+      Test(true, DateTime.Today, DateTime.Today, DateTime.Today);
+      Test(true, DateTime.Today, DateTime.MinValue, DateTime.Today);
+      Test(true, DateTime.Today, DateTime.MinValue, DateTime.Today);
+      Test(true, DateTime.Today, DateTime.Today, DateTime.MaxValue);
 
-      Validate(false, int.MinValue, 0, int.MaxValue);
-      Validate(false, DateTime.MinValue, DateTime.Today, DateTime.MaxValue);
+      Test(false, int.MinValue, 0, int.MaxValue);
+      Test(false, DateTime.MinValue, DateTime.Today, DateTime.MaxValue);
 
-      static void Validate<T>(bool result, T comparable, T min, T max) where T : struct, IComparable<T>
+      static void Test<T>(bool result, T comparable, T min, T max) where T : struct, IComparable<T>
       {
         if (result)
         {
@@ -159,12 +159,12 @@ public sealed class IComparableProtectionsTest : Test
     {
       AssertionExtensions.Should(() => IComparableProtections.OutOfRange(null, 0, ..0)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, 0, ..0);
-      Validate(true, 0, ..int.MaxValue);
+      Test(true, 0, ..0);
+      Test(true, 0, ..int.MaxValue);
 
-      Validate(false, int.MinValue, ..int.MaxValue);
+      Test(false, int.MinValue, ..int.MaxValue);
 
-      static void Validate(bool result, int value, Range range)
+      static void Test(bool result, int value, Range range)
       {
         if (result)
         {

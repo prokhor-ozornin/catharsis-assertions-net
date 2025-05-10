@@ -25,14 +25,14 @@ public sealed class XContainerExpectationsTest : Test
 
       new XDocument(new XElement("parent", new XElement("child"))).With(container =>
       {
-        Validate(true, container, "parent");
-        Validate(false, container, "child");
+        Test(true, container, "parent");
+        Test(false, container, "child");
       });
     }
 
     return;
 
-    static void Validate(bool result, XContainer container, XName name) => container.Expect().Element(name).Should().BeOfType<Expectation<XContainer>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XContainer container, XName name) => container.Expect().Element(name).Should().BeOfType<Expectation<XContainer>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -46,12 +46,12 @@ public sealed class XContainerExpectationsTest : Test
       AssertionExtensions.Should(() => XContainerExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XContainer) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, new XDocument());
-      Validate(false, new XDocument(new XElement("root")));
+      Test(true, new XDocument());
+      Test(false, new XDocument(new XElement("root")));
     }
 
     return;
 
-    static void Validate(bool result, XContainer container) => container.Expect().Empty().Should().BeOfType<Expectation<XContainer>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XContainer container) => container.Expect().Empty().Should().BeOfType<Expectation<XContainer>>().Which.Result.Should().Be(result);
   }
 }

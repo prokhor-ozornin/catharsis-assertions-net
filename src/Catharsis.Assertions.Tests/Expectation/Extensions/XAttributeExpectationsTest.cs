@@ -22,12 +22,12 @@ public sealed class XAttributeExpectationsTest : Test
       AssertionExtensions.Should(() => ((XAttribute) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new XAttribute("name", "value").Expect().Name(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Validate(true, new XAttribute("name", "value"), "name");
+      Test(true, new XAttribute("name", "value"), "name");
     }
 
     return;
 
-    static void Validate(bool result, XAttribute attribute, XName name) => attribute.Expect().Name(name).Should().BeOfType<Expectation<XAttribute>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XAttribute attribute, XName name) => attribute.Expect().Name(name).Should().BeOfType<Expectation<XAttribute>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -42,12 +42,12 @@ public sealed class XAttributeExpectationsTest : Test
       AssertionExtensions.Should(() => ((XAttribute) null).Expect().Value("value")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new XAttribute("name", "value").Expect().Value(null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-      Validate(true, new XAttribute("name", "value"), "value");
-      Validate(false, new XAttribute("name", "value"), string.Empty);
+      Test(true, new XAttribute("name", "value"), "value");
+      Test(false, new XAttribute("name", "value"), string.Empty);
     }
 
     return;
 
-    static void Validate(bool result, XAttribute attribute, string value) => attribute.Expect().Value(value).Should().BeOfType<Expectation<XAttribute>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XAttribute attribute, string value) => attribute.Expect().Value(value).Should().BeOfType<Expectation<XAttribute>>().Which.Result.Should().Be(result);
   }
 }

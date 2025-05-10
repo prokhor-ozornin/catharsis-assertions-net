@@ -18,13 +18,13 @@ public sealed class ObjectExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate<object>(null);
-      Validate(new object());
+      Test<object>(null);
+      Test(new object());
     }
 
     return;
 
-    static void Validate<T>(T subject)
+    static void Test<T>(T subject)
     {
       var expectation = subject.Expect();
 

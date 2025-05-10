@@ -22,13 +22,13 @@ public sealed class TextWriterAssertionsTest : Test
       AssertionExtensions.Should(() => TextWriterAssertions.Format(null, new StringWriter(), CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => ((TextWriter) null).Expect().Format(CultureInfo.CurrentCulture)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.ToStreamWriter().With(writer => Validate(true, writer, writer.FormatProvider));
-      Validate(false, Stream.Null.ToStreamWriter(), null);
+      Stream.Null.ToStreamWriter().With(writer => Test(true, writer, writer.FormatProvider));
+      Test(false, Stream.Null.ToStreamWriter(), null);
     }
 
     return;
 
-    static void Validate(bool result, TextWriter writer, IFormatProvider format)
+    static void Test(bool result, TextWriter writer, IFormatProvider format)
     {
       using (writer)
       {

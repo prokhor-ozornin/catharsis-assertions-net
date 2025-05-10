@@ -20,13 +20,13 @@ public sealed class StreamProtectionsTest : Test
       AssertionExtensions.Should(() => StreamProtections.Empty(null, Stream.Null)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
-      Validate(true, RandomStream);
-      Validate(false, Stream.Null);
+      Test(true, RandomStream);
+      Test(false, Stream.Null);
     }
 
     return;
 
-    static void Validate(bool result, Stream stream)
+    static void Test(bool result, Stream stream)
     {
       using (stream)
       {

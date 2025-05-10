@@ -22,15 +22,15 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(date =>
       {
-        Validate(true, date);
-        Validate(true, date.AddSeconds(-1));
-        Validate(false, date.AddSeconds(1));
+        Test(true, date);
+        Test(true, date.AddSeconds(-1));
+        Test(false, date.AddSeconds(1));
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date)
+    static void Test(bool result, DateTimeOffset date)
     {
       if (result)
       {
@@ -55,15 +55,15 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.Now, DateTimeOffset.UtcNow }.ForEach(date =>
       {
-        Validate(true, date.AddSeconds(1));
-        Validate(false, date);
-        Validate(false, date.AddSeconds(-1));
+        Test(true, date.AddSeconds(1));
+        Test(false, date);
+        Test(false, date.AddSeconds(-1));
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date)
+    static void Test(bool result, DateTimeOffset date)
     {
       if (result)
       {
@@ -88,14 +88,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.DayOfYear);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.DayOfYear);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date, int day)
+    static void Test(bool result, DateTimeOffset date, int day)
     {
       if (result)
       {
@@ -120,14 +120,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.Year);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Year);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date, int year)
+    static void Test(bool result, DateTimeOffset date, int year)
     {
       if (result)
       {
@@ -152,14 +152,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.Month);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Month);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date, int month)
+    static void Test(bool result, DateTimeOffset date, int month)
     {
       if (result)
       {
@@ -184,14 +184,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.Day);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Day);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date, int day)
+    static void Test(bool result, DateTimeOffset date, int day)
     {
       if (result)
       {
@@ -216,14 +216,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.Hour);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Hour);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date, int hour)
+    static void Test(bool result, DateTimeOffset date, int hour)
     {
       if (result)
       {
@@ -248,14 +248,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.Minute);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Minute);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date, int minute)
+    static void Test(bool result, DateTimeOffset date, int minute)
     {
       if (result)
       {
@@ -280,14 +280,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.Second);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Second);
+        Test(false, date, int.MinValue);
       });
     }
     
     return;
 
-    static void Validate(bool result, DateTimeOffset date, int second)
+    static void Test(bool result, DateTimeOffset date, int second)
     {
       if (result)
       {
@@ -312,14 +312,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.Millisecond);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Millisecond);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date, int millisecond)
+    static void Test(bool result, DateTimeOffset date, int millisecond)
     {
       if (result)
       {
@@ -344,14 +344,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.DayOfWeek);
-        Validate(false, date, date.DayOfWeek + 1);
+        Test(true, date, date.DayOfWeek);
+        Test(false, date, date.DayOfWeek + 1);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date, DayOfWeek day)
+    static void Test(bool result, DateTimeOffset date, DayOfWeek day)
     {
       if (result)
       {
@@ -376,14 +376,14 @@ public sealed class DateTimeOffsetAssertionsTest : Test
 
       new[] { DateTimeOffset.MinValue, DateTimeOffset.MaxValue, DateTimeOffset.Now }.ForEach(date =>
       {
-        Validate(true, date, date.Offset);
-        Validate(false, date, date.Offset.Add(TimeSpan.FromMilliseconds(1)));
+        Test(true, date, date.Offset);
+        Test(false, date, date.Offset.Add(TimeSpan.FromMilliseconds(1)));
       });
     }
 
     return;
 
-    static void Validate(bool result, DateTimeOffset date, TimeSpan offset)
+    static void Test(bool result, DateTimeOffset date, TimeSpan offset)
     {
       if (result)
       {

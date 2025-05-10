@@ -21,13 +21,13 @@ public sealed class SecureStringProtectionsTest : Test
     {
       AssertionExtensions.Should(() => Protect.From.Empty((SecureString) null)).ThrowExactly<ArgumentNullException>().WithParameterName("secure");
 
-      Validate(true, new SecureString().With(char.MinValue));
-      Validate(false, new SecureString());
+      Test(true, new SecureString().With(char.MinValue));
+      Test(false, new SecureString());
     }
 
     return;
 
-    static void Validate(bool result, SecureString secure)
+    static void Test(bool result, SecureString secure)
     {
       using (secure)
       {

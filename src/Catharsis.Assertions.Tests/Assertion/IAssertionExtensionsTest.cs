@@ -25,7 +25,7 @@ public sealed class IAssertionExtensionsTest : Test
 
     return;
 
-    static void Validate()
+    static void Test()
     {
 
     }
@@ -45,7 +45,7 @@ public sealed class IAssertionExtensionsTest : Test
 
     return;
 
-    static void Validate()
+    static void Test()
     {
 
     }
@@ -65,7 +65,7 @@ public sealed class IAssertionExtensionsTest : Test
 
     return;
 
-    static void Validate()
+    static void Test()
     {
 
     }
@@ -85,7 +85,7 @@ public sealed class IAssertionExtensionsTest : Test
 
     return;
 
-    static void Validate()
+    static void Test()
     {
 
     }
@@ -105,7 +105,7 @@ public sealed class IAssertionExtensionsTest : Test
 
     return;
 
-    static void Validate()
+    static void Test()
     {
 
     }
@@ -125,7 +125,7 @@ public sealed class IAssertionExtensionsTest : Test
 
     return;
 
-    static void Validate()
+    static void Test()
     {
 
     }
@@ -145,7 +145,7 @@ public sealed class IAssertionExtensionsTest : Test
 
     return;
 
-    static void Validate()
+    static void Test()
     {
 
     }

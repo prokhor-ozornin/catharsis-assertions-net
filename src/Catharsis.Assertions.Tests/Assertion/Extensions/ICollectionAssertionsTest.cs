@@ -20,14 +20,14 @@ public sealed class ICollectionAssertionsTest : Test
       AssertionExtensions.Should(() => ICollectionAssertions.Count(null, Array.Empty<object>(), 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Count<object>(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-      Validate(true, Array.Empty<object>(), 0);
-      Validate(false, Array.Empty<object>(), int.MinValue);
-      Validate(false, Array.Empty<object>(), int.MaxValue);
+      Test(true, Array.Empty<object>(), 0);
+      Test(false, Array.Empty<object>(), int.MinValue);
+      Test(false, Array.Empty<object>(), int.MaxValue);
     }
 
     return;
 
-    static void Validate<T>(bool result, ICollection<T> collection, int count)
+    static void Test<T>(bool result, ICollection<T> collection, int count)
     {
       if (result)
       {
@@ -51,13 +51,13 @@ public sealed class ICollectionAssertionsTest : Test
       AssertionExtensions.Should(() => ICollectionAssertions.Empty(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Empty<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-      Validate(true, Array.Empty<object>());
-      Validate(false, RandomSequence.ToArray());
+      Test(true, Array.Empty<object>());
+      Test(false, RandomSequence.ToArray());
     }
 
     return;
 
-    static void Validate<T>(bool result, ICollection<T> collection)
+    static void Test<T>(bool result, ICollection<T> collection)
     {
       if (result)
       {
@@ -81,13 +81,13 @@ public sealed class ICollectionAssertionsTest : Test
       AssertionExtensions.Should(() => ICollectionAssertions.ReadOnly(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ReadOnly<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-      Validate(true, Array.Empty<object>());
-      Validate(false, new List<object>());
+      Test(true, Array.Empty<object>());
+      Test(false, new List<object>());
     }
 
     return;
 
-    static void Validate<T>(bool result, ICollection<T> collection)
+    static void Test<T>(bool result, ICollection<T> collection)
     {
       if (result)
       {

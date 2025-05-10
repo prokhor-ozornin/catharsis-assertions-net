@@ -22,14 +22,14 @@ public sealed class NameValueCollectionAssertionsTest : Test
       AssertionExtensions.Should(() => NameValueCollectionAssertions.Count(null, [], 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Count(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-      Validate(true, [], 0);
-      Validate(false, [], int.MinValue);
-      Validate(false, [], int.MaxValue);
+      Test(true, [], 0);
+      Test(false, [], int.MinValue);
+      Test(false, [], int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, NameValueCollection collection, int count)
+    static void Test(bool result, NameValueCollection collection, int count)
     {
       if (result)
       {
@@ -53,13 +53,13 @@ public sealed class NameValueCollectionAssertionsTest : Test
       AssertionExtensions.Should(() => NameValueCollectionAssertions.Empty(null, [])).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Empty((NameValueCollection) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-      Validate(true, []);
-      Validate(false, new NameValueCollection().With(("name", "value")));
+      Test(true, []);
+      Test(false, new NameValueCollection().With(("name", "value")));
     }
 
     return;
 
-    static void Validate(bool result, NameValueCollection collection)
+    static void Test(bool result, NameValueCollection collection)
     {
       if (result)
       {

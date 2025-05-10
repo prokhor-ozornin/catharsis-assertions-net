@@ -22,14 +22,14 @@ public sealed class DateOnlyAssertionsTest : Test
 
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
-        Validate(true, date, date.DayOfYear);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.DayOfYear);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateOnly date, int day)
+    static void Test(bool result, DateOnly date, int day)
     {
       if (result)
       {
@@ -54,14 +54,14 @@ public sealed class DateOnlyAssertionsTest : Test
 
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
-        Validate(true, date, date.Year);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Year);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateOnly date, int day)
+    static void Test(bool result, DateOnly date, int day)
     {
       if (result)
       {
@@ -86,14 +86,14 @@ public sealed class DateOnlyAssertionsTest : Test
 
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
-        Validate(true, date, date.Month);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Month);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateOnly date, int day)
+    static void Test(bool result, DateOnly date, int day)
     {
       if (result)
       {
@@ -118,14 +118,14 @@ public sealed class DateOnlyAssertionsTest : Test
 
       new[] {DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
-        Validate(true, date, date.Day);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Day);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateOnly date, int day)
+    static void Test(bool result, DateOnly date, int day)
     {
       if (result)
       {

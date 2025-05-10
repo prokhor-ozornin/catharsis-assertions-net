@@ -23,21 +23,21 @@ public sealed class IPAddressAssertionsTest : Test
       AssertionExtensions.Should(() => IPAddressAssertions.Ip4(null, IPAddress.Loopback)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Ip4(null)).ThrowExactly<ArgumentNullException>().WithParameterName("address");
 
-      Validate(true, IPAddress.Any);
-      Validate(true, IPAddress.Broadcast);
-      Validate(true, IPAddress.Loopback);
-      Validate(true, IPAddress.None);
-      Validate(true, Random.IpAddress());
+      Test(true, IPAddress.Any);
+      Test(true, IPAddress.Broadcast);
+      Test(true, IPAddress.Loopback);
+      Test(true, IPAddress.None);
+      Test(true, Random.IpAddress());
 
-      Validate(false, IPAddress.IPv6Any);
-      Validate(false, IPAddress.IPv6Loopback);
-      Validate(false, IPAddress.IPv6None);
-      Validate(false, Random.IpV6Address());
+      Test(false, IPAddress.IPv6Any);
+      Test(false, IPAddress.IPv6Loopback);
+      Test(false, IPAddress.IPv6None);
+      Test(false, Random.IpV6Address());
     }
 
     return;
 
-    static void Validate(bool result, IPAddress address)
+    static void Test(bool result, IPAddress address)
     {
       if (result)
       {
@@ -61,21 +61,21 @@ public sealed class IPAddressAssertionsTest : Test
       AssertionExtensions.Should(() => IPAddressAssertions.Ip6(null, IPAddress.Loopback)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Ip6(null)).ThrowExactly<ArgumentNullException>().WithParameterName("address");
 
-      Validate(true, IPAddress.IPv6Any);
-      Validate(true, IPAddress.IPv6Loopback);
-      Validate(true, IPAddress.IPv6None);
-      Validate(true, Random.IpV6Address());
+      Test(true, IPAddress.IPv6Any);
+      Test(true, IPAddress.IPv6Loopback);
+      Test(true, IPAddress.IPv6None);
+      Test(true, Random.IpV6Address());
 
-      Validate(false, IPAddress.Any);
-      Validate(false, IPAddress.Broadcast);
-      Validate(false, IPAddress.Loopback);
-      Validate(false, IPAddress.None);
-      Validate(false, Random.IpAddress());
+      Test(false, IPAddress.Any);
+      Test(false, IPAddress.Broadcast);
+      Test(false, IPAddress.Loopback);
+      Test(false, IPAddress.None);
+      Test(false, Random.IpAddress());
     }
 
     return;
 
-    static void Validate(bool result, IPAddress address)
+    static void Test(bool result, IPAddress address)
     {
       if (result)
       {

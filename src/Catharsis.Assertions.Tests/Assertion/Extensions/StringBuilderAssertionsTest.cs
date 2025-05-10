@@ -22,14 +22,14 @@ public sealed class StringBuilderAssertionsTest : Test
       AssertionExtensions.Should(() => StringBuilderAssertions.Length(null, new StringBuilder(), 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StringBuilderAssertions.Length(Assert.To, null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
-      Validate(true, new StringBuilder(), 0);
-      Validate(false, new StringBuilder(), int.MinValue);
-      Validate(false, new StringBuilder(), int.MaxValue);
+      Test(true, new StringBuilder(), 0);
+      Test(false, new StringBuilder(), int.MinValue);
+      Test(false, new StringBuilder(), int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, StringBuilder builder, int length)
+    static void Test(bool result, StringBuilder builder, int length)
     {
       if (result)
       {
@@ -53,13 +53,13 @@ public sealed class StringBuilderAssertionsTest : Test
       AssertionExtensions.Should(() => StringBuilderAssertions.Empty(null, new StringBuilder())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StringBuilderAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
-      Validate(true, new StringBuilder());
-      Validate(false, new StringBuilder().With(char.MinValue));
+      Test(true, new StringBuilder());
+      Test(false, new StringBuilder().With(char.MinValue));
     }
 
     return;
 
-    static void Validate(bool result, StringBuilder builder)
+    static void Test(bool result, StringBuilder builder)
     {
       if (result)
       {

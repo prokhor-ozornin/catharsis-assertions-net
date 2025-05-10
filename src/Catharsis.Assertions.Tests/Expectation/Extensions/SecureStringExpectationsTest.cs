@@ -22,14 +22,14 @@ public sealed class SecureStringExpectationsTest : Test
       AssertionExtensions.Should(() => SecureStringExpectations.Length(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((SecureString) null).Expect().Length(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, new SecureString(), 0);
-      Validate(false, new SecureString(), int.MinValue);
-      Validate(false, new SecureString(), int.MaxValue);
+      Test(true, new SecureString(), 0);
+      Test(false, new SecureString(), int.MinValue);
+      Test(false, new SecureString(), int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, SecureString secure, int length)
+    static void Test(bool result, SecureString secure, int length)
     {
       using (secure)
       {
@@ -49,13 +49,13 @@ public sealed class SecureStringExpectationsTest : Test
       AssertionExtensions.Should(() => SecureStringExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((SecureString) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, new SecureString());
-      Validate(false, new SecureString().With(char.MinValue));
+      Test(true, new SecureString());
+      Test(false, new SecureString().With(char.MinValue));
     }
 
     return;
 
-    static void Validate(bool result, SecureString secure)
+    static void Test(bool result, SecureString secure)
     {
       using (secure)
       {
@@ -75,13 +75,13 @@ public sealed class SecureStringExpectationsTest : Test
       AssertionExtensions.Should(() => SecureStringExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((SecureString) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, new SecureString().AsReadOnly());
-      Validate(false, new SecureString());
+      Test(true, new SecureString().AsReadOnly());
+      Test(false, new SecureString());
     }
 
     return;
 
-    static void Validate(bool result, SecureString secure)
+    static void Test(bool result, SecureString secure)
     {
       using (secure)
       {

@@ -22,14 +22,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Days);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Days);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int days)
+    static void Test(bool result, TimeSpan timespan, int days)
     {
       if (result)
       {
@@ -54,14 +54,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Hours);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Hours);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int hours)
+    static void Test(bool result, TimeSpan timespan, int hours)
     {
       if (result)
       {
@@ -86,14 +86,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Minutes);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Minutes);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int minutes)
+    static void Test(bool result, TimeSpan timespan, int minutes)
     {
       if (result)
       {
@@ -118,14 +118,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Seconds);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Seconds);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int seconds)
+    static void Test(bool result, TimeSpan timespan, int seconds)
     {
       if (result)
       {
@@ -150,14 +150,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, timespan.Milliseconds);
-        Validate(false, timespan, 0);
+        Test(true, timespan, timespan.Milliseconds);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int milliseconds)
+    static void Test(bool result, TimeSpan timespan, int milliseconds)
     {
       if (result)
       {
@@ -182,14 +182,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalDays);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalDays);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int days)
+    static void Test(bool result, TimeSpan timespan, int days)
     {
       if (result)
       {
@@ -214,14 +214,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalHours);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalHours);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int hours)
+    static void Test(bool result, TimeSpan timespan, int hours)
     {
       if (result)
       {
@@ -246,14 +246,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalMinutes);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalMinutes);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int minutes)
+    static void Test(bool result, TimeSpan timespan, int minutes)
     {
       if (result)
       {
@@ -278,14 +278,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalSeconds);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalSeconds);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int seconds)
+    static void Test(bool result, TimeSpan timespan, int seconds)
     {
       if (result)
       {
@@ -310,14 +310,14 @@ public sealed class TimeSpanAssertionsTest : Test
 
       new[] { TimeSpan.MinValue, TimeSpan.MaxValue }.ForEach(timespan =>
       {
-        Validate(true, timespan, (int) timespan.TotalMilliseconds);
-        Validate(false, timespan, 0);
+        Test(true, timespan, (int) timespan.TotalMilliseconds);
+        Test(false, timespan, 0);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeSpan timespan, int milliseconds)
+    static void Test(bool result, TimeSpan timespan, int milliseconds)
     {
       if (result)
       {

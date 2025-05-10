@@ -22,13 +22,13 @@ public sealed class NameValueCollectionProtectionsTest : Test
       AssertionExtensions.Should(() => NameValueCollectionProtections.Empty(null, [])).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((NameValueCollection) null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-      Validate(true, new NameValueCollection().With(("name", "value")));
-      Validate(false, []);
+      Test(true, new NameValueCollection().With(("name", "value")));
+      Test(false, []);
     }
 
     return;
 
-    static void Validate(bool result, NameValueCollection collection)
+    static void Test(bool result, NameValueCollection collection)
     {
       if (result)
       {

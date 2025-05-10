@@ -19,13 +19,13 @@ public sealed class BooleanProtectionsTest : Test
     {
       AssertionExtensions.Should(() => BooleanProtections.Truth(null, true)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, false);
-      Validate(false, true);
+      Test(true, false);
+      Test(false, true);
     }
 
     return;
 
-    static void Validate(bool result, bool value)
+    static void Test(bool result, bool value)
     {
       if (result)
       {
@@ -48,13 +48,13 @@ public sealed class BooleanProtectionsTest : Test
     {
       AssertionExtensions.Should(() => BooleanProtections.Lie(null, false)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, true);
-      Validate(false, false);
+      Test(true, true);
+      Test(false, false);
     }
 
     return;
 
-    static void Validate(bool result, bool value)
+    static void Test(bool result, bool value)
     {
       if (result)
       {

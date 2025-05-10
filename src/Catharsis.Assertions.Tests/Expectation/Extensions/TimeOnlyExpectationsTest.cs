@@ -22,14 +22,14 @@ public sealed class TimeOnlyExpectationsTest : Test
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
-        Validate(true, time, time.Hour);
-        Validate(false, time, int.MinValue);
+        Test(true, time, time.Hour);
+        Test(false, time, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeOnly time, int hour) => time.Expect().Hour(hour).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeOnly time, int hour) => time.Expect().Hour(hour).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -44,14 +44,14 @@ public sealed class TimeOnlyExpectationsTest : Test
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
-        Validate(true, time, time.Minute);
-        Validate(false, time, int.MinValue);
+        Test(true, time, time.Minute);
+        Test(false, time, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeOnly time, int minute) => time.Expect().Minute(minute).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeOnly time, int minute) => time.Expect().Minute(minute).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -66,14 +66,14 @@ public sealed class TimeOnlyExpectationsTest : Test
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
-        Validate(true, time, time.Second);
-        Validate(false, time, int.MinValue);
+        Test(true, time, time.Second);
+        Test(false, time, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeOnly time, int second) => time.Expect().Second(second).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeOnly time, int second) => time.Expect().Second(second).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -88,13 +88,13 @@ public sealed class TimeOnlyExpectationsTest : Test
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
-        Validate(true, time, time.Millisecond);
-        Validate(false, time, int.MinValue);
+        Test(true, time, time.Millisecond);
+        Test(false, time, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeOnly time, int millisecond) => time.Expect().Millisecond(millisecond).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
+    static void Test(bool result, TimeOnly time, int millisecond) => time.Expect().Millisecond(millisecond).Should().BeOfType<Expectation<TimeOnly>>().Which.Result.Should().Be(result);
   }
 }

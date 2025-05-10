@@ -39,13 +39,13 @@ public sealed class ExpectationTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(true, new Expectation<object>(null).Not());
-      Validate(false, new Expectation<object>(null));
+      Test(true, new Expectation<object>(null).Not());
+      Test(false, new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(bool result, IExpectation<T> expectation)
+    static void Test<T>(bool result, IExpectation<T> expectation)
     {
       expectation.Not().Should().BeOfType<Expectation<T>>().And.BeSameAs(expectation);
       expectation.GetFieldValue<bool>("state").Should().Be(result);
@@ -70,7 +70,7 @@ public sealed class ExpectationTest : Test
 
     return;
 
-    static void Validate()
+    static void Test()
     {
 
     }

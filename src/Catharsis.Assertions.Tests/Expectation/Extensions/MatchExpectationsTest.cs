@@ -23,13 +23,13 @@ public sealed class MatchExpectationsTest : Test
       AssertionExtensions.Should(() => MatchExpectations.Successful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Match) null).Expect().Successful()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, string.Empty.ToRegex().Match(string.Empty));
-      Validate(false, Match.Empty);
+      Test(true, string.Empty.ToRegex().Match(string.Empty));
+      Test(false, Match.Empty);
     }
 
     return;
     
-    static void Validate(bool result, Match match) => match.Expect().Successful().Should().BeOfType<Expectation<Match>>().Which.Result.Should().Be(result);
+    static void Test(bool result, Match match) => match.Expect().Successful().Should().BeOfType<Expectation<Match>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -44,12 +44,12 @@ public sealed class MatchExpectationsTest : Test
       AssertionExtensions.Should(() => ((Match) null).Expect().Value(string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => Match.Empty.Expect().Value(null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-      Validate(true, Match.Empty, Match.Empty.Value);
-      Validate(false, Match.Empty, Fixture.Create<string>());
+      Test(true, Match.Empty, Match.Empty.Value);
+      Test(false, Match.Empty, Fixture.Create<string>());
     }
 
     return;
 
-    static void Validate(bool result, Match match, string value) => match.Expect().Value(value).Should().BeOfType<Expectation<Match>>().Which.Result.Should().Be(result);
+    static void Test(bool result, Match match, string value) => match.Expect().Value(value).Should().BeOfType<Expectation<Match>>().Which.Result.Should().Be(result);
   }
 }

@@ -37,14 +37,14 @@ public sealed class PropertyInfoAssertionsTest : Test
       AssertionExtensions.Should(() => PropertyInfoAssertions.Readable(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => PropertyInfoAssertions.Readable(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
 
-      Validate(true, ReadOnlyPropertyInfo);
-      Validate(true, ReadWritePropertyInfo);
-      Validate(false, WriteOnlyPropertyInfo);
+      Test(true, ReadOnlyPropertyInfo);
+      Test(true, ReadWritePropertyInfo);
+      Test(false, WriteOnlyPropertyInfo);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property)
+    static void Test(bool result, PropertyInfo property)
     {
       if (result)
       {
@@ -68,14 +68,14 @@ public sealed class PropertyInfoAssertionsTest : Test
       AssertionExtensions.Should(() => PropertyInfoAssertions.ReadOnly(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => PropertyInfoAssertions.ReadOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
 
-      Validate(true, ReadOnlyPropertyInfo);
-      Validate(false, ReadWritePropertyInfo);
-      Validate(false, WriteOnlyPropertyInfo);
+      Test(true, ReadOnlyPropertyInfo);
+      Test(false, ReadWritePropertyInfo);
+      Test(false, WriteOnlyPropertyInfo);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property)
+    static void Test(bool result, PropertyInfo property)
     {
       if (result)
       {
@@ -99,14 +99,14 @@ public sealed class PropertyInfoAssertionsTest : Test
       AssertionExtensions.Should(() => PropertyInfoAssertions.Writable(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => PropertyInfoAssertions.Writable(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
 
-      Validate(true, ReadWritePropertyInfo);
-      Validate(true, WriteOnlyPropertyInfo);
-      Validate(false, ReadOnlyPropertyInfo);
+      Test(true, ReadWritePropertyInfo);
+      Test(true, WriteOnlyPropertyInfo);
+      Test(false, ReadOnlyPropertyInfo);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property)
+    static void Test(bool result, PropertyInfo property)
     {
       if (result)
       {
@@ -130,14 +130,14 @@ public sealed class PropertyInfoAssertionsTest : Test
       AssertionExtensions.Should(() => PropertyInfoAssertions.WriteOnly(null, ReadWritePropertyInfo)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => PropertyInfoAssertions.WriteOnly(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
 
-      Validate(true, WriteOnlyPropertyInfo);
-      Validate(false, ReadWritePropertyInfo);
-      Validate(false, ReadOnlyPropertyInfo);
+      Test(true, WriteOnlyPropertyInfo);
+      Test(false, ReadWritePropertyInfo);
+      Test(false, ReadOnlyPropertyInfo);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property)
+    static void Test(bool result, PropertyInfo property)
     {
       if (result)
       {
@@ -162,13 +162,13 @@ public sealed class PropertyInfoAssertionsTest : Test
       AssertionExtensions.Should(() => PropertyInfoAssertions.Value(Assert.To, null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("property");
       AssertionExtensions.Should(() => Assert.To.Value(WriteOnlyPropertyInfo, string.Empty, string.Empty)).ThrowExactly<ArgumentException>();
 
-      Validate(true, ReadOnlyPropertyInfo, this, ReadOnlyProperty);
-      Validate(false, ReadOnlyPropertyInfo, this, null);
+      Test(true, ReadOnlyPropertyInfo, this, ReadOnlyProperty);
+      Test(false, ReadOnlyPropertyInfo, this, null);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property, object subject, object value)
+    static void Test(bool result, PropertyInfo property, object subject, object value)
     {
       if (result)
       {

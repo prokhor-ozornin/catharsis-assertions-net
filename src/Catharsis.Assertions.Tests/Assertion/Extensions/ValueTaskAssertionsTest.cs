@@ -23,11 +23,11 @@ public sealed class ValueTaskAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskAssertions.Successful(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, ValueTask.CompletedTask);
-      Validate(false, ValueTask.FromCanceled(new CancellationToken(true)));
-      Validate(false, ValueTask.FromException(new Exception()));
+      Test(true, ValueTask.CompletedTask);
+      Test(false, ValueTask.FromCanceled(new CancellationToken(true)));
+      Test(false, ValueTask.FromException(new Exception()));
 
-      static void Validate(bool result, ValueTask task)
+      static void Test(bool result, ValueTask task)
       {
         if (result)
         {
@@ -44,11 +44,11 @@ public sealed class ValueTaskAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskAssertions.Successful<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, ValueTask.FromResult<object>(null));
-      Validate(false, ValueTask.FromCanceled<object>(new CancellationToken(true)));
-      Validate(false, ValueTask.FromException<object>(new Exception()));
+      Test(true, ValueTask.FromResult<object>(null));
+      Test(false, ValueTask.FromCanceled<object>(new CancellationToken(true)));
+      Test(false, ValueTask.FromException<object>(new Exception()));
 
-      static void Validate<T>(bool result, ValueTask<T> task)
+      static void Test<T>(bool result, ValueTask<T> task)
       {
         if (result)
         {
@@ -76,11 +76,11 @@ public sealed class ValueTaskAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskAssertions.Unsuccessful(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, ValueTask.FromException(new Exception()));
-      Validate(false, ValueTask.CompletedTask);
-      Validate(false, ValueTask.FromCanceled(new CancellationToken(true)));
+      Test(true, ValueTask.FromException(new Exception()));
+      Test(false, ValueTask.CompletedTask);
+      Test(false, ValueTask.FromCanceled(new CancellationToken(true)));
 
-      static void Validate(bool result, ValueTask task)
+      static void Test(bool result, ValueTask task)
       {
         if (result)
         {
@@ -95,11 +95,11 @@ public sealed class ValueTaskAssertionsTest : Test
 
     using (new AssertionScope())
     {
-      Validate(true, ValueTask.FromException<object>(new Exception()));
-      Validate(false, ValueTask.FromResult<object>(null));
-      Validate(false, ValueTask.FromCanceled<object>(new CancellationToken(true)));
+      Test(true, ValueTask.FromException<object>(new Exception()));
+      Test(false, ValueTask.FromResult<object>(null));
+      Test(false, ValueTask.FromCanceled<object>(new CancellationToken(true)));
 
-      static void Validate<T>(bool result, ValueTask<T> task)
+      static void Test<T>(bool result, ValueTask<T> task)
       {
         if (result)
         {
@@ -127,11 +127,11 @@ public sealed class ValueTaskAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskAssertions.Canceled(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, ValueTask.FromCanceled(new CancellationToken(true)));
-      Validate(false, ValueTask.CompletedTask);
-      Validate(false, ValueTask.FromException(new Exception()));
+      Test(true, ValueTask.FromCanceled(new CancellationToken(true)));
+      Test(false, ValueTask.CompletedTask);
+      Test(false, ValueTask.FromException(new Exception()));
 
-      static void Validate(bool result, ValueTask task)
+      static void Test(bool result, ValueTask task)
       {
         if (result)
         {
@@ -148,11 +148,11 @@ public sealed class ValueTaskAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskAssertions.Canceled<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, ValueTask.FromCanceled<object>(new CancellationToken(true)));
-      Validate(false, ValueTask.FromResult<object>(null));
-      Validate(false, ValueTask.FromException<object>(new Exception()));
+      Test(true, ValueTask.FromCanceled<object>(new CancellationToken(true)));
+      Test(false, ValueTask.FromResult<object>(null));
+      Test(false, ValueTask.FromException<object>(new Exception()));
 
-      static void Validate<T>(bool result, ValueTask<T> task)
+      static void Test<T>(bool result, ValueTask<T> task)
       {
         if (result)
         {
@@ -180,11 +180,11 @@ public sealed class ValueTaskAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskAssertions.Completed(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, ValueTask.CompletedTask);
-      Validate(true, ValueTask.FromCanceled(new CancellationToken(true)));
-      Validate(true, ValueTask.FromException(new Exception()));
+      Test(true, ValueTask.CompletedTask);
+      Test(true, ValueTask.FromCanceled(new CancellationToken(true)));
+      Test(true, ValueTask.FromException(new Exception()));
 
-      static void Validate(bool result, ValueTask task)
+      static void Test(bool result, ValueTask task)
       {
         if (result)
         {
@@ -201,11 +201,11 @@ public sealed class ValueTaskAssertionsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskAssertions.Completed<object>(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, ValueTask.FromResult<object>(null));
-      Validate(true, ValueTask.FromCanceled<object>(new CancellationToken(true)));
-      Validate(true, ValueTask.FromException<object>(new Exception()));
+      Test(true, ValueTask.FromResult<object>(null));
+      Test(true, ValueTask.FromCanceled<object>(new CancellationToken(true)));
+      Test(true, ValueTask.FromException<object>(new Exception()));
 
-      static void Validate<T>(bool result, ValueTask<T> task)
+      static void Test<T>(bool result, ValueTask<T> task)
       {
         if (result)
         {

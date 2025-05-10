@@ -29,19 +29,19 @@ public sealed class XmlDocumentAssertionsTest : Test
         var parent = document.AppendChild(document.CreateElement("parent"));
         var child = parent.AppendChild(document.CreateElement("child"));
 
-        Validate(true, document, parent.Name);
-        Validate(true, document, parent.Name, parent.NamespaceURI);
+        Test(true, document, parent.Name);
+        Test(true, document, parent.Name, parent.NamespaceURI);
 
-        Validate(true, document, child.Name);
-        Validate(true, document, child.Name, child.NamespaceURI);
+        Test(true, document, child.Name);
+        Test(true, document, child.Name, child.NamespaceURI);
       });
 
-      Validate(false, new XmlDocument(), Fixture.Create<string>());
+      Test(false, new XmlDocument(), Fixture.Create<string>());
     }
 
     return;
 
-    static void Validate(bool result, XmlDocument document, string name, string uri = null)
+    static void Test(bool result, XmlDocument document, string name, string uri = null)
     {
       if (result)
       {

@@ -21,24 +21,24 @@ public sealed class DirectoryInfoExpectationsTest : Test
       AssertionExtensions.Should(() => DirectoryInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((DirectoryInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Random.Directory().TryFinallyDelete(directory => Validate(true, directory));
+      Random.Directory().TryFinallyDelete(directory => Test(true, directory));
 
       Random.Directory().TryFinallyDelete(directory =>
       {
         Random.File(directory);
-        Validate(false, directory);
+        Test(false, directory);
       });
 
       Random.Directory().TryFinallyDelete(directory =>
       {
         Random.Directory(directory);
-        Validate(false, directory);
+        Test(false, directory);
       });
     }
 
     return;
 
-    static void Validate(bool result, DirectoryInfo directory) => directory.Expect().Empty().Should().BeOfType<Expectation<DirectoryInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, DirectoryInfo directory) => directory.Expect().Empty().Should().BeOfType<Expectation<DirectoryInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -55,13 +55,13 @@ public sealed class DirectoryInfoExpectationsTest : Test
 
       Random.Directory().TryFinallyDelete(directory =>
       {
-        Validate(true, directory, directory.Parent);
-        Validate(false, directory, directory);
+        Test(true, directory, directory.Parent);
+        Test(false, directory, directory);
       });
     }
 
     return;
 
-    static void Validate(bool result, DirectoryInfo directory, DirectoryInfo parent) => directory.Expect().InDirectory(parent).Should().BeOfType<Expectation<DirectoryInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, DirectoryInfo directory, DirectoryInfo parent) => directory.Expect().InDirectory(parent).Should().BeOfType<Expectation<DirectoryInfo>>().Which.Result.Should().Be(result);
   }
 }

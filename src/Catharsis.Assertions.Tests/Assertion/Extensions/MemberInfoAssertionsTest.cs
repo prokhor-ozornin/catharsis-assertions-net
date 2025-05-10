@@ -34,11 +34,11 @@ public sealed class MemberInfoAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Attribute(Member, null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
       AssertionExtensions.Should(() => Assert.To.Attribute(Member, typeof(object))).ThrowExactly<ArgumentException>();
 
-      Validate(true, Member, typeof(Attribute));
-      Validate(true, Member, typeof(DescriptionAttribute));
-      Validate(false, Member, typeof(ObsoleteAttribute));
+      Test(true, Member, typeof(Attribute));
+      Test(true, Member, typeof(DescriptionAttribute));
+      Test(false, Member, typeof(ObsoleteAttribute));
 
-      static void Validate(bool result, MemberInfo member, Type type)
+      static void Test(bool result, MemberInfo member, Type type)
       {
         if (result)
         {
@@ -56,11 +56,11 @@ public sealed class MemberInfoAssertionsTest : Test
       AssertionExtensions.Should(() => MemberInfoAssertions.Attribute<Attribute>(null, Member)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Attribute<Attribute>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
 
-      Validate<Attribute>(true, Member);
-      Validate<DescriptionAttribute>(true, Member);
-      Validate<ObsoleteAttribute>(false, Member);
+      Test<Attribute>(true, Member);
+      Test<DescriptionAttribute>(true, Member);
+      Test<ObsoleteAttribute>(false, Member);
 
-      static void Validate<T>(bool result, MemberInfo member) where T : Attribute
+      static void Test<T>(bool result, MemberInfo member) where T : Attribute
       {
         if (result)
         {
@@ -85,13 +85,13 @@ public sealed class MemberInfoAssertionsTest : Test
       AssertionExtensions.Should(() => MemberInfoAssertions.Type(null, Member, default)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MemberInfoAssertions.Type(Assert.To, null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("member");
 
-      Validate(true, Member, Member.MemberType);
-      Validate(false, Member, MemberTypes.All);
+      Test(true, Member, Member.MemberType);
+      Test(false, Member, MemberTypes.All);
     }
 
     return;
 
-    static void Validate(bool result, MemberInfo member, MemberTypes type)
+    static void Test(bool result, MemberInfo member, MemberTypes type)
     {
       if (result)
       {

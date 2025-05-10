@@ -23,13 +23,13 @@ public sealed class XmlNodeExpectationsTest : Test
       AssertionExtensions.Should(() => XmlNodeExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XmlNode) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, new XmlDocument());
-      Validate(false, new XmlDocument().With(document => document.With(document.CreateElement("root"))));
+      Test(true, new XmlDocument());
+      Test(false, new XmlDocument().With(document => document.With(document.CreateElement("root"))));
     }
 
     return;
 
-    static void Validate(bool result, XmlNode node) => node.Expect().Empty().Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XmlNode node) => node.Expect().Empty().Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -44,13 +44,13 @@ public sealed class XmlNodeExpectationsTest : Test
       AssertionExtensions.Should(() => ((XmlNode) null).Expect().Name("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new XmlDocument().Expect().Name(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      new XmlDocument().CreateElement("root").With(node => Validate(true, node,  node.Name));
-      new XmlDocument().CreateElement("root").With(node => Validate(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(true, node,  node.Name));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
     }
 
     return;
 
-    static void Validate(bool result, XmlNode node, string name) => node.Expect().Name(name).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XmlNode node, string name) => node.Expect().Name(name).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -65,13 +65,13 @@ public sealed class XmlNodeExpectationsTest : Test
       AssertionExtensions.Should(() => ((XmlNode) null).Expect().InnerText("text")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new XmlDocument().Expect().InnerText(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      new XmlDocument().CreateElement("root").With(node => Validate(true, node, node.InnerText));
-      new XmlDocument().CreateElement("root").With(node => Validate(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(true, node, node.InnerText));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
     }
 
     return;
 
-    static void Validate(bool result, XmlNode node, string text) => node.Expect().InnerText(text).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XmlNode node, string text) => node.Expect().InnerText(text).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -86,13 +86,13 @@ public sealed class XmlNodeExpectationsTest : Test
       AssertionExtensions.Should(() => ((XmlNode)null).Expect().InnerXml("text")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new XmlDocument().Expect().InnerXml(null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
-      new XmlDocument().CreateElement("root").With(node => Validate(true, node, node.InnerXml));
-      new XmlDocument().CreateElement("root").With(node => Validate(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(true, node, node.InnerXml));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
     }
 
     return;
 
-    static void Validate(bool result, XmlNode node, string xml) => node.Expect().InnerXml(xml).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XmlNode node, string xml) => node.Expect().InnerXml(xml).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -107,13 +107,13 @@ public sealed class XmlNodeExpectationsTest : Test
       AssertionExtensions.Should(() => ((XmlNode) null).Expect().OuterXml("text")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new XmlDocument().Expect().OuterXml(null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
-      new XmlDocument().CreateElement("root").With(node => Validate(true, node, node.OuterXml));
-      new XmlDocument().CreateElement("root").With(node => Validate(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(true, node, node.OuterXml));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
     }
 
     return;
 
-    static void Validate(bool result, XmlNode node, string xml) => node.Expect().OuterXml(xml).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XmlNode node, string xml) => node.Expect().OuterXml(xml).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -127,12 +127,12 @@ public sealed class XmlNodeExpectationsTest : Test
       AssertionExtensions.Should(() => XmlNodeExpectations.Value(null, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((XmlNode) null).Expect().Value("value")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      new XmlDocument().CreateElement("root").With(node => Validate(true, node, node.Value));
-      new XmlDocument().CreateElement("root").With(node => Validate(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(true, node, node.Value));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
     }
 
     return;
 
-    static void Validate(bool result, XmlNode node, string value) => node.Expect().Value(value).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XmlNode node, string value) => node.Expect().Value(value).Should().BeOfType<Expectation<XmlNode>>().Which.Result.Should().Be(result);
   }
 }

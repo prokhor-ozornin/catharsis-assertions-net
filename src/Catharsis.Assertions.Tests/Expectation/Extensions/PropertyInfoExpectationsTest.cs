@@ -37,14 +37,14 @@ public sealed class PropertyInfoExpectationsTest : Test
       AssertionExtensions.Should(() => PropertyInfoExpectations.Readable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((PropertyInfo) null).Expect().Readable()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, ReadOnlyPropertyInfo);
-      Validate(true, ReadWritePropertyInfo);
-      Validate(false, WriteOnlyPropertyInfo);
+      Test(true, ReadOnlyPropertyInfo);
+      Test(true, ReadWritePropertyInfo);
+      Test(false, WriteOnlyPropertyInfo);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property) => property.Expect().Readable().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, PropertyInfo property) => property.Expect().Readable().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -58,14 +58,14 @@ public sealed class PropertyInfoExpectationsTest : Test
       AssertionExtensions.Should(() => PropertyInfoExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((PropertyInfo) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, ReadOnlyPropertyInfo);
-      Validate(false, ReadWritePropertyInfo);
-      Validate(false, WriteOnlyPropertyInfo);
+      Test(true, ReadOnlyPropertyInfo);
+      Test(false, ReadWritePropertyInfo);
+      Test(false, WriteOnlyPropertyInfo);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property) => property.Expect().ReadOnly().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, PropertyInfo property) => property.Expect().ReadOnly().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -79,14 +79,14 @@ public sealed class PropertyInfoExpectationsTest : Test
       AssertionExtensions.Should(() => PropertyInfoExpectations.Writable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((PropertyInfo) null).Expect().Writable()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, ReadWritePropertyInfo);
-      Validate(true, WriteOnlyPropertyInfo);
-      Validate(false, ReadOnlyPropertyInfo);
+      Test(true, ReadWritePropertyInfo);
+      Test(true, WriteOnlyPropertyInfo);
+      Test(false, ReadOnlyPropertyInfo);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property) => property.Expect().Writable().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, PropertyInfo property) => property.Expect().Writable().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -100,14 +100,14 @@ public sealed class PropertyInfoExpectationsTest : Test
       AssertionExtensions.Should(() => PropertyInfoExpectations.WriteOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((PropertyInfo) null).Expect().WriteOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, WriteOnlyPropertyInfo);
-      Validate(false, ReadWritePropertyInfo);
-      Validate(false, ReadOnlyPropertyInfo);
+      Test(true, WriteOnlyPropertyInfo);
+      Test(false, ReadWritePropertyInfo);
+      Test(false, ReadOnlyPropertyInfo);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property) => property.Expect().WriteOnly().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, PropertyInfo property) => property.Expect().WriteOnly().Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -121,12 +121,12 @@ public sealed class PropertyInfoExpectationsTest : Test
       AssertionExtensions.Should(() => PropertyInfoExpectations.Value(null, string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((PropertyInfo) null).Expect().Value(string.Empty, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, ReadOnlyPropertyInfo, this, ReadOnlyProperty);
-      Validate(false, ReadOnlyPropertyInfo, this, null);
+      Test(true, ReadOnlyPropertyInfo, this, ReadOnlyProperty);
+      Test(false, ReadOnlyPropertyInfo, this, null);
     }
 
     return;
 
-    static void Validate(bool result, PropertyInfo property, object subject, object value) => property.Expect().Value(subject, value).Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, PropertyInfo property, object subject, object value) => property.Expect().Value(subject, value).Should().BeOfType<Expectation<PropertyInfo>>().Which.Result.Should().Be(result);
   }
 }

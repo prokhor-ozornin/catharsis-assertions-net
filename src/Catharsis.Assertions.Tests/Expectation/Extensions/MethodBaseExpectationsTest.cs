@@ -38,19 +38,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.Abstract(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().Abstract()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().Abstract().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().Abstract().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -64,19 +64,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.Static(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().Static()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, PublicStaticMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicStaticMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().Static().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().Static().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -90,19 +90,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.Final(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().Final()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, PublicFinalMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicFinalMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().Final().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().Final().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -116,19 +116,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.Virtual(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().Virtual()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, PublicAbstractMethodInfo);
-      Validate(true, PublicFinalMethodInfo);
-      Validate(true, ProtectedVirtualMethodInfo);
-      Validate(true, InternalVirtualMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicAbstractMethodInfo);
+      Test(true, PublicFinalMethodInfo);
+      Test(true, ProtectedVirtualMethodInfo);
+      Test(true, InternalVirtualMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().Virtual().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().Virtual().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -142,19 +142,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.Overridable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().Overridable()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, PublicAbstractMethodInfo);
-      Validate(true, ProtectedVirtualMethodInfo);
-      Validate(true, InternalVirtualMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicAbstractMethodInfo);
+      Test(true, ProtectedVirtualMethodInfo);
+      Test(true, InternalVirtualMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().Overridable().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().Overridable().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -168,19 +168,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.Private(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().Private()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, PrivateMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PrivateMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().Private().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().Private().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -194,19 +194,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.Protected(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().Protected()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, ProtectedVirtualMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, ProtectedVirtualMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().Protected().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().Protected().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -220,19 +220,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.Public(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().Public()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, PublicAbstractMethodInfo);
-      Validate(true, PublicFinalMethodInfo);
-      Validate(true, PublicMethodInfo);
-      Validate(true, PublicStaticMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicAbstractMethodInfo);
+      Test(true, PublicFinalMethodInfo);
+      Test(true, PublicMethodInfo);
+      Test(true, PublicStaticMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().Public().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().Public().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -246,19 +246,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.Internal(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().Internal()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, InternalVirtualMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, InternalVirtualMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().Internal().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().Internal().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -272,19 +272,19 @@ public class MethodBaseExpectationsTest : Test
       AssertionExtensions.Should(() => MethodBaseExpectations.ProtectedInternal(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((MethodBase) null).Expect().ProtectedInternal()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, ProtectedInternalMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
+      Test(true, ProtectedInternalMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method) => method.Expect().ProtectedInternal().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
+    static void Test(bool result, MethodBase method) => method.Expect().ProtectedInternal().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
   public sealed override void Dispose() => base.Dispose();

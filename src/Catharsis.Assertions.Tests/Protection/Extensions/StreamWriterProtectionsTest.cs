@@ -21,13 +21,13 @@ public sealed class StreamWriterProtectionsTest : Test
       Stream.Null.ToStreamWriter().TryFinallyDispose(writer => AssertionExtensions.Should(() => StreamWriterProtections.Empty(null, writer)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
       AssertionExtensions.Should(() => Protect.From.Empty((StreamWriter) null)).ThrowExactly<ArgumentNullException>().WithParameterName("writer");
 
-      Validate(true, RandomStream.ToStreamWriter());
-      Validate(false, Stream.Null.ToStreamWriter());
+      Test(true, RandomStream.ToStreamWriter());
+      Test(false, Stream.Null.ToStreamWriter());
     }
 
     return;
 
-    static void Validate(bool result, StreamWriter writer)
+    static void Test(bool result, StreamWriter writer)
     {
       using (writer)
       {

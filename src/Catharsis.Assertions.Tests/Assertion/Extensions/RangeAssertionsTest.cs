@@ -19,15 +19,15 @@ public sealed class RangeAssertionsTest : Test
     {
       AssertionExtensions.Should(() => RangeAssertions.StartIndex(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, ..0, 0);
-      Validate(true, .., 0);
-      Validate(true, ^0..0, 0);
-      Validate(false, ..0, int.MinValue);
+      Test(true, ..0, 0);
+      Test(true, .., 0);
+      Test(true, ^0..0, 0);
+      Test(false, ..0, int.MinValue);
     }
 
     return;
 
-    static void Validate(bool result, Range range, int index)
+    static void Test(bool result, Range range, int index)
     {
       if (result)
       {
@@ -50,15 +50,15 @@ public sealed class RangeAssertionsTest : Test
     {
       AssertionExtensions.Should(() => RangeAssertions.EndIndex(null, default, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, ..0, 0);
-      Validate(true, .., 0);
-      Validate(true, ..^int.MaxValue, int.MaxValue);
-      Validate(false, ..0, int.MinValue);
+      Test(true, ..0, 0);
+      Test(true, .., 0);
+      Test(true, ..^int.MaxValue, int.MaxValue);
+      Test(false, ..0, int.MinValue);
     }
 
     return;
 
-    static void Validate(bool result, Range range, int index)
+    static void Test(bool result, Range range, int index)
     {
       if (result)
       {

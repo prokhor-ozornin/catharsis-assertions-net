@@ -22,14 +22,14 @@ public sealed class TimeOnlyAssertionsTest : Test
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
-        Validate(true, time, time.Hour);
-        Validate(false, time, int.MinValue);
+        Test(true, time, time.Hour);
+        Test(false, time, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeOnly time, int hour)
+    static void Test(bool result, TimeOnly time, int hour)
     {
       if (result)
       {
@@ -54,14 +54,14 @@ public sealed class TimeOnlyAssertionsTest : Test
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
-        Validate(true, time, time.Minute);
-        Validate(false, time, int.MinValue);
+        Test(true, time, time.Minute);
+        Test(false, time, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeOnly time, int minute)
+    static void Test(bool result, TimeOnly time, int minute)
     {
       if (result)
       {
@@ -86,14 +86,14 @@ public sealed class TimeOnlyAssertionsTest : Test
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
-        Validate(true, time, time.Second);
-        Validate(false, time, int.MinValue);
+        Test(true, time, time.Second);
+        Test(false, time, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeOnly time, int second)
+    static void Test(bool result, TimeOnly time, int second)
     {
       if (result)
       {
@@ -118,14 +118,14 @@ public sealed class TimeOnlyAssertionsTest : Test
 
       new[] { TimeOnly.MinValue, TimeOnly.MaxValue, DateTime.Now.ToTimeOnly() }.ForEach(time =>
       {
-        Validate(true, time, time.Millisecond);
-        Validate(false, time, int.MinValue);
+        Test(true, time, time.Millisecond);
+        Test(false, time, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, TimeOnly time, int millisecond)
+    static void Test(bool result, TimeOnly time, int millisecond)
     {
       if (result)
       {

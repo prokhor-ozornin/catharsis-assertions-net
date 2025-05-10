@@ -19,14 +19,14 @@ public sealed class BooleanAssertionsTest : Test
     {
       AssertionExtensions.Should(() => BooleanAssertions.True(null, null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, true);
-      Validate(false, null);
-      Validate(false, false);
+      Test(true, true);
+      Test(false, null);
+      Test(false, false);
     }
 
     return;
 
-    static void Validate(bool result, bool? value)
+    static void Test(bool result, bool? value)
     {
       if (result)
       {
@@ -49,14 +49,14 @@ public sealed class BooleanAssertionsTest : Test
     {
       AssertionExtensions.Should(() => BooleanAssertions.False(null, null)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 
-      Validate(true, null);
-      Validate(true, false);
-      Validate(false, true);
+      Test(true, null);
+      Test(true, false);
+      Test(false, true);
     }
 
     return;
 
-    static void Validate(bool result, bool? value)
+    static void Test(bool result, bool? value)
     {
       if (result)
       {

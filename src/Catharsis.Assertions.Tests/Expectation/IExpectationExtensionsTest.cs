@@ -20,13 +20,13 @@ public sealed class IExpectationExtensionsTest : Test
       AssertionExtensions.Should(() => IExpectationExtensions.Expected<object>(null, _ => true)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => new Expectation<object>(null).Expected(null)).ThrowExactly<ArgumentNullException>().WithParameterName("result");
 
-      Validate(true, new Expectation<object>(null), _ => true);
-      Validate(false, new Expectation<object>(null), _ => false);
+      Test(true, new Expectation<object>(null), _ => true);
+      Test(false, new Expectation<object>(null), _ => false);
     }
 
     return;
 
-    static void Validate<T>(bool result, IExpectation<T> expectation, Predicate<T> predicate) => expectation.Expected(predicate).Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, IExpectation<T> expectation, Predicate<T> predicate) => expectation.Expected(predicate).Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -39,13 +39,13 @@ public sealed class IExpectationExtensionsTest : Test
     {
       AssertionExtensions.Should(() => IExpectationExtensions.HaveSubject<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, new Expectation<object>(new object()));
-      Validate(false, new Expectation<object>(null));
+      Test(true, new Expectation<object>(new object()));
+      Test(false, new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(bool result, IExpectation<T> expectation)
+    static void Test<T>(bool result, IExpectation<T> expectation)
     {
       if (result)
       {
@@ -73,10 +73,10 @@ public sealed class IExpectationExtensionsTest : Test
       AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfFalse<object>(null, new Exception())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => new Expectation<object>(null).ThrowIfFalse((Exception) null)).ThrowExactly<ArgumentNullException>().WithParameterName("exception");
 
-      Validate(true, new Expectation<object>(null).Expect(_ => true));
-      Validate(false, new Expectation<object>(null).Expect(_ => false));
+      Test(true, new Expectation<object>(null).Expect(_ => true));
+      Test(false, new Expectation<object>(null).Expect(_ => false));
 
-      static void Validate<T>(bool result, IExpectation<T> expectation)
+      static void Test<T>(bool result, IExpectation<T> expectation)
       {
         if (result)
         {
@@ -94,10 +94,10 @@ public sealed class IExpectationExtensionsTest : Test
       AssertionExtensions.Should(() => IExpectationExtensions.ThrowIfFalse<object>(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => new Expectation<object>(null).Expect(_ => false).ThrowIfFalse("message")).ThrowExactly<InvalidOperationException>().WithMessage("message");
 
-      Validate(true, new Expectation<object>(null).Expect(_ => true));
-      Validate(false, new Expectation<object>(null).Expect(_ => false));
+      Test(true, new Expectation<object>(null).Expect(_ => true));
+      Test(false, new Expectation<object>(null).Expect(_ => false));
 
-      static void Validate<T>(bool result, IExpectation<T> expectation)
+      static void Test<T>(bool result, IExpectation<T> expectation)
       {
         if (result)
         {
@@ -123,12 +123,12 @@ public sealed class IExpectationExtensionsTest : Test
       AssertionExtensions.Should(() => new Expectation<object>(null).ThrowIfNull(null)).ThrowExactly<ArgumentNullException>().WithParameterName("instance");
       AssertionExtensions.Should(() => new Expectation<object>(null).ThrowIfNull(null, "error")).ThrowExactly<ArgumentNullException>().WithParameterName("error");
 
-      Validate(new Expectation<object>(null), new object());
+      Test(new Expectation<object>(null), new object());
     }
 
     return;
 
-    static void Validate<T>(IExpectation<T> expectation, object instance) => expectation.ThrowIfNull(instance).Should().BeOfType<Expectation<T>>().And.BeSameAs(expectation);
+    static void Test<T>(IExpectation<T> expectation, object instance) => expectation.ThrowIfNull(instance).Should().BeOfType<Expectation<T>>().And.BeSameAs(expectation);
   }
 
   /// <summary>
@@ -139,12 +139,12 @@ public sealed class IExpectationExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(new Expectation<object>(null));
+      Test(new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(IExpectation<T> expectation) => expectation.To().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
+    static void Test<T>(IExpectation<T> expectation) => expectation.To().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
   }
 
   /// <summary>
@@ -155,12 +155,12 @@ public sealed class IExpectationExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(new Expectation<object>(null));
+      Test(new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(IExpectation<T> expectation) => expectation.And().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
+    static void Test<T>(IExpectation<T> expectation) => expectation.And().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
   }
 
   /// <summary>
@@ -171,12 +171,12 @@ public sealed class IExpectationExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(new Expectation<object>(null));
+      Test(new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(IExpectation<T> expectation) => expectation.Be().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
+    static void Test<T>(IExpectation<T> expectation) => expectation.Be().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
   }
 
   /// <summary>
@@ -187,12 +187,12 @@ public sealed class IExpectationExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(new Expectation<object>(null));
+      Test(new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(IExpectation<T> expectation) => expectation.Having().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
+    static void Test<T>(IExpectation<T> expectation) => expectation.Having().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
   }
 
   /// <summary>
@@ -203,12 +203,12 @@ public sealed class IExpectationExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(new Expectation<object>(null));
+      Test(new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(IExpectation<T> expectation) => expectation.With().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
+    static void Test<T>(IExpectation<T> expectation) => expectation.With().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
   }
 
   /// <summary>
@@ -219,12 +219,12 @@ public sealed class IExpectationExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(new Expectation<object>(null));
+      Test(new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(IExpectation<T> expectation) => expectation.Of().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
+    static void Test<T>(IExpectation<T> expectation) => expectation.Of().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
   }
 
   /// <summary>
@@ -235,12 +235,12 @@ public sealed class IExpectationExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(new Expectation<object>(null));
+      Test(new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(IExpectation<T> expectation) => expectation.At().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
+    static void Test<T>(IExpectation<T> expectation) => expectation.At().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
   }
 
   /// <summary>
@@ -251,11 +251,11 @@ public sealed class IExpectationExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(new Expectation<object>(null));
+      Test(new Expectation<object>(null));
     }
 
     return;
 
-    static void Validate<T>(IExpectation<T> expectation) => expectation.On().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
+    static void Test<T>(IExpectation<T> expectation) => expectation.On().Should().BeSameAs(expectation).And.BeOfType<Expectation<T>>();
   }
 }

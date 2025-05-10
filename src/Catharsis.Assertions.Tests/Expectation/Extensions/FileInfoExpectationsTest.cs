@@ -24,15 +24,15 @@ public sealed class FileInfoExpectationsTest : Test
 
       Random.File().TryFinallyDelete(file =>
       {
-        Validate(true, file, file.Length);
-        Validate(true, file.Empty(), 0);
-        Validate(false, file, int.MinValue);
+        Test(true, file, file.Length);
+        Test(true, file.Empty(), 0);
+        Test(false, file, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, FileInfo file, long length) => file.Expect().Length(length).Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, FileInfo file, long length) => file.Expect().Length(length).Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -48,14 +48,14 @@ public sealed class FileInfoExpectationsTest : Test
 
       Random.BinaryFile(short.MaxValue).TryFinallyDelete(file =>
       {
-        Validate(false, file);
-        Validate(true, file.Empty());
+        Test(false, file);
+        Test(true, file.Empty());
       });
     }
 
     return;
 
-    static void Validate(bool result, FileInfo file) => file.Expect().Empty().Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, FileInfo file) => file.Expect().Empty().Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -71,14 +71,14 @@ public sealed class FileInfoExpectationsTest : Test
 
       Random.File().TryFinallyDelete(file =>
       {
-        Validate(false, file);
-        Validate(true, file.AsReadOnly());
+        Test(false, file);
+        Test(true, file.AsReadOnly());
       });
     }
 
     return;
 
-    static void Validate(bool result, FileInfo file) => file.Expect().ReadOnly().Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, FileInfo file) => file.Expect().ReadOnly().Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -95,13 +95,13 @@ public sealed class FileInfoExpectationsTest : Test
 
       Random.File().TryFinallyDelete(file =>
       {
-        Validate(true, file, file.Directory);
-        Validate(false, file, Environment.SystemDirectory.ToDirectory());
+        Test(true, file, file.Directory);
+        Test(false, file, Environment.SystemDirectory.ToDirectory());
       });
     }
 
     return;
 
-    static void Validate(bool result, FileInfo file, DirectoryInfo directory) => file.Expect().InDirectory(directory).Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, FileInfo file, DirectoryInfo directory) => file.Expect().InDirectory(directory).Should().BeOfType<Expectation<FileInfo>>().Which.Result.Should().Be(result);
   }
 }

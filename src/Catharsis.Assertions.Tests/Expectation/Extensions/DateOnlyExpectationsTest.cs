@@ -22,14 +22,14 @@ public sealed class DateOnlyExpectationsTest : Test
 
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
-        Validate(true, date, date.DayOfYear);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.DayOfYear);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateOnly date, int day) => date.Expect().DayOfYear(day).Should().BeOfType<Expectation<DateOnly>>().Which.Result.Should().Be(result);
+    static void Test(bool result, DateOnly date, int day) => date.Expect().DayOfYear(day).Should().BeOfType<Expectation<DateOnly>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -44,14 +44,14 @@ public sealed class DateOnlyExpectationsTest : Test
 
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
-        Validate(true, date, date.Year);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Year);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateOnly date, int year) => date.Expect().Year(year).Should().BeOfType<Expectation<DateOnly>>().Which.Result.Should().Be(result);
+    static void Test(bool result, DateOnly date, int year) => date.Expect().Year(year).Should().BeOfType<Expectation<DateOnly>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -66,14 +66,14 @@ public sealed class DateOnlyExpectationsTest : Test
 
       new[] { DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
-        Validate(true, date, date.Month);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Month);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateOnly date, int month) => date.Expect().Month(month).Should().BeOfType<Expectation<DateOnly>>().Which.Result.Should().Be(result);
+    static void Test(bool result, DateOnly date, int month) => date.Expect().Month(month).Should().BeOfType<Expectation<DateOnly>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -88,13 +88,13 @@ public sealed class DateOnlyExpectationsTest : Test
 
       new[] {DateOnly.MinValue, DateOnly.MaxValue, DateTime.Now.ToDateOnly() }.ForEach(date =>
       {
-        Validate(true, date, date.Day);
-        Validate(false, date, int.MinValue);
+        Test(true, date, date.Day);
+        Test(false, date, int.MinValue);
       });
     }
 
     return;
 
-    static void Validate(bool result, DateOnly date, int day) => date.Expect().Day(day).Should().BeOfType<Expectation<DateOnly>>().Which.Result.Should().Be(result);
+    static void Test(bool result, DateOnly date, int day) => date.Expect().Day(day).Should().BeOfType<Expectation<DateOnly>>().Which.Result.Should().Be(result);
   }
 }

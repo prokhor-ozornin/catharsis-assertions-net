@@ -25,10 +25,10 @@ public sealed class TaskProtectionsTest : Test
       AssertionExtensions.Should(() => TaskProtections.Status(null, Task.CompletedTask, default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("protection").Await();
       AssertionExtensions.Should(() => Protect.From.Status(null, default, "error")).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("task").Await();
 
-      Validate(true, Task.CompletedTask, TaskStatus.Canceled);
-      Validate(false, Task.CompletedTask, TaskStatus.RanToCompletion);
+      Test(true, Task.CompletedTask, TaskStatus.Canceled);
+      Test(false, Task.CompletedTask, TaskStatus.RanToCompletion);
 
-      static void Validate(bool result, Task task, TaskStatus status)
+      static void Test(bool result, Task task, TaskStatus status)
       {
         using (task)
         {
@@ -49,10 +49,10 @@ public sealed class TaskProtectionsTest : Test
       AssertionExtensions.Should(() => TaskProtections.Status(null, Task.FromResult<object>(null), default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("protection").Await();
       AssertionExtensions.Should(() => Protect.From.Status<object>(null, default)).ThrowExactlyAsync<ArgumentNullException>().WithParameterName("task").Await();
 
-      Validate(true, Task.FromResult<object>(null), TaskStatus.Canceled);
-      Validate(false, Task.FromResult<object>(null), TaskStatus.RanToCompletion);
+      Test(true, Task.FromResult<object>(null), TaskStatus.Canceled);
+      Test(false, Task.FromResult<object>(null), TaskStatus.RanToCompletion);
 
-      static void Validate<T>(bool result, Task<T> task, TaskStatus status)
+      static void Test<T>(bool result, Task<T> task, TaskStatus status)
       {
         using (task)
         {

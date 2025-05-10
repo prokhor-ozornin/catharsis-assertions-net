@@ -24,21 +24,21 @@ public sealed class DirectoryInfoProtectionsTest : Test
       Random.Directory().TryFinallyDelete(directory =>
       {
         Random.File(directory);
-        Validate(true, directory);
+        Test(true, directory);
       });
 
       Random.Directory().TryFinallyDelete(directory =>
       {
         Random.Directory(directory);
-        Validate(true, directory);
+        Test(true, directory);
       });
 
-      Random.Directory().TryFinallyDelete(directory => Validate(false, directory));
+      Random.Directory().TryFinallyDelete(directory => Test(false, directory));
     }
 
     return;
 
-    static void Validate(bool result, DirectoryInfo directory)
+    static void Test(bool result, DirectoryInfo directory)
     {
       if (result)
       {

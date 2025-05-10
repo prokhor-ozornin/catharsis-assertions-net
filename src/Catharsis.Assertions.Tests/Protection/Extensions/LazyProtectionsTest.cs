@@ -19,15 +19,15 @@ public sealed class LazyProtectionsTest : Test
     {
       AssertionExtensions.Should(() => LazyProtections.Null(null, new Lazy<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
 
-      Validate(true, new Lazy<object>(new object()));
+      Test(true, new Lazy<object>(new object()));
       
-      Validate(false, new Lazy<object>((object) null));
-      Validate(false, new Lazy<object>());
+      Test(false, new Lazy<object>((object) null));
+      Test(false, new Lazy<object>());
     }
 
     return;
 
-    static void Validate<T>(bool result, Lazy<T> instance)
+    static void Test<T>(bool result, Lazy<T> instance)
     {
       if (result)
       {

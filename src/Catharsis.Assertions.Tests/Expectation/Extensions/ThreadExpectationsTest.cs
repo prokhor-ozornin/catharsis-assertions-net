@@ -21,13 +21,13 @@ public sealed class ThreadExpectationsTest : Test
       AssertionExtensions.Should(() => ThreadExpectations.State(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Thread) null).Expect().State(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Thread.CurrentThread.With(thread => Validate(true, thread, thread.ThreadState));
-      Validate(false, Thread.CurrentThread, ThreadState.Unstarted);
+      Thread.CurrentThread.With(thread => Test(true, thread, thread.ThreadState));
+      Test(false, Thread.CurrentThread, ThreadState.Unstarted);
     }
 
     return;
 
-    static void Validate(bool result, Thread thread, ThreadState state) => thread.Expect().State(state).Should().BeOfType<Expectation<Thread>>().Which.Result.Should().Be(result);
+    static void Test(bool result, Thread thread, ThreadState state) => thread.Expect().State(state).Should().BeOfType<Expectation<Thread>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -41,12 +41,12 @@ public sealed class ThreadExpectationsTest : Test
       AssertionExtensions.Should(() => ThreadExpectations.Priority(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((Thread) null).Expect().Priority(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Thread.CurrentThread.With(thread => Validate(true, thread, thread.Priority));
-      Validate(false, Thread.CurrentThread, ThreadPriority.Highest);
+      Thread.CurrentThread.With(thread => Test(true, thread, thread.Priority));
+      Test(false, Thread.CurrentThread, ThreadPriority.Highest);
     }
 
     return;
 
-    static void Validate(bool result, Thread thread, ThreadPriority priority) => thread.Expect().Priority(priority).Should().BeOfType<Expectation<Thread>>().Which.Result.Should().Be(result);
+    static void Test(bool result, Thread thread, ThreadPriority priority) => thread.Expect().Priority(priority).Should().BeOfType<Expectation<Thread>>().Which.Result.Should().Be(result);
   }
 }

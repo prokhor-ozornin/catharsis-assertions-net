@@ -40,19 +40,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.Abstract(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Abstract(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {
@@ -76,19 +76,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.Static(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Static(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, PublicStaticMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicStaticMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {
@@ -112,19 +112,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.Final(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Final(null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, PublicFinalMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicFinalMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {
@@ -148,19 +148,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.Virtual(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Virtual(null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, PublicAbstractMethodInfo);
-      Validate(true, PublicFinalMethodInfo);
-      Validate(true, ProtectedVirtualMethodInfo);
-      Validate(true, InternalVirtualMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicAbstractMethodInfo);
+      Test(true, PublicFinalMethodInfo);
+      Test(true, ProtectedVirtualMethodInfo);
+      Test(true, InternalVirtualMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {
@@ -184,19 +184,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.Overridable(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Overridable(null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, PublicAbstractMethodInfo);
-      Validate(true, ProtectedVirtualMethodInfo);
-      Validate(true, InternalVirtualMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicAbstractMethodInfo);
+      Test(true, ProtectedVirtualMethodInfo);
+      Test(true, InternalVirtualMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {
@@ -220,19 +220,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.Private(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Private(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, PrivateMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PrivateMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {
@@ -256,19 +256,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.Protected(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Protected(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, ProtectedVirtualMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, ProtectedVirtualMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {
@@ -292,19 +292,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.Public(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Public(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, PublicAbstractMethodInfo);
-      Validate(true, PublicFinalMethodInfo);
-      Validate(true, PublicMethodInfo);
-      Validate(true, PublicStaticMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, PublicAbstractMethodInfo);
+      Test(true, PublicFinalMethodInfo);
+      Test(true, PublicMethodInfo);
+      Test(true, PublicStaticMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {
@@ -328,19 +328,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.Internal(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.Internal(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, InternalVirtualMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, ProtectedInternalMethodInfo);
+      Test(true, InternalVirtualMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, ProtectedInternalMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {
@@ -364,19 +364,19 @@ public class MethodBaseAssertionsTest : Test
       AssertionExtensions.Should(() => MethodBaseAssertions.ProtectedInternal(null, Method)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => MethodBaseAssertions.ProtectedInternal(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("method");
 
-      Validate(true, ProtectedInternalMethodInfo);
-      Validate(false, PublicAbstractMethodInfo);
-      Validate(false, PublicFinalMethodInfo);
-      Validate(false, PublicMethodInfo);
-      Validate(false, PrivateMethodInfo);
-      Validate(false, ProtectedVirtualMethodInfo);
-      Validate(false, PublicStaticMethodInfo);
-      Validate(false, InternalVirtualMethodInfo);
+      Test(true, ProtectedInternalMethodInfo);
+      Test(false, PublicAbstractMethodInfo);
+      Test(false, PublicFinalMethodInfo);
+      Test(false, PublicMethodInfo);
+      Test(false, PrivateMethodInfo);
+      Test(false, ProtectedVirtualMethodInfo);
+      Test(false, PublicStaticMethodInfo);
+      Test(false, InternalVirtualMethodInfo);
     }
 
     return;
 
-    static void Validate(bool result, MethodBase method)
+    static void Test(bool result, MethodBase method)
     {
       if (result)
       {

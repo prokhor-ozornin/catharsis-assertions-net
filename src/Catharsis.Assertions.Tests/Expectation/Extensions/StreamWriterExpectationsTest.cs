@@ -22,13 +22,13 @@ public sealed class StreamWriterExpectationsTest : Test
       AssertionExtensions.Should(() => StreamWriterExpectations.Encoding(null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((StreamWriter) null).Expect().Encoding(Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Stream.Null.ToStreamWriter().With(writer => Validate(true, writer, writer.Encoding));
-      Validate(false, Stream.Null.ToStreamWriter(), null);
+      Stream.Null.ToStreamWriter().With(writer => Test(true, writer, writer.Encoding));
+      Test(false, Stream.Null.ToStreamWriter(), null);
     }
 
     return;
 
-    static void Validate(bool result, StreamWriter writer, Encoding encoding)
+    static void Test(bool result, StreamWriter writer, Encoding encoding)
     {
       using (writer)
       {

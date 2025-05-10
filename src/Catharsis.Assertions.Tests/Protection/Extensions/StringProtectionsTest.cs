@@ -23,13 +23,13 @@ public sealed class StringProtectionsTest : Test
       AssertionExtensions.Should(() => StringProtections.Empty(null, string.Empty)) .ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((string) null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, Fixture.Create<string>());
-      Validate(false, string.Empty);
+      Test(true, Fixture.Create<string>());
+      Test(false, string.Empty);
     }
 
     return;
 
-    static void Validate(bool result, string text)
+    static void Test(bool result, string text)
     {
       if (result)
       {
@@ -53,14 +53,14 @@ public sealed class StringProtectionsTest : Test
       AssertionExtensions.Should(() => StringProtections.WhiteSpace(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, Fixture.Create<string>());
-      Validate(false, string.Empty);
-      Validate(false, "\r\n\t");
+      Test(true, Fixture.Create<string>());
+      Test(false, string.Empty);
+      Test(false, "\r\n\t");
     }
 
     return;
 
-    static void Validate(bool result, string text)
+    static void Test(bool result, string text)
     {
       if (result)
       {
@@ -85,16 +85,16 @@ public sealed class StringProtectionsTest : Test
       AssertionExtensions.Should(() => Protect.From.Match(null, new Regex(string.Empty))).ThrowExactly<ArgumentNullException>().WithParameterName("text");
       AssertionExtensions.Should(() => Protect.From.Match(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
 
-      Validate(true, string.Empty, "anything".ToRegex());
-      Validate(true, Random.Letters(byte.MaxValue), "[0-9]".ToRegex());
+      Test(true, string.Empty, "anything".ToRegex());
+      Test(true, Random.Letters(byte.MaxValue), "[0-9]".ToRegex());
       
-      Validate(false, string.Empty, string.Empty.ToRegex());
-      Validate(false, Random.Digits(byte.MaxValue), "[0-9]".ToRegex());
+      Test(false, string.Empty, string.Empty.ToRegex());
+      Test(false, Random.Digits(byte.MaxValue), "[0-9]".ToRegex());
     }
 
     return;
 
-    static void Validate(bool result, string text, Regex regex)
+    static void Test(bool result, string text, Regex regex)
     {
       if (result)
       {

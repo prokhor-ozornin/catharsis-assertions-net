@@ -21,13 +21,13 @@ public sealed class BinaryReaderProtectionsTest : Test
       Stream.Null.ToBinaryReader().TryFinallyDispose(reader => AssertionExtensions.Should(() => BinaryReaderProtections.Empty(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("protection"));
       AssertionExtensions.Should(() => Protect.From.Empty((BinaryReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-      Validate(true, RandomStream.ToBinaryReader());
-      Validate(false, Stream.Null.ToBinaryReader());
+      Test(true, RandomStream.ToBinaryReader());
+      Test(false, Stream.Null.ToBinaryReader());
     }
 
     return;
 
-    static void Validate(bool result, BinaryReader reader)
+    static void Test(bool result, BinaryReader reader)
     {
       using (reader)
       {

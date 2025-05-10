@@ -22,13 +22,13 @@ public sealed class XContainerProtectionsTest : Test
       AssertionExtensions.Should(() => XContainerProtections.Empty(null, new XElement("element"))).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((XContainer) null)).ThrowExactly<ArgumentNullException>().WithParameterName("container");
 
-      Validate(true, new XDocument().With(new XElement("root")));
-      Validate(false, new XDocument());
+      Test(true, new XDocument().With(new XElement("root")));
+      Test(false, new XDocument());
     }
 
     return;
 
-    static void Validate(bool result, XContainer container)
+    static void Test(bool result, XContainer container)
     {
       if (result)
       {

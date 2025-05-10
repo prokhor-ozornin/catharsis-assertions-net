@@ -21,26 +21,26 @@ public sealed class TextReaderAssertionsTest : Test
     {
       AssertionExtensions.Should(() => TextReaderAssertions.End(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-      Validate(true, Stream.Null.ToStreamReader());
+      Test(true, Stream.Null.ToStreamReader());
 
       Fixture.Create<string>().ToStringReader().With(reader =>
       {
         reader.ReadToEnd();
-        Validate(true, reader);
+        Test(true, reader);
       });
 
-      Validate(true, string.Empty.ToStringReader());
+      Test(true, string.Empty.ToStringReader());
 
       Fixture.Create<string>().ToStringReader().With(reader =>
       {
         reader.ReadToEnd();
-        Validate(true, reader);
+        Test(true, reader);
       });
     }
 
     return;
 
-    static void Validate(bool result, TextReader reader)
+    static void Test(bool result, TextReader reader)
     {
       AssertionExtensions.Should(() => TextReaderAssertions.End(null, reader)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
 

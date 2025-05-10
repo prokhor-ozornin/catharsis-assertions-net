@@ -25,13 +25,13 @@ public sealed class HttpResponseMessageExpectationsTest : Test
       Enum.GetValues<HttpStatusCode>().ForEach(status =>
       {
         var code = (int) status;
-        Validate(code is >= 200 and <= 299, new HttpResponseMessage(status));
+        Test(code is >= 200 and <= 299, new HttpResponseMessage(status));
       });
     }
 
     return;
 
-    static void Validate(bool result, HttpResponseMessage response)
+    static void Test(bool result, HttpResponseMessage response)
     {
       using (response)
       {
@@ -51,13 +51,13 @@ public sealed class HttpResponseMessageExpectationsTest : Test
       AssertionExtensions.Should(() => HttpResponseMessageExpectations.Status(null, default)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((HttpResponseMessage) null).Expect().Status(default)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, new HttpResponseMessage(default), default);
-      Validate(false, new HttpResponseMessage(HttpStatusCode.OK), default);
+      Test(true, new HttpResponseMessage(default), default);
+      Test(false, new HttpResponseMessage(HttpStatusCode.OK), default);
     }
 
     return;
 
-    static void Validate(bool result, HttpResponseMessage response, HttpStatusCode status)
+    static void Test(bool result, HttpResponseMessage response, HttpStatusCode status)
     {
       using (response)
       {
@@ -77,21 +77,21 @@ public sealed class HttpResponseMessageExpectationsTest : Test
       AssertionExtensions.Should(() => HttpResponseMessageExpectations.Header(null, "name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((HttpResponseMessage) null).Expect().Header("name", string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(false, new HttpResponseMessage().With(response => response.Headers.Add("connection", (string) null)), "connection", null);
-      Validate(false, new HttpResponseMessage().With(response => response.Headers.Add("connection", [])), "connection", null);
+      Test(false, new HttpResponseMessage().With(response => response.Headers.Add("connection", (string) null)), "connection", null);
+      Test(false, new HttpResponseMessage().With(response => response.Headers.Add("connection", [])), "connection", null);
 
-      Validate(true, new HttpResponseMessage().With(response => response.Headers.With(headers =>
+      Test(true, new HttpResponseMessage().With(response => response.Headers.With(headers =>
       {
         headers.Add("connection", "open");
         headers.Add("connection", "close");
       })), "connection", "open");
 
-      Validate(true, new HttpResponseMessage().With(response => response.Headers.Add("connection", ["open", "close"])), "connection", "close");
+      Test(true, new HttpResponseMessage().With(response => response.Headers.Add("connection", ["open", "close"])), "connection", "close");
     }
 
     return;
 
-    static void Validate(bool result, HttpResponseMessage response, string name, string value)
+    static void Test(bool result, HttpResponseMessage response, string name, string value)
     {
       using (response)
       {

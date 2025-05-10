@@ -20,15 +20,15 @@ public sealed class ObjectExpectationsTest : Test
     {
       AssertionExtensions.Should(() => ObjectExpectations.Same<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate<object>(true, null, null);
-      new object().With(instance => Validate(true, instance, instance));
-      Validate(false, new object(), null);
-      Validate<object>(false, null, new object());
+      Test<object>(true, null, null);
+      new object().With(instance => Test(true, instance, instance));
+      Test(false, new object(), null);
+      Test<object>(false, null, new object());
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance, object other) => instance.Expect().Same(other).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, T instance, object other) => instance.Expect().Same(other).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -41,20 +41,20 @@ public sealed class ObjectExpectationsTest : Test
     {
       AssertionExtensions.Should(() => ObjectExpectations.Equal<object>(null, new object())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate<object>(true, null, null);
-      new object().With(instance => Validate(true, instance, instance));
+      Test<object>(true, null, null);
+      new object().With(instance => Test(true, instance, instance));
 
-      Validate(true, 0, 0);
-      Validate(true, DateTime.Today, DateTime.Today);
+      Test(true, 0, 0);
+      Test(true, DateTime.Today, DateTime.Today);
 
-      Validate(false, new object(), null);
-      Validate<object>(false, null, new object());
-      Validate(false, Guid.NewGuid(), Guid.NewGuid());
+      Test(false, new object(), null);
+      Test<object>(false, null, new object());
+      Test(false, Guid.NewGuid(), Guid.NewGuid());
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance, object other) => instance.Expect().Equal(other).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, T instance, object other) => instance.Expect().Equal(other).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -67,22 +67,22 @@ public sealed class ObjectExpectationsTest : Test
     {
       AssertionExtensions.Should(() => ObjectExpectations.Default<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate<object>(true, null);
-      Validate(false, new object());
+      Test<object>(true, null);
+      Test(false, new object());
 
-      Validate(true, 0);
-      Validate(false, int.MinValue);
+      Test(true, 0);
+      Test(false, int.MinValue);
 
-      Validate(true, DateTime.MinValue);
-      Validate(false, DateTime.Today);
+      Test(true, DateTime.MinValue);
+      Test(false, DateTime.Today);
 
-      Validate(true, Guid.Empty);
-      Validate(false, Guid.NewGuid());
+      Test(true, Guid.Empty);
+      Test(false, Guid.NewGuid());
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance) => instance.Expect().Default().Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, T instance) => instance.Expect().Default().Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -97,13 +97,13 @@ public sealed class ObjectExpectationsTest : Test
       AssertionExtensions.Should(() => ((object) null).Expect().OfType(typeof(object))).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new object().Expect().OfType(null)).ThrowExactly<ArgumentNullException>().WithParameterName("type");
 
-      Validate(true, new object(), typeof(object));
-      Validate(false, new object(), typeof(string));
+      Test(true, new object(), typeof(object));
+      Test(false, new object(), typeof(string));
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance, Type type) => instance.Expect().OfType(type).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, T instance, Type type) => instance.Expect().OfType(type).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -116,13 +116,13 @@ public sealed class ObjectExpectationsTest : Test
     {
       AssertionExtensions.Should(() => ObjectExpectations.Null<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate<object>(true, null);
-      Validate(false, new object());
+      Test<object>(true, null);
+      Test(false, new object());
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance) => instance.Expect().Null().Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, T instance) => instance.Expect().Null().Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -136,14 +136,14 @@ public sealed class ObjectExpectationsTest : Test
       AssertionExtensions.Should(() => ObjectExpectations.OneOf(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => new object().Expect().OneOf(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-      Validate(true, null, new object[] { null, new(), null });
-      Validate(true, string.Empty, new object[] { string.Empty, Guid.Empty, new() });
-      Validate(false, null, Enumerable.Empty<object>());
-      Validate(false, new object(), [new object()]);
+      Test(true, null, new object[] { null, new(), null });
+      Test(true, string.Empty, new object[] { string.Empty, Guid.Empty, new() });
+      Test(false, null, Enumerable.Empty<object>());
+      Test(false, new object(), [new object()]);
     }
 
     return;
 
-    static void Validate<T>(bool result, T instance, IEnumerable<T> sequence, IEqualityComparer<T> comparer = null) => instance.Expect().OneOf(sequence, comparer).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
+    static void Test<T>(bool result, T instance, IEnumerable<T> sequence, IEqualityComparer<T> comparer = null) => instance.Expect().OneOf(sequence, comparer).Should().BeOfType<Expectation<T>>().Which.Result.Should().Be(result);
   }
 }

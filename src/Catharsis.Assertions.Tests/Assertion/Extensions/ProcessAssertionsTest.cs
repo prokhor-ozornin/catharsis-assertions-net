@@ -24,13 +24,13 @@ public sealed class ProcessAssertionsTest : Test
       AssertionExtensions.Should(() => ProcessAssertions.Exited(null, Process.GetCurrentProcess())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Exited(null)).ThrowExactly<ArgumentNullException>().WithParameterName("process");
 
-      Validate(true, ShellProcess.Run(TimeSpan.Zero));
-      Validate(false, Process.GetCurrentProcess());
+      Test(true, ShellProcess.Run(TimeSpan.Zero));
+      Test(false, Process.GetCurrentProcess());
     }
 
     return;
 
-    static void Validate(bool result, Process process)
+    static void Test(bool result, Process process)
     {
       if (result)
       {
@@ -55,13 +55,13 @@ public sealed class ProcessAssertionsTest : Test
       
       AssertionExtensions.Should(() => Assert.To.ExitCode(Process.GetCurrentProcess(), 0, "error")).ThrowExactly<InvalidOperationException>();
 
-      Validate(true, ShellProcess, ShellProcess.Run(TimeSpan.Zero).ExitCode);
-      Validate(false, ShellProcess, 0);
+      Test(true, ShellProcess, ShellProcess.Run(TimeSpan.Zero).ExitCode);
+      Test(false, ShellProcess, 0);
     }
 
     return;
 
-    static void Validate(bool result, Process process, int code)
+    static void Test(bool result, Process process, int code)
     {
       if (result)
       {

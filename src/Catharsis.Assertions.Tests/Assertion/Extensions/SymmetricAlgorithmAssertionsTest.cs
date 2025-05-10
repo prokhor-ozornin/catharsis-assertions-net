@@ -21,14 +21,14 @@ public sealed class SymmetricAlgorithmAssertionsTest : Test
     {
       AssertionExtensions.Should(() => Assert.To.BlockSize(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
 
-      Aes.Create().With(algorithm => Validate(true, algorithm, algorithm.BlockSize));
-      Validate(false, Aes.Create(), int.MinValue);
-      Validate(false, Aes.Create(), int.MaxValue);
+      Aes.Create().With(algorithm => Test(true, algorithm, algorithm.BlockSize));
+      Test(false, Aes.Create(), int.MinValue);
+      Test(false, Aes.Create(), int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, SymmetricAlgorithm algorithm, int size)
+    static void Test(bool result, SymmetricAlgorithm algorithm, int size)
     {
       using (algorithm)
       {
@@ -56,14 +56,14 @@ public sealed class SymmetricAlgorithmAssertionsTest : Test
     {
       AssertionExtensions.Should(() => Assert.To.KeySize(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("algorithm");
 
-      Aes.Create().With(algorithm => Validate(true, algorithm, algorithm.KeySize));
-      Validate(false, Aes.Create(), int.MinValue);
-      Validate(false, Aes.Create(), int.MaxValue);
+      Aes.Create().With(algorithm => Test(true, algorithm, algorithm.KeySize));
+      Test(false, Aes.Create(), int.MinValue);
+      Test(false, Aes.Create(), int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, SymmetricAlgorithm algorithm, int size)
+    static void Test(bool result, SymmetricAlgorithm algorithm, int size)
     {
       using (algorithm)
       {

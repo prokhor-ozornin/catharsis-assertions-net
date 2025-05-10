@@ -22,7 +22,7 @@ public sealed class IComparableAssertionsTest : Test
 
     return;
 
-    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T comparable) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -48,7 +48,7 @@ public sealed class IComparableAssertionsTest : Test
 
     return;
 
-    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T comparable) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -74,7 +74,7 @@ public sealed class IComparableAssertionsTest : Test
 
     return;
 
-    static void Validate<T>(bool result, T comparable) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T comparable) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -100,7 +100,7 @@ public sealed class IComparableAssertionsTest : Test
 
     return;
 
-    static void Validate<T>(bool result, T left, T right) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T left, T right) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -126,7 +126,7 @@ public sealed class IComparableAssertionsTest : Test
 
     return;
 
-    static void Validate<T>(bool result, T left, T right) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T left, T right) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -152,7 +152,7 @@ public sealed class IComparableAssertionsTest : Test
 
     return;
 
-    static void Validate<T>(bool result, T left, T right) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T left, T right) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -178,7 +178,7 @@ public sealed class IComparableAssertionsTest : Test
 
     return;
 
-    static void Validate<T>(bool result, T left, T right) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T left, T right) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -204,7 +204,7 @@ public sealed class IComparableAssertionsTest : Test
 
     return;
 
-    static void Validate<T>(bool result, T comparable, T min, T max) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T comparable, T min, T max) where T : struct, IComparable<T>
     {
       if (result)
       {
@@ -230,7 +230,7 @@ public sealed class IComparableAssertionsTest : Test
 
     return;
 
-    static void Validate<T>(bool result, T comparable, T min, T max) where T : struct, IComparable<T>
+    static void Test<T>(bool result, T comparable, T min, T max) where T : struct, IComparable<T>
     {
       if (result)
       {

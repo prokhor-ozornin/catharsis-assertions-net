@@ -22,14 +22,14 @@ public sealed class NameValueCollectionExpectationsTest : Test
       AssertionExtensions.Should(() => NameValueCollectionExpectations.Count(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((NameValueCollection) null).Expect().Count(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, [], 0);
-      Validate(false, [], int.MinValue);
-      Validate(false, [], int.MaxValue);
+      Test(true, [], 0);
+      Test(false, [], int.MinValue);
+      Test(false, [], int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, NameValueCollection collection, int count) => collection.Expect().Count(count).Should().BeOfType<Expectation<NameValueCollection>>().Which.Result.Should().Be(result);
+    static void Test(bool result, NameValueCollection collection, int count) => collection.Expect().Count(count).Should().BeOfType<Expectation<NameValueCollection>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -43,12 +43,12 @@ public sealed class NameValueCollectionExpectationsTest : Test
       AssertionExtensions.Should(() => NameValueCollectionExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((NameValueCollection) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Validate(true, []);
-      Validate(false, new NameValueCollection().With(("name", "value")));
+      Test(true, []);
+      Test(false, new NameValueCollection().With(("name", "value")));
     }
 
     return;
 
-    static void Validate(bool result, NameValueCollection collection) => collection.Expect().Empty().Should().BeOfType<Expectation<NameValueCollection>>().Which.Result.Should().Be(result);
+    static void Test(bool result, NameValueCollection collection) => collection.Expect().Empty().Should().BeOfType<Expectation<NameValueCollection>>().Which.Result.Should().Be(result);
   }
 }

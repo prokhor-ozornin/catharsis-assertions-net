@@ -21,16 +21,16 @@ public sealed class FileSystemInfoAssertionsTest : Test
       AssertionExtensions.Should(() => FileSystemInfoAssertions.Exist(null, Random.FileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-      Random.File().TryFinallyDelete(file => Validate(true, file));
-      Random.Directory().TryFinallyDelete(directory => Validate(true, directory));
+      Random.File().TryFinallyDelete(file => Test(true, file));
+      Random.Directory().TryFinallyDelete(directory => Test(true, directory));
 
-      Validate(false, Random.FileName().ToFile());
-      Validate(false, Random.DirectoryName().ToDirectory());
+      Test(false, Random.FileName().ToFile());
+      Test(false, Random.DirectoryName().ToDirectory());
     }
 
     return;
 
-    static void Validate(bool result, FileSystemInfo info)
+    static void Test(bool result, FileSystemInfo info)
     {
       if (result)
       {
@@ -56,14 +56,14 @@ public sealed class FileSystemInfoAssertionsTest : Test
 
       Random.File().TryFinallyDelete(file =>
       {
-        Validate(true, file.AsReadOnly(), FileAttributes.ReadOnly);
-        Enum.GetValues<FileAttributes>().ForEach(attribute => Validate((file.Attributes & attribute) == attribute, file, attribute));
+        Test(true, file.AsReadOnly(), FileAttributes.ReadOnly);
+        Enum.GetValues<FileAttributes>().ForEach(attribute => Test((file.Attributes & attribute) == attribute, file, attribute));
       });
     }
 
     return;
 
-    static void Validate(bool result, FileSystemInfo info, FileAttributes attribute)
+    static void Test(bool result, FileSystemInfo info, FileAttributes attribute)
     {
       if (result)
       {

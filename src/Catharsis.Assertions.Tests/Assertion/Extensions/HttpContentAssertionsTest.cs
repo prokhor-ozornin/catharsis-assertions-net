@@ -18,14 +18,14 @@ public sealed class HttpContentAssertionsTest : Test
   {
     using (new AssertionScope())
     {
-      Validate(true, string.Empty.ToStringContent().With(content => content.Headers.Add("header", [null])), "header");
-      Validate(false, string.Empty.ToStringContent(), "header");
-      Validate(false, string.Empty.ToStringContent().With(content => content.Headers.Add("header", [])), "header");
+      Test(true, string.Empty.ToStringContent().With(content => content.Headers.Add("header", [null])), "header");
+      Test(false, string.Empty.ToStringContent(), "header");
+      Test(false, string.Empty.ToStringContent().With(content => content.Headers.Add("header", [])), "header");
     }
 
     return;
 
-    static void Validate(bool result, HttpContent content, string name)
+    static void Test(bool result, HttpContent content, string name)
     {
       using (content)
       {

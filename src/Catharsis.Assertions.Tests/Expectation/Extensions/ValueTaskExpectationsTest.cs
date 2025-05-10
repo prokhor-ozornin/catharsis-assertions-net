@@ -23,22 +23,22 @@ public sealed class ValueTaskExpectationsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Successful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, ValueTask.CompletedTask);
-      Validate(false, ValueTask.FromCanceled(new CancellationToken(true)));
-      Validate(false, ValueTask.FromException(new Exception()));
+      Test(true, ValueTask.CompletedTask);
+      Test(false, ValueTask.FromCanceled(new CancellationToken(true)));
+      Test(false, ValueTask.FromException(new Exception()));
 
-      static void Validate(bool result, ValueTask task) => task.Expect().Successful().Should().BeOfType<Expectation<ValueTask>>().Which.Result.Should().Be(result);
+      static void Test(bool result, ValueTask task) => task.Expect().Successful().Should().BeOfType<Expectation<ValueTask>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Successful<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, ValueTask.FromResult<object>(null));
-      Validate(false, ValueTask.FromCanceled<object>(new CancellationToken(true)));
-      Validate(false, ValueTask.FromException<object>(new Exception()));
+      Test(true, ValueTask.FromResult<object>(null));
+      Test(false, ValueTask.FromCanceled<object>(new CancellationToken(true)));
+      Test(false, ValueTask.FromException<object>(new Exception()));
 
-      static void Validate<T>(bool result, ValueTask<T> task) => task.Expect().Successful().Should().BeOfType<Expectation<ValueTask<T>>>().Which.Result.Should().Be(result);
+      static void Test<T>(bool result, ValueTask<T> task) => task.Expect().Successful().Should().BeOfType<Expectation<ValueTask<T>>>().Which.Result.Should().Be(result);
     }
   }
 
@@ -56,22 +56,22 @@ public sealed class ValueTaskExpectationsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Unsuccessful(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, ValueTask.FromException(new Exception()));
-      Validate(false, ValueTask.CompletedTask);
-      Validate(false, ValueTask.FromCanceled(new CancellationToken(true)));
+      Test(true, ValueTask.FromException(new Exception()));
+      Test(false, ValueTask.CompletedTask);
+      Test(false, ValueTask.FromCanceled(new CancellationToken(true)));
 
-      static void Validate(bool result, ValueTask task) => task.Expect().Unsuccessful().Should().BeOfType<Expectation<ValueTask>>().Which.Result.Should().Be(result);
+      static void Test(bool result, ValueTask task) => task.Expect().Unsuccessful().Should().BeOfType<Expectation<ValueTask>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Unsuccessful<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, ValueTask.FromException<object>(new Exception()));
-      Validate(false, ValueTask.FromResult<object>(null));
-      Validate(false, ValueTask.FromCanceled<object>(new CancellationToken(true)));
+      Test(true, ValueTask.FromException<object>(new Exception()));
+      Test(false, ValueTask.FromResult<object>(null));
+      Test(false, ValueTask.FromCanceled<object>(new CancellationToken(true)));
 
-      static void Validate<T>(bool result, ValueTask<T> task) => task.Expect().Unsuccessful().Should().BeOfType<Expectation<ValueTask<T>>>().Which.Result.Should().Be(result);
+      static void Test<T>(bool result, ValueTask<T> task) => task.Expect().Unsuccessful().Should().BeOfType<Expectation<ValueTask<T>>>().Which.Result.Should().Be(result);
     }
   }
 
@@ -89,22 +89,22 @@ public sealed class ValueTaskExpectationsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Canceled(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, ValueTask.FromCanceled(new CancellationToken(true)));
-      Validate(false, ValueTask.CompletedTask);
-      Validate(false, ValueTask.FromException(new Exception()));
+      Test(true, ValueTask.FromCanceled(new CancellationToken(true)));
+      Test(false, ValueTask.CompletedTask);
+      Test(false, ValueTask.FromException(new Exception()));
 
-      static void Validate(bool result, ValueTask task) => task.Expect().Canceled().Should().BeOfType<Expectation<ValueTask>>().Which.Result.Should().Be(result);
+      static void Test(bool result, ValueTask task) => task.Expect().Canceled().Should().BeOfType<Expectation<ValueTask>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Canceled<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, ValueTask.FromCanceled<object>(new CancellationToken(true)));
-      Validate(false, ValueTask.FromResult<object>(null));
-      Validate(false, ValueTask.FromException<object>(new Exception()));
+      Test(true, ValueTask.FromCanceled<object>(new CancellationToken(true)));
+      Test(false, ValueTask.FromResult<object>(null));
+      Test(false, ValueTask.FromException<object>(new Exception()));
 
-      static void Validate<T>(bool result, ValueTask<T> task) => task.Expect().Canceled().Should().BeOfType<Expectation<ValueTask<T>>>().Which.Result.Should().Be(result);
+      static void Test<T>(bool result, ValueTask<T> task) => task.Expect().Canceled().Should().BeOfType<Expectation<ValueTask<T>>>().Which.Result.Should().Be(result);
     }
   }
 
@@ -122,22 +122,22 @@ public sealed class ValueTaskExpectationsTest : Test
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Completed(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, ValueTask.CompletedTask);
-      Validate(true, ValueTask.FromCanceled(new CancellationToken(true)));
-      Validate(true, ValueTask.FromException(new Exception()));
+      Test(true, ValueTask.CompletedTask);
+      Test(true, ValueTask.FromCanceled(new CancellationToken(true)));
+      Test(true, ValueTask.FromException(new Exception()));
 
-      static void Validate(bool result, ValueTask task) => task.Expect().Completed().Should().BeOfType<Expectation<ValueTask>>().Which.Result.Should().Be(result);
+      static void Test(bool result, ValueTask task) => task.Expect().Completed().Should().BeOfType<Expectation<ValueTask>>().Which.Result.Should().Be(result);
     }
 
     using (new AssertionScope())
     {
       AssertionExtensions.Should(() => ValueTaskExpectations.Completed<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
 
-      Validate(true, ValueTask.FromResult<object>(null));
-      Validate(true, ValueTask.FromCanceled<object>(new CancellationToken(true)));
-      Validate(true, ValueTask.FromException<object>(new Exception()));
+      Test(true, ValueTask.FromResult<object>(null));
+      Test(true, ValueTask.FromCanceled<object>(new CancellationToken(true)));
+      Test(true, ValueTask.FromException<object>(new Exception()));
 
-      static void Validate<T>(bool result, ValueTask<T> task) => task.Expect().Completed().Should().BeOfType<Expectation<ValueTask<T>>>().Which.Result.Should().Be(result);
+      static void Test<T>(bool result, ValueTask<T> task) => task.Expect().Completed().Should().BeOfType<Expectation<ValueTask<T>>>().Which.Result.Should().Be(result);
     }
   }
 }

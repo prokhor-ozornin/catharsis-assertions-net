@@ -29,18 +29,18 @@ public sealed class XmlDocumentExpectationsTest : Test
         var parent = document.AppendChild(document.CreateElement("parent"));
         var child = parent.AppendChild(document.CreateElement("child"));
         
-        Validate(true, document, parent.Name);
-        Validate(true, document, parent.Name, parent.NamespaceURI);
+        Test(true, document, parent.Name);
+        Test(true, document, parent.Name, parent.NamespaceURI);
 
-        Validate(true, document, child.Name);
-        Validate(true, document, child.Name, child.NamespaceURI);
+        Test(true, document, child.Name);
+        Test(true, document, child.Name, child.NamespaceURI);
       });
 
-      Validate(false, new XmlDocument(), Fixture.Create<string>());
+      Test(false, new XmlDocument(), Fixture.Create<string>());
     }
 
     return;
 
-    static void Validate(bool result, XmlDocument document, string name, string uri = null) => document.Expect().Element(name, uri).Should().BeOfType<Expectation<XmlDocument>>().Which.Result.Should().Be(result);
+    static void Test(bool result, XmlDocument document, string name, string uri = null) => document.Expect().Element(name, uri).Should().BeOfType<Expectation<XmlDocument>>().Which.Result.Should().Be(result);
   }
 }

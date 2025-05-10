@@ -23,18 +23,18 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => StringAssertions.Length(null, string.Empty, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StringAssertions.Length(Assert.To, null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, string.Empty, 0);
-      Validate(false, string.Empty, int.MinValue);
-      Validate(false, string.Empty, int.MaxValue);
+      Test(true, string.Empty, 0);
+      Test(false, string.Empty, int.MinValue);
+      Test(false, string.Empty, int.MaxValue);
 
-      Fixture.Create<string>().With(text => Validate(true, text, text.Length));
-      Validate(false, Fixture.Create<string>(), int.MinValue);
-      Validate(false, Fixture.Create<string>(), int.MaxValue);
+      Fixture.Create<string>().With(text => Test(true, text, text.Length));
+      Test(false, Fixture.Create<string>(), int.MinValue);
+      Test(false, Fixture.Create<string>(), int.MaxValue);
     }
 
     return;
 
-    static void Validate(bool result, string text, int length)
+    static void Test(bool result, string text, int length)
     {
       if (result)
       {
@@ -58,13 +58,13 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => StringAssertions.Empty(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => StringAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, string.Empty);
-      Validate(false, Fixture.Create<string>());
+      Test(true, string.Empty);
+      Test(false, Fixture.Create<string>());
     }
 
     return;
 
-    static void Validate(bool result, string text)
+    static void Test(bool result, string text)
     {
       if (result)
       {
@@ -88,14 +88,14 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => StringAssertions.WhiteSpace(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, string.Empty);
-      Validate(true, "\r\n\t");
-      Validate(false, Fixture.Create<string>());
+      Test(true, string.Empty);
+      Test(true, "\r\n\t");
+      Test(false, Fixture.Create<string>());
     }
 
     return;
 
-    static void Validate(bool result, string text)
+    static void Test(bool result, string text)
     {
       if (result)
       {
@@ -119,14 +119,14 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => StringAssertions.UpperCased(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.UpperCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, string.Empty);
-      Validate(true, Fixture.Create<string>().ToUpperInvariant());
-      Validate(false, Fixture.Create<string>().ToLowerInvariant());
+      Test(true, string.Empty);
+      Test(true, Fixture.Create<string>().ToUpperInvariant());
+      Test(false, Fixture.Create<string>().ToLowerInvariant());
     }
 
     return;
 
-    static void Validate(bool result, string text)
+    static void Test(bool result, string text)
     {
       if (result)
       {
@@ -150,14 +150,14 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => StringAssertions.LowerCased(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.LowerCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Validate(true, string.Empty);
-      Validate(true, Fixture.Create<string>().ToLowerInvariant());
-      Validate(false, Fixture.Create<string>().ToUpperInvariant());
+      Test(true, string.Empty);
+      Test(true, Fixture.Create<string>().ToLowerInvariant());
+      Test(false, Fixture.Create<string>().ToUpperInvariant());
     }
 
     return;
 
-    static void Validate(bool result, string text)
+    static void Test(bool result, string text)
     {
       if (result)
       {
@@ -182,19 +182,19 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.StartWith(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
       AssertionExtensions.Should(() => Assert.To.StartWith(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("prefix");
 
-      Validate(true, string.Empty, string.Empty);
-      Validate(true, string.Empty, char.MinValue.ToString());
-      Validate(false, string.Empty, char.MaxValue.ToString());
+      Test(true, string.Empty, string.Empty);
+      Test(true, string.Empty, char.MinValue.ToString());
+      Test(false, string.Empty, char.MaxValue.ToString());
 
-      Validate(true, Fixture.Create<string>(), string.Empty);
-      Fixture.Create<string>().With(text => Validate(true, text, text));
-      Fixture.Create<string>().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
-      Fixture.Create<string>().With(text => Validate(false, text, text.ToUpperInvariant()));
+      Test(true, Fixture.Create<string>(), string.Empty);
+      Fixture.Create<string>().With(text => Test(true, text, text));
+      Fixture.Create<string>().With(text => Test(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Fixture.Create<string>().With(text => Test(false, text, text.ToUpperInvariant()));
     }
 
     return;
 
-    static void Validate(bool result, string text, string prefix, StringComparison? comparison = null)
+    static void Test(bool result, string text, string prefix, StringComparison? comparison = null)
     {
       if (result)
       {
@@ -219,19 +219,19 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.EndWith(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
       AssertionExtensions.Should(() => Assert.To.EndWith(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("postfix");
 
-      Validate(true, string.Empty, string.Empty);
-      Validate(true, string.Empty, char.MinValue.ToString());
-      Validate(false, string.Empty, char.MaxValue.ToString());
+      Test(true, string.Empty, string.Empty);
+      Test(true, string.Empty, char.MinValue.ToString());
+      Test(false, string.Empty, char.MaxValue.ToString());
 
-      Validate(true, Fixture.Create<string>(), string.Empty);
-      Fixture.Create<string>().With(text => Validate(true, text, text));
-      Fixture.Create<string>().With(text => Validate(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
-      Fixture.Create<string>().With(text => Validate(false, text, text.ToUpperInvariant()));
+      Test(true, Fixture.Create<string>(), string.Empty);
+      Fixture.Create<string>().With(text => Test(true, text, text));
+      Fixture.Create<string>().With(text => Test(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Fixture.Create<string>().With(text => Test(false, text, text.ToUpperInvariant()));
     }
 
     return;
 
-    static void Validate(bool result, string text, string postfix, StringComparison? comparison = null)
+    static void Test(bool result, string text, string postfix, StringComparison? comparison = null)
     {
       if (result)
       {
@@ -256,15 +256,15 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Match(null, string.Empty.ToRegex())).ThrowExactly<ArgumentNullException>().WithParameterName("text");
       AssertionExtensions.Should(() => Assert.To.Match(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
 
-      Validate(true, string.Empty, string.Empty.ToRegex());
-      Validate(false, string.Empty, "anything".ToRegex());
-      Validate(true, Random.Digits(byte.MaxValue), "[0-9]".ToRegex());
-      Validate(false, Random.Letters(byte.MaxValue), "[0-9]".ToRegex());
+      Test(true, string.Empty, string.Empty.ToRegex());
+      Test(false, string.Empty, "anything".ToRegex());
+      Test(true, Random.Digits(byte.MaxValue), "[0-9]".ToRegex());
+      Test(false, Random.Letters(byte.MaxValue), "[0-9]".ToRegex());
     }
 
     return;
 
-    static void Validate(bool result, string text, Regex regex)
+    static void Test(bool result, string text, Regex regex)
     {
       if (result)
       {

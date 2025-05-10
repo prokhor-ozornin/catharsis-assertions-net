@@ -21,16 +21,16 @@ public sealed class FileSystemInfoExpectationsTest : Test
       AssertionExtensions.Should(() => FileSystemInfoExpectations.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Exist()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Random.File().TryFinallyDelete(file => Validate(true, file));
-      Random.Directory().TryFinallyDelete(directory => Validate(true, directory));
+      Random.File().TryFinallyDelete(file => Test(true, file));
+      Random.Directory().TryFinallyDelete(directory => Test(true, directory));
 
-      Validate(false, Random.FileName().ToFile());
-      Validate(false, Random.DirectoryName().ToDirectory());
+      Test(false, Random.FileName().ToFile());
+      Test(false, Random.DirectoryName().ToDirectory());
     }
 
     return;
 
-    static void Validate(bool result, FileSystemInfo info) => info.Expect().Exist().Should().BeOfType<Expectation<FileSystemInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, FileSystemInfo info) => info.Expect().Exist().Should().BeOfType<Expectation<FileSystemInfo>>().Which.Result.Should().Be(result);
   }
 
   /// <summary>
@@ -46,13 +46,13 @@ public sealed class FileSystemInfoExpectationsTest : Test
 
       Random.File().TryFinallyDelete(file =>
       {
-        Validate(true, file.AsReadOnly(), FileAttributes.ReadOnly);
-        Enum.GetValues<FileAttributes>().ForEach(attribute => Validate((file.Attributes & attribute) == attribute, file, attribute));
+        Test(true, file.AsReadOnly(), FileAttributes.ReadOnly);
+        Enum.GetValues<FileAttributes>().ForEach(attribute => Test((file.Attributes & attribute) == attribute, file, attribute));
       });
     }
 
     return;
 
-    static void Validate(bool result, FileSystemInfo info, FileAttributes attribute) => info.Expect().Attribute(attribute).Should().BeOfType<Expectation<FileSystemInfo>>().Which.Result.Should().Be(result);
+    static void Test(bool result, FileSystemInfo info, FileAttributes attribute) => info.Expect().Attribute(attribute).Should().BeOfType<Expectation<FileSystemInfo>>().Which.Result.Should().Be(result);
   }
 }

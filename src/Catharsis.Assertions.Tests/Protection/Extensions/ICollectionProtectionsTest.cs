@@ -20,13 +20,13 @@ public sealed class ICollectionsProtectionsTest : Test
       AssertionExtensions.Should(() => ICollectionProtections.Empty(null, Array.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("collection");
 
-      Validate(true, RandomSequence.ToArray());
-      Validate(false, Array.Empty<object>());
+      Test(true, RandomSequence.ToArray());
+      Test(false, Array.Empty<object>());
     }
 
     return;
 
-    static void Validate<T>(bool result, ICollection<T> collection)
+    static void Test<T>(bool result, ICollection<T> collection)
     {
       if (result)
       {

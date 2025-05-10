@@ -22,12 +22,12 @@ public sealed class XAttributeAssertionsTest : Test
       AssertionExtensions.Should(() => XAttributeAssertions.Name(Assert.To, null, "name")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
       AssertionExtensions.Should(() => Assert.To.Name(new XAttribute("name", "value"), null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Validate(true, new XAttribute("name", "value"), "name");
+      Test(true, new XAttribute("name", "value"), "name");
     }
 
     return;
 
-    static void Validate(bool result, XAttribute attribute, XName name)
+    static void Test(bool result, XAttribute attribute, XName name)
     {
       if (result)
       {
@@ -52,13 +52,13 @@ public sealed class XAttributeAssertionsTest : Test
       AssertionExtensions.Should(() => XAttributeAssertions.Value(Assert.To, null, "value")).ThrowExactly<ArgumentNullException>().WithParameterName("attribute");
       AssertionExtensions.Should(() => Assert.To.Value(new XAttribute("name", "value"), null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
-      Validate(true, new XAttribute("name", "value"), "value");
-      Validate(false, new XAttribute("name", "value"), string.Empty);
+      Test(true, new XAttribute("name", "value"), "value");
+      Test(false, new XAttribute("name", "value"), string.Empty);
     }
 
     return;
 
-    static void Validate(bool result, XAttribute attribute, string value)
+    static void Test(bool result, XAttribute attribute, string value)
     {
       if (result)
       {

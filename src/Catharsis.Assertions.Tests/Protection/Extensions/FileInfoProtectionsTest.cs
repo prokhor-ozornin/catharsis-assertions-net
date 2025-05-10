@@ -23,14 +23,14 @@ public sealed class FileInfoProtectionsTest : Test
 
       Random.BinaryFile(short.MaxValue).TryFinallyDelete(file =>
       {
-        Validate(true, file);
-        Validate(false, file.Empty());
+        Test(true, file);
+        Test(false, file.Empty());
       });
     }
 
     return;
 
-    static void Validate(bool result, FileInfo file)
+    static void Test(bool result, FileInfo file)
     {
       if (result)
       {

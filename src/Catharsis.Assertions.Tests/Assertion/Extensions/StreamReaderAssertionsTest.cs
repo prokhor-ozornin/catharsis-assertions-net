@@ -22,13 +22,13 @@ public sealed class StreamReaderAssertionsTest : Test
     {
       AssertionExtensions.Should(() => StreamReaderAssertions.Encoding(Assert.To, null, Encoding.Default)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-      Stream.Null.ToStreamReader().With(reader => Validate(true, reader, reader.CurrentEncoding));
-      Validate(false, Stream.Null.ToStreamReader(), null);
+      Stream.Null.ToStreamReader().With(reader => Test(true, reader, reader.CurrentEncoding));
+      Test(false, Stream.Null.ToStreamReader(), null);
     }
 
     return;
 
-    static void Validate(bool result, StreamReader reader, Encoding encoding)
+    static void Test(bool result, StreamReader reader, Encoding encoding)
     {
       using (reader)
       {
@@ -56,14 +56,14 @@ public sealed class StreamReaderAssertionsTest : Test
     {
       AssertionExtensions.Should(() => Assert.To.End((StreamReader) null)).ThrowExactly<ArgumentNullException>().WithParameterName("reader");
 
-      Validate(true, Stream.Null.ToStreamReader());
-      Validate(true, Random.MemoryStream(short.MaxValue).ToStreamReader().With(reader => reader.ReadToEnd()));
-      Validate(false, Random.MemoryStream(short.MaxValue).ToStreamReader());
+      Test(true, Stream.Null.ToStreamReader());
+      Test(true, Random.MemoryStream(short.MaxValue).ToStreamReader().With(reader => reader.ReadToEnd()));
+      Test(false, Random.MemoryStream(short.MaxValue).ToStreamReader());
     }
 
     return;
 
-    static void Validate(bool result, StreamReader reader)
+    static void Test(bool result, StreamReader reader)
     {
       using (reader)
       {
