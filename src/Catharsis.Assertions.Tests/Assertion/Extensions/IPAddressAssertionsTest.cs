@@ -1,5 +1,4 @@
-﻿using AutoFixture;
-using System.Net;
+﻿using System.Net;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;

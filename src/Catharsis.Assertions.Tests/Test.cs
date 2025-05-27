@@ -1,12 +1,10 @@
-﻿using AutoFixture;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
 
 namespace Catharsis.Assertions.Tests;
 
 public class Test : IDisposable
 {
-  protected IFixture Fixture { get; } = new Fixture();
   protected Random Random { get; } = new();
   protected IEnumerable<object> RandomSequence { get; }
   protected MemoryStream RandomStream { get;  }

@@ -1,6 +1,6 @@
-﻿using AutoFixture;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -55,7 +55,7 @@ public sealed class MatchAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Value(Match.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("value");
 
       Test(true, Match.Empty, Match.Empty.Value);
-      Test(false, Match.Empty, Fixture.Create<string>());
+      Test(false, Match.Empty, Fixture<string>.Create());
     }
 
     return;

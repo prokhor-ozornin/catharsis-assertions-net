@@ -1,8 +1,8 @@
-﻿using AutoFixture;
-using System.Xml;
+﻿using System.Xml;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
@@ -36,7 +36,7 @@ public sealed class XmlDocumentExpectationsTest : Test
         Test(true, document, child.Name, child.NamespaceURI);
       });
 
-      Test(false, new XmlDocument(), Fixture.Create<string>());
+      Test(false, new XmlDocument(), Fixture<string>.Create());
     }
 
     return;

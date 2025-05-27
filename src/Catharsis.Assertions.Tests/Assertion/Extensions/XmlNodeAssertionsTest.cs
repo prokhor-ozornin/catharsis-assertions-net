@@ -1,6 +1,6 @@
-﻿using AutoFixture;
-using System.Xml;
+﻿using System.Xml;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -55,7 +55,7 @@ public sealed class XmlNodeAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Name(new XmlDocument(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
       new XmlDocument().CreateElement("root").With(node => Test(true, node, node.Name));
-      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture<string>.Create()));
     }
 
     return;
@@ -86,7 +86,7 @@ public sealed class XmlNodeAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.InnerText(new XmlDocument(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
       new XmlDocument().CreateElement("root").With(node => Test(true, node, node.InnerText));
-      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture<string>.Create()));
     }
 
     return;
@@ -117,7 +117,7 @@ public sealed class XmlNodeAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.InnerXml(new XmlDocument(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
       new XmlDocument().CreateElement("root").With(node => Test(true, node, node.InnerXml));
-      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture<string>.Create()));
     }
 
     return;
@@ -148,7 +148,7 @@ public sealed class XmlNodeAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.OuterXml(new XmlDocument(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("xml");
 
       new XmlDocument().CreateElement("root").With(node => Test(true, node, node.OuterXml));
-      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture<string>.Create()));
     }
 
     return;
@@ -178,7 +178,7 @@ public sealed class XmlNodeAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Value((XmlNode) null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("node");
 
       new XmlDocument().CreateElement("root").With(node => Test(true, node, node.Value));
-      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture.Create<string>()));
+      new XmlDocument().CreateElement("root").With(node => Test(false, node, Fixture<string>.Create()));
     }
 
     return;

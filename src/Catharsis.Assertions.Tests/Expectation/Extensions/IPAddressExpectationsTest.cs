@@ -1,6 +1,6 @@
-﻿using AutoFixture;
-using System.Net;
+﻿using System.Net;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions;
 using Xunit;
 using FluentAssertions.Execution;
@@ -27,7 +27,7 @@ public sealed class IPAddressExpectationsTest : Test
       Test(true, IPAddress.Broadcast);
       Test(true, IPAddress.Loopback);
       Test(true, IPAddress.None);
-      Test(true, Fixture.Create<IPAddress>());
+      Test(true, Fixture<IPAddress>.Create());
 
       Test(false, IPAddress.IPv6Any);
       Test(false, IPAddress.IPv6Loopback);

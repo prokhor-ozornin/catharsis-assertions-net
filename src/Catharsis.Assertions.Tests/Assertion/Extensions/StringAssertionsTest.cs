@@ -1,8 +1,8 @@
-﻿using AutoFixture;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
@@ -27,9 +27,9 @@ public sealed class StringAssertionsTest : Test
       Test(false, string.Empty, int.MinValue);
       Test(false, string.Empty, int.MaxValue);
 
-      Fixture.Create<string>().With(text => Test(true, text, text.Length));
-      Test(false, Fixture.Create<string>(), int.MinValue);
-      Test(false, Fixture.Create<string>(), int.MaxValue);
+      Fixture<string>.Create().With(text => Test(true, text, text.Length));
+      Test(false, Fixture<string>.Create(), int.MinValue);
+      Test(false, Fixture<string>.Create(), int.MaxValue);
     }
 
     return;
@@ -59,7 +59,7 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => StringAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
       Test(true, string.Empty);
-      Test(false, Fixture.Create<string>());
+      Test(false, Fixture<string>.Create());
     }
 
     return;
@@ -90,7 +90,7 @@ public sealed class StringAssertionsTest : Test
 
       Test(true, string.Empty);
       Test(true, "\r\n\t");
-      Test(false, Fixture.Create<string>());
+      Test(false, Fixture<string>.Create());
     }
 
     return;
@@ -120,8 +120,8 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.UpperCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
       Test(true, string.Empty);
-      Test(true, Fixture.Create<string>().ToUpperInvariant());
-      Test(false, Fixture.Create<string>().ToLowerInvariant());
+      Test(true, Fixture<string>.Create().ToUpperInvariant());
+      Test(false, Fixture<string>.Create().ToLowerInvariant());
     }
 
     return;
@@ -151,8 +151,8 @@ public sealed class StringAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.LowerCased(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
       Test(true, string.Empty);
-      Test(true, Fixture.Create<string>().ToLowerInvariant());
-      Test(false, Fixture.Create<string>().ToUpperInvariant());
+      Test(true, Fixture<string>.Create().ToLowerInvariant());
+      Test(false, Fixture<string>.Create().ToUpperInvariant());
     }
 
     return;
@@ -186,10 +186,10 @@ public sealed class StringAssertionsTest : Test
       Test(true, string.Empty, char.MinValue.ToString());
       Test(false, string.Empty, char.MaxValue.ToString());
 
-      Test(true, Fixture.Create<string>(), string.Empty);
-      Fixture.Create<string>().With(text => Test(true, text, text));
-      Fixture.Create<string>().With(text => Test(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
-      Fixture.Create<string>().With(text => Test(false, text, text.ToUpperInvariant()));
+      Test(true, Fixture<string>.Create(), string.Empty);
+      Fixture<string>.Create().With(text => Test(true, text, text));
+      Fixture<string>.Create().With(text => Test(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Fixture<string>.Create().With(text => Test(false, text, text.ToUpperInvariant()));
     }
 
     return;
@@ -223,10 +223,10 @@ public sealed class StringAssertionsTest : Test
       Test(true, string.Empty, char.MinValue.ToString());
       Test(false, string.Empty, char.MaxValue.ToString());
 
-      Test(true, Fixture.Create<string>(), string.Empty);
-      Fixture.Create<string>().With(text => Test(true, text, text));
-      Fixture.Create<string>().With(text => Test(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
-      Fixture.Create<string>().With(text => Test(false, text, text.ToUpperInvariant()));
+      Test(true, Fixture<string>.Create(), string.Empty);
+      Fixture<string>.Create().With(text => Test(true, text, text));
+      Fixture<string>.Create().With(text => Test(true, text, text.ToUpperInvariant(), StringComparison.OrdinalIgnoreCase));
+      Fixture<string>.Create().With(text => Test(false, text, text.ToUpperInvariant()));
     }
 
     return;

@@ -1,7 +1,7 @@
-﻿using AutoFixture;
-using System.Text;
+﻿using System.Text;
 using System.Xml;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -41,7 +41,7 @@ public sealed class XmlElementAssertionsTest : Test
         });
       });
 
-      Test(false, new XmlDocument().CreateElement("root"), Fixture.Create<string>());
+      Test(false, new XmlDocument().CreateElement("root"), Fixture<string>.Create());
     }
 
     return;

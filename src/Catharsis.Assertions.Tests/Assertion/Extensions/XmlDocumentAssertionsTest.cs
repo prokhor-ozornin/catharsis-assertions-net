@@ -1,6 +1,6 @@
-﻿using AutoFixture;
-using System.Xml;
+﻿using System.Xml;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -36,7 +36,7 @@ public sealed class XmlDocumentAssertionsTest : Test
         Test(true, document, child.Name, child.NamespaceURI);
       });
 
-      Test(false, new XmlDocument(), Fixture.Create<string>());
+      Test(false, new XmlDocument(), Fixture<string>.Create());
     }
 
     return;

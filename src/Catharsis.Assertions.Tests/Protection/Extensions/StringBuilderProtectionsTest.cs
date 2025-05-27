@@ -1,6 +1,6 @@
-﻿using AutoFixture;
-using System.Text;
+﻿using System.Text;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -23,7 +23,7 @@ public sealed class StringBuilderProtectionsTest : Test
       AssertionExtensions.Should(() => StringBuilderProtections.Empty(null, new StringBuilder())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((StringBuilder) null)).ThrowExactly<ArgumentNullException>().WithParameterName("builder");
 
-      Test(true, Fixture.Create<string>().ToStringBuilder());
+      Test(true, Fixture<string>.Create().ToStringBuilder());
       Test(false, new StringBuilder());
     }
 

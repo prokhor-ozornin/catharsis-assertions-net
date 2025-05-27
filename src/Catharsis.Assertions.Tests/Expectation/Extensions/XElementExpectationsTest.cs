@@ -1,9 +1,9 @@
-﻿using AutoFixture;
-using System.Text;
+﻿using System.Text;
 using System.Xml.Linq;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
@@ -25,7 +25,7 @@ public sealed class XElementExpectationsTest : Test
       AssertionExtensions.Should(() => ((XElement) null).Expect().Attribute("name")).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
       AssertionExtensions.Should(() => new XElement("root").Expect().Attribute(null)).ThrowExactly<ArgumentNullException>().WithParameterName("name");
 
-      Test(false, new XElement("root"), Fixture.Create<string>());
+      Test(false, new XElement("root"), Fixture<string>.Create());
 
       new XElement("root").With(element =>
       {

@@ -1,9 +1,9 @@
-﻿using AutoFixture;
-using System.Text;
+﻿using System.Text;
 using System.Xml;
 using FluentAssertions;
 using Xunit;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions.Execution;
 
 namespace Catharsis.Assertions.Tests;
@@ -39,7 +39,7 @@ public sealed class XmlElementExpectationsTest : Test
         });
       });
 
-      Test(false, new XmlDocument().CreateElement("root"), Fixture.Create<string>());
+      Test(false, new XmlDocument().CreateElement("root"), Fixture<string>.Create());
     }
 
     return;

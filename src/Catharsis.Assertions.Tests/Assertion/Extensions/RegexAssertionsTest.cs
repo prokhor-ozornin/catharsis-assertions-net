@@ -1,5 +1,4 @@
-﻿using AutoFixture;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;

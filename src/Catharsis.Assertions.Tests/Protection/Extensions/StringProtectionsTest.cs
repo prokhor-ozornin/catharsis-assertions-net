@@ -1,6 +1,6 @@
-﻿using AutoFixture;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -23,7 +23,7 @@ public sealed class StringProtectionsTest : Test
       AssertionExtensions.Should(() => StringProtections.Empty(null, string.Empty)) .ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((string) null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Test(true, Fixture.Create<string>());
+      Test(true, Fixture<string>.Create());
       Test(false, string.Empty);
     }
 
@@ -53,7 +53,7 @@ public sealed class StringProtectionsTest : Test
       AssertionExtensions.Should(() => StringProtections.WhiteSpace(null, string.Empty)).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.WhiteSpace(null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
-      Test(true, Fixture.Create<string>());
+      Test(true, Fixture<string>.Create());
       Test(false, string.Empty);
       Test(false, "\r\n\t");
     }

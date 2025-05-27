@@ -1,5 +1,5 @@
-﻿using AutoFixture;
-using Catharsis.Extensions;
+﻿using Catharsis.Extensions;
+using Catharsis.Fixture;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -23,7 +23,7 @@ public sealed class TextReaderAssertionsTest : Test
 
       Test(true, Stream.Null.ToStreamReader());
 
-      Fixture.Create<string>().ToStringReader().With(reader =>
+      Fixture<string>.Create().ToStringReader().With(reader =>
       {
         reader.ReadToEnd();
         Test(true, reader);
@@ -31,7 +31,7 @@ public sealed class TextReaderAssertionsTest : Test
 
       Test(true, string.Empty.ToStringReader());
 
-      Fixture.Create<string>().ToStringReader().With(reader =>
+      Fixture<string>.Create().ToStringReader().With(reader =>
       {
         reader.ReadToEnd();
         Test(true, reader);

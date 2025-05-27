@@ -1,5 +1,5 @@
-﻿using AutoFixture;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
+using Catharsis.Fixture;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -44,7 +44,7 @@ public sealed class XDocumentExpectationsTest : Test
 
       Test(true, new XDocument(), null);
       Test(true, new XDocument(new XElement("root")), "root");
-      Test(false, new XDocument(new XElement("root")), Fixture.Create<string>());
+      Test(false, new XDocument(new XElement("root")), Fixture<string>.Create());
     }
 
     return;
