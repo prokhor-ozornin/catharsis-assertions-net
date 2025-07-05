@@ -12,8 +12,5 @@ public sealed class ProtectTest : Test
   ///   <para>Performs testing of <see cref="Protect.From"/> property.</para>
   /// </summary>
   [Fact]
-  public void From_Property()
-  {
-    Protect.From.Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
-  }
+  public void From_Property() => Protect.From.Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
 }

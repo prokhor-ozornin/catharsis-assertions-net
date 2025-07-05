@@ -12,17 +12,11 @@ public sealed class AssertTest : Test
   ///   <para>Performs testing of <see cref="Assert.To"/> property.</para>
   /// </summary>
   [Fact]
-  public void To_Property()
-  {
-    Assert.To.Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
-  }
+  public void To_Property() => Assert.To.Should().BeOfType<Assertion>().And.BeSameAs(Assert.To);
 
   /// <summary>
   ///   <para>Performs testing of <see cref="Assert.NotTo"/> property.</para>
   /// </summary>
   [Fact]
-  public void NotTo_Property()
-  {
-    Assert.NotTo.Should().BeOfType<Assertion>().And.BeSameAs(Assert.NotTo);
-  }
+  public void NotTo_Property() => Assert.NotTo.Should().BeOfType<Assertion>().And.BeSameAs(Assert.NotTo);
 }
