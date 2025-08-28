@@ -53,7 +53,6 @@ public static class IComparableAssertions
   /// <param name="right">Asserted element value for comparison.</param>
   /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
   /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
   /// <exception cref="ArgumentNullException">If <paramref name="assertion"/> is <see langword="null"/>.</exception>
   /// <seealso cref="GreaterOrEqual{T}(IAssertion, T, T, string)"/>
   public static IAssertion Greater<T>(this IAssertion assertion, T left, T right, string error = null) where T : struct, IComparable<T> => assertion.True(left.CompareTo(right) > 0, error);

@@ -13,7 +13,7 @@ public static class IExpectationExtensions
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="result">Expected result.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="expectation"/> or <paramref name="result"/> is <see langword="null"/>.</exception>
   public static IExpectation<T> Expected<T>(this IExpectation<T> expectation, Predicate<T> result)
   {
     if (expectation is null) throw new ArgumentNullException(nameof(expectation));
@@ -28,7 +28,7 @@ public static class IExpectationExtensions
   /// <typeparam name="T">Type of expectation's subject.</typeparam>
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="expectation"/> is <see langword="null"/>.</exception>
   public static IExpectation<T> HaveSubject<T>(this IExpectation<T> expectation)
   {
     if (expectation is null) throw new ArgumentNullException(nameof(expectation));
@@ -51,7 +51,7 @@ public static class IExpectationExtensions
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="exception">Exception to be thrown in case of a failed expectation.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="expectation"/> or <paramref name="exception"/> is <see langword="null"/>.</exception>
   /// <seealso cref="ThrowIfFalse{T}(IExpectation{T}, string)"/>
   public static IExpectation<T> ThrowIfFalse<T>(this IExpectation<T> expectation, Exception exception)
   {
@@ -73,7 +73,7 @@ public static class IExpectationExtensions
   /// <param name="expectation">Expectation to be fulfilled.</param>
   /// <param name="error">Text message of a potentially thrown exception.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If <paramref name="expectation"/> is <see langword="null"/>.</exception>
   /// <seealso cref="ThrowIfFalse{T}(IExpectation{T}, Exception)"/>
   public static IExpectation<T> ThrowIfFalse<T>(this IExpectation<T> expectation, string error = null) => expectation.ThrowIfFalse(new InvalidOperationException(error));
 
@@ -85,7 +85,7 @@ public static class IExpectationExtensions
   /// <param name="instance">Object to check for a <see langword="null"/> value.</param>
   /// <param name="error">Text message of a potentially thrown exception.</param>
   /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
+  /// <exception cref="ArgumentNullException">If either <paramref name="expectation"/> or <paramref name="instance"/> is <see langword="null"/>.</exception>
   public static IExpectation<T> ThrowIfNull<T>(this IExpectation<T> expectation, object instance, string error = null)
   {
     if (expectation is null) throw new ArgumentNullException(nameof(expectation));
