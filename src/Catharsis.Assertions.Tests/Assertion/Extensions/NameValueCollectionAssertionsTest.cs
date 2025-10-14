@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="NameValueCollectionAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="NameValueCollectionAssertions"/>
 public sealed class NameValueCollectionAssertionsTest : Test
 {
   /// <summary>

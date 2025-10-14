@@ -8,6 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="DirectoryInfoAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="DirectoryInfoAssertions"/>
 public sealed class DirectoryInfoAssertionsTest : Test
 {
   /// <summary>

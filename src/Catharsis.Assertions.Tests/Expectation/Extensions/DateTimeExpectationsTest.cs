@@ -8,6 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="DateTimeExpectations"/>.</para>
 /// </summary>
+/// <seealso cref="DateTimeExpectations"/>
 public sealed class DateTimeExpectationsTest : Test
 {
   /// <summary>

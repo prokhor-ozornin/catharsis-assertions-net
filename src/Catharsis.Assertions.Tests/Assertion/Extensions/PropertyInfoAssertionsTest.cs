@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="PropertyInfoAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="PropertyInfoAssertions"/>
 public sealed class PropertyInfoAssertionsTest : Test
 {
   private string Field;

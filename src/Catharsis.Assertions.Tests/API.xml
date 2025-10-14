@@ -8,6 +8,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.Assertion"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.Assertion"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.AssertionTest.Constructors">
             <summary>
@@ -28,6 +29,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.Assert"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.Assert"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.AssertTest.To_Property">
             <summary>
@@ -43,6 +45,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.AssemblyAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.AssemblyAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.AssemblyAssertionsTest.Define_Methods">
             <summary>
@@ -62,6 +65,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.BooleanAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.BooleanAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.BooleanAssertionsTest.True_Method">
             <summary>
@@ -77,6 +81,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.DateOnlyAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.DateOnlyAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.DateOnlyAssertionsTest.DayOfYear_Method">
             <summary>
@@ -102,6 +107,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.DateTimeAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.DateTimeAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.DateTimeAssertionsTest.Past_Method">
             <summary>
@@ -172,6 +178,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.DateTimeOffsetAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.DateTimeOffsetAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.DateTimeOffsetAssertionsTest.Past_Method">
             <summary>
@@ -237,6 +244,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.DirectoryInfoAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.DirectoryInfoAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.DirectoryInfoAssertionsTest.Empty_Method">
             <summary>
@@ -252,6 +260,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.FieldInfoAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.FieldInfoAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.FieldInfoAssertionsTest.Type_Methods">
             <summary>
@@ -301,6 +310,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.FileInfoAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.FileInfoAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.FileInfoAssertionsTest.Length_Method">
             <summary>
@@ -326,6 +336,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.FileSystemInfoAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.FileSystemInfoAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.FileSystemInfoAssertionsTest.Exist_Method">
             <summary>
@@ -341,6 +352,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.HttpContentAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.HttpContentAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.HttpContentAssertionsTest.ContainHeader_Method">
             <summary>
@@ -351,6 +363,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.HttpResponseMessageAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.HttpResponseMessageAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.HttpResponseMessageAssertionsTest.Successful_Method">
             <summary>
@@ -371,6 +384,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ICollectionAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ICollectionAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ICollectionAssertionsTest.Count_Method">
             <summary>
@@ -391,6 +405,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IComparableAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IComparableAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IComparableAssertionsTest.Positive_Method">
             <summary>
@@ -441,6 +456,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IDictionaryAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IDictionaryAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IDictionaryAssertionsTest.ContainKey_Method">
             <summary>
@@ -456,6 +472,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IEnumerableAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IEnumerableAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IEnumerableAssertionsTest.Count_Method">
             <summary>
@@ -545,6 +562,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IPAddressAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IPAddressAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IPAddressAssertionsTest.Ip4_Method">
             <summary>
@@ -560,6 +578,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.MatchAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.MatchAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.MatchAssertionsTest.Successful_Method">
             <summary>
@@ -575,6 +594,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.MemberInfoAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.MemberInfoAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.MemberInfoAssertionsTest.Attribute_Methods">
             <summary>
@@ -594,6 +614,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.MethodBaseAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.MethodBaseAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.MethodBaseAssertionsTest.Abstract_Method">
             <summary>
@@ -649,6 +670,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.NameValueCollectionAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.NameValueCollectionAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.NameValueCollectionAssertionsTest.Count_Method">
             <summary>
@@ -664,6 +686,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.NullableAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.NullableAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.NullableAssertionsTest.HasValue_Method">
             <summary>
@@ -679,6 +702,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ObjectAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ObjectAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ObjectAssertionsTest.Same_Method">
             <summary>
@@ -718,6 +742,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ProcessAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ProcessAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ProcessAssertionsTest.Exited_Method">
             <summary>
@@ -733,6 +758,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.PropertyInfoAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.PropertyInfoAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.PropertyInfoAssertionsTest.Readable_Method">
             <summary>
@@ -763,6 +789,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.RangeAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.RangeAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.RangeAssertionsTest.StartIndex_Method">
             <summary>
@@ -778,6 +805,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.RegexAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.RegexAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.RegexAssertionsTest.Match_Method">
             <summary>
@@ -788,6 +816,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.SecureStringAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.SecureStringAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.SecureStringAssertionsTest.Length_Method">
             <summary>
@@ -807,6 +836,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StreamAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StreamAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StreamAssertionsTest.Length_Method">
             <summary>
@@ -857,6 +887,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StreamReaderAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StreamReaderAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StreamReaderAssertionsTest.Encoding_Method">
             <summary>
@@ -872,6 +903,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StreamWriterAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StreamWriterAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StreamWriterAssertionsTest.Encoding_Method">
             <summary>
@@ -882,6 +914,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StringAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StringAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StringAssertionsTest.Length_Method">
             <summary>
@@ -927,6 +960,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StringBuilderAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StringBuilderAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StringBuilderAssertionsTest.Length_Method">
             <summary>
@@ -942,6 +976,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.SymmetricAlgorithmAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.SymmetricAlgorithmAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.SymmetricAlgorithmAssertionsTest.BlockSize_Method">
             <summary>
@@ -957,6 +992,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TaskAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TaskAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TaskAssertionsTest.Status_Methods">
             <summary>
@@ -1007,6 +1043,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TextReaderAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TextReaderAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TextReaderAssertionsTest.End_Method">
             <summary>
@@ -1017,6 +1054,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TextWriterAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TextWriterAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TextWriterAssertionsTest.Format_Method">
             <summary>
@@ -1027,6 +1065,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ThreadAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ThreadAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ThreadAssertionsTest.State_Method">
             <summary>
@@ -1042,6 +1081,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TimeOnlyAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TimeOnlyAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TimeOnlyAssertionsTest.Hour_Method">
             <summary>
@@ -1067,6 +1107,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TimeSpanAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TimeSpanAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TimeSpanAssertionsTest.Days_Method">
             <summary>
@@ -1122,6 +1163,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TypeAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TypeAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TypeAssertionsTest.Abstract_Method">
             <summary>
@@ -1179,6 +1221,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ValueTaskAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ValueTaskAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ValueTaskAssertionsTest.Successful_Methods">
             <summary>
@@ -1220,6 +1263,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XAttributeAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XAttributeAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XAttributeAssertionsTest.Name_Method">
             <summary>
@@ -1235,6 +1279,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XContainerAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XContainerAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XContainerAssertionsTest.Element_Method">
             <summary>
@@ -1250,6 +1295,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XDocumentAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XDocumentAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XDocumentAssertionsTest.Empty_Method">
             <summary>
@@ -1265,6 +1311,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XElementAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XElementAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XElementAssertionsTest.Attribute_Method">
             <summary>
@@ -1275,6 +1322,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XmlDocumentAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XmlDocumentAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XmlDocumentAssertionsTest.Element_Method">
             <summary>
@@ -1285,6 +1333,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XmlElementAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XmlElementAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XmlElementAssertionsTest.Attribute_Method">
             <summary>
@@ -1295,6 +1344,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XmlNodeAssertions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XmlNodeAssertions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XmlNodeAssertionsTest.Empty_Method">
             <summary>
@@ -1330,6 +1380,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IAssertionExtensions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IAssertionExtensions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IAssertionExtensionsTest.And_Method">
             <summary>
@@ -1370,6 +1421,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.Expectation`1"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.Expectation`1"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ExpectationTest.Constructors">
             <summary>
@@ -1390,6 +1442,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.AssemblyExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.AssemblyExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.AssemblyExpectationsTest.Define_Methods">
             <summary>
@@ -1409,6 +1462,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.DateOnlyExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.DateOnlyExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.DateOnlyExpectationsTest.DayOfYear_Method">
             <summary>
@@ -1434,6 +1488,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.DateTimeExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.DateTimeExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.DateTimeExpectationsTest.Past_Method">
             <summary>
@@ -1504,6 +1559,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.DateTimeOffsetExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.DateTimeOffsetExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.DateTimeOffsetExpectationsTest.Past_Method">
             <summary>
@@ -1569,6 +1625,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.DirectoryInfoExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.DirectoryInfoExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.DirectoryInfoExpectationsTest.Empty_Method">
             <summary>
@@ -1584,6 +1641,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.FieldInfoExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.FieldInfoExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.FieldInfoExpectationsTest.Type_Methods">
             <summary>
@@ -1633,6 +1691,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.FileInfoExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.FileInfoExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.FileInfoExpectationsTest.Length_Method">
             <summary>
@@ -1658,6 +1717,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.FileSystemInfoExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.FileSystemInfoExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.FileSystemInfoExpectationsTest.Exist_Method">
             <summary>
@@ -1673,6 +1733,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.HttpContentExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.HttpContentExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.HttpContentExpectationsTest.ContainHeader_Method">
             <summary>
@@ -1683,6 +1744,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.HttpResponseMessageExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.HttpResponseMessageExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.HttpResponseMessageExpectationsTest.Successful_Method">
             <summary>
@@ -1703,6 +1765,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ICollectionExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ICollectionExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ICollectionExpectationsTest.Count_Method">
             <summary>
@@ -1723,6 +1786,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IComparableExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IComparableExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IComparableExpectationsTest.Positive_Method">
             <summary>
@@ -1773,6 +1837,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IDictionaryExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IDictionaryExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IDictionaryExpectationsTest.ContainKey_Method">
             <summary>
@@ -1788,6 +1853,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IEnumerableExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IEnumerableExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IEnumerableExpectationsTest.Count_Method">
             <summary>
@@ -1877,6 +1943,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IPAddressExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IPAddressExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IPAddressExpectationsTest.Ip4_Method">
             <summary>
@@ -1892,6 +1959,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.MatchExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.MatchExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.MatchExpectationsTest.Successful_Method">
             <summary>
@@ -1907,6 +1975,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.MemberInfoExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.MemberInfoExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.MemberInfoExpectationsTest.Attribute_Methods">
             <summary>
@@ -1926,6 +1995,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.MethodBaseExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.MethodBaseExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.MethodBaseExpectationsTest.Abstract_Method">
             <summary>
@@ -1981,6 +2051,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.NameValueCollectionExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.NameValueCollectionExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.NameValueCollectionExpectationsTest.Count_Method">
             <summary>
@@ -1996,6 +2067,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.NullableExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.NullableExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.NullableExpectationsTest.HasValue_Method">
             <summary>
@@ -2011,6 +2083,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ObjectExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ObjectExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ObjectExpectationsTest.Same_Method">
             <summary>
@@ -2046,6 +2119,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ProcessExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ProcessExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ProcessExpectationsTest.Exited_Method">
             <summary>
@@ -2061,6 +2135,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.PropertyInfoExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.PropertyInfoExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.PropertyInfoExpectationsTest.Readable_Method">
             <summary>
@@ -2091,6 +2166,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.RangeExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.RangeExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.RangeExpectationsTest.StartIndex_Method">
             <summary>
@@ -2106,6 +2182,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.RegexExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.RegexExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.RegexExpectationsTest.Match_Method">
             <summary>
@@ -2116,6 +2193,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.SecureStringExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.SecureStringExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.SecureStringExpectationsTest.Length_Method">
             <summary>
@@ -2136,6 +2214,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StreamExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StreamExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StreamExpectationsTest.Length_Method">
             <summary>
@@ -2186,6 +2265,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StreamReaderExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StreamReaderExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StreamReaderExpectationsTest.Encoding_Method">
             <summary>
@@ -2201,6 +2281,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StreamWriterExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StreamWriterExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StreamWriterExpectationsTest.Encoding_Method">
             <summary>
@@ -2211,6 +2292,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StringBuilderExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StringBuilderExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StringBuilderExpectationsTest.Length_Method">
             <summary>
@@ -2226,6 +2308,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StringExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StringExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StringExpectationsTest.Length_Method">
             <summary>
@@ -2271,6 +2354,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.SymmetricAlgorithmExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.SymmetricAlgorithmExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.SymmetricAlgorithmExpectationsTest.BlockSize_Method">
             <summary>
@@ -2286,6 +2370,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TaskExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TaskExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TaskExpectationsTest.Status_Methods">
             <summary>
@@ -2336,6 +2421,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TextReaderExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TextReaderExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TextReaderExpectationsTest.End_Method">
             <summary>
@@ -2346,6 +2432,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TextWriterExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TextWriterExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TextWriterExpectationsTest.Format_Method">
             <summary>
@@ -2356,6 +2443,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ThreadExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ThreadExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ThreadExpectationsTest.State_Method">
             <summary>
@@ -2371,6 +2459,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TimeOnlyExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TimeOnlyExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TimeOnlyExpectationsTest.Hour_Method">
             <summary>
@@ -2396,6 +2485,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TimeSpanExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TimeSpanExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TimeSpanExpectationsTest.Days_Method">
             <summary>
@@ -2451,6 +2541,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TypeExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TypeExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TypeExpectationsTest.Abstract_Method">
             <summary>
@@ -2508,6 +2599,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ValueTaskExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ValueTaskExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ValueTaskExpectationsTest.Successful_Methods">
             <summary>
@@ -2549,6 +2641,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XAttributeExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XAttributeExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XAttributeExpectationsTest.Name_Method">
             <summary>
@@ -2564,6 +2657,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XContainerExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XContainerExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XContainerExpectationsTest.Element_Method">
             <summary>
@@ -2579,6 +2673,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XDocumentExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XDocumentExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XDocumentExpectationsTest.Empty_Method">
             <summary>
@@ -2594,6 +2689,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XElementExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XElementExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XElementExpectationsTest.Attribute_Method">
             <summary>
@@ -2604,6 +2700,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XmlDocumentExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XmlDocumentExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XmlDocumentExpectationsTest.Element_Method">
             <summary>
@@ -2614,6 +2711,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XmlElementExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XmlElementExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XmlElementExpectationsTest.Attribute_Method">
             <summary>
@@ -2624,6 +2722,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XmlNodeExpectations"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XmlNodeExpectations"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XmlNodeExpectationsTest.Empty_Method">
             <summary>
@@ -2659,6 +2758,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IExpectationExtensions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IExpectationExtensions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IExpectationExtensionsTest.Expected_Method">
             <summary>
@@ -2728,6 +2828,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ObjectExtensions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ObjectExtensions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ObjectExtensionsTest.Expect_Method">
             <summary>
@@ -2738,6 +2839,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.BinaryReaderProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.BinaryReaderProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.BinaryReaderProtectionsTest.Empty_Method">
             <summary>
@@ -2748,6 +2850,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.BinaryWriterProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.BinaryWriterProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.BinaryWriterProtectionsTest.Empty_Method">
             <summary>
@@ -2758,6 +2861,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.BooleanProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.BooleanProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.BooleanProtectionsTest.Truth_Method">
             <summary>
@@ -2773,6 +2877,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.DirectoryInfoProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.DirectoryInfoProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.DirectoryInfoProtectionsTest.Empty_Method">
             <summary>
@@ -2783,6 +2888,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.FileInfoProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.FileInfoProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.FileInfoProtectionsTest.Empty_Method">
             <summary>
@@ -2793,6 +2899,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ICollectionProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ICollectionProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ICollectionsProtectionsTest.Empty_Method">
             <summary>
@@ -2803,6 +2910,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IComparableProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IComparableProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IComparableProtectionsTest.Positive_Method">
             <summary>
@@ -2832,6 +2940,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IEnumerableProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IEnumerableProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IEnumerableProtectionsTest.Empty_Method">
             <summary>
@@ -2842,6 +2951,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.LazyProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.LazyProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.LazyProtectionsTest.Null_Method">
             <summary>
@@ -2852,6 +2962,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.NameValueCollectionProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.NameValueCollectionProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.NameValueCollectionProtectionsTest.Empty_Method">
             <summary>
@@ -2862,6 +2973,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.ObjectProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.ObjectProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ObjectProtectionsTest.Same_Method">
             <summary>
@@ -2905,6 +3017,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.SecureStringProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.SecureStringProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.SecureStringProtectionsTest.Empty_Method">
             <summary>
@@ -2915,6 +3028,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StreamProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StreamProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StreamProtectionsTest.Empty_Method">
             <summary>
@@ -2925,6 +3039,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StreamReaderProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StreamReaderProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StreamReaderProtectionsTest.Empty_Method">
             <summary>
@@ -2935,6 +3050,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StreamWriterProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StreamWriterProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StreamWriterProtectionsTest.Empty_Method">
             <summary>
@@ -2945,6 +3061,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StringBuilderProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StringBuilderProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StringBuilderProtectionsTest.Empty_Method">
             <summary>
@@ -2955,6 +3072,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.StringProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.StringProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.StringProtectionsTest.Empty_Method">
             <summary>
@@ -2975,6 +3093,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.TaskProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.TaskProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.TaskProtectionsTest.Status_Methods">
             <summary>
@@ -2989,6 +3108,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XContainerProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XContainerProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XContainerProtectionsTest.Empty_Method">
             <summary>
@@ -2999,6 +3119,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XDocumentProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XDocumentProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XDocumentProtectionsTest.Empty_XDocument_Method">
             <summary>
@@ -3009,6 +3130,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XmlDocumentProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XmlDocumentProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XmlDocumentProtectionsTest.Empty_Method">
             <summary>
@@ -3019,6 +3141,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.XmlNodeProtections"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.XmlNodeProtections"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.XmlNodeProtectionsTest.Empty_XmlNode_Method">
             <summary>
@@ -3029,6 +3152,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.IProtectionExtensions"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.IProtectionExtensions"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IProtectionExtensionsTest.And_Method">
             <summary>
@@ -3049,6 +3173,7 @@
             <summary>
               <para>Tests set for class <see cref="T:Catharsis.Assertions.Protect"/>.</para>
             </summary>
+            <seealso cref="T:Catharsis.Assertions.Protect"/>
         </member>
         <member name="M:Catharsis.Assertions.Tests.ProtectTest.From_Property">
             <summary>

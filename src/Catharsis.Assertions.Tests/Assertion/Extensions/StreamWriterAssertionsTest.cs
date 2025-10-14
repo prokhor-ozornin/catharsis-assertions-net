@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StreamWriterAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="StreamWriterAssertions"/>
 public sealed class StreamWriterAssertionsTest : Test
 {
   private StreamWriter Writer { get; } = Stream.Null.ToStreamWriter();

@@ -11,6 +11,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XElementExpectations"/>.</para>
 /// </summary>
+/// <seealso cref="XElementExpectations"/>
 public sealed class XElementExpectationsTest : Test
 {
   /// <summary>

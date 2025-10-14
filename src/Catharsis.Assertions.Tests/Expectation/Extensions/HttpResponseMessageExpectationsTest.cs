@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="HttpResponseMessageExpectations"/>.</para>
 /// </summary>
+/// <seealso cref="HttpResponseMessageExpectations"/>
 public sealed class HttpResponseMessageExpectationsTest : Test
 {
   /// <summary>

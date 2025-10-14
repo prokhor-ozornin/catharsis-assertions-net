@@ -10,6 +10,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XmlNodeAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="XmlNodeAssertions"/>
 public sealed class XmlNodeAssertionsTest : Test
 {
   /// <summary>

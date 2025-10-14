@@ -11,6 +11,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XmlElementAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="XmlElementAssertions"/>
 public sealed class XmlElementAssertionsTest : Test
 {
   private XmlElement Element { get; } = new XmlDocument().CreateElement("root");

@@ -7,6 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="BooleanAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="BooleanAssertions"/>
 public sealed class BooleanAssertionsTest : Test
 {
   /// <summary>

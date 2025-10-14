@@ -10,6 +10,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StringAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="StringAssertions"/>
 public sealed class StringAssertionsTest : Test
 {
   /// <summary>

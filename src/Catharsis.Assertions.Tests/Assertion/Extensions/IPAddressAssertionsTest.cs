@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="IPAddressAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="IPAddressAssertions"/>
 public sealed class IPAddressAssertionsTest : Test
 {
   /// <summary>

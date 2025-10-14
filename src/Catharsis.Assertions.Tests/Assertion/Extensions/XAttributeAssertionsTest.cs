@@ -8,6 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XAttributeAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="XAttributeAssertions"/>
 public sealed class XAttributeAssertionsTest : Test
 {
   /// <summary>

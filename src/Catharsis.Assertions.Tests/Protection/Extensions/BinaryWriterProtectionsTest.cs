@@ -8,6 +8,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="BinaryWriterProtections"/>.</para>
 /// </summary>
+/// <seealso cref="BinaryWriterProtections"/>
 public sealed class BinaryWriterProtectionsTest : Test
 {
   /// <summary>

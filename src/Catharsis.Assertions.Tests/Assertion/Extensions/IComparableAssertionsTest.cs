@@ -7,6 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="IComparableAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="IComparableAssertions"/>
 public sealed class IComparableAssertionsTest : Test
 {
   /// <summary>

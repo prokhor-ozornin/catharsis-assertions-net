@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XContainerProtections"/>.</para>
 /// </summary>
+/// <seealso cref="XContainerProtections"/>
 public sealed class XContainerProtectionsTest : Test
 {
   /// <summary>

@@ -7,6 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="IEnumerableProtections"/>.</para>
 /// </summary>
+/// <seealso cref="IEnumerableProtections"/>
 public sealed class IEnumerableProtectionsTest : Test
 {
   /// <summary>

@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="TextReaderAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="TextReaderAssertions"/>
 public sealed class TextReaderAssertionsTest : Test
 {
   /// <summary>

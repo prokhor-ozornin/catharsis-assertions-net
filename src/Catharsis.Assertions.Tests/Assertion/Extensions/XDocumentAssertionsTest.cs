@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="XDocumentAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="XDocumentAssertions"/>
 public sealed class XDocumentAssertionsTest : Test
 {
   private XDocument Document { get; } = new();

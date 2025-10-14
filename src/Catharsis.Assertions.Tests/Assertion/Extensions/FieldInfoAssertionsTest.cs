@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="FieldInfoAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="FieldInfoAssertions"/>
 public sealed class FieldInfoAssertionsTest : Test
 {
   private FieldInfo Field { get; } = typeof(string).AnyField(nameof(string.Empty));

@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="ProcessExpectations"/>.</para>
 /// </summary>
+/// <seealso cref="ProcessExpectations"/>
 public sealed class ProcessExpectationsTest : Test
 {
   private Process ShellProcess { get; } = "cmd.exe".ToProcess();

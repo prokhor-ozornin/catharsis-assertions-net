@@ -7,6 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StreamProtections"/>.</para>
 /// </summary>
+/// <seealso cref="StreamProtections"/>
 public sealed class StreamProtectionsTest : Test
 {
   /// <summary>

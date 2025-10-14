@@ -7,6 +7,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="IAssertionExtensions"/>.</para>
 /// </summary>
+/// <seealso cref="IAssertionExtensions"/>
 public sealed class IAssertionExtensionsTest : Test
 {
   private IAssertion Assertion => Assert.To;

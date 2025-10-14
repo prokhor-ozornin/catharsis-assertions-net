@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="RegexAssertions"/>.</para>
 /// </summary>
+/// <seealso cref="RegexAssertions"/>
 public sealed class RegexAssertionsTest : Test
 {
   /// <summary>

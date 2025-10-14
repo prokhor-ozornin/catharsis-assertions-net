@@ -9,6 +9,7 @@ namespace Catharsis.Assertions.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="MethodBaseExpectations"/>.</para>
 /// </summary>
+/// <seealso cref="MethodBaseExpectations"/>
 public class MethodBaseExpectationsTest : Test
 {
   public void PublicMethod() {}
