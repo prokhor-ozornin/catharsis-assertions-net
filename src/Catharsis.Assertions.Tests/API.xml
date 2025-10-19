@@ -262,6 +262,21 @@
             </summary>
             <seealso cref="T:Catharsis.Assertions.FieldInfoAssertions"/>
         </member>
+        <member name="F:Catharsis.Assertions.Tests.FieldInfoAssertionsTest.ProtectedField">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="F:Catharsis.Assertions.Tests.FieldInfoAssertionsTest.PublicField">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="F:Catharsis.Assertions.Tests.FieldInfoAssertionsTest.ProtectedInternalField">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
         <member name="M:Catharsis.Assertions.Tests.FieldInfoAssertionsTest.Type_Methods">
             <summary>
               <para>Performs testing of following methods :</para>
@@ -616,6 +631,26 @@
             </summary>
             <seealso cref="T:Catharsis.Assertions.MethodBaseAssertions"/>
         </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseAssertionsTest.PublicMethod">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseAssertionsTest.ProtectedVirtualMethod">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseAssertionsTest.PublicStaticMethod">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseAssertionsTest.ProtectedInternalMethod">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
         <member name="M:Catharsis.Assertions.Tests.MethodBaseAssertionsTest.Abstract_Method">
             <summary>
               <para>Performs testing of <see cref="M:Catharsis.Assertions.MethodBaseAssertions.Abstract(Catharsis.Assertions.IAssertion,System.Reflection.MethodBase,System.String)"/> method.</para>
@@ -664,6 +699,11 @@
         <member name="M:Catharsis.Assertions.Tests.MethodBaseAssertionsTest.ProtectedInternal_Method">
             <summary>
               <para>Performs testing of <see cref="M:Catharsis.Assertions.MethodBaseAssertions.ProtectedInternal(Catharsis.Assertions.IAssertion,System.Reflection.MethodBase,System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseAssertionsTest.Dispose">
+            <summary>
+              <para></para>
             </summary>
         </member>
         <member name="T:Catharsis.Assertions.Tests.NameValueCollectionAssertionsTest">
@@ -1643,6 +1683,21 @@
             </summary>
             <seealso cref="T:Catharsis.Assertions.FieldInfoExpectations"/>
         </member>
+        <member name="F:Catharsis.Assertions.Tests.FieldInfoExpectationsTest.ProtectedField">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="F:Catharsis.Assertions.Tests.FieldInfoExpectationsTest.ProtectedInternalField">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="F:Catharsis.Assertions.Tests.FieldInfoExpectationsTest.PublicField">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
         <member name="M:Catharsis.Assertions.Tests.FieldInfoExpectationsTest.Type_Methods">
             <summary>
               <para>Performs testing of following methods :</para>
@@ -1997,6 +2052,26 @@
             </summary>
             <seealso cref="T:Catharsis.Assertions.MethodBaseExpectations"/>
         </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseExpectationsTest.PublicMethod">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseExpectationsTest.ProtectedVirtualMethod">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseExpectationsTest.PublicStaticMethod">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseExpectationsTest.ProtectedInternalMethod">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
         <member name="M:Catharsis.Assertions.Tests.MethodBaseExpectationsTest.Abstract_Method">
             <summary>
               <para>Performs testing of <see cref="M:Catharsis.Assertions.MethodBaseExpectations.Abstract(Catharsis.Assertions.IExpectation{System.Reflection.MethodBase})"/> method.</para>
@@ -2045,6 +2120,11 @@
         <member name="M:Catharsis.Assertions.Tests.MethodBaseExpectationsTest.ProtectedInternal_Method">
             <summary>
               <para>Performs testing of <see cref="M:Catharsis.Assertions.MethodBaseExpectations.ProtectedInternal(Catharsis.Assertions.IExpectation{System.Reflection.MethodBase})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.MethodBaseExpectationsTest.Dispose">
+            <summary>
+              <para></para>
             </summary>
         </member>
         <member name="T:Catharsis.Assertions.Tests.NameValueCollectionExpectationsTest">
@@ -3179,6 +3259,69 @@
             <summary>
               <para>Performs testing of <see cref="P:Catharsis.Assertions.Protect.From"/> property.</para>
             </summary>
+        </member>
+        <member name="T:Catharsis.Assertions.Tests.Test">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Assertions.Tests.Test.Random">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Assertions.Tests.Test.RandomSequence">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Assertions.Tests.Test.RandomStream">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.Test.#ctor">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.Test.Dispose">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.Test.TestCompareTo``2(System.String,``1,``1,System.Func{``0})">
+            <summary>
+              <para></para>
+            </summary>
+            <param name="property"></param>
+            <param name="lower"></param>
+            <param name="greater"></param>
+            <param name="constructor"></param>
+            <typeparam name="TClass"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.Test.TestEquality``2(System.String,``1,``1,System.Func{``0})">
+            <summary>
+              <para></para>
+            </summary>
+            <param name="property"></param>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+            <param name="constructor"></param>
+            <typeparam name="TClass"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+        </member>
+        <member name="M:Catharsis.Assertions.Tests.Test.TestHashCode``2(System.String,``1,``1,System.Func{``0})">
+            <summary>
+              <para></para>
+            </summary>
+            <param name="property"></param>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+            <param name="constructor"></param>
+            <typeparam name="TClass"></typeparam>
+            <typeparam name="TProperty"></typeparam>
         </member>
     </members>
 </doc>

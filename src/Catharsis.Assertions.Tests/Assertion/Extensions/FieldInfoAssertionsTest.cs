@@ -10,15 +10,11 @@ namespace Catharsis.Assertions.Tests;
 ///   <para>Tests set for class <see cref="FieldInfoAssertions"/>.</para>
 /// </summary>
 /// <seealso cref="FieldInfoAssertions"/>
-public sealed class FieldInfoAssertionsTest : Test
+public class FieldInfoAssertionsTest : Test
 {
   private FieldInfo Field { get; } = typeof(string).AnyField(nameof(string.Empty));
-
   private readonly string PrivateField = nameof(PrivateField);
-  protected readonly string ProtectedField = nameof(ProtectedField);
-  public readonly string PublicField = nameof(PublicField);
   internal readonly string InternalField = nameof(InternalField);
-  protected internal readonly string ProtectedInternalField = nameof(ProtectedInternalField);
   static readonly string StaticField = nameof(StaticField);
 
   private FieldInfo PrivateFieldInfo => GetType().AnyField(nameof(PrivateField));
@@ -27,6 +23,21 @@ public sealed class FieldInfoAssertionsTest : Test
   private FieldInfo InternalFieldInfo => GetType().AnyField(nameof(InternalField));
   private FieldInfo ProtectedInternalFieldInfo => GetType().AnyField(nameof(ProtectedInternalField));
   private FieldInfo StaticFieldInfo => GetType().AnyField(nameof(StaticField));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected readonly string ProtectedField = nameof(ProtectedField);
+  
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  public readonly string PublicField = nameof(PublicField);
+  
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected internal readonly string ProtectedInternalField = nameof(ProtectedInternalField);
 
   /// <summary>
   ///   <para>Performs testing of following methods :</para>

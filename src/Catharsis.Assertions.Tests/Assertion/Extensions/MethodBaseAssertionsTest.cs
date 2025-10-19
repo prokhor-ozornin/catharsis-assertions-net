@@ -13,13 +13,8 @@ namespace Catharsis.Assertions.Tests;
 public class MethodBaseAssertionsTest : Test
 {
   private MethodBase Method { get; } = typeof(object).AnyMethod(nameof(ToString));
-
-  public void PublicMethod() {}
   private void PrivateMethod() {}
-  protected virtual void ProtectedVirtualMethod() {}
-  public static void PublicStaticMethod() {}
   internal virtual void InternalVirtualMethod() {}
-  protected internal void ProtectedInternalMethod() {}
 
   private MethodBase PublicAbstractMethodInfo => typeof(Stream).AnyMethod(nameof(Stream.Flush));
   private MethodBase PublicFinalMethodInfo => GetType().AnyMethod(nameof(Dispose));
@@ -29,6 +24,26 @@ public class MethodBaseAssertionsTest : Test
   private MethodBase PublicStaticMethodInfo => GetType().AnyMethod(nameof(PublicStaticMethod));
   private MethodBase InternalVirtualMethodInfo => GetType().AnyMethod(nameof(InternalVirtualMethod));
   private MethodBase ProtectedInternalMethodInfo => GetType().AnyMethod(nameof(ProtectedInternalMethod));
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  public void PublicMethod() {}
+  
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected virtual void ProtectedVirtualMethod() {}
+  
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  public static void PublicStaticMethod() {}
+  
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected internal void ProtectedInternalMethod() {}
 
   /// <summary>
   ///   <para>Performs testing of <see cref="MethodBaseAssertions.Abstract(IAssertion, MethodBase, string)"/> method.</para>
@@ -390,5 +405,8 @@ public class MethodBaseAssertionsTest : Test
     }
   }
 
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   public sealed override void Dispose() => base.Dispose();
 }

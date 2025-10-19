@@ -12,11 +12,27 @@ namespace Catharsis.Assertions.Tests;
 /// <seealso cref="MethodBaseExpectations"/>
 public class MethodBaseExpectationsTest : Test
 {
-  public void PublicMethod() {}
   private void PrivateMethod() {}
-  protected virtual void ProtectedVirtualMethod() {}
-  public static void PublicStaticMethod() {}
   internal virtual void InternalVirtualMethod() {}
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  public void PublicMethod() {}
+
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  protected virtual void ProtectedVirtualMethod() {}
+  
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
+  public static void PublicStaticMethod() {}
+  
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   protected internal void ProtectedInternalMethod() {}
 
   private MethodBase PublicAbstractMethodInfo => typeof(Stream).AnyMethod(nameof(Stream.Flush));
@@ -288,5 +304,8 @@ public class MethodBaseExpectationsTest : Test
     static void Test(bool result, MethodBase method) => method.Expect().ProtectedInternal().Should().BeOfType<Expectation<MethodBase>>().Which.Result.Should().Be(result);
   }
 
+  /// <summary>
+  ///   <para></para>
+  /// </summary>
   public sealed override void Dispose() => base.Dispose();
 }

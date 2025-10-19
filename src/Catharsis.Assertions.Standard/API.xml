@@ -780,7 +780,6 @@
             <param name="right">Asserted element value for comparison.</param>
             <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
             <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:System.ArgumentNullException">If <paramref name="assertion"/> is <see langword="null"/>.</exception>
             <seealso cref="M:Catharsis.Assertions.IComparableAssertions.GreaterOrEqual``1(Catharsis.Assertions.IAssertion,``0,``0,System.String)"/>
         </member>
@@ -4970,7 +4969,7 @@
             <param name="expectation">Expectation to be fulfilled.</param>
             <param name="result">Expected result.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentNullException">If either <paramref name="expectation"/> or <paramref name="result"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:Catharsis.Assertions.IExpectationExtensions.HaveSubject``1(Catharsis.Assertions.IExpectation{``0})">
             <summary>
@@ -4979,7 +4978,7 @@
             <typeparam name="T">Type of expectation's subject.</typeparam>
             <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="expectation"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.Exception)">
             <summary>
@@ -4989,7 +4988,7 @@
             <param name="expectation">Expectation to be fulfilled.</param>
             <param name="exception">Exception to be thrown in case of a failed expectation.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentNullException">If either <paramref name="expectation"/> or <paramref name="exception"/> is <see langword="null"/>.</exception>
             <seealso cref="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.String)"/>
         </member>
         <member name="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.String)">
@@ -5000,7 +4999,7 @@
             <param name="expectation">Expectation to be fulfilled.</param>
             <param name="error">Text message of a potentially thrown exception.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="expectation"/> is <see langword="null"/>.</exception>
             <seealso cref="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.Exception)"/>
         </member>
         <member name="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfNull``1(Catharsis.Assertions.IExpectation{``0},System.Object,System.String)">
@@ -5012,7 +5011,7 @@
             <param name="instance">Object to check for a <see langword="null"/> value.</param>
             <param name="error">Text message of a potentially thrown exception.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentNullException">If either <paramref name="expectation"/> or <paramref name="instance"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:Catharsis.Assertions.IExpectationExtensions.To``1(Catharsis.Assertions.IExpectation{``0})">
             <summary>
