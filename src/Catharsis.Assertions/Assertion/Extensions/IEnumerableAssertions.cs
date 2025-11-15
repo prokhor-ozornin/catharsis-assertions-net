@@ -269,7 +269,7 @@ public static class IEnumerableAssertions
     return assertion.True(sequence.All(element => condition(element)), error);
   }
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
   /// <summary>
   ///   <para>Asserts that the given <see cref="IEnumerable{T}"/> contains a specific element at a given index.</para>
   /// </summary>

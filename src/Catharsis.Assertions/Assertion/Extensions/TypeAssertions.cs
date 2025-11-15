@@ -125,7 +125,7 @@ public static class TypeAssertions
   /// <seealso cref="AssignableFrom(IAssertion, Type, Type, string)"/>
   public static IAssertion AssignableFrom<T>(this IAssertion assertion, Type from, string error = null) => assertion.AssignableFrom(from, typeof(T), error);
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
   /// <summary>
   ///   <para>Asserts that an instance of a given <see cref="Type"/> is assignable to an instance of the specified <see cref="Type"/>.</para>
   /// </summary>

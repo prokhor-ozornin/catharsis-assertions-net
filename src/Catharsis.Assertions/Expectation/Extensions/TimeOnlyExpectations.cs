@@ -1,6 +1,6 @@
 ﻿namespace Catharsis.Assertions;
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
 /// <summary>
 ///   <para>A set of expectations for the <see cref="TimeOnly"/> type.</para>
 /// </summary>

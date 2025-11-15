@@ -84,7 +84,7 @@ public static class TypeExpectations
   /// <seealso cref="AssignableFrom(IExpectation{Type}, Type)"/>
   public static IExpectation<Type> AssignableFrom<T>(this IExpectation<Type> expectation) => expectation.AssignableFrom(typeof(T));
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
   /// <summary>
   ///   <para>Expects that an instance of a given <see cref="Type"/> is assignable to an instance of the specified <see cref="Type"/>.</para>
   /// </summary>

@@ -168,7 +168,7 @@ public static class IEnumerableExpectations
   /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> or has an undefined subject, or <paramref name="condition"/> is <see langword="null"/>.</exception>
   public static IExpectation<IEnumerable<T>> Match<T>(this IExpectation<IEnumerable<T>> expectation, Predicate<T> condition) => expectation.HaveSubject().And().ThrowIfNull(condition, nameof(condition)).And().Expected(sequence => sequence.All(element => condition(element)));
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
   /// <summary>
   ///   <para>Expects that the given <see cref="IEnumerable{T}"/> contains a specific element at a given index.</para>
   /// </summary>
