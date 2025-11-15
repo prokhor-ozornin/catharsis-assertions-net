@@ -319,8 +319,8 @@ public sealed class IEnumerableExpectationsTest : Test
       AssertionExtensions.Should(() => RandomSequence.Expect().Ordered()).ThrowExactly<InvalidOperationException>();
 
       Test(true, Enumerable.Empty<object>());
-      Test(true, Random.IntSequence(byte.MaxValue).Order().ToArray());
-      Test(false, Random.IntSequence(byte.MaxValue).ToArray());
+      Test(true, Random.Int(byte.MaxValue).Order().ToArray());
+      Test(false, Random.Int(byte.MaxValue).ToArray());
     }
 
     return;

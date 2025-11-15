@@ -446,8 +446,8 @@ public sealed class IEnumerableAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Ordered<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
       Test(true, Enumerable.Empty<object>());
-      Test(true, Random.IntSequence(byte.MaxValue).Order().ToArray());
-      Test(false, Random.IntSequence(byte.MaxValue).ToArray());
+      Test(true, Random.Int(byte.MaxValue).Order().ToArray());
+      Test(false, Random.Int(byte.MaxValue).ToArray());
     }
 
     return;

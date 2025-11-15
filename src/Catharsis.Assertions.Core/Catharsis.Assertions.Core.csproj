@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
@@ -163,5 +163,11 @@
     <Folder Include="Expectation\Extensions\" />
     <Folder Include="Protection\Extensions\" />
     <Folder Include="Protection\Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Catharsis.Extensions">
+      <HintPath>..\..\lib\net10.0\Catharsis.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

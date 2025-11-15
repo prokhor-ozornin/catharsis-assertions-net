@@ -29,7 +29,7 @@ public class Test : IDisposable
   protected Test()
   {
     RandomStream = Random.MemoryStream(short.MaxValue);
-    RandomSequence = Random.ObjectSequence(short.MaxValue);
+    RandomSequence = Random.Object(short.MaxValue);
   }
 
   /// <summary>
