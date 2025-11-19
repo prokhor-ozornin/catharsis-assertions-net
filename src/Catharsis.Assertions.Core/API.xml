@@ -2940,52 +2940,69 @@
             <seealso cref="T:Catharsis.Assertions.IAssertion"/>
         </member>
         <member name="M:Catharsis.Assertions.IAssertionExtensions.And(Catharsis.Assertions.IAssertion)">
-            <summary>
-              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
-            </summary>
-            <param name="assertion">Assertion object.</param>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.And"/>
         </member>
         <member name="M:Catharsis.Assertions.IAssertionExtensions.Be(Catharsis.Assertions.IAssertion)">
-            <summary>
-              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
-            </summary>
-            <param name="assertion">Assertion object.</param>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Be"/>
         </member>
         <member name="M:Catharsis.Assertions.IAssertionExtensions.Having(Catharsis.Assertions.IAssertion)">
-            <summary>
-              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
-            </summary>
-            <param name="assertion">Assertion object.</param>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Having"/>
         </member>
         <member name="M:Catharsis.Assertions.IAssertionExtensions.With(Catharsis.Assertions.IAssertion)">
-            <summary>
-              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
-            </summary>
-            <param name="assertion">Assertion object.</param>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.With"/>
         </member>
         <member name="M:Catharsis.Assertions.IAssertionExtensions.Of(Catharsis.Assertions.IAssertion)">
-            <summary>
-              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
-            </summary>
-            <param name="assertion">Assertion object.</param>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Of"/>
         </member>
         <member name="M:Catharsis.Assertions.IAssertionExtensions.At(Catharsis.Assertions.IAssertion)">
-            <summary>
-              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
-            </summary>
-            <param name="assertion">Assertion object.</param>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.At"/>
         </member>
         <member name="M:Catharsis.Assertions.IAssertionExtensions.On(Catharsis.Assertions.IAssertion)">
+            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.On"/>
+        </member>
+        <member name="T:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.&lt;M&gt;$2677CAAC6B492739F67DB5DCA0FD3FEF">
+            <param name="assertion">Assertion object.</param>
+        </member>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.And">
             <summary>
               <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
             </summary>
-            <param name="assertion">Assertion object.</param>
+            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+        </member>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Be">
+            <summary>
+              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
+            </summary>
+            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+        </member>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Having">
+            <summary>
+              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
+            </summary>
+            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+        </member>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.With">
+            <summary>
+              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
+            </summary>
+            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+        </member>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Of">
+            <summary>
+              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
+            </summary>
+            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+        </member>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.At">
+            <summary>
+              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
+            </summary>
+            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+        </member>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.On">
+            <summary>
+              <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
+            </summary>
             <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
         </member>
         <member name="T:Catharsis.Assertions.AssemblyExpectations">
@@ -5248,119 +5265,136 @@
             <seealso cref="T:Catharsis.Assertions.IExpectation`1"/>
         </member>
         <member name="M:Catharsis.Assertions.IExpectationExtensions.Expected``1(Catharsis.Assertions.IExpectation{``0},System.Predicate{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.Expected(System.Predicate{`0})"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.HaveSubject``1(Catharsis.Assertions.IExpectation{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.HaveSubject"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.Exception)">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.ThrowIfFalse(System.Exception)"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.String)">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.ThrowIfFalse(System.String)"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfNull``1(Catharsis.Assertions.IExpectation{``0},System.Object,System.String)">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.ThrowIfNull(System.Object,System.String)"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.To``1(Catharsis.Assertions.IExpectation{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.To"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.And``1(Catharsis.Assertions.IExpectation{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.And"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.Be``1(Catharsis.Assertions.IExpectation{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.Be"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.Having``1(Catharsis.Assertions.IExpectation{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.Having"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.With``1(Catharsis.Assertions.IExpectation{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.With"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.Of``1(Catharsis.Assertions.IExpectation{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.Of"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.At``1(Catharsis.Assertions.IExpectation{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.At"/>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.On``1(Catharsis.Assertions.IExpectation{``0})">
+            <inheritdoc cref="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.On"/>
+        </member>
+        <member name="T:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.&lt;M&gt;$3A95C9BE47FDBB979C1FAF4F800E007F">
+            <param name="expectation">Expectation to be fulfilled.</param>
+            <typeparam name="T">Type of expectation's subject.</typeparam>
+        </member>
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.Expected(System.Predicate{`0})">
             <summary>
               <para>Expects a specified result, expressed as a predicate.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <param name="result">Expected result.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
             <exception cref="T:System.ArgumentNullException">If either <paramref name="expectation"/> or <paramref name="result"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.HaveSubject``1(Catharsis.Assertions.IExpectation{``0})">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.HaveSubject">
             <summary>
               <para>Expects that a given <paramref name="expectation"/> has a subject instance which is not a <see langword="null"/>.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
             <exception cref="T:System.ArgumentNullException">If <paramref name="expectation"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.Exception)">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.ThrowIfFalse(System.Exception)">
             <summary>
               <para>Checks whether a specified <paramref name="expectation"/> is proven to be <see langword="false"/> and throws a specified <paramref name="exception"/> if it is.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <param name="exception">Exception to be thrown in case of a failed expectation.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
             <exception cref="T:System.ArgumentNullException">If either <paramref name="expectation"/> or <paramref name="exception"/> is <see langword="null"/>.</exception>
             <seealso cref="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.String)"/>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.String)">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.ThrowIfFalse(System.String)">
             <summary>
               <para>Checks whether a specified <paramref name="expectation"/> is proven to be <see langword="false"/> and throws <see cref="T:System.InvalidOperationException"/> if it is.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <param name="error">Text message of a potentially thrown exception.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
             <exception cref="T:System.ArgumentNullException">If <paramref name="expectation"/> is <see langword="null"/>.</exception>
             <seealso cref="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfFalse``1(Catharsis.Assertions.IExpectation{``0},System.Exception)"/>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.ThrowIfNull``1(Catharsis.Assertions.IExpectation{``0},System.Object,System.String)">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.ThrowIfNull(System.Object,System.String)">
             <summary>
               <para>Checks whether a specified object is a <see langword="null"/> and throws <see cref="T:System.ArgumentNullException"/> if it is.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <param name="instance">Object to check for a <see langword="null"/> value.</param>
             <param name="error">Text message of a potentially thrown exception.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
             <exception cref="T:System.ArgumentNullException">If either <paramref name="expectation"/> or <paramref name="instance"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.To``1(Catharsis.Assertions.IExpectation{``0})">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.To">
             <summary>
               <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject instance.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.And``1(Catharsis.Assertions.IExpectation{``0})">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.And">
             <summary>
               <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject instance.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.Be``1(Catharsis.Assertions.IExpectation{``0})">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.Be">
             <summary>
               <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject instance.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.Having``1(Catharsis.Assertions.IExpectation{``0})">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.Having">
             <summary>
               <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject instance.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.With``1(Catharsis.Assertions.IExpectation{``0})">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.With">
             <summary>
               <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject instance.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.Of``1(Catharsis.Assertions.IExpectation{``0})">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.Of">
             <summary>
               <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject instance.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.At``1(Catharsis.Assertions.IExpectation{``0})">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.At">
             <summary>
               <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject instance.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
         </member>
-        <member name="M:Catharsis.Assertions.IExpectationExtensions.On``1(Catharsis.Assertions.IExpectation{``0})">
+        <member name="M:Catharsis.Assertions.IExpectationExtensions.&lt;G&gt;$A05DA1F18BCBC6E736188D20E4FCD110`1.On">
             <summary>
               <para>Helper method for building lexically diverse expectation sentences that returns a back reference to a given expectation.</para>
             </summary>
-            <typeparam name="T">Type of expectation's subject instance.</typeparam>
-            <param name="expectation">Expectation to be fulfilled.</param>
             <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
         </member>
         <member name="T:Catharsis.Assertions.ObjectExtensions">
@@ -5966,24 +6000,33 @@
             <seealso cref="T:Catharsis.Assertions.IProtection"/>
         </member>
         <member name="M:Catharsis.Assertions.IProtectionExtensions.And(Catharsis.Assertions.IProtection)">
-            <summary>
-              <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
-            </summary>
-            <param name="protection">Protection to perform.</param>
-            <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+            <inheritdoc cref="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.And"/>
         </member>
         <member name="M:Catharsis.Assertions.IProtectionExtensions.Being(Catharsis.Assertions.IProtection)">
-            <summary>
-              <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
-            </summary>
-            <param name="protection">Protection to perform.</param>
-            <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+            <inheritdoc cref="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Being"/>
         </member>
         <member name="M:Catharsis.Assertions.IProtectionExtensions.Having(Catharsis.Assertions.IProtection)">
+            <inheritdoc cref="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Having"/>
+        </member>
+        <member name="T:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.&lt;M&gt;$DD09D65EFACFDA82899AF0B145292DCB">
+            <param name="protection">Protection to perform.</param>
+        </member>
+        <member name="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.And">
             <summary>
               <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
             </summary>
-            <param name="protection">Protection to perform.</param>
+            <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+        </member>
+        <member name="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Being">
+            <summary>
+              <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
+            </summary>
+            <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+        </member>
+        <member name="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Having">
+            <summary>
+              <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
+            </summary>
             <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
         </member>
         <member name="T:Catharsis.Assertions.Protect">
