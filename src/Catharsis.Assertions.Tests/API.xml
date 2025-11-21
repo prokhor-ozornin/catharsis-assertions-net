@@ -1424,37 +1424,37 @@
         </member>
         <member name="M:Catharsis.Assertions.Tests.IAssertionExtensionsTest.And_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IAssertionExtensions.And(Catharsis.Assertions.IAssertion)"/> method.</para>
+              <para>Performs testing of <see cref="!:IAssertionExtensions.And(IAssertion)"/> method.</para>
             </summary>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IAssertionExtensionsTest.Be_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IAssertionExtensions.Be(Catharsis.Assertions.IAssertion)"/> method.</para>
+              <para>Performs testing of <see cref="!:IAssertionExtensions.Be(IAssertion)"/> method.</para>
             </summary>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IAssertionExtensionsTest.Having_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IAssertionExtensions.Having(Catharsis.Assertions.IAssertion)"/> method.</para>
+              <para>Performs testing of <see cref="!:IAssertionExtensions.Having(IAssertion)"/> method.</para>
             </summary>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IAssertionExtensionsTest.With_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IAssertionExtensions.With(Catharsis.Assertions.IAssertion)"/> method.</para>
+              <para>Performs testing of <see cref="!:IAssertionExtensions.With(IAssertion)"/> method.</para>
             </summary>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IAssertionExtensionsTest.Of_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IAssertionExtensions.Of(Catharsis.Assertions.IAssertion)"/> method.</para>
+              <para>Performs testing of <see cref="!:IAssertionExtensions.Of(IAssertion)"/> method.</para>
             </summary>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IAssertionExtensionsTest.At_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IAssertionExtensions.At(Catharsis.Assertions.IAssertion)"/> method.</para>
+              <para>Performs testing of <see cref="!:IAssertionExtensions.At(IAssertion)"/> method.</para>
             </summary>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IAssertionExtensionsTest.On_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IAssertionExtensions.On(Catharsis.Assertions.IAssertion)"/> method.</para>
+              <para>Performs testing of <see cref="!:IAssertionExtensions.On(IAssertion)"/> method.</para>
             </summary>
         </member>
         <member name="T:Catharsis.Assertions.Tests.ExpectationTest">
@@ -3236,17 +3236,17 @@
         </member>
         <member name="M:Catharsis.Assertions.Tests.IProtectionExtensionsTest.And_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IProtectionExtensions.And(Catharsis.Assertions.IProtection)"/> method.</para>
+              <para>Performs testing of <see cref="!:IProtectionExtensions.And(IProtection)"/> method.</para>
             </summary>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IProtectionExtensionsTest.Being_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IProtectionExtensions.Being(Catharsis.Assertions.IProtection)"/> method.</para>
+              <para>Performs testing of <see cref="!:IProtectionExtensions.Being(IProtection)"/> method.</para>
             </summary>
         </member>
         <member name="M:Catharsis.Assertions.Tests.IProtectionExtensionsTest.Having_Method">
             <summary>
-              <para>Performs testing of <see cref="M:Catharsis.Assertions.IProtectionExtensions.Having(Catharsis.Assertions.IProtection)"/> method.</para>
+              <para>Performs testing of <see cref="!:IProtectionExtensions.Having(IProtection)"/> method.</para>
             </summary>
         </member>
         <member name="T:Catharsis.Assertions.Tests.ProtectTest">

@@ -12,43 +12,43 @@ public static class IAssertionExtensions
     /// <summary>
     ///   <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-    public IAssertion And() => assertion;
+    /// <value>Back self-reference to the given <paramref name="assertion"/>.</value>
+    public IAssertion And => assertion;
 
     /// <summary>
     ///   <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-    public IAssertion Be() => assertion;
+    /// <value>Back self-reference to the given <paramref name="assertion"/>.</value>
+    public IAssertion Be => assertion;
 
     /// <summary>
     ///   <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-    public IAssertion Having() => assertion;
+    /// <value>Back self-reference to the given <paramref name="assertion"/>.</value>
+    public IAssertion Having => assertion;
 
     /// <summary>
     ///   <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-    public IAssertion With() => assertion;
+    /// <value>Back self-reference to the given <paramref name="assertion"/>.</value>
+    public IAssertion With => assertion;
 
     /// <summary>
     ///   <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-    public IAssertion Of() => assertion;
+    /// <value>Back self-reference to the given <paramref name="assertion"/>.</value>
+    public IAssertion Of => assertion;
 
     /// <summary>
     ///   <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-    public IAssertion At() => assertion;
+    /// <value>Back self-reference to the given <paramref name="assertion"/>.</value>
+    public IAssertion At => assertion;
 
     /// <summary>
     ///   <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-    public IAssertion On() => assertion;
+    /// <value>Back self-reference to the given <paramref name="assertion"/>.</value>
+    public IAssertion On => assertion;
   }
 }

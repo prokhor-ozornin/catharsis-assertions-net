@@ -18,8 +18,8 @@ public sealed class IProtectionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IProtection) null).And().Should().BeNull();
-      Protect.From.And().Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
+      ((IProtection) null).And.Should().BeNull();
+      Protect.From.And.Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
     }
 
     return;
@@ -38,8 +38,8 @@ public sealed class IProtectionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IProtection)null).Being().Should().BeNull();
-      Protect.From.Being().Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
+      ((IProtection)null).Being.Should().BeNull();
+      Protect.From.Being.Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
     }
 
     return;
@@ -58,8 +58,8 @@ public sealed class IProtectionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IProtection)null).Having().Should().BeNull();
-      Protect.From.Having().Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
+      ((IProtection)null).Having.Should().BeNull();
+      Protect.From.Having.Should().BeOfType<Protection>().And.BeSameAs(Protect.From);
     }
 
     return;

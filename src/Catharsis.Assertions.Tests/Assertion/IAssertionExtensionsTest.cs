@@ -20,8 +20,8 @@ public sealed class IAssertionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IAssertion)null).And().Should().BeNull();
-      Assertion.And().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+      ((IAssertion) null).And.Should().BeNull();
+      Assertion.And.Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
     }
 
     return;
@@ -40,8 +40,8 @@ public sealed class IAssertionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IAssertion)null).Be().Should().BeNull();
-      Assertion.Be().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+      ((IAssertion)null).Be.Should().BeNull();
+      Assertion.Be.Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
     }
 
     return;
@@ -60,8 +60,8 @@ public sealed class IAssertionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IAssertion)null).Having().Should().BeNull();
-      Assertion.Having().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+      ((IAssertion)null).Having.Should().BeNull();
+      Assertion.Having.Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
     }
 
     return;
@@ -80,8 +80,8 @@ public sealed class IAssertionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IAssertion)null).With().Should().BeNull();
-      Assertion.With().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+      ((IAssertion)null).With.Should().BeNull();
+      Assertion.With.Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
     }
 
     return;
@@ -100,8 +100,8 @@ public sealed class IAssertionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IAssertion)null).Of().Should().BeNull();
-      Assertion.Of().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+      ((IAssertion)null).Of.Should().BeNull();
+      Assertion.Of.Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
     }
 
     return;
@@ -120,8 +120,8 @@ public sealed class IAssertionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IAssertion)null).At().Should().BeNull();
-      Assertion.At().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+      ((IAssertion)null).At.Should().BeNull();
+      Assertion.At.Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
     }
 
     return;
@@ -140,8 +140,8 @@ public sealed class IAssertionExtensionsTest : Test
   {
     using (new AssertionScope())
     {
-      ((IAssertion)null).On().Should().BeNull();
-      Assertion.On().Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
+      ((IAssertion)null).On.Should().BeNull();
+      Assertion.On.Should().BeOfType<Assertion>().And.BeSameAs(Assertion);
     }
 
     return;

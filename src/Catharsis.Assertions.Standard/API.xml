@@ -2778,71 +2778,71 @@
             </summary>
             <seealso cref="T:Catharsis.Assertions.IAssertion"/>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.And(Catharsis.Assertions.IAssertion)">
-            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.And"/>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.get_And(Catharsis.Assertions.IAssertion)">
+            <inheritdoc cref="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.And"/>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.Be(Catharsis.Assertions.IAssertion)">
-            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Be"/>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.get_Be(Catharsis.Assertions.IAssertion)">
+            <inheritdoc cref="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Be"/>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.Having(Catharsis.Assertions.IAssertion)">
-            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Having"/>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.get_Having(Catharsis.Assertions.IAssertion)">
+            <inheritdoc cref="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Having"/>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.With(Catharsis.Assertions.IAssertion)">
-            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.With"/>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.get_With(Catharsis.Assertions.IAssertion)">
+            <inheritdoc cref="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.With"/>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.Of(Catharsis.Assertions.IAssertion)">
-            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Of"/>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.get_Of(Catharsis.Assertions.IAssertion)">
+            <inheritdoc cref="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Of"/>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.At(Catharsis.Assertions.IAssertion)">
-            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.At"/>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.get_At(Catharsis.Assertions.IAssertion)">
+            <inheritdoc cref="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.At"/>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.On(Catharsis.Assertions.IAssertion)">
-            <inheritdoc cref="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.On"/>
+        <member name="M:Catharsis.Assertions.IAssertionExtensions.get_On(Catharsis.Assertions.IAssertion)">
+            <inheritdoc cref="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.On"/>
         </member>
         <member name="T:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.&lt;M&gt;$2677CAAC6B492739F67DB5DCA0FD3FEF">
             <param name="assertion">Assertion object.</param>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.And">
+        <member name="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.And">
             <summary>
               <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <value>Back self-reference to the given <paramref name="assertion"/>.</value>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Be">
+        <member name="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Be">
             <summary>
               <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <value>Back self-reference to the given <paramref name="assertion"/>.</value>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Having">
+        <member name="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Having">
             <summary>
               <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <value>Back self-reference to the given <paramref name="assertion"/>.</value>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.With">
+        <member name="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.With">
             <summary>
               <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <value>Back self-reference to the given <paramref name="assertion"/>.</value>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Of">
+        <member name="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.Of">
             <summary>
               <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <value>Back self-reference to the given <paramref name="assertion"/>.</value>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.At">
+        <member name="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.At">
             <summary>
               <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <value>Back self-reference to the given <paramref name="assertion"/>.</value>
         </member>
-        <member name="M:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.On">
+        <member name="P:Catharsis.Assertions.IAssertionExtensions.&lt;G&gt;$3527D011732FBF642560FEE474B7A274.On">
             <summary>
               <para>Helper method for building lexically diverse assertion sentences that returns a back reference to a given assertion.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+            <value>Back self-reference to the given <paramref name="assertion"/>.</value>
         </member>
         <member name="T:Catharsis.Assertions.AssemblyExpectations">
             <summary>
@@ -5713,35 +5713,35 @@
             </summary>
             <seealso cref="T:Catharsis.Assertions.IProtection"/>
         </member>
-        <member name="M:Catharsis.Assertions.IProtectionExtensions.And(Catharsis.Assertions.IProtection)">
-            <inheritdoc cref="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.And"/>
+        <member name="M:Catharsis.Assertions.IProtectionExtensions.get_And(Catharsis.Assertions.IProtection)">
+            <inheritdoc cref="P:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.And"/>
         </member>
-        <member name="M:Catharsis.Assertions.IProtectionExtensions.Being(Catharsis.Assertions.IProtection)">
-            <inheritdoc cref="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Being"/>
+        <member name="M:Catharsis.Assertions.IProtectionExtensions.get_Being(Catharsis.Assertions.IProtection)">
+            <inheritdoc cref="P:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Being"/>
         </member>
-        <member name="M:Catharsis.Assertions.IProtectionExtensions.Having(Catharsis.Assertions.IProtection)">
-            <inheritdoc cref="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Having"/>
+        <member name="M:Catharsis.Assertions.IProtectionExtensions.get_Having(Catharsis.Assertions.IProtection)">
+            <inheritdoc cref="P:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Having"/>
         </member>
         <member name="T:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.&lt;M&gt;$DD09D65EFACFDA82899AF0B145292DCB">
             <param name="protection">Protection to perform.</param>
         </member>
-        <member name="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.And">
+        <member name="P:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.And">
             <summary>
               <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+            <value>Back self-reference to the given <paramref name="protection"/>.</value>
         </member>
-        <member name="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Being">
+        <member name="P:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Being">
             <summary>
               <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+            <value>Back self-reference to the given <paramref name="protection"/>.</value>
         </member>
-        <member name="M:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Having">
+        <member name="P:Catharsis.Assertions.IProtectionExtensions.&lt;G&gt;$9FCCFD8300C20C5025691C805249222F.Having">
             <summary>
               <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
             </summary>
-            <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+            <value>Back self-reference to the given <paramref name="protection"/>.</value>
         </member>
         <member name="T:Catharsis.Assertions.Protect">
             <summary>

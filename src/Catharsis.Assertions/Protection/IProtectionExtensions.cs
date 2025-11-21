@@ -12,19 +12,19 @@ public static class IProtectionExtensions
     /// <summary>
     ///   <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
-    public IProtection And() => protection;
+    /// <value>Back self-reference to the given <paramref name="protection"/>.</value>
+    public IProtection And => protection;
 
     /// <summary>
     ///   <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
-    public IProtection Being() => protection;
+    /// <value>Back self-reference to the given <paramref name="protection"/>.</value>
+    public IProtection Being => protection;
 
     /// <summary>
     ///   <para>"Helper" method for building lexically diverse protection sentences that returns a back reference to a given protection.</para>
     /// </summary>
-    /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
-    public IProtection Having() => protection;
+    /// <value>Back self-reference to the given <paramref name="protection"/>.</value>
+    public IProtection Having => protection;
   }
 }
