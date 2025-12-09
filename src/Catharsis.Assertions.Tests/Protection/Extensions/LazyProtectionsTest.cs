@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using Xunit;
 using FluentAssertions.Execution;
+using Xunit;
 
 namespace Catharsis.Assertions.Tests;
 

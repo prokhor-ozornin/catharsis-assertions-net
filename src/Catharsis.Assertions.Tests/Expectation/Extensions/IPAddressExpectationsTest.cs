@@ -2,8 +2,8 @@
 using Catharsis.Extensions;
 using Catharsis.Fixture;
 using FluentAssertions;
-using Xunit;
 using FluentAssertions.Execution;
+using Xunit;
 
 namespace Catharsis.Assertions.Tests;
 

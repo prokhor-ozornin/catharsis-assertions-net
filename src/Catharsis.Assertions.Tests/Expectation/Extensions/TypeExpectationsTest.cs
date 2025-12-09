@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
-using Catharsis.Extensions;
 
 namespace Catharsis.Assertions.Tests;
 

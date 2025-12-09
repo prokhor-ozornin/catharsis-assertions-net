@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
-using System.Collections.Specialized;
-using Xunit;
+﻿using System.Collections.Specialized;
 using Catharsis.Extensions;
+using FluentAssertions;
 using FluentAssertions.Execution;
+using Xunit;
 
 namespace Catharsis.Assertions.Tests;
 

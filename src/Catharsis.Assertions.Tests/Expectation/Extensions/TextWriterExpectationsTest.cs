@@ -1,5 +1,5 @@
-﻿using Catharsis.Extensions;
-using System.Globalization;
+﻿using System.Globalization;
+using Catharsis.Extensions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;

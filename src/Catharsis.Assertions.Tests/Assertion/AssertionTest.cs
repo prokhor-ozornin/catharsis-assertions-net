@@ -1,7 +1,7 @@
-﻿using Xunit;
+﻿using Catharsis.Extensions;
 using FluentAssertions;
-using Catharsis.Extensions;
 using FluentAssertions.Execution;
+using Xunit;
 
 namespace Catharsis.Assertions.Tests;
 

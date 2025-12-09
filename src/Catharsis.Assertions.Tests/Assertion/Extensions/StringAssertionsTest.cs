@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
-using FluentAssertions;
-using Xunit;
 using Catharsis.Extensions;
 using Catharsis.Fixture;
+using FluentAssertions;
 using FluentAssertions.Execution;
+using Xunit;
 
 namespace Catharsis.Assertions.Tests;
 
