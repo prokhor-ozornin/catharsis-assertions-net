@@ -6,24 +6,27 @@
 /// <seealso cref="Lazy{T}"/>
 public static class LazyProtections
 {
-  /// <summary>
-  ///   <para>This function protects the given <see cref="Lazy{T}"/> object from being <see langword="null"/>, ensuring that it has a valid value.</para>
-  /// </summary>
-  /// <typeparam name="T">Type of lazily instantiated instance.</typeparam>
   /// <param name="protection">Protection to perform.</param>
-  /// <param name="instance">Object to protect.</param>
-  /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
-  /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
-  /// <exception cref="ArgumentNullException"></exception>
-  public static Lazy<T> Null<T>(this IProtection protection, Lazy<T> instance, string error = null)
+  extension(IProtection protection)
   {
-    if (protection is null) throw new ArgumentNullException(nameof(protection));
-
-    if (instance is null || !instance.IsValueCreated || instance.Value is null)
+    /// <summary>
+    ///   <para>This function protects the given <see cref="Lazy{T}"/> object from being <see langword="null"/>, ensuring that it has a valid value.</para>
+    /// </summary>
+    /// <typeparam name="T">Type of lazily instantiated instance.</typeparam>
+    /// <param name="instance">Object to protect.</param>
+    /// <param name="error">Error message for a failed <paramref name="protection"/>.</param>
+    /// <returns>Back self-reference to the given <paramref name="protection"/>.</returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public Lazy<T> Null<T>(Lazy<T> instance, string error = null)
     {
-      throw new ArgumentNullException(error);
-    }
+      if (protection is null) throw new ArgumentNullException(nameof(protection));
+
+      if (instance is null || !instance.IsValueCreated || instance.Value is null)
+      {
+        throw new ArgumentNullException(error);
+      }
     
-    return instance;
+      return instance;
+    }
   }
 }

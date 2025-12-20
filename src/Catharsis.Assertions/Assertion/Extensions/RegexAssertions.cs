@@ -8,22 +8,25 @@ namespace Catharsis.Assertions;
 /// <seealso cref="Regex"/>
 public static class RegexAssertions
 {
-  /// <summary>
-  ///   <para>Asserts that the specified text string matches the given <see cref="Regex"/>.</para>
-  /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="regex">Regular to inspect.</param>
-  /// <param name="text">Asserted matched text string.</param>
-  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="regex"/>, or <paramref name="text"/> is <see langword="null"/>.</exception>
-  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion Match(this IAssertion assertion, Regex regex, string text, string error = null)
+  extension(IAssertion assertion)
   {
-    if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (regex is null) throw new ArgumentNullException(nameof(regex));
-    if (text is null) throw new ArgumentNullException(nameof(text));
+    /// <summary>
+    ///   <para>Asserts that the specified text string matches the given <see cref="Regex"/>.</para>
+    /// </summary>
+    /// <param name="regex">Regular to inspect.</param>
+    /// <param name="text">Asserted matched text string.</param>
+    /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+    /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="regex"/>, or <paramref name="text"/> is <see langword="null"/>.</exception>
+    /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+    public IAssertion Match(Regex regex, string text, string error = null)
+    {
+      if (assertion is null) throw new ArgumentNullException(nameof(assertion));
+      if (regex is null) throw new ArgumentNullException(nameof(regex));
+      if (text is null) throw new ArgumentNullException(nameof(text));
 
-    return assertion.True(regex.IsMatch(text), error);
+      return assertion.True(regex.IsMatch(text), error);
+    }
   }
 }

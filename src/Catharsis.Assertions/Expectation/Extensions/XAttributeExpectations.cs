@@ -8,21 +8,23 @@ namespace Catharsis.Assertions;
 /// <seealso cref="XAttribute"/>
 public static class XAttributeExpectations
 {
-  /// <summary>
-  ///   <para>Expects that the given <see cref="XAttribute"/> has a specified name.</para>
-  /// </summary>
   /// <param name="expectation">Expectation to be fulfilled.</param>
-  /// <param name="name">Expected attribute name.</param>
-  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> or has an undefined subject, or <paramref name="name"/> is <see langword="null"/>.</exception>
-  public static IExpectation<XAttribute> Name(this IExpectation<XAttribute> expectation, XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(attribute => attribute.Name == name);
+  extension(IExpectation<XAttribute> expectation)
+  {
+    /// <summary>
+    ///   <para>Expects that the given <see cref="XAttribute"/> has a specified name.</para>
+    /// </summary>
+    /// <param name="name">Expected attribute name.</param>
+    /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
+    /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> or has an undefined subject, or <paramref name="name"/> is <see langword="null"/>.</exception>
+    public IExpectation<XAttribute> Name(XName name) => expectation.HaveSubject().And().ThrowIfNull(name, nameof(name)).And().Expected(attribute => attribute.Name == name);
 
-  /// <summary>
-  ///   <para>Expects that the given <see cref="XAttribute"/> has a specified value.</para>
-  /// </summary>
-  /// <param name="expectation">Expectation to be fulfilled.</param>
-  /// <param name="value">Expected attribute value.</param>
-  /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
-  /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> or has an undefined subject, or <paramref name="value"/> is <see langword="null"/>.</exception>
-  public static IExpectation<XAttribute> Value(this IExpectation<XAttribute> expectation, string value) => expectation.HaveSubject().And().ThrowIfNull(value, nameof(value)).And().Expected(attribute => attribute.Value == value);
+    /// <summary>
+    ///   <para>Expects that the given <see cref="XAttribute"/> has a specified value.</para>
+    /// </summary>
+    /// <param name="value">Expected attribute value.</param>
+    /// <returns>Back self-reference to the given <paramref name="expectation"/>.</returns>
+    /// <exception cref="ArgumentNullException">If the <paramref name="expectation"/> is either a <see langword="null"/> or has an undefined subject, or <paramref name="value"/> is <see langword="null"/>.</exception>
+    public IExpectation<XAttribute> Value(string value) => expectation.HaveSubject().And().ThrowIfNull(value, nameof(value)).And().Expected(attribute => attribute.Value == value);
+  }
 }

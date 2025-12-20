@@ -6,22 +6,25 @@
 /// <seealso cref="HttpContent"/>
 public static class HttpContentAssertions
 {
-  /// <summary>
-  ///   <para>Asserts that the given <see cref="HttpContent"/> contains a header with the specified name.</para>
-  /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="content">Content instance to inspect.</param>
-  /// <param name="name">Asserted name of HTTP header.</param>
-  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="content"/>, or <paramref name="name"/> is <see langword="null"/>.</exception>
-  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion ContainHeader(this IAssertion assertion, HttpContent content, string name, string error = null)
+  extension(IAssertion assertion)
   {
-    if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (content is null) throw new ArgumentNullException(nameof(content));
-    if (name is null) throw new ArgumentNullException(nameof(name));
+    /// <summary>
+    ///   <para>Asserts that the given <see cref="HttpContent"/> contains a header with the specified name.</para>
+    /// </summary>
+    /// <param name="content">Content instance to inspect.</param>
+    /// <param name="name">Asserted name of HTTP header.</param>
+    /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+    /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="content"/>, or <paramref name="name"/> is <see langword="null"/>.</exception>
+    /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+    public IAssertion ContainHeader(HttpContent content, string name, string error = null)
+    {
+      if (assertion is null) throw new ArgumentNullException(nameof(assertion));
+      if (content is null) throw new ArgumentNullException(nameof(content));
+      if (name is null) throw new ArgumentNullException(nameof(name));
 
-    return assertion.True(content.Headers.Contains(name), error);
+      return assertion.True(content.Headers.Contains(name), error);
+    }
   }
 }

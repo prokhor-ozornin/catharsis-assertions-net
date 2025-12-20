@@ -6,62 +6,62 @@
 /// <seealso cref="FileInfo"/>
 public static class FileInfoAssertions
 {
-  /// <summary>
-  ///   <para>Asserts that the given <see cref="FileInfo"/> is of a specified size.</para>
-  /// </summary>
   /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="file">File to inspect.</param>
-  /// <param name="length">Asserted size of file in bytes.</param>
-  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="file"/> is <see langword="null"/>.</exception>
-  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion Length(this IAssertion assertion, FileInfo file, long length, string error = null)
+  extension(IAssertion assertion)
   {
-    if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (file is null) throw new ArgumentNullException(nameof(file));
+    /// <summary>
+    ///   <para>Asserts that the given <see cref="FileInfo"/> is of a specified size.</para>
+    /// </summary>
+    /// <param name="file">File to inspect.</param>
+    /// <param name="length">Asserted size of file in bytes.</param>
+    /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+    /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="file"/> is <see langword="null"/>.</exception>
+    /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+    public IAssertion Length(FileInfo file, long length, string error = null)
+    {
+      if (assertion is null) throw new ArgumentNullException(nameof(assertion));
+      if (file is null) throw new ArgumentNullException(nameof(file));
 
-    return assertion.True(file.Length == length, error);
-  }
+      return assertion.True(file.Length == length, error);
+    }
 
-  /// <summary>
-  ///   <para>Asserts that the given <see cref="FileInfo"/> is empty.</para>
-  /// </summary>
-  /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="file">File to inspect.</param>
-  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="file"/> is <see langword="null"/>.</exception>
-  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion Empty(this IAssertion assertion, FileInfo file, string error = null) => assertion.Length(file, 0, error);
+    /// <summary>
+    ///   <para>Asserts that the given <see cref="FileInfo"/> is empty.</para>
+    /// </summary>
+    /// <param name="file">File to inspect.</param>
+    /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+    /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="file"/> is <see langword="null"/>.</exception>
+    /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+    public IAssertion Empty(FileInfo file, string error = null) => assertion.Length(file, 0, error);
 
-  /// <summary>
-  ///   <para>Asserts that the given <see cref="FileInfo"/> is read-only.</para>
-  /// </summary>
-  /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="file">File to inspect.</param>
-  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="file"/> is <see langword="null"/>.</exception>
-  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion ReadOnly(this IAssertion assertion, FileInfo file, string error = null) => file is not null ? assertion.True(file.IsReadOnly, error) : throw new ArgumentNullException(nameof(file));
+    /// <summary>
+    ///   <para>Asserts that the given <see cref="FileInfo"/> is read-only.</para>
+    /// </summary>
+    /// <param name="file">File to inspect.</param>
+    /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+    /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/> or <paramref name="file"/> is <see langword="null"/>.</exception>
+    /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+    public IAssertion ReadOnly(FileInfo file, string error = null) => file is not null ? assertion.True(file.IsReadOnly, error) : throw new ArgumentNullException(nameof(file));
 
-  /// <summary>
-  ///   <para>Asserts that the given <see cref="FileInfo"/> is located in the given directory.</para>
-  /// </summary>
-  /// <param name="assertion">Assertion to validate.</param>
-  /// <param name="file">File to inspect.</param>
-  /// <param name="directory">Asserted file location directory.</param>
-  /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
-  /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
-  /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="file"/>, or <paramref name="directory"/> is <see langword="null"/>.</exception>
-  /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
-  public static IAssertion InDirectory(this IAssertion assertion, FileInfo file, DirectoryInfo directory, string error = null)
-  {
-    if (assertion is null) throw new ArgumentNullException(nameof(assertion));
-    if (file is null) throw new ArgumentNullException(nameof(file));
-    if (directory is null) throw new ArgumentNullException(nameof(directory));
+    /// <summary>
+    ///   <para>Asserts that the given <see cref="FileInfo"/> is located in the given directory.</para>
+    /// </summary>
+    /// <param name="file">File to inspect.</param>
+    /// <param name="directory">Asserted file location directory.</param>
+    /// <param name="error">Error message for a failed <paramref name="assertion"/>.</param>
+    /// <returns>Back self-reference to the given <paramref name="assertion"/>.</returns>
+    /// <exception cref="ArgumentNullException">If either <paramref name="assertion"/>, <paramref name="file"/>, or <paramref name="directory"/> is <see langword="null"/>.</exception>
+    /// <exception cref="InvalidOperationException">If the given <paramref name="assertion"/> is invalid.</exception>
+    public IAssertion InDirectory(FileInfo file, DirectoryInfo directory, string error = null)
+    {
+      if (assertion is null) throw new ArgumentNullException(nameof(assertion));
+      if (file is null) throw new ArgumentNullException(nameof(file));
+      if (directory is null) throw new ArgumentNullException(nameof(directory));
 
-    return assertion.True(directory.EnumerateFiles("*", new EnumerationOptions { RecurseSubdirectories = true }).Any(directoryFile => directoryFile.Name == file.Name), error);
+      return assertion.True(directory.EnumerateFiles("*", new EnumerationOptions { RecurseSubdirectories = true }).Any(directoryFile => directoryFile.Name == file.Name), error);
+    }
   }
 }
