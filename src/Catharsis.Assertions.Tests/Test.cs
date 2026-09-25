@@ -28,8 +28,8 @@ public class Test : IDisposable
   /// </summary>
   protected Test()
   {
-    RandomStream = Random.MemoryStream(short.MaxValue);
-    RandomSequence = Random.Object(short.MaxValue);
+    RandomStream = Random.ToMemoryStream(short.MaxValue);
+    RandomSequence = Random.ToObject(short.MaxValue);
   }
 
   /// <summary>

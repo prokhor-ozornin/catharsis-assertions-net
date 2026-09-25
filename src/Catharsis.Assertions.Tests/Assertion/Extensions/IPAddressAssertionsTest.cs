@@ -27,12 +27,12 @@ public sealed class IPAddressAssertionsTest : Test
       Test(true, IPAddress.Broadcast);
       Test(true, IPAddress.Loopback);
       Test(true, IPAddress.None);
-      Test(true, Random.IpAddress());
+      Test(true, Random.ToIpAddress());
 
       Test(false, IPAddress.IPv6Any);
       Test(false, IPAddress.IPv6Loopback);
       Test(false, IPAddress.IPv6None);
-      Test(false, Random.IpV6Address());
+      Test(false, Random.ToIpV6Address());
     }
 
     return;
@@ -64,13 +64,13 @@ public sealed class IPAddressAssertionsTest : Test
       Test(true, IPAddress.IPv6Any);
       Test(true, IPAddress.IPv6Loopback);
       Test(true, IPAddress.IPv6None);
-      Test(true, Random.IpV6Address());
+      Test(true, Random.ToIpV6Address());
 
       Test(false, IPAddress.Any);
       Test(false, IPAddress.Broadcast);
       Test(false, IPAddress.Loopback);
       Test(false, IPAddress.None);
-      Test(false, Random.IpAddress());
+      Test(false, Random.ToIpAddress());
     }
 
     return;

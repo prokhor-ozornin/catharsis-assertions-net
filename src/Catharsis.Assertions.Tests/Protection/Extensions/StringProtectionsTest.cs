@@ -87,10 +87,10 @@ public sealed class StringProtectionsTest : Test
       AssertionExtensions.Should(() => Protect.From.Match(string.Empty, null)).ThrowExactly<ArgumentNullException>().WithParameterName("regex");
 
       Test(true, string.Empty, "anything".ToRegex());
-      Test(true, Random.Letters(byte.MaxValue), "[0-9]".ToRegex());
+      Test(true, Random.ToLetters(byte.MaxValue), "[0-9]".ToRegex());
       
       Test(false, string.Empty, string.Empty.ToRegex());
-      Test(false, Random.Digits(byte.MaxValue), "[0-9]".ToRegex());
+      Test(false, Random.ToDigits(byte.MaxValue), "[0-9]".ToRegex());
     }
 
     return;

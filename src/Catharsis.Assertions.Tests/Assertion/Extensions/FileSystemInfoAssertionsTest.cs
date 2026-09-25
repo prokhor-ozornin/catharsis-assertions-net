@@ -19,14 +19,14 @@ public sealed class FileSystemInfoAssertionsTest : Test
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileSystemInfoAssertions.Exist(null, Random.FileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => FileSystemInfoAssertions.Exist(null, Random.ToFileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-      Random.File().TryFinallyDelete(file => Test(true, file));
-      Random.Directory().TryFinallyDelete(directory => Test(true, directory));
+      Random.ToFile().TryFinallyDelete(file => Test(true, file));
+      Random.ToDirectory().TryFinallyDelete(directory => Test(true, directory));
 
-      Test(false, Random.FileName().ToFile());
-      Test(false, Random.DirectoryName().ToDirectory());
+      Test(false, Random.ToFileName().ToFile());
+      Test(false, Random.ToDirectoryName().ToDirectory());
     }
 
     return;
@@ -52,10 +52,10 @@ public sealed class FileSystemInfoAssertionsTest : Test
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileSystemInfoAssertions.Attribute(null, Random.FileName().ToFile(), FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => FileSystemInfoAssertions.Attribute(null, Random.ToFileName().ToFile(), FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.Attribute(null, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("info");
 
-      Random.File().TryFinallyDelete(file =>
+      Random.ToFile().TryFinallyDelete(file =>
       {
         Test(true, file.AsReadOnly(), FileAttributes.ReadOnly);
         Enum.GetValues<FileAttributes>().ForEach(attribute => Test((file.Attributes & attribute) == attribute, file, attribute));

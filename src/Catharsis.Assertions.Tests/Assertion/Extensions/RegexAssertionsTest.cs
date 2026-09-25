@@ -25,9 +25,9 @@ public sealed class RegexAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Match(string.Empty.ToRegex(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("text");
 
       Test(true, string.Empty.ToRegex(), string.Empty);
-      Test(true, "[0-9]".ToRegex(), Random.Digits(byte.MaxValue));
+      Test(true, "[0-9]".ToRegex(), Random.ToDigits(byte.MaxValue));
       Test(false, char.MinValue.ToString().ToRegex(), string.Empty);
-      Test(false, "[0-9]".ToRegex(), Random.Letters(byte.MaxValue));
+      Test(false, "[0-9]".ToRegex(), Random.ToLetters(byte.MaxValue));
     }
 
     return;

@@ -124,8 +124,8 @@ public sealed class StreamAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.End((Stream) null)).ThrowExactly<ArgumentNullException>().WithParameterName("stream");
 
       Test(true, Stream.Null);
-      Test(true, Random.MemoryStream(short.MaxValue).MoveToEnd());
-      Test(false, Random.MemoryStream(short.MaxValue));
+      Test(true, Random.ToMemoryStream(short.MaxValue).MoveToEnd());
+      Test(false, Random.ToMemoryStream(short.MaxValue));
     }
 
     return;

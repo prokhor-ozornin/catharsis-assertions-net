@@ -22,7 +22,7 @@ public sealed class FileInfoExpectationsTest : Test
       AssertionExtensions.Should(() => FileInfoExpectations.Length(null, 0)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Length(0)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Random.File().TryFinallyDelete(file =>
+      Random.ToFile().TryFinallyDelete(file =>
       {
         Test(true, file, file.Length);
         Test(true, file.Empty(), 0);
@@ -46,7 +46,7 @@ public sealed class FileInfoExpectationsTest : Test
       AssertionExtensions.Should(() => FileInfoExpectations.Empty(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Empty()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Random.BinaryFile(short.MaxValue).TryFinallyDelete(file =>
+      Random.ToBinaryFile(short.MaxValue).TryFinallyDelete(file =>
       {
         Test(false, file);
         Test(true, file.Empty());
@@ -69,7 +69,7 @@ public sealed class FileInfoExpectationsTest : Test
       AssertionExtensions.Should(() => FileInfoExpectations.ReadOnly(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().ReadOnly()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Random.File().TryFinallyDelete(file =>
+      Random.ToFile().TryFinallyDelete(file =>
       {
         Test(false, file);
         Test(true, file.AsReadOnly());
@@ -89,11 +89,11 @@ public sealed class FileInfoExpectationsTest : Test
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoExpectations.InDirectory(null, Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
-      AssertionExtensions.Should(() => ((FileInfo) null).Expect().InDirectory(Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
-      AssertionExtensions.Should(() => Random.FileName().ToFile().Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
+      AssertionExtensions.Should(() => FileInfoExpectations.InDirectory(null, Random.ToDirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
+      AssertionExtensions.Should(() => ((FileInfo) null).Expect().InDirectory(Random.ToDirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
+      AssertionExtensions.Should(() => Random.ToFileName().ToFile().Expect().InDirectory(null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-      Random.File().TryFinallyDelete(file =>
+      Random.ToFile().TryFinallyDelete(file =>
       {
         Test(true, file, file.Directory);
         Test(false, file, Environment.SystemDirectory.ToDirectory());

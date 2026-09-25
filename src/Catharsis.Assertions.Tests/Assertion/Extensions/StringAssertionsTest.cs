@@ -259,8 +259,8 @@ public sealed class StringAssertionsTest : Test
 
       Test(true, string.Empty, string.Empty.ToRegex());
       Test(false, string.Empty, "anything".ToRegex());
-      Test(true, Random.Digits(byte.MaxValue), "[0-9]".ToRegex());
-      Test(false, Random.Letters(byte.MaxValue), "[0-9]".ToRegex());
+      Test(true, Random.ToDigits(byte.MaxValue), "[0-9]".ToRegex());
+      Test(false, Random.ToLetters(byte.MaxValue), "[0-9]".ToRegex());
     }
 
     return;

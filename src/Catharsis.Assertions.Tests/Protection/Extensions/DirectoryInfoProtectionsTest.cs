@@ -19,22 +19,22 @@ public sealed class DirectoryInfoProtectionsTest : Test
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DirectoryInfoProtections.Empty(null, Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => DirectoryInfoProtections.Empty(null, Random.ToDirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((DirectoryInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-      Random.Directory().TryFinallyDelete(directory =>
+      Random.ToDirectory().TryFinallyDelete(directory =>
       {
-        Random.File(directory);
+        Random.ToFile(directory);
         Test(true, directory);
       });
 
-      Random.Directory().TryFinallyDelete(directory =>
+      Random.ToDirectory().TryFinallyDelete(directory =>
       {
-        Random.Directory(directory);
+        Random.ToDirectory(directory);
         Test(true, directory);
       });
 
-      Random.Directory().TryFinallyDelete(directory => Test(false, directory));
+      Random.ToDirectory().TryFinallyDelete(directory => Test(false, directory));
     }
 
     return;

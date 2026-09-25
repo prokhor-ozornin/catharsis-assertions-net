@@ -19,10 +19,10 @@ public sealed class FileInfoProtectionsTest : Test
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => FileInfoProtections.Empty(null, Random.FileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
+      AssertionExtensions.Should(() => FileInfoProtections.Empty(null, Random.ToFileName().ToFile())).ThrowExactly<ArgumentNullException>().WithParameterName("protection");
       AssertionExtensions.Should(() => Protect.From.Empty((FileInfo) null)).ThrowExactly<ArgumentNullException>().WithParameterName("file");
 
-      Random.BinaryFile(short.MaxValue).TryFinallyDelete(file =>
+      Random.ToBinaryFile(short.MaxValue).TryFinallyDelete(file =>
       {
         Test(true, file);
         Test(false, file.Empty());

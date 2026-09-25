@@ -19,20 +19,20 @@ public sealed class DirectoryInfoAssertionsTest : Test
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DirectoryInfoAssertions.Empty(null, Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => DirectoryInfoAssertions.Empty(null, Random.ToDirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => DirectoryInfoAssertions.Empty(Assert.To, null)).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
 
-      Random.Directory().TryFinallyDelete(directory => Test(true, directory));
+      Random.ToDirectory().TryFinallyDelete(directory => Test(true, directory));
 
-      Random.Directory().TryFinallyDelete(directory =>
+      Random.ToDirectory().TryFinallyDelete(directory =>
       {
-        Random.File(directory);
+        Random.ToFile(directory);
         Test(false, directory);
       });
 
-      Random.Directory().TryFinallyDelete(directory =>
+      Random.ToDirectory().TryFinallyDelete(directory =>
       {
-        Random.Directory(directory);
+        Random.ToDirectory(directory);
         Test(false, directory);
       });
     }
@@ -60,11 +60,11 @@ public sealed class DirectoryInfoAssertionsTest : Test
   {
     using (new AssertionScope())
     {
-      AssertionExtensions.Should(() => DirectoryInfoAssertions.InDirectory(null, Random.DirectoryName().ToDirectory(), Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
-      AssertionExtensions.Should(() => DirectoryInfoAssertions.InDirectory(Assert.To, null, Random.DirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
-      AssertionExtensions.Should(() => Assert.To.InDirectory(Random.DirectoryName().ToDirectory(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
+      AssertionExtensions.Should(() => DirectoryInfoAssertions.InDirectory(null, Random.ToDirectoryName().ToDirectory(), Random.ToDirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
+      AssertionExtensions.Should(() => DirectoryInfoAssertions.InDirectory(Assert.To, null, Random.ToDirectoryName().ToDirectory())).ThrowExactly<ArgumentNullException>().WithParameterName("directory");
+      AssertionExtensions.Should(() => Assert.To.InDirectory(Random.ToDirectoryName().ToDirectory(), null)).ThrowExactly<ArgumentNullException>().WithParameterName("parent");
 
-      Random.Directory().TryFinallyDelete(directory =>
+      Random.ToDirectory().TryFinallyDelete(directory =>
       {
         Test(true, directory, directory.Parent);
         Test(false, directory, directory);

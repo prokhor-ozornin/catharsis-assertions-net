@@ -214,7 +214,7 @@ public sealed class IEnumerableAssertionsTest : Test
       AssertionExtensions.Should(() => IEnumerableAssertions.ContainNulls(null, Enumerable.Empty<object>())).ThrowExactly<ArgumentNullException>().WithParameterName("assertion");
       AssertionExtensions.Should(() => Assert.To.ContainNulls<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
-      Test(true, 1.Nulls());
+      Test(true, 1.Nulls);
       Test(false, Enumerable.Empty<object>());
       Test(false, RandomSequence);
     }
@@ -247,7 +247,7 @@ public sealed class IEnumerableAssertionsTest : Test
 
       Test(true, Enumerable.Empty<object>());
       Test(true, RandomSequence);
-      Test(false, 2.Nulls());
+      Test(false, 2.Nulls);
     }
 
     return;
@@ -413,7 +413,7 @@ public sealed class IEnumerableAssertionsTest : Test
 
       Test(true, [], Enumerable.Empty<object>());
       Test(true, RandomSequence, RandomSequence.Reverse());
-      Test(true, 2.Nulls(), 2.Nulls());
+      Test(true, 2.Nulls, 2.Nulls);
       Test(false, RandomSequence, RandomSequence);
       Test(false, RandomSequence, []);
       Test(false, RandomSequence, RandomSequence.Take(RandomSequence.Count() / 2).Reverse());
@@ -446,8 +446,8 @@ public sealed class IEnumerableAssertionsTest : Test
       AssertionExtensions.Should(() => Assert.To.Ordered<object>(null)).ThrowExactly<ArgumentNullException>().WithParameterName("sequence");
 
       Test(true, Enumerable.Empty<object>());
-      Test(true, Random.Int(byte.MaxValue).Order().ToArray());
-      Test(false, Random.Int(byte.MaxValue).ToArray());
+      Test(true, Random.ToInt(byte.MaxValue).Order().ToArray());
+      Test(false, Random.ToInt(byte.MaxValue).ToArray());
     }
 
     return;
@@ -553,9 +553,9 @@ public sealed class IEnumerableAssertionsTest : Test
       Test(true, Enumerable.Empty<object>(), _ => false);
       Test(true, RandomSequence, _ => true);
       Test(true, RandomSequence, element => element is not null);
-      Test(true, 1.Nulls(), element => element is null);
+      Test(true, 1.Nulls, element => element is null);
       Test(false, RandomSequence, _ => false);
-      Test(false, 1.Nulls(), element => element is not null);
+      Test(false, 1.Nulls, element => element is not null);
     }
 
     return;

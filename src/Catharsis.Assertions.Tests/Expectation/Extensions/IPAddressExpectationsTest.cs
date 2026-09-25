@@ -54,13 +54,13 @@ public sealed class IPAddressExpectationsTest : Test
       Test(true, IPAddress.IPv6Any);
       Test(true, IPAddress.IPv6Loopback);
       Test(true, IPAddress.IPv6None);
-      Test(true, Random.IpV6Address());
+      Test(true, Random.ToIpV6Address());
 
       Test(false, IPAddress.Any);
       Test(false, IPAddress.Broadcast);
       Test(false, IPAddress.Loopback);
       Test(false, IPAddress.None);
-      Test(false, Random.IpAddress());
+      Test(false, Random.ToIpAddress());
     }
 
     return;

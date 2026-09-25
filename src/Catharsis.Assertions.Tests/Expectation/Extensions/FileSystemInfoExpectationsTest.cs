@@ -22,11 +22,11 @@ public sealed class FileSystemInfoExpectationsTest : Test
       AssertionExtensions.Should(() => FileSystemInfoExpectations.Exist(null)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Exist()).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Random.File().TryFinallyDelete(file => Test(true, file));
-      Random.Directory().TryFinallyDelete(directory => Test(true, directory));
+      Random.ToFile().TryFinallyDelete(file => Test(true, file));
+      Random.ToDirectory().TryFinallyDelete(directory => Test(true, directory));
 
-      Test(false, Random.FileName().ToFile());
-      Test(false, Random.DirectoryName().ToDirectory());
+      Test(false, Random.ToFileName().ToFile());
+      Test(false, Random.ToDirectoryName().ToDirectory());
     }
 
     return;
@@ -45,7 +45,7 @@ public sealed class FileSystemInfoExpectationsTest : Test
       AssertionExtensions.Should(() => FileSystemInfoExpectations.Attribute(null, FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("expectation");
       AssertionExtensions.Should(() => ((FileInfo) null).Expect().Attribute(FileAttributes.Normal)).ThrowExactly<ArgumentNullException>().WithParameterName("subject");
 
-      Random.File().TryFinallyDelete(file =>
+      Random.ToFile().TryFinallyDelete(file =>
       {
         Test(true, file.AsReadOnly(), FileAttributes.ReadOnly);
         Enum.GetValues<FileAttributes>().ForEach(attribute => Test((file.Attributes & attribute) == attribute, file, attribute));
